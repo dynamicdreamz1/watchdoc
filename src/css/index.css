@@ -1,0 +1,557 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+      max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+      max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+      max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1170px;
+  }
+}
+.page-header {
+  padding: 30px 0;
+  text-align: center;
+}
+.page-content-wrapper {
+  padding-top: 45px;
+  max-width: 510px;
+  margin: 0 auto;
+}
+body h4 {
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+p {
+  font-size: 14px;
+  line-height: 18px;
+}
+body input:focus-visible {
+  outline-offset: 0px;
+  outline: 0;
+}
+.page-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+}
+form input {
+  background: #FFFFFF;
+  border: 0.25px solid #C6C6C6;;
+  border-radius: 9px;
+  width: 100%;
+  height: 48px;
+  color: #000000;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+form input::placeholder {
+  color: #C6C6C6;
+  opacity: 1;
+}
+form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #C6C6C6;
+}
+form input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #C6C6C6;
+}
+button[type="submit"] {
+  background-color: #06B2CC;
+  border-radius: 9px;
+  border: 0;
+  color: #fff;
+  width: 100%;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 13px 10px;
+  cursor: pointer;
+}
+form .input-block label {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 7px;
+}
+.d-flex {
+  display: flex;
+}
+.align-items-center {
+  align-items: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.page-content-wrapper .title-block {
+  margin-bottom: 15px;
+}
+.radio-buttons {
+  display: flex;
+  margin: 0 -6px;
+}
+.radio-buttons .radio-button {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 0 6px;
+}
+.radio-buttons .radio-button label {
+  background: #FFFFFF;
+  border: 0.25px solid #C6C6C6;
+  border-radius: 9px;
+  height: 48px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  color: #C6C6C6;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 20px;
+}
+.radio-buttons .radio-button input[type="radio"] {
+  margin: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.radio-buttons .radio-button input[type="radio"]:checked ~ label {
+  background-color: #00b3ca;
+  color: #fff;
+  border-color: #00b3ca;
+}
+.color-light-blue {
+  color: #00B8E2;
+}
+.color-light-green {
+  color: #86E826;
+}
+.color-red {
+  color: #EA4335;
+}
+/* Content Wrapper */
+.content-wrapper {
+  display: flex;
+}
+.content-wrapper .aside {
+  min-height: 100vh;
+  overflow-y: auto;
+  background-color: #F5F5F5;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 30px;
+}
+/* SideBar */
+.sidebar {
+  width: 197px;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.sidebar .logo {
+  padding: 30px 26px;
+}
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root {
+  min-width: auto;
+  width: 30px;
+}
+.sidebar nav ul li .css-tlelie-MuiListItemText-root {
+  width: calc(100% - 30px);
+  margin: 0;
+}
+.sidebar nav ul li .MuiButtonBase-root {
+  padding: 17px 26px;
+}
+.sidebar nav .MuiList-root {
+  padding: 0;
+}
+/* Aside */
+.aside {
+  width: calc(100% - 197px);
+  margin-left: 197px;
+}
+/* Account Owner */
+.account-owner span.uname,.account-owner span.uposition {
+  display: block;
+}
+.account-owner {
+  display: flex;
+  align-items: center;
+}
+.account-owner .info span {
+  font-size: 13px;
+  line-height: 13px;
+}
+.account-owner .info {
+  padding-right: 12px;
+}
+.account-owner .info span.uname {
+  font-weight: 600;
+}
+/* Top Header Block */
+.content-wrapper .aside .top-header-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+.content-wrapper .aside .top-header-block .search-block {
+  max-width: 586px;
+  width: 100%;
+}
+.content-wrapper .aside .top-header-block .search-block input[type="search"] {
+  margin: 0 !important;
+  width: 100%;
+  border: 0;
+  height: 40px;
+  border-radius: 25px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #999999;
+  background-image: url(../../public/images/Search-Icon.svg);
+  background-repeat: no-repeat;
+  background-position: left 20px center;
+  padding: 8px 25px 8px 50px;
+}
+.content-wrapper .aside .top-header-block {
+  padding: 20px 0;
+}
+.content-wrapper .aside .top-header-block .page-title h1 {
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 300;
+}
+.content-wrapper .aside .top-header-block {
+  gap: 15px;
+}
+/* Alert Table */
+body .MuiPaper-root.red-alert-table .MuiTable-root {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  min-width: unset;
+}
+body .MuiPaper-root {
+  background-color: transparent;
+  color: #000;
+  box-shadow: none;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-head {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
+  padding: 9px 20px;
+  color: #000;
+  border: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #fff;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
+  fill: #EA4335;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info .name {
+  font-size: 15px;
+  line-height: 19px;
+  font-weight: 600;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info span {
+  display: block;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info .age {
+  font-size: 13px;
+  line-height: 16px;
+  color: #8D8D8D;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name {
+  display: flex;
+  align-items: center;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon {
+  margin-right: 20px;
+  display: flex;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
+  fill: #EA4335;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span {
+  display: block;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .table-data .time {
+  font-size: 12px;
+  line-height: 15px;
+  color: #8D8D8D;
+}
+body .MuiPaper-root .MuiTable-root .table-data {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root:first-child {
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root:last-child {
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.status span {
+  font-size: 14px;
+  line-height: 17px;
+}
+body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span.digit,
+body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
+  font-size: 16px;
+  line-height: 20px;
+}
+/* Clinicians Table */
+body .MuiPaper-root.clinicians-table table {
+  background-color: #fff;
+  border-radius: 9px;
+}
+body .MuiPaper-root.clinicians-table .MuiTableCell-root {
+  border: 0;
+  letter-spacing: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  padding: 14px 20px;
+}
+body .MuiPaper-root.clinicians-table .MuiTableCell-root.MuiTableCell-head {
+  font-size: 14px;
+  line-height: 18px;
+  color: #000;
+}
+body .MuiPaper-root.clinicians-table .MuiTableBody-root .MuiTableRow-root:nth-child(odd) td {
+  background-color: rgba(249, 249, 249, 0.5);
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+.user-profile .user-info span {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000;
+}
+.user-profile .user-info .fname {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.user-profile .user-avtar {
+  margin-right: 14px;
+}
+body .MuiPaper-root.clinicians-table .MuiTableCell-root .name .profile-image .MuiAvatar-root {
+  font-size: 14px;
+  line-height: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+body .MuiPaper-root.clinicians-table .MuiTableCell-root span.fname .badge {
+  display: inline-block;
+  background: #00B8E2;
+  border-radius: 2px;
+  font-size: 7px;
+  line-height: 12px;
+  font-weight: 400;
+  color: #fff;
+  width: 27px;
+  height: 12px;
+  text-align: center;
+  margin-left: 8px;
+}
+body .MuiPaper-root.clinicians-table .table-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+body .MuiPaper-root.clinicians-table .table-title img {
+  margin-right: 11px;
+}
+body .MuiPaper-root.clinicians-table .table-title h4 {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}
+body .MuiPaper-root.clinicians-table {
+  padding-top: 40px;
+}
+/* Table Tabs */
+.table-nav-tabs button.MuiTab-root {
+  text-transform: none;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #000;
+  letter-spacing: 0;
+  padding: 15px 25px;
+  border-bottom: 4px solid #E5E7EB;
+}
+.table-nav-tabs button.MuiTab-root.Mui-selected {
+  color: #000;
+  font-weight: 600;
+  border-color: #00B8E2;
+}
+.table-nav-tabs .MuiTabs-indicator {
+  display: none;
+}
+.table-nav-tabs button.MuiTab-root:not(:last-child) {
+  margin-right: 5px;
+}
+.table-nav-tabs-content .MuiBox-root {
+  padding: 20px 0;
+}
+.table-header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-header-block .MuiIconButton-root {
+  background-color: #fff;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+.MuiList-root.css-6hp17o-MuiList-root-MuiMenu-list {
+  background-color: #FFFFFF;
+  box-shadow: 0px 2px 4px rgba(31, 41, 55, 0.06), 0px 4px 6px rgba(31, 41, 55, 0.1);
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 5px;
+}
+.MuiList-root.css-6hp17o-MuiList-root-MuiMenu-list .MuiMenuItem-root {
+  font-size: 14px;
+  line-height: 20px;
+  color: #374151;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 8px;
+}
+/* Clinician Profile Bar */
+.clinician-profile-tab {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+.clinician-profile-tab .user-profile .user-info .fname {
+  font-size: 18px;
+  line-height: 22px;
+}
+.phone-number .icon {
+  margin-right: 11px;
+}
+.phone-number .text {
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  white-space: nowrap;
+}
+.clinician-profile-tab .right-block button {
+  margin-left: 30px;
+  background: #F9F9F9;
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  text-transform: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  min-width: 127px;
+  padding: 10px 5px;
+}
+/* Measurement Card */
+.measurment-card .m-status {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: auto;
+}
+.measurment-card .m-status.alert {
+  background-color: #EA4335;
+}
+.measurment-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px 10px 10px 18px;
+  width: calc(16.666667% - 18px);
+}
+.measurment-card .m-title .icon {
+  max-width: 16px;
+  width: 100%;
+  margin-right: 8px;
+}
+.measurment-card .m-title .name {
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+}
+.measurment-card .measurment-result .digit {
+  font-size: 36px;
+  line-height: 46px;
+}
+.measurment-card .measurment-result .type {
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 8px;
+}
+.measurment-card .measurment-result {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.measurment-card .mlr span {
+  display: block;
+}
+.measurment-card .mlr span.text {
+  font-size: 12px;
+  line-height: 15px;
+  color: #000;
+}
+.measurment-card .mlr span.time {
+  color: #8D8D8D;
+  font-size: 12px;
+  line-height: 15px;
+}

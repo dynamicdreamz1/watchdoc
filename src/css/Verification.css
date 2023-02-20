@@ -1,0 +1,14 @@
+.eError,
+.sMessage {
+    font-size: 16px;
+    line-height: 20px;
+}
+.eError{
+    color: red;
+}
+.sMessage{
+    color: green;
+}
+.varification-page-wrapper form {
+    padding-top: 10px;
+}
