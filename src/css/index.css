@@ -555,3 +555,60 @@ body .MuiPaper-root.clinicians-table {
   font-size: 12px;
   line-height: 15px;
 }
+/* Reminder Card */
+.reminder-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px 40px 26px 26px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: calc(25% - 18px);
+}
+.reminder-card .icon-block {
+  width: 65px;
+  padding-right: 15px;
+}
+.reminder-card .content-block {
+  width: calc(100% - 65px);
+}
+.reminder-card .content-block .r-title h4 {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.reminder-card .content-block .reminder-date span {
+  font-size: 16px;
+  line-height: 20px;
+  color: #3A3432;
+}
+.reminder-card .content-block .days .day {
+  width: 29px;
+  height: 29px;
+  border: 0;
+  background-color: #F2F2F2;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 12px;
+  color: #8D8D8D;
+  cursor: pointer;
+}
+.reminder-card .content-block .days {
+  display: flex;
+  column-gap: 6px;
+}
+.reminder-card .content-block .days .day.active {
+  background-color: #00B8E2;
+  color: #fff;
+}
+.reminder-card .content-block .reminder-date {
+  margin-top: 10px;
+}
+.reminder-cards-wrapper .d-flex {
+  column-gap: 18px;
+  margin-top: 20px;
+}
+.measurment-cards-wrapper .d-flex {
+  column-gap: 18px;
+}

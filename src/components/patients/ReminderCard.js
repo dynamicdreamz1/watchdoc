@@ -4,7 +4,7 @@ import ReminderIcon from './ReminderIcon'
 import ReminderTime from './ReminderTime'
 import ReminderTitle from './ReminderTitle'
 
-export default function RemindersCard() {
+export default function ReminderCard() {
   return (
     <>
     <div className='reminder-card'>
