@@ -13,6 +13,7 @@ import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
 import PatientDashboard from './pages/PatientDashboard';
 import ContactDetails from './pages/ContactDetails';
+import VerifyMobile from './pages/VerifyMobile';
 
 // const lngs = {
 //   english: { nativeName: 'English', value: 'english' },
@@ -51,6 +52,8 @@ function App() {
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
           <Route path='/PatientDashboard' element={<PatientDashboard />} />
+          <Route path='/ContactDetails' element={<ContactDetails />} />
+          <Route path='/VerifyMobile/:mobileN' element={<VerifyMobile />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

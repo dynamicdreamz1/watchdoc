@@ -66,12 +66,15 @@ const CreateProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
+                    let Fname=(res.data.user_details.first_name)
+                    // console.log(Fname)
+                    sessionStorage.setItem('name',Fname)
                     let profileCheck = (res.data.user_details.profile_created)
                     setMessage(t('CreateProfilePage.message.m1'))
                     setSuccess(true)
                     sessionStorage.setItem('profile', profileCheck)
 
-                    navigate('/Dashboard')
+                    navigate('/ContactDetails')
                     setLoading(false)
 
                 })

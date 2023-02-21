@@ -115,5 +115,17 @@
 
     "UserConsent":{
         "r1":"Please indicate that you have read and agree to the Privacy Policy and terms of use."
+    },
+
+    "mobileNumberVerificationPage":{
+        "error":{
+            "e1":"Please enter your mobile number.",
+            "e2":"Please enter valid 10 digit mobile number."
+            
+        }
+    },
+    "verifyMobile":{
+        "e1":"Please enter verification code."
+        
     }
 }
