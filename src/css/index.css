@@ -179,6 +179,35 @@ form .input-block label {
   padding-right: 25px;
   padding-bottom: 30px;
 }
+/* User Consent */
+.user-consent-page-wrapper .title-block a {
+  color: #00B8E2;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 8px;
+}
+.user-consent-page-wrapper .checkbox-block {
+  background-color: rgba(217, 217, 217, 0.2);
+  border-radius: 9px;
+  padding: 12px 14px;
+  margin-top: 13px;
+}
+.user-consent-page-wrapper .checkbox-block label {
+  margin-right: 0;
+  margin-left: 0;
+}
+.user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root {
+  padding: 0;
+}
+.user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root svg.MuiSvgIcon-root {
+  fill: #8D8D8D !important;
+  margin-right: 10px;
+}
+.page-content-wrapper .title-block {
+  margin-bottom: 30px;
+}
 /* SideBar */
 .sidebar {
   width: 197px;
@@ -611,4 +640,91 @@ body .MuiPaper-root.clinicians-table {
 }
 .measurment-cards-wrapper .d-flex {
   column-gap: 18px;
+}
+/* Add clinician Page */
+.clinician-connection {
+  background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
+  border-radius: 20px;
+  padding: 24px 100px 26px 24px;
+  position: relative;
+}
+.clinician-connection .text-block h6 {
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 3px;
+}
+.clinician-connection .text-block p {
+  color: #fff;
+}
+.clinician-connection .image-block {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  height: 115%;
+}
+.clinician-connection .image-block img {
+  max-height: 100%;
+}
+.add-clinician-box .form-box {
+  background: #FFFFFF;
+  border: 1px solid #C6C6C6;
+  border-radius: 10px;
+  overflow: hidden;
+  border-bottom: 0;
+}
+.add-clinician-box .form-box input {
+  margin: 0;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #C6C6C6;
+  font-size: 14px;
+  line-height: 18px;
+  background-repeat: no-repeat;
+  background-position: left 15px center;
+  padding-left: 42px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.add-clinician-box .form-box input[type="submit"] {
+  background-color: #06B2CC;
+  border: 0;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+}
+.add-clinician-box .form-box input.name {
+  background-image: url(../../public/images/User-icon.svg);
+}
+.add-clinician-box .form-box input.number {
+  background-image: url(../../public/images/Clinicians-icon.svg);
+}
+.add-clinician-box .form-box input.postcode {
+  background-image: url(../../public/images/MapMarker-icon.svg);
+}
+.practitioners-card h5 {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.practitioners-card .card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 23px;
+}
+.practitioners-card .card .user-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.practitioners-card .card .text-block {
+  width: calc(100% - 60px);
+  padding-left: 18px;
+}
+.practitioners-card .card .text-block h5 {
+  font-weight: 600;
+  margin-bottom: 0;
 }

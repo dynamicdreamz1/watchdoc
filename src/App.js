@@ -9,6 +9,9 @@ import Dashboard from './pages/Dashboard';
 // import { useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import PrivateDashboard from './pages/PrivateRoute';
+import Thankyou from './pages/Thankyou';
+import UserConsent from './pages/UserConsent';
+import PatientDashboard from './pages/PatientDashboard';
 
 // const lngs = {
 //   english: { nativeName: 'English', value: 'english' },
@@ -44,7 +47,9 @@ function App() {
           <Route path='/CreateProfile' element={< CreateProfile />} />
           <Route path='/Dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
-         
+          <Route path='/thankyou' element={<Thankyou />} />
+          <Route path='/userconsent' element={<UserConsent />} />
+          <Route path='/patient-dashboard' element={<PatientDashboard />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
