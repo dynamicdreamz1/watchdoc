@@ -43,14 +43,14 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Register />} />
-          <Route path='/Register' element={<Register />} />
-          <Route path='/Verification/:emailId' element={<Verification />} />
-          <Route path='/CreateProfile' element={< CreateProfile />} />
-          <Route path='/Dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
+          <Route path='/register' element={<Register />} />
+          <Route path='/verification/:emailId' element={<Verification />} />
+          <Route path='/create-profile' element={< CreateProfile />} />
+          <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/PatientDashboard' element={<PatientDashboard />} />
+          <Route path='/patient-dashboard' element={<PatientDashboard />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

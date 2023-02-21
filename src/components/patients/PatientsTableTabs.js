@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import RedAlertUnreviewed from '../dashboard/RedAlertUnreviewed';
 import MeasurmentCard from './MeasurmentCard';
 import ReminderCard from './ReminderCard';
+import AlertCard from './AlertCard';
+import ClinicianProfileBar from '../clinicians/ClinicianProfileBar';
+import PatientProfileBar from './PatientProfileBar';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -48,6 +51,42 @@ export default function PatientsTableTabs() {
     
     return (
         <>
+        <PatientProfileBar/>
+        <div className='alert-cards-wrapper mt-22'>
+          <div className='section-title d-flex align-items-center justify-content-between'>
+            <h4>Critical Alerts</h4>
+            <button type='button' className='view-all-btn'>View All Alerts (41)</button>
+          </div>
+          <div className='wrapper'>
+            <AlertCard/>
+            <AlertCard/>
+            <AlertCard/>
+          </div>
+        </div>
+        <div className='measurment-cards-wrapper mt-22'>
+          <div className='section-title'>
+            <h4>Lastest Measurements</h4>
+          </div>
+          <div className='wrapper d-flex flex-wrap'>
+            <MeasurmentCard/>
+            <MeasurmentCard/>
+            <MeasurmentCard/>
+            <MeasurmentCard/>
+            <MeasurmentCard/>
+            <MeasurmentCard/>
+          </div>
+        </div>
+        <div className='reminder-cards-wrapper mt-22'>
+          <div className='section-title'>
+            <h4>Reminders</h4>
+
+          </div>
+          <div className='d-flex flex-wrap'>
+            <ReminderCard/>
+            <ReminderCard/>
+            <ReminderCard/>
+          </div>
+        </div>
         <Box sx={{ width: '100%' }}>
           <Box className="table-header-block">
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
@@ -66,23 +105,6 @@ export default function PatientsTableTabs() {
               Test
           </TabPanel>
         </Box>
-        <div className='measurment-cards-wrapper'>
-          <div className='d-flex flex-wrap'>
-            <MeasurmentCard/>
-            <MeasurmentCard/>
-            <MeasurmentCard/>
-            <MeasurmentCard/>
-            <MeasurmentCard/>
-            <MeasurmentCard/>
-          </div>
-        </div>
-        <div className='reminder-cards-wrapper'>
-          <div className='d-flex flex-wrap'>
-            <ReminderCard/>
-            <ReminderCard/>
-            <ReminderCard/>
-          </div>
-        </div>
         </>
     )
 }

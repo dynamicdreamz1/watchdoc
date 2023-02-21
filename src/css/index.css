@@ -106,6 +106,9 @@ button[type="submit"] {
   padding: 13px 10px;
   cursor: pointer;
 }
+.phone-number {
+  text-decoration: none;
+}
 form .input-block label {
   font-size: 14px;
   line-height: 18px;
@@ -127,6 +130,23 @@ form .input-block label {
 }
 .page-content-wrapper .title-block {
   margin-bottom: 15px;
+}
+.section-title .view-all-btn {
+  color: #00B8E2;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  font-size: 13px;
+  line-height: 16px;
+}
+.section-title {
+  margin-bottom: 15px;
+}
+.mt-22 {
+  margin-top: 22px;
+}
+button {
+  cursor: pointer;
 }
 .radio-buttons {
   display: flex;
@@ -403,7 +423,8 @@ body .MuiPaper-root.clinicians-table .MuiTableBody-root .MuiTableRow-root:nth-ch
   display: flex;
   align-items: center;
 }
-.user-profile .user-info span {
+.user-profile .user-info span.position,
+.patient-profile-bar .patient-info span.position {
   display: block;
   font-size: 14px;
   line-height: 18px;
@@ -502,7 +523,8 @@ body .MuiPaper-root.clinicians-table {
   padding: 8px;
 }
 /* Clinician Profile Bar */
-.clinician-profile-tab {
+.clinician-profile-tab,
+.patient-profile-bar {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 18px;
@@ -511,12 +533,15 @@ body .MuiPaper-root.clinicians-table {
   gap: 15px;
   align-items: center;
 }
-.clinician-profile-tab .user-profile .user-info .fname {
+.clinician-profile-tab .user-profile .user-info .fname,
+.patient-profile-bar .patient-info .fname {
   font-size: 18px;
   line-height: 22px;
+  font-weight: 600;
 }
 .phone-number .icon {
   margin-right: 11px;
+  display: flex;
 }
 .phone-number .text {
   font-size: 18px;
@@ -524,7 +549,8 @@ body .MuiPaper-root.clinicians-table {
   color: #000000;
   white-space: nowrap;
 }
-.clinician-profile-tab .right-block button {
+.clinician-profile-tab .right-block button,
+.patient-profile-bar .right-block button {
   margin-left: 30px;
   background: #F9F9F9;
   border-radius: 5px;
@@ -644,7 +670,7 @@ body .MuiPaper-root.clinicians-table {
   column-gap: 18px;
   margin-top: 20px;
 }
-.measurment-cards-wrapper .d-flex {
+.measurment-cards-wrapper .wrapper {
   column-gap: 18px;
 }
 /* Add clinician Page */
@@ -787,4 +813,66 @@ body .MuiPaper-root.clinicians-table {
 }
 .practitioners-card {
   margin-top: 20px;
+}
+/* Alert Card */
+.alert-card .text-block .icon {
+  width: 10px;
+  height: 10px;
+  background-color: #EA4335;
+  display: block;
+  border-radius: 50%;
+  margin-right: 18px;
+}
+.alert-card {
+  background-color: #fff;
+  padding: 16px 16px 12px 20px;
+}
+.alert-card:nth-child(even) {
+  background-color: #F9F9F9;
+}
+.alert-card .title {
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 10px;
+}
+.alert-card .time {
+  color: #8D8D8D;
+  font-size: 14px;
+  line-height: 18px;
+}
+.alert-card .button-block {
+  width: 106px;
+}
+.alert-card .text-block {
+  width: calc(100% - 106px);
+}
+.alert-card .button-block .MuiButtonBase-root {
+  background-color: #F5F5F5;
+  border-radius: 3px;
+  border: 0;
+  box-shadow: none;
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: none;
+  color: #000000;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 5px 8px;
+  width: 100%;
+}
+.alert-card .button-block .MuiButtonBase-root:hover {
+  background-color: #00B8E2;
+  color: #fff;
+}
+.alert-cards-wrapper .wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.patient-profile-bar .right-block button {
+  margin-left: 11px;
+}
+.patient-profile-bar .patient-info .age {
+  display: block;
+  color: #8D8D8D;
+  font-size: 15px;
+  line-height: 18px;
 }
