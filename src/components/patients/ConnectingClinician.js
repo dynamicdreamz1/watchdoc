@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PatientDashboard() {
+export default function ConnectingClinician() {
   return (
     <>
     <div className='clinician-connection'>
