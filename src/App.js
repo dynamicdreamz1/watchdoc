@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 // import { useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import PrivateDashboard from './pages/PrivateRoute';
+import Thankyou from './pages/Thankyou';
 
 // const lngs = {
 //   english: { nativeName: 'English', value: 'english' },
@@ -44,6 +45,7 @@ function App() {
           <Route path='/CreateProfile' element={< CreateProfile />} />
           <Route path='/Dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
+          <Route path='/thankyou' element={<Thankyou />} />
          
         </Routes>
       </BrowserRouter>
