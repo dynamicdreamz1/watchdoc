@@ -49,7 +49,7 @@ function App() {
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/patient-dashboard' element={<PatientDashboard />} />
+          <Route path='/PatientDashboard' element={<PatientDashboard />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

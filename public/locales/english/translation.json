@@ -111,5 +111,9 @@
             "a1": "Error 404: Page Not Found",
             "a2": "Go Back"
         }
+    },
+
+    "UserConsent":{
+        "r1":"Please indicate that you have read and agree to the Privacy Policy and terms of use."
     }
 }

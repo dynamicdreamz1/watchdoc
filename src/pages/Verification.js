@@ -42,6 +42,10 @@ const Verification = () => {
             Verify(data)
                 .then((res) => {
                     // console.log(res)
+                    let roleType=res.data.user_details.roles[0].name
+                    // console.log(typeof roleType)
+
+                    sessionStorage.setItem('role',roleType)
                     let token = res.data.token
                     let profileCheck = res.data.user_details.profile_created
                     // console.log(typeof profileCheck)
@@ -52,13 +56,14 @@ const Verification = () => {
                     let profileCheckF=sessionStorage.getItem('profile')  
                     // console.log(typeof profileCheckF)
                     if (profileCheckF === '1' && token) {
+                        
                         navigate('/Dashboard')
                     }
 
                     else {
                         setMessage(t('VerificationPage.message.m1'))
                         setCode("")
-                        navigate('/CreateProfile')
+                        navigate('/UserConsent')
                     }
                         
 
@@ -79,7 +84,7 @@ const Verification = () => {
 
     }
 
-    console.log(show)
+    // console.log(show)
     const resendCode=(e)=>{
        e.preventDefault() 
        setShow(true)
