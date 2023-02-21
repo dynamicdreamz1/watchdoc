@@ -1,5 +1,5 @@
 import { Base64 } from 'js-base64'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Verify } from '../services/VerificationService'
@@ -10,11 +10,18 @@ const Verification = () => {
 
     const [code, setCode] = useState('')
     const [message, setMessage] = useState('')
+    const [show,setShow]=useState(true)
     const [error, setError] = useState('')
     const { emailId } = useParams();
     let navigate = useNavigate("")
     const { t } = useTranslation();
     let decodedEmail = (Base64.decode(emailId));
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,6 +42,10 @@ const Verification = () => {
             Verify(data)
                 .then((res) => {
                     // console.log(res)
+                    let roleType=res.data.user_details.roles[0].name
+                    // console.log(typeof roleType)
+
+                    sessionStorage.setItem('role',roleType)
                     let token = res.data.token
                     let profileCheck = res.data.user_details.profile_created
                     // console.log(typeof profileCheck)
@@ -45,13 +56,14 @@ const Verification = () => {
                     let profileCheckF=sessionStorage.getItem('profile')  
                     // console.log(typeof profileCheckF)
                     if (profileCheckF === '1' && token) {
+                        
                         navigate('/Dashboard')
                     }
 
                     else {
                         setMessage(t('VerificationPage.message.m1'))
                         setCode("")
-                        navigate('/CreateProfile')
+                        navigate('/UserConsent')
                     }
                         
 
@@ -70,6 +82,14 @@ const Verification = () => {
                 })
         }
 
+    }
+
+    // console.log(show)
+    const resendCode=(e)=>{
+       e.preventDefault() 
+       setShow(true)
+       console.log(show)
+    //    console.log('test')
     }
 
     return (
@@ -91,6 +111,7 @@ const Verification = () => {
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
                                 <input type="number" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
+                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>Resend Code</button> <br/><br/>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>
                     </div>

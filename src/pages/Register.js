@@ -23,8 +23,19 @@ const Register = () => {
             setError(t('RegisterPage.error.e1'))
         }
 
+        
         else {
             // console.log(email)
+
+            let profileCheckF=sessionStorage.getItem('profile')
+            let token=sessionStorage.getItem('token');
+
+            if(profileCheckF==='1' && token ){
+                navigate('/Dashboard')
+            }
+
+            else{
+
             const data={
                 email : email
             }
@@ -39,19 +50,9 @@ const Register = () => {
                     // console.log(encodedemail)
                     setLoading(false)
                     setEmail("")
-              
-                    let profileCheckF=sessionStorage.getItem('profile')
-                    let token=sessionStorage.getItem('token');
-                
-                    if(profileCheckF==='1' && token ){
-                        navigate('/Dashboard')
-                    }
-
-                    else{
                     navigate(`/Verification/${encodedemail}`)
-                    }
                 })
-
+              
                 .catch((error) => {
                     setLoading(false)
 
@@ -59,6 +60,7 @@ const Register = () => {
                     setError(error)
 
                 })
+            }
 
         }
     }
