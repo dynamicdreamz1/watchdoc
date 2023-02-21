@@ -1,18 +1,17 @@
 import React from 'react'
 import AddClinician from '../components/patients/AddClinician'
+import AddClinicianButton from '../components/patients/AddClinicianButton'
 import ConnectingClinician from '../components/patients/ConnectingClinician'
 import PractitionersCard from '../components/patients/PractitionersCard'
 
 export default function PatientDashboard() {
   return (
     <>
-    <div className='varification-page-wrapper thankyou-page-wrapper'>
+    <div className='page-wrapper bg-gray'>
         <div className='container'>
-            <div className='page-header'>
-                <img src='/images/WatchDoc-LOGO.png' alt='Watch Doc Logo' />
-            </div>
             <div className='page-content-wrapper'>
                 <ConnectingClinician/>
+                <AddClinicianButton/>
                 <AddClinician/>
                 <PractitionersCard/>
             </div>

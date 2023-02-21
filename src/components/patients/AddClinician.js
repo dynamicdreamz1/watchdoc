@@ -4,7 +4,7 @@ export default function AddClinician() {
   return (
     <>
     <div className='add-clinician-box'>
-        <div className='title-block'>
+        <div className='title'>
             <p>Find and add your clinician to your WatchDoc account.</p>
         </div>
         <form method='post'>

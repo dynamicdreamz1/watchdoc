@@ -13,6 +13,12 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+span,h1,h2,h3,h4,h5,h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.bg-gray {
+  background-color: rgba(198, 198, 198, 0.1);
+}
 @media (min-width: 576px) {
   .container {
       max-width: 540px;
@@ -727,4 +733,58 @@ body .MuiPaper-root.clinicians-table {
 .practitioners-card .card .text-block h5 {
   font-weight: 600;
   margin-bottom: 0;
+}
+.practitioners-card .card .text-block .add-fav span.MuiCheckbox-root {
+  padding: 0;
+  margin-right: 6px;
+}
+.practitioners-card .card .text-block .add-fav span svg {
+  fill: #00B8E2;
+  width: 20px;
+  height: 20px;
+}
+.practitioners-card .card .text-block .add-fav {
+  margin-top: 8px;
+}
+.practitioners-card .card .text-block .add-fav label {
+  margin: 0 !important;
+}
+.practitioners-card .card .text-block .add-fav span.MuiTypography-root {
+  color: #00B8E2;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.add-clinician-button {
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 0;
+  width: 100%;
+  padding: 15px;
+}
+.add-clinician-button .text {
+  font-size: 16px;
+  line-height: 20px;
+}
+.clinician-connection-wrapper .title-block h4 {
+  margin-bottom: 0;
+}
+.clinician-connection-wrapper .title-block .icon svg path {
+  fill: #00B8E2;
+}
+.clinician-connection-wrapper .title-block .icon {
+  display: flex;
+}
+.add-clinician-button-block {
+  margin-top: 20px;
+}
+.add-clinician-button-block .title h4 {
+  margin-bottom: 15px;
+}
+.add-clinician-box .title {
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+.practitioners-card {
+  margin-top: 20px;
 }

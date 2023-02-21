@@ -12,6 +12,7 @@ import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
 import PatientDashboard from './pages/PatientDashboard';
+import ContactDetails from './pages/ContactDetails';
 
 // const lngs = {
 //   english: { nativeName: 'English', value: 'english' },
@@ -50,6 +51,7 @@ function App() {
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
           <Route path='/patient-dashboard' element={<PatientDashboard />} />
+          <Route path='/contact-details' element={<ContactDetails />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
