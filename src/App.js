@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import { Suspense } from 'react';
 import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
+import UserConsent from './pages/UserConsent';
 
 // const lngs = {
 //   english: { nativeName: 'English', value: 'english' },
@@ -46,7 +47,7 @@ function App() {
           <Route path='/Dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
-         
+          <Route path='/userconsent' element={<UserConsent />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

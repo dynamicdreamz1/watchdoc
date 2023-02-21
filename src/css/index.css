@@ -179,6 +179,35 @@ form .input-block label {
   padding-right: 25px;
   padding-bottom: 30px;
 }
+/* User Consent */
+.user-consent-page-wrapper .title-block a {
+  color: #00B8E2;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 8px;
+}
+.user-consent-page-wrapper .checkbox-block {
+  background-color: rgba(217, 217, 217, 0.2);
+  border-radius: 9px;
+  padding: 12px 14px;
+  margin-top: 13px;
+}
+.user-consent-page-wrapper .checkbox-block label {
+  margin-right: 0;
+  margin-left: 0;
+}
+.user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root {
+  padding: 0;
+}
+.user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root svg.MuiSvgIcon-root {
+  fill: #8D8D8D !important;
+  margin-right: 10px;
+}
+.page-content-wrapper .title-block {
+  margin-bottom: 30px;
+}
 /* SideBar */
 .sidebar {
   width: 197px;
