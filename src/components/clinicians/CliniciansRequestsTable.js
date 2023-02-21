@@ -1,12 +1,7 @@
-import { Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
 import Paper from '@mui/material/Paper';
-import UserProfile from '../common/UserProfile';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
-
-function createData(name, email, phone, connected_patients, pending_patients) {
-    return { name, email, phone, connected_patients, pending_patients };
-}
 
 export default function CliniciansRequestsTable() {
   return (

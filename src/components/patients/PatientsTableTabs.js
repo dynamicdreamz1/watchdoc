@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import RedAlertUnreviewed from '../dashboard/RedAlertUnreviewed';
 import MeasurmentCard from './MeasurmentCard';
+import ReminderCard from './ReminderCard';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -66,13 +67,20 @@ export default function PatientsTableTabs() {
           </TabPanel>
         </Box>
         <div className='measurment-cards-wrapper'>
-          <div className='d-flex flex-wrap justify-content-between'>
+          <div className='d-flex flex-wrap'>
             <MeasurmentCard/>
             <MeasurmentCard/>
             <MeasurmentCard/>
             <MeasurmentCard/>
             <MeasurmentCard/>
             <MeasurmentCard/>
+          </div>
+        </div>
+        <div className='reminder-cards-wrapper'>
+          <div className='d-flex flex-wrap'>
+            <ReminderCard/>
+            <ReminderCard/>
+            <ReminderCard/>
           </div>
         </div>
         </>

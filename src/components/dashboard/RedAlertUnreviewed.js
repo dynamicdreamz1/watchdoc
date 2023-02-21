@@ -2,13 +2,6 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import React from 'react'
 import Paper from '@mui/material/Paper';
 import PatientInfoRow from '../common/Table/PatientInfoRow';
-import PatientInfo from '../common/Table/PatientInfo';
-
-function createData(patient, bp, hr, bo, bg, temp, wt, status) {
-    return {patient, bp, hr, bo, bg, temp, wt, status };
-}
-
-
 
 export default function RedAlertUnreviewed() {
   return (
