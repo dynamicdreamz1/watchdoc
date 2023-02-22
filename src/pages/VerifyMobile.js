@@ -2,15 +2,15 @@
 import React, { useState,useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { VerifyMobileN } from '../services/ContactDetailsService';
-import { VerifyMobileService } from '../services/VerifyMobileService';
+import { RegisterMobNumber } from '../services/UserService';
+import { VerifyMobileNumber } from '../services/UserService';
 
 const VerifyMobile = () => {
 
     useEffect(()=>{
         setTimeout(() => {
             setShow(false)
-        }, 60000);
+        },60000);
     })
 
     const navigate=useNavigate();
@@ -34,7 +34,7 @@ const VerifyMobile = () => {
                 varification_code:code
             }
 
-            VerifyMobileService(data)
+            VerifyMobileNumber(data)
             .then((res)=>{
                 console.log(res)
                 navigate('/thankyou')
@@ -60,7 +60,7 @@ const VerifyMobile = () => {
             
         }
         // console.log(data)
-        VerifyMobileN(data)
+        RegisterMobNumber(data)
       
    
        
@@ -83,7 +83,7 @@ const VerifyMobile = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
-                                <input type="number" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
+                                <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
                             </div>
 
                             <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('verifyMobile.b1')}</button> <br/><br/>

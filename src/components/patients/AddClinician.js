@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { searchClinician } from '../../services/searchClinicianService'
+import { searchClinician } from '../../services/ClinicianService'
 
 export default function AddClinician({setClinicianData}) {
 

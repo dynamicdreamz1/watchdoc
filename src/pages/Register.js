@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { RegisterUser } from '../services/RegisterService';
+import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';

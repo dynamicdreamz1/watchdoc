@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ProfileCreation } from '../services/CreateProfileService';
+import { ProfileCreation } from '../services/UserService';
 import '../css/CreateProfile.css'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';

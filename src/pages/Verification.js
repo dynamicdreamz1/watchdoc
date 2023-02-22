@@ -2,9 +2,9 @@ import { Base64 } from 'js-base64'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Verify } from '../services/VerificationService'
+import { VerifyEmail} from '../services/UserService'
 import '../css/Verification.css'
-import { RegisterUser } from '../services/RegisterService'
+import { RegisterUser } from '../services/UserService'
 
 
 const Verification = () => {
@@ -40,7 +40,8 @@ const Verification = () => {
                 varification_code: code,
 
             }
-            Verify(data)
+
+            VerifyEmail(data)
                 .then((res) => {
                     // console.log(res)
                     let roleType=res.data.user_details.roles[0].name
@@ -112,7 +113,7 @@ const Verification = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
-                                <input type="number" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
+                                <input type="password" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
                             <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('VerificationPage.form.f7')}</button> <br/><br/>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
