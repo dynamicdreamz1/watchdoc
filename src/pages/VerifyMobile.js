@@ -37,7 +37,7 @@ const VerifyMobile = () => {
             VerifyMobileService(data)
             .then((res)=>{
                 console.log(res)
-                navigate('/Thankyou')
+                navigate('/thankyou')
                 
             })
             .catch((error)=>{

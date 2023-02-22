@@ -34,7 +34,7 @@ export default function ContactDetails() {
                     // console.log(response.data.user_data.contact_number)
                     let encodedMobile= Base64.encode(response.data.user_data.contact_number)
                     // console.log(encodedMobile)
-                    navigate(`/VerifyMobile/${encodedMobile}`)
+                    navigate(`/verifymobile/${encodedMobile}`)
                     
                 })
 

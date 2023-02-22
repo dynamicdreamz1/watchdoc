@@ -9,7 +9,7 @@ export default function Thankyou() {
     let Fname=sessionStorage.getItem('name')
     const {t}=useTranslation();
     const handleClick=()=>{
-        navigate('/Dashboard')
+        navigate('/dashboard')
     }   
 
   return (

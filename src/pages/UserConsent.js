@@ -31,7 +31,7 @@ export default function UserConsent() {
 
             .then((res)=>{
                 // console.log(res)
-                navigate('/CreateProfile')
+                navigate('/createprofile')
                 
             })
 

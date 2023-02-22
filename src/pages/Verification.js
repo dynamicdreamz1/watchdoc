@@ -58,13 +58,13 @@ const Verification = () => {
                     // console.log(typeof profileCheckF)
                     if (profileCheckF === '1' && token) {
                         
-                        navigate('/Dashboard')
+                        navigate('/dashboard')
                     }
 
                     else {
                         setMessage(t('VerificationPage.message.m1'))
                         setCode("")
-                        navigate('/UserConsent')
+                        navigate('/userconsent')
                     }
                         
 

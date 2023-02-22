@@ -2,7 +2,7 @@ import React from 'react'
 import './css/App.css'
 import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import CreateProfile from './pages/CreateProfile';
-import Verification from './pages/verification';
+import Verification from './pages/Verification';
 import Register from './pages/Register';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
@@ -45,15 +45,15 @@ function App() {
 
           <Route path='/' element={<Register />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/Verification/:emailId' element={<Verification />} />
-          <Route path='/CreateProfile' element={< CreateProfile />} />
+          <Route path='/verification/:emailId' element={<Verification />} />
+          <Route path='/createprofile' element={< CreateProfile />} />
           <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/PatientDashboard' element={<PatientDashboard />} />
-          <Route path='/ContactDetails' element={<ContactDetails />} />
-          <Route path='/verifyMobile/:mobileN' element={<VerifyMobile />} />
+          <Route path='/patientDashboard' element={<PatientDashboard />} />
+          <Route path='/contactdetails' element={<ContactDetails />} />
+          <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
 
         </Routes>
       </BrowserRouter>

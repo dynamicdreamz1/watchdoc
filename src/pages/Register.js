@@ -31,7 +31,7 @@ const Register = () => {
             let token=sessionStorage.getItem('token');
 
             if(profileCheckF==='1' && token ){
-                navigate('/Dashboard')
+                navigate('/dashboard')
             }
 
             else{
@@ -50,7 +50,7 @@ const Register = () => {
                     // console.log(encodedemail)
                     setLoading(false)
                     setEmail("")
-                    navigate(`/Verification/${encodedemail}`)
+                    navigate(`/verification/${encodedemail}`)
                 })
               
                 .catch((error) => {

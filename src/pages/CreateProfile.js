@@ -74,7 +74,7 @@ const CreateProfile = () => {
                     setSuccess(true)
                     sessionStorage.setItem('profile', profileCheck)
 
-                    navigate('/ContactDetails')
+                    navigate('/contactdetails')
                     setLoading(false)
 
                 })
@@ -129,7 +129,7 @@ const CreateProfile = () => {
         }
 
         if (profileCheckF === '1' && token) {
-            navigate('/Dashboard')
+            navigate('/dashboard')
         }
 
 
