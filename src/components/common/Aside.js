@@ -8,9 +8,9 @@ export default function Aside() {
   const [view, setView] = useState('patients')
   
   // create a handleClick function
-  const handleClick = (gameState) => {
-    setView(gameState)
-  }
+  // const handleClick = (gameState) => {
+  //   setView(gameState)
+  // }
 
   return (
     <div className='aside'>

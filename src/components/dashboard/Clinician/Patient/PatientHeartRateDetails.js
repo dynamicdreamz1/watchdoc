@@ -1,5 +1,4 @@
 import React from 'react'
-import HeartRateChart from './HeartRateChart'
 import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import HeartRateDetailsCrad from './HeartRateDetailsCrad'
 

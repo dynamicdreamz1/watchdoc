@@ -1,6 +1,5 @@
 import React from 'react'
 import CanvasJSReact from '../../../../lib/canvasjs.react';
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function HeartRateChart() {
