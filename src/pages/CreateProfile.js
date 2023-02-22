@@ -19,12 +19,8 @@ const CreateProfile = () => {
     const { t } = useTranslation()
     const navigate = useNavigate();
 
-
-
     let token = sessionStorage.getItem('token')
     let profileCheckF = sessionStorage.getItem('profile')
-    // console.log(profileCheckF)
-    // console.log(token)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -67,20 +63,14 @@ const CreateProfile = () => {
             ProfileCreation(data)
                 .then((res) => {
                     let Fname=(res.data.user_details.first_name)
-                    // console.log(Fname)
                     sessionStorage.setItem('name',Fname)
                     let profileCheck = (res.data.user_details.profile_created)
                     setMessage(t('CreateProfilePage.message.m1'))
                     setSuccess(true)
                     sessionStorage.setItem('profile', profileCheck)
-
                     navigate('/contactdetails')
                     setLoading(false)
-
                 })
-
-
-
                 .catch((errorMessage) => {
 
                     if (errorMessage === "The dob does not match the format Y-m-d.") {
@@ -89,7 +79,6 @@ const CreateProfile = () => {
                         console.log(errorMessage)
                         SetDOB("")
                         setLoading(false)
-
                     }
 
                     else if (errorMessage === "Unauthenticated.") {
@@ -98,17 +87,12 @@ const CreateProfile = () => {
                         console.log(errorMessage)
                         setErrorN(t('CreateProfilePage.error.e8'))
                     }
-
                     else {
                         console.log(errorMessage)
-
                         setLoading(false)
                     }
-
-
                 })
         }
-
     }
 
 
@@ -121,13 +105,10 @@ const CreateProfile = () => {
             SetWeight("")
             SetHeight("")
             document.getElementById('main_form').reset()
-
         }
-
         if (token === null) {
             navigate('/')
         }
-
         if (profileCheckF === '1' && token) {
             navigate('/dashboard')
         }
