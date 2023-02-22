@@ -54,6 +54,10 @@ body h4 {
   font-weight: 600;
   margin-bottom: 6px;
 }
+body h5 {
+  font-size: 18px;
+  line-height: 22px;
+}
 p {
   font-size: 14px;
   line-height: 18px;
@@ -580,26 +584,26 @@ body .MuiPaper-root.clinicians-table {
   padding: 10px 10px 10px 18px;
   width: calc(16.666667% - 18px);
 }
-.measurment-card .m-title .icon {
+.measurment-title .icon {
   max-width: 16px;
   width: 100%;
   margin-right: 8px;
 }
-.measurment-card .m-title .name {
+.measurment-title .name {
   font-size: 16px;
   line-height: 20px;
   color: #000;
 }
-.measurment-card .measurment-result .digit {
+.measurment-result .digit {
   font-size: 36px;
   line-height: 46px;
 }
-.measurment-card .measurment-result .type {
+.measurment-result .type {
   font-size: 16px;
   line-height: 20px;
   margin-left: 8px;
 }
-.measurment-card .measurment-result {
+.measurment-result {
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -875,4 +879,40 @@ body .MuiPaper-root.clinicians-table {
   color: #8D8D8D;
   font-size: 15px;
   line-height: 18px;
+}
+/* Patient Heart Rate Details */
+.phrd {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 28px;
+}
+.phrd .cards-wrapper {
+  width: 31.5%;
+}
+.phrd .chart-wrapper {
+  width: 68.5%;
+  padding-left: 35px;
+}
+.phrd .cards-wrapper .hrd-card {
+  background-color: #F9F9F9;
+  border-radius: 5px;
+  padding: 12px 16px 12px 12px;
+}
+.phrd .cards-wrapper .hrd-card .measurment-result {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.phrd .cards-wrapper .hrd-card:not(:last-child) {
+  margin-bottom: 10px;
+}
+.canvasjs-chart-credit {
+  display: none !important;
+}
+.no-data-recorded {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 28px;
+}
+.no-data-recorded .icon {
+  margin-right: 14px;
 }
