@@ -6,6 +6,8 @@ import ReminderCard from './ReminderCard';
 import AlertCard from './AlertCard';
 import PatientProfileBar from './PatientProfileBar';
 import RedAlertUnreviewed from '../dashboard/Clinician/RedAlertUnreviewed';
+import PatientHeartRateDetails from '../dashboard/Clinician/Patient/PatientHeartRateDetails';
+import NoDataRecorded from '../dashboard/Clinician/Patient/NoDataRecorded';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -53,7 +55,7 @@ export default function PatientsTableTabs() {
         <PatientProfileBar/>
         <div className='alert-cards-wrapper mt-22'>
           <div className='section-title d-flex align-items-center justify-content-between'>
-            <h4>Critical Alerts</h4>
+            <h5>Critical Alerts</h5>
             <button type='button' className='view-all-btn'>View All Alerts (41)</button>
           </div>
           <div className='wrapper'>
@@ -64,7 +66,7 @@ export default function PatientsTableTabs() {
         </div>
         <div className='measurment-cards-wrapper mt-22'>
           <div className='section-title'>
-            <h4>Lastest Measurements</h4>
+            <h5>Lastest Measurements</h5>
           </div>
           <div className='wrapper d-flex flex-wrap'>
             <MeasurmentCard/>
@@ -86,6 +88,25 @@ export default function PatientsTableTabs() {
             <ReminderCard/>
           </div>
         </div>
+        <div className='mt-22'>
+          <div className='section-title'>
+            <h5>Heart Rate</h5>
+          </div>
+          <PatientHeartRateDetails/>
+        </div>
+        <div className='mt-22'>
+          <div className='section-title'>
+            <h5>Blood Glucose</h5>
+          </div>
+          <NoDataRecorded/>
+        </div>
+        <div className='mt-22'>
+          <div className='section-title'>
+            <h5>Temperature</h5>
+          </div>
+          <NoDataRecorded/>
+        </div>
+        
         <Box sx={{ width: '100%' }}>
           <Box className="table-header-block">
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
