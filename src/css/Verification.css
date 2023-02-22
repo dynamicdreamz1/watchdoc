@@ -12,12 +12,17 @@
 .varification-page-wrapper form {
     padding-top: 10px;
 }
-.varification-page-wrapper .codeResend {
+.varification-page-wrapper .codeResend, 
+.varification-page-wrapper .resend{
     padding: 0;
     border: 0;
     background: transparent;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 12px;
+    color: #000;
+}
+.varification-page-wrapper .resend {
+    padding-top: 10px;
 }
 .varification-page-wrapper input {
     margin-bottom: 0;

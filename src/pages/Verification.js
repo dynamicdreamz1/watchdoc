@@ -7,6 +7,7 @@ import '../css/Verification.css'
 import { RegisterUser } from '../services/RegisterService'
 
 
+
 const Verification = () => {
 
     const [code, setCode] = useState('')
@@ -16,6 +17,7 @@ const Verification = () => {
     const { emailId } = useParams();
     let navigate = useNavigate("")
     const { t } = useTranslation();
+    const [time,setTime]=useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
     useEffect(()=>{
@@ -24,9 +26,14 @@ const Verification = () => {
         }, 60000);
     })
 
+    useEffect(() => {
+        setInterval(() => {
+            setTime(prevCount => (prevCount>0)? prevCount - 1 : 0);
+        }, 1000);
+      }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault()
-
 
         if (code === "") {
             setError(t('VerificationPage.error.e1'))
@@ -114,7 +121,8 @@ const Verification = () => {
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
                                 <input type="number" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
-                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('VerificationPage.form.f7')}</button> <br/><br/>
+                            <div className='resend d-flex'> <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>Resend Code In:&nbsp;</button> {time}</div>
+                            <br/><br/>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>
                     </div>
