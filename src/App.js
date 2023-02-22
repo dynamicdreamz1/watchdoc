@@ -6,7 +6,6 @@ import Verification from './pages/Verification';
 import Register from './pages/Register';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
-// import { useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
@@ -15,30 +14,10 @@ import PatientDashboard from './pages/PatientDashboard';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 
-// const lngs = {
-//   english: { nativeName: 'English', value: 'english' },
-//   hindi: { nativeName: 'Hindi', value: 'hindi' },
-
-// };
-
-
 function App() {
-
-
-  // const { i18n } = useTranslation();
-  // let lang=localStorage.getItem('i18nextLng')
-
-
 
   return (
     <React.Fragment>
-
-      {/* <select onClick={(e) => i18n.changeLanguage(e.target.value)}>
-        {Object.keys(lngs).map((lng) =>
-          <option  selected={lngs[lng].value===lang ? "selected" : ""} style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }} key={lng} value={lngs[lng].value} >{lngs[lng].nativeName}</option>
-        )}
-
-      </select> */}
 
       <BrowserRouter>
         <Routes>
@@ -51,7 +30,7 @@ function App() {
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/patientDashboard' element={<PatientDashboard />} />
+          <Route path='/patient-dashboard' element={<PatientDashboard />} />
           <Route path='/contactdetails' element={<ContactDetails />} />
           <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
 
