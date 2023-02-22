@@ -2,9 +2,9 @@ import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react'
 import PropTypes from 'prop-types';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
-import TableShorting from '../dashboard/TableShorting';
 import ClinicianProfileBar from './ClinicianProfileBar';
 import PendingPatientsTable from './PendingPatientsTable';
+import TableShorting from '../dashboard/Clinician/TableShorting';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

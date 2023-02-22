@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Header from './Header'
-import DashboardTableTabs from '../dashboard/DashboardTableTabs'
 import PatientsTableTabs from '../patients/PatientsTableTabs'
 import CliniciansTableTabs from '../clinicians/CliniciansTableTabs'
+import DashboardTableTabs from '../dashboard/Clinician/DashboardTableTabs'
 
 export default function Aside() {
   const [view, setView] = useState('patients')

@@ -1,12 +1,11 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react'
 import PropTypes from 'prop-types';
-import RedAlertUnreviewed from '../dashboard/RedAlertUnreviewed';
 import MeasurmentCard from './MeasurmentCard';
 import ReminderCard from './ReminderCard';
 import AlertCard from './AlertCard';
-import ClinicianProfileBar from '../clinicians/ClinicianProfileBar';
 import PatientProfileBar from './PatientProfileBar';
+import RedAlertUnreviewed from '../dashboard/Clinician/RedAlertUnreviewed';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

@@ -3,9 +3,9 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import RedAlertUnreviewed from './RedAlertUnreviewed';
-import CliniciansRequestsTable from '../clinicians/CliniciansRequestsTable';
-import TableShorting from './TableShorting';
+import CliniciansRequestsTable from '../../clinicians/CliniciansRequestsTable';
 import RedAlertReviewed from './RedAlertReviewed';
+import TableShorting from './TableShorting';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

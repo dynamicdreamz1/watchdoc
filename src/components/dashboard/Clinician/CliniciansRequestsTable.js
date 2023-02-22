@@ -1,7 +1,7 @@
 import { Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
 import Paper from '@mui/material/Paper';
-import UserProfile from '../common/UserProfile';
+import UserProfile from '../../common/UserProfile';
 import { useTranslation } from 'react-i18next';
 
 
