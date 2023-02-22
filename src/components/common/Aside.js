@@ -5,7 +5,12 @@ import CliniciansTableTabs from '../clinicians/CliniciansTableTabs'
 import DashboardTableTabs from '../dashboard/Clinician/DashboardTableTabs'
 
 export default function Aside() {
-  const view = 'patients'
+  const [view, setView] = useState('patients')
+  
+  // create a handleClick function
+  const handleClick = (gameState) => {
+    setView(gameState)
+  }
 
   return (
     <div className='aside'>
