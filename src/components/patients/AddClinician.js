@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-<<<<<<< HEAD
-import { searchClinician } from '../../services/ClinicianService'
-=======
 import { useTranslation } from 'react-i18next'
 import { searchClinician } from '../../services/searchClinicianService'
->>>>>>> f033d9d48737f1a7cebb5c2049c0b4874279a462
 
 export default function AddClinician({setClinicianData}) {
 
