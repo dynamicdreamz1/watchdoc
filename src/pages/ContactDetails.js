@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom';
-import { VerifyMobileN } from '../services/ContactDetailsService';
+import { RegisterMobNumber } from '../services/UserService';
 import { Base64 } from 'js-base64';
 
 export default function ContactDetails() {
@@ -29,7 +29,7 @@ export default function ContactDetails() {
                 mobile_number: mob
             }
             // console.log(data)
-            VerifyMobileN(data)
+            RegisterMobNumber(data)
                 .then((response) => {
                     // console.log(response.data.user_data.contact_number)
                     let encodedMobile= Base64.encode(response.data.user_data.contact_number)

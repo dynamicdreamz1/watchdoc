@@ -13,7 +13,7 @@ export default function PractitionersCard() {
         <h5>Practitioners</h5>
         <div className='card d-flex'>
             <div className='user-image'>
-                <img src='/images/user-image-big.png' alt='User Image' />
+                <img src='/images/user-image-big.png' alt='User' />
             </div>
             <div className='text-block'>
                 <h5>Dr Sarah McDonnell</h5>

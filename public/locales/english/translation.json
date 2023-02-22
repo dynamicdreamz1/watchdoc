@@ -160,6 +160,28 @@
         "p1":"Thanks",
         "p2":"your profile is complete. Now let’s connect to your devices.",
         "b1":"Next"
+    },
+
+    
+    "ConnectingClinician":{
+        "heading":"Clinicians",
+        "heading2":"Connecting to Clinicians",
+        "p1":"When you share your health data with your clinician they can monitor your health and personalise your health check alert settings. "
+    },
+
+    "AddClinicianButton":{
+        "heading":"Your Clinician Connections",
+        "e1":"Add Your First Clinician"
+    },
+
+    "AddClinician":{
+        "p1":"Find and add your clinician to your WatchDoc account.",
+        "form":{
+            "placeholder1":"Clinician’s Name",
+            "placeholder2":"Practice Name or Provider Number",
+            "placeholder3":"Suburb or Postcode",
+            "b1":"Search"
+        }
     }
     
     

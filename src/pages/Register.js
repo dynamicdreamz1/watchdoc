@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { RegisterUser } from '../services/RegisterService';
+import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
@@ -10,7 +10,6 @@ const Register = () => {
 
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
@@ -40,11 +39,8 @@ const Register = () => {
             setLoading(true)
 
             RegisterUser(data)
-                .then((response) => {
-                    
-                    // console.log(response.data.data.email)
+                .then((response) => {                    
                     let encodedemail = Base64.encode(response.data.data.email)
-                    // console.log(encodedemail)
                     setLoading(false)
                     setEmail("")
                     navigate(`/verification/${encodedemail}`)
@@ -77,7 +73,6 @@ const Register = () => {
                         </div>
                         <div className='form-block'>
                             <div className='LoginError'>{error}</div>
-                            <div className='LoginMessage'>{message}</div>
 
                             <form>
                                 <div className='default-login'>

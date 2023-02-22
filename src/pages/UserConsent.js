@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { userConsent } from '../services/UserConsentService'
+import { userConsent } from '../services/UserService'
 import '../css/UserConsent.css'
 
 export default function UserConsent() {
