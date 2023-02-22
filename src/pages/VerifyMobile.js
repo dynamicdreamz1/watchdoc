@@ -10,7 +10,7 @@ const VerifyMobile = () => {
     useEffect(()=>{
         setTimeout(() => {
             setShow(false)
-        },60000);
+        },1000);
     })
 
     const navigate=useNavigate();
