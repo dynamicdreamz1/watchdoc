@@ -2,9 +2,9 @@ import { Base64 } from 'js-base64'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Verify } from '../services/VerificationService'
+import { VerifyEmail} from '../services/UserService'
 import '../css/Verification.css'
-import { RegisterUser } from '../services/RegisterService'
+import { RegisterUser } from '../services/UserService'
 
 
 
@@ -12,7 +12,7 @@ const Verification = () => {
 
     const [code, setCode] = useState('')
     const [message, setMessage] = useState('')
-    const [show,setShow]=useState(true)
+    const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const { emailId } = useParams();
     let navigate = useNavigate("")
@@ -20,7 +20,7 @@ const Verification = () => {
     const [time,setTime]=useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
-    useEffect(()=>{
+    useEffect(() => {
         setTimeout(() => {
             setShow(false)
         }, 60000);
@@ -38,46 +38,29 @@ const Verification = () => {
         if (code === "") {
             setError(t('VerificationPage.error.e1'))
         }
-
-
         else {
-
             const data = {
                 email: emailId,
                 varification_code: code,
-
             }
-            Verify(data)
-                .then((res) => {
-                    // console.log(res)
-                    let roleType=res.data.user_details.roles[0].name
-                    // console.log(typeof roleType)
 
-                    sessionStorage.setItem('role',roleType)
+            VerifyEmail(data)
+                .then((res) => {
+                    let roleType = res.data.user_details.roles[0].name
+                    sessionStorage.setItem('role', roleType)
                     let token = res.data.token
                     let profileCheck = res.data.user_details.profile_created
-                    // console.log(typeof profileCheck)
-                    // console.log(token)
-                    sessionStorage.setItem('profile',profileCheck)
-                    sessionStorage.setItem('token',token)
-                    
-                    let profileCheckF=sessionStorage.getItem('profile')  
-                    // console.log(typeof profileCheckF)
+                    sessionStorage.setItem('profile', profileCheck)
+                    sessionStorage.setItem('token', token)
+                    let profileCheckF = sessionStorage.getItem('profile')
                     if (profileCheckF === '1' && token) {
-                        
                         navigate('/dashboard')
-                    }
-
-                    else {
+                    } else {
                         setMessage(t('VerificationPage.message.m1'))
                         setCode("")
                         navigate('/userconsent')
                     }
-                        
-
-
                 })
-
                 .catch((error) => {
                     if (error === "please enter valid varificationcode") {
                         setError(t('VerificationPage.error.e2'))
@@ -89,17 +72,15 @@ const Verification = () => {
                     }
                 })
         }
-
     }
 
-    // console.log(show)
-    const resendCode=(e)=>{
-       e.preventDefault() 
-       setShow(true)
-        const data={
-            email:decodedEmail
+    const resendCode = (e) => {
+        e.preventDefault()
+        setShow(true)
+        const data = {
+            email: decodedEmail
         }
-       RegisterUser(data)
+        RegisterUser(data)
     }
 
     return (
@@ -119,10 +100,9 @@ const Verification = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
-                                <input type="number" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
+                                <input type="password" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
-                            <div className='resend d-flex'> <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>Resend Code In:&nbsp;</button> {time}</div>
-                            <br/><br/>
+                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}</button> <br /><br />
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>
                     </div>

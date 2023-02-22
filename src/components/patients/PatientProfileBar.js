@@ -8,8 +8,8 @@ export default function PatientProfileBar() {
     <div className='patient-profile-bar'>
         <div className='left-block'>
             <div className='patient-info'>
-                <span class="fname">Dr Sarah McDonnell</span>
-                <span class="age">46 Years, Male</span>
+                <span className="fname">Dr Sarah McDonnell</span>
+                <span className="age">46 Years, Male</span>
             </div>
         </div>
         <div className='center-block'>

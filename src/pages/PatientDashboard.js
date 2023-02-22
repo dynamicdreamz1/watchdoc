@@ -20,7 +20,7 @@ export default function PatientDashboard() {
                 <AddClinicianButton/>
                 </div>
 
-                {show===true ? 
+                {show ? 
                 <>
                 <AddClinician setClinicianData={setClinicianData} />
                 <PractitionersCard/>

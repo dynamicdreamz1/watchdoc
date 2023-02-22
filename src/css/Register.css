@@ -84,13 +84,8 @@
 
 .LoginError {
     color: red;
-    height: 10px;
+    height: 40px;
 
-}
-
-.LoginMessage {
-    color: green;
-    height: 30px;
 }
 
 .LoginLoader{
