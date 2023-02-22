@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 import PatientsTableTabs from '../patients/PatientsTableTabs'
 import CliniciansTableTabs from '../clinicians/CliniciansTableTabs'

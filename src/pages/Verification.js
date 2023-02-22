@@ -7,6 +7,7 @@ import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 
 
+
 const Verification = () => {
 
     const [code, setCode] = useState('')
@@ -16,17 +17,23 @@ const Verification = () => {
     const { emailId } = useParams();
     let navigate = useNavigate("")
     const { t } = useTranslation();
+    const [time,setTime]=useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
     useEffect(() => {
         setTimeout(() => {
             setShow(false)
-        }, 1000);
+        }, 60000);
     })
+
+    useEffect(() => {
+        setInterval(() => {
+            setTime(prevCount => (prevCount>0)? prevCount - 1 : 0);
+        }, 1000);
+      }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
 
         if (code === "") {
             setError(t('VerificationPage.error.e1'))
