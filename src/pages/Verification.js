@@ -21,7 +21,7 @@ const Verification = () => {
     useEffect(() => {
         setTimeout(() => {
             setShow(false)
-        }, 60000);
+        }, 1000);
     })
 
     const handleSubmit = (e) => {
