@@ -1,3 +1,4 @@
+import { Base64 } from 'js-base64';
 import React, { useState,useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -19,6 +20,8 @@ const VerifyMobile = () => {
     const {mobileN}=useParams()
     const [show,setShow]=useState(true)
     // console.log(mobileN)
+    // let mob=Base64.decode(mobileN)
+    // console.log(mob)
     const handleClick=(e)=>{
 
         e.preventDefault();
@@ -51,21 +54,21 @@ const VerifyMobile = () => {
     const resendCode=(e)=>{
         e.preventDefault() 
         setShow(true)
-        // const data={
-        //     mobile_number:mobileN,
-        //     // varification_code:code
-        // }
-
-        // VerifyMobileN(data)
-        // // .then((res)=>{
-        // //     console.log(res)
-        // //     navigate('/Thankyou')
+        const data={
+            mobile_number:mobileN,
             
-        // // })
-        // // .catch((error)=>{
-        // //     console.log(error)
-        // //     setError(error.response.data.message)
-        // // })
+        }
+        console.log(data)
+        VerifyMobileN(data)
+        .then((res)=>{
+            console.log(res)
+        //     navigate('/Thankyou')
+            
+        })
+        .catch((error)=>{
+            console.log(error)
+            setError(error.response.data.message)
+        })
    
        
      }

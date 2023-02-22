@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const VerifyMobileService= (data) => {
-
+    // console.log(data)
     let token = sessionStorage.getItem('token')
 
     return axios({

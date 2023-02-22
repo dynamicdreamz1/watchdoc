@@ -24,11 +24,11 @@ export default function ContactDetails() {
         }
 
         else {
-
+            let mob=Base64.encode(mobileN)
             const data = {
-                mobile_number: mobileN
+                mobile_number: mob
             }
-
+            // console.log(data)
             VerifyMobileN(data)
                 .then((response) => {
                     // console.log(response.data.user_data.contact_number)

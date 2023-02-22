@@ -46,12 +46,15 @@ function App() {
           <Route path='/' element={<Register />} />
           <Route path='/register' element={<Register />} />
           <Route path='/verification/:emailId' element={<Verification />} />
-          <Route path='/create-profile' element={< CreateProfile />} />
+          <Route path='/CreateProfile' element={< CreateProfile />} />
           <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
           <Route path='/PatientDashboard' element={<PatientDashboard />} />
+          <Route path='/ContactDetails' element={<ContactDetails />} />
+          <Route path='/verifyMobile/:mobileN' element={<VerifyMobile />} />
+
         </Routes>
       </BrowserRouter>
     </React.Fragment>
