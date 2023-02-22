@@ -21,12 +21,9 @@ const Register = () => {
         if (email === "") {
 
             setError(t('RegisterPage.error.e1'))
+            return
         }
-
-        
-        else {
-            // console.log(email)
-
+     
             let profileCheckF=sessionStorage.getItem('profile')
             let token=sessionStorage.getItem('token');
 
@@ -61,10 +58,7 @@ const Register = () => {
 
                 })
             }
-
         }
-    }
-
 
 
     return (
