@@ -2,7 +2,7 @@ import React from 'react'
 import './css/App.css'
 import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import CreateProfile from './pages/CreateProfile';
-import Verification from './pages/Verification';
+import Verification from './pages/verification';
 import Register from './pages/Register';
 import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
@@ -45,7 +45,7 @@ function App() {
 
           <Route path='/' element={<Register />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/verification/:emailId' element={<Verification />} />
+          <Route path='/Verification/:emailId' element={<Verification />} />
           <Route path='/CreateProfile' element={< CreateProfile />} />
           <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
           <Route path="*" element={<NoMatch />} />

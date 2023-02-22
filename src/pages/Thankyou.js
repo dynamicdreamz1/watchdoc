@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -6,7 +7,7 @@ export default function Thankyou() {
 
     const navigate=useNavigate()
     let Fname=sessionStorage.getItem('name')
-    
+    const {t}=useTranslation();
     const handleClick=()=>{
         navigate('/Dashboard')
     }   
@@ -20,9 +21,9 @@ export default function Thankyou() {
             </div>
             <div className='page-content-wrapper'>
                 <div className="title-block">
-                    <h4>Thanks {Fname}, your profile is complete. Now let’s connect to your devices.</h4>
+                    <h4>{t('ThankYouPage.p1')} {Fname}, {t('ThankYouPage.p2')}</h4>
                 </div>
-                <button onClick={()=>handleClick()} type="submit">Next</button>
+                <button onClick={()=>handleClick()} type="submit">{t('ThankYouPage.b1')}</button>
             </div>
         </div>
     </div>

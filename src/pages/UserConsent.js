@@ -50,25 +50,25 @@ export default function UserConsent() {
             </div>
             <div className='page-content-wrapper'>
                 <div className="title-block">
-                    <h4>Your Health Data</h4>
-                    <p>Any health data we process will be in compliance of personal data laws and we will never share it without your consent. At any time you can request all your stored data to be permanently deleted.</p>
-                    <a href={URL}>Privacy Policy</a>
+                    <h4>{t('useConsent.heading')}</h4>
+                    <p>{t('useConsent.p1')}</p>
+                    <a href={URL}>{t('useConsent.policy')}</a>
                     <FormGroup className='checkbox-block'>
-                        <FormControlLabel onChange={(e)=>setPrivacyPolicy(!privacyPolicy)} control={<Checkbox />} label="I agree to the WatchDoc Privacy Policy" />
+                        <FormControlLabel onChange={(e)=>setPrivacyPolicy(!privacyPolicy)} control={<Checkbox />} label={t('useConsent.a1')} />
                     </FormGroup>
                 </div>
                 <div className="title-block">
-                    <h4>Using WatchDoc</h4>
-                    <p>It is important you read and agree to our Terms of Use that define how WatchDoc works and how you should use it.</p>
-                    <a href={URL}>Terms of Use</a>
+                    <h4>{t("useConsent.heading2")}</h4>
+                    <p>{t('useConsent.p2')}</p>
+                    <a href={URL}>{t("useConsent.a2")}</a>
                     <FormGroup className='checkbox-block'>
-                        <FormControlLabel  control={<Checkbox />} onChange={(e)=>setTerms(!terms)} label="I agree to the WatchDoc Terms of Use" />
+                        <FormControlLabel  control={<Checkbox />} onChange={(e)=>setTerms(!terms)} label={t('useConsent.a3')} />
                     </FormGroup>
                 </div>
 
         
            <div className='consentError'> {error}</div> <br/>
-                <button onClick={()=>handleClick()} type="submit">Next</button>
+                <button onClick={()=>handleClick()} type="submit">{t('useConsent.b1')}</button>
             </div>
         </div>
     </div>

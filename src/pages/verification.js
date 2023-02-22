@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Verify } from '../services/VerificationService'
 import '../css/Verification.css'
+import { RegisterUser } from '../services/RegisterService'
 
 
 const Verification = () => {
@@ -88,8 +89,10 @@ const Verification = () => {
     const resendCode=(e)=>{
        e.preventDefault() 
        setShow(true)
-       console.log(show)
-    //    console.log('test')
+        const data={
+            email:decodedEmail
+        }
+       RegisterUser(data)
     }
 
     return (
@@ -111,7 +114,7 @@ const Verification = () => {
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
                                 <input type="number" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
-                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>Resend Code</button> <br/><br/>
+                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('VerificationPage.form.f7')}</button> <br/><br/>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>
                     </div>

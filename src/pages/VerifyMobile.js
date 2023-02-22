@@ -19,9 +19,7 @@ const VerifyMobile = () => {
     const [error, setError] = useState('')
     const {mobileN}=useParams()
     const [show,setShow]=useState(true)
-    // console.log(mobileN)
-    // let mob=Base64.decode(mobileN)
-    // console.log(mob)
+ 
     const handleClick=(e)=>{
 
         e.preventDefault();
@@ -43,8 +41,11 @@ const VerifyMobile = () => {
                 
             })
             .catch((error)=>{
+
+                if(error.response.data.message==="please enter valid varification code"){
                 console.log(error)
-                setError(error.response.data.message)
+                setError(t('verifyMobile.e2'))
+                }
             })
         }
 
@@ -58,17 +59,9 @@ const VerifyMobile = () => {
             mobile_number:mobileN,
             
         }
-        console.log(data)
+        // console.log(data)
         VerifyMobileN(data)
-        .then((res)=>{
-            console.log(res)
-        //     navigate('/Thankyou')
-            
-        })
-        .catch((error)=>{
-            console.log(error)
-            setError(error.response.data.message)
-        })
+      
    
        
      }
@@ -82,19 +75,19 @@ const VerifyMobile = () => {
                     </div>
                     <div className='page-content-wrapper'>
                         <div className="title-block">
-                            <h4>Verification</h4>
-                            <p>We have sent a verification code to your phone. Please enter it here.</p>
+                            <h4>{t('verifyMobile.heading')}</h4>
+                            <p>{t('verifyMobile.p1')}</p>
                         </div>
                         <div className='eError'> {error}</div>
                         {/* <div className='sMessage'> {message}</div> */}
                         <form>
                             <div className='input-block'>
-                                <label htmlFor="exampleInputCode" >Verification Code</label>
-                                <input type="number" placeholder="Your mobile number" onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
+                                <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
+                                <input type="number" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
                             </div>
 
-                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>Resend Code</button> <br/><br/>
-                            <button onClick={(e) => handleClick(e)} type="submit">Next</button>
+                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('verifyMobile.b1')}</button> <br/><br/>
+                            <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>
                 </div>

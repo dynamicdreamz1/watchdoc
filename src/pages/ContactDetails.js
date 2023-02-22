@@ -57,17 +57,17 @@ export default function ContactDetails() {
                     </div>
                     <div className='page-content-wrapper'>
                         <div className="title-block">
-                            <h4>Your contact details</h4>
-                            <p>Please enter your mobile number below.</p>
+                            <h4>{t('mobileNumberVerificationPage.heading')}</h4>
+                            <p>{t('mobileNumberVerificationPage.p1')}</p>
                         </div>
                         <div className='eError'> {error}</div>
                         {/* <div className='sMessage'> {message}</div> */}
                         <form>
                             <div className='input-block'>
-                                <label htmlFor="exampleInputCode" >Mobile Number</label>
-                                <input type="number" placeholder="Your mobile number" onChange={(e) => setMobileN(e.target.value)} value={mobileN} id="exampleInputCode" />
+                                <label htmlFor="exampleInputCode" >{t('mobileNumberVerificationPage.l1')}</label>
+                                <input type="number" placeholder={t('mobileNumberVerificationPage.placeholder')} onChange={(e) => setMobileN(e.target.value)} value={mobileN} id="exampleInputCode" />
                             </div>
-                            <button onClick={(e) => handleClick(e)} type="submit">Next</button>
+                            <button onClick={(e) => handleClick(e)} type="submit">{t('mobileNumberVerificationPage.b1')}</button>
                         </form>
                     </div>
                 </div>
