@@ -6,7 +6,6 @@ import ReminderCard from './ReminderCard';
 import AlertCard from './AlertCard';
 import PatientProfileBar from './PatientProfileBar';
 import RedAlertUnreviewed from '../dashboard/Clinician/RedAlertUnreviewed';
-import HeartRateChart from '../dashboard/Clinician/Patient/HeartRateChart';
 import PatientHeartRateDetails from '../dashboard/Clinician/Patient/PatientHeartRateDetails';
 import NoDataRecorded from '../dashboard/Clinician/Patient/NoDataRecorded';
 
@@ -89,7 +88,12 @@ export default function PatientsTableTabs() {
             <ReminderCard/>
           </div>
         </div>
-        <PatientHeartRateDetails/>
+        <div className='mt-22'>
+          <div className='section-title'>
+            <h5>Heart Rate</h5>
+          </div>
+          <PatientHeartRateDetails/>
+        </div>
         <div className='mt-22'>
           <div className='section-title'>
             <h5>Blood Glucose</h5>

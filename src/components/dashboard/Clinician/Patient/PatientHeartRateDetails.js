@@ -1,5 +1,6 @@
 import React from 'react'
 import HeartRateChart from './HeartRateChart'
+import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import HeartRateDetailsCrad from './HeartRateDetailsCrad'
 
 export default function PatientHeartRateDetails() {
@@ -14,7 +15,7 @@ export default function PatientHeartRateDetails() {
             <HeartRateDetailsCrad/>
         </div>
         <div class="chart-wrapper">
-            <HeartRateChart/>
+            <HeartRateChartNavTabs/>
         </div>
     </div>
     </>
