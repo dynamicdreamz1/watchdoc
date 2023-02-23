@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import {searchClinician} from '../../services/ClinicianService'
 
 export default function AddClinician({setClinicianData}) {
 
@@ -10,6 +11,7 @@ export default function AddClinician({setClinicianData}) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    searchClinician()
     .then((response) => {
       console.log(response)
     })

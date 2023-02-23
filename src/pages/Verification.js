@@ -47,14 +47,20 @@ const Verification = () => {
             VerifyEmail(data)
                 .then((res) => {
                     let roleType = res.data.user_details.roles[0].name
-                    sessionStorage.setItem('role', roleType)
                     let token = res.data.token
                     let profileCheck = res.data.user_details.profile_created
+
+                    sessionStorage.setItem('role', roleType)
                     sessionStorage.setItem('profile', profileCheck)
                     sessionStorage.setItem('token', token)
+
                     let profileCheckF = sessionStorage.getItem('profile')
                     if (profileCheckF === '1' && token) {
-                        navigate('/dashboard')
+
+                        if(roleType==="User"){
+                        navigate('/patient-dashboard')
+                        }
+
                     } else {
                         setMessage(t('VerificationPage.message.m1'))
                         setCode("")
