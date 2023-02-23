@@ -1,25 +1,13 @@
 import axios from "axios"
 
-export const searchClinician = () => {
-
-    return axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_ENDPOINT}user/clinic`,
-        // data: data,
-        // headers: { "Content-Type": "multipart/form-data", Accept: "application/json, text/plain, */*", Authorization: `Bearer ${token}` },
-
-    })
-
-        .then((response) => {
-
-            console.log(response)
-            return response
-
+export const searchClinician = async () => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}user/clinic`,
         })
-
-        .catch((error) => {
-            console.log(error)
-            throw error
-        })
-
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
