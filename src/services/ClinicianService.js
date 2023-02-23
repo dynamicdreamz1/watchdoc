@@ -1,25 +1,48 @@
 import axios from "axios"
+let token = sessionStorage.getItem('token')
 
-export const searchClinician = () => {
+export const searchClinician = async (data) => {
 
-    return axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_ENDPOINT}user/clinic`,
-        // data: data,
-        // headers: { "Content-Type": "multipart/form-data", Accept: "application/json, text/plain, */*", Authorization: `Bearer ${token}` },
 
-    })
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=5`,
 
-        .then((response) => {
-
-            console.log(response)
-            return response
+            headers: {
+                
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
+            }
 
         })
+        
+        return response;
+    } 
+    catch (error) {
+        return error;
+    }
+}
 
-        .catch((error) => {
-            console.log(error)
-            throw error
+export const addDoctor=async(ID)=>{
+    // console.log(typeof ID.toString())
+    try {
+        const response = await axios({
+            method: 'post',
+            data:ID.toString(),
+            url:`${process.env.REACT_APP_ENDPOINT}user/add_clinician`,
+            headers: {
+                
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+
         })
+        return response;
+    }
+
+    catch(error){
+        return error;
+    }
 
 }

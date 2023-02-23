@@ -1,180 +1,111 @@
 import axios from "axios"
 
-export const RegisterMobNumber = (data) => {
+export const RegisterMobNumber = async (data) => {
+    try {
+        let token = sessionStorage.getItem('token')
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}user/mobile_number_verify`,
+            data: data,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
 
-    let token = sessionStorage.getItem('token')
-    // console.log(token)
-
-    return axios({
-
-        method: "post",
-        url: `${process.env.REACT_APP_ENDPOINT}user/mobile_number_verify`,
-        data: data,
-        headers: {
-            "Content-Type": "multipart/form-data",
-            "Accept": "application/json",
-            Authorization: `Bearer ${token}`
-
-        }
-    })
-
-        .then((response) => {
-
-            console.log(response)
-            return response
-
+            }
         })
-
-
-        .catch((error) => {
-            console.log(error)
-            throw (error)
-        })
-
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 
-export function ProfileCreation(data) {
-
-    // console.log(data)
-    let token=sessionStorage.getItem('token')
-    // console.log(token)
-
-  return  axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_ENDPOINT}user/createprofile`,
-        data: data,
-        headers: { "Content-Type": "multipart/form-data", Accept: "application/json, text/plain, */*", Authorization: `Bearer ${token}` },
-
-
-    })
-
-        .then((response) => {
-    
-                console.log(response)
-                return response
-             
-            })
-
-            
-        .catch((error) => {
-            console.log(error)
-            throw (error.response.data.message)
+export async function ProfileCreation(data) {
+    try {
+        let token = sessionStorage.getItem('token')
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/createprofile`,
+            data: data,
+            headers: { "Content-Type": "multipart/form-data", Accept: "application/json, text/plain, */*", Authorization: `Bearer ${token}` },
         })
-
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 
-export function RegisterUser(data) {
-
-    // console.log(data)
-    return axios({
-        method: "post",
-        url: `${process.env.REACT_APP_ENDPOINT}register`,
-        data: data,
-        headers: { "Content-Type": "multipart/form-data" }
-    })
-        .then((res) => {
-            console.log(res)
-            return res
-
+export async function RegisterUser(data) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}register`,
+            data: data,
+            headers: { "Content-Type": "multipart/form-data" }
         })
-
-        .catch((error) => {
-
-            console.log(error)
-            throw (error.response.data.message)
-    
-
-        })
-
+        return response.data;
+    } catch (error) {
+        return error.response.data.message;
+    }
 }
 
 
-export const userConsent=(data)=>{
-    // console.log(data)
-    let token=sessionStorage.getItem('token')
-    // console.log(token)
+export const userConsent = async (data) => {
+    try {
+        let token = sessionStorage.getItem('token')
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}user/user_terms`,
+            data: data,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
 
-   return axios({
-        method:"post",
-        url:`${process.env.REACT_APP_ENDPOINT}user/user_terms`,
-        data:data,
-        headers:{
-            "Content-Type":"multipart/form-data",
-            "Accept":"application/json",
-            Authorization:`Bearer ${token}`
-
-        }
-    })
-
-    .then((response)=>{
-        console.log(response)
-        return response
-    })
-
-    .catch((error) => {
-
-        console.log(error)
-        throw error
-    
-    })
-
-
+            }
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 
-export function VerifyEmail(data) {
-
-    // console.log(data)
-   return axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_ENDPOINT}user/verification`,
-        data: data,
-        headers: { "Content-Type": "multipart/form-data", Accept: "application/json" }
-    })
-
-        .then((response) => {
-
-            console.log(response)
-            return response
-            
+export async function VerifyEmail(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/verification`,
+            data: data,
+            headers: { "Content-Type": "multipart/form-data", Accept: "application/json" }
         })
-
-        .catch((error) => {
-            console.log(error)
-            throw error.response.data
-           
-        })
-
+        return response;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
 }
 
-export const VerifyMobileNumber= (data) => {
-    // console.log(data)
-    let token = sessionStorage.getItem('token')
+export const VerifyMobileNumber = async (data) => {
+    try {
+        let token = sessionStorage.getItem('token')
+        const response = await axios({
 
-    return axios({
-
-        method: 'post',
-        url: `${process.env.REACT_APP_ENDPOINT}user/check_mobile_verification`,
-        data: data,
-        headers: {
-            "Content-Type": "multipart/form-data",
-            "Accept": "application/json",
-            Authorization: `Bearer ${token}`
-
-        }
-    })
-
-    .then((res)=>{
-        console.log(res)
-        return res
-    })
-
-    .catch((error)=>{
-        console.log(error)
-        throw error
-    })
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/check_mobile_verification`,
+            data: data,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response;
+    } catch (error) {
+        return error?.response?.data?.message;
+    }
 }
 
 

@@ -8,8 +8,6 @@ export default function PatientDashboard() {
   const [clinicianData,setClinicianData]=useState([])
   const [show,setShow]=useState(false)
 
-  console.log(clinicianData)
-
   return (
     <>
     <div className='page-wrapper bg-gray'>
@@ -23,7 +21,7 @@ export default function PatientDashboard() {
                 {show ? 
                 <>
                 <AddClinician setClinicianData={setClinicianData} />
-                <PractitionersCard/>
+                <PractitionersCard clinicianData={clinicianData}/>
                 </>
                  : "" 
                 
