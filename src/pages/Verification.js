@@ -17,7 +17,7 @@ const Verification = () => {
     const { emailId } = useParams();
     let navigate = useNavigate("")
     const { t } = useTranslation();
-    const [time,setTime]=useState(60)
+    const time = 60
     let decodedEmail = (Base64.decode(emailId));
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const Verification = () => {
 
     useEffect(() => {
         setInterval(() => {
-            setTime(prevCount => (prevCount>0)? prevCount - 1 : 0);
+            time(prevCount => (prevCount>0)? prevCount - 1 : 0);
         }, 1000);
       }, []);
 
