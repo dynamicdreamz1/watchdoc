@@ -46,19 +46,25 @@ const VerificationEmail = () => {
 
             VerifyEmail(data)
                 .then((res) => {
-                    let roleType = res.data.user_details.roles[0].name
-                    sessionStorage.setItem('role', roleType)
-                    let token = res.data.token
-                    let profileCheck = res.data.user_details.profile_created
-                    sessionStorage.setItem('profile', profileCheck)
-                    sessionStorage.setItem('token', token)
-                    let profileCheckF = sessionStorage.getItem('profile')
-                    if (profileCheckF === '1' && token) {
-                        navigate('/dashboard')
-                    } else {
-                        setMessage(t('VerificationPage.message.m1'))
+                    if (typeof res === "string"){
+                        setError(t('VerificationPage.error.e2'))
+                        console.log(error)
                         setCode("")
-                        navigate('/userconsent')
+                    }else{
+                        let roleType = res.data.user_details.roles[0].name
+                        sessionStorage.setItem('role', roleType)
+                        let token = res.data.token
+                        let profileCheck = res.data.user_details.profile_created
+                        sessionStorage.setItem('profile', profileCheck)
+                        sessionStorage.setItem('token', token)
+                        let profileCheckF = sessionStorage.getItem('profile')
+                        if (profileCheckF === '1' && token) {
+                            navigate('/dashboard')
+                        } else {
+                            setMessage(t('VerificationPage.message.m1'))
+                            setCode("")
+                            navigate('/userconsent')
+                        }
                     }
                 })
                 .catch((error) => {
