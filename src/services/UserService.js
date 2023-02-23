@@ -45,9 +45,9 @@ export async function RegisterUser(data) {
             data: data,
             headers: { "Content-Type": "multipart/form-data" }
         })
-        return response;
+        return response.data;
     } catch (error) {
-        return error;
+        return error.response.data.message;
     }
 }
 
@@ -83,7 +83,8 @@ export async function VerifyEmail(data) {
         })
         return response;
     } catch (error) {
-        return error;
+        console.log(error);
+        return error.response.data;
     }
 }
 
@@ -99,12 +100,11 @@ export const VerifyMobileNumber = async (data) => {
                 "Content-Type": "multipart/form-data",
                 "Accept": "application/json",
                 Authorization: `Bearer ${token}`
-
             }
         })
         return response;
     } catch (error) {
-        return error;
+        return error?.response?.data?.message;
     }
 }
 

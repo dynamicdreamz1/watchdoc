@@ -21,20 +21,16 @@ export default function UserConsent() {
         }
 
         if(privacyPolicy===true && terms===true){
-
             const data={
                 privacy_policy:1,
                 terms_of_use:1
             }
 
             userConsent(data)
-
             .then((res)=>{
-                // console.log(res)
                 navigate('/createprofile')
                 
             })
-
             .catch((error)=>{
                 console.log(error)
             })

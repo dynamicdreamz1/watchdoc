@@ -8,7 +8,7 @@ import { RegisterUser } from '../services/UserService'
 
 
 
-const Verification = () => {
+const VerificationEmail = () => {
 
     const [code, setCode] = useState('')
     const [message, setMessage] = useState('')
@@ -46,30 +46,29 @@ const Verification = () => {
 
             VerifyEmail(data)
                 .then((res) => {
-                    let roleType = res.data.user_details.roles[0].name
-                    sessionStorage.setItem('role', roleType)
-                    let token = res.data.token
-                    let profileCheck = res.data.user_details.profile_created
-                    sessionStorage.setItem('profile', profileCheck)
-                    sessionStorage.setItem('token', token)
-                    let profileCheckF = sessionStorage.getItem('profile')
-                    if (profileCheckF === '1' && token) {
-                        navigate('/dashboard')
-                    } else {
-                        setMessage(t('VerificationPage.message.m1'))
-                        setCode("")
-                        navigate('/userconsent')
-                    }
-                })
-                .catch((error) => {
-                    if (error === "please enter valid varificationcode") {
+                    if (typeof res === "string"){
                         setError(t('VerificationPage.error.e2'))
                         console.log(error)
                         setCode("")
+                    }else{
+                        let roleType = res.data.user_details.roles[0].name
+                        sessionStorage.setItem('role', roleType)
+                        let token = res.data.token
+                        let profileCheck = res.data.user_details.profile_created
+                        sessionStorage.setItem('profile', profileCheck)
+                        sessionStorage.setItem('token', token)
+                        let profileCheckF = sessionStorage.getItem('profile')
+                        if (profileCheckF === '1' && token) {
+                            navigate('/dashboard')
+                        } else {
+                            setMessage(t('VerificationPage.message.m1'))
+                            setCode("")
+                            navigate('/userconsent')
+                        }
                     }
-                    else {
-                        console.log(error)
-                    }
+                })
+                .catch((error) => {
+                    return error
                 })
         }
     }
@@ -112,4 +111,4 @@ const Verification = () => {
     )
 }
 
-export default Verification;
+export default VerificationEmail;

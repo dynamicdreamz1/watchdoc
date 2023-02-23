@@ -1,5 +1,5 @@
 
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RegisterMobNumber } from '../services/UserService';
@@ -7,68 +7,59 @@ import { VerifyMobileNumber } from '../services/UserService';
 
 const VerifyMobile = () => {
 
-    useEffect(()=>{
+    useEffect(() => {
         setTimeout(() => {
             setShow(false)
-        },60000);
+        }, 60000);
     })
 
-    const navigate=useNavigate();
-    const {t}=useTranslation();
-    const [code,setCode]=useState('')
+    const navigate = useNavigate();
+    const { t } = useTranslation();
+    const [code, setCode] = useState('')
     const [error, setError] = useState('')
-    const {mobileN}=useParams()
-    const [show,setShow]=useState(true)
- 
-    const handleClick=(e)=>{
+    const { mobileN } = useParams()
+    const [show, setShow] = useState(true)
+
+    const handleClick = (e) => {
 
         e.preventDefault();
-        if(code===""){
+        if (code === "") {
             setError(t('verifyMobile.e1'))
         }
-
-        else{
-
-            const data={
-                mobile_number:mobileN,
-                varification_code:code
+        else {
+            const data = {
+                mobile_number: mobileN,
+                varification_code: code
             }
-
             VerifyMobileNumber(data)
-            .then((res)=>{
-                console.log(res)
-                navigate('/thankyou')
-                
-            })
-            .catch((error)=>{
-
-                if(error.response.data.message==="please enter valid varification code"){
-                console.log(error)
-                setError(t('verifyMobile.e2'))
-                }
-            })
+                .then((res) => {
+                    if (typeof res === "string") {
+                        if (res === "please enter valid varification code") {
+                            setError(t('verifyMobile.e2'))
+                        }
+                    } else {
+                        navigate('/thankyou')
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                    return error;
+                })
         }
-
-
     }
 
-    const resendCode=(e)=>{
-        e.preventDefault() 
+    const resendCode = (e) => {
+        e.preventDefault()
         setShow(true)
-        const data={
-            mobile_number:mobileN,
-            
+        const data = {
+            mobile_number: mobileN,
         }
-        // console.log(data)
         RegisterMobNumber(data)
-      
-   
-       
-     }
+    }
 
-  return (
-    <React.Fragment>
-       <div className='varification-page-wrapper'>
+    return (
+        <React.Fragment>
+            <div className='varification-page-wrapper'>
                 <div className='container'>
                     <div className='page-header'>
                         <img src='/images/WatchDoc-LOGO.png' alt='Watch Doc Logo' />
@@ -79,21 +70,20 @@ const VerifyMobile = () => {
                             <p>{t('verifyMobile.p1')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-                        {/* <div className='sMessage'> {message}</div> */}
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
                                 <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
                             </div>
 
-                            <button disabled={show} className='codeResend' onClick={(e)=>resendCode(e)}>{t('verifyMobile.b1')}</button> <br/><br/>
+                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />
                             <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>
                 </div>
             </div>
-    </React.Fragment>
-  )
+        </React.Fragment>
+    )
 }
 
 export default VerifyMobile;

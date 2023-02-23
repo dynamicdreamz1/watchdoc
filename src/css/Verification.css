@@ -3,17 +3,21 @@
     font-size: 16px;
     line-height: 20px;
 }
-.eError{
+
+.eError {
     color: red;
 }
-.sMessage{
+
+.sMessage {
     color: green;
 }
+
 .varification-page-wrapper form {
     padding-top: 10px;
 }
-.varification-page-wrapper .codeResend, 
-.varification-page-wrapper .resend{
+
+.varification-page-wrapper .codeResend,
+.varification-page-wrapper .resend {
     padding: 0;
     border: 0;
     background: transparent;
@@ -21,9 +25,16 @@
     line-height: 12px;
     color: #000;
 }
+
 .varification-page-wrapper .resend {
     padding-top: 10px;
 }
+
 .varification-page-wrapper input {
     margin-bottom: 0;
+}
+
+button.codeResend[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
