@@ -8,6 +8,8 @@ import PatientProfileBar from './PatientProfileBar';
 import RedAlertUnreviewed from '../dashboard/Clinician/RedAlertUnreviewed';
 import PatientHeartRateDetails from '../dashboard/Clinician/Patient/PatientHeartRateDetails';
 import NoDataRecorded from '../dashboard/Clinician/Patient/NoDataRecorded';
+import BloodPresureChartNavTabs from '../dashboard/Clinician/Patient/BloodPresureChartNavTabs';
+import PatientBloodPressureDetails from '../dashboard/Clinician/Patient/PatientBloodPressureDetails';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -79,8 +81,7 @@ export default function PatientsTableTabs() {
         </div>
         <div className='reminder-cards-wrapper mt-22'>
           <div className='section-title'>
-            <h4>Reminders</h4>
-
+            <h5>Reminders</h5>
           </div>
           <div className='d-flex flex-wrap'>
             <ReminderCard/>
@@ -93,6 +94,12 @@ export default function PatientsTableTabs() {
             <h5>Heart Rate</h5>
           </div>
           <PatientHeartRateDetails/>
+        </div>
+        <div className='mt-22'>
+          <div className='section-title'>
+            <h5>Blood Pressure</h5>
+          </div>
+          <PatientBloodPressureDetails/>
         </div>
         <div className='mt-22'>
           <div className='section-title'>
