@@ -1,9 +1,9 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
 import Paper from '@mui/material/Paper';
-import PatientInfoRow from '../../common/Table/PatientInfoRow';
+import PatientInfoRow from '../common/Table/PatientInfoRow';
 
-export default function RedAlertReviewed() {
+export default function RedAlertUnreviewed() {
   return (
     <>
     <TableContainer component={Paper} className="red-alert-table">
@@ -21,6 +21,10 @@ export default function RedAlertReviewed() {
                 </TableRow>
             </TableHead>
             <TableBody>
+                <PatientInfoRow/>
+                <PatientInfoRow/>
+                <PatientInfoRow/>
+                <PatientInfoRow/>
                 <PatientInfoRow/>
                 <PatientInfoRow/>
                 <PatientInfoRow/>

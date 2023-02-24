@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import RedAlertUnreviewed from './RedAlertUnreviewed';
-import CliniciansRequestsTable from '../../clinicians/CliniciansRequestsTable';
+import CliniciansRequestsTable from './CliniciansRequestsTable';
 import RedAlertReviewed from './RedAlertReviewed';
 import TableShorting from './TableShorting';
 

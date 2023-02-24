@@ -16,7 +16,7 @@ export default function PatientHeartRateDetails() {
             <AlertTriggerCard/>
             <AlertTriggerCard/>
         </div>
-        <div class="chart-wrapper">
+        <div className="chart-wrapper">
             <HeartRateChartNavTabs/>
         </div>
     </div>

@@ -72,7 +72,7 @@
             "f4": "Enter Verification Code",
             "f5": "Next",
             "f6": "Check your email",
-            "f7":"Resend Code"
+            "f7":"Resend Code :"
         },
         "message": {
             "m1": "Verfication successfully done."
@@ -151,7 +151,7 @@
         "p1":"We have sent a verification code to your phone. Please enter it here.",
         "label":"Verification Code",
         "placeholder":"Your mobile number",
-        "b1":"Resend Code",
+        "b1":"Resend Code :",
         "b2":"Next"
 
     },

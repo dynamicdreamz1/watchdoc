@@ -4,10 +4,11 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import { FormControlLabel } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { addDoctor } from '../../services/ClinicianService';
+import { addDoctor } from '../../../services/ClinicianService';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({clinicianData}) {
+
 
     const [status,setStatus]=useState(false)
 
@@ -56,12 +57,12 @@ export default function PractitionersCard({clinicianData}) {
                 <p>{element.address}</p>
 
                 
-                <div className='add-fav' onClick={()=>addClinician(element.id)} >
+                <div className='add-fav' key={element.id} onClick={()=>addClinician(element.id)} >
                 <FormControlLabel
                     control={
                         <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                     }
-                    label={status ? "Pending clinician approval" : "Add to WatchDoc"}/>
+                    label={status ? <span style={{color:"#FB7B04"}}>Pending clinician approval</span>: "Add to WatchDoc"}   />
                 </div>
             
                 

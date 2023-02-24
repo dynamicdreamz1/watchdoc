@@ -1,7 +1,6 @@
 import { Base64 } from 'js-base64'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, redirect,  useParams } from 'react-router-dom'
 import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
@@ -21,6 +20,7 @@ const VerificationEmail = () => {
     //const [authenticated, setauthenticated] = useState((sessionStorage.getItem('token')) || false);
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
+    // eslint-disable-next-line no-undef
     const { emailId } = useParams();
     
     
@@ -116,7 +116,7 @@ const VerificationEmail = () => {
                                 <input type="password" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
                             <div className='resend-code'>
-                                <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>Resend Code in:&nbsp;</button>
+                                <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}&nbsp;</button>
                                 <span className="text">{time}</span>
                             </div>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>

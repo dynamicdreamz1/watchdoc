@@ -41,6 +41,14 @@ export default function Sidebar() {
                 </ListItem>
             </List>
         </nav>
+        <div className='logout'>
+            <button type='button'>
+                <span className='icon'>
+                    <img src='/images/Logout-icon.png' alt='Logout Icon' />
+                </span>
+                <span className='text'>Logout</span>
+            </button>
+        </div>
     </div>
     </>
   )

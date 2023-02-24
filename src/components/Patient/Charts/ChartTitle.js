@@ -8,8 +8,8 @@ export default function ChartTitle() {
             <div className='range'>
                 <span className='range-text'>Range</span>
                 <div className='range-number'>
-                    <span class="digit">41-120</span>
-                    <span class="type">bpm</span>
+                    <span className="digit">41-120</span>
+                    <span className="type">bpm</span>
                 </div>
             </div>
             <DatePickerInput/>

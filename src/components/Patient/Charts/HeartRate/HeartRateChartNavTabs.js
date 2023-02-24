@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react'
-import ChartTitle from './ChartTitle';
+import ChartTitle from '../ChartTitle';
 import HeartRateChart from './HeartRateChart';
 
 function TabPanel(props) {

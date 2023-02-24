@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/dashboard/templates/Sidebar';
-import Aside from '../components/dashboard/templates/Aside';
+import Sidebar from '../components/Templates/Sidebar'
+import Aside from '../components/Templates/Aside';
 
 const Dashboard = () => {
 

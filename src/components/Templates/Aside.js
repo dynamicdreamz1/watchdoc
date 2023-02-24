@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from './Header'
-import PatientsTableTabs from '../../patients/PatientsTableTabs'
-import CliniciansTableTabs from '../../clinicians/CliniciansTableTabs'
-import DashboardTableTabs from '../../dashboard/Clinician/DashboardTableTabs'
+import PatientsTableTabs from '../Clinician/PatientsTableTabs'
+import CliniciansTableTabs from '../Clinician/CliniciansTableTabs'
+import DashboardTableTabs from '../Clinician/DashboardTableTabs'
 
 export default function Aside() {
   const view = 'patients'

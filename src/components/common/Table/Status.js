@@ -4,7 +4,7 @@ export default function Status() {
   return (
     <>
     <div className='status table-data'>
-        <span class="text color-light-blue">Unreviewed</span>
+        <span className="text color-light-blue">Unreviewed</span>
     </div>
     </>
   )
