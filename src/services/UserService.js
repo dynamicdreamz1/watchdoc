@@ -11,7 +11,13 @@ export const getCurrentUser = () => {
   
   };
   
+export const getCurrentUserRole=()=>{
+    return StoreCookie.getItem("role");
+}
 
+export const getCurrentUserIsActive=()=>{
+    return StoreCookie.getItem("is_active");
+}
 export const RegisterMobNumber = async (data) => {
     try {
         let token = sessionStorage.getItem('token')

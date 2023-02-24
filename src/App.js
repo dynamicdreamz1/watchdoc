@@ -15,25 +15,20 @@ import AddClinicianPage from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import { UserContext } from './Store/Context';
-import { getCurrentUser, getCurrentUserData } from './services/UserService';
+import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
-  
-
-
   useEffect(() => {
     const user = getCurrentUser();
-    
-    
+    const role = getCurrentUserRole();
+    const IsActive = getCurrentUserIsActive();
     if (user) {
       setCurrentUser(user);
       const userData = getCurrentUserData();
-      setCurrentUserData(userData);
-
-      
+      setCurrentUserData({userData,role,IsActive});
     }
    
   }, []);
@@ -47,9 +42,8 @@ function App() {
           <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
             <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
             <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Navigate replace to="/register" />}/>
+            <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
 
-
-           <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
           {/*<Route path='/createprofile' element={currentUser ? < CreateProfile /> : <Navigate replace to="/dashboard" /> } />
 
           

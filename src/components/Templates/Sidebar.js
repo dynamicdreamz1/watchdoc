@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { logout} from '../../services/UserService';
 import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
+import { UserContext } from '../../Store/Context';
 
 
 export default function Sidebar() {
+
+    const {currentUserData} = useContext(UserContext);
 
     const {t}=useTranslation();
 
@@ -20,8 +24,21 @@ export default function Sidebar() {
             <img src='images/WatchDoc-text-logo.svg' alt='WatchDoc Logo' />
         </div>
         <nav aria-label="main mailbox folders">
-            <ClinicianSidebar/> 
-            <PatientSidebar/>
+
+        {(() => {
+        switch (currentUserData?.role) {
+          case "User":
+            return <PatientSidebar/>
+          case 'clinicians':
+            return <ClinicianSidebar/> 
+          default:
+            return  ''
+        }
+      })()}
+
+
+            
+            
         </nav>
         <div className='logout'>
             <button type='button' onClick={(e)=>logoutHandel()} >
