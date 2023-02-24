@@ -17,7 +17,7 @@
 }
 
 .varification-page-wrapper .codeResend,
-.varification-page-wrapper .resend {
+.varification-page-wrapper .text {
     padding: 0;
     border: 0;
     background: transparent;
@@ -25,7 +25,10 @@
     line-height: 12px;
     color: #000;
 }
-
+.resend-code {
+    margin-bottom: 30px;
+    padding-top: 5px;
+}
 .varification-page-wrapper .resend {
     padding-top: 10px;
 }
