@@ -17,7 +17,7 @@ export default function PatientSidebar() {
             </ListItemButton>
         </ListItem>
         </Link>
-        <Link to="/addclinician">
+        <Link to="/editclinician">
         <ListItem disablePadding>
             <ListItemButton>
                 <ListItemIcon>
@@ -37,7 +37,7 @@ export default function PatientSidebar() {
                 </ListItemButton>
             </ListItem>
         </Link>
-        <Link to="/link-device">
+        <Link to="/editlinkdevice">
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon>
