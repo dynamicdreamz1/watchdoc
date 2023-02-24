@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { redirect, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
-
+import { UserContext } from '../Store/Context'; 
 
 const Register = () => {
 
+    const user = useContext(UserContext);
+
+    
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
+
+
+    
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -21,13 +28,6 @@ const Register = () => {
             setError(t('RegisterPage.error.e1'))
             return
         }
-        let profileCheckF = sessionStorage.getItem('profile')
-        let token = sessionStorage.getItem('token');
-
-        if (profileCheckF === '1' && token) {
-            navigate('/dashboard')
-        }
-        else {
             const data = {
                 email: email
             }
@@ -38,6 +38,7 @@ const Register = () => {
                     if (typeof response === "string") {
                         setError(response)
                         setLoading(false)
+                        setEmail("")
                     } else {
                         let encodedemail = Base64.encode(response?.data?.email)
                         setLoading(false)
@@ -49,8 +50,12 @@ const Register = () => {
                     console.log(error);
                     return error
                 })
-        }
+       // }
     }
+
+    if (user?.token) {
+        return redirect('/dashboard');
+       }
 
 
     return (
@@ -72,7 +77,8 @@ const Register = () => {
 
                             <form>
                                 <div className='default-login'>
-                                    <input type="email" placeholder={t('RegisterPage.form.f1')} value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" placeholder={t('RegisterPage.form.f1')} 
+                                    value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                                     <button type="submit" onClick={(e) => handleSubmit(e)}>{t('RegisterPage.form.f2')}</button>
                                 </div>
                                 {loading ? <b>{t('RegisterPage.loader.l1')}</b> : ""}
@@ -80,8 +86,8 @@ const Register = () => {
                                     <span>{t('RegisterPage.form.f3')}</span>
                                 </div>
                                 <div className='login-options'>
-                                    <button type='button' ><img src="/images/google-icon.png" alt="Google Icon" />{t('RegisterPage.form.f4')}</button>
-                                    <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />{t('RegisterPage.form.f5')}</button>
+                                    <button type='button' ><img src="/images/google-icon.png" alt="Google" />{t('RegisterPage.form.f4')}</button>
+                                    <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple" />{t('RegisterPage.form.f5')}</button>
                                     <button type='button'><img src="/images/key-icon.png" alt="SSO Icon" />{t('RegisterPage.form.f6')}</button>
                                 </div>
                             </form>

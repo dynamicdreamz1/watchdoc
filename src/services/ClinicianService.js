@@ -25,11 +25,14 @@ export const searchClinician = async (data) => {
 }
 
 export const addDoctor=async(ID)=>{
-    // console.log(typeof ID.toString())
+    
+  let id={
+    id:ID.toString()
+  }
     try {
         const response = await axios({
             method: 'post',
-            data:ID.toString(),
+            data:id,
             url:`${process.env.REACT_APP_ENDPOINT}user/add_clinician`,
             headers: {
                 

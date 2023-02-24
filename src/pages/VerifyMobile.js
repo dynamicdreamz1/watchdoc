@@ -7,18 +7,25 @@ import { VerifyMobileNumber } from '../services/UserService';
 
 const VerifyMobile = () => {
 
-    useEffect(() => {
-        setTimeout(() => {
-            setShow(false)
-        }, 60000);
-    })
-
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [code, setCode] = useState('')
     const [error, setError] = useState('')
     const { mobileN } = useParams()
     const [show, setShow] = useState(true)
+    const [time, setTime] = useState(60)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+    }, [])
+
+    useEffect(() => {
+        setInterval(() => {
+            setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
+        }, 1000);
+    }, []);
 
     const handleClick = (e) => {
 
@@ -36,6 +43,7 @@ const VerifyMobile = () => {
                     if (typeof res === "string") {
                         if (res === "please enter valid varification code") {
                             setError(t('verifyMobile.e2'))
+                            setCode("")
                         }
                     } else {
                         navigate('/thankyou')
@@ -51,6 +59,10 @@ const VerifyMobile = () => {
     const resendCode = (e) => {
         e.preventDefault()
         setShow(true)
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+        setTime(60)
         const data = {
             mobile_number: mobileN,
         }
@@ -77,6 +89,7 @@ const VerifyMobile = () => {
                             </div>
 
                             <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />
+                            <span class="text">{time}</span>
                             <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>

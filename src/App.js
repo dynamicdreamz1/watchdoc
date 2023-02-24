@@ -1,42 +1,75 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/App.css'
-import { BrowserRouter ,Routes, Route } from 'react-router-dom';
-import CreateProfile from './pages/CreateProfile';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import VerificationEmail from './pages/VerificationEmail';
 import Register from './pages/Register';
-import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
 import { Suspense } from 'react';
-import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
-import PatientDashboard from './pages/PatientDashboard';
+// import AddClinician from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
+import { UserContext } from './Store/Context';
+import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
+import AddClinicianInner from './pages/AddClinicianInner';
+import { AddClinicianOuter } from './pages/AddClinicianOuter';
+
+import EditProfileInner from './pages/EditProfileInner';
+import EditProfileOuter from './pages/EditProfileOuter';
+import LinkDeviceInner from './pages/LinkDeviceInner';
+import LinkDeviceOuter from './pages/LinkDeviceOuter';
 
 function App() {
 
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUserData, setCurrentUserData] = useState(undefined);
+  useEffect(() => {
+    const user = getCurrentUser();
+    const role = getCurrentUserRole();
+    const IsActive = getCurrentUserIsActive();
+    if (user) {
+      setCurrentUser(user);
+      const userData = getCurrentUserData();
+      setCurrentUserData({userData,role,IsActive});
+    }
+   
+  }, []);
+
+  console.log(currentUser);
+  
+
   return (
-    <React.Fragment>
-
-      <BrowserRouter>
+    <UserContext.Provider value={{currentUserData,setCurrentUserData}}>
+      
         <Routes>
+            <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
+            <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
+            <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
+            
+            <Route path='/userConsent' element={currentUser ? <UserConsent /> : <Register />}/>
+            <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
+            <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
+            <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
+            <Route path='/createprofile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
+            <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
+            <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
+            
+              {/* After Login Router */}
 
-          <Route path='/' element={<Register />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/verification/:emailId' element={<VerificationEmail />} />
-          <Route path='/createprofile' element={< CreateProfile />} />
-          <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
-          <Route path="*" element={<NoMatch />} />
-          <Route path='/thankyou' element={<Thankyou />} />
-          <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/patient-dashboard' element={<PatientDashboard />} />
-          <Route path='/contactdetails' element={<ContactDetails />} />
-          <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
+              <Route path='dashboard' element={currentUser ? <Dashboard /> : <Register />} />
+              <Route path='editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
+              <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
+              <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
+            
+            
+      
 
         </Routes>
-      </BrowserRouter>
-    </React.Fragment>
+         
+     </UserContext.Provider>
+      
+    
   );
 }
 

@@ -7,6 +7,8 @@ import '../css/UserConsent.css'
 
 export default function UserConsent() {
 
+    
+
     const {t}=useTranslation();
     const [privacyPolicy,setPrivacyPolicy]=useState(false)
     const [terms,setTerms]=useState(false)

@@ -70,6 +70,9 @@ body input:focus-visible {
   outline-offset: 0px;
   outline: 0;
 }
+.space-40 {
+  height: 40px;
+}
 .page-wrapper {
   height: 100vh;
   overflow-y: auto;
@@ -239,7 +242,7 @@ button {
   fill: #8D8D8D !important;
   margin-right: 10px;
 }
-.page-content-wrapper .title-block {
+.clinician-connection-wrapper .title-block {
   margin-bottom: 30px;
 }
 /* SideBar */
@@ -255,19 +258,34 @@ button {
 .sidebar .logo {
   padding: 30px 26px;
 }
-.sidebar nav ul li .css-cveggr-MuiListItemIcon-root {
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root,
+.logout button .icon {
   min-width: auto;
   width: 30px;
+  padding-right: 10px;
+  display: flex;
 }
-.sidebar nav ul li .css-tlelie-MuiListItemText-root {
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root img, .logout button .icon img {
+  max-width: 100%;
+}
+.logout button .text {
+  color: red;
+}
+.sidebar nav ul li .css-tlelie-MuiListItemText-root,
+.logout button .text {
   width: calc(100% - 30px);
   margin: 0;
 }
-.sidebar nav ul li .MuiButtonBase-root {
+.sidebar nav ul li .MuiButtonBase-root,
+.logout button {
   padding: 17px 26px;
 }
 .sidebar nav .MuiList-root {
   padding: 0;
+}
+.sidebar .MuiList-root a {
+  text-decoration: none;
+  color: #000;
 }
 /* Aside */
 .aside {
@@ -326,6 +344,7 @@ button {
 }
 .content-wrapper .aside .top-header-block {
   gap: 15px;
+  margin-bottom: 20px;
 }
 /* Alert Table */
 body .MuiPaper-root.red-alert-table .MuiTable-root {
@@ -406,6 +425,25 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span.digit,
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
+}
+.logout {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.logout button {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  padding: 17px 26px;
+}
+.logout button .text,.sidebar nav ul li .css-tlelie-MuiListItemText-root span {
+  font-size: 16px;
+  line-height: 18px;
+  text-align: left;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 /* Date Picker */
 .date-picker {
@@ -498,9 +536,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   margin: 0;
-}
-body .MuiPaper-root.clinicians-table {
-  padding-top: 40px;
 }
 /* Table Tabs */
 .table-nav-tabs button.MuiTab-root {
@@ -700,7 +735,7 @@ body .MuiPaper-root.clinicians-table {
 .reminder-card .content-block .reminder-date {
   margin-top: 10px;
 }
-.reminder-cards-wrapper .d-flex {
+.reminder-cards-wrapper .wrapper {
   column-gap: 15px;
   margin-top: 20px;
 }
@@ -708,6 +743,9 @@ body .MuiPaper-root.clinicians-table {
   column-gap: 15px;
 }
 /* Add clinician Page */
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box {
+  max-width: 375px;
+}
 .clinician-connection {
   background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
   border-radius: 20px;

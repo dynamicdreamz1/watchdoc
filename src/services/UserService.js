@@ -1,5 +1,23 @@
 import axios from "axios"
+import { StoreCookie } from "../Utility/sessionStore"
 
+export const getCurrentUser = () => {
+    return StoreCookie.getItem("token");
+  };
+  
+  export  const getCurrentUserData = () => {
+  
+    return StoreCookie.getItem("user_details");
+  
+  };
+  
+export const getCurrentUserRole=()=>{
+    return StoreCookie.getItem("role");
+}
+
+export const getCurrentUserIsActive=()=>{
+    return StoreCookie.getItem("is_active");
+}
 export const RegisterMobNumber = async (data) => {
     try {
         let token = sessionStorage.getItem('token')
@@ -109,3 +127,13 @@ export const VerifyMobileNumber = async (data) => {
 }
 
 
+
+export const logout = () => {
+    StoreCookie.removeItem("token");
+    StoreCookie.removeItem("profileCheck");
+    StoreCookie.removeItem("user_details");
+    StoreCookie.removeItem("role");
+    StoreCookie.removeItem("is_active");
+    //const response = await axios.post(API_ENDPOINT + "signout");
+    return true;
+  };

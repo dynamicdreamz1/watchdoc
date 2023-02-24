@@ -1,17 +1,16 @@
 import React from 'react'
-
-
-import Aside from '../components/common/Aside';
-import Sidebar from '../components/common/Sidebar'
-
+import Sidebar from '../components/Templates/Sidebar'
+import Aside from '../components/Templates/Aside';
 
 const Dashboard = () => {
+  
 
   return (
     <React.Fragment>
       <div className='content-wrapper'>
         <Sidebar/>
-        <Aside />
+
+        <Aside/>
       </div>
     </React.Fragment>
   )
