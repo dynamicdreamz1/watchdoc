@@ -1,15 +1,11 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react'
 import PropTypes from 'prop-types';
-import MeasurmentCard from './MeasurmentCard';
+import MeasurmentCard from '../dashboard/Patient/MeasurmentCard';
 import ReminderCard from './ReminderCard';
-import AlertCard from './AlertCard';
+import AlertCard from '../dashboard/Patient/AlertCard';
 import PatientProfileBar from './PatientProfileBar';
 import RedAlertUnreviewed from '../dashboard/Clinician/RedAlertUnreviewed';
-import PatientHeartRateDetails from '../dashboard/Clinician/Patient/PatientHeartRateDetails';
-import NoDataRecorded from '../dashboard/Clinician/Patient/NoDataRecorded';
-import BloodPresureChartNavTabs from '../dashboard/Clinician/Patient/BloodPresureChartNavTabs';
-import PatientBloodPressureDetails from '../dashboard/Clinician/Patient/PatientBloodPressureDetails';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -93,25 +89,25 @@ export default function PatientsTableTabs() {
           <div className='section-title'>
             <h5>Heart Rate</h5>
           </div>
-          <PatientHeartRateDetails/>
+          
         </div>
         <div className='mt-22'>
           <div className='section-title'>
             <h5>Blood Pressure</h5>
           </div>
-          <PatientBloodPressureDetails/>
+          
         </div>
         <div className='mt-22'>
           <div className='section-title'>
             <h5>Blood Glucose</h5>
           </div>
-          <NoDataRecorded/>
+          
         </div>
         <div className='mt-22'>
           <div className='section-title'>
             <h5>Temperature</h5>
           </div>
-          <NoDataRecorded/>
+          
         </div>
         
         <Box sx={{ width: '100%' }}>

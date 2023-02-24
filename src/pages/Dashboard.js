@@ -1,9 +1,6 @@
 import React from 'react'
-
-
-import Aside from '../components/common/Aside';
-import Sidebar from '../components/common/Sidebar'
-
+import Sidebar from '../components/dashboard/templates/Sidebar';
+import Aside from '../components/dashboard/templates/Aside';
 
 const Dashboard = () => {
 
@@ -11,7 +8,7 @@ const Dashboard = () => {
     <React.Fragment>
       <div className='content-wrapper'>
         <Sidebar/>
-        <Aside />
+        <Aside/>
       </div>
     </React.Fragment>
   )

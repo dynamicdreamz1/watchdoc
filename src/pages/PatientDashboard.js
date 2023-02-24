@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import AddClinician from '../components/patients/AddClinician'
-import AddClinicianButton from '../components/patients/AddClinicianButton'
-import ConnectingClinician from '../components/patients/ConnectingClinician'
+import AddClinician from '../components/dashboard/Patient/AddClinician'
+import AddClinicianButton from '../components/dashboard/Patient/AddClinicianButton'
+import ConnectingClinician from '../components/dashboard/Patient/ConnectingClinician'
 import PractitionersCard from '../components/patients/PractitionersCard'
 
 export default function PatientDashboard() {
