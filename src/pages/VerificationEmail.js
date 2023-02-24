@@ -1,22 +1,32 @@
 import { Base64 } from 'js-base64'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, redirect,  useParams } from 'react-router-dom'
 import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
+import { UserContext } from '../Store/Context'
+import { StoreCookie } from '../Utility/sessionStore'
 
 
 
 const VerificationEmail = () => {
 
+    const user = useContext(UserContext);
+    console.log(user);
+
+
     const [code, setCode] = useState('')
     const [message, setMessage] = useState('')
+    //const [authenticated, setauthenticated] = useState((sessionStorage.getItem('token')) || false);
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const { emailId } = useParams();
-    let navigate = useNavigate("")
+    
+    
+    
     const { t } = useTranslation();
+
     const [time, setTime] = useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
@@ -31,6 +41,9 @@ const VerificationEmail = () => {
             setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
         }, 1000);
     }, []);
+
+   
+  
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -51,20 +64,17 @@ const VerificationEmail = () => {
                         console.log(error)
                         setCode("")
                     } else {
-                        let roleType = res.data.user_details.roles[0].name
-                        sessionStorage.setItem('role', roleType)
-                        let token = res.data.token
-                        let profileCheck = res.data.user_details.profile_created
-                        sessionStorage.setItem('profile', profileCheck)
-                        sessionStorage.setItem('token', token)
-                        let profileCheckF = sessionStorage.getItem('profile')
-                        if (profileCheckF === '1' && token) {
-                            navigate('/dashboard')
-                        } else {
-                            setMessage(t('VerificationPage.message.m1'))
-                            setCode("")
-                            navigate('/userconsent')
-                        }
+
+                        const {data} = res;
+                        const {token,user_details} = data;
+                        const {profile_created,is_active,roles} = user_details;
+                         StoreCookie.setItem("token", token);
+                        StoreCookie.setItem("profileCheck", profile_created);
+                        StoreCookie.setItem("user_details", JSON.stringify(user_details));
+                        StoreCookie.setItem("role", roles[0].name);
+                        StoreCookie.setItem("is_active", is_active);
+                        window.location.reload();
+                     
                     }
                 })
                 .catch((error) => {
@@ -107,7 +117,7 @@ const VerificationEmail = () => {
                             </div>
                             <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>Resend Code in:&nbsp;</button>
-                                <span class="text">{time}</span>
+                                <span className="text">{time}</span>
                             </div>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>

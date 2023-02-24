@@ -1,4 +1,16 @@
 import axios from "axios"
+import { StoreCookie } from "../Utility/sessionStore"
+
+export const getCurrentUser = () => {
+    return StoreCookie.getItem("token");
+  };
+  
+  export  const getCurrentUserData = () => {
+  
+    return StoreCookie.getItem("user_details");
+  
+  };
+  
 
 export const RegisterMobNumber = async (data) => {
     try {

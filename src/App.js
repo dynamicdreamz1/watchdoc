@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './css/App.css'
-import { BrowserRouter ,Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import CreateProfile from './pages/CreateProfile';
 import VerificationEmail from './pages/VerificationEmail';
 import Register from './pages/Register';
@@ -13,30 +13,59 @@ import UserConsent from './pages/UserConsent';
 import PatientDashboard from './pages/PatientDashboard';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
+import { UserContext } from './Store/Context';
+import { getCurrentUser, getCurrentUserData } from './services/UserService';
 
 function App() {
 
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUserData, setCurrentUserData] = useState(undefined);
+  
+
+
+  useEffect(() => {
+    const user = getCurrentUser();
+    
+    
+    if (user) {
+      setCurrentUser(user);
+      const userData = getCurrentUserData();
+      setCurrentUserData(userData);
+
+      
+    }
+   
+  }, []);
+  
+  
+
   return (
-    <React.Fragment>
-
-      <BrowserRouter>
+    <UserContext.Provider value={{currentUserData,setCurrentUserData}}>
+      
         <Routes>
+          <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
+            <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
+            <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Navigate replace to="/register" />}/>
 
-          <Route path='/' element={<Register />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/verification/:emailId' element={<VerificationEmail />} />
-          <Route path='/createprofile' element={< CreateProfile />} />
-          <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
-          <Route path="*" element={<NoMatch />} />
-          <Route path='/thankyou' element={<Thankyou />} />
-          <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/add-clinicians' element={<PatientDashboard />} />
+
+           <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
+          {/*<Route path='/createprofile' element={currentUser ? < CreateProfile /> : <Navigate replace to="/dashboard" /> } />
+
+          
+          
+          <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Navigate replace to="/" />} />
+          <Route path='/userconsent' element={currentUser ? <UserConsent /> : <Navigate replace to="/" />} />
+          <Route path='/add-clinicians' element={currentUser ? <PatientDashboard />: <Navigate replace to="/" />} />
           <Route path='/contactdetails' element={<ContactDetails />} />
           <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
+         
+          <Route path="*" element={<NoMatch />} /> */}
 
         </Routes>
-      </BrowserRouter>
-    </React.Fragment>
+         
+     </UserContext.Provider>
+      
+    
   );
 }
 
