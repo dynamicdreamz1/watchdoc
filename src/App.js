@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './css/App.css'
 import { Routes, Route, Navigate } from 'react-router-dom';
-import CreateProfile from './pages/CreateProfile';
 import VerificationEmail from './pages/VerificationEmail';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -15,7 +14,7 @@ import { UserContext } from './Store/Context';
 import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
 import AddClinicianInner from './pages/AddClinicianInner';
 import { AddClinicianOuter } from './pages/AddClinicianOuter';
-import LinkDevices from './pages/LinkDevices';
+
 import EditProfileInner from './pages/EditProfileInner';
 import EditProfileOuter from './pages/EditProfileOuter';
 import LinkDeviceInner from './pages/LinkDeviceInner';
@@ -52,17 +51,18 @@ function App() {
             <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
             <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
             <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
-
+            <Route path='/createprofile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
+            <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
+            <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
+            
               {/* After Login Router */}
 
-            <Route path='/createprofile' element={currentUser ? <CreateProfile /> :  <Register />} />
-            <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Register />} />
-            <Route path='/editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
-            <Route path='/editprofile-outer' element={currentUser ? <EditProfileOuter /> :<Register /> } />
-            <Route path='/addclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
-            <Route path='/addclinician-outer' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
-            <Route path='/link-device' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
-            <Route path='/link-device-outer' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
+              <Route path='dashboard' element={currentUser ? <Dashboard /> : <Register />} />
+              <Route path='editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
+              <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
+              <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
+            
+            
       
 
         </Routes>
