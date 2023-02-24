@@ -38,6 +38,7 @@ const Register = () => {
                     if (typeof response === "string") {
                         setError(response)
                         setLoading(false)
+                        setEmail("")
                     } else {
                         let encodedemail = Base64.encode(response?.data?.email)
                         setLoading(false)

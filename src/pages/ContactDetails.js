@@ -21,6 +21,7 @@ export default function ContactDetails() {
 
         else if(mobileN.length<10 || mobileN.length>10){
             setError(t('mobileNumberVerificationPage.error.e2'))
+            setMobileN("")
         }
 
         else {

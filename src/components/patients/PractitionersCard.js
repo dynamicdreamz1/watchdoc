@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
@@ -9,12 +9,30 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({clinicianData}) {
 
+    const [status,setStatus]=useState(false)
+
     const {t}=useTranslation()
     const addClinician=(ID)=>{
         // console.log(ID)
 
-        // addDoctor(ID)
-    
+        addDoctor(ID)
+        .then((res)=>{
+
+            if(res.response.data.message==="User already has relation with the clinician"){
+            console.log(res.response.data.message)
+            setStatus(true)
+        }
+
+        else{
+            console.log(res)
+        }
+
+
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        
     }
 
 
@@ -33,15 +51,17 @@ export default function PractitionersCard({clinicianData}) {
                 <img src={element.image} alt='User' />
             </div>
             <div className='text-block'>
-                    {element.id}
+                    
                 <h5>{element.first_name} {element.last_name}</h5>
                 <p>{element.address}</p>
+
+                
                 <div className='add-fav' onClick={()=>addClinician(element.id)} >
                 <FormControlLabel
                     control={
                         <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                     }
-                    label="Add to WatchDoc"/>
+                    label={status ? "Pending clinician approval" : "Add to WatchDoc"}/>
                 </div>
             
                 

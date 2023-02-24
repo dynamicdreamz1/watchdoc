@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { VerifyEmail} from '../services/UserService'
+import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 
@@ -17,20 +17,20 @@ const VerificationEmail = () => {
     const { emailId } = useParams();
     let navigate = useNavigate("")
     const { t } = useTranslation();
-    const time = 60
+    const [time, setTime] = useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
     useEffect(() => {
         setTimeout(() => {
             setShow(false)
         }, 60000);
-    })
+    }, [])
 
     useEffect(() => {
         setInterval(() => {
-            time(prevCount => (prevCount>0)? prevCount - 1 : 0);
+            setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
         }, 1000);
-      }, []);
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -46,11 +46,11 @@ const VerificationEmail = () => {
 
             VerifyEmail(data)
                 .then((res) => {
-                    if (typeof res === "string"){
+                    if (typeof res === "string") {
                         setError(t('VerificationPage.error.e2'))
                         console.log(error)
                         setCode("")
-                    }else{
+                    } else {
                         let roleType = res.data.user_details.roles[0].name
                         sessionStorage.setItem('role', roleType)
                         let token = res.data.token
@@ -76,6 +76,10 @@ const VerificationEmail = () => {
     const resendCode = (e) => {
         e.preventDefault()
         setShow(true)
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+        setTime(60)
         const data = {
             email: decodedEmail
         }

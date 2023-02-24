@@ -14,7 +14,7 @@ export default function Thankyou() {
     const handleClick=()=>{
 
         if(role==="User"){
-        navigate('/patient-dashboard')
+        navigate('/add-clinicians')
         }
     }   
 
