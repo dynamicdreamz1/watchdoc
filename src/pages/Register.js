@@ -13,48 +13,44 @@ const Register = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-    
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if (email === "") {
-
             setError(t('RegisterPage.error.e1'))
             return
         }
-     
-            let profileCheckF=sessionStorage.getItem('profile')
-            let token=sessionStorage.getItem('token');
+        let profileCheckF = sessionStorage.getItem('profile')
+        let token = sessionStorage.getItem('token');
 
-            if(profileCheckF==='1' && token ){
-                navigate('/dashboard')
+        if (profileCheckF === '1' && token) {
+            navigate('/dashboard')
+        }
+        else {
+            const data = {
+                email: email
             }
-
-            else{
-
-            const data={
-                email : email
-            }
-            
             setLoading(true)
 
             RegisterUser(data)
-                .then((response) => {                    
-                    let encodedemail = Base64.encode(response.data.data.email)
-                    setLoading(false)
-                    setEmail("")
-                    navigate(`/verification/${encodedemail}`)
+                .then((response) => {
+                    if (typeof response === "string") {
+                        setError(response)
+                        setLoading(false)
+                    } else {
+                        let encodedemail = Base64.encode(response?.data?.email)
+                        setLoading(false)
+                        setEmail("")
+                        navigate(`/verification/${encodedemail}`)
+                    }
                 })
-              
                 .catch((error) => {
-                    setLoading(false)
-
-                    setEmail("")
-                    setError(error)
-
+                    console.log(error);
+                    return error
                 })
-            }
         }
+    }
 
 
     return (
@@ -72,7 +68,7 @@ const Register = () => {
                             </div>
                         </div>
                         <div className='form-block'>
-                            <div className='LoginError'>{error}</div>
+                            <div className='LoginError'>{error && error}</div>
 
                             <form>
                                 <div className='default-login'>
@@ -83,9 +79,6 @@ const Register = () => {
                                 <div className='or-text'>
                                     <span>{t('RegisterPage.form.f3')}</span>
                                 </div>
-
-
-
                                 <div className='login-options'>
                                     <button type='button' ><img src="/images/google-icon.png" alt="Google Icon" />{t('RegisterPage.form.f4')}</button>
                                     <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />{t('RegisterPage.form.f5')}</button>

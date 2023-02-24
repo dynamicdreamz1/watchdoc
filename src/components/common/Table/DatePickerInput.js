@@ -11,7 +11,8 @@ export default function DatePickerInput() {
         <>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-            label="Basic example"
+            className='date-picker'
+            label=""
             value={value}
             onChange={(newValue) => {
             setValue(newValue);

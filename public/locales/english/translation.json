@@ -182,7 +182,14 @@
             "placeholder3":"Suburb or Postcode",
             "b1":"Search"
         }
+    },
+
+    "PractitionersCard":{
+        "message1":"No result found for your search.",
+        "heading1":"Practitioners"
     }
+
+
     
     
 }

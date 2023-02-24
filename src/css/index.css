@@ -5,6 +5,7 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
+  color: #000;
 }
 .container {
   width: 100%;
@@ -18,6 +19,9 @@ span,h1,h2,h3,h4,h5,h6,button {
 }
 .bg-gray {
   background-color: rgba(198, 198, 198, 0.1);
+}
+:focus-visible {
+  outline: 0;
 }
 @media (min-width: 576px) {
   .container {
@@ -403,6 +407,28 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
 }
+/* Date Picker */
+.date-picker {
+  max-width: 184px;
+  flex-direction: inherit;
+  height: 40px;
+}
+.date-picker fieldset {
+  border: 1px solid #E5E7EB;
+  border-radius: 5px;
+}
+.date-picker .MuiInputBase-root {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #000;
+  font-size: 14px;
+  line-height: 20px;
+  padding-right: 20px;
+}
+.MuiCalendarPicker-root {
+  background-color: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 5px;
+}
 /* Clinicians Table */
 body .MuiPaper-root.clinicians-table table {
   background-color: #fff;
@@ -582,7 +608,8 @@ body .MuiPaper-root.clinicians-table {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 10px 10px 10px 18px;
-  width: calc(16.666667% - 18px);
+  max-width: 175px;
+  width: 100%;
 }
 .measurment-title .icon {
   max-width: 16px;
@@ -626,11 +653,11 @@ body .MuiPaper-root.clinicians-table {
 .reminder-card {
   background-color: #FFFFFF;
   border-radius: 10px;
-  padding: 20px 40px 26px 26px;
+  padding: 20px 18px 26px 18px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: calc(25% - 18px);
+  max-width: 340px;
 }
 .reminder-card .icon-block {
   width: 65px;
@@ -660,6 +687,7 @@ body .MuiPaper-root.clinicians-table {
   line-height: 12px;
   color: #8D8D8D;
   cursor: pointer;
+  display: block;
 }
 .reminder-card .content-block .days {
   display: flex;
@@ -673,11 +701,11 @@ body .MuiPaper-root.clinicians-table {
   margin-top: 10px;
 }
 .reminder-cards-wrapper .d-flex {
-  column-gap: 18px;
+  column-gap: 15px;
   margin-top: 20px;
 }
 .measurment-cards-wrapper .wrapper {
-  column-gap: 18px;
+  column-gap: 15px;
 }
 /* Add clinician Page */
 .clinician-connection {
@@ -896,16 +924,20 @@ body .MuiPaper-root.clinicians-table {
   padding-left: 35px;
   padding-right: 40px;
 }
-.phrd .cards-wrapper .hrd-card {
+.chart-details-card,
+.alert-trigger-card,
+.show-all-data-card {
   background-color: #F9F9F9;
   border-radius: 5px;
-  padding: 12px 16px 12px 12px;
+  padding: 12px 16px 12px 14px;
 }
-.phrd .cards-wrapper .hrd-card .measurment-result {
+.chart-details-card .measurment-result {
   margin-top: 0;
   margin-bottom: 0;
 }
-.phrd .cards-wrapper .hrd-card:not(:last-child) {
+.chart-details-card,
+.show-all-data-card,
+.alert-trigger-card {
   margin-bottom: 10px;
 }
 .canvasjs-chart-credit {
@@ -954,4 +986,47 @@ body .MuiPaper-root.clinicians-table {
   color: #8D8D8D;
   font-size: 12px;
   line-height: 18px;
+}
+/* Risk Status */
+.r-status .icon {
+  background-color: #EA4335;
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+.r-status .text {
+  font-size: 12px;
+  line-height: 15px;
+}
+.r-status {
+  margin-top: 5px;
+}
+.chart-details-card .measurment-result .digit {
+  line-height: 40px;
+}
+.chart-details-card .measurment-result .type {
+  margin-left: 4px;
+}
+.chart-details-card .title .time {
+  font-size: 12px;
+  line-height: 15px;
+  color: #8D8D8D;
+}
+.chart-details-card .title .time img,
+.alert-trigger-card .number img {
+  margin-left: 15px;
+  transform: translateY(2px);
+}
+.show-all-data-card,
+.alert-trigger-card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.show-all-data-card .text,
+.alert-trigger-card .text,
+.alert-trigger-card .number {
+  font-size: 14px;
+  line-height: 17px;
 }

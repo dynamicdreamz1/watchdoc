@@ -6,10 +6,16 @@ import { useNavigate } from 'react-router-dom'
 export default function Thankyou() {
 
     const navigate=useNavigate()
+
     let Fname=sessionStorage.getItem('name')
+    let role=sessionStorage.getItem('role')
+
     const {t}=useTranslation();
     const handleClick=()=>{
-        navigate('/dashboard')
+
+        if(role==="User"){
+        navigate('/patient-dashboard')
+        }
     }   
 
   return (
