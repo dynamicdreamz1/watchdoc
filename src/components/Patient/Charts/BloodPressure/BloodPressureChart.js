@@ -18,7 +18,7 @@ const BloodPressureChart = () => {
 
 	useEffect(() => {
 		chart.render();
-	}, []);
+	}, [chart]);
 
 	const options = {
 		theme: "light2",

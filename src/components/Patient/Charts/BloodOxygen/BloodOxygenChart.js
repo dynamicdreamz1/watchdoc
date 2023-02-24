@@ -2,7 +2,7 @@ import CanvasJSReact from '../../../../lib/canvasjs.react';
 
 const BloodOxygenChart = () => {
 	let CanvasJSChart = CanvasJSReact.CanvasJSChart;
-	let CanvasJS = CanvasJSReact.CanvasJS;
+	
 
 	const options = {
 		theme: "light2",

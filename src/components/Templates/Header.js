@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { UserContext } from '../../Store/Context';
+import React from 'react'
+
 import PageTitle from '../common/PageTitle'
 import SearchBar from '../common/SearchBar'
 import UserAvtar from '../common/UserAvtar'

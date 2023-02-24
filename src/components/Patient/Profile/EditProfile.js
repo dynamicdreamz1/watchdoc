@@ -12,7 +12,7 @@ export const EditProfile = () => {
     const [height, SetHeight] = useState('')
     const [message, setMessage] = useState('')
     const [errorN, setErrorN] = useState('')
-    const [success, setSuccess] = useState(false)
+    //const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ export const EditProfile = () => {
                     sessionStorage.setItem('name',Fname)
                     let profileCheck = (res.data.user_details.profile_created)
                     setMessage(t('CreateProfilePage.message.m1'))
-                    setSuccess(true)
+                    //setSuccess(true)
                     sessionStorage.setItem('profile', profileCheck)
                     navigate('/contactdetails')
                     setLoading(false)
@@ -77,7 +77,7 @@ export const EditProfile = () => {
                     }
 
                     else if (errorMessage === "Unauthenticated.") {
-                        setSuccess(true)
+                      //  setSuccess(true)
                         setLoading(false)
                         console.log(errorMessage)
                         setErrorN(t('CreateProfilePage.error.e8'))
