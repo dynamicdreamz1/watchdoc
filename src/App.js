@@ -14,6 +14,8 @@ import UserConsent from './pages/UserConsent';
 import AddClinicianPage from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
+import { UserContext } from './Store/Context';
+import { getCurrentUser, getCurrentUserData } from './services/UserService';
 
 function App() {
 
@@ -42,18 +44,23 @@ function App() {
     <UserContext.Provider value={{currentUserData,setCurrentUserData}}>
       
         <Routes>
+          <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
+            <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
+            <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Navigate replace to="/register" />}/>
 
-          <Route path='/' element={<Register />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/verification/:emailId' element={<VerificationEmail />} />
-          <Route path='/createprofile' element={< CreateProfile />} />
-          <Route path='/dashboard' element={<PrivateDashboard Component={Dashboard}  />}/>
-          <Route path="*" element={<NoMatch />} />
-          <Route path='/thankyou' element={<Thankyou />} />
-          <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/add-clinicians' element={<PatientDashboard />} />
+
+           <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
+          {/*<Route path='/createprofile' element={currentUser ? < CreateProfile /> : <Navigate replace to="/dashboard" /> } />
+
+          
+          
+          <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Navigate replace to="/" />} />
+          <Route path='/userconsent' element={currentUser ? <UserConsent /> : <Navigate replace to="/" />} />
+          <Route path='/add-clinicians' element={currentUser ? <PatientDashboard />: <Navigate replace to="/" />} />
           <Route path='/contactdetails' element={<ContactDetails />} />
           <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
+         
+          <Route path="*" element={<NoMatch />} /> */}
 
         </Routes>
          
