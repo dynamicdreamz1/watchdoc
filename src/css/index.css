@@ -70,6 +70,9 @@ body input:focus-visible {
   outline-offset: 0px;
   outline: 0;
 }
+.space-40 {
+  height: 40px;
+}
 .page-wrapper {
   height: 100vh;
   overflow-y: auto;
@@ -239,7 +242,7 @@ button {
   fill: #8D8D8D !important;
   margin-right: 10px;
 }
-.page-content-wrapper .title-block {
+.clinician-connection-wrapper .title-block {
   margin-bottom: 30px;
 }
 /* SideBar */
@@ -341,6 +344,7 @@ button {
 }
 .content-wrapper .aside .top-header-block {
   gap: 15px;
+  margin-bottom: 20px;
 }
 /* Alert Table */
 body .MuiPaper-root.red-alert-table .MuiTable-root {
@@ -532,9 +536,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   margin: 0;
-}
-body .MuiPaper-root.clinicians-table {
-  padding-top: 40px;
 }
 /* Table Tabs */
 .table-nav-tabs button.MuiTab-root {
@@ -742,6 +743,9 @@ body .MuiPaper-root.clinicians-table {
   column-gap: 15px;
 }
 /* Add clinician Page */
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box {
+  max-width: 375px;
+}
 .clinician-connection {
   background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
   border-radius: 20px;

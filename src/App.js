@@ -13,10 +13,13 @@ import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import { UserContext } from './Store/Context';
 import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
-import EditProfile from './pages/edit-profile';
 import AddClinicianInner from './pages/AddClinicianInner';
 import { AddClinicianOuter } from './pages/AddClinicianOuter';
 import LinkDevices from './pages/LinkDevices';
+import EditProfileInner from './pages/EditProfileInner';
+import EditProfileOuter from './pages/EditProfileOuter';
+import LinkDeviceInner from './pages/LinkDeviceInner';
+import LinkDeviceOuter from './pages/LinkDeviceOuter';
 
 function App() {
 
@@ -54,10 +57,12 @@ function App() {
 
             <Route path='/createprofile' element={currentUser ? <CreateProfile /> :  <Register />} />
             <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Register />} />
-            <Route path='/editprofile' element={currentUser ? <EditProfile /> :<Register /> } />
+            <Route path='/editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
+            <Route path='/editprofile-outer' element={currentUser ? <EditProfileOuter /> :<Register /> } />
             <Route path='/addclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
             <Route path='/addclinician-outer' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
-            <Route path='/link-device' element={currentUser ? <LinkDevices /> : <Register /> } />
+            <Route path='/link-device' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
+            <Route path='/link-device-outer' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
       
 
         </Routes>
