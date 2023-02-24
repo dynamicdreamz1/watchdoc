@@ -11,7 +11,7 @@ import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
 
 export default function PatientDashboard() {
   return (
-    <div>
+    <>
         <PatientProfileBar/>
         <div className='alert-cards-wrapper mt-22'>
             <div className='section-title'>
@@ -82,6 +82,6 @@ export default function PatientDashboard() {
             </div>
             <NoDataRecorded/>
         </div>
-    </div>
+    </>
   )
 }

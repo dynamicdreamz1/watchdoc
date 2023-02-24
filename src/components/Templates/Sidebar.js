@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { logout } from '../../services/UserService';
 import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
 

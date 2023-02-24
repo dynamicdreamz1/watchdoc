@@ -109,11 +109,11 @@ const BloodPressureChart = () => {
 		]
 	}
 	return (
-		<div>
+		<>
 			<CanvasJSChart options = {options}
 				onRef={ref => chart = ref}
 			/>
-		</div>
+		</>
 	);
 }
 

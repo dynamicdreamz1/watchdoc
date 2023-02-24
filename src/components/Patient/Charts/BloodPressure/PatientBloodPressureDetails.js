@@ -6,7 +6,7 @@ import MainDetailsCard from '../../DetailCards/MainDetailsCard'
 
 export default function PatientBloodPressureDetails() {
   return (
-    <div>
+    <>
         <div className='phrd d-flex flex-wrap'>
             <div className='cards-wrapper'>
                 <MainDetailsCard/>
@@ -20,6 +20,6 @@ export default function PatientBloodPressureDetails() {
                 <BloodPresureChartNavTabs/>
             </div>
         </div>
-    </div>
+    </>
   )
 }

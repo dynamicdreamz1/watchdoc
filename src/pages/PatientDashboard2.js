@@ -4,12 +4,12 @@ import Sidebar from '../components/common/Sidebar'
 
 const PatientDashboard2 = () => {
   return (
-    <div>
+    <>
        <div className='content-wrapper'>
         <Sidebar/>
         <Aside />
       </div>
-    </div>
+    </>
   )
 }
 
