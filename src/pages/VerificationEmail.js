@@ -6,24 +6,20 @@ import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { UserContext } from '../Store/Context'
 import { StoreCookie } from '../Utility/sessionStore'
+import { useParams } from 'react-router-dom'
 
 
 
 const VerificationEmail = () => {
 
-    const user = useContext(UserContext);
-    console.log(user);
-
-
+    
     const [code, setCode] = useState('')
-    const [message, setMessage] = useState('')
-    //const [authenticated, setauthenticated] = useState((sessionStorage.getItem('token')) || false);
+   // const [message, setMessage] = useState('')
+    
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
-    // eslint-disable-next-line no-undef
+    
     const { emailId } = useParams();
-    
-    
     
     const { t } = useTranslation();
 
@@ -68,7 +64,7 @@ const VerificationEmail = () => {
                         const {data} = res;
                         const {token,user_details} = data;
                         const {profile_created,is_active,roles} = user_details;
-                         StoreCookie.setItem("token", token);
+                        StoreCookie.setItem("token", token);
                         StoreCookie.setItem("profileCheck", profile_created);
                         StoreCookie.setItem("user_details", JSON.stringify(user_details));
                         StoreCookie.setItem("role", roles[0].name);
@@ -109,7 +105,7 @@ const VerificationEmail = () => {
                             <p>{t('VerificationPage.form.f1')} <strong>{decodedEmail}.</strong> {t('VerificationPage.form.f2')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-                        <div className='sMessage'> {message}</div>
+                        {/* <!--div className='sMessage'> {message}</div--> */}
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>

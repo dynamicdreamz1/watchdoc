@@ -1,11 +1,17 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { logout } from '../../services/UserService';
 
 
 export default function Sidebar() {
 
     const {t}=useTranslation();
+
+    const logoutHandel=()=>{
+        logout();
+        window.location.reload();
+    }
 
   return (
     <>
@@ -42,7 +48,7 @@ export default function Sidebar() {
             </List>
         </nav>
         <div className='logout'>
-            <button type='button'>
+            <button type='button' onClick={(e)=>logoutHandel()} >
                 <span className='icon'>
                     <img src='/images/Logout-icon.png' alt='Logout Icon' />
                 </span>
