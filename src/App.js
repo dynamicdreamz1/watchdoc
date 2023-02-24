@@ -16,6 +16,8 @@ import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import { UserContext } from './Store/Context';
 import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
+import PatientDashboard from './components/Patient/PatientDashboard';
+import EditProfile from './pages/edit-profile';
 
 function App() {
 
@@ -32,29 +34,30 @@ function App() {
     }
    
   }, []);
-  
+
+  console.log(currentUser);
   
 
   return (
     <UserContext.Provider value={{currentUserData,setCurrentUserData}}>
       
         <Routes>
-          <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
+            <Route exact path="/" element={ currentUser ? <Navigate replace to="/dashboard" /> :<Register />} />
             <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
-            <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Navigate replace to="/register" />}/>
             <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
+            
+            <Route path='/userConsent' element={currentUser ? <UserConsent /> : <Register />}/>
+            <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
+            <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
+            <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
 
-          {/*<Route path='/createprofile' element={currentUser ? < CreateProfile /> : <Navigate replace to="/dashboard" /> } />
+              {/* After Login Router */}
 
-          
-          
-          <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Navigate replace to="/" />} />
-          <Route path='/userconsent' element={currentUser ? <UserConsent /> : <Navigate replace to="/" />} />
-          <Route path='/add-clinicians' element={currentUser ? <PatientDashboard />: <Navigate replace to="/" />} />
-          <Route path='/contactdetails' element={<ContactDetails />} />
-          <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
-         
-          <Route path="*" element={<NoMatch />} /> */}
+            <Route path='/createprofile' element={currentUser ? <CreateProfile /> :  <Register />} />
+            <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Register />} />
+            <Route path='/editprofile' element={currentUser ? <EditProfile /> :<Register /> } />
+            <Route path='/addclinician' element={currentUser ? <AddClinicianPage /> : <Register /> } />
+      
 
         </Routes>
          
