@@ -13,15 +13,15 @@ export default function HeartRateChart() {
       dataPointMaxWidth: 6,
 			axisX: {
 				valueFormatString: "h tt",
-          interval: 6,
-          intervalType: "hour",
-          minimum: new Date(2023, 0, 15, 23, 0),
-          maximum: new Date(2023, 0, 17, 0, 0),
-          labelFontFamily: "Source Sans Pro', sans-serif",
-          labelFontSize: 12,
-          labelFontColor: "#8D8D8D",
-          tickLength: 32,
-          tickThickness: 0
+        interval: 6,
+        intervalType: "hour",
+        minimum: new Date(2023, 0, 15, 23, 0),
+        maximum: new Date(2023, 0, 17, 0, 0),
+        labelFontFamily: "Source Sans Pro', sans-serif",
+        labelFontSize: 12,
+        labelFontColor: "#8D8D8D",
+        tickLength: 32,
+        tickThickness: 0
 			},
 			axisY2: {
 				title: "",

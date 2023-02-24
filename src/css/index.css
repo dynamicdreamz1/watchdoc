@@ -730,7 +730,7 @@ body .MuiPaper-root.clinicians-table {
 .reminder-card .content-block .reminder-date {
   margin-top: 10px;
 }
-.reminder-cards-wrapper .d-flex {
+.reminder-cards-wrapper .wrapper {
   column-gap: 15px;
   margin-top: 20px;
 }

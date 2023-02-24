@@ -1,6 +1,6 @@
 import React from 'react'
-import MeasurmentResult from '../../../patients/MeasurmentResult'
-import MeasurmentTitle from '../../../patients/MeasurmentTitle'
+import MeasurmentResult from '../Measurement/MeasurementResult'
+import MeasurmentTitle from '../Measurement/MeasurementTitle'
 import RiskStatus from './RiskStatus'
 
 export default function MainDetailsCard() {
@@ -16,7 +16,7 @@ export default function MainDetailsCard() {
       </div>
       <MeasurmentResult/>
       <RiskStatus/>
-    </div>
+    </div>  
     </>
   )
 }
