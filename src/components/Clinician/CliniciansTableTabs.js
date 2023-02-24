@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import ClinicianProfileBar from './ClinicianProfileBar';
 import PendingPatientsTable from './PendingPatientsTable';
-import TableShorting from '../dashboard/Clinician/TableShorting';
+import TableShorting from './TableShorting';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

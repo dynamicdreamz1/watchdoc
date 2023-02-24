@@ -2,7 +2,7 @@ import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react'
 import BloodPressureChart from './BloodPressureChart';
-import ChartTitle from './ChartTitle';
+import ChartTitle from '../ChartTitle';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

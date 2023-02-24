@@ -255,15 +255,26 @@ button {
 .sidebar .logo {
   padding: 30px 26px;
 }
-.sidebar nav ul li .css-cveggr-MuiListItemIcon-root {
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root,
+.logout button .icon {
   min-width: auto;
   width: 30px;
+  padding-right: 10px;
+  display: flex;
 }
-.sidebar nav ul li .css-tlelie-MuiListItemText-root {
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root img, .logout button .icon img {
+  max-width: 100%;
+}
+.logout button .text {
+  color: red;
+}
+.sidebar nav ul li .css-tlelie-MuiListItemText-root,
+.logout button .text {
   width: calc(100% - 30px);
   margin: 0;
 }
-.sidebar nav ul li .MuiButtonBase-root {
+.sidebar nav ul li .MuiButtonBase-root,
+.logout button {
   padding: 17px 26px;
 }
 .sidebar nav .MuiList-root {
@@ -406,6 +417,25 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span.digit,
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
+}
+.logout {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.logout button {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  padding: 17px 26px;
+}
+.logout button .text,.sidebar nav ul li .css-tlelie-MuiListItemText-root span {
+  font-size: 16px;
+  line-height: 18px;
+  text-align: left;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 /* Date Picker */
 .date-picker {

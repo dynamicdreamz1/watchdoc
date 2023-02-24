@@ -10,7 +10,8 @@ import { Suspense } from 'react';
 import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
-import PatientDashboard from './pages/PatientDashboard';
+// import AddClinician from './pages/AddClinician';
+import AddClinicianPage from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import PatientDashboard2 from './pages/PatientDashboard2';
@@ -31,7 +32,7 @@ function App() {
           <Route path="*" element={<NoMatch />} />
           <Route path='/thankyou' element={<Thankyou />} />
           <Route path='/userconsent' element={<UserConsent />} />
-          <Route path='/add-clinicians' element={<PatientDashboard />} />
+          <Route path='/add-clinicians' element={<AddClinicianPage />} />
           <Route path='/contactdetails' element={<ContactDetails />} />
           <Route path='/verifymobile/:mobileN' element={<VerifyMobile />} />
           <Route path='/patient-dashboard2' element={<PatientDashboard2 />} />

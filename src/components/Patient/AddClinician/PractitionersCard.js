@@ -4,7 +4,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import { FormControlLabel } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { addDoctor } from '../../services/ClinicianService';
+import { addDoctor } from '../../../services/ClinicianService';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({clinicianData}) {

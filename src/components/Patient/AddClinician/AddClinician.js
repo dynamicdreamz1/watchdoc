@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {searchClinician} from '../../services/ClinicianService'
+import {searchClinician} from '../../../services/ClinicianService'
 
 export default function AddClinician({setClinicianData}) {
 
@@ -38,9 +38,9 @@ export default function AddClinician({setClinicianData}) {
         </div>
         <form onSubmit={handleSubmit}>
           <div className='form-box'>
-            <input type="text" placeholder={t('AddClinician.form.placeholder1')} value={clinicianName} onChange={(e) => setClinicianName(e.target.value)} id="" class="name" />
-            <input type="text" placeholder={t('AddClinician.form.placeholder2')} value={practitionerName} onChange={(e) => setPractitionerName(e.target.value)} class="number" />
-            <input type="text" placeholder={t('AddClinician.form.placeholder3')} value={code} onChange={(e) => setCode(e.target.value)} class="postcode" />
+            <input type="text" placeholder={t('AddClinician.form.placeholder1')} value={clinicianName} onChange={(e) => setClinicianName(e.target.value)} id="" className="name" />
+            <input type="text" placeholder={t('AddClinician.form.placeholder2')} value={practitionerName} onChange={(e) => setPractitionerName(e.target.value)} className="number" />
+            <input type="text" placeholder={t('AddClinician.form.placeholder3')} value={code} onChange={(e) => setCode(e.target.value)} className="postcode" />
             <input type="submit" value={t('AddClinician.form.b1')}  />
           </div>
         </form>

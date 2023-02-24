@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import AddClinician from '../components/patients/AddClinician'
-import AddClinicianButton from '../components/patients/AddClinicianButton'
-import ConnectingClinician from '../components/patients/ConnectingClinician'
-import PractitionersCard from '../components/patients/PractitionersCard'
+import AddClinician from '../components/Patient/AddClinician/AddClinician'
+import AddClinicianButton from '../components/Patient/AddClinician/AddClinicianButton'
+import ConnectingClinician from '../components/Patient/AddClinician/ConnectingClinician'
+import PractitionersCard from '../components/Patient/AddClinician/PractitionersCard'
 
-export default function PatientDashboard() {
+export default function AddClinicianPage() {
   const [clinicianData,setClinicianData]=useState([])
   const [show,setShow]=useState(false)
 
