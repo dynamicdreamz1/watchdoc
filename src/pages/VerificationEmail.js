@@ -6,6 +6,7 @@ import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { UserContext } from '../Store/Context'
 import { StoreCookie } from '../Utility/sessionStore'
+import { useParams } from 'react-router-dom'
 
 
 
