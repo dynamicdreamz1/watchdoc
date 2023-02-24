@@ -1,6 +1,4 @@
 import React from 'react'
-import PatientProfileBar from './Profile/PatientProfileBar'
-import AlertCard from './Alerts/AlertCard'
 import MeasurementCard from './Measurement/MeasurementCard'
 import ReminderCard from './Reminder/ReminderCard'
 import PatientHeartRateDetails from './Charts/HeartRate/PatientHeartRateDetails'
@@ -8,7 +6,7 @@ import PatientBloodPressureDetails from './Charts/BloodPressure/PatientBloodPres
 import NoDataRecorded from './NoData/NoDataRecorded'
 import PatientBloodOxygenDetails from './Charts/BloodOxygen/PatientBloodOxygenDetails'
 import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
-import AddClinician from './AddClinician/AddClinician'
+
 
 export default function PatientDashboard() {
   return (
