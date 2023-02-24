@@ -88,8 +88,8 @@ const VerifyMobile = () => {
                                 <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
                             </div>
 
-                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />
-                            <span class="text">{time}</span>
+                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> 
+                             <span class="text">{time}</span>
                             <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>
