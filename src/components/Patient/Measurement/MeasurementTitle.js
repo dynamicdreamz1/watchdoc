@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MeasurmentTitle() {
+export default function MeasurementTitle() {
   return (
     <>
     <div className='measurment-title d-flex align-items-center'>

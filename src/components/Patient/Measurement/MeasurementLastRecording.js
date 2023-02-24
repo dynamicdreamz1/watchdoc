@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MeasurmentLastRecording() {
+export default function MeasurementLastRecording() {
   return (
     <>
     <div className='mlr'>

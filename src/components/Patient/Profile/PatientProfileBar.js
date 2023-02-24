@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import React from 'react'
-import PhoneNumber from '../common/PhoneNumber'
+import PhoneNumber from '../../common/PhoneNumber'
 
 export default function PatientProfileBar() {
   return (

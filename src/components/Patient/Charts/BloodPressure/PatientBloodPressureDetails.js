@@ -1,15 +1,15 @@
 import React from 'react'
-import AlertTriggerCard from './AlertTriggerCard'
+import AlertTriggerCard from '../../DetailCards/AlertTriggerCard'
 import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
-import ChartDetailsCard from './ChartDetailsCard'
-import ShowAllDataCard from './ShowAllDataCard'
+import ShowAllDataCard from '../../DetailCards/ShowAllDataCard'
+import MainDetailsCard from '../../DetailCards/MainDetailsCard'
 
 export default function PatientBloodPressureDetails() {
   return (
     <div>
         <div className='phrd d-flex flex-wrap'>
             <div className='cards-wrapper'>
-                <ChartDetailsCard/>
+                <MainDetailsCard/>
                 <ShowAllDataCard/>
                 <AlertTriggerCard/>
                 <AlertTriggerCard/>
