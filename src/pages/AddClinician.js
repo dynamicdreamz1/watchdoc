@@ -4,7 +4,7 @@ import AddClinicianButton from '../components/Patient/AddClinician/AddClinicianB
 import ConnectingClinician from '../components/Patient/AddClinician/ConnectingClinician'
 import PractitionersCard from '../components/Patient/AddClinician/PractitionersCard'
 
-export default function PatientDashboard() {
+export default function AddClinicianPage() {
   const [clinicianData,setClinicianData]=useState([])
   const [show,setShow]=useState(false)
 

@@ -87,9 +87,10 @@ const VerifyMobile = () => {
                                 <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
                                 <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
                             </div>
-
-                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />
+                            <div className='resend-code'>
+                            <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')} &nbsp;</button> 
                             <span className="text">{time}</span>
+                            </div>
                             <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>
