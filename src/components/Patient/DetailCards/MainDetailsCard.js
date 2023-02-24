@@ -3,7 +3,7 @@ import MeasurmentResult from '../../../patients/MeasurmentResult'
 import MeasurmentTitle from '../../../patients/MeasurmentTitle'
 import RiskStatus from './RiskStatus'
 
-export default function ChartDetailsCard() {
+export default function MainDetailsCard() {
   return (
     <>
     <div className='chart-details-card'>
