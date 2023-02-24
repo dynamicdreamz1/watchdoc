@@ -4,20 +4,19 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import CreateProfile from './pages/CreateProfile';
 import VerificationEmail from './pages/VerificationEmail';
 import Register from './pages/Register';
-import NoMatch from './pages/NoMatch';
 import Dashboard from './pages/Dashboard';
 import { Suspense } from 'react';
-import PrivateDashboard from './pages/PrivateRoute';
 import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
 // import AddClinician from './pages/AddClinician';
-import AddClinicianPage from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import { UserContext } from './Store/Context';
 import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
-import PatientDashboard from './components/Patient/PatientDashboard';
 import EditProfile from './pages/edit-profile';
+import AddClinicianInner from './pages/AddClinicianInner';
+import { AddClinicianOuter } from './pages/AddClinicianOuter';
+import LinkDevices from './pages/LinkDevices';
 
 function App() {
 
@@ -56,7 +55,9 @@ function App() {
             <Route path='/createprofile' element={currentUser ? <CreateProfile /> :  <Register />} />
             <Route path='/dashboard' element={currentUser ? <Dashboard /> : <Register />} />
             <Route path='/editprofile' element={currentUser ? <EditProfile /> :<Register /> } />
-            <Route path='/addclinician' element={currentUser ? <AddClinicianPage /> : <Register /> } />
+            <Route path='/addclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
+            <Route path='/addclinician-outer' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
+            <Route path='/link-device' element={currentUser ? <LinkDevices /> : <Register /> } />
       
 
         </Routes>

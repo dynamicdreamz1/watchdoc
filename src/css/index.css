@@ -280,6 +280,10 @@ button {
 .sidebar nav .MuiList-root {
   padding: 0;
 }
+.sidebar .MuiList-root a {
+  text-decoration: none;
+  color: #000;
+}
 /* Aside */
 .aside {
   width: calc(100% - 197px);

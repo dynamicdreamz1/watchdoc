@@ -8,6 +8,7 @@ import PatientBloodPressureDetails from './Charts/BloodPressure/PatientBloodPres
 import NoDataRecorded from './NoData/NoDataRecorded'
 import PatientBloodOxygenDetails from './Charts/BloodOxygen/PatientBloodOxygenDetails'
 import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
+import AddClinician from './AddClinician/AddClinician'
 
 export default function PatientDashboard() {
   return (

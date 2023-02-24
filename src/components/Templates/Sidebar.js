@@ -21,7 +21,7 @@ export default function Sidebar() {
     <>
     <div className='sidebar'>
         <div className='logo'>
-            <img src='images/WatchDoc-text-logo.svg' alt='WatchDoc Logo' />
+            <img src='/images/WatchDoc-text-logo.svg' alt='WatchDoc Logo' />
         </div>
         <nav aria-label="main mailbox folders">
 

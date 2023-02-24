@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {searchClinician} from '../../../services/ClinicianService'
+import AddClinicianButton from './AddClinicianButton'
+import ConnectingClinician from './ConnectingClinician'
+import PractitionersCard from './PractitionersCard'
 
-export default function AddClinician({setClinicianData}) {
+export default function AddClinician() {
 
   const [clinicianName, setClinicianName] = useState('')
   const [practitionerName, setPractitionerName] = useState('')
   const [code, setCode] = useState('')
   const {t}=useTranslation();
+
+  const [clinicianData,setClinicianData]=useState([])
+  const [show,setShow]=useState(false)
  
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -32,6 +38,19 @@ export default function AddClinician({setClinicianData}) {
 
   return (
     <>
+      <ConnectingClinician/>
+      <div onClick={()=>setShow(!show)}> 
+      <AddClinicianButton/>
+      </div>
+
+      {show ? 
+      <>
+      <AddClinician setClinicianData={setClinicianData} />
+      <PractitionersCard clinicianData={clinicianData}/>
+      </>
+        : "" 
+      
+      }
       <div className='add-clinician-box'>
         <div className='title'>
           <p> {t('AddClinician.p1')}</p>
