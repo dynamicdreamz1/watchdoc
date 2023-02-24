@@ -13,8 +13,8 @@ import AddClinician from './AddClinician/AddClinician'
 export default function PatientDashboard() {
   return (
     <>
-        <PatientProfileBar/>
-        <div className='alert-cards-wrapper mt-22'>
+        
+        {/* <div className='alert-cards-wrapper mt-22'>
             <div className='section-title'>
                 <h5>Critical Alerts</h5>
             </div>
@@ -23,7 +23,7 @@ export default function PatientDashboard() {
                 <AlertCard/>
                 <AlertCard/>
             </div>
-        </div>
+        </div> */}
         <div className='measurment-cards-wrapper mt-22'>
             <div className='section-title'>
                 <h5>Lastest Measurements</h5>
