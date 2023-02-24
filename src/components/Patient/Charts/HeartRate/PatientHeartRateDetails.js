@@ -1,7 +1,7 @@
 import React from 'react'
 import AlertTriggerCard from './AlertTriggerCard'
 import ChartDetailsCard from './ChartDetailsCard'
-import HeartRateChartNavTabs from './HeartRateChartNavTabs'
+import HeartRateChartNavTabs from './HeartRate/HeartRateChartNavTabs'
 import ShowAllDataCard from './ShowAllDataCard'
 
 export default function PatientHeartRateDetails() {
@@ -16,7 +16,7 @@ export default function PatientHeartRateDetails() {
             <AlertTriggerCard/>
             <AlertTriggerCard/>
         </div>
-        <div class="chart-wrapper">
+        <div className="chart-wrapper">
             <HeartRateChartNavTabs/>
         </div>
     </div>

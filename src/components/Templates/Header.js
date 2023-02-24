@@ -1,7 +1,7 @@
 import React from 'react'
-import PageTitle from '../../common/PageTitle'
-import SearchBar from '../../common/SearchBar'
-import UserAvtar from '../../common/UserAvtar'
+import PageTitle from '../common/PageTitle'
+import SearchBar from '../common/SearchBar'
+import UserAvtar from '../common/UserAvtar'
 
 export default function Header() {
   return (

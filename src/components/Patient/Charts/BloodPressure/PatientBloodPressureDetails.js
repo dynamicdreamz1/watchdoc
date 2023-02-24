@@ -1,6 +1,6 @@
 import React from 'react'
 import AlertTriggerCard from './AlertTriggerCard'
-import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
+import BloodPresureChartNavTabs from './BloodPressure/BloodPresureChartNavTabs'
 import ChartDetailsCard from './ChartDetailsCard'
 import ShowAllDataCard from './ShowAllDataCard'
 

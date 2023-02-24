@@ -89,7 +89,7 @@ const VerifyMobile = () => {
                             </div>
 
                             <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />
-                            <span class="text">{time}</span>
+                            <span className="text">{time}</span>
                             <button onClick={(e) => handleClick(e)} type="submit">{t('verifyMobile.b2')}</button>
                         </form>
                     </div>

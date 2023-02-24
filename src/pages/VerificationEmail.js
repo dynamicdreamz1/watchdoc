@@ -107,7 +107,7 @@ const VerificationEmail = () => {
                             </div>
                             <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>Resend Code in:&nbsp;</button>
-                                <span class="text">{time}</span>
+                                <span className="text">{time}</span>
                             </div>
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('VerificationPage.form.f5')}</button>
                         </form>
