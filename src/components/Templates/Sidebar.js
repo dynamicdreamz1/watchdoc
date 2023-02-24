@@ -8,6 +8,11 @@ export default function Sidebar() {
 
     const {t}=useTranslation();
 
+    const logoutHandel=()=>{
+        logout();
+        window.location.reload();
+    }
+
   return (
     <>
     <div className='sidebar'>
@@ -19,7 +24,7 @@ export default function Sidebar() {
             <PatientSidebar/>
         </nav>
         <div className='logout'>
-            <button type='button'>
+            <button type='button' onClick={(e)=>logoutHandel()} >
                 <span className='icon'>
                     <img src='/images/Logout-icon.png' alt='Logout Icon' />
                 </span>

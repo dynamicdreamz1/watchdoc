@@ -121,3 +121,13 @@ export const VerifyMobileNumber = async (data) => {
 }
 
 
+
+export const logout = () => {
+    StoreCookie.removeItem("token");
+    StoreCookie.removeItem("profileCheck");
+    StoreCookie.removeItem("user_details");
+    StoreCookie.removeItem("role");
+    StoreCookie.removeItem("is_active");
+    //const response = await axios.post(API_ENDPOINT + "signout");
+    return true;
+  };
