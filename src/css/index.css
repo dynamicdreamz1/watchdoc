@@ -70,6 +70,11 @@ body input:focus-visible {
   outline-offset: 0px;
   outline: 0;
 }
+body span {
+  font-size: 14px;
+  line-height: 18px;
+  color: #000;
+}
 .space-40 {
   height: 40px;
 }
@@ -80,8 +85,6 @@ body input:focus-visible {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
 }
 form input {
   background: #FFFFFF;
@@ -136,6 +139,9 @@ form .input-block label {
 .flex-wrap {
   flex-wrap: wrap;
 }
+.justify-content-center {
+  justify-content: center;
+}
 .justify-content-between {
   justify-content: space-between;
 }
@@ -182,7 +188,6 @@ button {
   color: #C6C6C6;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin-bottom: 20px;
 }
 .radio-buttons .radio-button input[type="radio"] {
   margin: 0;
@@ -203,6 +208,12 @@ button {
 }
 .color-red {
   color: #EA4335;
+}
+.varification-page-wrapper form .input-block {
+  margin-bottom: 12px;
+}
+.varification-page-wrapper button[type="submit"] {
+  margin-top: 15px;
 }
 /* Content Wrapper */
 .content-wrapper {
@@ -286,6 +297,11 @@ button {
 .sidebar .MuiList-root a {
   text-decoration: none;
   color: #000;
+  display: block;
+}
+.sidebar .MuiList-root a.isActive {
+  background-color: #F5F5F5;
+  display: block;
 }
 /* Aside */
 .aside {
@@ -638,6 +654,9 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 }
 .measurment-card .m-status.alert {
   background-color: #EA4335;
+}
+.measurment-card .m-status.normal {
+  background-color: #86DF2F;
 }
 .measurment-card {
   background: #FFFFFF;
@@ -1067,4 +1086,48 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .alert-trigger-card .number {
   font-size: 14px;
   line-height: 17px;
+}
+/* Link Devices */
+.content-wrapper .aside .devices-wrapper {
+  width: 510px;
+}
+.link-device .title-block {
+  margin-bottom: 30px;
+  padding-left: 15px;
+}
+.devices-wrapper .device-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgba(217, 217, 217, 0.2);
+  border-radius: 30px;
+  padding: 14px 23px;
+}
+.devices-wrapper .device-block .text-block .icon {
+  width: 34px;
+}
+.devices-wrapper .device-block .text-block .text {
+  font-weight: 600;
+  padding-left: 13px;
+}
+.devices-wrapper .device-block .btn-block .btn {
+  background-color: #06B2CC;
+  border-radius: 15px;
+  border: 0;
+  color: #fff;
+  width: 100%;
+  display: block;
+  padding: 6px 5px;
+  font-size: 12px;
+  line-height: 12px;
+}
+.devices-wrapper .device-block .btn-block {
+  width: 86px;
+}
+.devices-wrapper .device-block:not(:last-child) {
+  margin-bottom: 19px;
+}
+.devices-wrapper .device-block .text-block {
+  width: calc(100% - 86px);
+  padding-right: 30px;
 }

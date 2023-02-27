@@ -1,6 +1,4 @@
 import React from 'react'
-import MeasurmentResult from '../Measurement/MeasurementResult'
-import MeasurmentTitle from '../Measurement/MeasurementTitle'
 import RiskStatus from './RiskStatus'
 
 export default function MainDetailsCard() {
@@ -8,13 +6,19 @@ export default function MainDetailsCard() {
     <>
     <div className='chart-details-card'>
       <div className='title d-flex justify-content-between'>
-        <MeasurmentTitle/>
+        <div className='measurment-title d-flex align-items-center'>
+          <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
+          <span className='name d-flex'>Heart Rate</span>
+        </div>
         <span className='time d-flex align-items-center'>
           1 min ago
           <img src='/images/angle-right.svg' alt='Angle Right' />
         </span>
       </div>
-      <MeasurmentResult/>
+      <div className='measurment-result'>
+        <span className='digit'>170</span>
+        <span className='type'>bpm</span>
+      </div>
       <RiskStatus/>
     </div>  
     </>

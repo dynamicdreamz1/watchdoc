@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkDevice from '../components/Patient/LinkDevice'
+import LinkDevices from '../components/Patient/LinkDevices/LinkDevices'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
 
@@ -10,7 +10,7 @@ export default function LinkDeviceInner() {
     <Sidebar/>
         <div className='aside'>
           <Header />
-          <LinkDevice/>
+          <LinkDevices/>
         </div>
     </div>
     </>

@@ -26,7 +26,7 @@ export default function AddClinician() {
 
      searchClinician(data)
     .then((response) => {
-      console.log(response.data.data)
+      console.log(response)
       setClinicianData(response)
     })
 
@@ -45,12 +45,9 @@ export default function AddClinician() {
 
       {show ? 
       <>
-      <AddClinician setClinicianData={setClinicianData} />
-      <PractitionersCard clinicianData={clinicianData}/>
-      </>
-        : "" 
       
-      }
+      
+     
       <div className='add-clinician-box'>
         <div className='title'>
           <p> {t('AddClinician.p1')}</p>
@@ -64,6 +61,11 @@ export default function AddClinician() {
           </div>
         </form>
       </div>
+      <PractitionersCard clinicianData={clinicianData}/>
+      </>
+          : ""
+      
+        }  
     </>
   )
 }

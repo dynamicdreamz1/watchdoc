@@ -43,7 +43,7 @@ const VerifyMobile = () => {
                     if (typeof res === "string") {
                         if (res === "please enter valid varification code") {
                             setError(t('verifyMobile.e2'))
-                            setCode("")
+                            
                         }
                     } else {
                         navigate('/thankyou')
@@ -85,7 +85,7 @@ const VerifyMobile = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
-                                <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} value={code} id="exampleInputCode" />
+                                <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} id="exampleInputCode" />
                             </div>
 
                             <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button> <br /><br />

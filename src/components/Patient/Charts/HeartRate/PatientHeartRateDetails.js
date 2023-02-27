@@ -4,7 +4,8 @@ import HeartRateChartNavTabs from '../HeartRate/HeartRateChartNavTabs'
 import MainDetailsCard from '../../DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../DetailCards/ShowAllDataCard'
 
-export default function PatientHeartRateDetails() {
+export default function PatientHeartRateDetails(props) {
+
   return (
     <>
     <div className='phrd d-flex flex-wrap'>

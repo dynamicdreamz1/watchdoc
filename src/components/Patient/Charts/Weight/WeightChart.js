@@ -12,25 +12,26 @@ const WeightChart = () => {
 			text: ""
 		},
 		axisX: {
-		    valueFormatString: "h tt",
-            interval: 6,
-            intervalType: "hour",
-            minimum: new Date(2023, 0, 15, 23, 0),
-            maximum: new Date(2023, 0, 17, 0, 0),
+		    valueFormatString: "DD MMM",
             labelFontFamily: "Source Sans Pro', sans-serif",
             labelFontSize: 12,
             labelFontColor: "#8D8D8D",
             tickLength: 32,
-            tickThickness: 0
+            tickThickness: 0,
+			gridThickness: 1,
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB"
 		},
 		axisY2:{
 			title: "",
-            minimum: 85,
-			maximum: 100,
+            minimum: 80,
+			maximum: 90,
 			interval: 5,
 			labelFontFamily: "Source Sans Pro', sans-serif",
 			labelFontSize: 12,
-			labelFontColor: "#8D8D8D"
+			labelFontColor: "#8D8D8D",
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB"
 		},
 		data: [{
 			type: "scatter",
@@ -40,17 +41,13 @@ const WeightChart = () => {
 			markerSize: 10,
 			toolTipContent: "Temperature: {x}°C Sales: {y}",
 			dataPoints: [
-                { x: new Date(2023, 0, 16, 0, 0), y: 92},
-                { x: new Date(2023, 0, 16, 2, 0), y: 93},
-                { x: new Date(2023, 0, 16, 4, 0), y: 96},
-                { x: new Date(2023, 0, 16, 6, 0), y: 98},
-                { x: new Date(2023, 0, 16, 8, 0), y: 97},
-                { x: new Date(2023, 0, 16, 10, 0), y: 98},
-                { x: new Date(2023, 0, 16, 12, 0), y: 97},
-                { x: new Date(2023, 0, 16, 14, 30), y: 96},
-                { x: new Date(2023, 0, 16, 16, 0), y: 88},
-                { x: new Date(2023, 0, 16, 18, 30), y: 96},
-                { x: new Date(2023, 0, 16, 20, 0), y: 97}
+                { x: new Date(2023, 1, 1), y: 82},
+                { x: new Date(2023, 1, 2), y: 83},
+                { x: new Date(2023, 1, 3), y: 84},
+                { x: new Date(2023, 1, 4), y: 84},
+                { x: new Date(2023, 1, 5), y: 84},
+                { x: new Date(2023, 1, 6), y: 84},
+                { x: new Date(2023, 1, 7), y: 86}
 			]
 		}]
 	}

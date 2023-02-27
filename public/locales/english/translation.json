@@ -27,6 +27,7 @@
         },
         "form": {
             "f1": "First Name",
+            "f17":"Preffered First Name (Optional)",
             "f2": "Last Name",
             "f3": "Date of Birth",
             "f4": "Sex",
@@ -41,17 +42,19 @@
             "f13": "Your First Name",
             "f14": "Your Last Name",
             "f15": "Your Weight",
-            "f16": "Your Height"
+            "f16": "Your Height",
+            "f18":"Your Preffered First Name"
         },
         "error": {
             "e1": "The first name field is required.",
+        
             "e2": "The last name field is required.",
             "e3": "The DOB field is required.",
-            "e4": "The weight field is required.",
-            "e5": "The height field is required.",
-            "e6": "The sex field is required.",
+           
+     
             "e7": "Please select date in DD/MM/YYYY format.",
             "e8": "Unauthenticated."
+        
         },
         "message": {
             "m1": "User profile updated successfully."
@@ -73,9 +76,6 @@
             "f5": "Next",
             "f6": "Check your email",
             "f7":"Resend Code :"
-        },
-        "message": {
-            "m1": "Verfication successfully done."
         }
     },
 
@@ -187,6 +187,46 @@
     "PractitionersCard":{
         "message1":"No result found for your search.",
         "heading1":"Practitioners"
+    },
+
+    "EditProfilePage":{
+        "form": {
+            "f1": "First Name",
+            "f17":"Preffered First Name (Optional)",
+            "f2": "Last Name",
+            "f3": "Date of Birth",
+            "f4": "Sex",
+            "f5": "Male",
+            "f6": "Female",
+            "f7": "Weight (kg)",
+            "f8": "Height (cm)",
+            "f9": "Submit",
+            "f10": "Male",
+            "f11": "Female",
+            "f12": "Other",
+            "f13": "Your First Name",
+            "f14": "Your Last Name",
+            "f15": "Your Weight",
+            "f16": "Your Height",
+            "f18":"Your Preffered First Name"
+        },
+        "error":{
+            "e1": "The first name field is required.",
+            "e2": "The last name field is required.",
+            "e3": "The DOB field is required.",
+            "e4": "The weight field is required.",
+            "e5": "The height field is required.",
+            "e6": "The sex field is required.",
+            "e7": "Please select date in DD/MM/YYYY format.",
+            "e8": "Unauthenticated."
+            
+        },
+        "loader":{
+            "l1":"Loading..."
+        },
+        "message":{
+            "m1":"Profile updated successfully."
+        }
     }
 
 
