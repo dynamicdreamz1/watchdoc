@@ -14,7 +14,7 @@ const VerificationEmail = () => {
 
     
     const [code, setCode] = useState('')
-   // const [message, setMessage] = useState('')
+
     
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
@@ -58,7 +58,7 @@ const VerificationEmail = () => {
                     if (typeof res === "string") {
                         setError(t('VerificationPage.error.e2'))
                         console.log(error)
-                        setCode("")
+                       
                     } else {
 
                         const {data} = res;
@@ -106,7 +106,7 @@ const VerificationEmail = () => {
                             <p>{t('VerificationPage.form.f1')} <strong>{decodedEmail}.</strong> {t('VerificationPage.form.f2')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-                        {/* <!--div className='sMessage'> {message}</div--> */}
+                        
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>

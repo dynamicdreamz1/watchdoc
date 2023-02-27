@@ -57,8 +57,8 @@ export const EditProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    let Fname=(res.data.user_details.first_name)
-                    sessionStorage.setItem('name',Fname)
+                    let Fname = (res.data.user_details.first_name)
+                    sessionStorage.setItem('name', Fname)
                     let profileCheck = (res.data.user_details.profile_created)
                     setMessage(t('CreateProfilePage.message.m1'))
                     //setSuccess(true)
@@ -77,7 +77,7 @@ export const EditProfile = () => {
                     }
 
                     else if (errorMessage === "Unauthenticated.") {
-                      //  setSuccess(true)
+                        //  setSuccess(true)
                         setLoading(false)
                         console.log(errorMessage)
                         setErrorN(t('CreateProfilePage.error.e8'))
@@ -91,8 +91,8 @@ export const EditProfile = () => {
     }
 
     return (
-    
-    <React.Fragment>
+
+        <React.Fragment>
             <div className='varification-page-wrapper'>
                 <div className='container'>
                     
@@ -106,7 +106,7 @@ export const EditProfile = () => {
                                 <input type="text" placeholder={t('CreateProfilePage.form.f13')} value={firstName} id="exampleInputFirstName" onChange={(e) => SetFirstName(e.target.value)} />
                             </div>
                             <div className='input-block'>
-                                <label htmlFor="PreferredFirstName" >{t('CreateProfilePage.form.f1')}</label>
+                                <label htmlFor="PreferredFirstName" >{t('CreateProfilePage.form.f17')}</label>
                                 <input type="text" placeholder={t('CreateProfilePage.form.f13')} value={firstName} id="exampleInputFirstName" onChange={(e) => SetFirstName(e.target.value)} />
                             </div>
                             <div className='input-block'>
@@ -123,7 +123,33 @@ export const EditProfile = () => {
                     </div>
                 </div>
             </div>
+
+            {/* <div className='input-block'>
+                <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
+                <div className='radio-buttons'>
+                    <div className='radio-button'>
+                        <input type="radio" id="male" name="sex" value="Male" onChange={(e) => SetSex(e.target.value)} />
+                        <label htmlFor="male">{t('CreateProfilePage.form.f10')}</label>
+                    </div>
+                    <div className='radio-button'>
+                        <input type="radio" id="female" name="sex" value="Female" onChange={(e) => SetSex(e.target.value)} />
+                        <label htmlFor="female">{t('CreateProfilePage.form.f11')}</label>
+                    </div>
+                    <div className='radio-button'>
+                        <input type="radio" id="other" name="sex" value="Other" onChange={(e) => SetSex(e.target.value)} />
+                        <label htmlFor="other">{t('CreateProfilePage.form.f12')}</label>
+                    </div>
+                </div>
+            </div>
+            <div className='input-block'>
+                <label htmlFor="exampleInputWeight" >{t('CreateProfilePage.form.f7')}</label>
+                <input type="number" placeholder={t('CreateProfilePage.form.f15')} value={weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
+            </div>
+            <div className='input-block'>
+                <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
+                <input type="number" placeholder={t('CreateProfilePage.form.f16')} value={height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
+            </div> */}
         </React.Fragment>
-    
-  )
+
+    )
 }

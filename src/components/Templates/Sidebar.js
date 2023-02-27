@@ -36,10 +36,10 @@ export default function Sidebar() {
         }
       })()}
 
+        </nav>
 
             
             
-        </nav>
         <div className='logout'>
             <button type='button' onClick={(e)=>logoutHandel()} >
                 <span className='icon'>
