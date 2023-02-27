@@ -45,12 +45,12 @@ export default function AddClinician() {
 
       {show ? 
       <>
-      <AddClinician setClinicianData={setClinicianData} />
+      {/* <AddClinician setClinicianData={setClinicianData} /> */}
       <PractitionersCard clinicianData={clinicianData}/>
       </>
-        : "" 
+          : ""
       
-      }
+        }  
       <div className='add-clinician-box'>
         <div className='title'>
           <p> {t('AddClinician.p1')}</p>

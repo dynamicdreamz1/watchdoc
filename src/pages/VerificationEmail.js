@@ -70,6 +70,7 @@ const VerificationEmail = () => {
                         StoreCookie.setItem("role", roles[0].name);
                         StoreCookie.setItem("is_active", is_active);
                         window.location.reload();
+                        
                      
                     }
                 })
@@ -109,7 +110,7 @@ const VerificationEmail = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
-                                <input type="password" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
+                                <input type="password" placeholder={t('VerificationPage.form.f4')} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
                             <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}&nbsp;</button>
