@@ -37,7 +37,10 @@ const BloodPressureChart = () => {
 			labelFontSize: 12,
 			labelFontColor: "#8D8D8D",
 			tickLength: 20,
-			tickThickness: 0
+			tickThickness: 0,
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB",
+			gridThickness: 1,
 		},
 		axisY2: {
 			title: "",
@@ -49,6 +52,8 @@ const BloodPressureChart = () => {
 			labelFontFamily: "Source Sans Pro', sans-serif",
 			labelFontSize: 12,
 			labelFontColor: "#8D8D8D",
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB"
 		},
 		legend: {
 			cursor: "pointer",

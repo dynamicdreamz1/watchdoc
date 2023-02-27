@@ -292,6 +292,11 @@ button {
 .sidebar .MuiList-root a {
   text-decoration: none;
   color: #000;
+  display: block;
+}
+.sidebar .MuiList-root a.isActive {
+  background-color: #F5F5F5;
+  display: block;
 }
 /* Aside */
 .aside {
@@ -1080,6 +1085,10 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 /* Link Devices */
 .content-wrapper .aside .devices-wrapper {
   width: 510px;
+}
+.link-device .title-block {
+  margin-bottom: 30px;
+  padding-left: 15px;
 }
 .devices-wrapper .device-block {
   display: flex;

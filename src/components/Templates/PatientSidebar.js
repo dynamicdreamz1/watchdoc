@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import '../../css/SideBar.css'
 
 
 export default function PatientSidebar() {
