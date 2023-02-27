@@ -19,7 +19,7 @@ export const EditProfile = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        console.log("data",firstName,preferredFirstName,lastName,dob,sex,weight,height);
+    
         e.preventDefault()
 
         if (firstName === "") {

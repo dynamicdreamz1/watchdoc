@@ -1,6 +1,4 @@
 import React from 'react'
-import MeasurmentResult from '../Measurement/MeasurementResult'
-import MeasurmentTitle from '../Measurement/MeasurementTitle'
 import RiskStatus from './RiskStatus'
 
 export default function MainDetailsCard() {
