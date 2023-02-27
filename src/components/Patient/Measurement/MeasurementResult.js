@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function MeasurementResult() {
+export default function MeasurementResult(props) {
   return (
     <>
     <div className='measurment-result'>
-        <span className='digit'>170</span>
-        <span className='type'>bpm</span>
+        <span className='digit'>{props.result}</span>
+        <span className='type'>{props.label}</span>
     </div>
     </>
   )

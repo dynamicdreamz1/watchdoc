@@ -9,6 +9,52 @@ import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
 
 
 export default function PatientDashboard() {
+
+    let measurment = [
+        {
+            "status": "high",
+            "type": "Heart Rate",
+            "result": "170",
+            "label": "bpm",
+            "time": "1 min ago"
+        },
+        {
+            "status": "high",
+            "type": "Blood Pressure",
+            "result": "180/80",
+            "label": "",
+            "time": "2 days ago"
+        },
+        {
+            "status": "normal",
+            "type": "Blood Oxygen",
+            "result": "97",
+            "label": "%",
+            "time": "1 min ago"
+        },
+        {
+            "status": "normal",
+            "type": "Blood Oxygen",
+            "result": "-",
+            "label": "",
+            "time": "No Data"
+        },
+        {
+            "status": "normal",
+            "type": "Weight",
+            "result": "83.2",
+            "label": "kg",
+            "time": "12 days ago"
+        },
+        {
+            "status": "none",
+            "type": "Temperature",
+            "result": "-",
+            "label": "",
+            "time": "No data"
+        }
+    ]
+
   return (
     <>
         
@@ -27,12 +73,11 @@ export default function PatientDashboard() {
                 <h5>Lastest Measurements</h5>
             </div>
             <div className='wrapper d-flex flex-wrap'>
-                <MeasurementCard/>
-                <MeasurementCard/>
-                <MeasurementCard/>
-                <MeasurementCard/>
-                <MeasurementCard/>
-                <MeasurementCard/>
+                {
+                    measurment.map(block => {
+                        return <MeasurementCard block={block}/>
+                    })
+                }
             </div>
         </div>
         <div className='reminder-cards-wrapper mt-22'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkDevice from '../components/Patient/LinkDevice'
+import LinkDevices from '../components/Patient/LinkDevices/LinkDevices'
 
 export default function LinkDeviceOuter() {
   return (
@@ -10,7 +10,7 @@ export default function LinkDeviceOuter() {
                 <img src='/images/WatchDoc-LOGO.png' alt='Watch Doc Logo' />
               </div>
               <div className='page-content-wrapper'>
-                <LinkDevice/>
+                <LinkDevices/>
               </div>
             </div>
         </div>
