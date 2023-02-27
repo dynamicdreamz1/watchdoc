@@ -5,7 +5,6 @@ import MeasurementStatus from './MeasurementStatus'
 import MeasurementTitle from './MeasurementTitle'
 
 export default function MeasurementCard(props) {
-  console.log(props.block)
   return (
     <>
         <div className='measurment-card'>

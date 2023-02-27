@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function MeasurementTitle(props) {
-  console.log(props.icon)
   return (
     <>
     <div className='measurment-title d-flex align-items-center'>

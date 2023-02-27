@@ -188,7 +188,6 @@ button {
   color: #C6C6C6;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin-bottom: 20px;
 }
 .radio-buttons .radio-button input[type="radio"] {
   margin: 0;
@@ -209,6 +208,12 @@ button {
 }
 .color-red {
   color: #EA4335;
+}
+.varification-page-wrapper form .input-block {
+  margin-bottom: 12px;
+}
+.varification-page-wrapper button[type="submit"] {
+  margin-top: 15px;
 }
 /* Content Wrapper */
 .content-wrapper {
