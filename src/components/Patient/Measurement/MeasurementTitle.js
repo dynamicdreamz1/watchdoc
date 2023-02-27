@@ -1,10 +1,11 @@
 import React from 'react'
 
 export default function MeasurementTitle(props) {
+  console.log(props.icon)
   return (
     <>
     <div className='measurment-title d-flex align-items-center'>
-        <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
+        <span className='icon d-flex'><img src={`/images/${props.icon}`} alt='Heart Rate Icon'/></span>
         <span className='name d-flex'>{props.type}</span>
     </div>
     </>

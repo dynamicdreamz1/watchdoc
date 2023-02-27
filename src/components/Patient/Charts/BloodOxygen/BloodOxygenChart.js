@@ -21,7 +21,10 @@ const BloodOxygenChart = () => {
             labelFontSize: 12,
             labelFontColor: "#8D8D8D",
             tickLength: 32,
-            tickThickness: 0
+            tickThickness: 0,
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB",
+			gridThickness: 1,
 		},
 		axisY2:{
 			title: "",
@@ -30,7 +33,9 @@ const BloodOxygenChart = () => {
 			interval: 5,
 			labelFontFamily: "Source Sans Pro', sans-serif",
 			labelFontSize: 12,
-			labelFontColor: "#8D8D8D"
+			labelFontColor: "#8D8D8D",
+			gridColor: "#EBEBEB",
+			lineColor: "#EBEBEB"
 		},
 		data: [{
 			type: "scatter",

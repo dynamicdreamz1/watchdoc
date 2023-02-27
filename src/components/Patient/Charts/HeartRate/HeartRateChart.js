@@ -21,18 +21,22 @@ export default function HeartRateChart() {
         labelFontSize: 12,
         labelFontColor: "#8D8D8D",
         tickLength: 32,
-        tickThickness: 0
+        tickThickness: 0,
+        gridColor: "#EBEBEB",
+        lineColor: "#EBEBEB"
 			},
 			axisY2: {
 				title: "",
 				includeZero: true,
 				suffix: "",
-                minimum: 0,
-                maximum: 200,
-                interval: 50,
-                labelFontFamily: "Source Sans Pro', sans-serif",
-                labelFontSize: 12,
-                labelFontColor: "#8D8D8D",
+        minimum: 0,
+        maximum: 200,
+        interval: 50,
+        labelFontFamily: "Source Sans Pro', sans-serif",
+        labelFontSize: 12,
+        labelFontColor: "#8D8D8D",
+        gridColor: "#EBEBEB",
+        lineColor: "#EBEBEB"
 			},
 			data: [{
                 type: "rangeColumn",
