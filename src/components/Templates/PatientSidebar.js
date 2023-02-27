@@ -42,7 +42,7 @@ export default function PatientSidebar() {
                 </NavLink>
 
                 <NavLink
-                        to="/editprofile"
+                        to="/edit-profile"
                         className={({ isActive }) =>
                             isActive ? "isActive" : ""
                         }>

@@ -70,6 +70,7 @@ const VerificationEmail = () => {
                         StoreCookie.setItem("role", roles[0].name);
                         StoreCookie.setItem("is_active", is_active);
                         window.location.reload();
+                        console.log(res)
                         
                      
                     }

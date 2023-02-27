@@ -51,14 +51,14 @@ function App() {
             <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
             <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
             <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
-            <Route path='/createprofile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
+            <Route path='/create-profile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
             <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
             <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
             
               {/* After Login Router */}
 
               <Route path='dashboard' element={currentUser ? <Dashboard /> : <Register />} />
-              <Route path='editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
+              <Route path='edit-profile' element={currentUser ? <EditProfileInner /> :<Register /> } />
               <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
               <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
             
