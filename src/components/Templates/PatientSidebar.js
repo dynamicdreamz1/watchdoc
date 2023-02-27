@@ -35,7 +35,7 @@ export default function PatientSidebar() {
                             <ListItemIcon>
                                 <img src='/images/Clinicians-icon.svg' alt='User Icon' />
                             </ListItemIcon>
-                            <ListItemText>Add Clinician</ListItemText>
+                            <ListItemText>Clinician</ListItemText>
                         </ListItemButton>
                     </ListItem>
              
