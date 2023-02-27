@@ -145,7 +145,7 @@ const CreateProfile = () => {
                                 <label htmlFor="exampleInputDOB" >{t('CreateProfilePage.form.f3')}</label>
                                 <input type="date" value={dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
                                 <div className='radio-buttons'>
                                     <div className='radio-button'>
@@ -169,7 +169,7 @@ const CreateProfile = () => {
                             <div className='input-block'>
                                 <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
                                 <input type="number" placeholder={t('CreateProfilePage.form.f16')} value={height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
-                            </div>
+                            </div> */}
                             <button type="submit" onClick={(e) => handleSubmit(e)}>{t('CreateProfilePage.form.f9')}</button>
                             {loading ? <b>{t('CreateProfilePage.loader.l1')}</b> : ""}
                         </form>

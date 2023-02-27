@@ -58,7 +58,7 @@ function App() {
               {/* After Login Router */}
 
               <Route path='dashboard' element={currentUser ? <Dashboard /> : <Register />} />
-              <Route path='editprofile' element={currentUser ? <EditProfileInner /> :<Register /> } />
+              <Route path='edit-profile' element={currentUser ? <EditProfileInner /> :<Register /> } />
               <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register /> } />
               <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register /> } />
             
