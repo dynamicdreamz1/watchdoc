@@ -44,6 +44,7 @@ const Register = () => {
                         setLoading(false)
                         setEmail("")
                         navigate(`/verification/${encodedemail}`)
+                        console.log(response)
                     }
                 })
                 .catch((error) => {

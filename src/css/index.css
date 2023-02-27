@@ -80,8 +80,6 @@ body input:focus-visible {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
 }
 form input {
   background: #FFFFFF;
