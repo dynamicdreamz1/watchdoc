@@ -10,36 +10,35 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function PractitionersCard({ clinicianData }) {
 
 
-    // const [status,setStatus]=useState(false)
-    const [checkedClinicianIds, setCheckedClinicianIds] = useState([]);
+    const [status,setStatus]=useState(false)
+    
     const { t } = useTranslation()
-
-    const handleCheckboxChange = (id) => {
-        setCheckedClinicianIds([...checkedClinicianIds, id]);
-        addClinician(id);
-    };
 
 
     const addClinician = (ID) => {
-        console.log(ID)
+  
+            console.log(ID)
 
-        addDoctor(ID)
-            .then((res) => {
+            addDoctor(ID)
+                .then((res) => {
 
-                if (res.response.data.message === "User already has relation with the clinician") {
-                    console.log(res.response.data.message)
-                    // setStatus(true)
-                }
+                    if (res.response.data.message === "User already has relation with the clinician") {
+                        console.log(res.response.data.message)
+                        setStatus(true)
+                    }
 
-                else {
-                    console.log(res)
-                }
+                    else {
+                        console.log(res)
+                        
+
+                    }
 
 
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        
 
     }
 
@@ -66,19 +65,17 @@ export default function PractitionersCard({ clinicianData }) {
                                         )} <br />
                                         {element.address}
 
-                                        <div className='add-fav'  >
-                                            <FormControlLabel onClick={() => addClinician(element.id)}
-                                                control={
-                                                    <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
-                                                disabled={checkedClinicianIds.includes(element.id)}
-                                                checked={checkedClinicianIds.includes(element.id)}
-                                                onChange={() => handleCheckboxChange(element.id)}
 
-                                                label=
-                                                // status ? <span style={{color:"#FB7B04"}}>Pending clinician approval</span>: 
-                                                "Add to WatchDoc" />
-                                        </div>
+                                        {element.status === 1 ? <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span> :
+                                            <div className='add-fav'  >
+                                                <FormControlLabel onClick={() => addClinician(element.id)}
+                                                    control={
+                                                        <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
+                                                    label={status===true ?  <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span>  :"Add to WatchDoc" } />
+
+                                            </div>
+                                         } 
 
                                     </div>
                                 </div>

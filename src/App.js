@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard';
 import { Suspense } from 'react';
 import Thankyou from './pages/Thankyou';
 import UserConsent from './pages/UserConsent';
-// import AddClinician from './pages/AddClinician';
 import ContactDetails from './pages/ContactDetails';
 import VerifyMobile from './pages/VerifyMobile';
 import { UserContext } from './Store/Context';
@@ -36,7 +35,6 @@ function App() {
    
   }, []);
 
-  console.log(currentUser);
   
 
   return (
