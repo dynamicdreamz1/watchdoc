@@ -51,7 +51,7 @@ function App() {
             <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
             <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
             <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
-            <Route path='/createprofile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
+            <Route path='/create-profile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
             <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
             <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
             

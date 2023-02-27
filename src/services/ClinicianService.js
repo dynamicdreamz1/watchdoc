@@ -1,9 +1,12 @@
 import axios from "axios"
-let token = sessionStorage.getItem('token')
+import { StoreCookie } from "../Utility/sessionStore";
+
+let token = StoreCookie.getItem('token')
+
 
 export const searchClinician = async (data) => {
 
-
+  
     try {
         const response = await axios({
             method: 'get',
@@ -29,6 +32,8 @@ export const addDoctor=async(ID)=>{
   let id={
     id:ID.toString()
   }
+
+  console.log(id)
     try {
         const response = await axios({
             method: 'post',

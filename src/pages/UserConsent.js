@@ -30,7 +30,7 @@ export default function UserConsent() {
 
             userConsent(data)
             .then((res)=>{
-                navigate('/createprofile')
+                navigate('/create-profile')
                 
             })
             .catch((error)=>{
