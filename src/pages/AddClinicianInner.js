@@ -5,6 +5,8 @@ import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
+import { TableSkeleton } from '../Utility/Skeleton';
+import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 
 export default function AddClinicianInner() {
   
@@ -24,7 +26,7 @@ export default function AddClinicianInner() {
           <CliniciansRequestsTable/>
           <div className='space-40'></div>
           {/* <CliniciansRequestsTable/> */}
-          <MyClinicians/>
+          <MyClinicians />
         </div>
     </div>
     </>

@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import UserProfile from '../../common/UserProfile';
 import Email from '../../common/Table/Email';
@@ -8,21 +8,21 @@ import { getClinicianData } from '../../../services/ClinicianService';
 
 
 export default function MyClinicians() {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
+    //const [data, setData] = useState([])
+    //const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setLoading(true)
+        //setLoading(true)
         getClinicianData()
 
             .then((res) => {
-                console.log(res)
-                setData(res.data.data)
-                setLoading(false)
+                
+                //setData(res.data.data)
+               // setLoading(false)
             })
             .catch((error) => {
-                console.log(error)
-                setLoading(false)
+                
+                //setLoading(false)
             })
     }, [])
   return (
