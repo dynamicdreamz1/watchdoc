@@ -7,15 +7,20 @@ import Header from '../components/Templates/Header';
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
 
 export default function AddClinicianInner() {
+  
+  const [status,setStatus]=useState(false)
+  const [toggle,setToggle]=useState(false)
+
   return (
     <>
     <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header />
-          <AddClinician status={status} setStatus={setStatus}/>
+          <Header toggle={toggle} setToggle={setToggle}/>
+
+           {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/> : "" }
           <div className='space-40'></div>
-          <AddClinician/>
+          <CliniciansRequestsTable/>
         </div>
     </div>
     </>

@@ -44,10 +44,10 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
         <React.Fragment>
 
             <div className='practitioners-card'>
-                {clinicianData?.data?.data.length === 0 ? <span style={{ color: "red" }}> {t('PractitionersCard.message1')}</span> :
+                {/* {clinicianData?.data?.data.length === 0 ? <span style={{ color: "red" }}> {t('PractitionersCard.message1')}</span> : */}
                     <>
-                        {clinicianData?.data?.data.length > 0 ? <h5>{t('PractitionersCard.heading1')}</h5> : ""}
-                        {clinicianData?.data?.data.length > 0 && clinicianData.data?.data.map((element) =>
+                        {/* {clinicianData?.data?.data.length > 0 ? <h5>{t('PractitionersCard.heading1')}</h5> : ""} */}
+                        {clinicianData.data?.map((element) =>
 
                             <div key={element.id}>
                                 <div className='card d-flex'>
@@ -80,7 +80,7 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
                                 </div>
                             </div>)}
                     </>
-                }
+                {/* } */}
             </div>
 
 
