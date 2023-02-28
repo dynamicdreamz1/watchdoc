@@ -5,11 +5,13 @@ import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
+import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
+import { Add } from '@mui/icons-material';
 
 export default function AddClinicianInner() {
 
   const [status,setStatus]=useState(false)
-
+  
   return (
     <>
     <div className='content-wrapper'>
@@ -18,8 +20,7 @@ export default function AddClinicianInner() {
           <Header />
           <AddClinician status={status} setStatus={setStatus}/>
           <div className='space-40'></div>
-          
-          <CliniciansRequestsTable status={status} />
+          <AddClinician/>
         </div>
     </div>
     </>

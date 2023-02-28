@@ -98,8 +98,10 @@ form input {
   font-size: 16px;
   line-height: 20px;
   padding: 8px 12px;
-  margin-bottom: 20px;
   font-family: 'Source Sans Pro', sans-serif;
+}
+form .input-block {
+  margin-bottom: 20px;
 }
 form input::placeholder {
   color: #C6C6C6;
@@ -121,6 +123,7 @@ button[type="submit"] {
   line-height: 22px;
   padding: 13px 10px;
   cursor: pointer;
+  margin-top: 15px;
 }
 .phone-number {
   text-decoration: none;
@@ -190,6 +193,7 @@ button {
   color: #C6C6C6;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin-bottom: 0;
 }
 .radio-buttons .radio-button input[type="radio"] {
   margin: 0;
@@ -213,9 +217,6 @@ button {
 }
 .varification-page-wrapper form .input-block {
   margin-bottom: 12px;
-}
-.varification-page-wrapper button[type="submit"] {
-  margin-top: 15px;
 }
 /* Content Wrapper */
 .content-wrapper {
@@ -1092,8 +1093,11 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 17px;
 }
 /* Link Devices */
-.content-wrapper .aside .devices-wrapper {
+.content-wrapper .aside .devices-wrapper,
+.content-wrapper .aside #main_form {
   width: 510px;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 .link-device .title-block {
   margin-bottom: 30px;
