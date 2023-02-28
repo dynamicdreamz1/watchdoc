@@ -4,8 +4,6 @@ import Sidebar from '../components/Templates/Sidebar'
 import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
-import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
-import { TableSkeleton } from '../Utility/Skeleton';
 import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 
 export default function AddClinicianInner() {
@@ -21,9 +19,9 @@ export default function AddClinicianInner() {
           <Header toggle={toggle} setToggle={setToggle}/>
 
            {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/> : "" }
-          <Header />
-          <TableSkeleton/>
-          <CliniciansRequestsTable/>
+      
+          {/* <Tab  leSkeleton/> */}
+          {/* <CliniciansRequestsTable/> */}
           <div className='space-40'></div>
           {/* <CliniciansRequestsTable/> */}
           <MyClinicians/>
