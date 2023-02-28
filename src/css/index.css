@@ -363,6 +363,17 @@ button {
   font-weight: 300;
   text-transform: capitalize;
 }
+.content-wrapper .aside .top-header-block .page-title h1 {
+  display: flex;
+  align-items: center;
+}
+.content-wrapper .aside .top-header-block .page-title h1 button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  margin-left: 15px;
+}
 .content-wrapper .aside .top-header-block {
   gap: 15px;
   margin-bottom: 20px;

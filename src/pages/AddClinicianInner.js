@@ -5,10 +5,10 @@ import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
-import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
-import { Add } from '@mui/icons-material';
 
 export default function AddClinicianInner() {
+
+  const [show,setShow]=useState(false)
   return (
     <>
     <div className='content-wrapper'>
