@@ -99,7 +99,11 @@
         "d4":"Search for Patient or Clinician",
 
         "SideBar": {
-            "d1": "Dashboard",
+            "title1":"Dashboard",
+            "title2":"My Clinicians",
+            "title3":"Edit Profile",
+            "title4":"Link Device",
+            
             "d2": "Patients",
             "d3": "Clinicians"
         },
@@ -229,7 +233,4 @@
         }
     }
 
-
-    
-    
 }

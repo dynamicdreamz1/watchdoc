@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Sidebar from '../components/Templates/Sidebar'
 
 import AddClinician from '../components/Patient/AddClinician/AddClinician';
@@ -7,6 +7,9 @@ import Header from '../components/Templates/Header';
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
 
 export default function AddClinicianInner() {
+
+  const [status,setStatus]=useState(false)
+  
   return (
     <>
     <div className='content-wrapper'>

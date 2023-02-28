@@ -29,7 +29,7 @@ export default function CliniciansRequestsTable() {
             <TableContainer component={Paper} className="clinicians-table">
                 <div className='table-title'>
                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
-                    <h4>Clinicians Requests ({data.length})</h4>
+                    <h4>My Clinicians ({data.length})</h4>
                 </div>
                 {loading===true ? "Loading..." : 
                 <>
