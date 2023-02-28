@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { getClinicianData } from '../../services/ClinicianService';
+import { useTranslation } from 'react-i18next';
 
-export default function CliniciansRequestsTable({status}) {
+export default function CliniciansRequestsTable() {
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
-
+    const {t}=useTranslation();
     useEffect(() => {
         setLoading(true)
         getClinicianData()
@@ -22,14 +23,14 @@ export default function CliniciansRequestsTable({status}) {
                 console.log(error)
                 setLoading(false)
             })
-    }, [status])
+    }, [])
   
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">
                 <div className='table-title'>
                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
-                    <h4>My Clinicians ({data.length})</h4>
+                    <h4> {t('CliniciansRequestsTable.heading')}({data.length})</h4>
                 </div>
                 {loading===true ? "Loading..." : 
                 <>
@@ -37,11 +38,11 @@ export default function CliniciansRequestsTable({status}) {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Phone</TableCell>
-                            <TableCell align="center">Connected Patients</TableCell>
-                            <TableCell align="center">Pending Patients</TableCell>
+                            <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
+                            <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
+                            <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
+                            <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
+                            <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -52,7 +53,7 @@ export default function CliniciansRequestsTable({status}) {
                         ))}
                         
                     </TableBody>
-                </Table> : <span>You have not added any clincian yet.</span> }
+                </Table> : <span>{t('CliniciansRequestsTable.notFound')}</span> }
                 </>
                 }
             </TableContainer>

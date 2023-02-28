@@ -3,14 +3,14 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import { FormControlLabel } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { addDoctor } from '../../../services/ClinicianService';
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ clinicianData, status, setStatus }) {
 
 
-    const { t } = useTranslation()
+    
 
 
     const addClinician = (ID) => {
@@ -39,31 +39,27 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
                 console.log(error)
             })
         }
-
+    console.log(clinicianData)
     return (
         <React.Fragment>
 
             <div className='practitioners-card'>
                 {/* {clinicianData?.data?.data.length === 0 ? <span style={{ color: "red" }}> {t('PractitionersCard.message1')}</span> : */}
                     <>
-                        {/* {clinicianData?.data?.data.length > 0 ? <h5>{t('PractitionersCard.heading1')}</h5> : ""} */}
-                        {clinicianData.data?.map((element) =>
-
+                         {/* {clinicianData?.data?.data.length > 0 ? <h5>{t('PractitionersCard.heading1')}</h5> : ""}  */}
+                         {clinicianData?.data?.data?.data.map((element) =>
+                  
                             <div key={element.id}>
                                 <div className='card d-flex'>
                                     <div className='user-image'>
-                                        <img src={element.image} alt='User' />
+                                        <img src='' alt='User' />
                                     </div>
                                     <div className='text-block'>
+                                        <h5>{element.user_data[0].meta_value}</h5>
+                                      
 
-                                        <h5>{element.first_name} {element.last_name}</h5>
-                                        {element.hospital.map((hospitalValue) =>
-                                            hospitalValue
-                                        )} <br />
-                                        {element.address}
-
-
-                                        {element.status === 1 ? <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span> :
+                                        {element.hospital[0].user_data[0].meta_value}
+                                    
                                             <div className='add-fav'  >
 
                                                 <FormControlLabel onClick={() => addClinician(element.id)}
@@ -74,11 +70,12 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
 
                                             </div>
 
-                                        }
+                                        {/* } */}
 
                                     </div>
                                 </div>
-                            </div>)}
+                             </div>)} 
+                        
                     </>
                 {/* } */}
             </div>

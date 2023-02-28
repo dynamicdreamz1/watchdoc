@@ -26,8 +26,8 @@ export default function AddClinician({status,setStatus}) {
 
      searchClinician(data)
     .then((response) => {
-      console.log(response)
-      setClinicianData(response.data.data)
+      console.log(response.data.data)
+      setClinicianData(response)
     })
 
     .catch((error) => {

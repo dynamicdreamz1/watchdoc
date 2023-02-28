@@ -6,14 +6,14 @@ export default function UserProfile({data}) {
     <>
     <div className='user-profile'>
         <div className='user-avtar'>
-            <Avatar alt="Avtar" src={data.image} />
+            <Avatar alt="Avtar" src='' />
         </div>
         <div className='user-info'>
             <span className='fname'>{data?.first_name} {data?.last_name}</span>
-            <span className='position'>{data.hospital.map((elementValue,index)=>(
+            {/* <span className='position'>{data.hospital.map((elementValue,index)=>(
               <React.Fragment key={index}>{elementValue}</React.Fragment>
             ))},{data.address}
-            </span>
+            </span> */}
         </div>
     </div>
     </>

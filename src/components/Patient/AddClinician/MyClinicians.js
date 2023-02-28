@@ -1,11 +1,30 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import UserProfile from '../../common/UserProfile';
 import Email from '../../common/Table/Email';
 import Phone from '../../common/Table/Phone';
+import { getClinicianData } from '../../../services/ClinicianService';
+
 
 export default function MyClinicians() {
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        getClinicianData()
+
+            .then((res) => {
+                console.log(res)
+                setData(res.data.data)
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log(error)
+                setLoading(false)
+            })
+    }, [])
   return (
     <>
         <TableContainer component={Paper} className="clinicians-table">

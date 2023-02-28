@@ -187,6 +187,15 @@
             "b1":"Search"
         }
     },
+    "CliniciansRequestsTable":{
+        "heading":"Clinicians Requests",
+        "tableCell1":"Name",
+        "tableCell2":"Email",
+        "tableCell3":"Phone",
+        "tableCell4":"Connected Patients",
+        "tableCell5":"Pending Patients",
+        "notFound":"You have not added any clincian yet."
+    },
 
     "PractitionersCard":{
         "message1":"No result found for your search.",
