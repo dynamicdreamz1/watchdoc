@@ -3,6 +3,7 @@ import { ProfileCreation } from '../../../services/UserService';
 import '../../../css/CreateProfile.css'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { StoreCookie } from '../../../Utility/sessionStore';
 
 const CreateProfile = () => {
     const [firstName, SetFirstName] = useState('')
@@ -35,21 +36,22 @@ const CreateProfile = () => {
         else {
             const data = {
                 first_name: firstName,
-                
+                preferred_first_name:preferredFirstName,
                 last_name: lastName,
                 dob: dob,
+                request_type:'create'
                 
             }
 
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    let Fname=(res.data.user_details.first_name)
-                    sessionStorage.setItem('name',Fname)
-                    let profileCheck = (res.data.user_details.profile_created)
-                    
+                    console.log(res.data.profile_created);
+                    let Fname=(res.data.user_data[0].meta_value)
+                    StoreCookie.setItem('name',Fname)
+                    let profileCheck = (res.data.profile_created)
                     setSuccess(true)
-                    sessionStorage.setItem('profile', profileCheck)
+                    StoreCookie.setItem('profile', profileCheck)
                     navigate('/contactdetails')
                     setLoading(false)
                 })

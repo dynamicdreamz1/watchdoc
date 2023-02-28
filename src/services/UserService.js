@@ -18,19 +18,24 @@ export const getCurrentUserRole=()=>{
 export const getCurrentUserIsActive=()=>{
     return StoreCookie.getItem("is_active");
 }
+
+let token = StoreCookie.getItem('token')
+
+let headersWithToken ={
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+    Authorization: `Bearer ${token}`
+}
+
+
 export const RegisterMobNumber = async (data) => {
     try {
-        let token = sessionStorage.getItem('token')
+        // let token = StoreCookie.getItem('token')
         const response = await axios({
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}user/mobile_number_verify`,
             data: data,
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Accept": "application/json",
-                Authorization: `Bearer ${token}`
-
-            }
+            headers: headersWithToken
         })
         return response;
     } catch (error) {
@@ -41,12 +46,12 @@ export const RegisterMobNumber = async (data) => {
 
 export async function ProfileCreation(data) {
     try {
-        let token = sessionStorage.getItem('token')
+        let token = StoreCookie.getItem('token')
         const response = await axios({
             method: 'post',
-            url: `${process.env.REACT_APP_ENDPOINT}user/createprofile`,
+            url: `${process.env.REACT_APP_ENDPOINT}user/upsertprofile`,
             data: data,
-            headers: { "Content-Type": "multipart/form-data", Accept: "application/json, text/plain, */*", Authorization: `Bearer ${token}` },
+            headers: { "Content-Type": "multipart/form-data", Accept: "application/json,", Authorization: `Bearer ${token}` },
         })
         return response;
     } catch (error) {
@@ -108,7 +113,7 @@ export async function VerifyEmail(data) {
 
 export const VerifyMobileNumber = async (data) => {
     try {
-        let token = sessionStorage.getItem('token')
+        let token = StoreCookie.getItem('token')
         const response = await axios({
 
             method: 'post',

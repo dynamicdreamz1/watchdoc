@@ -1,20 +1,21 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { StoreCookie } from '../Utility/sessionStore'
 
 
 export default function Thankyou() {
 
     const navigate=useNavigate()
 
-    let Fname=sessionStorage.getItem('name')
-    let role=sessionStorage.getItem('role')
+    let Fname=StoreCookie.getItem('name')
+    let role=StoreCookie.getItem('role')
 
     const {t}=useTranslation();
     const handleClick=()=>{
 
         if(role==="User"){
-        navigate('/add-clinicians')
+        navigate('/addclinician')
         }
     }   
 
