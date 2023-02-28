@@ -15,9 +15,9 @@ import AddClinicianInner from './pages/AddClinicianInner';
 import { AddClinicianOuter } from './pages/AddClinicianOuter';
 
 import EditProfileInner from './pages/EditProfileInner';
-import EditProfileOuter from './pages/EditProfileOuter';
 import LinkDeviceInner from './pages/LinkDeviceInner';
 import LinkDeviceOuter from './pages/LinkDeviceOuter';
+import CreateProfileOuter from './pages/CreateProfileOuter';
 
 function App() {
 
@@ -49,7 +49,7 @@ function App() {
             <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
             <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
             <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
-            <Route path='/create-profile' element={currentUser ? <EditProfileOuter /> :<Register /> } />
+            <Route path='/create-profile' element={currentUser ? <CreateProfileOuter/> :<Register /> } />
             <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <Register /> } />
             <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register /> } />
             

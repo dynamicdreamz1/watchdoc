@@ -321,6 +321,7 @@ button {
 .account-owner .info span {
   font-size: 13px;
   line-height: 13px;
+  text-transform: capitalize;
 }
 .account-owner .info {
   padding-right: 12px;
@@ -359,6 +360,7 @@ button {
   font-size: 26px;
   line-height: 30px;
   font-weight: 300;
+  text-transform: capitalize;
 }
 .content-wrapper .aside .top-header-block {
   gap: 15px;
