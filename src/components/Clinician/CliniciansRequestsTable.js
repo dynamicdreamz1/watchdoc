@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { getClinicianData } from '../../services/ClinicianService';
 
-export default function CliniciansRequestsTable() {
+export default function CliniciansRequestsTable({status}) {
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -22,7 +22,7 @@ export default function CliniciansRequestsTable() {
                 console.log(error)
                 setLoading(false)
             })
-    }, [])
+    }, [status])
   
     return (
         <>

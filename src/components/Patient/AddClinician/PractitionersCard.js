@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
@@ -7,41 +7,38 @@ import { useTranslation } from 'react-i18next';
 import { addDoctor } from '../../../services/ClinicianService';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function PractitionersCard({ clinicianData }) {
+export default function PractitionersCard({ clinicianData, status, setStatus }) {
 
 
-    const [status,setStatus]=useState(false)
-    
     const { t } = useTranslation()
 
 
     const addClinician = (ID) => {
-  
-            console.log(ID)
 
-            addDoctor(ID)
-                .then((res) => {
+        console.log(ID)
 
-                    if (res.response.data.message === "User already has relation with the clinician") {
-                        console.log(res.response.data.message)
-                        setStatus(true)
-                    }
+        addDoctor(ID)
+            .then((res) => {
 
-                    else {
-                        console.log(res)
-                        
+                if (res.response.data.message === "User already has relation with the clinician") {
+                    console.log(res.response.data.message)
+                    setStatus(true)
+                 
+                }
+                    
+                else {
+                    console.log(res)
+                    setStatus(true)
 
-                    }
+
+                }
 
 
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        
-
-    }
-
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
 
     return (
         <React.Fragment>
@@ -68,14 +65,16 @@ export default function PractitionersCard({ clinicianData }) {
 
                                         {element.status === 1 ? <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span> :
                                             <div className='add-fav'  >
+
                                                 <FormControlLabel onClick={() => addClinician(element.id)}
                                                     control={
                                                         <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
-                                                    label={status===true ?  <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span>  :"Add to WatchDoc" } />
+                                                    label={status === true ? <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span> : "Add to WatchDoc"} />
 
                                             </div>
-                                         } 
+
+                                        }
 
                                     </div>
                                 </div>

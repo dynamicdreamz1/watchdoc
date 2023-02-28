@@ -9,16 +9,17 @@ import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsT
 export default function AddClinicianInner() {
 
   const [status,setStatus]=useState(false)
-  
+
   return (
     <>
     <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
           <Header />
-          <CliniciansRequestsTable/>
+          <AddClinician status={status} setStatus={setStatus}/>
           <div className='space-40'></div>
-          <AddClinician/>
+          
+          <CliniciansRequestsTable status={status} />
         </div>
     </div>
     </>

@@ -5,7 +5,7 @@ import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard'
 
-export default function AddClinician() {
+export default function AddClinician({status,setStatus}) {
 
   const [clinicianName, setClinicianName] = useState('')
   const [practitionerName, setPractitionerName] = useState('')
@@ -61,7 +61,7 @@ export default function AddClinician() {
           </div>
         </form>
       </div>
-      <PractitionersCard clinicianData={clinicianData}/>
+      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus} />
       </>
           : ""
       
