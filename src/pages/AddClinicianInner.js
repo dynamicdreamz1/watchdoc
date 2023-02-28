@@ -9,9 +9,6 @@ import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 import { Add } from '@mui/icons-material';
 
 export default function AddClinicianInner() {
-
-  const [show, setShow]=useState(false)
-
   return (
     <>
     <div className='content-wrapper'>
