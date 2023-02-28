@@ -5,6 +5,7 @@ import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
+import { TableSkeleton } from '../Utility/Skeleton';
 
 export default function AddClinicianInner() {
 
@@ -15,6 +16,7 @@ export default function AddClinicianInner() {
         <Sidebar/>
         <div className='aside'>
           <Header />
+          <TableSkeleton/>
           <CliniciansRequestsTable/>
           <div className='space-40'></div>
           <button type='button' onClick={()=>setShow(true)}>Add</button>
