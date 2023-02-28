@@ -6,13 +6,14 @@ import Email from './Email'
 import PendingPatients from './PendingPatients'
 import Phone from './Phone'
 
-export default function ClinicianInfoRow() {
+export default function ClinicianInfoRow({data}) {
+
   return (
     <>
     <TableRow>
-        <TableCell><ClinicianInfo/></TableCell>
-        <TableCell><Email/></TableCell>
-        <TableCell><Phone/></TableCell>
+        <TableCell><ClinicianInfo data={data}/></TableCell>
+        <TableCell><Email data={data}/></TableCell>
+        <TableCell><Phone data={data}/></TableCell>
         <TableCell align='center'><ConnectedPatients/></TableCell>
         <TableCell align='center'><PendingPatients/></TableCell>
     </TableRow>

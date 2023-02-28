@@ -54,3 +54,22 @@ export const addDoctor=async(ID)=>{
     }
 
 }
+
+export const getClinicianData=async()=>{
+   
+    try {
+        const response = await axios({
+            method: 'get',
+            url:`${process.env.REACT_APP_ENDPOINT}user/get_related_clinician`,
+            headers: {
+            
+                "Accept": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+            })
+
+            return response
+    } catch (error) {
+        throw error
+    }
+}
