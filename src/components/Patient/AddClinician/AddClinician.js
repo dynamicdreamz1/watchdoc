@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {searchClinician} from '../../../services/ClinicianService'
-// import { TableSkeleton } from '../../../Utility/Skeleton'
+import { TableSkeleton } from '../../../Utility/Skeleton'
 import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard'
