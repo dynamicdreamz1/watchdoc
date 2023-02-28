@@ -1,12 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Sidebar from '../components/Templates/Sidebar'
 
 import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 
 import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsTable';
+import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
+import { Add } from '@mui/icons-material';
 
 export default function AddClinicianInner() {
+
+  const [show, setShow]=useState(false)
+
   return (
     <>
     <div className='content-wrapper'>
@@ -15,7 +20,10 @@ export default function AddClinicianInner() {
           <Header />
           <CliniciansRequestsTable/>
           <div className='space-40'></div>
-          <AddClinician/>
+          <button type='button' onClick={()=>setShow(true)}>Add</button>
+          {
+            show?<AddClinician/>: null
+          }
         </div>
     </div>
     </>
