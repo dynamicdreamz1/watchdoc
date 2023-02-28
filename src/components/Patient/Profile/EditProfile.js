@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+
 import { ProfileCreation } from '../../../services/UserService'
 import { StoreCookie } from '../../../Utility/sessionStore'
 
@@ -17,7 +17,7 @@ export const EditProfile = () => {
     //const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-    const navigate = useNavigate();
+   
 
     const handleSubmit = (e) => {
     
@@ -70,7 +70,7 @@ export const EditProfile = () => {
                     setMessage(t('EditProfilePage.message.m1'))
                     //setSuccess(true)
                     StoreCookie.setItem('profile', profileCheck)
-                    // navigate('/contactdetails')
+             
                     setLoading(false)
                 })
                 .catch((errorMessage) => {
