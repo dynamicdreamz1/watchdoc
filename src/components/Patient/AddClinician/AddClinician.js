@@ -5,7 +5,7 @@ import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard'
 
-export default function AddClinician() {
+export default function AddClinician({status,setStatus}) {
 
   const [clinicianName, setClinicianName] = useState('')
   const [practitionerName, setPractitionerName] = useState('')
@@ -26,7 +26,7 @@ export default function AddClinician() {
 
      searchClinician(data)
     .then((response) => {
-      console.log(response)
+      console.log(response.data.data)
       setClinicianData(response)
     })
 
@@ -42,12 +42,11 @@ export default function AddClinician() {
       <div onClick={()=>setShow(!show)}> 
       <AddClinicianButton/>
       </div>
-
       {show ? 
       <>
       
       
-     
+        
       <div className='add-clinician-box'>
         <div className='title'>
           <p> {t('AddClinician.p1')}</p>
@@ -61,7 +60,7 @@ export default function AddClinician() {
           </div>
         </form>
       </div>
-      <PractitionersCard clinicianData={clinicianData}/>
+      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus} />
       </>
           : ""
       

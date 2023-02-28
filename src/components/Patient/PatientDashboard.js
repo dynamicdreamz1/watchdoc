@@ -64,16 +64,6 @@ export default function PatientDashboard() {
   return (
     <>
         
-        {/* <div className='alert-cards-wrapper mt-22'>
-            <div className='section-title'>
-                <h5>Critical Alerts</h5>
-            </div>
-            <div className='wrapper'>
-                <AlertCard/>
-                <AlertCard/>
-                <AlertCard/>
-            </div>
-        </div> */}
         <div className='measurment-cards-wrapper mt-22'>
             <div className='section-title'>
                 <h5>Lastest Measurements</h5>

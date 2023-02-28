@@ -99,7 +99,11 @@
         "d4":"Search for Patient or Clinician",
 
         "SideBar": {
-            "d1": "Dashboard",
+            "title1":"Dashboard",
+            "title2":"My Clinicians",
+            "title3":"Edit Profile",
+            "title4":"Link Device",
+            
             "d2": "Patients",
             "d3": "Clinicians"
         },
@@ -183,6 +187,15 @@
             "b1":"Search"
         }
     },
+    "CliniciansRequestsTable":{
+        "heading":"Clinicians Requests",
+        "tableCell1":"Name",
+        "tableCell2":"Email",
+        "tableCell3":"Phone",
+        "tableCell4":"Connected Patients",
+        "tableCell5":"Pending Patients",
+        "notFound":"You have not added any clincian yet."
+    },
 
     "PractitionersCard":{
         "message1":"No result found for your search.",
@@ -229,7 +242,4 @@
         }
     }
 
-
-    
-    
 }

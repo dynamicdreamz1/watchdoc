@@ -1,9 +1,6 @@
 .errorMessage{
     color: red;
-    height: 13px;
 }
-
 .SuccessMessage{
     color: green;
-    height: 20px;
 }

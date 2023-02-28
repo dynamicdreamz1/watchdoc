@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Phone() {
+export default function Phone({data}) {
+  // console.log(data)
   return (
     <>
-    <div className='phone'><span>07 3519 6963</span></div>
+    {/* <div className='phone'><span>{data.contact_number}</span></div> */}
     </>
   )
 }

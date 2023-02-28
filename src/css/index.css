@@ -85,6 +85,8 @@ body span {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
 }
 form input {
   background: #FFFFFF;
@@ -96,8 +98,10 @@ form input {
   font-size: 16px;
   line-height: 20px;
   padding: 8px 12px;
-  margin-bottom: 20px;
   font-family: 'Source Sans Pro', sans-serif;
+}
+form .input-block {
+  margin-bottom: 20px;
 }
 form input::placeholder {
   color: #C6C6C6;
@@ -119,6 +123,7 @@ button[type="submit"] {
   line-height: 22px;
   padding: 13px 10px;
   cursor: pointer;
+  margin-top: 15px;
 }
 .phone-number {
   text-decoration: none;
@@ -188,6 +193,7 @@ button {
   color: #C6C6C6;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin-bottom: 0;
 }
 .radio-buttons .radio-button input[type="radio"] {
   margin: 0;
@@ -212,8 +218,28 @@ button {
 .varification-page-wrapper form .input-block {
   margin-bottom: 12px;
 }
-.varification-page-wrapper button[type="submit"] {
-  margin-top: 15px;
+/* Skeleton */
+body .MuiPaper-root.table-skeleton .MuiTableCell-root {
+  border: 0;
+  padding: 14px 20px;
+  background-color: #fff;
+}
+body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
+  background-color: rgba(249, 249, 249, 0.5);
+}
+.profile-skeleton {
+  display: flex;
+  align-items: center;
+}
+.profile-skeleton .user-info {
+  width: calc(100% - 40px);
+  padding-left: 10px;
+}
+.profile-skeleton .user-avtar {
+  width: 40px;
+}
+.profile-skeleton .user-info .MuiSkeleton-root:first-child {
+  width: 70%;
 }
 /* Content Wrapper */
 .content-wrapper {
@@ -319,6 +345,7 @@ button {
 .account-owner .info span {
   font-size: 13px;
   line-height: 13px;
+  text-transform: capitalize;
 }
 .account-owner .info {
   padding-right: 12px;
@@ -357,6 +384,18 @@ button {
   font-size: 26px;
   line-height: 30px;
   font-weight: 300;
+  text-transform: capitalize;
+}
+.content-wrapper .aside .top-header-block .page-title h1 {
+  display: flex;
+  align-items: center;
+}
+.content-wrapper .aside .top-header-block .page-title h1 button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  margin-left: 15px;
 }
 .content-wrapper .aside .top-header-block {
   gap: 15px;
@@ -373,6 +412,8 @@ body .MuiPaper-root {
   color: #000;
   box-shadow: none;
   font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
 }
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-head {
   font-size: 14px;
@@ -1088,8 +1129,11 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 17px;
 }
 /* Link Devices */
-.content-wrapper .aside .devices-wrapper {
+.content-wrapper .aside .devices-wrapper,
+.content-wrapper .aside #main_form {
   width: 510px;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 .link-device .title-block {
   margin-bottom: 30px;
