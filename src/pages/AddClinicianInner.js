@@ -8,21 +8,23 @@ import CliniciansRequestsTable from '../components/Clinician/CliniciansRequestsT
 import { TableSkeleton } from '../Utility/Skeleton';
 
 export default function AddClinicianInner() {
+  
+  const [status,setStatus]=useState(false)
+  const [toggle,setToggle]=useState(false)
 
-  const [show,setShow]=useState(false)
   return (
     <>
     <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
+          <Header toggle={toggle} setToggle={setToggle}/>
+
+           {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/> : "" }
           <Header />
           <TableSkeleton/>
           <CliniciansRequestsTable/>
           <div className='space-40'></div>
-          <button type='button' onClick={()=>setShow(true)}>Add</button>
-          {
-            show?<AddClinician/>: null
-          }
+          <CliniciansRequestsTable/>
         </div>
     </div>
     </>
