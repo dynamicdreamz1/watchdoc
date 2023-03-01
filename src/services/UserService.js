@@ -32,6 +32,24 @@ let headersWithToken ={
     Authorization: `Bearer ${token}`
 }
 
+export const fetchCurrentUser = async () =>{
+
+
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}me`,
+            headers: headersWithToken
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
+   
+
+}
+
 
 export const RegisterMobNumber = async (data) => {
     try {

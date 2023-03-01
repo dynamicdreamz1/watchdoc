@@ -1,20 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ProfileCreation } from '../../../services/UserService'
+import { UserContext } from '../../../Store/Context'
 import { StoreCookie } from '../../../Utility/sessionStore'
 
 export const EditProfile = () => {
-    const [firstName, SetFirstName] = useState('')
-    const [preferredFirstName, setPreferredFirstName] = useState('')
-    const [lastName, SetLastName] = useState('')
-    const [dob, SetDOB] = useState('')
-    const [sex, SetSex] = useState('')
-    const [weight, SetWeight] = useState('')
-    const [height, SetHeight] = useState('')
+
+
+    let userpforle =[];
+    const {currentUserData,setCurrentUserData} = useContext(UserContext);
+    const {userData} = currentUserData;
+
+
+     // eslint-disable-next-line array-callback-return
+     userData?.meta_data?.map((item,i) =>{
+            userpforle[item?.meta_key] =item?.meta_value;
+     })
+    
+    const [firstName, SetFirstName] = useState(userpforle?.first_name)
+    const [preferredFirstName, setPreferredFirstName] = useState()
+    const [lastName, SetLastName] = useState(userpforle?.last_name)
+    const [dob, SetDOB] = useState(userpforle?.dob)
+    const [sex, SetSex] = useState(userpforle?.sex)
+    const [weight, SetWeight] = useState(userpforle?.weight)
+    const [height, SetHeight] = useState(userpforle?.height)
     const [message, setMessage] = useState('')
     const [errorN, setErrorN] = useState('')
-    const [success, setSuccess] = useState(false)
+    //const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
    
@@ -63,41 +76,29 @@ export const EditProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    if (res?.response?.status===422) {
-                        setErrorN(t('EditProfilePage.error.e7'))
-                        SetDOB("")
-                        setLoading(false)
-                    }else
-                    if(res?.response?.status===401){
-                        setLoading(false)
-                        setErrorN(t('EditProfilePage.error.e8'))
-                    }
-                    let Fname = (res.data.user_data[0].meta_value)
-                    StoreCookie.setItem('name', Fname)
-                    let profileCheck = (res.data.profile_created)
-                    setMessage(t('EditProfilePage.message.m1'))
-                    setSuccess(true)
-                    StoreCookie.setItem('profile', profileCheck)
-                    setLoading(false)
-                    setErrorN("")
+                   
+                   StoreCookie.setItem("user_details",res?.data);
+                   setCurrentUserData({...currentUserData,userData:res?.data})
+                   setMessage(t('EditProfilePage.message.m1'))
+                   setLoading(false)
                 })
                 .catch((error) => {
                     return error
                 })
         }
     }
-    useEffect(() => {
-        if (success === true) {
-            SetFirstName("")
-            setPreferredFirstName("")
-            SetLastName("")
-            SetDOB("")
-            SetSex("")
-            SetWeight("")
-            SetHeight("")
-            document.getElementById('main_form').reset()
-        }
-    },[success])
+    // useEffect(() => {
+    //     if (success === true) {
+    //         SetFirstName("")
+    //         setPreferredFirstName("")
+    //         SetLastName("")
+    //         SetDOB("")
+    //         SetSex("")
+    //         SetWeight("")
+    //         SetHeight("")
+    //         document.getElementById('main_form').reset()
+    //     }
+    // },[success])
 
     return (
         <>
@@ -124,15 +125,15 @@ export const EditProfile = () => {
                     <label htmlFor="exampleInputSex" >{t('EditProfilePage.form.f4')}</label>
                     <div className='radio-buttons'>
                         <div className='radio-button'>
-                            <input type="radio" id="male" name="sex" value="Male" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={sex==="male" ? 'checked':'' } type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="male">{t('EditProfilePage.form.f10')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input type="radio" id="female" name="sex" value="Female" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={sex==="female" ? 'checked':'' } type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="female">{t('EditProfilePage.form.f11')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input type="radio" id="other" name="sex" value="Other" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={sex==="other" ? 'checked':'' } type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="other">{t('EditProfilePage.form.f12')}</label>
                         </div>
                     </div>

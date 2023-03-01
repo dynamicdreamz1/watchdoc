@@ -1,0 +1,188 @@
+{
+    "RegisterPage": {
+        "form": {
+            "f1": "Email address",
+            "f2": "Continue",
+            "f3": "OR",
+            "f4": "Continue with Google",
+            "f5": "Continue with Apple",
+            "f6": "Continue with SSO"
+        },
+        "error": {
+            "e1": "The email field is required."
+        },
+        "register": {
+            "r1": "Register Here"
+        },
+        "message": {
+            "m1": "We have sent you verification code."
+        },
+        "loader": {
+            "l1": "Loading..."
+        }
+    },
+    "CreateProfilePage": {
+        "register": {
+            "r1": "About You"
+        },
+        "form": {
+            "f1": "First Name",
+            "f2": "Last Name",
+            "f3": "Date of Birth",
+            "f4": "Sex",
+            "f5": "Male",
+            "f6": "Female",
+            "f7": "Weight (kg)",
+            "f8": "Height (cm)",
+            "f9": "Submit",
+            "f10": "Male",
+            "f11": "Female",
+            "f12": "Other",
+            "f13": "Your First Name",
+            "f14": "Your Last Name",
+            "f15": "Your Weight",
+            "f16": "Your Height"
+        },
+        "error": {
+            "e1": "The first name field is required.",
+            "e2": "The last name field is required.",
+            "e3": "The DOB field is required.",
+            "e4": "The weight field is required.",
+            "e5": "The height field is required.",
+            "e6": "The sex field is required.",
+            "e7": "Please select date in DD/MM/YYYY format.",
+            "e8": "Unauthenticated."
+        },
+        "message": {
+            "m1": "User profile updated successfully."
+        },
+        "loader": {
+            "l1": "Loading..."
+        }
+    },
+    "VerificationPage": {
+        "error": {
+            "e1": "Please enter verification code.",
+            "e2": "Please enter valid verification code."
+        },
+        "form": {
+            "f1": "We have sent a verification code to the email address",
+            "f2": "Please enter it here.",
+            "f3": "Verification code",
+            "f4": "Enter Verification Code",
+            "f5": "Next",
+            "f6": "Check your email",
+            "f7":"Resend Code"
+        },
+        "message": {
+            "m1": "Verfication successfully done."
+        }
+    },
+
+    "useConsent":{
+        "heading": "Your Health Data",
+        "p1":"Any health data we process will be in compliance of personal data laws and we will never share it without your consent. At any time you can request all your stored data to be permanently deleted.",
+
+        "policy":"Privacy Policy",
+        "a1":"I agree to the WatchDoc Privacy Policy",
+       "heading2" :"Using WatchDoc",
+       "p2":"It is important you read and agree to our Terms of Use that define how WatchDoc works and how you should use it.",
+       "a2":"Terms of Use",
+       "a3":"I agree to the WatchDoc Terms of Use",
+       "b1":"Next"
+    },
+
+    "DashboardPage": {
+        "d1": "Thanks",
+        "d2": "your profile is complete.",
+        "d3":"Dashboard",
+        "d4":"Search for Patient or Clinician",
+
+        "SideBar": {
+            "d1": "Dashboard",
+            "d2": "Patients",
+            "d3": "Clinicians"
+        },
+
+        "Aside" : {
+             "CliniciansRequestsTable":{
+                "l1":"Name" ,
+                "l2": "Email",
+                "l3": "Phone",
+                "l4":"Connected Patients",
+                "l5":"Pending Patients"
+             }
+        },
+
+        "SideButton":{
+            "d1":"Newest to Oldest",
+            "d2":"Oldest to Newest",
+            "d3":"View All"
+        }
+    
+    },
+    "NoMatchPage": {
+        "mainPage": {
+            "a1": "Error 404: Page Not Found",
+            "a2": "Go Back"
+        }
+    },
+
+    "UserConsent":{
+        "r1":"Please indicate that you have read and agree to the Privacy Policy and terms of use."
+    },
+
+    "mobileNumberVerificationPage":{
+        "error":{
+            "e1":"Please enter your mobile number.",
+            "e2":"Please enter valid 10 digit mobile number."
+            
+        },
+        "heading":"Your contact details",
+        "p1":"Please enter your mobile number below.",
+        "l1":"Mobile Number",
+        "placeholder":"Your mobile number",
+        "b1":"Next"
+    },
+    "verifyMobile":{
+        "e1":"Please enter verification code.",
+        "e2":"Please enter valid varification code.",
+        "heading":"Verification",
+        "p1":"We have sent a verification code to your phone. Please enter it here.",
+        "label":"Verification Code",
+        "placeholder":"Your mobile number",
+        "b1":"Resend Code",
+        "b2":"Next"
+
+    },
+
+    "ThankYouPage":{
+        "p1":"Thanks",
+        "p2":"your profile is complete. Now let’s connect to your devices.",
+        "b1":"Next"
+    },
+
+    
+    "ConnectingClinician":{
+        "heading":"Clinicians",
+        "heading2":"Connecting to Clinicians",
+        "p1":"When you share your health data with your clinician they can monitor your health and personalise your health check alert settings. "
+    },
+
+    "AddClinicianButton":{
+        "heading":"Your Clinician Connections",
+        "e1":"Add Your First Clinician"
+    },
+
+    "AddClinician":{
+        "p1":"Find and add your clinician to your WatchDoc account.",
+        "form":{
+            "placeholder1":"Clinician’s Name",
+            "placeholder2":"Practice Name or Provider Number",
+            "placeholder3":"Suburb or Postcode",
+            "b1":"Search"
+        }
+    }
+    
+    
+}
