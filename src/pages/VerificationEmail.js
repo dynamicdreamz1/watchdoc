@@ -55,28 +55,21 @@ const VerificationEmail = () => {
 
             VerifyEmail(data)
                 .then((res) => {
-                    if (typeof res === "string") {
-                        setError(t('VerificationPage.error.e2'))
-                        console.log(error)
-                       
-                    } else {
-
                         const {data} = res;
                         const {token,user_details} = data;
                         const {profile_created,is_active,roles} = user_details;
                         StoreCookie.setItem("token", token);
+                        localStorage.setItem("token", token)
                         StoreCookie.setItem("profileCheck", profile_created);
                         StoreCookie.setItem("user_details", JSON.stringify(user_details));
                         StoreCookie.setItem("role", roles[0].name);
                         StoreCookie.setItem("is_active", is_active);
                         window.location.reload();
                         console.log(res)
-                        
-                     
-                    }
+    
                 })
                 .catch((error) => {
-                    return error
+                        setError(t('VerificationPage.error.e2'))
                 })
         }
     }

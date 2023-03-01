@@ -51,7 +51,7 @@ export async function ProfileCreation(data) {
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/upsertprofile`,
             data: data,
-            headers: { "Content-Type": "multipart/form-data", Accept: "application/json,", Authorization: `Bearer ${token}` },
+            headers: { "Content-Type": "multipart/form-data", Accept: "application/json", Authorization: `Bearer ${token}` },
         })
         return response;
     } catch (error) {
@@ -68,7 +68,6 @@ export async function RegisterUser(data) {
             data: data,
             headers: { "Content-Type": "multipart/form-data" }
         })
-        console.log(response)
         return response.data;
     } catch (error) {
         return error.response.data.message;
