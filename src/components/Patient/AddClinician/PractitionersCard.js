@@ -51,7 +51,7 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
         addDoctor(ID)
                 .then((res) => {
                     console.log(res)
-                    // setStatus()
+                    setStatus(!status)
                     
                 })
                 .catch((error) => {
