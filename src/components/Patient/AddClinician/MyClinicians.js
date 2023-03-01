@@ -50,7 +50,7 @@ export default function MyClinicians({status}) {
                     </TableHead>
                     <TableBody>
                         {data?.length > 0 && data?.map((el) => (
-                            <TableRow>
+                            <TableRow key={el.id}>
                                 <TableCell className='user-profile-cell'>
                                     <UserProfile data={el?.user_data} />
                                 </TableCell>

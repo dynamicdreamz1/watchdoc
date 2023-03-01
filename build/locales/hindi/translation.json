@@ -1,0 +1,12 @@
+{
+    "RegisterPage": {
+        "form": {
+            "f1": "Email addressHH",
+            "f2": "ContinueHH",
+            "f3": "OR",
+            "f4": "Continue with GoogleHH",
+            "f5": "Continue with AppleHH",
+            "f6": "Continue with SSOHH"
+        }
+    }
+}

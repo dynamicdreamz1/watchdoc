@@ -32,6 +32,24 @@ let headersWithToken ={
     Authorization: `Bearer ${token}`
 }
 
+export const fetchCurrentUser = async () =>{
+
+
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}me`,
+            headers: headersWithToken
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
+   
+
+}
+
 
 export const RegisterMobNumber = async (data) => {
     try {
@@ -71,7 +89,7 @@ export async function RegisterUser(data) {
             data: data,
             headers: headers
         })
-        console.log(response)
+        
         return response.data;
     } catch (error) {
         return error.response.data.message;
@@ -132,6 +150,6 @@ export const logout = () => {
     StoreCookie.removeItem("user_details");
     StoreCookie.removeItem("role");
     StoreCookie.removeItem("is_active");
-    //const response = await axios.post(API_ENDPOINT + "signout");
+   
     return true;
   };
