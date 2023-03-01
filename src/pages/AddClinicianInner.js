@@ -18,10 +18,10 @@ export default function AddClinicianInner() {
 
            {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/> : "" }
       
-          {/* <TableSkeleton/> */}
-        
+          {/* <Tab  leSkeleton/> */}
+          {/* <CliniciansRequestsTable/> */}
           <div className='space-40'></div>
-         
+          {/* <CliniciansRequestsTable/> */}
           <MyClinicians />
         </div>
     </div>

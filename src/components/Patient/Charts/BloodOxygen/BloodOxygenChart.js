@@ -43,7 +43,7 @@ const BloodOxygenChart = () => {
             markerType: "circle",
 			markerColor: "#00B8E2",
 			markerSize: 10,
-			toolTipContent: "Temperature: {x}°C Sales: {y}",
+			toolTipContent: "<span><strong>Time:</strong> {x}</span><br> <span><strong>Blood Oxygen:</strong> {y}%</span>",
 			dataPoints: [
                 { x: new Date(2023, 0, 16, 0, 0), y: 92},
                 { x: new Date(2023, 0, 16, 2, 0), y: 93},

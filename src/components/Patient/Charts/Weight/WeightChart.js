@@ -39,7 +39,7 @@ const WeightChart = () => {
             markerType: "circle",
 			markerColor: "#00B8E2",
 			markerSize: 10,
-			toolTipContent: "Temperature: {x}°C Sales: {y}",
+			toolTipContent: "<span><strong>Date:</strong> {x}<span><br> <span><strong>Weight:</strong></span> {y} kg",
 			dataPoints: [
                 { x: new Date(2023, 1, 1), y: 82},
                 { x: new Date(2023, 1, 2), y: 83},
