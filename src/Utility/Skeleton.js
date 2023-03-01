@@ -26,10 +26,10 @@ export const NoDataRecordedSkeleton = () => {
     return(
         <>
             <Stack spacing={1} className="no-data-recorded-skeleton d-flex align-items-center">
-                <span class="icon d-flex">
+                <span className="icon d-flex">
                     <Skeleton variant="circular" width={12} height={12} />
                 </span>
-                <span class="text">
+                <span className="text">
                     <Skeleton variant="text" />
                 </span>
             </Stack>
@@ -46,14 +46,14 @@ export const ReminderCardSkeleton = () => {
                         <Skeleton variant="rectangular" height={94}/>
                     </div>
                 </div>
-                <div class="content-block">
-                    <div class="r-title">
+                <div className="content-block">
+                    <div className="r-title">
                         <Skeleton variant="text" />
                     </div>
-                    <div class="days">
+                    <div className="days">
                         <Skeleton variant="rectangular" height={29} />
                     </div>
-                    <div class="reminder-date">
+                    <div className="reminder-date">
                         <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
                     </div>
                 </div>
