@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import React, { useContext } from 'react'
 import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
+import { MetaFormeting } from '../../Utility/functions';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -22,13 +23,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
+    const {first_name,last_name} =  MetaFormeting(currentUserData?.userData);
   
 
   return (
     <>
         <div className='account-owner'>
             <div className='info'>
-                <span className='uname'>{`${currentUserData?.userData?.first_name} ${currentUserData?.userData?.last_name}`}</span>
+                <span className='uname'>{`${first_name} ${last_name}`}</span>
                 <span className='uposition'>{currentUserData?.role === "User" ? 'Patient' : "Clinicial"}</span>
             </div>
             <div className='image'>
