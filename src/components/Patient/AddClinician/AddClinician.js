@@ -14,9 +14,10 @@ export default function AddClinician({status,setStatus}) {
   const [practitionerName, setPractitionerName] = useState('')
   const [code, setCode] = useState('')
   const {t}=useTranslation();
+  const [show,setShow]=useState(false)
 
   const [clinicianData,setClinicianData]=useState([])
-  const [show,setShow]=useState(false)
+  
  
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -43,8 +44,8 @@ export default function AddClinician({status,setStatus}) {
     <>
      <UserContext.Provider value={{clinicianName,practitionerName,code}}>
       <ConnectingClinician/>
-      <div onClick={()=>setShow(!show)}> 
-      <AddClinicianButton/>
+      <div> 
+      <AddClinicianButton show={show} setShow={setShow}/>
       </div>
       {show ? 
       <>

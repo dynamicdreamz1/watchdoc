@@ -5,12 +5,13 @@ import UserProfile from '../../common/UserProfile';
 import Email from '../../common/Table/Email';
 import Phone from '../../common/Table/Phone';
 import { getClinicianData } from '../../../services/ClinicianService';
+import { useTranslation } from 'react-i18next';
 
 
 export default function MyClinicians({status}) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
-
+    const {t}=useTranslation();
     useEffect(() => {
         setLoading(true)
         getClinicianData()
@@ -31,7 +32,7 @@ export default function MyClinicians({status}) {
             <TableContainer component={Paper} className="clinicians-table">
                 <div className='table-title'>
                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
-                    <h4>My Clinicians</h4>
+                    <h4>{t('MyClinicians.heading1')}</h4>
                 </div>
                 
                
@@ -41,15 +42,15 @@ export default function MyClinicians({status}) {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Phone</TableCell>
-                            <TableCell align="center">Status</TableCell>
+                            <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
+                            <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
+                            <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
+                            <TableCell align="center">{t('MyClinicians.tableCell1')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {data?.length > 0 && data?.map((el) => (
-                            <TableRow>
+                            <TableRow key={el.id}>
                                 <TableCell className='user-profile-cell'>
                                     <UserProfile data={el?.user_data} />
                                 </TableCell>
@@ -63,7 +64,7 @@ export default function MyClinicians({status}) {
                             </TableRow>
                         ))}
                     </TableBody>
-                </Table>  : "You have not added any clinician yet."} 
+                </Table>  : <>{t('MyClinicians.notAdd')}</>} 
                 </>
                 }
  

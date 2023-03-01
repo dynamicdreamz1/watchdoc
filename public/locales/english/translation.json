@@ -202,6 +202,15 @@
         "heading1":"Practitioners"
     },
 
+    "MyClinicians":{
+        "heading1":"My Clinicians",
+        "tableCell1":"Name",
+        "tableCell2":"Email",
+        "tableCell3":"Phone",
+        "tableCell4":"Status",
+        "notAdd":"You have not added any clinician yet."
+    },
+
     "EditProfilePage":{
         "form": {
             "f1": "First Name",
