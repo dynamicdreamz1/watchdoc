@@ -59,7 +59,6 @@ const VerificationEmail = () => {
                         const {token,user_details} = data;
                         const {profile_created,is_active,roles} = user_details;
                         StoreCookie.setItem("token", token);
-                        localStorage.setItem("token", token)
                         StoreCookie.setItem("profileCheck", profile_created);
                         StoreCookie.setItem("user_details", JSON.stringify(user_details));
                         StoreCookie.setItem("role", roles[0].name);
