@@ -55,12 +55,6 @@ const VerificationEmail = () => {
 
             VerifyEmail(data)
                 .then((res) => {
-                    if (typeof res === "string") {
-                        setError(t('VerificationPage.error.e2'))
-                        console.log(error)
-                       
-                    } else {
-
                         const {data} = res;
                         const {token,user_details} = data;
                         const {profile_created,is_active,roles} = user_details;
@@ -71,12 +65,10 @@ const VerificationEmail = () => {
                         StoreCookie.setItem("is_active", is_active);
                         window.location.reload();
                         console.log(res)
-                        
-                     
-                    }
+    
                 })
                 .catch((error) => {
-                    return error
+                        setError(t('VerificationPage.error.e2'))
                 })
         }
     }

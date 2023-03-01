@@ -6,6 +6,7 @@ import PatientBloodPressureDetails from './Charts/BloodPressure/PatientBloodPres
 import NoDataRecorded from './NoData/NoDataRecorded'
 import PatientBloodOxygenDetails from './Charts/BloodOxygen/PatientBloodOxygenDetails'
 import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
+import { ChartSkeleton, MeasurmentCardSkeleton, NoDataRecordedSkeleton, ReminderCardSkeleton } from '../../Utility/Skeleton'
 
 
 export default function PatientDashboard() {
@@ -69,6 +70,7 @@ export default function PatientDashboard() {
                 <h5>Lastest Measurements</h5>
             </div>
             <div className='wrapper d-flex flex-wrap'>
+                <MeasurmentCardSkeleton/>
                 {
                     measurment.map(block => {
                         return <MeasurementCard block={block}/>
@@ -81,6 +83,7 @@ export default function PatientDashboard() {
                 <h5>Reminders</h5>
             </div>
             <div className='wrapper d-flex flex-wrap'>
+                <ReminderCardSkeleton/>
                 <ReminderCard/>
                 <ReminderCard/>
                 <ReminderCard/>
@@ -90,6 +93,7 @@ export default function PatientDashboard() {
             <div className='section-title'>
                 <h5>Heart Rate</h5>
             </div>
+            <ChartSkeleton/>
             <PatientHeartRateDetails/>
         </div>
         <div className='mt-22'>
@@ -114,12 +118,14 @@ export default function PatientDashboard() {
             <div className='section-title'>
                 <h5>Blood Glucose</h5>
             </div>
+            <NoDataRecordedSkeleton/>
             <NoDataRecorded/>
         </div>
         <div className='mt-22'>
             <div className='section-title'>
                 <h5>Temperature</h5>
             </div>
+            <NoDataRecordedSkeleton/>
             <NoDataRecorded/>
         </div>
     </>

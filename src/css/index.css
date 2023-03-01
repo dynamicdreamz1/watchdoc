@@ -860,8 +860,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .measurment-card .m-status.normal {
   background-color: #86DF2F;
 }
-
-.measurment-card {
+.measurment-card,.measurment-skeleton {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 10px 10px 10px 18px;
@@ -879,6 +878,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   color: #000;
+  width: calc(100% - 24px);
 }
 
 .measurment-result .digit,
@@ -893,7 +893,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 20px;
   margin-left: 8px;
 }
-
 .measurment-result {
   margin-top: 12px;
   margin-bottom: 12px;
@@ -914,9 +913,8 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 12px;
   line-height: 15px;
 }
-
 /* Reminder Card */
-.reminder-card {
+.reminder-card,.reminder-card-skeleton {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 20px 18px 26px 18px;
@@ -924,13 +922,12 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   align-items: center;
   flex-wrap: wrap;
   max-width: 340px;
+  width: 100%;
 }
-
 .reminder-card .icon-block {
   width: 65px;
   padding-right: 15px;
 }
-
 .reminder-card .content-block {
   width: calc(100% - 65px);
 }
@@ -939,7 +936,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .reminder-card .content-block .reminder-date span {
@@ -983,7 +980,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .measurment-cards-wrapper .wrapper {
   column-gap: 15px;
 }
-
 /* Add clinician Page */
 .clinician-connection-wrapper,
 .add-clinician-button-block,
@@ -1237,16 +1233,16 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 }
 
 /* Patient Heart Rate Details */
-.phrd {
+.phrd,.chart-skeleton {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
+  align-items: flex-start;
 }
-
 .phrd .cards-wrapper {
   width: 31.5%;
+  row-gap: 10px;
 }
-
 .phrd .chart-wrapper {
   width: 68.5%;
   padding-left: 35px;
@@ -1259,29 +1255,26 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   background-color: #F9F9F9;
   border-radius: 5px;
   padding: 12px 16px 12px 14px;
+  width: 100%;
 }
 
 .chart-details-card .measurment-result {
   margin-top: 0;
   margin-bottom: 0;
 }
-
 .chart-details-card,
 .show-all-data-card,
 .alert-trigger-card {
   margin-bottom: 10px;
 }
-
 .canvasjs-chart-credit {
   display: none !important;
 }
-
 .no-data-recorded {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
 }
-
 .no-data-recorded .icon {
   margin-right: 14px;
 }
@@ -1289,7 +1282,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .chart-wrapper .MuiBox-root {
   padding: 0;
 }
-
 /* Chart Tabs */
 .chart-tabs button {
   background: #F9F9F9;

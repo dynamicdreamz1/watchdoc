@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ProfileCreation } from '../../../services/UserService'
@@ -14,7 +14,7 @@ export const EditProfile = () => {
     const [height, SetHeight] = useState('')
     const [message, setMessage] = useState('')
     const [errorN, setErrorN] = useState('')
-    //const [success, setSuccess] = useState(false)
+    const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
    
@@ -63,39 +63,41 @@ export const EditProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    console.log(res.data.profile_created);
+                    if (res?.response?.status===422) {
+                        setErrorN(t('EditProfilePage.error.e7'))
+                        SetDOB("")
+                        setLoading(false)
+                    }else
+                    if(res?.response?.status===401){
+                        setLoading(false)
+                        setErrorN(t('EditProfilePage.error.e8'))
+                    }
                     let Fname = (res.data.user_data[0].meta_value)
                     StoreCookie.setItem('name', Fname)
                     let profileCheck = (res.data.profile_created)
                     setMessage(t('EditProfilePage.message.m1'))
-                    //setSuccess(true)
+                    setSuccess(true)
                     StoreCookie.setItem('profile', profileCheck)
-             
                     setLoading(false)
+                    setErrorN("")
                 })
-                .catch((errorMessage) => {
-
-                    if (errorMessage === "The dob does not match the format Y-m-d.") {
-                        setErrorN(t('EditProfilePage.error.e7'))
-
-                        console.log(errorMessage)
-                        SetDOB("")
-                        setLoading(false)
-                    }
-
-                    else if (errorMessage === "Unauthenticated.") {
-                        //  setSuccess(true)
-                        setLoading(false)
-                        console.log(errorMessage)
-                        setErrorN(t('EditProfilePage.error.e8'))
-                    }
-                    else {
-                        console.log(errorMessage)
-                        setLoading(false)
-                    }
+                .catch((error) => {
+                    return error
                 })
         }
     }
+    useEffect(() => {
+        if (success === true) {
+            SetFirstName("")
+            setPreferredFirstName("")
+            SetLastName("")
+            SetDOB("")
+            SetSex("")
+            SetWeight("")
+            SetHeight("")
+            document.getElementById('main_form').reset()
+        }
+    },[success])
 
     return (
         <>
