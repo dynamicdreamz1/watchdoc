@@ -4,3 +4,6 @@
 .SuccessMessage{
     color: green;
 }
+.content-wrapper .aside #main_form .SuccessMessage {
+    margin-bottom: 20px;
+}
