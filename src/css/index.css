@@ -23,6 +23,9 @@ span,h1,h2,h3,h4,h5,h6,button {
 :focus-visible {
   outline: 0;
 }
+input[type="submit"] {
+  cursor: pointer;
+}
 @media (min-width: 576px) {
   .container {
       max-width: 540px;
@@ -295,7 +298,7 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .sidebar .logo {
   padding: 30px 26px;
 }
-.sidebar nav ul li .css-cveggr-MuiListItemIcon-root,
+.sidebar nav ul li .MuiListItemIcon-root, 
 .logout button .icon {
   min-width: auto;
   width: 30px;
@@ -308,8 +311,7 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .logout button .text {
   color: red;
 }
-.sidebar nav ul li .css-tlelie-MuiListItemText-root,
-.logout button .text {
+.sidebar nav ul li .MuiListItemText-root, .logout button .text {
   width: calc(100% - 30px);
   margin: 0;
 }
@@ -699,7 +701,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .measurment-card .m-status.normal {
   background-color: #86DF2F;
 }
-.measurment-card {
+.measurment-card,.measurment-skeleton {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 10px 10px 10px 18px;
@@ -715,6 +717,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   color: #000;
+  width: calc(100% - 24px);
 }
 .measurment-result .digit,
 .chart-title-block .range .range-number .digit {
@@ -727,7 +730,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 20px;
   margin-left: 8px;
 }
-.measurment-result {
+.measurment-result,.measurment-skeleton .measurment-result {
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -744,8 +747,15 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 12px;
   line-height: 15px;
 }
+.measurment-skeleton .m-status .MuiSkeleton-root {display: block;margin-left: auto;}
+.measurment-skeleton .measurment-title {
+    margin-top: 0;
+}
+.measurment-skeleton .measurment-title .name .MuiSkeleton-root {
+    width: 88%;
+}
 /* Reminder Card */
-.reminder-card {
+.reminder-card,.reminder-card-skeleton {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 20px 18px 26px 18px;
@@ -753,19 +763,20 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   align-items: center;
   flex-wrap: wrap;
   max-width: 340px;
+  width: 100%;
 }
-.reminder-card .icon-block {
+.reminder-card .icon-block,.reminder-card-skeleton .icon-block {
   width: 65px;
   padding-right: 15px;
 }
-.reminder-card .content-block {
+.reminder-card .content-block,.reminder-card-skeleton .content-block {
   width: calc(100% - 65px);
 }
 .reminder-card .content-block .r-title h4 {
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 .reminder-card .content-block .reminder-date span {
   font-size: 16px;
@@ -801,6 +812,24 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 }
 .measurment-cards-wrapper .wrapper {
   column-gap: 15px;
+}
+body .reminder-card-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
+.reminder-card-skeleton .content-block {
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.reminder-card .content-block .r-title {
+  margin-bottom: 15px;
+}
+.reminder-card-skeleton .content-block .r-title,.reminder-card-skeleton .content-block .days,.reminder-card-skeleton .content-block .reminder-date {
+  width: 100%;
 }
 /* Add clinician Page */
 .clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box {
@@ -1009,15 +1038,17 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 18px;
 }
 /* Patient Heart Rate Details */
-.phrd {
+.phrd,.chart-skeleton {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
+  align-items: flex-start;
 }
-.phrd .cards-wrapper {
+.phrd .cards-wrapper,.chart-skeleton .cards-wrapper {
   width: 31.5%;
+  row-gap: 10px;
 }
-.phrd .chart-wrapper {
+.phrd .chart-wrapper,.chart-skeleton .chart-wrapper {
   width: 68.5%;
   padding-left: 35px;
   padding-right: 40px;
@@ -1028,29 +1059,52 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   background-color: #F9F9F9;
   border-radius: 5px;
   padding: 12px 16px 12px 14px;
+  width: 100%;
 }
 .chart-details-card .measurment-result {
   margin-top: 0;
   margin-bottom: 0;
 }
-.chart-details-card,
-.show-all-data-card,
-.alert-trigger-card {
-  margin-bottom: 10px;
-}
 .canvasjs-chart-credit {
   display: none !important;
 }
-.no-data-recorded {
+.no-data-recorded,.no-data-recorded-skeleton {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
 }
-.no-data-recorded .icon {
+.no-data-recorded .icon,.no-data-recorded-skeleton .icon {
   margin-right: 14px;
 }
 .chart-wrapper .MuiBox-root {
   padding: 0;
+}
+body .no-data-recorded-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+}
+body .no-data-recorded-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+}
+body .no-data-recorded-skeleton .text {
+  margin-top: 0;
+}
+body .no-data-recorded-skeleton .text .MuiSkeleton-root {
+  width: 10%;
+}
+body .no-data-recorded-skeleton .text {
+  width: calc(100% - 26px);
+}
+.chart-skeleton .cards-wrapper .MuiSkeleton-root {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.chart-skeleton .cards-wrapper {
+    row-gap: 10px;
 }
 /* Chart Tabs */
 .chart-tabs button {

@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Email({data}) {
-  
+export default function Email({ email }) {
+
   return (
     <>
-    {/* <div className='email'><span>{data.email}</span></div> */}
+      <div className='email'><span>{email}</span></div>
     </>
   )
 }

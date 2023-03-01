@@ -45,7 +45,7 @@ export default function HeartRateChart() {
                 axisYType: "secondary",
                 indexLabel: "",
                 xValueFormatString: "MMM YYYY",
-                toolTipContent: "<strong>{x}</strong></br> Max: {y[1]} °C<br/> Min: {y[0]} °C",
+                toolTipContent: "<strong>{x}</strong></br> <span><strong>Max:</strong> {y[1]} bpm</span><br/><span><strong> Min:</strong> {y[0]} bpm</span>",
                 dataPoints: [
                   { x: new Date(2023, 0, 16, 0, 0), y: [10, 40]},
                   { x: new Date(2023, 0, 16, 0, 30), y: [30, 60]},

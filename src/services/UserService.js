@@ -21,6 +21,11 @@ export const getCurrentUserIsActive=()=>{
 
 let token = StoreCookie.getItem('token')
 
+let headers ={
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+}
+
 let headersWithToken ={
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
@@ -48,7 +53,6 @@ export const fetchCurrentUser = async () =>{
 
 export const RegisterMobNumber = async (data) => {
     try {
-        // let token = StoreCookie.getItem('token')
         const response = await axios({
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}user/mobile_number_verify`,
@@ -64,12 +68,11 @@ export const RegisterMobNumber = async (data) => {
 
 export async function ProfileCreation(data) {
     try {
-        let token = StoreCookie.getItem('token')
         const response = await axios({
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/upsertprofile`,
             data: data,
-            headers: { "Content-Type": "multipart/form-data", Accept: "application/json,", Authorization: `Bearer ${token}` },
+            headers: headersWithToken,
         })
         return response;
     } catch (error) {
@@ -84,7 +87,7 @@ export async function RegisterUser(data) {
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}register`,
             data: data,
-            headers: { "Content-Type": "multipart/form-data" }
+            headers: headers
         })
         console.log(response)
         return response.data;
@@ -96,17 +99,11 @@ export async function RegisterUser(data) {
 
 export const userConsent = async (data) => {
     try {
-        let token = sessionStorage.getItem('token')
         const response = await axios({
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}user/user_terms`,
             data: data,
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Accept": "application/json",
-                Authorization: `Bearer ${token}`
-
-            }
+            headers: headersWithToken
         })
         return response;
     } catch (error) {
@@ -121,7 +118,7 @@ export async function VerifyEmail(data) {
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/verification`,
             data: data,
-            headers: { "Content-Type": "multipart/form-data", Accept: "application/json" }
+            headers: headers
         })
         return response;
     } catch (error) {
@@ -132,17 +129,12 @@ export async function VerifyEmail(data) {
 
 export const VerifyMobileNumber = async (data) => {
     try {
-        let token = StoreCookie.getItem('token')
         const response = await axios({
 
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/check_mobile_verification`,
             data: data,
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Accept": "application/json",
-                Authorization: `Bearer ${token}`
-            }
+            headers: headersWithToken
         })
         return response;
     } catch (error) {

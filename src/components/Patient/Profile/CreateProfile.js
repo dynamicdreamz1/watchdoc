@@ -46,7 +46,16 @@ const CreateProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    console.log(res.data.profile_created);
+                    if (res?.response?.status===422) {
+                        setErrorN(t('CreateProfilePage.error.e7'))
+                        SetDOB("")
+                        setLoading(false)
+                    }else
+                    if(res?.response?.status===401){
+                        setSuccess(true)
+                        setLoading(false)
+                        setErrorN(t('CreateProfilePage.error.e8'))
+                    }
                     let Fname=(res.data.user_data[0].meta_value)
                     StoreCookie.setItem('name',Fname)
                     let profileCheck = (res.data.profile_created)
@@ -55,26 +64,8 @@ const CreateProfile = () => {
                     navigate('/contactdetails')
                     setLoading(false)
                 })
-                .catch((errorMessage) => {
-
-                    if (errorMessage === "The dob does not match the format Y-m-d.") {
-                        setErrorN(t('CreateProfilePage.error.e7'))
-
-                        console.log(errorMessage)
-                        SetDOB("")
-                        setLoading(false)
-                    }
-
-                    else if (errorMessage === "Unauthenticated.") {
-                        setSuccess(true)
-                        setLoading(false)
-                        console.log(errorMessage)
-                        setErrorN(t('CreateProfilePage.error.e8'))
-                    }
-                    else {
-                        console.log(errorMessage)
-                        setLoading(false)
-                    }
+                .catch((error) => {
+                    return error
                 })
         }
     }
@@ -83,6 +74,7 @@ const CreateProfile = () => {
         if (success === true) {
             SetFirstName("")
             SetLastName("")
+            setPreferredFirstName("")
             SetDOB("")
             document.getElementById('main_form').reset()
         }

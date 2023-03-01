@@ -1,21 +1,28 @@
 import { Avatar } from '@mui/material'
 import React from 'react'
 
-export default function UserProfile({data}) {
+export default function UserProfile({ data }) {
+  console.log(data);
   return (
     <>
-    <div className='user-profile'>
-        <div className='user-avtar'>
-            <Avatar alt="Avtar" src='' />
+      <span className='fname'>
+        <div className='user-profile'>
+          {data?.length > 0 && data?.map((el) => (
+            <>
+              {el?.meta_key === "image" ?
+                <div className='user-avtar'>
+                  <Avatar className='user-profile-avtar' alt="Avtar" src={el?.meta_value} />
+                </div>
+                : ""}
+              <div className='user-info'>
+                {el?.meta_key === "full_name" ? el?.meta_value : ""}
+              </div>
+            </>
+          ))}
         </div>
-        <div className='user-info'>
-            <span className='fname'>{data?.first_name} {data?.last_name}</span>
-            {/* <span className='position'>{data.hospital.map((elementValue,index)=>(
-              <React.Fragment key={index}>{elementValue}</React.Fragment>
-            ))},{data.address}
-            </span> */}
-        </div>
-    </div>
+      </span>
+
     </>
+
   )
 }
