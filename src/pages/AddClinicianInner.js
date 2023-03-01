@@ -22,7 +22,6 @@ export default function AddClinicianInner() {
       
           {/* <Tab  leSkeleton/> */}
           {/* <CliniciansRequestsTable/> */}
-          <div className='space-40'></div>
           {/* <CliniciansRequestsTable/> */}
           <MyClinicians />
         </div>
