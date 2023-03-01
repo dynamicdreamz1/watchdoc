@@ -4,8 +4,11 @@ import {searchClinician} from '../../../services/ClinicianService'
 import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard'
+import { createContext } from "react";
 
+export const UserContext = createContext();
 export default function AddClinician({status,setStatus}) {
+
 
   const [clinicianName, setClinicianName] = useState('')
   const [practitionerName, setPractitionerName] = useState('')
@@ -38,6 +41,7 @@ export default function AddClinician({status,setStatus}) {
 
   return (
     <>
+     <UserContext.Provider value={{clinicianName,practitionerName,code}}>
       <ConnectingClinician/>
       <div onClick={()=>setShow(!show)}> 
       <AddClinicianButton/>
@@ -64,7 +68,8 @@ export default function AddClinician({status,setStatus}) {
       </>
           : ""
       
-        }  
+        }
+        </UserContext.Provider>  
     </>
   )
 }

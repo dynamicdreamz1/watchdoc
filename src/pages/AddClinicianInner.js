@@ -1,9 +1,7 @@
 import React,{useState} from 'react'
 import Sidebar from '../components/Templates/Sidebar'
-
 import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
-
 import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 
 export default function AddClinicianInner() {
@@ -22,6 +20,7 @@ export default function AddClinicianInner() {
       
           {/* <Tab  leSkeleton/> */}
           {/* <CliniciansRequestsTable/> */}
+          <div className='space-40'></div>
           {/* <CliniciansRequestsTable/> */}
           <MyClinicians />
         </div>

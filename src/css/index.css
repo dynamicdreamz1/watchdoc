@@ -1228,3 +1228,7 @@ body .no-data-recorded-skeleton .text {
   width: calc(100% - 86px);
   padding-right: 30px;
 }
+
+.d-none{
+  display: none !important;
+}
