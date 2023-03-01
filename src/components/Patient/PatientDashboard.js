@@ -70,8 +70,8 @@ export default function PatientDashboard() {
             </div>
             <div className='wrapper d-flex flex-wrap'>
                 {
-                    measurment.map(block => {
-                        return <MeasurementCard block={block}/>
+                    measurment.map((block ,i)=> {
+                        return <MeasurementCard key={i} block={block}/>
                     })
                 }
             </div>
