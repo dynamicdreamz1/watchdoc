@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ProfileCreation } from '../../../services/UserService'
@@ -27,7 +27,7 @@ export const EditProfile = () => {
     const [height, SetHeight] = useState(userpforle?.height)
     const [message, setMessage] = useState('')
     const [errorN, setErrorN] = useState('')
-    const [success, setSuccess] = useState(false)
+    //const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
    
@@ -87,18 +87,18 @@ export const EditProfile = () => {
                 })
         }
     }
-    useEffect(() => {
-        if (success === true) {
-            SetFirstName("")
-            setPreferredFirstName("")
-            SetLastName("")
-            SetDOB("")
-            SetSex("")
-            SetWeight("")
-            SetHeight("")
-            document.getElementById('main_form').reset()
-        }
-    },[success])
+    // useEffect(() => {
+    //     if (success === true) {
+    //         SetFirstName("")
+    //         setPreferredFirstName("")
+    //         SetLastName("")
+    //         SetDOB("")
+    //         SetSex("")
+    //         SetWeight("")
+    //         SetHeight("")
+    //         document.getElementById('main_form').reset()
+    //     }
+    // },[success])
 
     return (
         <>
