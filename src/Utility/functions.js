@@ -14,7 +14,14 @@ export const ageCalc=(date)=>{
     //now calculate the age of the user  
     // eslint-disable-next-line no-undef
     return  Math.abs(year - 1970);  
-      
+}
 
 
+export const MetaFormeting=(metadata)=>{
+    let userpforle =[];
+      metadata?.meta_data?.map((item,i) =>{
+            userpforle[item?.meta_key] =item?.meta_value;
+    })
+
+    return userpforle;
 }

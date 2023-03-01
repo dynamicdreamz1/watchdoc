@@ -3,28 +3,19 @@ import { useTranslation } from 'react-i18next'
 
 import { ProfileCreation } from '../../../services/UserService'
 import { UserContext } from '../../../Store/Context'
+import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
 
 export const EditProfile = () => {
-
-
-    let userpforle =[];
     const {currentUserData,setCurrentUserData} = useContext(UserContext);
-    const {userData} = currentUserData;
-
-
-     // eslint-disable-next-line array-callback-return
-     userData?.meta_data?.map((item,i) =>{
-            userpforle[item?.meta_key] =item?.meta_value;
-     })
-    
-    const [firstName, SetFirstName] = useState(userpforle?.first_name)
-    const [preferredFirstName, setPreferredFirstName] = useState()
-    const [lastName, SetLastName] = useState(userpforle?.last_name)
-    const [dob, SetDOB] = useState(userpforle?.dob)
-    const [sex, SetSex] = useState(userpforle?.sex)
-    const [weight, SetWeight] = useState(userpforle?.weight)
-    const [height, SetHeight] = useState(userpforle?.height)
+    const {first_name,preferred_first_name,last_name,dob,sex,weight,height} =  MetaFormeting(currentUserData?.userData);
+    const [firstName, SetFirstName] = useState(first_name)
+    const [preferredFirstName, setPreferredFirstName] = useState(preferred_first_name)
+    const [lastName, SetLastName] = useState(last_name)
+    const [Dob, SetDOB] = useState(dob)
+    const [Sex, SetSex] = useState(sex)
+    const [Weight, SetWeight] = useState(weight)
+    const [Height, SetHeight] = useState(height)
     const [message, setMessage] = useState('')
     const [errorN, setErrorN] = useState('')
     //const [success, setSuccess] = useState(false)
@@ -119,32 +110,32 @@ export const EditProfile = () => {
                 </div>
                 <div className='input-block'>
                     <label htmlFor="DOB" >{t('EditProfilePage.form.f3')}</label>
-                    <input type="date" value={dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
+                    <input type="date" value={Dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
                 </div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputSex" >{t('EditProfilePage.form.f4')}</label>
                     <div className='radio-buttons'>
                         <div className='radio-button'>
-                            <input checked={sex==="male" ? 'checked':'' } type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex==="male" ? 'checked':'' } type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="male">{t('EditProfilePage.form.f10')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input checked={sex==="female" ? 'checked':'' } type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex==="female" ? 'checked':'' } type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="female">{t('EditProfilePage.form.f11')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input checked={sex==="other" ? 'checked':'' } type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex==="other" ? 'checked':'' } type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="other">{t('EditProfilePage.form.f12')}</label>
                         </div>
                     </div>
                 </div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
-                    <input type="number" placeholder={t('EditProfilePage.form.f15')} value={weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
+                    <input type="number" placeholder={t('EditProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
                 </div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
-                    <input type="number" placeholder={t('EditProfilePage.form.f16')} value={height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
+                    <input type="number" placeholder={t('EditProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
                 </div>
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('EditProfilePage.form.f9')}</button>
                 {loading ? <b>{t('EditProfilePage.loader.l1')}</b> : ""}
