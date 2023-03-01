@@ -4,6 +4,86 @@ import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+export const ChartSkeleton = () => {
+    return(
+        <>
+            <Stack spacing={1} className="chart-skeleton d-flex flex-wrap">
+                <div className='cards-wrapper d-flex flex-wrap'>
+                    <Skeleton variant="rectangular" height={100} />
+                    <Skeleton variant="rectangular" height={50} />
+                    <Skeleton variant="rectangular" height={50} />
+                    <Skeleton variant="rectangular" height={50} />
+                </div>
+                <div className='chart-wrapper'>
+
+                </div>
+            </Stack>
+        </>
+    )
+}
+
+export const NoDataRecordedSkeleton = () => {
+    return(
+        <>
+            <Stack spacing={1} className="no-data-recorded-skeleton d-flex align-items-center">
+                <span class="icon d-flex">
+                    <Skeleton variant="circular" width={12} height={12} />
+                </span>
+                <span class="text">
+                    <Skeleton variant="text" />
+                </span>
+            </Stack>
+        </>
+    )
+}
+
+export const ReminderCardSkeleton = () => {
+    return(
+        <>
+            <Stack spacing={1} className="reminder-card-skeleton">
+                <div className='icon-block'>
+                    <div className='reminder-icon'>
+                        <Skeleton variant="rectangular" height={94}/>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="r-title">
+                        <Skeleton variant="text" />
+                    </div>
+                    <div class="days">
+                        <Skeleton variant="rectangular" height={29} />
+                    </div>
+                    <div class="reminder-date">
+                        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+                    </div>
+                </div>
+            </Stack>
+        </>
+    )
+}
+
+export const MeasurmentCardSkeleton = ()=> {
+    return (
+        <>
+            <Stack spacing={1} className="measurment-skeleton">
+                <div className="m-status">
+                    <Skeleton variant="circular" width={10} height={10} />
+                </div>
+                <div className='measurment-title d-flex align-items-center'>
+                    <span className='icon d-flex'><Skeleton variant="circular" width={16} height={16} /></span>
+                    <span className='name d-flex'><Skeleton variant="text" /></span>
+                </div>
+                <div className='measurment-result'>
+                    <span className='digit'><Skeleton variant="text" height={45}/></span>
+                </div>
+                <div className='mlr'>
+                    <span className='text'><Skeleton variant="text" /></span>
+                </div>
+            </Stack>
+        </>
+    )
+}
+
 export const TableSkeleton = ()=>  {
   return (
     <>
