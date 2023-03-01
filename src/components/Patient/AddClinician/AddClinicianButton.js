@@ -2,7 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import AddIcon from './AddIcon'
 
-export default function AddClinicianButton() {
+export default function AddClinicianButton({show,setShow}) {
+
   const {t}=useTranslation();
   return (
     <>
@@ -10,7 +11,7 @@ export default function AddClinicianButton() {
       <div className='title'>
         <h4>{t('AddClinicianButton.heading')}</h4>
       </div>
-      <button type='button' className='d-flex align-items-center justify-content-between add-clinician-button'>
+      <button type='button' className='d-flex align-items-center justify-content-between add-clinician-button' onClick={()=>setShow(!show)} >
           <span className='text'>
           {t('AddClinicianButton.e1')}
           </span>

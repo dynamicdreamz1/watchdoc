@@ -8,7 +8,7 @@ export default function PatientBloodOxygenDetails() {
   return (
     <>
     <div className='phrd d-flex flex-wrap'>
-        <div className='cards-wrapper'>
+        <div className='cards-wrapper d-flex flex-wrap'>
             <MainDetailsCard/>
             <MainDetailsCard/>
             <ShowAllDataCard/>

@@ -89,7 +89,7 @@ export async function RegisterUser(data) {
             data: data,
             headers: headers
         })
-        console.log(response)
+        
         return response.data;
     } catch (error) {
         return error.response.data.message;
@@ -150,6 +150,6 @@ export const logout = () => {
     StoreCookie.removeItem("user_details");
     StoreCookie.removeItem("role");
     StoreCookie.removeItem("is_active");
-    //const response = await axios.post(API_ENDPOINT + "signout");
+   
     return true;
   };

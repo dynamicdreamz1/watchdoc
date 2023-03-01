@@ -1079,17 +1079,14 @@ body .reminder-card-skeleton {
 .chart-wrapper .MuiBox-root {
   padding: 0;
 }
-body .no-data-recorded-skeleton {
+body .no-data-recorded-skeleton ,
+body .chart-skeleton {
   -webkit-flex-direction: inherit;
   -ms-flex-direction: inherit;
   flex-direction: inherit;
 }
-body .no-data-recorded-skeleton {
-  -webkit-flex-direction: inherit;
-  -ms-flex-direction: inherit;
-  flex-direction: inherit;
-}
-body .no-data-recorded-skeleton .text {
+body .no-data-recorded-skeleton .text,
+.chart-skeleton .chart-wrapper {
   margin-top: 0;
 }
 body .no-data-recorded-skeleton .text .MuiSkeleton-root {
@@ -1102,9 +1099,12 @@ body .no-data-recorded-skeleton .text {
     width: 100%;
     border-radius: 5px;
 }
-
-.chart-skeleton .cards-wrapper {
-    row-gap: 10px;
+.chart-skeleton {
+  align-items: inherit;
+}
+.chart-skeleton .chart-wrapper .MuiSkeleton-root {
+  height: 100%;
+  border-radius: 5px;
 }
 /* Chart Tabs */
 .chart-tabs button {

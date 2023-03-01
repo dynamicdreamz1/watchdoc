@@ -27,7 +27,7 @@
         },
         "form": {
             "f1": "First Name",
-            "f17":"Preffered First Name (Optional)",
+            "f17":"Nick Name (Optional)",
             "f2": "Last Name",
             "f3": "Date of Birth",
             "f4": "Sex",
@@ -43,7 +43,7 @@
             "f14": "Your Last Name",
             "f15": "Your Weight",
             "f16": "Your Height",
-            "f18":"Your Preffered First Name"
+            "f18":"Your Nick Name"
         },
         "error": {
             "e1": "The first name field is required.",
@@ -202,10 +202,19 @@
         "heading1":"Practitioners"
     },
 
+    "MyClinicians":{
+        "heading1":"My Clinicians",
+        "tableCell1":"Name",
+        "tableCell2":"Email",
+        "tableCell3":"Phone",
+        "tableCell4":"Status",
+        "notAdd":"You have not added any clinician yet."
+    },
+
     "EditProfilePage":{
         "form": {
             "f1": "First Name",
-            "f17":"Preffered First Name (Optional)",
+            "f17":"Nick Name (Optional)",
             "f2": "Last Name",
             "f3": "Date of Birth",
             "f4": "Sex",
@@ -221,7 +230,7 @@
             "f14": "Your Last Name",
             "f15": "Your Weight",
             "f16": "Your Height",
-            "f18":"Your Preffered First Name"
+            "f18":"Your Nick Name"
         },
         "error":{
             "e1": "The first name field is required.",

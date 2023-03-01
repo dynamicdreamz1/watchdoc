@@ -12,6 +12,9 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function PractitionersCard({ clinicianData, status, setStatus }) {
     let data = [];
     data = clinicianData;
+    const delay = 500; // anti-rebound for 500ms
+    let lastExecution = 0;
+    
     // const [data, setData] = useState(clinicianData)
     // console.log("data", data);
     // const { clinicianName, practitionerName, code } = useContext(UserContext);
@@ -47,17 +50,23 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
 
     // }
 
-    const addClinician=(ID)=>{
-        addDoctor(ID)
-                .then((res) => {
-                    console.log(res)
-                    setStatus(!status)
-                    
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-    }
+    const addClinician = (ID) => {
+        if ((lastExecution + delay) < Date.now()){
+        
+             addDoctor(ID)
+            .then((res) => {
+                console.log(res)
+                setStatus(!status)
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            lastExecution = Date.now() 
+        }
+        }
+       
+    
 
     return (
         <React.Fragment>
@@ -102,10 +111,10 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
                                         </>
                                     ))}
 
-                                        
+                                        {element.status}
                                     <div className='add-fav'  >
 
-                                        <FormControlLabel onClickCapture={() => addClinician(element.id, element?.status)}
+                                        <FormControlLabel onClickCapture={() => addClinician(element.id)}
                                             control={
                                                 <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
