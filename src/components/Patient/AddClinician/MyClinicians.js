@@ -6,6 +6,7 @@ import Email from '../../common/Table/Email';
 import Phone from '../../common/Table/Phone';
 import { getClinicianData } from '../../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
+import { TableSkeleton } from '../../../Utility/Skeleton';
 
 
 export default function MyClinicians({status}) {
@@ -36,7 +37,7 @@ export default function MyClinicians({status}) {
                 </div>
                 
                
-                {loading===true ? "Loading..." :   
+                {loading===true ? <TableSkeleton/> :   
                 <>
                 {data.length> 0 ?  
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
