@@ -2,13 +2,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
   color: #000;
 }
-
 .container {
   width: 100%;
   padding-right: 15px;
@@ -16,97 +14,73 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
-
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
+span,h1,h2,h3,h4,h5,h6,button {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 .bg-gray {
   background-color: rgba(198, 198, 198, 0.1);
 }
-
 :focus-visible {
   outline: 0;
 }
-
 input[type="submit"] {
   cursor: pointer;
 }
-
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+      max-width: 540px;
   }
 }
-
 @media (min-width: 768px) {
   .container {
-    max-width: 720px;
+      max-width: 720px;
   }
 }
-
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+      max-width: 960px;
   }
 }
-
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+      max-width: 1170px;
   }
 }
-
 .page-header {
   padding: 30px 0;
   text-align: center;
 }
-
 .page-content-wrapper {
   padding-top: 45px;
   max-width: 510px;
   margin: 0 auto;
 }
-
 body h4 {
   font-size: 21px;
   line-height: 26px;
   font-weight: 600;
   margin-bottom: 6px;
 }
-
 body h5 {
   font-size: 18px;
   line-height: 22px;
 }
-
 p {
   font-size: 14px;
   line-height: 18px;
 }
-
 body input:focus-visible {
   outline-offset: 0px;
   outline: 0;
 }
-
 body span {
   font-size: 14px;
   line-height: 18px;
   color: #000;
 }
-
 .space-40 {
   height: 40px;
 }
-
 .page-wrapper {
   height: 100vh;
   overflow-y: auto;
@@ -117,11 +91,9 @@ body span {
   -ms-flex-align: center;
   align-items: center;
 }
-
 form input {
   background: #FFFFFF;
-  border: 0.25px solid #C6C6C6;
-  ;
+  border: 0.25px solid #C6C6C6;;
   border-radius: 9px;
   width: 100%;
   height: 48px;
@@ -131,26 +103,19 @@ form input {
   padding: 8px 12px;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 form .input-block {
   margin-bottom: 20px;
 }
-
 form input::placeholder {
   color: #C6C6C6;
   opacity: 1;
 }
-
-form input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #C6C6C6;
 }
-
-form input::-ms-input-placeholder {
-  /* Microsoft Edge */
+form input::-ms-input-placeholder { /* Microsoft Edge */
   color: #C6C6C6;
 }
-
 button[type="submit"] {
   background-color: #06B2CC;
   border-radius: 9px;
@@ -163,11 +128,9 @@ button[type="submit"] {
   cursor: pointer;
   margin-top: 15px;
 }
-
 .phone-number {
   text-decoration: none;
 }
-
 form .input-block label {
   font-size: 14px;
   line-height: 18px;
@@ -175,31 +138,24 @@ form .input-block label {
   display: block;
   margin-bottom: 7px;
 }
-
 .d-flex {
   display: flex;
 }
-
 .align-items-center {
   align-items: center;
 }
-
 .flex-wrap {
   flex-wrap: wrap;
 }
-
 .justify-content-center {
   justify-content: center;
 }
-
 .justify-content-between {
   justify-content: space-between;
 }
-
 .page-content-wrapper .title-block {
   margin-bottom: 15px;
 }
-
 .section-title .view-all-btn {
   color: #00B8E2;
   border: 0;
@@ -208,30 +164,24 @@ form .input-block label {
   font-size: 13px;
   line-height: 16px;
 }
-
 .section-title {
   margin-bottom: 15px;
 }
-
 .mt-22 {
   margin-top: 22px;
 }
-
 button {
   cursor: pointer;
 }
-
 .radio-buttons {
   display: flex;
   margin: 0 -6px;
 }
-
 .radio-buttons .radio-button {
   flex-grow: 1;
   flex-basis: 0;
   padding: 0 6px;
 }
-
 .radio-buttons .radio-button label {
   background: #FFFFFF;
   border: 0.25px solid #C6C6C6;
@@ -248,70 +198,56 @@ button {
   transition: all 0.2s ease-in-out;
   margin-bottom: 0;
 }
-
 .radio-buttons .radio-button input[type="radio"] {
   margin: 0;
   width: 0;
   height: 0;
   position: absolute;
 }
-
-.radio-buttons .radio-button input[type="radio"]:checked~label {
+.radio-buttons .radio-button input[type="radio"]:checked ~ label {
   background-color: #00b3ca;
   color: #fff;
   border-color: #00b3ca;
 }
-
 .color-light-blue {
   color: #00B8E2;
 }
-
 .color-light-green {
   color: #86E826;
 }
-
 .color-red {
   color: #EA4335;
 }
-
 .varification-page-wrapper form .input-block {
   margin-bottom: 12px;
 }
-
 /* Skeleton */
 body .MuiPaper-root.table-skeleton .MuiTableCell-root {
   border: 0;
   padding: 14px 20px;
   background-color: #fff;
 }
-
 body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   background-color: rgba(249, 249, 249, 0.5);
 }
-
 .profile-skeleton {
   display: flex;
   align-items: center;
 }
-
 .profile-skeleton .user-info {
   width: calc(100% - 40px);
   padding-left: 10px;
 }
-
 .profile-skeleton .user-avtar {
   width: 40px;
 }
-
 .profile-skeleton .user-info .MuiSkeleton-root:first-child {
   width: 70%;
 }
-
 /* Content Wrapper */
 .content-wrapper {
   display: flex;
 }
-
 .content-wrapper .aside {
   min-height: 100vh;
   overflow-y: auto;
@@ -320,7 +256,6 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   padding-right: 25px;
   padding-bottom: 30px;
 }
-
 /* User Consent */
 .user-consent-page-wrapper .title-block a {
   color: #00B8E2;
@@ -330,32 +265,26 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   display: inline-block;
   margin-top: 8px;
 }
-
 .user-consent-page-wrapper .checkbox-block {
   background-color: rgba(217, 217, 217, 0.2);
   border-radius: 9px;
   padding: 12px 14px;
   margin-top: 13px;
 }
-
 .user-consent-page-wrapper .checkbox-block label {
   margin-right: 0;
   margin-left: 0;
 }
-
 .user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root {
   padding: 0;
 }
-
 .user-consent-page-wrapper .checkbox-block label .MuiCheckbox-root svg.MuiSvgIcon-root {
   fill: #8D8D8D !important;
   margin-right: 10px;
 }
-
 .clinician-connection-wrapper .title-block {
   margin-bottom: 30px;
 }
-
 /* SideBar */
 .sidebar {
   width: 197px;
@@ -366,97 +295,76 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   height: 100vh;
   overflow: auto;
 }
-
 .sidebar .logo {
   padding: 30px 26px;
 }
-
-.sidebar nav ul li .MuiListItemIcon-root,
+.sidebar nav ul li .MuiListItemIcon-root, 
 .logout button .icon {
   min-width: auto;
   width: 30px;
   padding-right: 10px;
   display: flex;
 }
-
-.sidebar nav ul li .css-cveggr-MuiListItemIcon-root img,
-.logout button .icon img {
+.sidebar nav ul li .css-cveggr-MuiListItemIcon-root img, .logout button .icon img {
   max-width: 100%;
 }
-
 .logout button .text {
   color: red;
 }
-
-.sidebar nav ul li .MuiListItemText-root,
-.logout button .text {
+.sidebar nav ul li .MuiListItemText-root, .logout button .text {
   width: calc(100% - 30px);
   margin: 0;
 }
-
 .sidebar nav ul li .MuiButtonBase-root,
 .logout button {
   padding: 17px 26px;
 }
-
 .sidebar nav .MuiList-root {
   padding: 0;
 }
-
 .sidebar .MuiList-root a {
   text-decoration: none;
   color: #000;
   display: block;
 }
-
 .sidebar .MuiList-root a.isActive {
   background-color: #F5F5F5;
   display: block;
 }
-
 /* Aside */
 .aside {
   width: calc(100% - 197px);
   margin-left: 197px;
 }
-
 /* Account Owner */
-.account-owner span.uname,
-.account-owner span.uposition {
+.account-owner span.uname,.account-owner span.uposition {
   display: block;
 }
-
 .account-owner {
   display: flex;
   align-items: center;
 }
-
 .account-owner .info span {
   font-size: 13px;
   line-height: 13px;
   text-transform: capitalize;
 }
-
 .account-owner .info {
   padding-right: 12px;
 }
-
 .account-owner .info span.uname {
   font-weight: 600;
 }
-
 /* Top Header Block */
 .content-wrapper .aside .top-header-block {
   display: flex;
   justify-content: space-between;
   gap: 15px;
 }
-
 .content-wrapper .aside .top-header-block .search-block {
   max-width: 586px;
   width: 100%;
 }
-
 .content-wrapper .aside .top-header-block .search-block input[type="search"] {
   margin: 0 !important;
   width: 100%;
@@ -471,23 +379,19 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   background-position: left 20px center;
   padding: 8px 25px 8px 50px;
 }
-
 .content-wrapper .aside .top-header-block {
   padding: 20px 0;
 }
-
 .content-wrapper .aside .top-header-block .page-title h1 {
   font-size: 26px;
   line-height: 30px;
   font-weight: 300;
   text-transform: capitalize;
 }
-
 .content-wrapper .aside .top-header-block .page-title h1 {
   display: flex;
   align-items: center;
 }
-
 .content-wrapper .aside .top-header-block .page-title h1 button {
   padding: 0;
   border: 0;
@@ -495,19 +399,16 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
   display: flex;
   margin-left: 15px;
 }
-
 .content-wrapper .aside .top-header-block {
   gap: 15px;
   margin-bottom: 20px;
 }
-
 /* Alert Table */
 body .MuiPaper-root.red-alert-table .MuiTable-root {
   border-collapse: separate;
   border-spacing: 0 10px;
   min-width: unset;
 }
-
 body .MuiPaper-root {
   background-color: transparent;
   color: #000;
@@ -516,14 +417,12 @@ body .MuiPaper-root {
   border-radius: 10px;
   overflow: hidden;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-head {
   font-size: 14px;
   line-height: 17px;
   font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
   padding: 9px 20px;
   color: #000;
@@ -531,82 +430,66 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: #fff;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
   fill: #EA4335;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info .name {
   font-size: 15px;
   line-height: 19px;
   font-weight: 600;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info span {
   display: block;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .info .age {
   font-size: 13px;
   line-height: 16px;
   color: #8D8D8D;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name {
   display: flex;
   align-items: center;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon {
   margin-right: 20px;
   display: flex;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
   fill: #EA4335;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span {
   display: block;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data .time {
   font-size: 12px;
   line-height: 15px;
   color: #8D8D8D;
 }
-
 body .MuiPaper-root .MuiTable-root .table-data {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root:first-child {
   border-top-left-radius: 9px;
   border-bottom-left-radius: 9px;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root:last-child {
   border-top-right-radius: 9px;
   border-bottom-right-radius: 9px;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.status span {
   font-size: 14px;
   line-height: 17px;
 }
-
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span.digit,
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
 }
-
 .logout {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-
 .logout button {
   width: 100%;
   border: 0;
@@ -615,27 +498,22 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   align-items: center;
   padding: 17px 26px;
 }
-
-.logout button .text,
-.sidebar nav ul li .css-tlelie-MuiListItemText-root span {
+.logout button .text,.sidebar nav ul li .css-tlelie-MuiListItemText-root span {
   font-size: 16px;
   line-height: 18px;
   text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 /* Date Picker */
 .date-picker {
   max-width: 184px;
   flex-direction: inherit;
   height: 40px;
 }
-
 .date-picker fieldset {
   border: 1px solid #E5E7EB;
   border-radius: 5px;
 }
-
 .date-picker .MuiInputBase-root {
   font-family: 'Source Sans Pro', sans-serif;
   color: #000;
@@ -643,19 +521,16 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   line-height: 20px;
   padding-right: 20px;
 }
-
 .MuiCalendarPicker-root {
   background-color: #fff;
   border: 1px solid #E5E7EB;
   border-radius: 5px;
 }
-
 /* Clinicians Table */
 body .MuiPaper-root.clinicians-table table {
   background-color: #fff;
   border-radius: 9px;
 }
-
 body .MuiPaper-root.clinicians-table .MuiTableCell-root {
   border: 0;
   letter-spacing: 0;
@@ -663,24 +538,18 @@ body .MuiPaper-root.clinicians-table .MuiTableCell-root {
   font-weight: 400;
   padding: 14px 20px;
 }
-
 body .MuiPaper-root.clinicians-table .MuiTableCell-root.MuiTableCell-head {
   font-size: 14px;
   line-height: 18px;
   color: #000;
 }
-
 body .MuiPaper-root.clinicians-table .MuiTableBody-root .MuiTableRow-root:nth-child(odd) td {
   background-color: rgba(249, 249, 249, 0.5);
 }
-
 .user-profile {
   display: flex;
   align-items: center;
-  flex-direction: row-reverse;
-  justify-content: start;
 }
-
 .user-profile .user-info span.position,
 .patient-profile-bar .patient-info span.position {
   display: block;
@@ -688,27 +557,19 @@ body .MuiPaper-root.clinicians-table .MuiTableBody-root .MuiTableRow-root:nth-ch
   line-height: 18px;
   color: #000;
 }
-
 .user-profile .user-info .fname {
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
 }
-
 .user-profile .user-avtar {
   margin-right: 14px;
 }
-
-.w-40 {
-  width: 40px;
-}
-
 body .MuiPaper-root.clinicians-table .MuiTableCell-root .name .profile-image .MuiAvatar-root {
   font-size: 14px;
   line-height: 16px;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 body .MuiPaper-root.clinicians-table .MuiTableCell-root span.fname .badge {
   display: inline-block;
   background: #00B8E2;
@@ -722,23 +583,19 @@ body .MuiPaper-root.clinicians-table .MuiTableCell-root span.fname .badge {
   text-align: center;
   margin-left: 8px;
 }
-
 body .MuiPaper-root.clinicians-table .table-title {
   display: flex;
   align-items: center;
   margin-bottom: 18px;
 }
-
 body .MuiPaper-root.clinicians-table .table-title img {
   margin-right: 11px;
 }
-
 body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   margin: 0;
 }
-
 /* Table Tabs */
 .table-nav-tabs button.MuiTab-root {
   text-transform: none;
@@ -750,38 +607,31 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 15px 25px;
   border-bottom: 4px solid #E5E7EB;
 }
-
 .table-nav-tabs button.MuiTab-root.Mui-selected {
   color: #000;
   font-weight: 600;
   border-color: #00B8E2;
 }
-
 .table-nav-tabs .MuiTabs-indicator {
   display: none;
 }
-
 .table-nav-tabs button.MuiTab-root:not(:last-child) {
   margin-right: 5px;
 }
-
 .table-nav-tabs-content .MuiBox-root {
   padding: 20px 0;
 }
-
 .table-header-block {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .table-header-block .MuiIconButton-root {
   background-color: #fff;
   padding: 0;
   width: 40px;
   height: 40px;
 }
-
 .MuiList-root.css-6hp17o-MuiList-root-MuiMenu-list {
   background-color: #FFFFFF;
   box-shadow: 0px 2px 4px rgba(31, 41, 55, 0.06), 0px 4px 6px rgba(31, 41, 55, 0.1);
@@ -789,7 +639,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 8px;
   margin-top: 5px;
 }
-
 .MuiList-root.css-6hp17o-MuiList-root-MuiMenu-list .MuiMenuItem-root {
   font-size: 14px;
   line-height: 20px;
@@ -797,7 +646,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-family: 'Source Sans Pro', sans-serif;
   padding: 8px;
 }
-
 /* Clinician Profile Bar */
 .clinician-profile-tab,
 .patient-profile-bar {
@@ -809,26 +657,22 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   gap: 15px;
   align-items: center;
 }
-
 .clinician-profile-tab .user-profile .user-info .fname,
 .patient-profile-bar .patient-info .fname {
   font-size: 18px;
   line-height: 22px;
   font-weight: 600;
 }
-
 .phone-number .icon {
   margin-right: 11px;
   display: flex;
 }
-
 .phone-number .text {
   font-size: 18px;
   line-height: 22px;
   color: #000000;
   white-space: nowrap;
 }
-
 .clinician-profile-tab .right-block button,
 .patient-profile-bar .right-block button {
   margin-left: 30px;
@@ -843,7 +687,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   min-width: 127px;
   padding: 10px 5px;
 }
-
 /* Measurement Card */
 .measurment-card .m-status {
   display: block;
@@ -852,11 +695,9 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   border-radius: 50%;
   margin-left: auto;
 }
-
 .measurment-card .m-status.alert {
   background-color: #EA4335;
 }
-
 .measurment-card .m-status.normal {
   background-color: #86DF2F;
 }
@@ -867,51 +708,51 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   max-width: 175px;
   width: 100%;
 }
-
 .measurment-title .icon {
   max-width: 16px;
   width: 100%;
   margin-right: 8px;
 }
-
 .measurment-title .name {
   font-size: 16px;
   line-height: 20px;
   color: #000;
   width: calc(100% - 24px);
 }
-
 .measurment-result .digit,
 .chart-title-block .range .range-number .digit {
   font-size: 36px;
   line-height: 46px;
 }
-
 .measurment-result .type,
 .chart-title-block .range .range-number .type {
   font-size: 16px;
   line-height: 20px;
   margin-left: 8px;
 }
-.measurment-result {
+.measurment-result,.measurment-skeleton .measurment-result {
   margin-top: 12px;
   margin-bottom: 12px;
 }
-
 .measurment-card .mlr span {
   display: block;
 }
-
 .measurment-card .mlr span.text {
   font-size: 12px;
   line-height: 15px;
   color: #000;
 }
-
 .measurment-card .mlr span.time {
   color: #8D8D8D;
   font-size: 12px;
   line-height: 15px;
+}
+.measurment-skeleton .m-status .MuiSkeleton-root {display: block;margin-left: auto;}
+.measurment-skeleton .measurment-title {
+    margin-top: 0;
+}
+.measurment-skeleton .measurment-title .name .MuiSkeleton-root {
+    width: 88%;
 }
 /* Reminder Card */
 .reminder-card,.reminder-card-skeleton {
@@ -924,27 +765,24 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   max-width: 340px;
   width: 100%;
 }
-.reminder-card .icon-block {
+.reminder-card .icon-block,.reminder-card-skeleton .icon-block {
   width: 65px;
   padding-right: 15px;
 }
-.reminder-card .content-block {
+.reminder-card .content-block,.reminder-card-skeleton .content-block {
   width: calc(100% - 65px);
 }
-
 .reminder-card .content-block .r-title h4 {
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
   margin-bottom: 0;
 }
-
 .reminder-card .content-block .reminder-date span {
   font-size: 16px;
   line-height: 20px;
   color: #3A3432;
 }
-
 .reminder-card .content-block .days .day {
   width: 29px;
   height: 29px;
@@ -957,65 +795,70 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   cursor: pointer;
   display: block;
 }
-
 .reminder-card .content-block .days {
   display: flex;
   column-gap: 6px;
 }
-
 .reminder-card .content-block .days .day.active {
   background-color: #00B8E2;
   color: #fff;
 }
-
 .reminder-card .content-block .reminder-date {
   margin-top: 10px;
 }
-
 .reminder-cards-wrapper .wrapper {
   column-gap: 15px;
   margin-top: 20px;
 }
-
 .measurment-cards-wrapper .wrapper {
   column-gap: 15px;
 }
+body .reminder-card-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
+.reminder-card-skeleton .content-block {
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.reminder-card .content-block .r-title {
+  margin-bottom: 15px;
+}
+.reminder-card-skeleton .content-block .r-title,.reminder-card-skeleton .content-block .days,.reminder-card-skeleton .content-block .reminder-date {
+  width: 100%;
+}
 /* Add clinician Page */
-.clinician-connection-wrapper,
-.add-clinician-button-block,
-.add-clinician-box {
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box {
   max-width: 375px;
 }
-
 .clinician-connection {
   background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
   border-radius: 20px;
   padding: 24px 100px 26px 24px;
   position: relative;
 }
-
 .clinician-connection .text-block h6 {
   color: #fff;
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 3px;
 }
-
 .clinician-connection .text-block p {
   color: #fff;
 }
-
 .clinician-connection .image-block {
   position: absolute;
   right: 20px;
   bottom: 0;
   height: 115%;
 }
-
 .clinician-connection .image-block img {
   max-height: 100%;
 }
-
 .add-clinician-box .form-box {
   background: #FFFFFF;
   border: 1px solid #C6C6C6;
@@ -1023,7 +866,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   overflow: hidden;
   border-bottom: 0;
 }
-
 .add-clinician-box .form-box input {
   margin: 0;
   border-radius: 0;
@@ -1036,7 +878,6 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding-left: 42px;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 .add-clinician-box .form-box input[type="submit"] {
   background-color: #06B2CC;
   border: 0;
@@ -1046,76 +887,61 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 24px;
   color: #fff;
 }
-
 .add-clinician-box .form-box input.name {
   background-image: url(../../public/images/User-icon.svg);
 }
-
 .add-clinician-box .form-box input.number {
   background-image: url(../../public/images/Clinicians-icon.svg);
 }
-
 .add-clinician-box .form-box input.postcode {
   background-image: url(../../public/images/MapMarker-icon.svg);
 }
-
 .practitioners-card h5 {
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
   margin-bottom: 12px;
 }
-
 .practitioners-card .card {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 23px;
-  margin: 11px 0;
 }
-
 .practitioners-card .card .user-image {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
 }
-
 .practitioners-card .card .text-block {
   width: calc(100% - 60px);
   padding-left: 18px;
 }
-
 .practitioners-card .card .text-block h5 {
   font-weight: 600;
   margin-bottom: 0;
 }
-
 .practitioners-card .card .text-block .add-fav span.MuiCheckbox-root {
   padding: 0;
   margin-right: 6px;
 }
-
 .practitioners-card .card .text-block .add-fav span svg {
   fill: #00B8E2;
   width: 20px;
   height: 20px;
 }
-
 .practitioners-card .card .text-block .add-fav {
   margin-top: 8px;
 }
-
 .practitioners-card .card .text-block .add-fav label {
   margin: 0 !important;
 }
-
 .practitioners-card .card .text-block .add-fav span.MuiTypography-root {
   color: #00B8E2;
   font-size: 14px;
   line-height: 18px;
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 .add-clinician-button {
   background: #FFFFFF;
   border-radius: 10px;
@@ -1123,41 +949,32 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   width: 100%;
   padding: 15px;
 }
-
 .add-clinician-button .text {
   font-size: 16px;
   line-height: 20px;
 }
-
 .clinician-connection-wrapper .title-block h4 {
   margin-bottom: 0;
 }
-
 .clinician-connection-wrapper .title-block .icon svg path {
   fill: #00B8E2;
 }
-
 .clinician-connection-wrapper .title-block .icon {
   display: flex;
 }
-
 .add-clinician-button-block {
   margin-top: 20px;
 }
-
 .add-clinician-button-block .title h4 {
   margin-bottom: 15px;
 }
-
 .add-clinician-box .title {
   margin-bottom: 12px;
   margin-top: 20px;
 }
-
 .practitioners-card {
   margin-top: 20px;
 }
-
 /* Alert Card */
 .alert-card .text-block .icon {
   width: 10px;
@@ -1167,36 +984,29 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   border-radius: 50%;
   margin-right: 18px;
 }
-
 .alert-card {
   background-color: #fff;
   padding: 16px 16px 12px 20px;
 }
-
 .alert-card:nth-child(even) {
   background-color: #F9F9F9;
 }
-
 .alert-card .title {
   font-size: 14px;
   line-height: 17px;
   margin-right: 10px;
 }
-
 .alert-card .time {
   color: #8D8D8D;
   font-size: 14px;
   line-height: 18px;
 }
-
 .alert-card .button-block {
   width: 106px;
 }
-
 .alert-card .text-block {
   width: calc(100% - 106px);
 }
-
 .alert-card .button-block .MuiButtonBase-root {
   background-color: #F5F5F5;
   border-radius: 3px;
@@ -1210,28 +1020,23 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 5px 8px;
   width: 100%;
 }
-
 .alert-card .button-block .MuiButtonBase-root:hover {
   background-color: #00B8E2;
   color: #fff;
 }
-
 .alert-cards-wrapper .wrapper {
   border-radius: 10px;
   overflow: hidden;
 }
-
 .patient-profile-bar .right-block button {
   margin-left: 11px;
 }
-
 .patient-profile-bar .patient-info .age {
   display: block;
   color: #8D8D8D;
   font-size: 15px;
   line-height: 18px;
 }
-
 /* Patient Heart Rate Details */
 .phrd,.chart-skeleton {
   background: #FFFFFF;
@@ -1239,16 +1044,15 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 28px;
   align-items: flex-start;
 }
-.phrd .cards-wrapper {
+.phrd .cards-wrapper,.chart-skeleton .cards-wrapper {
   width: 31.5%;
   row-gap: 10px;
 }
-.phrd .chart-wrapper {
+.phrd .chart-wrapper,.chart-skeleton .chart-wrapper {
   width: 68.5%;
   padding-left: 35px;
   padding-right: 40px;
 }
-
 .chart-details-card,
 .alert-trigger-card,
 .show-all-data-card {
@@ -1257,30 +1061,50 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 12px 16px 12px 14px;
   width: 100%;
 }
-
 .chart-details-card .measurment-result {
   margin-top: 0;
   margin-bottom: 0;
 }
-.chart-details-card,
-.show-all-data-card,
-.alert-trigger-card {
-  margin-bottom: 10px;
-}
 .canvasjs-chart-credit {
   display: none !important;
 }
-.no-data-recorded {
+.no-data-recorded,.no-data-recorded-skeleton {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
 }
-.no-data-recorded .icon {
+.no-data-recorded .icon,.no-data-recorded-skeleton .icon {
   margin-right: 14px;
 }
-
 .chart-wrapper .MuiBox-root {
   padding: 0;
+}
+body .no-data-recorded-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+}
+body .no-data-recorded-skeleton {
+  -webkit-flex-direction: inherit;
+  -ms-flex-direction: inherit;
+  flex-direction: inherit;
+}
+body .no-data-recorded-skeleton .text {
+  margin-top: 0;
+}
+body .no-data-recorded-skeleton .text .MuiSkeleton-root {
+  width: 10%;
+}
+body .no-data-recorded-skeleton .text {
+  width: calc(100% - 26px);
+}
+.chart-skeleton .cards-wrapper .MuiSkeleton-root {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.chart-skeleton .cards-wrapper {
+    row-gap: 10px;
 }
 /* Chart Tabs */
 .chart-tabs button {
@@ -1298,29 +1122,23 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   min-height: auto;
   margin-bottom: 18px;
 }
-
 .chart-tabs button:not(:last-child) {
   margin-right: 10px;
 }
-
 .chart-tabs .MuiTabs-indicator {
   display: none !important;
 }
-
 .chart-tabs button.Mui-selected {
   color: #00B8E2;
 }
-
 .chart-title-block {
   margin-bottom: 20px;
 }
-
 .chart-title-block .range .range-text {
   color: #8D8D8D;
   font-size: 12px;
   line-height: 18px;
 }
-
 /* Risk Status */
 .r-status .icon {
   background-color: #EA4335;
@@ -1330,49 +1148,40 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   border-radius: 10px;
   margin-right: 6px;
 }
-
 .r-status .text {
   font-size: 12px;
   line-height: 15px;
 }
-
 .r-status {
   margin-top: 5px;
 }
-
 .chart-details-card .measurment-result .digit {
   line-height: 40px;
 }
-
 .chart-details-card .measurment-result .type {
   margin-left: 4px;
 }
-
 .chart-details-card .title .time {
   font-size: 12px;
   line-height: 15px;
   color: #8D8D8D;
 }
-
 .chart-details-card .title .time img,
 .alert-trigger-card .number img {
   margin-left: 15px;
   transform: translateY(2px);
 }
-
 .show-all-data-card,
 .alert-trigger-card {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 .show-all-data-card .text,
 .alert-trigger-card .text,
 .alert-trigger-card .number {
   font-size: 14px;
   line-height: 17px;
 }
-
 /* Link Devices */
 .content-wrapper .aside .devices-wrapper,
 .content-wrapper .aside #main_form {
@@ -1380,12 +1189,10 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   margin: 0 auto;
   padding-top: 30px;
 }
-
 .link-device .title-block {
   margin-bottom: 30px;
   padding-left: 15px;
 }
-
 .devices-wrapper .device-block {
   display: flex;
   align-items: center;
@@ -1394,16 +1201,13 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   border-radius: 30px;
   padding: 14px 23px;
 }
-
 .devices-wrapper .device-block .text-block .icon {
   width: 34px;
 }
-
 .devices-wrapper .device-block .text-block .text {
   font-weight: 600;
   padding-left: 13px;
 }
-
 .devices-wrapper .device-block .btn-block .btn {
   background-color: #06B2CC;
   border-radius: 15px;
@@ -1415,39 +1219,13 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 12px;
   line-height: 12px;
 }
-
 .devices-wrapper .device-block .btn-block {
   width: 86px;
 }
-
 .devices-wrapper .device-block:not(:last-child) {
   margin-bottom: 19px;
 }
-
 .devices-wrapper .device-block .text-block {
   width: calc(100% - 86px);
   padding-right: 30px;
-}
-
-.d-none {
-  display: none !important;
-}
-
-
-.user-profile-cell {
-  position: relative;
-}
-
-.user-profile-avtar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40px;
-  height: 40px;
-}
-
-.user-info {
-  position: absolute;
-  left: 70px;
-  width: 100%;
 }
