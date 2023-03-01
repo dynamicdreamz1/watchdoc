@@ -68,7 +68,7 @@ const BloodPressureChart = () => {
 				markerColor: "#00B8E2",
 				markerSize: 10,
 				showInLegend: true,
-				toolTipContent: "<span style=\"color:#4F81BC \">{name}</span><br>Active Users: {x}<br>CPU Utilization: {y}%",
+				toolTipContent: "<span><strong>Date:</strong> {x}</span><br><span><strong>Systolic Range:</strong> {y}</span>",
 				dataPoints: [
 					{ x: new Date("2017- 01- 02"), y: 60 },
 					{ x: new Date("2017- 01- 05"), y: 65 },
@@ -93,7 +93,7 @@ const BloodPressureChart = () => {
 				showInLegend: true,
 				markerType: "circle",
 				markerSize: 10,
-				toolTipContent: "<span style=\"color:#C0504E \">{name}</span><br>Active Users: {x}<br>CPU Utilization: {y}%",
+				toolTipContent: "<span><strong>Date:</strong> {x}</span><br><span><strong>Diastolic Range:</strong> {y}</span>",
 				dataPoints: [
 					{ x: new Date("2017- 01- 02"), y: 110 },
 					{ x: new Date("2017- 01- 05"), y: 120 },
