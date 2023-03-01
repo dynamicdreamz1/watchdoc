@@ -15,7 +15,7 @@ export const ChartSkeleton = () => {
                     <Skeleton variant="rectangular" height={50} />
                 </div>
                 <div className='chart-wrapper'>
-
+                    <Skeleton variant="rectangular" />
                 </div>
             </Stack>
         </>
