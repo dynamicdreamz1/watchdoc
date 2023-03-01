@@ -24,7 +24,7 @@ export default function AddClinicianInner() {
           {/* <CliniciansRequestsTable/> */}
           <div className='space-40'></div>
           {/* <CliniciansRequestsTable/> */}
-          <MyClinicians/>
+          <MyClinicians />
         </div>
     </div>
     </>
