@@ -295,7 +295,7 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .sidebar .logo {
   padding: 30px 26px;
 }
-.sidebar nav ul li .css-cveggr-MuiListItemIcon-root,
+.sidebar nav ul li .MuiListItemIcon-root, 
 .logout button .icon {
   min-width: auto;
   width: 30px;
@@ -308,8 +308,7 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .logout button .text {
   color: red;
 }
-.sidebar nav ul li .css-tlelie-MuiListItemText-root,
-.logout button .text {
+.sidebar nav ul li .MuiListItemText-root, .logout button .text {
   width: calc(100% - 30px);
   margin: 0;
 }
