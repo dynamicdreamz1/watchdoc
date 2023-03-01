@@ -40,7 +40,7 @@ const VerificationEmail = () => {
 
    
   
-
+   
     const handleSubmit = (e) => {
         e.preventDefault()
 
