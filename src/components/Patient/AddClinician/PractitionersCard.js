@@ -5,6 +5,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import { FormControlLabel } from '@mui/material';
 import { addDoctor } from '../../../services/ClinicianService';
 // import { UserContext } from '../../../components/Patient/AddClinician/AddClinician';
+import '../../../css/PractitionersCard.css'
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -14,7 +15,7 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
     data = clinicianData;
     const delay = 500; // anti-rebound for 500ms
     let lastExecution = 0;
-    
+  
     // const [data, setData] = useState(clinicianData)
     // console.log("data", data);
     // const { clinicianName, practitionerName, code } = useContext(UserContext);
@@ -67,51 +68,52 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
         }
        
     
-
+       
     return (
         <React.Fragment>
 
             <div className='practitioners-card'>
-                {/* {clinicianData?.data?.data.length === 0 ? <span style={{ color: "red" }}> {t('PractitionersCard.message1')}</span> : */}
+                {data?.data?.data.length ===0  ? <span style={{ color: "red" }}> No result found for your search.</span> : ""}
                 <>
-                    {/* {clinicianData?.data?.data.length > 0 ? <h5>{t('PractitionersCard.heading1')}</h5> : ""}  */}
-                    {data?.data?.data?.data.map((element) =>
-
+                   
+                     { data?.data?.data?.data?.length > 0 && data?.data?.data?.data.map((element) =>
+                       
                         <div key={element.id}>
                             <div className='card d-flex'>
                                 <div className='user-image'>
-
-                                    {element?.user_data?.length > 0 && element.user_data.map((user_data) => (
-                                        <>
+                                  
+                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                        <React.Fragment key={user_data.id}>
+                                            
                                             {user_data?.meta_key === "image" && <><img src={user_data?.meta_value} alt='User' /></>}
-                                        </>
+                                        </React.Fragment>
                                     ))}
                                 </div>
                                 <div className='text-block'>
 
-                                    {element?.user_data?.length > 0 && element.user_data.map((user_data) => (
-                                        <>
+                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                        <React.Fragment key={user_data.id}>
                                             {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                        </>
+                                        </React.Fragment>
                                     ))}
                                     {element?.hospital?.length > 0 && element?.hospital.map((hospital) => (
-                                        <>
+                                        <React.Fragment key={hospital.id}>
                                             {
-                                                hospital?.user_data?.length > 0 && hospital?.user_data.map((user_data) => (
-                                                    <>
+                                                hospital?.meta_data?.length > 0 && hospital?.meta_data.map((user_data) => (
+                                                    <React.Fragment key={user_data.id}>  
                                                         {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                                    </>
+                                                    </React.Fragment>
                                                 ))
                                             }
-                                        </>
+                                        </React.Fragment>
                                     ))}
-                                    {element?.user_data?.length > 0 && element.user_data.map((user_data) => (
-                                        <>
+                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                        <React.Fragment key={user_data.id}>      
                                             {user_data?.meta_key === "address" && <>{user_data?.meta_value}<br /></>}
-                                        </>
+                                        </React.Fragment>
                                     ))}
 
-                                        {element.status}
+                                       
                                     <div className='add-fav'  >
 
                                         <FormControlLabel onClickCapture={() => addClinician(element.id)}
