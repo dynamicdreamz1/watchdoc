@@ -19,7 +19,7 @@ export default function MyClinicians({status}) {
         getClinicianData()
 
             .then((res) => {
-                console.log(res)
+              
                 setData(res.data.data)
                    setLoading(false)
 
@@ -51,10 +51,12 @@ export default function MyClinicians({status}) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data?.length > 0 && data?.map((el) => (
-                            <TableRow key={el.id}>
+                          
+                         {data?.length > 0 && data?.map(el => {
+                           
+                           return <TableRow key={el.id}>
                                 <TableCell className='user-profile-cell'>
-                                    <UserProfile data={el?.meta_data} />
+                                    <UserProfile data={el} />
                                 </TableCell>
                                 <TableCell>
                                     <Email email={el?.email}  />
@@ -64,7 +66,7 @@ export default function MyClinicians({status}) {
                                 </TableCell>
                                 <TableCell align="center">Pending</TableCell>
                             </TableRow>
-                        ))}
+                           }  )}
                     </TableBody>
                 </Table>  : <>{t('MyClinicians.notAdd')}</>} 
                 </>

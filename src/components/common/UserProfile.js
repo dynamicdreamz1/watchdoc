@@ -1,28 +1,25 @@
 import { Avatar } from '@mui/material'
 import React from 'react'
+import { MetaFormeting } from '../../Utility/functions';
 
 export default function UserProfile({ data }) {
-  // console.log(data);
+  
+  const  {image,full_name,address} = MetaFormeting(data);
   return (
     <>
-      <span className='fname'>
-        <div className='user-profile'>
-          {data?.length > 0 && data?.map((el) => (
-            <React.Fragment key={el.id}>
-              {el?.meta_key === "image" ?
-                <div className='user-avtar'>
-                  <Avatar className='user-profile-avtar' alt="Avtar" src={el?.meta_value} />
-                </div>
-                : ""}
-              <div className='user-info'>
-                {el?.meta_key === "full_name" ? el?.meta_value : ""}
+      <div className='user-profile'>
+          {
+            <>
+              <div className='user-avtar'>
+                <Avatar className='user-profile-avtar' alt={`${full_name} avtar`} src={image} />
               </div>
-            </React.Fragment>
-          ))}
-        </div>
-      </span>
-
+              <div className='user-info'>
+                <span class="fname">{full_name}</span>
+                <span class="position">{address}</span>
+              </div>
+            </>
+          }
+      </div>
     </>
-
   )
 }
