@@ -16,11 +16,13 @@ export default function AddClinician({status,setStatus,toggle}) {
   const {t}=useTranslation();
   const [show,setShow]=useState(false)
   const [defaultStatus,setDefaultStatus]=useState(false)
-
-  const [clinicianData,setClinicianData]=useState([])
   
+  const [clinicianData,setClinicianData]=useState([])
+
  
+
   const handleSubmit = (e) => {
+    
     e.preventDefault()
 
     const data={
@@ -33,9 +35,6 @@ export default function AddClinician({status,setStatus,toggle}) {
     .then((response) => {
       console.log(response.data)
       setClinicianData(response)
-      setClinicianName("")
-      setPractitionerName("")
-      setCode("")
       
     })
 
@@ -74,7 +73,7 @@ export default function AddClinician({status,setStatus,toggle}) {
         </form>
       </div>
      
-      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus} />
+      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus}  />
       </>
           : ""
       
@@ -96,7 +95,7 @@ export default function AddClinician({status,setStatus,toggle}) {
         </form>
       </div>
        {/* : ""}    */}
-      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus} />
+      <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus}  />
       </>}
       
         </UserContext.Provider>  

@@ -21,7 +21,7 @@ export default function AddClinicianInner() {
         <div className='aside'>
           <Header toggle={toggle} setToggle={setToggle}/>
             {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/>  : "" }
-            <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus} />
+            <PractitionersCard clinicianData={clinicianData} status={status} setStatus={setStatus}  />
             <MyClinicians  status={status}   />
         </div>
     </div>

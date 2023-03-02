@@ -7,7 +7,6 @@ import Phone from '../../common/Table/Phone';
 import { getClinicianData } from '../../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
-import TablePagination from '../../common/Table/TablePagination';
 import Pagination from '@mui/material/Pagination';
 
 
