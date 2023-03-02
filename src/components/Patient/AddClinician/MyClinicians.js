@@ -15,6 +15,21 @@ export default function MyClinicians({status}) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const {t}=useTranslation();
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(3);
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    console.log(currentRecords)
+
+    const nPages = Math.ceil(data.length / recordsPerPage)
+    const DeleteRequest=()=>{
+        
+    }
+
     useEffect(() => {
         setLoading(true)
         getClinicianData()
@@ -31,18 +46,15 @@ export default function MyClinicians({status}) {
             })
     }, [status])
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(3);
+    
 
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+      };
 
-    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-
-    const nPages = Math.ceil(data.length / recordsPerPage)
-    const DeleteRequest=()=>{
-        
-    }
+    useEffect(() => {
+        console.log(currentPage)
+    }, [currentPage])
 
     return (
         <>
@@ -55,7 +67,7 @@ export default function MyClinicians({status}) {
                
                 {loading===true ? <TableSkeleton/> :   
                 <>
-                {data.length> 0 ?  
+                {currentRecords?.length> 0 ?  
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -67,7 +79,7 @@ export default function MyClinicians({status}) {
                     </TableHead>
                     <TableBody>
                           
-                         {data?.length > 0 && data?.map(el => {
+                         {currentRecords?.map(el => {
                            
                            return <TableRow key={el.id}>
                                 <TableCell className='user-profile-cell'>
@@ -89,8 +101,7 @@ export default function MyClinicians({status}) {
                 }
  
             </TableContainer>
-            <TablePagination/>
-            <Pagination nPages = { nPages } currentPage = { currentPage } setCurrentPage = { setCurrentPage } count={nPages} variant="outlined" shape="rounded" />
+            <Pagination nPages = { nPages } currentPage = { currentPage } onChange = { handleChange } count={nPages} variant="outlined" shape="rounded" className='table-pagination'/>
         </>
     )
 }

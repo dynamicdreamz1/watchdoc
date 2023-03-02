@@ -225,14 +225,15 @@ button {
 /* Table Pagination */
 .table-pagination {
   margin-top: 25px;
+  display: flex;
 }
-.table-pagination .MuiPagination-root {
+.table-pagination .MuiPagination-ul {
   margin-left: auto;
 }
-.table-pagination .MuiPagination-root .MuiPagination-ul li button {
+.table-pagination .MuiPagination-ul li button {
   width: 36px;
   height: 36px;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   border-radius: 5px;
   border: 0;
   opacity: 1;
@@ -242,7 +243,14 @@ button {
   font-weight: 400;
   cursor: pointer;
 }
-.table-pagination .MuiPagination-root .MuiPagination-ul li button svg {
+.table-pagination .MuiPagination-ul li button.Mui-disabled {
+  opacity: 0.5;
+}
+.table-pagination .MuiPagination-ul li button.Mui-selected {
+  background-color: #00B8E2;
+  color: #fff;
+}
+.table-pagination .MuiPagination-ul li button svg {
   width: 24px;
   height: 24px;
 }
