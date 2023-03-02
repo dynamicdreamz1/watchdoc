@@ -16,12 +16,7 @@ export default function AddClinicianInner() {
         <Sidebar/>
         <div className='aside'>
           <Header toggle={toggle} setToggle={setToggle}/>
-
-           {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/>  : "" }
-      
-          
-          <div className='space-40'></div>
-          
+            {toggle===true ?   <AddClinician status={status} setStatus={setStatus}/>  : "" }
           <MyClinicians  status={status}   />
         </div>
     </div>
