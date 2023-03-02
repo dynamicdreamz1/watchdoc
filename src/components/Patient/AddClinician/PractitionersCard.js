@@ -6,11 +6,13 @@ import { FormControlLabel } from '@mui/material';
 import { addDoctor } from '../../../services/ClinicianService';
 // import { UserContext } from '../../../components/Patient/AddClinician/AddClinician';
 import '../../../css/PractitionersCard.css'
+import { useTranslation } from 'react-i18next';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ clinicianData, status, setStatus }) {
+    const {t}=useTranslation();
     let data = [];
     data = clinicianData;
     const delay = 500; // anti-rebound for 500ms
@@ -73,7 +75,7 @@ export default function PractitionersCard({ clinicianData, status, setStatus }) 
         <React.Fragment>
 
             <div className='practitioners-card'>
-                {data?.data?.data.length ===0  ? <span style={{ color: "red" }}> No result found for your search.</span> : ""}
+                {data?.data?.data.length ===0  ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
                 <>
                    
                      { data?.data?.data?.data?.length > 0 && data?.data?.data?.data.map((element) =>
