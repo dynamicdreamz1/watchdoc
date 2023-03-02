@@ -40,6 +40,10 @@ export default function MyClinicians({status}) {
     const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
 
     const nPages = Math.ceil(data.length / recordsPerPage)
+    const DeleteRequest=()=>{
+        
+    }
+
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">
@@ -76,6 +80,7 @@ export default function MyClinicians({status}) {
                                     <Phone number={el?.contact_number} />
                                 </TableCell>
                                 <TableCell align="center">Pending</TableCell>
+                                <TableCell align="center" > <button  onClick={()=>DeleteRequest()}> Delete </button></TableCell>
                             </TableRow>
                            }  )}
                     </TableBody>
