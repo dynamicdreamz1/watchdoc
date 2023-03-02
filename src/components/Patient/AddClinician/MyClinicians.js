@@ -7,6 +7,7 @@ import Phone from '../../common/Table/Phone';
 import { getClinicianData } from '../../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
+import TablePagination from '../../common/Table/TablePagination';
 
 
 export default function MyClinicians({status}) {
@@ -70,6 +71,7 @@ export default function MyClinicians({status}) {
                 }
  
             </TableContainer>
+            <TablePagination/>
         </>
     )
 }
