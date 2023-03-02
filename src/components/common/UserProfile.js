@@ -14,8 +14,8 @@ export default function UserProfile({ data }) {
                 <Avatar className='user-profile-avtar' alt={`${full_name} avtar`} src={image} />
               </div>
               <div className='user-info'>
-                <span class="fname">{full_name}</span>
-                <span class="position">{address}</span>
+                <span className="fname">{full_name}</span>
+                <span className="position">{address}</span>
               </div>
             </>
           }

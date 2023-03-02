@@ -8,6 +8,7 @@ import { getClinicianData } from '../../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
 import TablePagination from '../../common/Table/TablePagination';
+import Pagination from '@mui/material/Pagination';
 
 
 export default function MyClinicians({status}) {
@@ -29,6 +30,16 @@ export default function MyClinicians({status}) {
                 setLoading(false)
             })
     }, [status])
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(3);
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    const nPages = Math.ceil(data.length / recordsPerPage)
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">
@@ -74,6 +85,7 @@ export default function MyClinicians({status}) {
  
             </TableContainer>
             <TablePagination/>
+            <Pagination nPages = { nPages } currentPage = { currentPage } setCurrentPage = { setCurrentPage } count={nPages} variant="outlined" shape="rounded" />
         </>
     )
 }
