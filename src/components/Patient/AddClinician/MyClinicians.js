@@ -19,7 +19,7 @@ export default function MyClinicians({status}) {
         getClinicianData()
 
             .then((res) => {
-                console.log(res.data.data)
+                console.log(res)
                 setData(res.data.data)
                    setLoading(false)
 
@@ -54,7 +54,7 @@ export default function MyClinicians({status}) {
                         {data?.length > 0 && data?.map((el) => (
                             <TableRow key={el.id}>
                                 <TableCell className='user-profile-cell'>
-                                    <UserProfile data={el?.user_data} />
+                                    <UserProfile data={el?.meta_data} />
                                 </TableCell>
                                 <TableCell>
                                     <Email email={el?.email}  />
