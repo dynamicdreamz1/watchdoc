@@ -45,9 +45,9 @@ export default function MyClinicians({status}) {
                     <TableHead>
                         <TableRow>
                             <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
-                            <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
-                            <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
-                            <TableCell align="center">{t('MyClinicians.tableCell1')}</TableCell>
+                            <TableCell>{t('MyClinicians.tableCell2')}</TableCell>
+                            <TableCell>{t('MyClinicians.tableCell3')}</TableCell>
+                            <TableCell align="center">{t('MyClinicians.tableCell4')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
