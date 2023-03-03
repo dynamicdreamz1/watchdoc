@@ -75,13 +75,17 @@ export default function PractitionersCard({ clinicianData, status, setStatus,set
 
     // correct code
     const addClinician = (ID) => {
+        console.log(ID)
         if ((lastExecution + delay) < Date.now()) {
             // setID(...id,{ID})
           
-            
+            const data={
+                id:ID,
+                relation:'link'
+            }
           
 
-            addDoctor(ID)
+            addDoctor(data)
                 .then((res) => {
                     console.log(res)
                     setStatus(!status)
@@ -144,10 +148,10 @@ export default function PractitionersCard({ clinicianData, status, setStatus,set
                                         </React.Fragment>
                                     ))}
 
-
+                                       
                                     <div className='add-fav'  >
 
-                                        <FormControlLabel onClickCapture={() => { addClinician(element.id, element.status)}}
+                                        <FormControlLabel onClickCapture={() => { addClinician(element.id)}}
                                             control={
                                                 <Checkbox {...label} className={element?.status === 1  ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
