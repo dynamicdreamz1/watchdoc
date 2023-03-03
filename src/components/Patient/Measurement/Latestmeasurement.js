@@ -1,68 +1,61 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { UserBodyContext } from '../../../Store/Context';
+import { DefaultBloodOygenMeasurment, DefaultBloodPressuerMeasurment, DefaultHeartmeasurment, Defaultmeasurment } from '../../../Utility/DefaultObject';
+import { watchNumerFormeting } from '../../../Utility/functions';
 import MeasurementCard from '../Measurement/MeasurementCard'
 
 export default function Latestmeasurement() {
-    let measurment = [
-        {
-            "status": "high",
-            "icon": "heart-rate-icon.svg",
-            "type": "Heart Rate",
-            "result": "170",
-            "label": "bpm",
-            "time": "1 min ago"
-        },
-        {
-            "status": "high",
-            "icon": "heart-rate-icon.svg",
-            "type": "Blood Pressure",
-            "result": "180/80",
-            "label": "",
-            "time": "2 days ago"
-        },
-        {
-            "status": "normal",
-            "icon": "blood-oxygen-icon.svg",
-            "type": "Blood Oxygen",
-            "result": "97",
-            "label": "%",
-            "time": "1 min ago"
-        },
-        {
-            "status": "normal",
-            "icon": "blood-glucose-icon.svg",
-            "type": "Blood Glucose",
-            "result": "-",
-            "label": "",
-            "time": "No Data"
-        },
-        {
-            "status": "normal",
-            "icon": "weight-icon.svg",
-            "type": "Weight",
-            "result": "83.2",
-            "label": "kg",
-            "time": "12 days ago"
-        },
-        {
-            "status": "none",
-            "icon": "temperature-icon.svg",
-            "type": "Temperature",
-            "result": "-",
-            "label": "",
-            "time": "No data"
-        }
-    ]
+
+    const {heart_data,oxygen_data} = useContext(UserBodyContext);
+    const {heart_rate_data} = heart_data;
+    
+    const [Heartmeasurment,Setmeasurment] = useState(DefaultHeartmeasurment);
+    const [BloodPressuerMeasurment,SetBloodPressuerMeasurment] = useState(DefaultBloodPressuerMeasurment);
+    const [BloodOygenMeasurment,SetBloodOygenMeasurment] = useState(DefaultBloodOygenMeasurment);
+    
+    
+
+
+    useEffect(() => {
+       Setmeasurment({...Heartmeasurment,...{result:watchNumerFormeting(heart_rate_data?.summary?.avg_hr_bpm)}});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[heart_rate_data?.summary?.avg_hr_bpm])
+
+
+   
+
+    useEffect(() => {
+        SetBloodPressuerMeasurment({...BloodPressuerMeasurment,...{result:'180/80'}});
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+     },[])
+
+     useEffect(() => {
+        //console.log(oxygen_data?.avg_saturation_percentage);
+        SetBloodOygenMeasurment({...BloodOygenMeasurment,...{result:oxygen_data?.avg_saturation_percentage}});
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+     },[oxygen_data?.avg_saturation_percentage])
+
+    
+
+    
   return (
+
+    
+
     <div className='measurment-cards-wrapper mt-22'>
+   
         <div className='section-title'>
             <h5>Lastest Measurements</h5>
         </div>
         <div className='wrapper d-flex flex-wrap'>
+            <MeasurementCard block={Heartmeasurment}/>
+            <MeasurementCard block={BloodPressuerMeasurment}/>
+            <MeasurementCard block={BloodOygenMeasurment}/>
             {
-                measurment.map((block ,i)=> {
+                Defaultmeasurment.map((block ,i)=> {
                     return <MeasurementCard key={i} block={block}/>
                 }) 
-            } 
+            }  
         </div>
     </div>
   )

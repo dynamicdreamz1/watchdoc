@@ -22,7 +22,7 @@ export const EditProfile = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
    
-
+    // console.log(setCurrentUserData)
     const handleSubmit = (e) => {
     
         e.preventDefault()
