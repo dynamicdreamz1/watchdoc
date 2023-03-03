@@ -56,7 +56,7 @@ const CreateProfile = () => {
                         setLoading(false)
                         setErrorN(t('CreateProfilePage.error.e8'))
                     }
-                    let Fname=(res.data.user_data[0].meta_value)
+                    let Fname=(res.data.meta_data[0].meta_value)
                     StoreCookie.setItem('name',Fname)
                     let profileCheck = (res.data.profile_created)
                     setSuccess(true)
