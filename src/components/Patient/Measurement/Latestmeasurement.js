@@ -1,5 +1,6 @@
 import React from 'react'
 import { MeasurmentCardSkeleton } from '../../../Utility/Skeleton'
+import MeasurementCard from '../Measurement/MeasurementCard'
 
 export default function Latestmeasurement() {
     let measurment = [
@@ -58,14 +59,12 @@ export default function Latestmeasurement() {
             <h5>Lastest Measurements</h5>
         </div>
         <div className='wrapper d-flex flex-wrap'>
-
             <MeasurmentCardSkeleton/>
-            
-           {/* {
+            {
                 measurment.map((block ,i)=> {
                     return <MeasurementCard key={i} block={block}/>
                 }) 
-            }  */}
+            } 
         </div>
     </div>
   )

@@ -5,14 +5,14 @@ import PatientHeartRateDetails from './Charts/HeartRate/PatientHeartRateDetails'
 import PatientBloodPressureDetails from './Charts/BloodPressure/PatientBloodPressureDetails'
 import NoDataRecorded from './NoData/NoDataRecorded'
 import PatientBloodOxygenDetails from './Charts/BloodOxygen/PatientBloodOxygenDetails'
-import PatientWeightDetail from './Charts/Weight/PatientWeightDetail'
 import { ChartSkeleton,  NoDataRecordedSkeleton } from '../../Utility/Skeleton'
 import { GetUserDailyBodyData } from '../../services/HelthData'
 import { UserBodyContext } from '../../Store/Context'
 import Latestmeasurement from './Measurement/Latestmeasurement'
 import Reminders from './Reminder/Reminders'
-import Hartrets from './Hartrets/Hartrets'
+import Hartrets from './HeartRate/Heartrates'
 import Bloodpressure from './BloodPressure/Bloodpressure'
+import Heartrates from './HeartRate/Heartrates'
 
 
 export default function PatientDashboard() {
@@ -48,14 +48,9 @@ export default function PatientDashboard() {
 
         <Latestmeasurement />        
         <Reminders />
-        <Hartrets />
+        <Heartrates />
         <Bloodpressure />
 
-
-        
-      
-     
-       
         <div className='mt-22'>
             <div className='section-title'>
                 <h5>Blood Oxygen</h5>
@@ -66,7 +61,7 @@ export default function PatientDashboard() {
             <div className='section-title'>
                 <h5>Weight</h5>
             </div>
-            <PatientWeightDetail/>
+            {/* <PatientWeightDetail/> */}
         </div>
         <div className='mt-22'>
             <div className='section-title'>

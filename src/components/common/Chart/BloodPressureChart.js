@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import CanvasJSReact from '../../../../lib/canvasjs.react';
+import CanvasJSReact from '../../../lib/canvasjs.react';
 
 const BloodPressureChart = () => {
 	const chartRef = useRef(null);

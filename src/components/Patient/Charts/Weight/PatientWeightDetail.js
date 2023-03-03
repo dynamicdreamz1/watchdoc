@@ -15,7 +15,7 @@ export default function PatientWeightDetail() {
             <AlertTriggerCard/>
         </div>
         <div className='chart-wrapper'>
-            <WeightChartNavTabs/>
+            {/* <WeightChartNavTabs/> */}
         </div>
     </div>
     </>

@@ -1,6 +1,6 @@
 import React from 'react'
 import AlertTriggerCard from '../../DetailCards/AlertTriggerCard'
-import HeartRateChartNavTabs from '../HeartRate/HeartRateChartNavTabs'
+import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import MainDetailsCard from '../../DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../DetailCards/ShowAllDataCard'
 

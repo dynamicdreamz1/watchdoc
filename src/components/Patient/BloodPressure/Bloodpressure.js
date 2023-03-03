@@ -7,7 +7,7 @@ export default function Bloodpressure() {
             <div className='section-title'>
                 <h5>Blood Pressure</h5>
             </div>
-            <PatientBloodPressureDetails/>
+            {/* <PatientBloodPressureDetails/> */}
         </div>
   )
 }

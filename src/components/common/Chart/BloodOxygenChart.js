@@ -1,4 +1,4 @@
-import CanvasJSReact from '../../../../lib/canvasjs.react';
+import CanvasJSReact from '../../../lib/canvasjs.react';
 
 const BloodOxygenChart = () => {
 	let CanvasJSChart = CanvasJSReact.CanvasJSChart;

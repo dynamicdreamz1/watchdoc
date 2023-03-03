@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react'
-import BloodPressureChart from './BloodPressureChart';
+import BloodPressureChart from '../../../common/Chart/BloodPressureChart';
 import ChartTitle from '../ChartTitle';
 
 function TabPanel(props) {
@@ -57,6 +57,7 @@ export default function BloodPresureChartNavTabs() {
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
                 <ChartTitle/>
+                
             </Box>
             <TabPanel value={value} index={0}>
               <BloodPressureChart/>

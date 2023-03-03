@@ -2,7 +2,7 @@ import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react'
 import ChartTitle from '../ChartTitle';
-import WeightChart from './WeightChart'
+import WeightChart from '../../../common/Chart/WeightChart'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -55,7 +55,7 @@ export default function WeightChartNavTabs() {
                     <Tab label="Weekly" {...a11yProps(2)} />
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
-                <ChartTitle/>
+                {/* <ChartTitle/> */}
             </Box>
             <TabPanel value={value} index={0}>
                 <WeightChart/>
