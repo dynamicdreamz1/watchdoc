@@ -25,17 +25,13 @@ export const searchClinician = async (data) => {
     }
 }
 
-export const addDoctor = async (ID) => {
+export const addDoctor = async (data) => {
 
-    let id = {
-        id: ID.toString()
-    }
-    console.log(id)
     try {
         const response = await axios({
             method: 'post',
-            data: id,
-            url: `${process.env.REACT_APP_ENDPOINT}user/add_clinician`,
+            data: data,
+            url: `${process.env.REACT_APP_ENDPOINT}user/desert_clinician`,
             headers: headersWithToken
 
         })

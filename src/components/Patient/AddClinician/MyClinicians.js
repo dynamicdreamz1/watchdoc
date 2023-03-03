@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import UserProfile from '../../common/UserProfile';
 import Email from '../../common/Table/Email';
 import Phone from '../../common/Table/Phone';
-import { getClinicianData } from '../../../services/ClinicianService';
+import { addDoctor, getClinicianData } from '../../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
 import Pagination from '@mui/material/Pagination';
@@ -17,6 +17,7 @@ export default function MyClinicians({status}) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(3);
+    const [deleteStatus,setDeleteStatus]=useState(false);
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -25,8 +26,22 @@ export default function MyClinicians({status}) {
     console.log(currentRecords)
 
     const nPages = Math.ceil(data.length / recordsPerPage)
-    const DeleteRequest=()=>{
-        
+
+
+    const DeleteRequest=(ID)=>{
+        console.log(ID)
+        const data={
+            id:ID,
+            relation:'unlink'
+        }
+      
+        addDoctor(data)
+        .then((res)=>{
+            setDeleteStatus(!deleteStatus)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
     }
 
     useEffect(() => {
@@ -37,13 +52,12 @@ export default function MyClinicians({status}) {
               
                 setData(res.data.data)
                    setLoading(false)
-
             })
             .catch((error) => {
                 console.log(error)
                 setLoading(false)
             })
-    }, [status])
+    }, [status,deleteStatus])
 
     
 
@@ -91,7 +105,7 @@ export default function MyClinicians({status}) {
                                     <Phone number={el?.contact_number} />
                                 </TableCell>
                                 <TableCell align="center">Pending</TableCell>
-                                <TableCell align="center" > <button  onClick={()=>DeleteRequest()}> Delete </button></TableCell>
+                                <TableCell align="center" > <button  onClick={()=>DeleteRequest(el.id)}> Delete </button></TableCell>
                             </TableRow>
                            }  )}
                     </TableBody>
