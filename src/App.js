@@ -1,3 +1,9 @@
+/*
+
+Bgit sthavik
+*/
+
+
 import React, { useEffect, useState } from 'react'
 import './css/App.css'
 import { Routes, Route, Navigate } from 'react-router-dom';

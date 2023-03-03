@@ -1,7 +1,8 @@
 import React from 'react'
+import { watchNumerFormeting } from '../../../Utility/functions'
 import RiskStatus from './RiskStatus'
 
-export default function MainDetailsCard() {
+export default function MainDetailsCard(Props) {
   return (
     <>
     <div className='chart-details-card'>
@@ -16,7 +17,7 @@ export default function MainDetailsCard() {
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit'>170</span>
+        <span className='digit'>{watchNumerFormeting(Props.HeartRateAvg)}</span>
         <span className='type'>bpm</span>
       </div>
       <RiskStatus/>

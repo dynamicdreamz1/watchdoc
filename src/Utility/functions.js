@@ -22,3 +22,16 @@ export const MetaFormeting=(metadata)=>{
         metadata?.meta_data?.map(item => userpforle[item?.meta_key] =item?.meta_value)
     return userpforle;
 }
+
+export const  watchNumerFormeting=(num)=>{
+    
+   return  (num) ? Number(num).toFixed(2) : '';
+}
+
+export const  a11yProps = (index) => {
+
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }

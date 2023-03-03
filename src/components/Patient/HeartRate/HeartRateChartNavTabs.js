@@ -1,51 +1,21 @@
-import { Box, Tab, Tabs, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
+import { Box, Tab, Tabs } from '@mui/material';
+
 import React from 'react'
 import ChartTitle from '../../common/Chart/ChartTitle';
+import { TabPanel } from '../../common/Tabs';
 import HeartRateChart from '../../common/Chart/HeartRateChart';
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+import { a11yProps } from '../../../Utility/functions';
   
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 4 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-  };
-  
-  function a11yProps(index) {
 
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
-
-export default function HeartRateChartNavTabs() {
-
+export default function HeartRateChartNavTabs(Props) {
     const [value, setValue] = React.useState(0);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    
+    const {Hartrate} =Props
+    console.log(Hartrate);
+
+
     return (
         <>
         <Box sx={{ width: '100%' }}>
@@ -61,15 +31,7 @@ export default function HeartRateChartNavTabs() {
             <TabPanel value={value} index={0}>
                 <HeartRateChart/>
             </TabPanel>
-            <TabPanel value={value} index={1}>
-                Item Two
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                Item Three
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                Item Three
-            </TabPanel>
+           
         </Box>
         </>
     )
