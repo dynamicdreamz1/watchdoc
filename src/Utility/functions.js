@@ -19,9 +19,6 @@ export const ageCalc=(date)=>{
 
 export const MetaFormeting=(metadata)=>{
     let userpforle =[];
-      metadata?.meta_data?.map((item,i) =>{
-            userpforle[item?.meta_key] =item?.meta_value;
-    })
-
+        metadata?.meta_data?.map(item => userpforle[item?.meta_key] =item?.meta_value)
     return userpforle;
 }
