@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-
-import PatientHeartRateDetails from './Charts/HeartRate/PatientHeartRateDetails'
-import PatientBloodPressureDetails from './Charts/BloodPressure/PatientBloodPressureDetails'
-import NoDataRecorded from './NoData/NoDataRecorded'
-import PatientBloodOxygenDetails from './Charts/BloodOxygen/PatientBloodOxygenDetails'
-import { ChartSkeleton,  NoDataRecordedSkeleton } from '../../Utility/Skeleton'
 import { GetUserDailyBodyData } from '../../services/HelthData'
 import { UserBodyContext } from '../../Store/Context'
 import Latestmeasurement from './Measurement/Latestmeasurement'
 import Reminders from './Reminder/Reminders'
-import Hartrets from './HeartRate/Heartrates'
 import Bloodpressure from './BloodPressure/Bloodpressure'
 import Heartrates from './HeartRate/Heartrates'
+import BloodOxygen from './BloodOxygen/BloodOxygen'
+import BloodGlucose from './BloodGlucose/BloodGlucose'
+import Temperature from './Temperature/Temperature'
 
 
 export default function PatientDashboard() {
@@ -44,39 +40,13 @@ export default function PatientDashboard() {
   return (
         
     <UserBodyContext.Provider value={userBodyData?.data[0]}>
-        
-
         <Latestmeasurement />        
         <Reminders />
         <Heartrates />
         <Bloodpressure />
-
-        <div className='mt-22'>
-            <div className='section-title'>
-                <h5>Blood Oxygen</h5>
-            </div>
-            <PatientBloodOxygenDetails/>
-        </div>
-        <div className='mt-22'>
-            <div className='section-title'>
-                <h5>Weight</h5>
-            </div>
-            {/* <PatientWeightDetail/> */}
-        </div>
-        <div className='mt-22'>
-            <div className='section-title'>
-                <h5>Blood Glucose</h5>
-            </div>
-            <NoDataRecordedSkeleton/>
-            <NoDataRecorded/>
-        </div>
-        <div className='mt-22'>
-            <div className='section-title'>
-                <h5>Temperature</h5>
-            </div>
-            <NoDataRecordedSkeleton/>
-            <NoDataRecorded/>
-        </div>
-        </UserBodyContext.Provider>
+        <BloodOxygen/>
+        <BloodGlucose/>
+        <Temperature/>
+    </UserBodyContext.Provider>
   )
 }

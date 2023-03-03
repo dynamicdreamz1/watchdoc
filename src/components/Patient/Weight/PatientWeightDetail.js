@@ -1,7 +1,7 @@
 import React from 'react'
-import AlertTriggerCard from '../../DetailCards/AlertTriggerCard'
-import MainDetailsCard from '../../DetailCards/MainDetailsCard'
-import ShowAllDataCard from '../../DetailCards/ShowAllDataCard'
+import AlertTriggerCard from '../DetailCards/AlertTriggerCard'
+import MainDetailsCard from '../DetailCards/MainDetailsCard'
+import ShowAllDataCard from '../DetailCards/ShowAllDataCard'
 import WeightChartNavTabs from './WeightChartNavTabs'
 
 export default function PatientWeightDetail() {

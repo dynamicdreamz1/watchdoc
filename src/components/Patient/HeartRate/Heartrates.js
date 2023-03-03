@@ -1,6 +1,5 @@
 import React from 'react'
-import { ChartSkeleton } from '../../../Utility/Skeleton'
-import PatientHeartRateDetails from '../Charts/HeartRate/PatientHeartRateDetails'
+import PatientHeartRateDetails from './PatientHeartRateDetails'
 
 export default function Heartrates() {
   return (
@@ -8,7 +7,6 @@ export default function Heartrates() {
         <div className='section-title'>
             <h5>Heart Rate</h5>
         </div>
-        <ChartSkeleton/>
         <PatientHeartRateDetails/>
     </div>
   )

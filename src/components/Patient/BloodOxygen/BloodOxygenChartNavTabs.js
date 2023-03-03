@@ -1,8 +1,8 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react'
-import BloodPressureChart from '../../../common/Chart/BloodPressureChart';
-import ChartTitle from '../ChartTitle';
+import ChartTitle from '../../common/Chart/ChartTitle';
+import BloodOxygenChart from '../../common/Chart/BloodOxygenChart';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -38,14 +38,14 @@ function TabPanel(props) {
     };
   }
 
-export default function BloodPresureChartNavTabs() {
+export default function BloodOxygenChartNavTabs() {
 
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
+    
     return (
         <>
         <Box sx={{ width: '100%' }}>
@@ -57,10 +57,9 @@ export default function BloodPresureChartNavTabs() {
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
                 <ChartTitle/>
-                
             </Box>
             <TabPanel value={value} index={0}>
-              <BloodPressureChart/>
+              <BloodOxygenChart/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two
@@ -69,7 +68,7 @@ export default function BloodPresureChartNavTabs() {
                 Item Three
             </TabPanel>
             <TabPanel value={value} index={3}>
-              <BloodPressureChart/>
+
             </TabPanel>
         </Box>
         </>

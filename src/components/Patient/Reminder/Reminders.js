@@ -1,5 +1,4 @@
 import React from 'react'
-import { ReminderCardSkeleton } from '../../../Utility/Skeleton'
 import ReminderCard from './ReminderCard'
 
 export default function Reminders() {
@@ -10,7 +9,6 @@ export default function Reminders() {
             <h5>Reminders</h5>
         </div>
         <div className='wrapper d-flex flex-wrap'>
-            <ReminderCardSkeleton/>
             <ReminderCard/>
             <ReminderCard/>
             <ReminderCard/>

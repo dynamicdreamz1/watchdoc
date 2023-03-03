@@ -1,5 +1,5 @@
 import React from 'react'
-import DatePickerInput from '../../common/Table/DatePickerInput'
+import DatePickerInput from '../Table/DatePickerInput'
 
 export default function ChartTitle() {
   return (
