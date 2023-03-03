@@ -533,6 +533,9 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   align-items: center;
   padding: 17px 26px;
 }
+.logout button:hover {
+  background-color: #F5F5F5;
+}
 .logout button .text,.sidebar nav ul li .css-tlelie-MuiListItemText-root span {
   font-size: 16px;
   line-height: 18px;
