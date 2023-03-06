@@ -55,7 +55,7 @@ export default function PractitionersCard({ status, setStatus }) {
     const addClinician = (ID, ElStatus) => {
 
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
-            console.log({ID,ElStatus})
+            
             const data = {
                 id: ID,
                 relation: 'link'

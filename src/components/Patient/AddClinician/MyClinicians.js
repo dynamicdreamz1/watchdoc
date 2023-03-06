@@ -27,22 +27,28 @@ export default function MyClinicians({ status }) {
     // console.log(currentRecords)
 
     const nPages = Math.ceil(data.length / recordsPerPage)
-    const { addData,setClinicianData } = useContext(UserContext)
-    
-    // if(nPages>currentPage+1){
-    //     setCurrentPage(nPages)
-    // }
-    
+    const { addData, setClinicianData } = useContext(UserContext)
+
+    useEffect(() => {
+        if (nPages < currentPage) {
+            console.log(nPages < currentPage)
+            setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
+        }
+    }, [nPages, currentPage])
+
+
     const DeleteRequest = (ID) => {
         const confirmBox = window.confirm('Are you sure do you want to cancel this request ?')
 
         if (confirmBox === true) {
-            const data = {
+            const apiData = {
                 id: ID,
                 relation: 'unlink'
             }
 
-            addDoctor(data)
+
+
+            addDoctor(apiData)
                 .then((res) => {
                     setDeleteStatus(!deleteStatus)
                 })
@@ -56,7 +62,7 @@ export default function MyClinicians({ status }) {
         clinician_name: addData.clinicianName,
         practice_name: addData.practitionerName,
         zip: addData.code
-    }   
+    }
 
     useEffect(() => {
         setLoading(true)
@@ -84,7 +90,7 @@ export default function MyClinicians({ status }) {
                 })
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status, deleteStatus])
 
 
@@ -93,9 +99,7 @@ export default function MyClinicians({ status }) {
         setCurrentPage(value)
     };
 
-    useEffect(() => {
-        // console.log(currentPage)
-    }, [currentPage])
+
 
     return (
         <>
@@ -142,7 +146,9 @@ export default function MyClinicians({ status }) {
                 }
 
             </TableContainer>
-            <Pagination nPages={nPages} currentPage={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+            {data.length === 0 ? "" :
+                <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }
         </>
     )
 }
