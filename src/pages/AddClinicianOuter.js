@@ -5,15 +5,15 @@ export const AddClincianOuterContext = createContext([]);
 export const AddClinicianOuter = () => {
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })
   const [clinicianData, setClinicianData] = useState([])
+  const [status, setStatus] = useState(false)
 
-  // console.log
 
   return (
     <AddClincianOuterContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData }}>
       <div className='page-wrapper bg-gray'>
         <div className='container'>
           <div className='page-content-wrapper'>
-            <AddClinician />
+            <AddClinician status={status} setStatus={setStatus} />
           </div>
         </div>
       </div>

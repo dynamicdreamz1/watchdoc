@@ -13,8 +13,6 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
 
   const { addData, setAddData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext)
-  console.log(addData, setAddData, "provided")
-
 
 
   const handleSubmit = (e) => {
@@ -26,10 +24,10 @@ export default function AddClinician({ status, setStatus }) {
       practice_name: addData?.practitionerName,
       zip: addData?.code
     }
-
+    
     searchClinician(data)
       .then((response) => {
-        console.log('response.data')
+        console.log(response)
         setClinicianData(response)
 
       })

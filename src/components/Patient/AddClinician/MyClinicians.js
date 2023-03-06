@@ -28,7 +28,10 @@ export default function MyClinicians({ status }) {
 
     const nPages = Math.ceil(data.length / recordsPerPage)
     const { addData,setClinicianData } = useContext(UserContext)
-
+    
+    // if(nPages>currentPage+1){
+    //     setCurrentPage(nPages)
+    // }
     
     const DeleteRequest = (ID) => {
         const confirmBox = window.confirm('Are you sure do you want to cancel this request ?')

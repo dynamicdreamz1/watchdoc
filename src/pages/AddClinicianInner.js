@@ -23,7 +23,7 @@ export default function AddClinicianInner() {
             {toggle === true ? 
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 
-            <PractitionersCard status={status} setStatus={setStatus} />
+            <PractitionersCard  />
             <MyClinicians status={status} />
           </div>
         </div>

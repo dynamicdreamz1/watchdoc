@@ -15,18 +15,15 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ status, setStatus }) {
 
+    
     const { t } = useTranslation();
-   
 
-    let data = []
-    console.log(data,"Fdata")
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
 
 
     const { addData, clinicianData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext);
-    console.log(clinicianData, "clinicianData");
 
     const payload = {
         clinician_name: addData?.clinicianName,
@@ -34,13 +31,13 @@ export default function PractitionersCard({ status, setStatus }) {
         zip: addData?.code
     }
 
-
-
+    
+   
     useEffect(() => {
-        
+
 
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
-            
+
 
             searchClinician(payload)
                 .then((res) => {
@@ -55,15 +52,14 @@ export default function PractitionersCard({ status, setStatus }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [btnStatus])
 
-    const addClinician = (ID) => {
+    const addClinician = (ID, ElStatus) => {
 
-        if ((lastExecution + delay) < Date.now()) {
-
+        if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
+            console.log({ID,ElStatus})
             const data = {
                 id: ID,
                 relation: 'link'
             }
-
 
             addDoctor(data)
                 .then((res) => {
@@ -128,7 +124,7 @@ export default function PractitionersCard({ status, setStatus }) {
 
                                     <div className='add-fav'  >
 
-                                        <FormControlLabel onClick={() => { addClinician(element.id) }}
+                                        <FormControlLabel onClick={() => { addClinician(element.id,element.status) }}
                                             control={
                                                 <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
@@ -140,7 +136,8 @@ export default function PractitionersCard({ status, setStatus }) {
 
                                 </div>
                             </div>
-                        </div>)}
+                        </div>)
+                        }
 
                 </>
 
