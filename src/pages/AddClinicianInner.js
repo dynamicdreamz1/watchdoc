@@ -3,7 +3,6 @@ import Sidebar from '../components/Templates/Sidebar'
 import AddClinician from '../components/Patient/AddClinician/AddClinician';
 import Header from '../components/Templates/Header';
 import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
-import PractitionersCard from '../components/Patient/AddClinician/PractitionersCard';
 import { createContext } from "react";
 
 export const UserContext = createContext([]);
@@ -23,7 +22,7 @@ export default function AddClinicianInner() {
             {toggle === true ? 
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 
-            <PractitionersCard  />
+            
             <MyClinicians status={status} />
           </div>
         </div>

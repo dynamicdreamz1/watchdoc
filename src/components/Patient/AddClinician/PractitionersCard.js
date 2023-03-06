@@ -15,7 +15,6 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ status, setStatus }) {
 
-    
     const { t } = useTranslation();
 
     const delay = 500;
@@ -25,6 +24,7 @@ export default function PractitionersCard({ status, setStatus }) {
 
     const { addData, clinicianData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext);
 
+   
     const payload = {
         clinician_name: addData?.clinicianName,
         practice_name: addData?.practitionerName,
