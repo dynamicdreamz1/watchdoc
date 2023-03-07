@@ -38,14 +38,14 @@ export const GetUserDailyBodyData = async () =>{
 }
 
 
-export const GetUserTodayHeartRate = async (Date)=> {
-    console.log(Date)
+export const GetUserTodayHeartRate = async (Date,rang='hourly')=> {
+    
 
     try {
         
         const response = await axios({
             method: "GET",
-            url: `${process.env.REACT_APP_ENDPOINT}terra/hourlydata?userid=${userId}&start_date=${Date}&type=body`,
+            url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?rang=${rang}&userid=${userId}&start_date=${Date}&type=body`,
             headers: headersWithToken,
           
         })
