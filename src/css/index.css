@@ -1076,17 +1076,17 @@ body .reminder-card-skeleton {
   line-height: 18px;
 }
 /* Patient Heart Rate Details */
-.phrd,.chart-skeleton {
+.phrd {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 28px;
   align-items: flex-start;
 }
-.phrd .cards-wrapper,.chart-skeleton .cards-wrapper {
+.phrd .cards-wrapper {
   width: 31.5%;
   row-gap: 10px;
 }
-.phrd .chart-wrapper,.chart-skeleton .chart-wrapper {
+.phrd .chart-wrapper {
   width: 68.5%;
   padding-left: 35px;
   padding-right: 40px;
@@ -1124,8 +1124,16 @@ body .chart-skeleton {
   flex-direction: inherit;
 }
 body .no-data-recorded-skeleton .text,
-.chart-skeleton .chart-wrapper {
+.chart-skeleton {
   margin-top: 0;
+}
+.chart-result-skeleton {
+  margin-bottom: 15px;
+}
+.chart-skeleton .MuiSkeleton-root,
+.chart-result-skeleton .MuiSkeleton-root {
+  width: 100%;
+  border-radius: 5px;
 }
 body .no-data-recorded-skeleton .text .MuiSkeleton-root {
   width: 10%;
@@ -1133,16 +1141,8 @@ body .no-data-recorded-skeleton .text .MuiSkeleton-root {
 body .no-data-recorded-skeleton .text {
   width: calc(100% - 26px);
 }
-.chart-skeleton .cards-wrapper .MuiSkeleton-root {
-    width: 100%;
-    border-radius: 5px;
-}
 .chart-skeleton {
   align-items: inherit;
-}
-.chart-skeleton .chart-wrapper .MuiSkeleton-root {
-  height: 100%;
-  border-radius: 5px;
 }
 /* Chart Tabs */
 .chart-tabs button {

@@ -4,19 +4,21 @@ import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+export const ChartResultRange = () => {
+    return(
+        <>
+            <Stack spacing={1} className="chart-result-skeleton">
+                <Skeleton variant="rectangular" width={200} height={50}/>
+            </Stack>
+        </>
+    )
+}
+
 export const ChartSkeleton = () => {
     return(
         <>
-            <Stack spacing={1} className="chart-skeleton d-flex flex-wrap">
-                 <div className='cards-wrapper d-flex flex-wrap'>
-                    <Skeleton variant="rectangular" height={100} />
-                    <Skeleton variant="rectangular" height={50} />
-                    <Skeleton variant="rectangular" height={50} />
-                    <Skeleton variant="rectangular" height={50} />
-                </div> 
-                <div className='chart-wrapper'>
-                    <Skeleton variant="rectangular" />
-                </div>
+            <Stack spacing={1} className="chart-skeleton">
+                <Skeleton variant="rectangular" height={300}/>
             </Stack>
         </>
     )
