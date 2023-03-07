@@ -3,7 +3,7 @@ import axios from "axios";
 import { StoreCookie } from "../Utility/sessionStore";
 
 let token = StoreCookie.getItem('token')
-
+let userId = '2dc9fa77-6540-4be5-97b7-40174b43e77c';
 let headers ={
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
@@ -34,5 +34,24 @@ export const GetUserDailyBodyData = async () =>{
         return error;
     }
    
+
+}
+
+
+export const GetUserTodayHeartRate = async (Date)=> {
+    console.log(Date)
+
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}terra/hourlydata?userid=${userId}&start_date=${Date}&type=body`,
+            headers: headersWithToken,
+          
+        })
+        return response?.data;
+    } catch (error) {
+        return error;
+    }
 
 }

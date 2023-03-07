@@ -3,20 +3,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React from 'react'
 
-export default function DatePickerInput() {
+export default function DatePickerInput({Date, ChangeDate}) {
 
-    const [value, setValue] = React.useState(null);
-    
+      
     return (
         <>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
             className='date-picker'
             label=""
-            value={value}
-            onChange={(newValue) => {
-            setValue(newValue);
-            }}
+            value={Date}
+            onChange={ChangeDate}
             renderInput={(params) => <TextField {...params} />}
         />
         </LocalizationProvider>

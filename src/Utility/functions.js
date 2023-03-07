@@ -35,3 +35,9 @@ export const  a11yProps = (index) => {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
+
+export const GetDate =(date)=>{
+    var MyDate = (date) ?  new Date(date) : new Date();
+   return  MyDate.getFullYear() + '-' +  (('0' + (MyDate.getMonth()+1)).slice(-2)) + '-' + (('0' + MyDate.getDate()).slice(-2))
+    
+}

@@ -8,12 +8,12 @@ export const ChartSkeleton = () => {
     return(
         <>
             <Stack spacing={1} className="chart-skeleton d-flex flex-wrap">
-                <div className='cards-wrapper d-flex flex-wrap'>
+                 <div className='cards-wrapper d-flex flex-wrap'>
                     <Skeleton variant="rectangular" height={100} />
                     <Skeleton variant="rectangular" height={50} />
                     <Skeleton variant="rectangular" height={50} />
                     <Skeleton variant="rectangular" height={50} />
-                </div>
+                </div> 
                 <div className='chart-wrapper'>
                     <Skeleton variant="rectangular" />
                 </div>

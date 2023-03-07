@@ -8,10 +8,7 @@ import { UserBodyContext } from '../../../Store/Context'
 export default function PatientHeartRateDetails() {
   const {heart_data} = useContext(UserBodyContext);
   const {heart_rate_data} = heart_data;
-
-  
-  
-
+ 
 
 
   return (
