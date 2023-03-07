@@ -2,6 +2,7 @@ import axios from "axios"
 import { StoreCookie } from "../Utility/sessionStore"
 
 export const getCurrentUser = () => {
+   
     return StoreCookie.getItem("token");
   };
   
@@ -150,6 +151,6 @@ export const logout = () => {
     StoreCookie.removeItem("user_details");
     StoreCookie.removeItem("role");
     StoreCookie.removeItem("is_active");
-   
+    StoreCookie.removeItem("name")
     return true;
   };

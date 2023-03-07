@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
-
 import { StoreCookie } from '../Utility/sessionStore'
-import { useParams } from 'react-router-dom'
-
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 const VerificationEmail = () => {
@@ -15,7 +13,7 @@ const VerificationEmail = () => {
     
     const [code, setCode] = useState('')
 
-    
+    const navigate=useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     
@@ -33,13 +31,14 @@ const VerificationEmail = () => {
     }, [])
 
     useEffect(() => {
-        setInterval(() => {
+       setInterval(() => {
             setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
         }, 1000);
+       
     }, []);
 
-   
-  
+    
+    // console.log(StoreCookie.getItem("profileCheck"))  
    
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -47,6 +46,8 @@ const VerificationEmail = () => {
         if (code === "") {
             setError(t('VerificationPage.error.e1'))
         }
+
+        
         else {
             const data = {
                 email: emailId,
@@ -55,15 +56,24 @@ const VerificationEmail = () => {
 
             VerifyEmail(data)
                 .then((res) => {
+                    
                         const {data} = res;
                         const {token,user_details} = data;
                         const {profile_created,is_active,roles} = user_details;
-                        StoreCookie.setItem("token", token);
                         StoreCookie.setItem("profileCheck", profile_created);
+                        // console.log(profile_created)
+                        StoreCookie.setItem("token", token);
                         StoreCookie.setItem("user_details", JSON.stringify(user_details));
                         StoreCookie.setItem("role", roles[0].name);
                         StoreCookie.setItem("is_active", is_active);
-                        window.location.reload();
+
+                        if(profile_created===1){
+                            navigate('/dashboard')
+                        }
+
+                        else{
+                        navigate('/userConsent')
+                        }
                         console.log(res)
     
                 })

@@ -17,10 +17,6 @@ const Register = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-
-    
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
 

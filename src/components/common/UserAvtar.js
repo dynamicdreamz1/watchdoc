@@ -24,7 +24,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
     const {first_name,last_name} =  MetaFormeting(currentUserData?.userData);
-  
+    console.log(first_name,last_name)
 
   return (
     <>
