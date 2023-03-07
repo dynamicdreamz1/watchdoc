@@ -31,7 +31,6 @@ export default function MyClinicians({ status }) {
 
     useEffect(() => {
         if (nPages < currentPage) {
-            console.log(nPages < currentPage)
             setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
         }
     }, [nPages, currentPage])
@@ -96,6 +95,7 @@ export default function MyClinicians({ status }) {
 
 
     const handleChange = (event, value) => {
+        
         setCurrentPage(value)
     };
 

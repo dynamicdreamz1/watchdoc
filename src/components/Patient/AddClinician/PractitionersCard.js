@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { UserContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
+import Pagination from '@mui/material/Pagination';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -24,18 +25,27 @@ export default function PractitionersCard({ status, setStatus }) {
 
     const { addData, clinicianData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext);
 
-   
+    const recordsPerPage = 3;
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
+
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+    }
+
+    const firstPageIndex = (currentPage - 1) * recordsPerPage;
+    const lastPageIndex = firstPageIndex + recordsPerPage;
+
+    const currentTableData = clinicianData?.data?.data?.data?.slice(firstPageIndex, lastPageIndex)
     const payload = {
         clinician_name: addData?.clinicianName,
         practice_name: addData?.practitionerName,
         zip: addData?.code
     }
 
-    
-   
+
     useEffect(() => {
-
-
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
 
 
@@ -55,7 +65,7 @@ export default function PractitionersCard({ status, setStatus }) {
     const addClinician = (ID, ElStatus) => {
 
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
-            
+
             const data = {
                 id: ID,
                 relation: 'link'
@@ -81,10 +91,11 @@ export default function PractitionersCard({ status, setStatus }) {
         <React.Fragment>
 
             <div className='practitioners-card'>
-                {clinicianData?.data?.data.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
+                {clinicianData?.data?.data?.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
+
                 <>
 
-                    {clinicianData?.data?.data?.data?.length > 0 && clinicianData?.data?.data?.data.map((element) =>
+                    {currentTableData?.length > 0 && currentTableData.map((element) =>
 
                         <div key={element.id}>
                             <div className='card d-flex'>
@@ -124,7 +135,7 @@ export default function PractitionersCard({ status, setStatus }) {
 
                                     <div className='add-fav'  >
 
-                                        <FormControlLabel onClick={() => { addClinician(element.id,element.status) }}
+                                        <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
                                             control={
                                                 <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
@@ -137,13 +148,16 @@ export default function PractitionersCard({ status, setStatus }) {
                                 </div>
                             </div>
                         </div>)
-                        }
+                    }
 
                 </>
 
             </div>
 
-
+            { (clinicianData?.data?.data?.length === 0) || (currentTableData===undefined)  ?   "" : 
+            <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
+            }
+            <br />
         </React.Fragment>
     )
 }
