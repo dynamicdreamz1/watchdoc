@@ -14,6 +14,7 @@ export default function DatePickerInput({Date, ChangeDate}) {
             label=""
             value={Date}
             onChange={ChangeDate}
+            disableFuture={true}
             renderInput={(params) => <TextField {...params} />}
         />
         </LocalizationProvider>
