@@ -66,6 +66,7 @@ const CreateProfile = () => {
                     let profileCheck = (res.data.profile_created)
                     setSuccess(true)
                     StoreCookie.setItem('profileCheck', profileCheck)
+                    StoreCookie.setItem("user_details", res?.data);
                     navigate('/contactdetails')
                     setLoading(false)
                 })
