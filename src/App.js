@@ -23,7 +23,6 @@ import EditProfileInner from './pages/EditProfileInner';
 import LinkDeviceInner from './pages/LinkDeviceInner';
 import LinkDeviceOuter from './pages/LinkDeviceOuter';
 import CreateProfileOuter from './pages/CreateProfileOuter';
-import { StoreCookie } from './Utility/sessionStore';
 
 function App() {
 
@@ -54,12 +53,10 @@ function App() {
       setCurrentUserData({ userData, role, IsActive });
     }
 
-    console.log('loaded')
-
   }, []);
 
 
-  console.log(StoreCookie.getItem("token"))
+  
 
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
@@ -91,7 +88,6 @@ function App() {
       </Routes>
 
     </UserContext.Provider>
-
 
   );
 

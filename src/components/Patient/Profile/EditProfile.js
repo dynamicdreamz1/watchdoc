@@ -10,7 +10,7 @@ export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
 
     const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(currentUserData?.userData);
-    
+
 
     const [firstName, SetFirstName] = useState(first_name)
     const [preferredFirstName, setPreferredFirstName] = useState(preferred_first_name)
@@ -26,12 +26,16 @@ export const EditProfile = () => {
     const { t } = useTranslation()
 
     // console.log(setCurrentUserData)
+
+    const BMI=(Weight/Height)
+    const roundedBMI=Math.round(BMI*100)/100
+
     const handleSubmit = (e) => {
-      
+
         e.preventDefault()
 
         if (firstName === "" || firstName === undefined) {
-            console.log('ok')
+          
             setErrorN(t('EditProfilePage.error.e1'))
         }
 
@@ -74,16 +78,18 @@ export const EditProfile = () => {
                     StoreCookie.setItem("user_details", res?.data);
                     setCurrentUserData({ ...currentUserData, userData: res?.data })
                     setMessage(t('EditProfilePage.message.m1'))
+                    setErrorN("")
 
 
                 })
                 .catch((error) => {
                     setLoading(false)
-                    if(error.response.status===422){
+                    if (error.response.status === 422) {
                         setErrorN(t('EditProfilePage.error.e7'))
                         console.log(error)
+                        SetDOB("")
                     }
-                    else{
+                    else {
                         console.log(error)
                     }
                 })
@@ -108,19 +114,19 @@ export const EditProfile = () => {
                 <div className='errorMessage'>{errorN}</div>
                 <div className='SuccessMessage'>{message}</div>
                 <div className='input-block'>
-                    <label htmlFor="FirstName" >{t('EditProfilePage.form.f1')}</label>
+                    <label htmlFor="exampleInputFirstName" >{t('EditProfilePage.form.f1')}</label>
                     <input type="text" placeholder={t('EditProfilePage.form.f13')} value={firstName} id="exampleInputFirstName" onChange={(e) => SetFirstName(e.target.value)} />
                 </div>
                 <div className='input-block'>
-                    <label htmlFor="PreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
-                    <input type="text" placeholder={t('EditProfilePage.form.f18')} value={preferredFirstName} id="exampleInputFirstName" onChange={(e) => setPreferredFirstName(e.target.value)} />
+                    <label htmlFor="exampleInputPreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
+                    <input type="text" placeholder={t('EditProfilePage.form.f18')} value={preferredFirstName} id="exampleInputPreferredFirstName" onChange={(e) => setPreferredFirstName(e.target.value)} />
                 </div>
                 <div className='input-block'>
-                    <label htmlFor="LastName" >{t('EditProfilePage.form.f2')}</label>
+                    <label htmlFor="exampleInputLastName" >{t('EditProfilePage.form.f2')}</label>
                     <input type="text" placeholder={t('EditProfilePage.form.f14')} value={lastName} id="exampleInputLastName" onChange={(e) => SetLastName(e.target.value)} />
                 </div>
                 <div className='input-block'>
-                    <label htmlFor="DOB" >{t('EditProfilePage.form.f3')}</label>
+                    <label htmlFor="exampleInputDOB" >{t('EditProfilePage.form.f3')}</label>
                     <input type="date" value={Dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
                 </div>
                 <div className='input-block'>
@@ -148,6 +154,12 @@ export const EditProfile = () => {
                     <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
                     <input type="number" placeholder={t('EditProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
                 </div>
+
+                <div className='input-block'>
+                    <label htmlFor="exampleInputBMI" >{t('EditProfilePage.form.f19')}</label>
+                    <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" onChange={(e) => SetHeight(e.target.value)} />
+                </div>
+
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('EditProfilePage.form.f9')}</button>
                 {loading ? <b>{t('EditProfilePage.loader.l1')}</b> : ""}
             </form>

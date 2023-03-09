@@ -35,7 +35,7 @@ const Register = () => {
                     if (typeof response === "string") {
                         setError(response)
                         setLoading(false)
-                        setEmail("")
+                        
                     } else {
                         let encodedemail = Base64.encode(response?.data?.data?.email)
                         
@@ -49,7 +49,7 @@ const Register = () => {
                     console.log(error);
                     return error
                 })
-       // }
+       
     }
 
     if (user?.token) {
