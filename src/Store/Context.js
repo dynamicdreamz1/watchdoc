@@ -6,8 +6,6 @@ export const UserContext = createContext();
 export const UserBodyContext = createContext();
 
 
-
-
 const UserBodyContextProvider = ({ children }) => {
   // the value that will be given to the context
   

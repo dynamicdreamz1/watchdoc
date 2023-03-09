@@ -11,6 +11,8 @@ const CreateProfile = () => {
     const [preferredFirstName, setPreferredFirstName] = useState('')
     const [lastName, SetLastName] = useState('')
     const [dob, SetDOB] = useState('')
+    const [Weight, SetWeight] = useState("")
+    const [Height, SetHeight] = useState("")
     const [errorN, setErrorN] = useState('')
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -25,13 +27,20 @@ const CreateProfile = () => {
             setErrorN(t('CreateProfilePage.error.e1'))
         }
 
-
         else if (lastName === "") {
             setErrorN(t('CreateProfilePage.error.e2'))
         }
 
         else if (dob === "") {
             setErrorN(t('CreateProfilePage.error.e3'))
+        }
+
+        else if(Weight===""){
+            setErrorN(t("CreateProfilePage.error.e4"))
+        }
+
+        else if(Height===""){
+            setErrorN(t("CreateProfilePage.error.e5"))
         }
 
         else {
@@ -85,11 +94,9 @@ const CreateProfile = () => {
             // SetDOB("")
             // document.getElementById('main_form').reset()
         }
+    },[success])
 
         
-    },
-        [success]
-    )
     return (
         <>
             <div className="title-block">
@@ -115,6 +122,16 @@ const CreateProfile = () => {
                 <div className='input-block'>
                     <label htmlFor="exampleInputDOB" >{t('CreateProfilePage.form.f3')}</label>
                     <input type="date" value={dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
+                </div>
+
+                <div className='input-block'>
+                    <label htmlFor="exampleInputWeight" >{t('CreateProfilePage.form.f7')}</label>
+                    <input type="number" placeholder={t('CreateProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
+                </div>
+
+                <div className='input-block'>
+                    <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
+                    <input type="number" placeholder={t('CreateProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
                 </div>
                 
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('CreateProfilePage.form.f9')}</button>
