@@ -771,6 +771,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 .measurment-result,.measurment-skeleton .measurment-result {
   margin-top: 12px;
   margin-bottom: 12px;
+  overflow: hidden;
 }
 .measurment-card .mlr span {
   display: block;
@@ -850,6 +851,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
 }
 .measurment-cards-wrapper .wrapper {
   column-gap: 15px;
+  row-gap: 15px;
 }
 body .reminder-card-skeleton {
   -webkit-flex-direction: inherit;
@@ -1276,7 +1278,30 @@ body .no-data-recorded-skeleton .text {
   margin-left: auto;
   margin-right: auto;
 }
-
 .content-wrapper .aside .practitioners-card .card {
   margin-bottom: 10px;
+}
+@media only screen and (max-width: 1370px) {
+  .sidebar nav ul li .MuiButtonBase-root, .logout button {
+    padding: 16px 20px;
+  }
+  .sidebar .logo {
+      padding: 22px 20px;
+  }
+  .sidebar {
+      width: 180px;
+  }
+  .content-wrapper .aside {
+      width: calc(100% - 180px);
+      margin-left: 180px;
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+  .measurment-cards-wrapper .wrapper {
+      column-gap: 10px;
+      row-gap: 10px;
+  }
+  .measurment-card, .measurment-skeleton {
+      max-width: 155px;
+  }
 }
