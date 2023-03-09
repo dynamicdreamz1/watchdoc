@@ -77,7 +77,7 @@ export async function ProfileCreation(data) {
         })
         return response;
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 
@@ -91,7 +91,7 @@ export async function RegisterUser(data) {
             headers: headers
         })
         
-        return response.data;
+        return response;
     } catch (error) {
         return error.response.data.message;
     }

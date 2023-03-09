@@ -6,16 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import { StoreCookie } from '../../../Utility/sessionStore';
 
 const CreateProfile = () => {
+
     const [firstName, SetFirstName] = useState('')
     const [preferredFirstName, setPreferredFirstName] = useState('')
     const [lastName, SetLastName] = useState('')
     const [dob, SetDOB] = useState('')
-    
     const [errorN, setErrorN] = useState('')
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
     const navigate = useNavigate();
+
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -46,11 +47,6 @@ const CreateProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                    if (res?.response?.status===422) {
-                        setErrorN(t('CreateProfilePage.error.e7'))
-                        SetDOB("")
-                        setLoading(false)
-                    }else
                     if(res?.response?.status===401){
                         setSuccess(true)
                         setLoading(false)
@@ -65,18 +61,29 @@ const CreateProfile = () => {
                     setLoading(false)
                 })
                 .catch((error) => {
-                    return error
+                    setLoading(false)
+                    if(error.response.status===422){
+                        setErrorN(t('CreateProfilePage.error.e7'))
+                        console.log(error)
+                        SetDOB("")
+                    }
+                        
+                    else{
+                        console.log(error)
+                       
+                    }
+                    
                 })
         }
     }
     
     useEffect(() => {
         if (success === true) {
-            SetFirstName("")
-            SetLastName("")
-            setPreferredFirstName("")
-            SetDOB("")
-            document.getElementById('main_form').reset()
+            // SetFirstName("")
+            // SetLastName("")
+            // setPreferredFirstName("")
+            // SetDOB("")
+            // document.getElementById('main_form').reset()
         }
 
         

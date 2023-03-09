@@ -31,6 +31,20 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
 
+  // useEffect(() => {
+  //   const user = getCurrentUser();
+  //   const role = getCurrentUserRole();
+  //   const IsActive = getCurrentUserIsActive();
+  //   if (user) {
+  //     setCurrentUser(user);
+  //     const userData = getCurrentUserData();
+  //     setCurrentUserData({ userData, role, IsActive });
+  //   }
+
+  // }, []);
+
+  
+ 
   useEffect(() => {
     const user = getCurrentUser();
     const role = getCurrentUserRole();
@@ -41,25 +55,12 @@ function App() {
       setCurrentUserData({ userData, role, IsActive });
     }
 
+    console.log('loaded')
+
   }, []);
 
-  
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     const user = getCurrentUser();
-  //     const role = getCurrentUserRole();
-  //     const IsActive = getCurrentUserIsActive();
-  //     if (user) {
-  //       setCurrentUser(user);
-  //       const userData = getCurrentUserData();
-  //       setCurrentUserData({ userData, role, IsActive });
-  //     }
-  //     clearInterval(timer)
-  //   }, 100);
-  // }, []);
 
-
-  console.log(StoreCookie.getItem("profileCheck"))
+  console.log(StoreCookie.getItem("token"))
 
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
@@ -70,6 +71,7 @@ function App() {
         <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <Register />} />
+        
         <Route path='/thankyou' element={currentUser ? <Thankyou /> : <Register />} />
         <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <Register />} />
         <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <Register />} />
@@ -93,6 +95,8 @@ function App() {
 
 
   );
+
+
 }
 
 export default App;

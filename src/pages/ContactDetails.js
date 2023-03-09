@@ -21,7 +21,6 @@ export default function ContactDetails() {
 
         else if(mobileN.length<10 || mobileN.length>10){
             setError(t('mobileNumberVerificationPage.error.e2'))
-            setMobileN("")
         }
 
         else {
@@ -35,6 +34,7 @@ export default function ContactDetails() {
                     // console.log(response.data.user_data.contact_number)
                     let encodedMobile= Base64.encode(response.data.user_data.contact_number)
                     // console.log(encodedMobile)
+                    console.log(response)
                     navigate(`/verifymobile/${encodedMobile}`)
                     
                 })

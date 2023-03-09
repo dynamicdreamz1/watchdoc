@@ -1,4 +1,4 @@
-import React, { useContext,  useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ProfileCreation } from '../../../services/UserService'
@@ -7,8 +7,11 @@ import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
 
 export const EditProfile = () => {
-    const {currentUserData,setCurrentUserData} = useContext(UserContext);
-    const {first_name,preferred_first_name,last_name,dob,sex,weight,height} =  MetaFormeting(currentUserData?.userData);
+    const { currentUserData, setCurrentUserData } = useContext(UserContext);
+
+    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(currentUserData?.userData);
+    
+
     const [firstName, SetFirstName] = useState(first_name)
     const [preferredFirstName, setPreferredFirstName] = useState(preferred_first_name)
     const [lastName, SetLastName] = useState(last_name)
@@ -21,60 +24,68 @@ export const EditProfile = () => {
     //const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-   
+
     // console.log(setCurrentUserData)
     const handleSubmit = (e) => {
-    
+      
         e.preventDefault()
 
-        if (firstName === "") {
-           console.log('ok')
-           setErrorN(t('EditProfilePage.error.e1'))
+        if (firstName === "" || firstName === undefined) {
+            console.log('ok')
+            setErrorN(t('EditProfilePage.error.e1'))
         }
 
-        else if (lastName === "") {
+        else if (lastName === "" || lastName === undefined) {
             setErrorN(t('EditProfilePage.error.e2'))
         }
 
-        else if (dob === "") {
+        else if (Dob === "" || Dob === undefined) {
             setErrorN(t('EditProfilePage.error.e3'))
         }
 
-        else if (sex === "") {
+        else if (Sex === "" || Sex === undefined) {
             setErrorN(t('EditProfilePage.error.e6'))
         }
 
-        else if (weight === "") {
+        else if (Weight === "" || Weight === undefined) {
             setErrorN(t('EditProfilePage.error.e4'))
         }
 
-        else if (height === "") {
+        else if (Height === "" || Height === undefined) {
             setErrorN(t('EditProfilePage.error.e5'))
         }
 
         else {
             const data = {
                 first_name: firstName,
-                preferred_first_name:preferredFirstName,
+                preferred_first_name: preferredFirstName,
                 last_name: lastName,
-                dob: dob,
-                sex: sex,
-                weight: weight,
-                height: height,
-                request_type:'edit'
+                dob: Dob,
+                sex: Sex,
+                weight: Weight,
+                height: Height,
+                request_type: 'edit'
             }
 
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
-                   
-                   StoreCookie.setItem("user_details",res?.data);
-                   setCurrentUserData({...currentUserData,userData:res?.data})
-                   setMessage(t('EditProfilePage.message.m1'))
-                   setLoading(false)
+                    setLoading(false)
+                    StoreCookie.setItem("user_details", res?.data);
+                    setCurrentUserData({ ...currentUserData, userData: res?.data })
+                    setMessage(t('EditProfilePage.message.m1'))
+
+
                 })
                 .catch((error) => {
-                    return error
+                    setLoading(false)
+                    if(error.response.status===422){
+                        setErrorN(t('EditProfilePage.error.e7'))
+                        console.log(error)
+                    }
+                    else{
+                        console.log(error)
+                    }
                 })
         }
     }
@@ -116,15 +127,15 @@ export const EditProfile = () => {
                     <label htmlFor="exampleInputSex" >{t('EditProfilePage.form.f4')}</label>
                     <div className='radio-buttons'>
                         <div className='radio-button'>
-                            <input checked={Sex==="male" ? 'checked':'' } type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex === "male" ? 'checked' : ''} type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="male">{t('EditProfilePage.form.f10')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input checked={Sex==="female" ? 'checked':'' } type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex === "female" ? 'checked' : ''} type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="female">{t('EditProfilePage.form.f11')}</label>
                         </div>
                         <div className='radio-button'>
-                            <input checked={Sex==="other" ? 'checked':'' } type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
+                            <input checked={Sex === "other" ? 'checked' : ''} type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
                             <label htmlFor="other">{t('EditProfilePage.form.f12')}</label>
                         </div>
                     </div>
