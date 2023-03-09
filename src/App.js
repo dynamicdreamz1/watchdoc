@@ -19,7 +19,6 @@ import { UserContext } from './Store/Context';
 import { getCurrentUser, getCurrentUserData, getCurrentUserIsActive, getCurrentUserRole } from './services/UserService';
 import AddClinicianInner from './pages/AddClinicianInner';
 import { AddClinicianOuter } from './pages/AddClinicianOuter';
-
 import EditProfileInner from './pages/EditProfileInner';
 import LinkDeviceInner from './pages/LinkDeviceInner';
 import LinkDeviceOuter from './pages/LinkDeviceOuter';

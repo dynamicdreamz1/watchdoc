@@ -17,6 +17,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
+    
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -36,7 +37,8 @@ const Register = () => {
                         setLoading(false)
                         setEmail("")
                     } else {
-                        let encodedemail = Base64.encode(response?.data?.email)
+                        let encodedemail = Base64.encode(response?.data?.data?.email)
+                        
                         setLoading(false)
                         setEmail("")
                         navigate(`/verification/${encodedemail}`)
