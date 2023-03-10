@@ -1,13 +1,11 @@
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { userConsent } from '../services/UserService'
 import '../css/UserConsent.css'
 
 export default function UserConsent() {
-
-    
 
     const {t}=useTranslation();
     const [privacyPolicy,setPrivacyPolicy]=useState(false)
@@ -50,7 +48,7 @@ export default function UserConsent() {
                 <div className="title-block">
                     <h4>{t('useConsent.heading')}</h4>
                     <p>{t('useConsent.p1')}</p>
-                    <a href={URL}>{t('useConsent.policy')}</a>
+                    <Link >{t('useConsent.policy')}</Link>
                     <FormGroup className='checkbox-block'>
                         <FormControlLabel onChange={(e)=>setPrivacyPolicy(!privacyPolicy)} control={<Checkbox />} label={t('useConsent.a1')} />
                     </FormGroup>
@@ -58,7 +56,7 @@ export default function UserConsent() {
                 <div className="title-block">
                     <h4>{t("useConsent.heading2")}</h4>
                     <p>{t('useConsent.p2')}</p>
-                    <a href={URL}>{t("useConsent.a2")}</a>
+                    <Link >{t("useConsent.a2")}</Link>
                     <FormGroup className='checkbox-block'>
                         <FormControlLabel  control={<Checkbox />} onChange={(e)=>setTerms(!terms)} label={t('useConsent.a3')} />
                     </FormGroup>

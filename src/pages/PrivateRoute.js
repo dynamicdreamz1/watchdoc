@@ -1,15 +1,35 @@
+// import { Navigate } from "react-router-dom";
+
+
+// function PrivateDashboard({ Component }) {
+
+
+//     let ProfileCheck = sessionStorage.getItem('profile')
+//     let token=sessionStorage.getItem('token');
+//     // console.log(token)
+
+//     if ( ProfileCheck==='1' && token ) {
+//         return <Component />;
+//     }
+
+//     else {
+//         return <Navigate to="/" />;
+//     }
+
+
+// }
+
+// export default PrivateDashboard;
 
 import { Navigate } from "react-router-dom";
+import { StoreCookie } from "../Utility/sessionStore";
 
-
+let token = StoreCookie.getItem('token')
 function PrivateDashboard({ Component }) {
-   
 
-    let ProfileCheck = sessionStorage.getItem('profile')
-    let token=sessionStorage.getItem('token');
-    // console.log(token)
+    console.log(token)
 
-    if ( ProfileCheck==='1' && token ) {
+    if (token) {
         return <Component />;
     }
 
@@ -17,9 +37,12 @@ function PrivateDashboard({ Component }) {
         return <Navigate to="/" />;
     }
 
-
 }
 
+
 export default PrivateDashboard;
+
+
+
 
 

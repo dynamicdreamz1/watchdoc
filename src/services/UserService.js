@@ -2,42 +2,43 @@ import axios from "axios"
 import { StoreCookie } from "../Utility/sessionStore"
 
 export const getCurrentUser = () => {
-   
+
     return StoreCookie.getItem("token");
-  };
-  
-  export  const getCurrentUserData = () => {
-  
+};
+
+
+export const getCurrentUserData = () => {
+
     return StoreCookie.getItem("user_details");
-  
-  };
-  
-export const getCurrentUserRole=()=>{
+
+};
+
+export const getCurrentUserRole = () => {
     return StoreCookie.getItem("role");
 }
 
-export const getCurrentUserIsActive=()=>{
+export const getCurrentUserIsActive = () => {
     return StoreCookie.getItem("is_active");
 }
 
 let token = StoreCookie.getItem('token')
 
-let headers ={
+let headers = {
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 }
 
-let headersWithToken ={
+let headersWithToken = {
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
     Authorization: `Bearer ${token}`
 }
 
-export const fetchCurrentUser = async () =>{
+export const fetchCurrentUser = async () => {
 
 
     try {
-        
+
         const response = await axios({
             method: "GET",
             url: `${process.env.REACT_APP_ENDPOINT}me`,
@@ -47,7 +48,7 @@ export const fetchCurrentUser = async () =>{
     } catch (error) {
         return error;
     }
-   
+
 
 }
 
@@ -90,7 +91,7 @@ export async function RegisterUser(data) {
             data: data,
             headers: headers
         })
-        
+
         return response;
     } catch (error) {
         return error.response.data.message;
@@ -153,4 +154,4 @@ export const logout = () => {
     StoreCookie.removeItem("is_active");
     StoreCookie.removeItem("name")
     return true;
-  };
+};

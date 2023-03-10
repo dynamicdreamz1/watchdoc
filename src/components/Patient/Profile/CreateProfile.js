@@ -8,7 +8,7 @@ import { StoreCookie } from '../../../Utility/sessionStore';
 const CreateProfile = () => {
 
     const [firstName, SetFirstName] = useState('')
-    const [preferredFirstName, setPreferredFirstName] = useState(null)
+    const [preferredFirstName, setPreferredFirstName] = useState("")
     const [lastName, SetLastName] = useState('')
     const [dob, SetDOB] = useState('')
     const [sex, setSex] = useState("")
@@ -59,8 +59,6 @@ const CreateProfile = () => {
                 height:Height
             }
 
-                
-            console.log(data)
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
@@ -97,11 +95,11 @@ const CreateProfile = () => {
     
     useEffect(() => {
         if (success === true) {
-            // SetFirstName("")
-            // SetLastName("")
-            // setPreferredFirstName("")
-            // SetDOB("")
-            // document.getElementById('main_form').reset()
+            SetFirstName("")
+            SetLastName("")
+            setPreferredFirstName("")
+            SetDOB("")
+            document.getElementById('main_form').reset()
         }
     },[success])
 
