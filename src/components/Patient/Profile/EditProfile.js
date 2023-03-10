@@ -26,8 +26,9 @@ export const EditProfile = () => {
     const { t } = useTranslation()
 
     // console.log(setCurrentUserData)
+    
+    const BMI=(Weight/Math.pow((Height),2))
 
-    const BMI=(Weight/Height)
     const roundedBMI=Math.round(BMI*100)/100
 
     const handleSubmit = (e) => {
@@ -157,7 +158,7 @@ export const EditProfile = () => {
 
                 <div className='input-block'>
                     <label htmlFor="exampleInputBMI" >{t('EditProfilePage.form.f19')}</label>
-                    <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" onChange={(e) => SetHeight(e.target.value)} />
+                    <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI"/>
                 </div>
 
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('EditProfilePage.form.f9')}</button>

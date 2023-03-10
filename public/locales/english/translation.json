@@ -137,7 +137,7 @@
     },
     "verifyMobile": {
         "e1": "Please enter verification code.",
-        "e2": "Please enter valid varification code.",
+        "e2": "Please enter valid verification code.",
         "heading": "Verification",
         "p1": "We have sent a verification code to your phone. Please enter it here.",
         "label": "Verification Code",
