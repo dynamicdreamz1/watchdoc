@@ -52,7 +52,8 @@
             "e4": "The weight field is required.",
             "e5": "The height field is required.",
             "e7": "Please select date in DD/MM/YYYY format.",
-            "e8": "Unauthenticated."
+            "e8": "Unauthenticated.",
+            "e9":"The sex field is required."
         },
         "message": {
             "m1": "User profile updated successfully."

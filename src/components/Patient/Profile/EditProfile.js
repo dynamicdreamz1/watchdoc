@@ -25,7 +25,6 @@ export const EditProfile = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    // console.log(setCurrentUserData)
     
     const BMI=(Weight/Math.pow((Height),2))
 
@@ -69,7 +68,6 @@ export const EditProfile = () => {
                 sex: Sex,
                 weight: Weight,
                 height: Height,
-                request_type: 'edit'
             }
 
             setLoading(true)

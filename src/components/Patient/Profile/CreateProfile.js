@@ -8,9 +8,10 @@ import { StoreCookie } from '../../../Utility/sessionStore';
 const CreateProfile = () => {
 
     const [firstName, SetFirstName] = useState('')
-    const [preferredFirstName, setPreferredFirstName] = useState('')
+    const [preferredFirstName, setPreferredFirstName] = useState(null)
     const [lastName, SetLastName] = useState('')
     const [dob, SetDOB] = useState('')
+    const [sex, setSex] = useState("")
     const [Weight, SetWeight] = useState("")
     const [Height, SetHeight] = useState("")
     const [errorN, setErrorN] = useState('')
@@ -35,6 +36,10 @@ const CreateProfile = () => {
             setErrorN(t('CreateProfilePage.error.e3'))
         }
 
+        else if(sex===""){
+            setErrorN(t('CreateProfilePage.error.e9'))
+        }
+
         else if(Weight===""){
             setErrorN(t("CreateProfilePage.error.e4"))
         }
@@ -49,10 +54,13 @@ const CreateProfile = () => {
                 preferred_first_name:preferredFirstName,
                 last_name: lastName,
                 dob: dob,
-                request_type:'create'
-                
+                sex:sex,
+                weight:Weight,
+                height:Height
             }
 
+                
+            console.log(data)
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
@@ -120,9 +128,28 @@ const CreateProfile = () => {
                     <label htmlFor="exampleInputLastName" >{t('CreateProfilePage.form.f2')}</label>
                     <input type="text" placeholder={t('CreateProfilePage.form.f14')} value={lastName} id="exampleInputLastName" onChange={(e) => SetLastName(e.target.value)} />
                 </div>
+
                 <div className='input-block'>
                     <label htmlFor="exampleInputDOB" >{t('CreateProfilePage.form.f3')}</label>
                     <input type="date" value={dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
+                </div>
+
+                <div className='input-block'>
+                    <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
+                    <div className='radio-buttons'>
+                        <div className='radio-button'>
+                            <input checked={sex === "male" ? 'checked' : ''} type="radio" id="male" name="sex" value="male" onChange={(e) => setSex(e.target.value)} />
+                            <label htmlFor="male">{t('CreateProfilePage.form.f10')}</label>
+                        </div>
+                        <div className='radio-button'>
+                            <input checked={sex === "female" ? 'checked' : ''} type="radio" id="female" name="sex" value="female" onChange={(e) => setSex(e.target.value)} />
+                            <label htmlFor="female">{t('CreateProfilePage.form.f11')}</label>
+                        </div>
+                        <div className='radio-button'>
+                            <input checked={sex === "other" ? 'checked' : ''} type="radio" id="other" name="sex" value="other" onChange={(e) => setSex(e.target.value)} />
+                            <label htmlFor="other">{t('CreateProfilePage.form.f12')}</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div className='input-block'>
