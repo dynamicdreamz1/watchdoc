@@ -6,7 +6,7 @@ Bgit sthavik
 
 import React, { useEffect, useState } from 'react'
 import './css/App.css'
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import VerificationEmail from './pages/VerificationEmail';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -30,10 +30,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
 
-
+  const user = getCurrentUser();
   useEffect(() => {
 
-    const user = getCurrentUser();
     const role = getCurrentUserRole();
     const IsActive = getCurrentUserIsActive();
     if (user) {
@@ -41,17 +40,18 @@ function App() {
       const userData = getCurrentUserData();
       setCurrentUserData({ userData, role, IsActive });
     }
-
-  }, []);
-
   
+  }, [user]);
+
+
   return (
-    <UserContext.Provider value={{ currentUserData, setCurrentUserData }}>
-      
-      <Routes>
-        <Route exact path="/" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
-        <Route exact path="/register" element={currentUser ? <Navigate replace to="/dashboard" /> : <Register />} />
-        <Route path='/verification/:emailId' element={currentUser ? <Navigate replace to="/dashboard" /> : <VerificationEmail />} />
+    <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
+
+     <Routes>
+
+        <Route exact path="/" element={currentUser ? <Dashboard /> : <Register />} />
+        <Route exact path="/register" element={currentUser ? <Dashboard /> : <Register />} />
+        <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <Register />} />
 
@@ -63,11 +63,12 @@ function App() {
         <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <Register />} />
 
         {/* After Login Router */}
+
         <Route path='dashboard' element={currentUser ? <Dashboard /> : <Register />} />
         <Route path='edit-profile' element={currentUser ? <EditProfileInner /> : <Register />} />
         <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register />} />
         <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register />} />
-        
+
       </Routes>
 
     </UserContext.Provider>

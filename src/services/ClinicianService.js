@@ -8,6 +8,12 @@ let headersWithToken = {
     Authorization: `Bearer ${token}`
 }
 
+export const updateToken = () => {
+    const token = StoreCookie.getItem('token');
+    headersWithToken.Authorization = `Bearer ${token}`;
+  }
+
+
 export const searchClinician = async (data) => {
 
 

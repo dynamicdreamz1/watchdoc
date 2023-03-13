@@ -34,6 +34,13 @@ let headersWithToken = {
     Authorization: `Bearer ${token}`
 }
 
+export const updateNewToken = () => {
+    const token = StoreCookie.getItem('token');
+    headersWithToken.Authorization = `Bearer ${token}`;
+  }
+
+  console.log(token)
+
 export const fetchCurrentUser = async () => {
 
 

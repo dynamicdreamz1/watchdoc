@@ -1,3 +1,4 @@
+// import { StoreCookie } from "./sessionStore";
 
 export const ageCalc=(date)=>{
 
@@ -42,3 +43,10 @@ export const GetDate =(date)=>{
    return  MyDate.getFullYear() + '-' +  (('0' + (MyDate.getMonth()+1)).slice(-2)) + '-' + (('0' + MyDate.getDate()).slice(-2))
     
 }
+
+// export const updateToken = () => {
+//   const token = StoreCookie.getItem('token');
+//   headersWithToken.Authorization = `Bearer ${token}`;
+// }
+
+// console.log(token)
