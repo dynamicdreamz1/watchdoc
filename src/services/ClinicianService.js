@@ -1,18 +1,5 @@
 import axios from "axios"
-import { StoreCookie } from "../Utility/sessionStore";
-
-let token = StoreCookie.getItem('token')
-
-let headersWithToken = {
-    "Accept": "application/json",
-    Authorization: `Bearer ${token}`
-}
-
-export const updateToken = () => {
-    const token = StoreCookie.getItem('token');
-    headersWithToken.Authorization = `Bearer ${token}`;
-  }
-
+import { headersClinician } from "../Utility/functions";
 
 export const searchClinician = async (data) => {
 
@@ -21,7 +8,7 @@ export const searchClinician = async (data) => {
         const response = await axios({
             method: 'get',
             url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=&page=`,
-            headers: headersWithToken
+            headers: headersClinician
         })
 
         return response;
@@ -38,7 +25,7 @@ export const addDoctor = async (data) => {
             method: 'post',
             data: data,
             url: `${process.env.REACT_APP_ENDPOINT}user/desert_clinician`,
-            headers: headersWithToken
+            headers: headersClinician
 
         })
         return response;
@@ -56,7 +43,7 @@ export const getClinicianData = async () => {
         const response = await axios({
             method: 'get',
             url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician`,
-            headers: headersWithToken
+            headers: headersClinician
         })
 
         return response

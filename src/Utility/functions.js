@@ -1,4 +1,4 @@
-// import { StoreCookie } from "./sessionStore";
+import { StoreCookie } from "./sessionStore";
 
 export const ageCalc=(date)=>{
 
@@ -44,9 +44,26 @@ export const GetDate =(date)=>{
     
 }
 
-// export const updateToken = () => {
-//   const token = StoreCookie.getItem('token');
-//   headersWithToken.Authorization = `Bearer ${token}`;
-// }
+export const headers = {
+  "Content-Type": "multipart/form-data",
+  "Accept": "application/json",
+}
 
-// console.log(token)
+let token = StoreCookie.getItem('token')
+
+export const headersClinician = {
+  "Accept": "application/json",
+  Authorization: `Bearer ${token}`
+}
+
+export const headersUser = {
+  "Content-Type": "multipart/form-data",
+  "Accept": "application/json",
+  Authorization: `Bearer ${token}`
+}
+
+export const updateToken = () => {
+  const token = StoreCookie.getItem('token');
+  headersClinician.Authorization = `Bearer ${token}`;
+  headersUser.Authorization = `Bearer ${token}`;
+}

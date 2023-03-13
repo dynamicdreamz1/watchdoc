@@ -1,4 +1,5 @@
 import axios from "axios"
+import { headersUser,headers } from "../Utility/functions";
 import { StoreCookie } from "../Utility/sessionStore"
 
 export const getCurrentUser = () => {
@@ -20,26 +21,8 @@ export const getCurrentUserRole = () => {
 export const getCurrentUserIsActive = () => {
     return StoreCookie.getItem("is_active");
 }
+  
 
-let token = StoreCookie.getItem('token')
-
-let headers = {
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json",
-}
-
-let headersWithToken = {
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json",
-    Authorization: `Bearer ${token}`
-}
-
-export const updateNewToken = () => {
-    const token = StoreCookie.getItem('token');
-    headersWithToken.Authorization = `Bearer ${token}`;
-  }
-
-  console.log(token)
 
 export const fetchCurrentUser = async () => {
 
@@ -49,7 +32,7 @@ export const fetchCurrentUser = async () => {
         const response = await axios({
             method: "GET",
             url: `${process.env.REACT_APP_ENDPOINT}me`,
-            headers: headersWithToken
+            headers: headersUser
         })
         return response;
     } catch (error) {
@@ -66,7 +49,7 @@ export const RegisterMobNumber = async (data) => {
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}user/mobile_number_verify`,
             data: data,
-            headers: headersWithToken
+            headers: headersUser
         })
         return response;
     } catch (error) {
@@ -81,7 +64,7 @@ export async function ProfileCreation(data) {
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/upsertprofile`,
             data: data,
-            headers: headersWithToken,
+            headers: headersUser,
         })
         return response;
     } catch (error) {
@@ -112,7 +95,7 @@ export const userConsent = async (data) => {
             method: "post",
             url: `${process.env.REACT_APP_ENDPOINT}user/user_terms`,
             data: data,
-            headers: headersWithToken
+            headers: headersUser
         })
         return response;
     } catch (error) {
@@ -143,7 +126,7 @@ export const VerifyMobileNumber = async (data) => {
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/check_mobile_verification`,
             data: data,
-            headers: headersWithToken
+            headers: headersUser
         })
         return response;
     } catch (error) {

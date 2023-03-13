@@ -1,13 +1,14 @@
 import { Base64 } from 'js-base64'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { updateNewToken, VerifyEmail } from '../services/UserService'
+import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { StoreCookie } from '../Utility/sessionStore'
 import { useNavigate, useParams } from 'react-router-dom'
 import { UserContext } from '../Store/Context'
-import { updateToken } from '../services/ClinicianService'
+import { updateToken } from '../Utility/functions'
+
 
 const VerificationEmail = () => {
 
@@ -62,7 +63,6 @@ const VerificationEmail = () => {
                     StoreCookie.setItem("token", token);
                     setCurrentUser(token)
                     updateToken();
-                    updateNewToken()
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);
                     StoreCookie.setItem("user_details", JSON.stringify(user_details));
