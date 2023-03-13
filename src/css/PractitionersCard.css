@@ -1,3 +1,9 @@
 .d-none{
     display: none !important;
 }
+
+.btn_status{
+    color: #FB7B04;
+    cursor:default;
+}
+    

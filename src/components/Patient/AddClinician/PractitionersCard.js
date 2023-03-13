@@ -53,7 +53,6 @@ export default function PractitionersCard({ status, setStatus }) {
                 .then((res) => {
                     console.log(res)
                     setClinicianData(res)
-                    console.log(res);
                 })
                 .catch((error) => {
                     console.log(error)
@@ -139,8 +138,7 @@ export default function PractitionersCard({ status, setStatus }) {
                                             control={
                                                 <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
-                                            label={element?.status === 1 ? <span style={{ color: "#FB7B04" }}>Pending Clinician Approval</span> : "Add to WatchDoc"} />
-
+                                        label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
 
                                     </div>
 
@@ -154,8 +152,8 @@ export default function PractitionersCard({ status, setStatus }) {
 
             </div>
 
-            { (clinicianData?.data?.data?.length === 0) || (currentTableData===undefined)  ?   "" : 
-            <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
+            {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
+                <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
             }
             <br />
         </React.Fragment>

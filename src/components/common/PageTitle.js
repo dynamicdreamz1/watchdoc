@@ -1,14 +1,18 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+// import { UserContext } from '../../pages/AddClinicianInner';
+
 
 export default function PageTitle({toggle,setToggle}) {
 
   const {t}=useTranslation();
+  // const {addData,setAddData}=useContext(UserContext)
 
   const handleClick=()=>{
     setToggle(!toggle)
-    
+    // setAddData({...addData,clinicianName:"",practitionerName:"",code:""});
   }
+  
 
   return (
     <>

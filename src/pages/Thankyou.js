@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+// import { UserContext } from '../Store/Context'
 import { StoreCookie } from '../Utility/sessionStore'
 
 
@@ -10,7 +11,9 @@ export default function Thankyou() {
 
     let Fname=StoreCookie.getItem('name')
     let role=StoreCookie.getItem('role')
-
+    // const {currentUserData}=useContext(UserContext)
+    // const Fname=(currentUserData.userData?.meta_data[0].meta_value)
+    
     const {t}=useTranslation();
     const handleClick=()=>{
 
