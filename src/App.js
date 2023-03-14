@@ -23,7 +23,8 @@ import EditProfileInner from './pages/EditProfileInner';
 import LinkDeviceInner from './pages/LinkDeviceInner';
 import LinkDeviceOuter from './pages/LinkDeviceOuter';
 import CreateProfileOuter from './pages/CreateProfileOuter';
-
+import Patients from './pages/Patients'
+import Clinicians from './pages/Clinicians';
 
 function App() {
 
@@ -68,6 +69,8 @@ function App() {
         <Route path='edit-profile' element={currentUser ? <EditProfileInner /> : <Register />} />
         <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <Register />} />
         <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <Register />} />
+        <Route path='patients' element={currentUser ? < Patients/> : <Register />} />
+        <Route path='clinicians' element={currentUser ? <Clinicians /> : <Register />} />
 
       </Routes>
 

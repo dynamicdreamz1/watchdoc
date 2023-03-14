@@ -10,7 +10,7 @@ export default function ClinicianSidebar() {
                 <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                        isActive ? "isActiveClinician" : ""
+                        isActive ? "isActive" : ""
                     }>
                     <ListItem disablePadding>
                         <ListItemButton>
@@ -23,9 +23,9 @@ export default function ClinicianSidebar() {
                 </NavLink>
 
                 <NavLink
-                    to="/dashboard"
+                    to="/patients"
                     className={({ isActive }) =>
-                        isActive ? "isActiveClinician" : ""
+                        isActive ? "isActive" : ""
                     }>
                 <ListItem disablePadding>
                     <ListItemButton>
@@ -38,9 +38,9 @@ export default function ClinicianSidebar() {
                 </NavLink>
 
                 <NavLink
-                    to="/dashboard"
+                    to="/clinicians"
                     className={({ isActive }) =>
-                        isActive ? "isActiveClinician" : ""
+                        isActive ? "isActive" : ""
                     }>
                 <ListItem disablePadding>
                     <ListItemButton>
