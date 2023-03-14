@@ -17,7 +17,7 @@ export default function Aside() {
         switch (currentUserData?.role) {
           case 'User':
             return <PatientDashboard/>
-          case 'clinicians':
+          case 'Clinician':
             return <CliniciansTableTabs />
           default:
             return <DashboardTableTabs />

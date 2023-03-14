@@ -69,15 +69,20 @@ const VerificationEmail = () => {
                     StoreCookie.setItem("role", roles[0].name);
                     StoreCookie.setItem("is_active", is_active);
 
-                    if (profile_created === 1) {
+                    if(roles[0].name==="Clinician"){
                         navigate('/dashboard')
-                        // window.location.reload()
                     }
 
                     else {
-                        navigate('/userConsent')
-                        // window.location.reload();
+                        if(profile_created===1){
+                            navigate('/dashboard')
+                        }
+
+                        else{
+                            navigate('/userConsent')
+                        }
                     }
+                   
                     console.log(res)
 
                 })

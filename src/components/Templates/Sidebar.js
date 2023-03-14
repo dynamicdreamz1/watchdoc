@@ -9,9 +9,6 @@ import { UserContext } from '../../Store/Context';
 export default function Sidebar() {
 
     const {currentUserData} = useContext(UserContext);
-
-    
-
     const logoutHandel=()=>{
         logout();
         window.location.reload();
@@ -29,7 +26,7 @@ export default function Sidebar() {
         switch (currentUserData?.role) {
           case "User":
             return <PatientSidebar/>
-          case 'clinicians':
+          case 'Clinician':
             return <ClinicianSidebar/> 
           default:
             return  ''

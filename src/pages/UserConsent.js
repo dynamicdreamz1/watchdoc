@@ -1,12 +1,13 @@
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import { userConsent } from '../services/UserService'
 import '../css/UserConsent.css'
 
-export default function UserConsent() {
 
+export default function UserConsent() {
+    
     const {t}=useTranslation();
     const [privacyPolicy,setPrivacyPolicy]=useState(false)
     const [terms,setTerms]=useState(false)
