@@ -6,14 +6,15 @@ export const AddClinicianOuter = () => {
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })
   const [clinicianData, setClinicianData] = useState([])
   const [status, setStatus] = useState(false)
-
+  const [nextBtn,setNextBtn]=useState(false)
 
   return (
-    <AddClincianOuterContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData }}>
+    <AddClincianOuterContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn }}>
       <div className='page-wrapper bg-gray'>
         <div className='container'>
           <div className='page-content-wrapper'>
             <AddClinician status={status} setStatus={setStatus} />
+        
           </div>
         </div>
       </div>

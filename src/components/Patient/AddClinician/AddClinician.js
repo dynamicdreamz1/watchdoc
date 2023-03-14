@@ -1,19 +1,21 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { UserContext } from '../../../pages/AddClinicianInner'
+import { useNavigate } from 'react-router-dom'
+import { InnerClinicianContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter'
 import { searchClinician } from '../../../services/ClinicianService'
 import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
-import PractitionersCard from './PractitionersCard'
+import PractitionersCard from './PractitionersCard' 
+
 
 export default function AddClinician({ status, setStatus }) {
   const { t } = useTranslation();
   const [show, setShow] = useState(false)
   const [defaultStatus, setDefaultStatus] = useState(false)
+  const navigate=useNavigate();
 
-  const { addData, setAddData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext)
-
+  const { addData, setAddData,nextBtn,setClinicianData } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
 
   const handleSubmit = (e) => {
 
@@ -66,6 +68,7 @@ export default function AddClinician({ status, setStatus }) {
               </div>
 
               <PractitionersCard  status={status} setStatus={setStatus} />
+              { nextBtn ?  <button onClick={()=>navigate("/dashboard")}>Next</button> : ""  }  <br/> <br/>
             </>
             : ""
 
