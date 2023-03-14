@@ -5,16 +5,17 @@ import Header from '../components/Templates/Header';
 import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 import { createContext } from "react";
 
-export const UserContext = createContext([]);
+export const InnerClinicianContext = createContext([]);
 export default function AddClinicianInner() {
   const [status, setStatus] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })
   const [clinicianData, setClinicianData] = useState([])
+  const [nextBtn,setNextBtn]=useState(false)
 
   return (
     <>
-      <UserContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData }}>
+      <InnerClinicianContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn }}>
         <div className='content-wrapper'>
           <Sidebar />
           <div className='aside'>
@@ -26,7 +27,7 @@ export default function AddClinicianInner() {
             <MyClinicians status={status} />
           </div>
         </div>
-      </UserContext.Provider>
+      </InnerClinicianContext.Provider>
     </>
   )
 }

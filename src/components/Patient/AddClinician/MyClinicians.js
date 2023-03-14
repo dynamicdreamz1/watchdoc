@@ -8,7 +8,7 @@ import { addDoctor, getClinicianData, searchClinician } from '../../../services/
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
 import Pagination from '@mui/material/Pagination';
-import { UserContext } from '../../../pages/AddClinicianInner';
+import { InnerClinicianContext } from '../../../pages/AddClinicianInner';
 
 
 export default function MyClinicians({ status }) {
@@ -27,7 +27,7 @@ export default function MyClinicians({ status }) {
     // console.log(currentRecords)
 
     const nPages = Math.ceil(data.length / recordsPerPage)
-    const { addData, setClinicianData } = useContext(UserContext)
+    const { addData, setClinicianData } = useContext(InnerClinicianContext)
 
     useEffect(() => {
         if (nPages < currentPage) {

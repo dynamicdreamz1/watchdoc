@@ -7,7 +7,7 @@ import { addDoctor, searchClinician } from '../../../services/ClinicianService';
 import '../../../css/PractitionersCard.css'
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { UserContext } from '../../../pages/AddClinicianInner'
+import { InnerClinicianContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
 import Pagination from '@mui/material/Pagination';
 import { ClinicianCard } from '../../../Utility/Skeleton';
@@ -24,8 +24,8 @@ export default function PractitionersCard({ status, setStatus }) {
     const [btnStatus, setBtnStatus] = useState(false)
 
 
-    const { addData, clinicianData, setClinicianData } = useContext(window.location.pathname === "/editclinician" ? UserContext : AddClincianOuterContext);
-
+    const { addData, clinicianData, setClinicianData,setNextBtn } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
+   
     const recordsPerPage = 3;
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -65,7 +65,7 @@ export default function PractitionersCard({ status, setStatus }) {
     const addClinician = (ID, ElStatus) => {
 
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
-
+           
             const data = {
                 id: ID,
                 relation: 'link'
@@ -96,7 +96,12 @@ export default function PractitionersCard({ status, setStatus }) {
                 <>
 
                     {currentTableData?.length > 0 && currentTableData.map((element) =>
-
+                    
+                {   
+                    if(element.status===1){
+                    setNextBtn(element.status===1 ? true : false)
+                    }
+                      return ( 
                         <div key={element.id}>
                             <div className='card d-flex'>
                                 <div className='user-image'>
@@ -146,7 +151,7 @@ export default function PractitionersCard({ status, setStatus }) {
 
                                 </div>
                             </div>
-                        </div>)
+                         </div>) })
                     }
                     <ClinicianCard/>
                 </>
@@ -156,6 +161,7 @@ export default function PractitionersCard({ status, setStatus }) {
             {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
                 <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
             }
+            <br />
         </React.Fragment>
     )
 }
