@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import '../../css/ClinicianSidebar.css'
 
 export default function ClinicianSidebar() {
     return (
@@ -9,7 +10,7 @@ export default function ClinicianSidebar() {
                 <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                        isActive ? "isActive" : ""
+                        isActive ? "isActiveClinician" : ""
                     }>
                     <ListItem disablePadding>
                         <ListItemButton>
@@ -24,7 +25,7 @@ export default function ClinicianSidebar() {
                 <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                        isActive ? "isActive" : ""
+                        isActive ? "isActiveClinician" : ""
                     }>
                 <ListItem disablePadding>
                     <ListItemButton>
@@ -39,14 +40,14 @@ export default function ClinicianSidebar() {
                 <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                        isActive ? "isActive" : ""
+                        isActive ? "isActiveClinician" : ""
                     }>
                 <ListItem disablePadding>
                     <ListItemButton>
                         <ListItemIcon>
                             <img src='/images/Clinicians-icon.svg' alt='Clinicians Icon' />
                         </ListItemIcon>
-                        <ListItemText>Clinisians</ListItemText>
+                        <ListItemText>Clinicians</ListItemText>
                     </ListItemButton>
                 </ListItem>
                 </NavLink>
