@@ -161,7 +161,6 @@ export default function PractitionersCard({ status, setStatus }) {
             {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
                 <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
             }
-            <br />
         </React.Fragment>
     )
 }
