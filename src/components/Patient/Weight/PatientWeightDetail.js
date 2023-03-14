@@ -1,7 +1,7 @@
 import React from 'react'
-import AlertTriggerCard from '../DetailCards/AlertTriggerCard'
-import MainDetailsCard from '../DetailCards/MainDetailsCard'
-import ShowAllDataCard from '../DetailCards/ShowAllDataCard'
+import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
+import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
+import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import WeightChartNavTabs from './WeightChartNavTabs'
 
 export default function PatientWeightDetail() {
@@ -12,10 +12,9 @@ export default function PatientWeightDetail() {
             <MainDetailsCard/>
             <ShowAllDataCard/>
             <AlertTriggerCard/>
-            <AlertTriggerCard/>
         </div>
         <div className='chart-wrapper'>
-            {/* <WeightChartNavTabs/> */}
+            {<WeightChartNavTabs/>}
         </div>
     </div>
     </>

@@ -66,7 +66,7 @@ export default function ContactDetails() {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('mobileNumberVerificationPage.l1')}</label>
-                                <input type="number" placeholder={t('mobileNumberVerificationPage.placeholder')} onChange={(e) => setMobileN(e.target.value)} value={mobileN} id="exampleInputCode" />
+                                <input type="text" placeholder={t('mobileNumberVerificationPage.placeholder')} onChange={(e) => setMobileN(e.target.value)} value={mobileN} id="exampleInputCode" />
                             </div>
                             <button onClick={(e) => handleClick(e)} type="submit">{t('mobileNumberVerificationPage.b1')}</button>
                         </form>

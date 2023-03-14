@@ -1,4 +1,5 @@
 import React from 'react'
+import PatientWeightDetail from './PatientWeightDetail'
 
 export default function Weight() {
   return (

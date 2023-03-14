@@ -9,6 +9,7 @@ import Heartrates from './HeartRate/Heartrates'
 import BloodOxygen from './BloodOxygen/BloodOxygen'
 import BloodGlucose from './BloodGlucose/BloodGlucose'
 import Temperature from './Temperature/Temperature'
+import Weight from './Weight/Weight'
 
 
 export default function PatientDashboard() {
@@ -21,6 +22,7 @@ export default function PatientDashboard() {
           <Heartrates />
           <Bloodpressure />
           <BloodOxygen/>
+          <Weight/>
           <BloodGlucose/>
           <Temperature/>
         </UserBodyContextProvider>
