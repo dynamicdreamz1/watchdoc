@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import { FormControlLabel } from '@mui/material';
+import {  FormControlLabel } from '@mui/material';
 import { addDoctor, searchClinician } from '../../../services/ClinicianService';
 import '../../../css/PractitionersCard.css'
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import { InnerClinicianContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
 import Pagination from '@mui/material/Pagination';
-import { ClinicianCard } from '../../../Utility/Skeleton';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -23,9 +22,8 @@ export default function PractitionersCard({ status, setStatus }) {
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
 
+    const { addData, clinicianData, setClinicianData, setNextBtn } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
 
-    const { addData, clinicianData, setClinicianData,setNextBtn } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
-   
     const recordsPerPage = 3;
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -65,7 +63,7 @@ export default function PractitionersCard({ status, setStatus }) {
     const addClinician = (ID, ElStatus) => {
 
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
-           
+
             const data = {
                 id: ID,
                 relation: 'link'
@@ -87,6 +85,7 @@ export default function PractitionersCard({ status, setStatus }) {
     }
 
 
+
     return (
         <React.Fragment>
 
@@ -95,67 +94,68 @@ export default function PractitionersCard({ status, setStatus }) {
 
                 <>
 
-                    {currentTableData?.length > 0 && currentTableData.map((element) =>
-                    
-                {   
-                    if(element.status===1){
-                    setNextBtn(element.status===1 ? true : false)
-                    }
-                      return ( 
-                        <div key={element.id}>
-                            <div className='card d-flex'>
-                                <div className='user-image'>
+                    {currentTableData?.length > 0 && currentTableData.map((element) => {
+                        if (element.status === 1) {
+                            setNextBtn(element.status === 1 ? true : false)
+                        }
+                        return (
+                            <div key={element.id}>
+                                <div className='card d-flex'>
+                                    <div className='user-image'>
 
-                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                        <React.Fragment key={user_data.id}>
+                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                            <React.Fragment key={user_data.id}>
 
-                                            {user_data?.meta_key === "image" && <><img src={user_data?.meta_value} alt='User' /></>}
-                                        </React.Fragment>
-                                    ))}
-                                </div>
-                                <div className='text-block'>
+                                                {user_data?.meta_key === "image" && 
+                                                    <>  <img src={user_data?.meta_value} alt='User' />
+                                                    </> }
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                    <div className='text-block'>
 
-                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                        <React.Fragment key={user_data.id}>
-                                            {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                        </React.Fragment>
-                                    ))}
-                                    {element?.hospital?.length > 0 && element?.hospital.map((hospital) => (
-                                        <React.Fragment key={hospital.id}>
-                                            {
-                                                hospital?.meta_data?.length > 0 && hospital?.meta_data.map((user_data) => (
-                                                    <React.Fragment key={user_data.id}>
-                                                        {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                                    </React.Fragment>
-                                                ))
-                                            }
-                                        </React.Fragment>
-                                    ))}
-                                    {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                        <React.Fragment key={user_data.id}>
-                                            {user_data?.meta_key === "address" && <>{user_data?.meta_value}<br /></>}
-                                        </React.Fragment>
-                                    ))}
+                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                            <React.Fragment key={user_data.id}>
+                                                {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
+                                            </React.Fragment>
+                                        ))}
+                                        {element?.hospital?.length > 0 && element?.hospital.map((hospital) => (
+                                            <React.Fragment key={hospital.id}>
+                                                {
+                                                    hospital?.meta_data?.length > 0 && hospital?.meta_data.map((user_data) => (
+                                                        <React.Fragment key={user_data.id}>
+                                                            {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
+                                                        </React.Fragment>
+                                                    ))
+                                                }
+                                            </React.Fragment>
+                                        ))}
+                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
+                                            <React.Fragment key={user_data.id}>
+                                                {user_data?.meta_key === "address" && <>{user_data?.meta_value}<br /></>}
+                                            </React.Fragment>
+                                        ))}
 
 
-                                    <div className='add-fav'  >
+                                        <div className='add-fav'  >
 
-                                        <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
-                                            control={
-                                                <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
+                                            <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
+                                                control={
+                                                    <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
-                                        label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
+                                                label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
+
+                                        </div>
+
 
                                     </div>
-
-
                                 </div>
-                            </div>
-                         </div>) })
+                            </div>)
+                    })
                     }
-                    <ClinicianCard/>
+
                 </>
-                
+
             </div>
 
             {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
