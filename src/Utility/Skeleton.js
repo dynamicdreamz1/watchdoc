@@ -4,6 +4,24 @@ import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+export const ClinicianCard = () => {
+    return(
+        <>
+            <Stack spacing={1} className="clinician-card-skeleton">
+                <div class="card d-flex">
+                    <div class="user-image">
+                        <Skeleton variant="circular" />
+                    </div>
+                    <div class="text-block">
+                        <Skeleton variant="text" className='title'/>
+                        <Skeleton variant="text" className='sub-title'/>
+                    </div>
+                </div>
+            </Stack>
+        </>
+    )
+}
+
 export const ChartResultRange = () => {
     return(
         <>

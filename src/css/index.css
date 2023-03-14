@@ -90,6 +90,7 @@ body span {
   flex-wrap: wrap;
   -ms-flex-align: center;
   align-items: center;
+  padding: 30px 0;
 }
 form input {
   background: #FFFFFF;
@@ -872,8 +873,18 @@ body .reminder-card-skeleton {
   width: 100%;
 }
 /* Add clinician Page */
-.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box {
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box, .practitioners-card, .add-clinician-inner .table-pagination {
   max-width: 375px;
+  margin: 0 auto;
+}
+.add-clinician-inner .page-content-wrapper {
+  padding-top: 0;
+}
+.add-clinician-inner .table-pagination ul {
+  margin: 0 auto;
+}
+.add-clinician-inner .table-pagination {
+  padding-top: 15px;
 }
 .clinician-connection {
   background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
@@ -946,6 +957,7 @@ body .reminder-card-skeleton {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 23px;
+  margin-bottom: 15px;
 }
 .practitioners-card .card .user-image {
   width: 60px;
@@ -1001,6 +1013,7 @@ body .reminder-card-skeleton {
 }
 .clinician-connection-wrapper .title-block .icon {
   display: flex;
+  cursor: pointer;
 }
 .add-clinician-button-block {
   margin-top: 20px;

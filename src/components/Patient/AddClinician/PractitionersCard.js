@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { UserContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
 import Pagination from '@mui/material/Pagination';
+import { ClinicianCard } from '../../../Utility/Skeleton';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -147,15 +148,14 @@ export default function PractitionersCard({ status, setStatus }) {
                             </div>
                         </div>)
                     }
-
+                    <ClinicianCard/>
                 </>
-
+                
             </div>
 
             {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
                 <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
             }
-            <br />
         </React.Fragment>
     )
 }

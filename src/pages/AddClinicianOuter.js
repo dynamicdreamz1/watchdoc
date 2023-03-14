@@ -10,7 +10,7 @@ export const AddClinicianOuter = () => {
 
   return (
     <AddClincianOuterContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData }}>
-      <div className='page-wrapper bg-gray'>
+      <div className='page-wrapper bg-gray add-clinician-inner'>
         <div className='container'>
           <div className='page-content-wrapper'>
             <AddClinician status={status} setStatus={setStatus} />
