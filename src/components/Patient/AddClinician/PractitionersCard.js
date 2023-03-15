@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import {  FormControlLabel } from '@mui/material';
+import { FormControlLabel } from '@mui/material';
 import { addDoctor, searchClinician } from '../../../services/ClinicianService';
 import '../../../css/PractitionersCard.css'
 import { useTranslation } from 'react-i18next';
@@ -11,12 +11,13 @@ import { InnerClinicianContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
 import Pagination from '@mui/material/Pagination';
 import { ClinicianCard } from '../../../Utility/Skeleton';
+import { MetaFormeting} from '../../../Utility/functions';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function PractitionersCard({ status, setStatus,isSkeleton }) {
-
+export default function PractitionersCard({ status, setStatus, isSkeleton }) {
+   
     const { t } = useTranslation();
 
     const delay = 500;
@@ -42,7 +43,7 @@ export default function PractitionersCard({ status, setStatus,isSkeleton }) {
         practice_name: addData?.practitionerName,
         zip: addData?.code
     }
-
+   
     useEffect(() => {
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
 
@@ -70,8 +71,6 @@ export default function PractitionersCard({ status, setStatus,isSkeleton }) {
                 .then((res) => {
                     setStatus(!status)
                     setBtnStatus(!btnStatus)
-
-
                 })
                 .catch((error) => {
                     console.log(error)
@@ -79,89 +78,71 @@ export default function PractitionersCard({ status, setStatus,isSkeleton }) {
             lastExecution = Date.now()
         }
     }
-
-
+    
     return (
         <React.Fragment>
             {isSkeleton
-          ?
-            <ClinicianCard />
-            :
-            <>
-            <div className='practitioners-card'>
-                {clinicianData?.data?.data?.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
+                ?
+                <ClinicianCard />
+                :
                 <>
+                    <div className='practitioners-card'>
+                        {clinicianData?.data?.data?.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
 
-                    {
-                    currentTableData?.length > 0 && currentTableData.map((element) => {
-                        if (element.status === 1) {
-                            setNextBtn(element.status === 1 ? true : false)
-                        }
-                        return (
-                            <div key={element.id}>
-                                <div className='card d-flex'>
-                                    <div className='user-image'>
+                        {
+                            currentTableData?.length > 0 && currentTableData.map((element, I) => {
+                                if (element.status === 1) {
+                                    setNextBtn(element.status === 1 ? true : false)
+                                }
+                               
+                                let data= MetaFormeting(element)  
+                                
+                                return (
 
-                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                            <React.Fragment key={user_data.id}>
-
-                                                {user_data?.meta_key === "image" && 
-                                                    <>  <img src={user_data?.meta_value} alt='User' />
-                                                    </> }
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
-                                    <div className='text-block'>
-
-                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                            <React.Fragment key={user_data.id}>
-                                                {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                            </React.Fragment>
-                                        ))}
-                                        {element?.hospital?.length > 0 && element?.hospital.map((hospital) => (
-                                            <React.Fragment key={hospital.id}>
-                                                {
-                                                    hospital?.meta_data?.length > 0 && hospital?.meta_data.map((user_data) => (
-                                                        <React.Fragment key={user_data.id}>
-                                                            {user_data?.meta_key === "full_name" && <>{user_data?.meta_value}<br /></>}
-                                                        </React.Fragment>
-                                                    ))
-                                                }
-                                            </React.Fragment>
-                                        ))}
-                                        {element?.meta_data?.length > 0 && element.meta_data.map((user_data) => (
-                                            <React.Fragment key={user_data.id}>
-                                                {user_data?.meta_key === "address" && <>{user_data?.meta_value}<br /></>}
-                                            </React.Fragment>
-                                        ))}
-
-
-                                        <div className='add-fav'  >
-
-                                            <FormControlLabel onClick={() => { addClinician(element.id, element.status)}}
-                                                control={
-                                                    <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
-
-                                                label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
-
+                                    <div key={element.id}>                                   
+                                    
+                                        <div className='card d-flex' key={I}>
+                                        <div className='user-image'>
+                                        
+                                            <img src={data?.image?data?.image:"https://res.cloudinary.com/hxiy1rssb/image/upload/v1628078352/nh8dngopv1isqucjdvk9.png"} alt='User' />
+                                   
                                         </div>
+                                        <div className='text-block'>
+                                         <>{data?.full_name}<br /></>
+                                        <>{data?.address}<br /></>
+                                            <div className='add-fav'  >
+                                                <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
+                                                    control={
+                                                        <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
+                                                    label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>)
-                    })
+                                    
+                              
+                                </div>                          
 
+   
+
+
+
+
+
+                                )
+                            })
+
+                        }
+
+
+                    </div>
+
+                    {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
+                        <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
                     }
-
                 </>
-            </div>
-            
-            {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
-                <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
             }
-            </>
-        }
         </React.Fragment>
     )
 }
