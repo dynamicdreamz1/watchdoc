@@ -4,9 +4,7 @@ import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
-import { UserContext } from '../Store/Context'; 
-import { IconButton, InputAdornment } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { UserContext } from '../Store/Context';
 
 const SignIn = () => {
 
@@ -54,23 +52,6 @@ const SignIn = () => {
 
     }
 
-    const [values, setValues] = React.useState({
-        password: "",
-        showPassword: false,
-    });
-    
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
-    const handlePasswordChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
     if (user?.token) {
         return redirect('/dashboard');
     }
@@ -97,19 +78,7 @@ const SignIn = () => {
                                 value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className='input-block'>
-                                <input type={values.showPassword ? "text" : "password"}
-                                onChange={handlePasswordChange("password")}
-                                value={values.password}
-                                endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                                } />
+                                <input type="password" placeholder='password'/>
                             </div>
                             <div className='forgot-pw-block'>
                                 <a href={{}}>Forgot Password</a>
