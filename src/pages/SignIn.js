@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
 import { UserContext } from '../Store/Context'; 
 
-const Register = () => {
+const SignIn = () => {
 
     const user = useContext(UserContext);
 
@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
         <React.Fragment>
-
+            
             <div className='page-wrapper'>
                 <div className='signin-box'>
                     <div className='logo-block'>
@@ -94,4 +94,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default SignIn;
