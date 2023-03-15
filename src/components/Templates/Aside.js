@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import Header from './Header'
-import CliniciansTableTabs from '../Clinician/CliniciansTableTabs'
 import DashboardTableTabs from '../Clinician/DashboardTableTabs'
 import PatientDashboard from '../Patient/PatientDashboard'
 import { UserContext } from '../../Store/Context'
+import ClinicianDashboard from '../Clinician/ClinicianDashboard'
 
 export default function Aside() {
   const {currentUserData} = useContext(UserContext);
@@ -18,7 +18,7 @@ export default function Aside() {
           case 'User':
             return <PatientDashboard/>
           case 'Clinician':
-            return <CliniciansTableTabs />
+            return <ClinicianDashboard/>
           default:
             return <DashboardTableTabs />
         }
