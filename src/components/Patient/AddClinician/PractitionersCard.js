@@ -12,7 +12,7 @@ import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter';
 import Pagination from '@mui/material/Pagination';
 import { ClinicianCard } from '../../../Utility/Skeleton';
 import { MetaFormeting} from '../../../Utility/functions';
-
+import defaultUserIcon from "../../../../src/assets/images/defaultUserIcon.png"
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -104,7 +104,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                         <div className='card d-flex' key={I}>
                                         <div className='user-image'>
                                         
-                                            <img src={data?.image?data?.image:"https://res.cloudinary.com/hxiy1rssb/image/upload/v1628078352/nh8dngopv1isqucjdvk9.png"} alt='User' />
+                                            <img src={data?.image?data?.image:defaultUserIcon} alt='User' />
                                    
                                         </div>
                                         <div className='text-block'>
