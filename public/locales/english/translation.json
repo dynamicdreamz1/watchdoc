@@ -2,7 +2,7 @@
     "RegisterPage": {
         "form": {
             "f1": "Email address",
-            "f2": "Continue",
+            "f2": "Sign In",
             "f3": "OR",
             "f4": "Continue with Google",
             "f5": "Continue with Apple",
@@ -234,6 +234,12 @@
         },
         "message": {
             "m1": "Profile updated successfully."
+        }
+    },
+
+    "UserAvtar":{
+        "role":{
+            
         }
     }
 }
