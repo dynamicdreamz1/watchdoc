@@ -2,8 +2,6 @@ import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react'
 import PropTypes from 'prop-types';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
-import ClinicianProfileBar from './ClinicianProfileBar';
-import PendingPatientsTable from './PendingPatientsTable';
 import TableShorting from './TableShorting';
 
 function TabPanel(props) {
@@ -64,8 +62,6 @@ export default function CliniciansTableTabs() {
               <CliniciansRequestsTable/>
           </TabPanel>
         </Box>
-        <ClinicianProfileBar/>
-        <PendingPatientsTable/>
         </>
     )
 }

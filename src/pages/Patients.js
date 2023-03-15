@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
+import CriticalPatientsAlertTableTabs from '../components/Clinician/CriticalPatientsAlertTableTabs';
 
 const Patients = () => {
   return (
@@ -9,7 +10,7 @@ const Patients = () => {
         <Sidebar/>
         <div className='aside'>
           <Header />
-          
+          <CriticalPatientsAlertTableTabs/>
         </div>
     </div>
     </React.Fragment>
