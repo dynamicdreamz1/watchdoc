@@ -12,8 +12,8 @@ import { updateToken } from '../Utility/functions'
 
 const VerificationEmail = () => {
 
-    const {setCurrentUser}=useContext(UserContext)
-    
+    const { setCurrentUser } = useContext(UserContext)
+
     const [code, setCode] = useState('')
 
     const navigate = useNavigate()
@@ -69,20 +69,27 @@ const VerificationEmail = () => {
                     StoreCookie.setItem("role", roles[0].name);
                     StoreCookie.setItem("is_active", is_active);
 
-                    if(roles[0].name==="Clinician"){
+                    if (roles[0].name === "Clinician") {
+                        navigate('/dashboard')
+                    }
+
+                    else if (roles[0].name === "User") {
+                        if (profile_created === 1) {
+                            navigate('/dashboard')
+                        }
+
+                        else {
+                            navigate('/userConsent')
+                        }
+                    }
+
+                    else if (roles[0].name === "Hospital") {
                         navigate('/dashboard')
                     }
 
                     else {
-                        if(profile_created===1){
-                            navigate('/dashboard')
-                        }
-
-                        else{
-                            navigate('/userConsent')
-                        }
+                        navigate("/dashboard")
                     }
-                   
                     console.log(res)
 
                 })
@@ -118,7 +125,7 @@ const VerificationEmail = () => {
                             <p>{t('VerificationPage.form.f1')} <strong>{decodedEmail}.</strong> {t('VerificationPage.form.f2')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-                        
+
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
