@@ -24,15 +24,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
     const {first_name,last_name} =  MetaFormeting(currentUserData?.userData);
-    // const {full_name}=MetaFormeting(currentUserData?.userData)
-    // console.log(currentUserData?.userData?.meta_data[0].meta_value)
-    // console.log(full_name)
+    const {full_name}=MetaFormeting(currentUserData?.userData)
+
+   
+  
   return (
     <>
         <div className='account-owner'>
             <div className='info'>
-                <span className='uname'>{`${first_name} ${last_name}`}</span>
-                <span className='uposition'>{currentUserData?.role === "User" ? 'Patient' : "Clinician"}</span>
+                <span className='uname'>{ currentUserData?.role==="Clinician" ? `${full_name}` : currentUserData?.role==="Hospital" ? `${full_name}`:`${first_name} ${last_name}`}</span>
+                <span className='uposition'>{currentUserData?.role === "Clinician" ? 'Clinician' : currentUserData?.role==="Hospital" ? "Hospital" : currentUserData?.role==="Admin" ? "WatchDoc Admin" : "Patient"}</span>
             </div>
             <div className='image'>
                 <StyledBadge

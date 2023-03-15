@@ -2,8 +2,15 @@ import React from 'react'
 import AddIcon from './AddIcon'
 import { useTranslation } from 'react-i18next'
 
-export default function ConnectingClinician({defaultStatus,setDefaultStatus}) {
+export default function ConnectingClinician({defaultStatus,setDefaultStatus,setShow}) {
     const {t}=useTranslation();
+
+    const handleClick=()=>{
+        setDefaultStatus(!defaultStatus)
+        setShow(false)
+    }
+        
+
   return (
     <>
     <div className='clinician-connection-wrapper'>
@@ -11,7 +18,7 @@ export default function ConnectingClinician({defaultStatus,setDefaultStatus}) {
             <span className='text'>
                 <h4>{t('ConnectingClinician.heading')}</h4>
             </span>
-            <span className='icon' onClick={()=>setDefaultStatus(!defaultStatus)}>
+            <span className='icon' onClick={()=>handleClick()}>
                 <AddIcon/>
             </span>
         </div>
