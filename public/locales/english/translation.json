@@ -239,7 +239,10 @@
 
     "UserAvtar":{
         "role":{
-            
+            "DoctorRole":"Clinician",
+            "HospitalRole":"Hospital",
+            "AdminRole":"WatchDoc Admin",
+            "userRole":"Patient"
         }
     }
 }
