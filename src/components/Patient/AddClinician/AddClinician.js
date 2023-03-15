@@ -16,6 +16,7 @@ export default function AddClinician({ status, setStatus }) {
   const [isSkeleton,setIsSkeleton]=useState(false)
 
   const { addData, setAddData,nextBtn,setClinicianData } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
+ 
 
   const handleSubmit = (e) => {
     setIsSkeleton(true)
@@ -43,7 +44,7 @@ export default function AddClinician({ status, setStatus }) {
   
       {window.location.pathname === "/addclinician" ?
         <>
-          <ConnectingClinician defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
+          <ConnectingClinician show={show} setShow={setShow} defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
           <div>
             {defaultStatus === true ?
               <AddClinicianButton show={show} setShow={setShow} /> : ""}
@@ -90,7 +91,7 @@ export default function AddClinician({ status, setStatus }) {
             </form>
           </div>
          
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> : 
 
         </>}
 

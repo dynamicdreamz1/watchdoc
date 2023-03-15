@@ -1,93 +1,47 @@
-.login-page-wrapper .wrapper {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-.login-page-wrapper .wrapper .logo-block,
-.login-page-wrapper .wrapper .form-block {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-    padding: 30px 0;
-}
-.login-page-wrapper .wrapper .form-block {
-    padding-left: 60px;
-    border-left: 1px solid #C6C6C6;
-}
-.login-page-wrapper .wrapper .form-block .login-options button {
+.signin-box {
     background: #FFFFFF;
-    border: 0.25px solid #C6C6C6;
     border-radius: 9px;
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 520px;
+    padding: 65px 70px 50px 70px;
     width: 100%;
-    font-size: 18px;
-    line-height: 22px;
-    color: rgba(0, 0, 0, 0.54);
-    cursor: pointer;
 }
-.login-page-wrapper .wrapper .form-block .login-options button:not(:last-child) {
-    margin-bottom: 18px;
-}
-.login-page-wrapper .wrapper .form-block .login-options button img {
-    margin-right: 15px;
-}
-.login-page-wrapper .wrapper .form-block .login-options button.apple-icon {
-    background-color: #000000;
-    color: #fff;
-    border-color: #000;
-}
-.login-page-wrapper .wrapper .form-block .login-options button img {
-    margin-right: 15px;
-}
-.login-page-wrapper .wrapper .form-block .login-options button.apple-icon {
-    background-color: #000000;
-    color: #fff;
-    border-color: #000;
-}
-.login-page-wrapper .wrapper .form-block .or-text {
+.signin-box .logo-block {
     text-align: center;
 }
-.login-page-wrapper .wrapper .form-block .or-text span {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 17px;
-    text-transform: uppercase;
-    background-color: #fff;
-    padding-left: 5px;
-    padding-right: 5px;
+.signin-box .form-block .form-title {
+    margin-top: 40px;
 }
-.login-page-wrapper .wrapper .form-block .or-text {
-    position: relative;
-    height: 20px;
-    margin: 15px 0;
+.signin-box .forgot-pw-block {
+    text-align: right;
 }
-.login-page-wrapper .wrapper .form-block .or-text:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: rgb(198, 198, 198, 0.5);
-    left: 0;
-    top: 10px;
-    z-index: -1;
+.signin-box .forgot-pw-block a {
+    font-size: 15px;
+    line-height: 18px;
 }
-.login-page-wrapper .wrapper .logo-block {
-    text-align: center;
+.signin-box .forgot-pw-block a:hover {
+    text-decoration: underline;
 }
-.login-page-wrapper .wrapper .logo-block .logo {
-    margin-bottom: 30px;
+.signin-box .not-user-block {
+    padding-top: 35px;
 }
-
+.signin-box .not-user-block span,.signin-box .not-user-block a {
+    font-size: 16px;
+    line-height: 20px;
+}
+.signin-box .not-user-block a {
+    margin-left: 5px;
+}
+.signin-box .not-user-block {
+    margin-bottom: 15px;
+}
+.signin-box .privacy-policy-text a {
+    font-size: 13px;
+    line-height: 16px;
+}
 .LoginError {
     color: red;
     height: 40px;
-
 }
-
 .LoginLoader{
     height: 40px;
 }

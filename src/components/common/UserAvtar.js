@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
+import { useTranslation } from 'react-i18next';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -24,15 +25,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
     const {first_name,last_name} =  MetaFormeting(currentUserData?.userData);
-    // const {full_name}=MetaFormeting(currentUserData?.userData)
-    // console.log(currentUserData?.userData?.meta_data[0].meta_value)
-    // console.log(full_name)
+    const {full_name}=MetaFormeting(currentUserData?.userData)
+    const {t}=useTranslation()
+   
+  
   return (
     <>
         <div className='account-owner'>
             <div className='info'>
-                <span className='uname'>{`${first_name} ${last_name}`}</span>
-                <span className='uposition'>{currentUserData?.role === "User" ? 'Patient' : "Clinician"}</span>
+                <span className='uname'>{ currentUserData?.role==="Clinician" ? `${full_name}` : currentUserData?.role==="Hospital" ? `${full_name}`:`${first_name} ${last_name}`}</span>
+                <span className='uposition'>{currentUserData?.role === "Clinician" ? t('UserAvtar.role.DoctorRole') : currentUserData?.role==="Hospital" ? t('UserAvtar.role.HospitalRole') : currentUserData?.role==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
             </div>
             <div className='image'>
                 <StyledBadge
