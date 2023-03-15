@@ -98,6 +98,12 @@
             "title2": "My Clinicians",
             "title3": "Edit Profile",
             "title4": "Link Device",
+            "ClinicianSideBar":{
+                
+                "t2":"Patients",
+                "t3":"Clinicians"
+            },
+            
             "d2": "Patients",
             "d3": "Clinicians"
         },
