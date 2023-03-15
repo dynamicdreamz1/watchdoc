@@ -3,9 +3,40 @@
     border-radius: 9px;
     max-width: 520px;
     padding: 65px 70px 50px 70px;
+    width: 100%;
 }
 .signin-box .logo-block {
     text-align: center;
+}
+.signin-box .form-block .form-title {
+    margin-top: 40px;
+}
+.signin-box .forgot-pw-block {
+    text-align: right;
+}
+.signin-box .forgot-pw-block a {
+    font-size: 15px;
+    line-height: 18px;
+}
+.signin-box .forgot-pw-block a:hover {
+    text-decoration: underline;
+}
+.signin-box .not-user-block {
+    padding-top: 35px;
+}
+.signin-box .not-user-block span,.signin-box .not-user-block a {
+    font-size: 16px;
+    line-height: 20px;
+}
+.signin-box .not-user-block a {
+    margin-left: 5px;
+}
+.signin-box .not-user-block {
+    margin-bottom: 15px;
+}
+.signin-box .privacy-policy-text a {
+    font-size: 13px;
+    line-height: 16px;
 }
 .LoginError {
     color: red;
