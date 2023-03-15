@@ -8,11 +8,11 @@ export const ClinicianCard = () => {
     return(
         <>
             <Stack spacing={1} className="clinician-card-skeleton">
-                <div class="card d-flex">
-                    <div class="user-image">
+                <div className="card d-flex">
+                    <div className="user-image">
                         <Skeleton variant="circular" />
                     </div>
-                    <div class="text-block">
+                    <div className="text-block">
                         <Skeleton variant="text" className='title'/>
                         <Skeleton variant="text" className='sub-title'/>
                     </div>

@@ -8,16 +8,17 @@ import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard' 
 
-
 export default function AddClinician({ status, setStatus }) {
   const { t } = useTranslation();
   const [show, setShow] = useState(false)
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
+  const [isSkeleton,setIsSkeleton]=useState(false)
 
   const { addData, setAddData,nextBtn,setClinicianData } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
 
   const handleSubmit = (e) => {
+    setIsSkeleton(true)
 
     e.preventDefault()
 
@@ -29,9 +30,8 @@ export default function AddClinician({ status, setStatus }) {
     
     searchClinician(data)
       .then((response) => {
-        console.log(response)
         setClinicianData(response)
-
+        setIsSkeleton(false)
       })
 
       .catch((error) => {
@@ -67,7 +67,7 @@ export default function AddClinician({ status, setStatus }) {
                 </form>
               </div>
 
-              <PractitionersCard  status={status} setStatus={setStatus} />
+              <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
               { nextBtn ?  <button onClick={()=>navigate("/dashboard")}>Next</button> : ""  }  <br/> <br/>
             </>
             : ""
@@ -89,8 +89,9 @@ export default function AddClinician({ status, setStatus }) {
               </div>
             </form>
           </div>
+         
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
 
-          <PractitionersCard  status={status} setStatus={setStatus} />
         </>}
 
       
