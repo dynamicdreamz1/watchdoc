@@ -59,6 +59,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [btnStatus])
 
+
+    useEffect(()=>{
+        const state=currentTableData?.some((element)=>element.status===1)
+        setNextBtn(state)
+    })
+
     const addClinician = (ID, ElStatus) => {
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
 
@@ -91,9 +97,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
                         {
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
-                                if (element.status === 1) {
-                                    setNextBtn(element.status === 1 ? true : false)
-                                }
+                                
                                
                                 let data= MetaFormeting(element)  
                                 
