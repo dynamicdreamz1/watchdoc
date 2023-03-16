@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ProfileCreation } from '../../../services/UserService'
+import { getCurrentUserData, ProfileCreation } from '../../../services/UserService'
 import { UserContext } from '../../../Store/Context'
 import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
 
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
-
-    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(currentUserData?.userData);
-
+    const userData = getCurrentUserData();
+    let finalUser=currentUserData?.userData?.meta_data.length===0?userData:currentUserData?.userData;
+    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(finalUser);
 
     const [firstName, SetFirstName] = useState(first_name)
     const [preferredFirstName, setPreferredFirstName] = useState(preferred_first_name)
@@ -25,7 +25,6 @@ export const EditProfile = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    
     const BMI=(Weight/Math.pow((Height),2))
 
     const roundedBMI=Math.round(BMI*100)/100
@@ -147,11 +146,11 @@ export const EditProfile = () => {
                 </div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
-                    <input type="number" placeholder={t('EditProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
+                    <input type="text" placeholder={t('EditProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
                 </div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
-                    <input type="number" placeholder={t('EditProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
+                    <input type="text" placeholder={t('EditProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
                 </div>
 
                 <div className='input-block'>

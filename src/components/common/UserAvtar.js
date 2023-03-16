@@ -5,6 +5,7 @@ import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
+import { getCurrentUserData } from '../../services/UserService';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -24,8 +25,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
-    const {first_name,last_name} =  MetaFormeting(currentUserData?.userData);
-    const {full_name}=MetaFormeting(currentUserData?.userData)
+    const userData = getCurrentUserData();
+    let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
+    const {first_name,last_name,full_name} =  MetaFormeting(finalUser);
+    // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
    
   

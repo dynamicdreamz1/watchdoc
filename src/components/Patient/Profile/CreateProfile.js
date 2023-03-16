@@ -152,12 +152,12 @@ const CreateProfile = () => {
 
                 <div className='input-block'>
                     <label htmlFor="exampleInputWeight" >{t('CreateProfilePage.form.f7')}</label>
-                    <input type="number" placeholder={t('CreateProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
+                    <input type="text" placeholder={t('CreateProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
                 </div>
 
                 <div className='input-block'>
                     <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
-                    <input type="number" placeholder={t('CreateProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
+                    <input type="text" placeholder={t('CreateProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
                 </div>
                 
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('CreateProfilePage.form.f9')}</button>
