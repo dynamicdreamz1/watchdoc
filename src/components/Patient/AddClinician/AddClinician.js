@@ -69,7 +69,7 @@ export default function AddClinician({ status, setStatus }) {
               </div>
 
               <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
-              { nextBtn ?  <button onClick={()=>navigate("/dashboard")}>Next</button> : ""  }  <br/> <br/>
+              { nextBtn ?  <button onClick={()=>navigate("/dashboard")}>Next</button> : ""  } 
             </>
             : ""
 

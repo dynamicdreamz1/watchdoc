@@ -112,8 +112,8 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                    
                                         </div>
                                         <div className='text-block'>
-                                         <>{data?.full_name}<br /></>
-                                        <>{data?.address}<br /></>
+                                         <>{data?.full_name}</>
+                                        <>{data?.address}</>
                                             <div className='add-fav'  >
                                                 <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
                                                     control={
