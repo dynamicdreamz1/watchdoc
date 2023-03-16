@@ -4,6 +4,7 @@ import { logout} from '../../services/UserService';
 import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
 import { UserContext } from '../../Store/Context';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Sidebar() {
@@ -13,6 +14,8 @@ export default function Sidebar() {
         logout();
         window.location.reload();
     }
+
+    const {t}=useTranslation()
 
   return (
     <>
@@ -42,7 +45,7 @@ export default function Sidebar() {
                 <span className='icon'>
                     <img src='/images/Logout-icon.png' alt='Logout Icon' />
                 </span>
-                <span className='text'>Logout</span>
+                <span className='text'>{t('DashboardPage.SideBar.d4')}</span>
             </button>
         </div>
     </div>

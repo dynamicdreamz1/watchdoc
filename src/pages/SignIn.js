@@ -22,6 +22,7 @@ const SignIn = () => {
         e.preventDefault()
 
         if (email === "") {
+
             setError(t('SignInPage.error.e1'))
             return
         }

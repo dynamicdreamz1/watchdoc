@@ -105,13 +105,21 @@
             "title3": "Edit Profile",
             "title4": "Link Device",
             "ClinicianSideBar":{
-                
+                "t1":"Dashboard",
                 "t2":"Patients",
                 "t3":"Clinicians"
             },
+
+            "PatientSidebar":{
+                "t1":"Dashboard",
+                "t2":"Clinicians",
+                "t3":"Edit Profile",
+                "t4":"Link Device"
+            },
             
             "d2": "Patients",
-            "d3": "Clinicians"
+            "d3": "Clinicians",
+            "d4":"Logout"
         },
         "Aside": {
             "CliniciansRequestsTable": {

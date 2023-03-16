@@ -1,9 +1,13 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import '../../css/ClinicianSidebar.css'
 
 export default function ClinicianSidebar() {
+
+    const {t}=useTranslation()
+
     return (
         <>
             <List>
@@ -17,7 +21,7 @@ export default function ClinicianSidebar() {
                             <ListItemIcon>
                                 <img src='/images/Dashboard-icon.svg' alt='Dashboard Icon' />
                             </ListItemIcon>
-                            <ListItemText className='clinician'>Dashboard</ListItemText>
+                            <ListItemText className='clinician'> {t('DashboardPage.SideBar.ClinicianSideBar.t1')} </ListItemText>
                         </ListItemButton>
                     </ListItem>
                 </NavLink>
@@ -32,7 +36,7 @@ export default function ClinicianSidebar() {
                         <ListItemIcon>
                             <img src='/images/User-icon.svg' alt='User Icon' />
                         </ListItemIcon>
-                        <ListItemText>Patients</ListItemText>
+                        <ListItemText> {t('DashboardPage.SideBar.ClinicianSideBar.t2')} </ListItemText>
                     </ListItemButton>
                 </ListItem>
                 </NavLink>
@@ -47,7 +51,7 @@ export default function ClinicianSidebar() {
                         <ListItemIcon>
                             <img src='/images/Clinicians-icon.svg' alt='Clinicians Icon' />
                         </ListItemIcon>
-                        <ListItemText>Clinicians</ListItemText>
+                        <ListItemText> {t('DashboardPage.SideBar.ClinicianSideBar.t3')} </ListItemText>
                     </ListItemButton>
                 </ListItem>
                 </NavLink>
