@@ -14,20 +14,20 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
   const [isSkeleton,setIsSkeleton]=useState(false)
-
   const { addData, setAddData,nextBtn,setClinicianData } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
  
 
   const handleSubmit = (e) => {
-    setIsSkeleton(true)
-
     e.preventDefault()
-
+   if(addData.clinicianName!=="" || addData?.code!==""||addData?.practitionerName!==""){       
+    setIsSkeleton(true)  
+   }
     const data = {
       clinician_name: addData?.clinicianName,
       practice_name: addData?.practitionerName,
       zip: addData?.code
     }
+
     
     searchClinician(data)
       .then((response) => {
@@ -38,6 +38,8 @@ export default function AddClinician({ status, setStatus }) {
       .catch((error) => {
         console.log(error)
       })
+    
+    
   }
   return (
     <>
