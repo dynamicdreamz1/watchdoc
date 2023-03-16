@@ -81,6 +81,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     
     return (
         <React.Fragment>
+            <ClinicianCard/>
             {isSkeleton
                 ?
                 <ClinicianCard />
