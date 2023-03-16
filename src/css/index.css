@@ -29,6 +29,10 @@ input[type="submit"] {
 .text-center {
   text-align: center;
 }
+img {
+  max-width: 100%;
+  width: auto;
+}
 @media (min-width: 576px) {
   .container {
       max-width: 540px;
@@ -889,7 +893,7 @@ body .reminder-card-skeleton {
   width: 100%;
 }
 /* Add clinician Page */
-.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box, .practitioners-card, .add-clinician-inner .table-pagination {
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box, .practitioners-card, .add-clinician-inner .table-pagination,.clinician-card-skeleton{
   max-width: 375px;
   margin: 0 auto;
 }
@@ -969,19 +973,19 @@ body .reminder-card-skeleton {
   font-weight: 400;
   margin-bottom: 12px;
 }
-.practitioners-card .card {
+.practitioners-card .card,.clinician-card-skeleton .card {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 23px;
   margin-bottom: 15px;
 }
-.practitioners-card .card .user-image {
+.practitioners-card .card .user-image,.clinician-card-skeleton .card .user-image {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
 }
-.practitioners-card .card .text-block {
+.practitioners-card .card .text-block,.clinician-card-skeleton .card .text-block {
   width: calc(100% - 60px);
   padding-left: 18px;
 }
@@ -998,7 +1002,8 @@ body .reminder-card-skeleton {
   width: 20px;
   height: 20px;
 }
-.practitioners-card .card .text-block .add-fav {
+.practitioners-card .card .text-block .add-fav,
+.clinician-card-skeleton .card .text-block .sub-title {
   margin-top: 8px;
 }
 .practitioners-card .card .text-block .add-fav label {
@@ -1009,6 +1014,10 @@ body .reminder-card-skeleton {
   font-size: 14px;
   line-height: 18px;
   font-family: 'Source Sans Pro', sans-serif;
+}
+.clinician-card-skeleton .card .user-image .MuiSkeleton-root {
+  width: 100%;
+  height: 100%;
 }
 .add-clinician-button {
   background: #FFFFFF;
@@ -1174,6 +1183,19 @@ body .no-data-recorded-skeleton .text {
 }
 .chart-skeleton {
   align-items: inherit;
+}
+.clinician-card-skeleton .card .user-image .MuiSkeleton-root {
+  width: 100%;
+  height: 100%;
+}
+.clinician-card-skeleton .card .text-block .title {
+  height: 45px;
+}
+.clinician-card-skeleton .card .text-block .sub-title {
+  height: 18px;
+}
+.clinician-card-skeleton .card .text-block .MuiSkeleton-root {
+  border-radius: 5px;
 }
 /* Chart Tabs */
 .chart-tabs button {

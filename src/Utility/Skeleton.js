@@ -13,8 +13,8 @@ export const ClinicianCard = () => {
                         <Skeleton variant="circular" />
                     </div>
                     <div className="text-block">
-                        <Skeleton variant="text" className='title'/>
-                        <Skeleton variant="text" className='sub-title'/>
+                        <Skeleton variant="rectangular" className='title'/>
+                        <Skeleton variant="rectangular" className='sub-title'/>
                     </div>
                 </div>
             </Stack>
