@@ -91,7 +91,7 @@ export default function AddClinician({ status, setStatus }) {
             </form>
           </div>
          
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> : 
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> 
 
         </>}
 
