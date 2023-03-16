@@ -5,9 +5,12 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
 export const ClinicianCard = () => {
+    const totalUser=[1,2,3];
     return(
         <>
-            <Stack spacing={1} className="clinician-card-skeleton">
+        {totalUser?.map((el,I)=>{
+            return(
+                <Stack spacing={1} className="clinician-card-skeleton" key={I}>
                 <div className="card d-flex">
                     <div className="user-image">
                         <Skeleton variant="circular" />
@@ -18,6 +21,11 @@ export const ClinicianCard = () => {
                     </div>
                 </div>
             </Stack>
+
+            )
+        })
+           
+}
         </>
     )
 }
