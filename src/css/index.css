@@ -133,7 +133,7 @@ form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 form input::-ms-input-placeholder { /* Microsoft Edge */
   color: #999999;
 }
-button[type="submit"] {
+button[type="submit"],.btn {
   background-color: #00B8E2;
   border-radius: 3px;
   border: 0;
@@ -147,7 +147,7 @@ button[type="submit"] {
   margin-top: 15px;
   transition: all 0.2s ease-in-out;
 }
-button[type="submit"]:hover {
+button[type="submit"]:hover,.btn:hover {
   background-color: #06B2CC;
 }
 .phone-number {
@@ -893,8 +893,11 @@ body .reminder-card-skeleton {
 .reminder-card-skeleton .content-block .r-title,.reminder-card-skeleton .content-block .days,.reminder-card-skeleton .content-block .reminder-date {
   width: 100%;
 }
+.add-clinician-inner .btn-block {
+  padding-top: 15px;
+}
 /* Add clinician Page */
-.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box, .practitioners-card, .add-clinician-inner .table-pagination,.clinician-card-skeleton{
+.clinician-connection-wrapper,.add-clinician-button-block,.add-clinician-box, .practitioners-card, .add-clinician-inner .table-pagination,.clinician-card-skeleton,.add-clinician-inner .btn-block{
   max-width: 375px;
   margin: 0 auto;
 }
@@ -1051,8 +1054,8 @@ body .reminder-card-skeleton {
   margin-bottom: 12px;
   margin-top: 20px;
 }
-.practitioners-card {
-  margin-top: 20px;
+.add-clinician-box {
+  margin-bottom: 20px;
 }
 /* Alert Card */
 .alert-card .text-block .icon {
@@ -1310,6 +1313,8 @@ body .no-data-recorded-skeleton .text {
   padding: 6px 5px;
   font-size: 12px;
   line-height: 12px;
+  height: auto;
+  margin: 0;
 }
 .devices-wrapper .device-block .btn-block {
   width: 86px;

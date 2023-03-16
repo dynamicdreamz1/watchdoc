@@ -22,7 +22,7 @@
     color: #000;
 }
 .varification-page-wrapper .codeResend {
-    text-decoration: underline;
+    color: #00b9df;
 }
 .resend-code {
     margin-bottom: 30px;
@@ -37,4 +37,5 @@ button.codeResend[disabled] {
     opacity: 0.3;
     cursor: not-allowed;
     text-decoration: none;
+    color: #777777;
 }
