@@ -59,6 +59,7 @@ img {
 }
 .page-content-wrapper {
   padding-top: 45px;
+  padding-bottom: 45px;
   max-width: 510px;
   margin: 0 auto;
 }
