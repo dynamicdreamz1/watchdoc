@@ -109,7 +109,19 @@ const VerificationEmail = () => {
         const data = {
             email: decodedEmail
         }
+        
         RegisterUser(data)
+            .then((response) => {
+                if (typeof response === "string") {
+                    setError(response)                  
+
+                } else {
+                    console.log(response)
+                }
+            })
+            .catch((error) => {
+                return error
+            })
     }
 
     return (
