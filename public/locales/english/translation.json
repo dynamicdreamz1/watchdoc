@@ -1,13 +1,19 @@
 {
-    "RegisterPage": {
+    "SignInPage": {
         "form": {
             "f1": "Email address",
             "f2": "Sign In",
             "f3": "OR",
             "f4": "Continue with Google",
             "f5": "Continue with Apple",
-            "f6": "Continue with SSO"
+            "f6": "Continue with SSO",
+            "f7":"Password",
+            "f8":"Not with us?",
+            "f9":"Sign up now",
+            "f10":"View Privacy Policy",
+            "f11":"Forgot Password"
         },
+
         "error": {
             "e1": "The email field is required."
         },
