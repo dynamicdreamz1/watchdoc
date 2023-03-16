@@ -22,7 +22,8 @@ const SignIn = () => {
         e.preventDefault()
 
         if (email === "") {
-            setError(t('RegisterPage.error.e1'))
+
+            setError(t('SignInPage.error.e1'))
             return
         }
         const data = {
@@ -74,25 +75,25 @@ const SignIn = () => {
 
                         <form>
                             <div className='input-block'>
-                                <input type="email" placeholder={t('RegisterPage.form.f1')} 
+                                <input type="email" placeholder={t('SignInPage.form.f1')} 
                                 value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className='input-block'>
-                                <input type="password" placeholder='password'/>
+                                <input type="password" placeholder={t('SignInPage.form.f7')} />
                             </div>
                             <div className='forgot-pw-block'>
-                                <a href={{}}>Forgot Password</a>
+                                <a href={{}}>{t('SignInPage.form.f11')}</a>
                             </div>
                             <div className='submit-block'>
-                                <button type="submit" onClick={(e) => handleSubmit(e)}>{t('RegisterPage.form.f2')}</button>
+                                <button type="submit" onClick={(e) => handleSubmit(e)}>{t('SignInPage.form.f2')}</button>
                             </div>
-                            {loading ? <b>{t('RegisterPage.loader.l1')}</b> : ""}
+                            {loading ? <b>{t('SignInPage.loader.l1')}</b> : ""}
                             <div className='not-user-block text-center'>
-                                <span>Not with us?</span>
-                                <a href={{}}>Sign up now</a>
+                                <span>{t('SignInPage.form.f8')}</span>
+                                <a href={{}}>{t('SignInPage.form.f9')}</a>
                             </div>
                             <div className='privacy-policy-text text-center'>
-                                <a href={{}}>View Privacy Policy</a>
+                                <a href={{}}>{t('SignInPage.form.f10')}</a>
                             </div>
                         </form>
                     </div>
