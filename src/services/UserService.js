@@ -51,6 +51,7 @@ export const RegisterMobNumber = async (data) => {
             data: data,
             headers: headersUser
         })
+        console.log(response)
         return response;
     } catch (error) {
         return error;
