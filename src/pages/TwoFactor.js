@@ -99,7 +99,7 @@ console.log("1111111-currentUserData",currentUserData)
                             <button type='submit'onClick={handleClickConfirm}>Confirm</button>
                         </div>
                         <div className='cancle-signout'>
-                            <button type='button'>Cancel and sign out</button>
+                            <button type='button'onClick={()=>navigate('/signin')}>Cancel and sign out</button>
                         </div>
                     </form>
                 </div>
