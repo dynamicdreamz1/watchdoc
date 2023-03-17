@@ -5,6 +5,7 @@ const SignUp = () =>  {
     <>
         <div className='page-wrapper signup-page-wrapper'>
             <div className='form-block'>
+                <div className='content'>
                 <div className='logo-block'>
                     <img src='/images/WatchDoc-LOGO.svg' alt='WatchDoc Logo' />
                 </div>
@@ -35,9 +36,7 @@ const SignUp = () =>  {
                         <button type='submit'>Sign Up</button>
                     </div>
                 </form>
-            </div>
-            <div className='image-block'>
-                <img src='/images/Lady_with_laptop_register.png' alt='Lady with Laptop' />
+                </div>
             </div>
         </div>
     </>
