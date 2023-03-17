@@ -82,8 +82,17 @@ a {
   transition: all 0.2s ease-in-out;
   color:#00B8E2;
 }
+button {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
 a:hover {
   text-decoration: underline;
+}
+.error-message {
+  color: #EA4335;
 }
 body input:focus-visible {
   outline-offset: 0px;
@@ -1340,6 +1349,32 @@ body .no-data-recorded-skeleton .text {
 }
 .content-wrapper .aside .practitioners-card .card {
   margin-bottom: 10px;
+}
+/* Two Factor */
+.two-fa-box .title-block {
+  margin-top: 40px;
+}
+.two-fa-box .title-block h4 {
+  margin-bottom: 30px;
+}
+.two-fa-box .title-block p {
+  font-size: 16px;
+  line-height: 20px;
+}
+.two-fa-box .title-block {
+  margin-bottom: 20px;
+}
+.two-fa-box .cancle-signout button {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  color: #00B8E2;
+}
+.two-fa-box .cancle-signout {
+  margin-top: 40px;
+}
+.two-fa-box .cancle-signout button:hover {
+  text-decoration: underline;
 }
 @media only screen and (max-width: 1370px) {
   .sidebar nav ul li .MuiButtonBase-root, .logout button {

@@ -79,7 +79,7 @@ console.log("1111111-currentUserData",currentUserData)
   return (
     <>
         <div className='page-wrapper'>
-            <div className='signin-box'>
+            <div className='signin-box two-fa-box'>
                 <div className='logo-block'>
                     <div className='logo'>
                         <img src='/images/WatchDoc-LOGO.svg' alt="WatchDoc Logo" />
@@ -87,21 +87,21 @@ console.log("1111111-currentUserData",currentUserData)
                 </div>
                 <div className='title-block'>
                     <h4 className='text-center'>Verify your Enhanced Security (2FA)</h4>
-                    <p>We sent a text message to +61 ••• ••• •97. Enter your verification code to continue signing in.</p>
+                    <p>We sent a text message to <strong>+61 ••• ••• •97</strong>. Enter your verification code to continue signing in.</p>
                 </div>
                 <div className='form-block'>
                     <form>
                         <div className='input-block'>
                             <input type="text" name='code' placeholder='SMS Code' value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
-                        {error?<h3>{error}</h3>:null}
+                        {error?<span class="error-message">{error}</span>:null}
                         <div className='submit-block'>
                             <button type='submit'onClick={handleClickConfirm}>Confirm</button>
                         </div>
-                        <div className='cancle-signout'>
-                            <button type='button'>Cancel and sign out</button>
-                        </div>
                     </form>
+                </div>
+                <div className='cancle-signout text-center'>
+                    <button type='button'>Cancel and sign out</button>
                 </div>
             </div>
         </div>
