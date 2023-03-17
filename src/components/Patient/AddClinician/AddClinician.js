@@ -14,7 +14,7 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
   const [isSkeleton,setIsSkeleton]=useState(false)
-  const { addData, setAddData,nextBtn,setClinicianData } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
+  const { addData, setAddData,nextBtn,setClinicianData,setCurrentPage } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext)
  
 
   const handleSubmit = (e) => {
@@ -33,6 +33,7 @@ export default function AddClinician({ status, setStatus }) {
       .then((response) => {
         setClinicianData(response)
         setIsSkeleton(false)
+        setCurrentPage(1)
       })
 
       .catch((error) => {

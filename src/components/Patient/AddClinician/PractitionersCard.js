@@ -23,13 +23,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
-    const { addData, clinicianData, setClinicianData, setNextBtn } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
+    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
 
     const recordsPerPage = 3;
 
-    const [currentPage, setCurrentPage] = useState(1)
     const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
-
+ 
     const handleChange = (event, value) => {
         setCurrentPage(value)
     }
