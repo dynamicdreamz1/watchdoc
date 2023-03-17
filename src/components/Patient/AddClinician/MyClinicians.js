@@ -136,8 +136,8 @@ export default function MyClinicians({ status }) {
                                             <TableCell>
                                                 <Phone number={el?.contact_number} />
                                             </TableCell>
-                                            <TableCell align="center">Pending</TableCell>
-                                            <TableCell align="center" > <button onClick={() => DeleteRequest(el.id)}> Delete </button></TableCell>
+                                            <TableCell align="center" className='status'>Pending</TableCell>
+                                            <TableCell align="center" > <button onClick={() => DeleteRequest(el.id)}> Delete<img src="" alt="" /> </button></TableCell>
                                         </TableRow>
                                     })}
                                 </TableBody>
