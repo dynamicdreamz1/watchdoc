@@ -1,11 +1,39 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import ladyImage from "../../src/assets/images/Lady-with-laptop.svg";
 const SignUp = () =>  {
+    const navigate=useNavigate();
+    const [error,setError]=useState("")
+    const [signUpUserData,setSignUpUserData]=useState({
+        "firstname":"",
+        "lastname":"",
+        "email":"",
+        "mobile":"",
+        "practicename":"",
+        "practiceaddress":""
+
+    })
+    const handleChange=(key,value)=>{
+        setSignUpUserData({...signUpUserData,[key]:value})
+
+    }
+    const handleSubmitForm=(e)=>{
+        e.preventDefault();
+        if(signUpUserData?.firstname!==""&&signUpUserData?.lastname!==""&&signUpUserData?.email!==""
+        &&signUpUserData?.mobile!==""&&signUpUserData?.practicename!==""&&signUpUserData?.practiceaddress!==""){
+            setError("")
+            navigate('/signin')
+        }
+        else{
+            setError("All Field Are Required*")
+        }
+    }
+
+
   return (
     <>
         <div className='page-wrapper signup-page-wrapper'>
             <div className='form-block'>
-                <div className='content'>
                 <div className='logo-block'>
                     <img src='/images/WatchDoc-LOGO.svg' alt='WatchDoc Logo' />
                 </div>
@@ -15,28 +43,31 @@ const SignUp = () =>  {
                 </div>
                 <form>
                     <div className='input-block'>
-                        <input type="text" name='first-name' placeholder='First Name*' required />
+                        <input type="text" name='first-name' placeholder='First Name*' onChange={(e) => handleChange("firstname",e.target.value)} />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='last-name' placeholder='Last Name*' required />
+                        <input type="text" name='last-name' placeholder='Last Name*' onChange={(e) => handleChange("lastname",e.target.value)} />
                     </div>
                     <div className='input-block'>
-                        <input type="email" name='email' placeholder='Email*' required />
+                        <input type="email" name='email' placeholder='Email*' onChange={(e) => handleChange("email",e.target.value)} />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='mobile' placeholder='Mobile*' required />
+                        <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile",e.target.value)} />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='practice-name' placeholder='Practice name*' required />
+                        <input type="text" name='practice-name' placeholder='Practice name*' onChange={(e) => handleChange("practicename",e.target.value)} />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='practice-address' placeholder='Practice Address*' required />
+                        <input type="text" name='practice-address' placeholder='Practice Address*' onChange={(e) => handleChange("practiceaddress",e.target.value)} />
                     </div>
+                    {error?<h2>{error}</h2>:null}
                     <div className='submit-block'>
-                        <button type='submit'>Sign Up</button>
+                        <button type='submit' onClick={handleSubmitForm}>Sign Up</button>
                     </div>
                 </form>
-                </div>
+            </div>
+            <div className='image-block'>
+                <img src={ladyImage} alt='Lady with Laptop' />
             </div>
         </div>
     </>
