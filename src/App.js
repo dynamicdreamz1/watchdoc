@@ -25,6 +25,7 @@ import LinkDeviceOuter from './pages/LinkDeviceOuter';
 import CreateProfileOuter from './pages/CreateProfileOuter';
 import Patients from './pages/Patients'
 import Clinicians from './pages/Clinicians';
+import SignUp from './pages/SignUp';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
 
         <Route exact path="/" element={currentUser ? <Dashboard /> : <SignIn />} />
         <Route exact path="/signin" element={currentUser ? <Dashboard /> : <SignIn />} />
+        <Route exact path="/signup" element={<SignUp />} />
         <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
