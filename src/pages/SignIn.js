@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { redirect, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
@@ -42,7 +42,7 @@ const SignIn = () => {
 
                     setLoading(false)
                     setEmail("")
-                    navigate(`/verification/${encodedemail}`)
+                    navigate(`/twofactoreverification/${encodedemail}`)
                     console.log(response)
                 }
             })
@@ -90,7 +90,7 @@ const SignIn = () => {
                             {loading ? <b>{t('SignInPage.loader.l1')}</b> : ""}
                             <div className='not-user-block text-center'>
                                 <span>{t('SignInPage.form.f8')}</span>
-                                <a href={{}}>{t('SignInPage.form.f9')}</a>
+                                <Link to='/signup'>{t('SignInPage.form.f9')}</Link>
                             </div>
                             <div className='privacy-policy-text text-center'>
                                 <a href={{}}>{t('SignInPage.form.f10')}</a>

@@ -26,6 +26,8 @@ import CreateProfileOuter from './pages/CreateProfileOuter';
 import Patients from './pages/Patients'
 import Clinicians from './pages/Clinicians';
 import SignUp from './pages/SignUp';
+import PatientEntry from './pages/PatientEntry';
+import TwoFactor from './pages/TwoFactor';
 
 function App() {
 
@@ -45,7 +47,6 @@ function App() {
   
   }, [user]);
 
-
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
 
@@ -53,8 +54,14 @@ function App() {
 
         <Route exact path="/" element={currentUser ? <Dashboard /> : <SignIn />} />
         <Route exact path="/signin" element={currentUser ? <Dashboard /> : <SignIn />} />
+        <Route exact path="/patiententry" element={currentUser ? <Dashboard /> : <PatientEntry />} />
+
         <Route exact path="/signup" element={<SignUp />} />
         <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
+        <Route path='/twofactoreverification/:emailId' element={<TwoFactor/>} />
+
+        
+
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
 
