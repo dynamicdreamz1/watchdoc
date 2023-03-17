@@ -258,5 +258,35 @@
             "AdminRole":"WatchDoc Admin",
             "userRole":"Patient"
         }
+    },
+
+    "PatientDashboard":{
+        "Measurement":{
+            "title1":"Lastest Measurements"
+        },
+
+        "Reminders":{
+            "title":"Reminders"
+        },
+
+        "HeartRate":{
+            "title":"Heart Rate"   
+        },
+        "BloodPressure":{
+            "title":"Blood Pressure"
+        },
+        "BloodOxygen":{
+            "title":"Blood Oxygen"
+        },
+        "Weight":{
+            "title":"Weight"
+        },
+        "BloodGlucose":{
+            "title":"Blood Glucose"
+        },
+        "Temperature":{
+            "title":"Temperature"
+        }
+    
     }
 }
