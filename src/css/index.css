@@ -250,8 +250,22 @@ button {
 .color-red {
   color: #EA4335;
 }
-.varification-page-wrapper form .input-block {
-  margin-bottom: 12px;
+button.codeResend {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000;
+}
+button.codeResend {
+  color: #00b9df;
+}
+button.codeResend[disabled] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: none;
+  color: #777777;
 }
 /* Table Pagination */
 .table-pagination {

@@ -14,22 +14,22 @@ const SignUp = () =>  {
                 </div>
                 <form>
                     <div className='input-block'>
-                        <input type="text" name='first-name' placeholder='First Name' required />
+                        <input type="text" name='first-name' placeholder='First Name*' required />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='last-name' placeholder='Last Name' required />
+                        <input type="text" name='last-name' placeholder='Last Name*' required />
                     </div>
                     <div className='input-block'>
-                        <input type="email" name='email' placeholder='Email' required />
+                        <input type="email" name='email' placeholder='Email*' required />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='mobile' placeholder='Mobile' required />
+                        <input type="text" name='mobile' placeholder='Mobile*' required />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='practice-name' placeholder='Practice name' required />
+                        <input type="text" name='practice-name' placeholder='Practice name*' required />
                     </div>
                     <div className='input-block'>
-                        <input type="text" name='practice-address' placeholder='Practice Address' required />
+                        <input type="text" name='practice-address' placeholder='Practice Address*' required />
                     </div>
                     <div className='submit-block'>
                         <button type='submit'>Sign Up</button>

@@ -12,7 +12,6 @@
 .varification-page-wrapper form {
     padding-top: 10px;
 }
-.varification-page-wrapper .codeResend,
 .varification-page-wrapper .text {
     padding: 0;
     border: 0;
@@ -20,9 +19,6 @@
     font-size: 12px;
     line-height: 12px;
     color: #000;
-}
-.varification-page-wrapper .codeResend {
-    color: #00b9df;
 }
 .resend-code {
     margin-bottom: 30px;
@@ -32,6 +28,17 @@
 }
 .varification-page-wrapper input {
     margin-bottom: 0;
+}
+button.codeResend {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 12px;
+    line-height: 12px;
+    color: #000;
+}
+button.codeResend {
+    color: #00b9df;
 }
 button.codeResend[disabled] {
     opacity: 0.3;

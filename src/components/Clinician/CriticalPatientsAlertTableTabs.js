@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import TableShorting from './TableShorting';
-import CriticalPatients from './CriticalPatients';
+import CriticalPatients from './Tables/CriticalPatients';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

@@ -50,16 +50,20 @@ export default function CliniciansTableTabs() {
         <Box sx={{ width: '100%' }}>
           <Box className="table-header-block">
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                  <Tab label="Clinician Requests (5)" {...a11yProps(0)} />
-                  <Tab label=" View All Clinicians (321)" {...a11yProps(1)} />
+                  <Tab label="Clinicians Pending (3)" {...a11yProps(0)} />
+                  <Tab label="Clinicians with Pending Patients (5)" {...a11yProps(1)} />
+                  <Tab label="View All Clinicians (321)" {...a11yProps(1)} />
               </Tabs>
               <TableShorting/>
           </Box>
           <TabPanel value={value} index={0} className="table-nav-tabs-content">
-              <CliniciansRequestsTable/>
+            Clinicians Pending
           </TabPanel>
           <TabPanel value={value} index={1} className="table-nav-tabs-content">
-              <CliniciansRequestsTable/>
+            Clinicians with Pending Patients
+          </TabPanel>
+          <TabPanel value={value} index={2} className="table-nav-tabs-content">
+            View All Clinicians
           </TabPanel>
         </Box>
         </>

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import Header from './Header'
-import DashboardTableTabs from '../Clinician/DashboardTableTabs'
 import PatientDashboard from '../Patient/PatientDashboard'
 import { UserContext } from '../../Store/Context'
 import ClinicianDashboard from '../Clinician/ClinicianDashboard'
@@ -20,7 +19,7 @@ export default function Aside() {
           case 'Clinician':
             return <ClinicianDashboard/>
           default:
-            return <DashboardTableTabs />
+            return <ClinicianDashboard />
         }
       })()}
     </div>
