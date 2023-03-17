@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { UserBodyContext } from '../../../Store/Context';
 import { DefaultBloodOygenMeasurment, DefaultBloodPressuerMeasurment, DefaultHeartmeasurment, Defaultmeasurment } from '../../../Utility/DefaultObject';
 import { watchNumerFormeting } from '../../../Utility/functions';
@@ -8,7 +9,7 @@ export default function Latestmeasurement() {
 
     const {heart_data,oxygen_data} = useContext(UserBodyContext);
     const {heart_rate_data} = heart_data;
-    
+    const {t}=useTranslation()
     const [Heartmeasurment,Setmeasurment] = useState(DefaultHeartmeasurment);
     const [BloodPressuerMeasurment,SetBloodPressuerMeasurment] = useState(DefaultBloodPressuerMeasurment);
     const [BloodOygenMeasurment,SetBloodOygenMeasurment] = useState(DefaultBloodOygenMeasurment);
@@ -45,7 +46,7 @@ export default function Latestmeasurement() {
     <div className='measurment-cards-wrapper mt-22'>
    
         <div className='section-title'>
-            <h5>Lastest Measurements</h5>
+            <h5>{t('PatientDashboard.Measurement.title1')}</h5>
         </div>
         <div className='wrapper d-flex flex-wrap'>
             <MeasurementCard block={Heartmeasurment}/>
