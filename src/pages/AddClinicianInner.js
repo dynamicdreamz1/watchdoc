@@ -12,10 +12,11 @@ export default function AddClinicianInner() {
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })
   const [clinicianData, setClinicianData] = useState([])
   const [nextBtn,setNextBtn]=useState(false)
-
+  const [currentPage, setCurrentPage] = useState(1)
+  
   return (
     <>
-      <InnerClinicianContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn }}>
+      <InnerClinicianContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn,currentPage, setCurrentPage }}>
         <div className='content-wrapper'>
           <Sidebar />
           <div className='aside'>
