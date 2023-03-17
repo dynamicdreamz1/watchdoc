@@ -22,7 +22,7 @@ const SignUp = () =>  {
         if(signUpUserData?.firstname!==""&&signUpUserData?.lastname!==""&&signUpUserData?.email!==""
         &&signUpUserData?.mobile!==""&&signUpUserData?.practicename!==""&&signUpUserData?.practiceaddress!==""){
             setError("")
-            navigate('/signin')
+            navigate('/signupsuccess')
         }
         else{
             setError("All Field Are Required*")

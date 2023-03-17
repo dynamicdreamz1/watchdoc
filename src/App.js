@@ -28,6 +28,7 @@ import Clinicians from './pages/Clinicians';
 import SignUp from './pages/SignUp';
 import PatientEntry from './pages/PatientEntry';
 import TwoFactor from './pages/TwoFactor';
+import SignupSuccess from './pages/SignupSuccess';
 
 function App() {
 
@@ -59,9 +60,11 @@ function App() {
         <Route exact path="/signup" element={<SignUp />} />
         <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
         <Route path='/twofactoreverification/:emailId' element={<TwoFactor/>} />
+        <Route path='/signupsuccess' element={<SignupSuccess/>} />
+
 
         
-
+        
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
 
