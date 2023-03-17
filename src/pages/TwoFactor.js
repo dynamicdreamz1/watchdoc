@@ -1,7 +1,9 @@
+import { Base64 } from 'js-base64';
 import React, { useContext, useState } from 'react'
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom'
-import { VerifyEmail } from '../services/UserService';
+import { RegisterUser, VerifyEmail } from '../services/UserService';
 import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
@@ -11,11 +13,28 @@ export default function TwoFactor() {
     const { setCurrentUser ,currentUserData} = useContext(UserContext)
 
     const { t } = useTranslation();
+    const [show, setShow] = useState(true)
+
     const [code,setCode]=useState()
     const [error, setError] = useState('')
     const { emailId} = useParams();
-    let navigate = useNavigate()
+    let decodedEmail = (Base64.decode(emailId));
 
+    let navigate = useNavigate()
+    const [time, setTime] = useState(60)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+    }, [])
+
+    useEffect(() => {
+        setInterval(() => {
+            setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
+        }, 1000);
+
+    }, []);
 
 
 console.log("1111111-currentUserData",currentUserData)
@@ -71,11 +90,37 @@ console.log("1111111-currentUserData",currentUserData)
                 .catch((error) => {
                     setError(t('VerificationPage.error.e2'))
                 })
+        }      
+    }
+
+    const resendCode = (e) => {
+        e.preventDefault()
+        setShow(true)
+        setTimeout(() => {
+            setShow(false)
+        }, 60000);
+        setTime(60)
+        const data = {
+            email: decodedEmail
         }
         
-        
-       
+        RegisterUser(data)
+            .then((response) => {
+                if (typeof response === "string") {
+                    setError(response)                  
+
+                } else {
+                    console.log(response)
+                }
+            })
+            .catch((error) => {
+                return error
+            })
     }
+
+
+
+
   return (
     <>
         <div className='page-wrapper'>
@@ -95,14 +140,21 @@ console.log("1111111-currentUserData",currentUserData)
                             <input type="text" name='code' placeholder='SMS Code' value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
                         {error?<span class="error-message">{error}</span>:null}
+                        <div className='resend-code'>
+                                <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}&nbsp;</button>
+                                <span className="text">{time}</span>
+                            </div>
                         <div className='submit-block'>
                             <button type='submit'onClick={handleClickConfirm}>Confirm</button>
                         </div>
+                        <div className='cancle-signout text-center'>
+                            <button type='button'onClick={()=>navigate('/signin')}>Cancel and sign out</button>
+                        </div>
                     </form>
                 </div>
-                <div className='cancle-signout text-center'>
+                {/* <div className='cancle-signout text-center'>
                     <button type='button'>Cancel and sign out</button>
-                </div>
+                </div> */}
             </div>
         </div>
     </>

@@ -5,16 +5,15 @@ import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
 import { UserContext } from '../../Store/Context';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 
 export default function Sidebar() {
 
     const {currentUserData} = useContext(UserContext);
-    let navigate = useNavigate()
-    const logoutHandel=()=>{
-        logout(currentUserData?.role,navigate);
-        currentUserData?.role==="User"?navigate('/patiententry'):navigate('/signin')
+
+    const logoutHandel=()=>{   
+        logout();
+        window.location.reload();
     }
 
     const {t}=useTranslation()
