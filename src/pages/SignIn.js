@@ -86,9 +86,11 @@ const SignIn = () => {
                             </div>
                             <div className='input-block'>
                                 <input type={passwordValue.showPassword ? "text" : "password"}  placeholder={t('SignInPage.form.f7')} />
-                                <button className='show-hide' onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>
-                                    <RemoveRedEyeOutlinedIcon/>
+                                <button className='show-hide' type="button" onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>
+                                    {passwordValue?.showPassword?
+                                    <RemoveRedEyeOutlinedIcon/>:
                                     <VisibilityOffOutlinedIcon/>
+}
                                 </button>
                             </div>
                             <div className='forgot-pw-block'>

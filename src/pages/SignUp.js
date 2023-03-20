@@ -1,56 +1,47 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 
-const SignUp = () =>  {
-    const navigate=useNavigate();
+const SignUp = () => {
+    const navigate = useNavigate();
     // const [error,setError]=useState("")
 
-    const [signUpUserData,setSignUpUserData]=useState({
-        "firstname":"",
-        "lastname":"",
-        "email":"",
-        "mobile":"",
-        "practicename":"",
-        "practiceaddress":""
+    const [signUpUserData, setSignUpUserData] = useState({
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "mobile": "",
+        "practicename": "",
+        "practiceaddress": ""
     })
-    const [firstnameError,setFirstnameError]=useState("")
-    const [lastnameError,setLastnameError]=useState("")
-    const [emailError,setEmailError]=useState("")
-    const [mobileError,setMobileError]=useState("")
-    const [practicenameError,setPracticenameError]=useState("")
-    const [practiceaddressError,setPracticeaddressError]=useState("")
+    const [firstnameError, setFirstnameError] = useState("")
+    const [lastnameError, setLastnameError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [mobileError, setMobileError] = useState("")
+    const [practicenameError, setPracticenameError] = useState("")
+    const [practiceaddressError, setPracticeaddressError] = useState("")
 
 
-    
-    const isValidateEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(signUpUserData?.email);
-    const isvalidateNumber=/^[0-9\b]+$/;
+
+    const isValidateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(signUpUserData?.email);
+    const isvalidateNumber = /^[0-9\b]+$/;
 
 
-    const handleChange=(key,value)=>{
-        const temp=({...signUpUserData,[key]:value})
-        if(temp?.firstname===""){
-            setFirstnameError("This field is required*")
-        }
-        
-        if(temp?.lastname===""){
-            setLastnameError("This field is required*")
-        }
-        if(!isValidateEmail){
-            setEmailError("Please enter valid email format*")
-        }
+    const handleChange = (key, value) => {
+        const temp = ({ ...signUpUserData, [key]: value })
+        console.log("11111-temp", temp?.lastname === "")
+        temp?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
+        temp?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
+        !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
+        !isvalidateNumber.test(temp?.mobile) ? setMobileError("Please enter Valid Number Format*") : setEmailError("");
+        temp?.practicename === "" ? setPracticenameError("This field is required*") : setPracticenameError("");
+        temp?.practiceaddress === "" ? setPracticeaddressError("This field is required*") : setPracticeaddressError("");
 
-        if(!isvalidateNumber.test(temp?.mobile)){
-            setMobileError("Please enter Valid Number Format*")
-        }
-        if(temp?.practicename===""){
-            setPracticenameError("This field is required*")
-        }
-        if(temp?.practiceaddress===""){
-            setPracticeaddressError("This field is required*")
-        }
-        if(temp?.firstname!=="" && temp?.lastname!=="" && isValidateEmail && isvalidateNumber.test(temp?.mobile)
-        &&temp?.practicename!=="" &&temp?.practiceaddress!==""){
+        console.log("111-----0000",isvalidateNumber.test(temp?.mobile))
+
+      
+        if (temp?.firstname !== "" && temp?.lastname !== "" && isValidateEmail && isvalidateNumber.test(temp?.mobile)
+            && temp?.practicename !== "" && temp?.practiceaddress !== "") {
             setFirstnameError("")
             setLastnameError("")
             setEmailError("")
@@ -58,39 +49,23 @@ const SignUp = () =>  {
             setMobileError("")
             setPracticenameError("")
             setPracticeaddressError("")
-            
+
 
         }
-        setSignUpUserData({...signUpUserData,[key]:value})
+        setSignUpUserData({ ...signUpUserData, [key]: value })
 
     }
-    const handleSubmitForm=(e)=>{
+    const handleSubmitForm = (e) => {
         e.preventDefault();
-        console.log("1111-calll",signUpUserData?.firstname==="")
-
-        if(signUpUserData?.firstname===""){
-            setFirstnameError("This field is required*")
-        }
-         if(signUpUserData?.lastname===""){
-            setLastnameError("This field is required*")
-        }
-         if(!isValidateEmail){
-            // setError("Please enter valid email format")
-            setEmailError("Please enter valid email format*")
-        }
-
-         if(!isvalidateNumber.test(signUpUserData?.mobile)){
-            setMobileError("Please enter Valid Number Format*")
-            // setError({...error,[error?.mobileError]:"Please enter Valid Number Format*"})
-        }
-         if(signUpUserData?.practicename===""){
-            setPracticenameError("This field is required*")
-        }
-         if(signUpUserData?.practiceaddress===""){
-            setPracticeaddressError("This field is required*")
-        }
-        if(signUpUserData?.firstname!=="" && signUpUserData?.lastname!=="" && isValidateEmail && isvalidateNumber.test(signUpUserData?.mobile)
-        &&signUpUserData?.practicename!=="" &&signUpUserData?.practiceaddress!==""){
+        console.log("111-on Submitr", signUpUserData)
+        signUpUserData?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
+        signUpUserData?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
+        !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
+        !isvalidateNumber.test(signUpUserData?.mobile) ? setMobileError("Please enter Valid Number Format*") : setEmailError("");
+        signUpUserData?.practicename === "" ? setPracticenameError("This field is required*") : setPracticenameError("");
+        signUpUserData?.practiceaddress === "" ? setPracticeaddressError("This field is required*") : setPracticeaddressError("");
+        if (signUpUserData?.firstname !== "" && signUpUserData?.lastname !== "" && isValidateEmail && isvalidateNumber.test(signUpUserData?.mobile)
+            && signUpUserData?.practicename !== "" && signUpUserData?.practiceaddress !== "") {
             setFirstnameError("")
             setLastnameError("")
             setEmailError("")
@@ -101,64 +76,64 @@ const SignUp = () =>  {
             navigate('/signupsuccess')
 
         }
-        
-        
+
+
     }
 
 
-  return (
-    <>
-        <div className='page-wrapper signup-page-wrapper'>
-            <div className='form-block'>
-                <div className='logo-block'>
-                    <img src='/images/WatchDoc-LOGO.svg' alt='WatchDoc Logo' />
+    return (
+        <>
+            <div className='page-wrapper signup-page-wrapper'>
+                <div className='form-block'>
+                    <div className='logo-block'>
+                        <img src='/images/WatchDoc-LOGO.svg' alt='WatchDoc Logo' />
+                    </div>
+                    <div className='text-block'>
+                        <h1>Create your free clinician listing</h1>
+                        <p>Create a free profile on WatchDoc and make it easy for your<br></br> patients to find and connect with you via the WatchDoc app.</p>
+                    </div>
+                    <form>
+                        <div className='input-block'>
+                            <input type="text" name='first-name' placeholder='First Name*' onChange={(e) => handleChange("firstname", e.target.value)} />
+                        </div>
+                        {firstnameError !== "" ? firstnameError : ""}
+                        <div className='input-block'>
+                            <input type="text" name='last-name' placeholder='Last Name*' onChange={(e) => handleChange("lastname", e.target.value)} />
+                        </div>
+                        {lastnameError !== "" ? lastnameError : ""}
+
+
+                        <div className='input-block'>
+                            <input type="email" name='email' placeholder='Email*' onChange={(e) => handleChange("email", e.target.value)} />
+                        </div>
+                        {emailError !== "" ? emailError : ""}
+
+
+                        <div className='input-block'>
+                            <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile", e.target.value)} maxLength="10" />
+                        </div>
+                        {mobileError !== "" ? mobileError : ""}
+
+                        <div className='input-block'>
+                            <input type="text" name='practice-name' placeholder='Practice name*' onChange={(e) => handleChange("practicename", e.target.value)} />
+                        </div>
+                        {practicenameError !== "" ? practicenameError : ""}
+
+
+
+                        <div className='input-block'>
+                            <input type="text" name='practice-address' placeholder='Practice Address*' onChange={(e) => handleChange("practiceaddress", e.target.value)} />
+                        </div>
+                        {practiceaddressError !== "" ? practiceaddressError : ""}
+
+                        <div className='submit-block'>
+                            <button type='submit' onClick={handleSubmitForm}>Sign Up</button>
+                        </div>
+                    </form>
                 </div>
-                <div className='text-block'>
-                    <h1>Create your free clinician listing</h1>
-                    <p>Create a free profile on WatchDoc and make it easy for your<br></br> patients to find and connect with you via the WatchDoc app.</p>
-                </div>
-                <form>
-                    <div className='input-block'>
-                        <input type="text" name='first-name' placeholder='First Name*' onChange={(e) => handleChange("firstname",e.target.value)} />
-                    </div>
-                    {firstnameError!==""?firstnameError:""}
-                    <div className='input-block'>
-                        <input type="text" name='last-name' placeholder='Last Name*' onChange={(e) => handleChange("lastname",e.target.value)} />
-                    </div>
-                    {lastnameError!==""?lastnameError:""}
-
-
-                    <div className='input-block'>
-                        <input type="email" name='email' placeholder='Email*' onChange={(e) => handleChange("email",e.target.value)} />
-                    </div>
-                    {emailError!==""?emailError:""}
-
-
-                    <div className='input-block'>
-                        <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile",e.target.value)} maxLength="10" />
-                    </div>
-                    {mobileError!==""?mobileError:""}
-
-                    <div className='input-block'>
-                        <input type="text" name='practice-name' placeholder='Practice name*' onChange={(e) => handleChange("practicename",e.target.value)} />
-                    </div>
-                    {practicenameError!==""?practicenameError:""}
-
-
-
-                    <div className='input-block'>
-                        <input type="text" name='practice-address' placeholder='Practice Address*' onChange={(e) => handleChange("practiceaddress",e.target.value)} />
-                    </div>
-                    {practiceaddressError!==""?practiceaddressError:""}
-
-                    <div className='submit-block'>
-                        <button type='submit' onClick={handleSubmitForm}>Sign Up</button>
-                    </div>
-                </form>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default SignUp;
