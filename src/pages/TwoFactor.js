@@ -10,7 +10,7 @@ import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
 
-    const { setCurrentUser ,currentUserData} = useContext(UserContext)
+    const { setCurrentUser} = useContext(UserContext)
 
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
@@ -37,16 +37,9 @@ export default function TwoFactor() {
     }, []);
 
 
-console.log("1111111-currentUserData",currentUserData)
 
     const handleClickConfirm=(e)=>{
         e.preventDefault()
-        // if(code ==="1234"){
-        //     navigate('/clinicianDashboard')
-        // }
-        // else{
-        //     setError('Please Enter Valid Verification Code')
-        // }
         
         if (code === "") {
             setError(t('VerificationPage.error.e1'))

@@ -14,6 +14,10 @@ const SignIn = () => {
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
+    const [passwordValue, setPasswordvalue] = React.useState({
+        password: "",
+        showPassword: false,
+      });
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
@@ -79,7 +83,8 @@ const SignIn = () => {
                                 value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className='input-block'>
-                                <input type="password" placeholder={t('SignInPage.form.f7')} />
+                                <input  type={passwordValue.showPassword ? "text" : "password"}  placeholder={t('SignInPage.form.f7')} />
+                                <h2 onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>Eye</h2>
                             </div>
                             <div className='forgot-pw-block'>
                                 <a href={{}}>{t('SignInPage.form.f11')}</a>
