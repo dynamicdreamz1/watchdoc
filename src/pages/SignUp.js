@@ -67,7 +67,6 @@ const SignUp = () =>  {
                 </form>
             </div>
         </div>
-        <ProfileSettingTabs/>
     </>
   )
 }
