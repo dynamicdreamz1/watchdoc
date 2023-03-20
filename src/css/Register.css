@@ -38,6 +38,19 @@
     font-size: 13px;
     line-height: 16px;
 }
+.signin-box form .input-block .show-hide {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    display: flex;
+}
+.signin-box form .input-block {
+    position: relative;
+}
+.signin-box form .input-block .show-hide svg {
+    fill: #C4C4C4;
+}
 .LoginError {
     color: red;
     height: 40px;

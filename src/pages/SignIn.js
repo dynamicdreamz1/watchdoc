@@ -5,6 +5,8 @@ import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
 import { UserContext } from '../Store/Context';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 const SignIn = () => {
 
@@ -83,8 +85,11 @@ const SignIn = () => {
                                 value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className='input-block'>
-                                <input  type={passwordValue.showPassword ? "text" : "password"}  placeholder={t('SignInPage.form.f7')} />
-                                <h2 onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>Eye</h2>
+                                <input type={passwordValue.showPassword ? "text" : "password"}  placeholder={t('SignInPage.form.f7')} />
+                                <button className='show-hide' onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>
+                                    <RemoveRedEyeOutlinedIcon/>
+                                    <VisibilityOffOutlinedIcon/>
+                                </button>
                             </div>
                             <div className='forgot-pw-block'>
                                 <a href={{}}>{t('SignInPage.form.f11')}</a>
