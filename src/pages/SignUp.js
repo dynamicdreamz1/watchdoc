@@ -29,7 +29,6 @@ const SignUp = () => {
 
     const handleChange = (key, value) => {
         const temp = ({ ...signUpUserData, [key]: value })
-        console.log("11111-temp", temp?.lastname === "")
         temp?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
         temp?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
         !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
@@ -37,7 +36,6 @@ const SignUp = () => {
         temp?.practicename === "" ? setPracticenameError("This field is required*") : setPracticenameError("");
         temp?.practiceaddress === "" ? setPracticeaddressError("This field is required*") : setPracticeaddressError("");
 
-        console.log("111-----0000",isvalidateNumber.test(temp?.mobile))
 
       
         if (temp?.firstname !== "" && temp?.lastname !== "" && isValidateEmail && isvalidateNumber.test(temp?.mobile)
@@ -57,7 +55,6 @@ const SignUp = () => {
     }
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        console.log("111-on Submitr", signUpUserData)
         signUpUserData?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
         signUpUserData?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
         !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
