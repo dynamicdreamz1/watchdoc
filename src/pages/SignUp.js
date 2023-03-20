@@ -24,20 +24,31 @@ const SignUp = () => {
 
     const isValidateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(signUpUserData?.email);
     const isvalidateNumber = /^[0-9\b]+$/;
-
+    const  regexText = /^[a-zA-Z]*$/;
 
     const handleChange = (key, value) => {
         const temp = ({ ...signUpUserData, [key]: value })
-        temp?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
+        let withoutSpace = temp?.mobile.replace(/ /g,"");
+let length = withoutSpace.length;
+        isvalidateNumber.test(temp?.mobile)&& length===10?setMobileError(""):setMobileError("Please enter Valid Number Format*")
+        temp?.firstname === "" || !regexText.test(temp?.firstname) ? setFirstnameError("This field is required*") : setFirstnameError("");
         temp?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
         !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
         !isvalidateNumber.test(temp?.mobile) ? setMobileError("Please enter Valid Number Format*") : setEmailError("");
         temp?.practicename === "" ? setPracticenameError("This field is required*") : setPracticenameError("");
         temp?.practiceaddress === "" ? setPracticeaddressError("This field is required*") : setPracticeaddressError("");
-
+        temp?.firstname !== "" && regexText.test(temp?.firstname)?setFirstnameError(""):setFirstnameError("This field is required*")
+        temp?.lastname !== "" && regexText.test(temp?.lastname)?setLastnameError(""):setLastnameError("This field is required*")
+        temp?.practicename !== "" && regexText.test(temp?.practicename)?setPracticenameError(""):setPracticenameError("This field is required*")
+        temp?.practiceaddress !== "" && regexText.test(temp?.practiceaddress)?setPracticeaddressError(""):setPracticeaddressError("This field is required*")
 
       
-        if (temp?.firstname !== "" && temp?.lastname !== "" && isValidateEmail && isvalidateNumber.test(temp?.mobile)
+        if (temp?.firstname !== "" &&
+        regexText.test(temp?.firstname) &&
+        regexText.test(temp?.lastname) 
+        & regexText.test(temp?.practicename)
+        && regexText.test(temp?.practiceaddress)&&
+         temp?.lastname !== "" && isValidateEmail && isvalidateNumber.test(temp?.mobile)
             && temp?.practicename !== "" && temp?.practiceaddress !== "") {
             setFirstnameError("")
             setLastnameError("")
@@ -54,13 +65,26 @@ const SignUp = () => {
     }
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        signUpUserData?.firstname === "" ? setFirstnameError("This field is required*") : setFirstnameError("");
+        let withoutSpace = signUpUserData?.mobile.replace(/ /g,"");
+let length = withoutSpace.length;
+        isvalidateNumber.test(signUpUserData?.mobile)&& length===10?setMobileError(""):setMobileError("Please enter Valid Number Format*")
+        signUpUserData?.firstname === ""? setFirstnameError("This field is required*") : setFirstnameError("");
         signUpUserData?.lastname === "" ? setLastnameError("This field is required*") : setLastnameError("");
         !isValidateEmail ? setEmailError("Please enter valid email format*") : setEmailError("");
         !isvalidateNumber.test(signUpUserData?.mobile) ? setMobileError("Please enter Valid Number Format*") : setEmailError("");
         signUpUserData?.practicename === "" ? setPracticenameError("This field is required*") : setPracticenameError("");
         signUpUserData?.practiceaddress === "" ? setPracticeaddressError("This field is required*") : setPracticeaddressError("");
-        if (signUpUserData?.firstname !== "" && signUpUserData?.lastname !== "" && isValidateEmail && isvalidateNumber.test(signUpUserData?.mobile)
+        signUpUserData?.firstname !== "" && regexText.test(signUpUserData?.firstname)?setFirstnameError(""):setFirstnameError("This field is required*")
+        signUpUserData?.lastname !== "" && regexText.test(signUpUserData?.lastname)?setLastnameError(""):setLastnameError("This field is required*")
+        signUpUserData?.practicename !== "" && regexText.test(signUpUserData?.practicename)?setPracticenameError(""):setPracticenameError("This field is required*")
+        signUpUserData?.practiceaddress !== "" && regexText.test(signUpUserData?.practiceaddress)?setPracticeaddressError(""):setPracticeaddressError("This field is required*")
+        if (signUpUserData?.firstname !== "" && 
+        (isvalidateNumber.test(signUpUserData?.mobile) && length===10)&&
+        regexText.test(signUpUserData?.firstname) &&
+        regexText.test(signUpUserData?.lastname) 
+        & regexText.test(signUpUserData?.practicename)
+        && regexText.test(signUpUserData?.practiceaddress)
+        && signUpUserData?.lastname !== "" && isValidateEmail && isvalidateNumber.test(signUpUserData?.mobile)
             && signUpUserData?.practicename !== "" && signUpUserData?.practiceaddress !== "") {
             setFirstnameError("")
             setLastnameError("")
@@ -106,7 +130,7 @@ const SignUp = () => {
 
 
                         <div className='input-block'>
-                            <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile", e.target.value)} maxLength="10" />
+                            <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile", e.target.value)}  maxLength="10" />
                         </div>
                         {mobileError !== "" ? mobileError : ""}
 
