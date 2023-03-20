@@ -138,12 +138,15 @@ form .input-block {
 form input::placeholder {
   color: #999999;
   opacity: 1;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #999999;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 form input::-ms-input-placeholder { /* Microsoft Edge */
   color: #999999;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 button[type="submit"],.btn {
   background-color: #00B8E2;
@@ -166,11 +169,12 @@ button[type="submit"]:hover,.btn:hover {
   text-decoration: none;
 }
 form .input-block label {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 18px;
   font-weight: 600;
   display: block;
   margin-bottom: 7px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .d-flex {
   display: flex;

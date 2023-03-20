@@ -78,3 +78,13 @@
 .profile-settings .tab-content .MuiBox-root {
     padding: 0;
 }
+.profile-settings .tab-content form .input-block {
+    margin-bottom: 22px;
+}
+.profile-settings .tab-content form .submit-block button[type="submit"] {
+    margin-top: 6px;
+    max-width: 138px;
+}
+.profile-settings .tab-content form {
+    margin-top: 45px;
+}
