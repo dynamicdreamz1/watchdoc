@@ -33,6 +33,9 @@ img {
   max-width: 100%;
   width: auto;
 }
+p strong {
+  font-weight: 600;
+}
 @media (min-width: 576px) {
   .container {
       max-width: 540px;
@@ -1392,29 +1395,17 @@ body .no-data-recorded-skeleton .text {
 }
 /* Signup page */
 .signup-page-wrapper {
-  background: linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
+  background: url('../../public/images/Lady_with_laptop_register.png'), linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
   padding: 0;
   position: relative;
-}
-.signup-page-wrapper:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60%;
-  height: 100%;
-  background-image: url(../../public/images/Lady_with_laptop_register.png);
-  background-size: contain;
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: top right;
+  justify-content: flex-start;
+  background-size: contain;
+  padding: 60px 60px 60px 120px;
 }
 .signup-page-wrapper .form-block {
-  overflow-y: auto;
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  padding: 60px 30px 60px 10%;
+  max-width: 600px;
 }
 .signup-page-wrapper .form-block .content {
   max-width: 600px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import ladyImage from "../../src/assets/images/Lady-with-laptop.svg";
+import ProfileSettingTabs from '../components/Clinician/Profile/ProfileSettingTabs';
 const SignUp = () =>  {
     const navigate=useNavigate();
     const [error,setError]=useState("")
@@ -66,10 +66,8 @@ const SignUp = () =>  {
                     </div>
                 </form>
             </div>
-            <div className='image-block'>
-                <img src={ladyImage} alt='Lady with Laptop' />
-            </div>
         </div>
+        <ProfileSettingTabs/>
     </>
   )
 }

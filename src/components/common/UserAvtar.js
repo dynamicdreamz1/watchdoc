@@ -6,6 +6,7 @@ import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
 import { getCurrentUserData } from '../../services/UserService';
+import { Link } from 'react-router-dom';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -39,15 +40,17 @@ export default function UserAvtar() {
                 <span className='uname'>{ currentUserData?.role==="Clinician" ? `${full_name}` : currentUserData?.role==="Hospital" ? `${full_name}`:`${first_name} ${last_name}`}</span>
                 <span className='uposition'>{currentUserData?.role === "Clinician" ? t('UserAvtar.role.DoctorRole') : currentUserData?.role==="Hospital" ? t('UserAvtar.role.HospitalRole') : currentUserData?.role==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
             </div>
-            <div className='image'>
-                <StyledBadge
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-                >
-                    <Avatar alt="Remy Sharp" src="/images/avtar.png" />
-                </StyledBadge>
-            </div>
+            <Link to="/ProfileSettings">
+                <div className='image'>
+                    <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="dot"
+                    >
+                        <Avatar alt="Remy Sharp" src="/images/avtar.png" />
+                    </StyledBadge>
+                </div>
+            </Link>
         </div>
     </>
   )

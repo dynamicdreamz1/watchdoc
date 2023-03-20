@@ -1,0 +1,80 @@
+.profile-settings {
+    display: flex;
+}
+.profile-settings .tab-list-block {
+    width: 508px;
+    background-color: #F5F5F5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+    padding: 50px 65px;
+}
+.profile-settings .tab-list-block h1 {
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 300;
+}
+.profile-settings .tab-content {
+    width: calc(100% - 508px);
+    margin-left: 508px;
+    height: 100vh;
+    overflow: auto;
+    padding: 50px 8% 50px 70px;
+}
+.profile-settings .tab-list-block h1,
+.profile-settings .tab-content .title-block h2 {
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 300;
+}
+.profile-settings .tab-list-block .MuiTabs-flexContainer {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.profile-settings .tab-list-block .MuiTabs-flexContainer button.MuiTab-root {
+    width: 100%;
+    background: url(../../public/images/angle-right.svg), #FFFFFF;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    color: #374151;
+    font-size: 15px;
+    line-height: 20px;
+    text-transform: none;
+    font-weight: 400;
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 15px 18px;
+    min-height: auto;
+    background-repeat: no-repeat;
+    background-position: center right 18px;
+}
+.profile-settings .tab-list-block .MuiTabs-flexContainer button.MuiTab-root:hover,.profile-settings .tab-list-block .MuiTabs-flexContainer button.MuiTab-root.Mui-selected {
+    border: 1px solid rgba(0, 184, 226, 0.5);
+}
+.profile-settings .tab-list-block .MuiTabs-flexContainer {
+    margin-top: 40px;
+}
+.profile-settings .tab-list-block .MuiTabs-indicator {
+    display: none !important;
+}
+.profile-settings .tab-content .title-block h2 {
+    margin-bottom: 30px;
+}
+.profile-settings .tab-content .title-block p {
+    font-size: 16px;
+    line-height: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.profile-settings .tab-content .MuiBox-root {
+    padding: 0;
+}
