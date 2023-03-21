@@ -119,7 +119,7 @@ body span {
   padding: 60px 0;
   background-color: #f9f9f9;
 }
-form input {
+form input,form .input-block select {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
   border-radius: 3px;
@@ -131,6 +131,9 @@ form input {
   padding: 8px 12px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
 }
 form .input-block {
   margin-bottom: 10px;
