@@ -103,6 +103,7 @@ let length = withoutSpace.length;
 
     return (
         <>
+
             <div className='page-wrapper signup-page-wrapper'>
                 <div className='form-block'>
                     <div className='logo-block'>
@@ -115,36 +116,42 @@ let length = withoutSpace.length;
                     <form>
                         <div className='input-block'>
                             <input type="text" name='first-name' placeholder='First Name*' onChange={(e) => handleChange("firstname", e.target.value)} />
+                            <span className="error">{firstnameError !== "" ? firstnameError : ""}</span>
                         </div>
-                        {firstnameError !== "" ? firstnameError : ""}
+                        
                         <div className='input-block'>
                             <input type="text" name='last-name' placeholder='Last Name*' onChange={(e) => handleChange("lastname", e.target.value)} />
-                        </div>
-                        {lastnameError !== "" ? lastnameError : ""}
+                            <span className="error"> {lastnameError !== "" ? lastnameError : ""}</span>
 
+                        </div>
+                       
 
                         <div className='input-block'>
                             <input type="email" name='email' placeholder='Email*' onChange={(e) => handleChange("email", e.target.value)} />
+                            <span className="error">  {emailError !== "" ? emailError : ""}</span>
                         </div>
-                        {emailError !== "" ? emailError : ""}
+                       
 
 
                         <div className='input-block'>
                             <input type="text" name='mobile' placeholder='Mobile*' onChange={(e) => handleChange("mobile", e.target.value)}  maxLength="10" />
+                            <span className="error"> {mobileError !== "" ? mobileError : ""}</span>
                         </div>
-                        {mobileError !== "" ? mobileError : ""}
+                        
 
                         <div className='input-block'>
                             <input type="text" name='practice-name' placeholder='Practice name*' onChange={(e) => handleChange("practicename", e.target.value)} />
+                            <span className="error">{practicenameError !== "" ? practicenameError : ""}</span>
                         </div>
-                        {practicenameError !== "" ? practicenameError : ""}
+                        
 
 
 
                         <div className='input-block'>
                             <input type="text" name='practice-address' placeholder='Practice Address*' onChange={(e) => handleChange("practiceaddress", e.target.value)} />
+                            <span className="error">{practiceaddressError !== "" ? practiceaddressError : ""}</span>
                         </div>
-                        {practiceaddressError !== "" ? practiceaddressError : ""}
+                        
 
                         <div className='submit-block'>
                             <button type='submit' onClick={handleSubmitForm}>Sign Up</button>
