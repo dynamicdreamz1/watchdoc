@@ -32,9 +32,57 @@ export const GetUserDailyBodyData = async () =>{
         return response;
     } catch (error) {
         return error;
-    }
-   
+    }   
 
+}
+
+
+
+export const GetUserBloodOxyenData=async(currentUserData,Date,rang)=>{
+    const {terra_user_id}=currentUserData?.userData
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}terra/bloodoxygen?userid=${terra_user_id}&type=body&range=${rang}&start_date=${Date}`,
+            headers: headersWithToken,
+        })
+        return response;
+    } catch (error) {
+
+        return error;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const GetUserHeartRateData=async(currentUserData,Date,rang)=>{
+    const {terra_user_id}=currentUserData?.userData
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid=${terra_user_id}&start_date=${Date}&type=body&range=${rang}`,
+            headers: headersWithToken,
+        })
+        return response;
+    } catch (error) {
+
+        return error;
+    }
+    
 }
 
 

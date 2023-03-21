@@ -1,8 +1,9 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import React from 'react'
+import React ,{useState}from 'react'
 import ChartTitle from '../../common/Chart/ChartTitle';
 import BloodOxygenChart from '../../common/Chart/BloodOxygenChart';
+import { GetDate } from '../../../Utility/functions';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -38,13 +39,20 @@ function TabPanel(props) {
     };
   }
 
-export default function BloodOxygenChartNavTabs() {
-
-    const [value, setValue] = React.useState(0);
-
+export default function BloodOxygenChartNavTabs(props) {
+    const [value, setValue] = useState(0);
+    const [Date,setDate] = useState(GetDate);
     const handleChange = (event, newValue) => {
+      const valueType=newValue===0?'hourly':newValue===1?'daily':newValue===2?'weekly':newValue===3?'monthly':"";
+      props?.setTimeType(valueType)
         setValue(newValue);
     };
+
+
+    const ChangeDate=(NewDate)=>{
+      setDate(GetDate(NewDate));
+  }
+
     
     return (
         <>
@@ -56,7 +64,7 @@ export default function BloodOxygenChartNavTabs() {
                     <Tab label="Weekly" {...a11yProps(2)} />
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
-                <ChartTitle/>
+                <ChartTitle Date={Date} ChangeDate={ChangeDate}/>
             </Box>
             <TabPanel value={value} index={0}>
               <BloodOxygenChart/>

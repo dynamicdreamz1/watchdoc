@@ -14,6 +14,9 @@ export default function HeartRateChartNavTabs(Props) {
     const [value, setValue] = React.useState(0);
     const [Date,setDate] = useState(GetDate);
     const handleChange = (event, newValue) => {
+    const valueType=newValue===0?'hourly':newValue===1?'daily':newValue===2?'weekly':newValue===3?'monthly':"";
+
+        Props?.setTimeType(valueType)
         setValue(newValue);
     };
     const [Heartrate,SetHeartRate] = useState();
@@ -27,6 +30,7 @@ export default function HeartRateChartNavTabs(Props) {
     const ChangeDate=(NewDate)=>{
         setDate(GetDate(NewDate));
     }
+
 
 
     return (

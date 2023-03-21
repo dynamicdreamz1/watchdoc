@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-// import { GetUserDailyBodyData } from "../services/HelthData";
+import { createContext, useState} from "react";
 import { BodyObject } from "../Utility/DefaultObject";
 
 export const UserContext = createContext();
@@ -7,6 +6,7 @@ export const UserBodyContext = createContext();
 
 
 const UserBodyContextProvider = ({ children }) => {
+
   // the value that will be given to the context
   
   const[userBodyData,
@@ -18,17 +18,15 @@ const UserBodyContextProvider = ({ children }) => {
     version:'',
     _id:''
 });
-
   // fetch a user from a fake backend API
   // useEffect(() => {
   //   async function fetchData() {
-  //       await GetUserDailyBodyData().then(response => response?.data?.requested_data ).then(response =>{
-            
-            
-  //           SetDailyBodyData({...response});
+  //       await GetUserHeartRateData(currentUserData,Date,"hourly").then(response => response.data).then(response =>{
+  
+  //         // setHeartRateValue(response);
   //       })
   //  }
-
+  
   //  fetchData();
   // }, []);
 
