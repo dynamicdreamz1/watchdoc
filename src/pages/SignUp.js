@@ -14,7 +14,8 @@ const SignUp = () => {
         "practicename": "",
         "practiceaddress": ""
     })
-    
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
     const LoginSchema = Yup.object({
         firstname: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -23,7 +24,9 @@ const SignUp = () => {
         email: Yup.string().required("Email Is Required")
         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         mobile: Yup.string().required("This field is required*")
-        .matches(/^[0-9\b]+$/, "Please Enter valid Number"),
+        .matches(phoneRegExp, 'Phone number is not valid')
+        .min(10, "Phone number is too short")
+        .max(10, "Phone number is too long"),
         practicename: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*")
@@ -80,7 +83,7 @@ const SignUp = () => {
 
 
                         <div className='input-block'>
-                            <input type="text" name='mobile' placeholder='Mobile*'  onChange={props.handleChange}  maxLength="10" value={props.values.mobile}/>
+                            <input type="text" name='mobile' placeholder='Mobile*'  onChange={props.handleChange}  value={props.values.mobile}/>
                             <span className="error"> {props.errors.mobile?props.errors.mobile:""}</span>
                         </div>
                         
