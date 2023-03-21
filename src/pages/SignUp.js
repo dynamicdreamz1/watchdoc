@@ -15,7 +15,6 @@ const SignUp = () => {
         "practiceaddress": ""
     })
     
-
     const LoginSchema = Yup.object({
         firstname: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -28,7 +27,7 @@ const SignUp = () => {
         practicename: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+        
       });
 
  
