@@ -1,0 +1,75 @@
+.signup-page-wrapper {
+    background: url('../../public/images/Lady_with_laptop_register.png'), linear-gradient(103.56deg, #00B8E2 31.25%, #B4E8F0 98.35%);
+}
+.success-page-wrapper {
+    background: url('../../public/images/sucess-bg-shape.png'), #F5F5F5;
+}
+.signup-page-wrapper, .success-page-wrapper {
+    background-repeat: no-repeat;
+    background-position: top right;
+    justify-content: flex-start;
+    background-size: contain;
+    padding: 60px 60px 60px 120px;
+}
+.signup-page-wrapper .form-block {
+    max-width: 600px;
+}
+.signup-page-wrapper .form-block .content {
+    max-width: 600px;
+}
+.signup-page-wrapper .form-block .logo-block {
+    margin-bottom: 50px;
+}
+.signup-page-wrapper .form-block .text-block h1 {
+    font-size: 60px;
+    line-height: 60px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+.signup-page-wrapper .form-block .text-block p {
+    font-size: 18px;
+    line-height: 23px;
+    color: #fff;
+}
+.signup-page-wrapper .form-block .text-block {
+    margin-bottom: 40px;
+}
+.signup-page-wrapper .form-block .submit-block button {
+    background-color: #4C4A96;
+}
+.signup-page-wrapper .form-block form input::placeholder {
+    color: #374151;
+    opacity: 1; /* Firefox */
+} 
+.signup-page-wrapper .form-block form input:-ms-input-placeholder { 
+    color: #374151;
+}
+.signup-page-wrapper .form-block form input::-ms-input-placeholder {
+    color: #374151;
+}
+.signup-page-wrapper .form-block .signup-bottom-text {
+    padding-top: 35px;
+}
+.signup-page-wrapper .form-block .signup-bottom-text p,.signup-page-wrapper .form-block .signup-bottom-text p a {
+    color: #fff;
+}
+.signup-page-wrapper .form-block .signup-bottom-text p a {
+    text-decoration: underline;
+}
+.success-page-wrapper .text-block .text h1 {
+    font-size: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+.success-page-wrapper .text-block .text p {
+    font-size: 18px;
+    line-height: 22px;
+}
+.success-page-wrapper .text-block .text .btn {
+    margin-top: 30px;
+    max-width: 173px;
+}
+.success-page-wrapper .text-block .text {
+    max-width: 530px;
+}

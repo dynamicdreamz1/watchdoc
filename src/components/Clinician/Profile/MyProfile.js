@@ -6,7 +6,7 @@ export default function MyProfile() {
     <>
         <div className='my-profile-form'>
             <div className='title-block'>
-                <p>Profile</p>
+                <h2>Profile</h2>
             </div>
             <form>
             <div className='input-block'>
