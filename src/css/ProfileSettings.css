@@ -88,3 +88,8 @@
 .profile-settings .tab-content form {
     margin-top: 45px;
 }
+.my-profile-form .inputs-wrapper {
+    display: grid;
+    grid-template-columns: 10% auto auto;
+    column-gap: 10px;
+}

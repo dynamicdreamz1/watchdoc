@@ -8,11 +8,8 @@ export default function SignupSuccess() {
                 <div className='text'>
                     <h1>Success! Thanks for registering.</h1>
                     <p>Thanks for signing up for a WatchDoc profile. Our support team will be in touch shortly to complete your registration and run you through the WatchDoc system.</p>
-                    <button type='button'>Back to main site</button>
+                    <button type='button' className='btn'>Back to main site</button>
                 </div>
-            </div>
-            <div className='image-block'>
-
             </div>
         </div>
     </>

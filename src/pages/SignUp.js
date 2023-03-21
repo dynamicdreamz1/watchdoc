@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from "yup";
+import '../css/SignUp.css';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ const SignUp = () => {
             <div className='page-wrapper signup-page-wrapper'>
                 <div className='form-block'>
                     <div className='logo-block'>
-                        <img src='/images/WatchDoc-LOGO.svg' alt='WatchDoc Logo' />
+                        <img src='/images/WatchDoc-logo-white.svg' alt='WatchDoc Logo' />
                     </div>
                     <div className='text-block'>
                         <h1>Create your free clinician listing</h1>
@@ -106,7 +107,9 @@ const SignUp = () => {
                             <button type='submit' >Sign Up</button>
                         </div>
                     </form>
-                    
+                    <div className='signup-bottom-text'>
+                        <p>By signing up, you agree to WatchDoc’s <Link>Terms and Privacy Statements</Link></p>
+                    </div>
                 </div>
             </div>
         </>

@@ -1,9 +1,8 @@
-import { MenuItem, Select } from '@mui/material'
 import React from 'react'
-import { SelectChangeEvent } from '@mui/material/Select';
 
 export default function MyProfile() {
-  return (
+    
+    return (
     <>
         <div className='my-profile-form'>
             <div className='title-block'>
@@ -14,16 +13,10 @@ export default function MyProfile() {
                 <div className='inputs-wrapper'>
                     <div className='input-item'>
                         <label>Title</label>
-                        {/* <Select
-                            labelId="demo-simple-select-label"
-                            value={age}
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={}>Ten</MenuItem>
-                            <MenuItem value={}>Twenty</MenuItem>
-                            <MenuItem value={}>Thirty</MenuItem>
-                        </Select> */}
-                        <input type="password" name='email-address'></input>
+                        <select>
+                            <option>Dr</option>
+                            <option>Hospital</option>
+                        </select>
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
