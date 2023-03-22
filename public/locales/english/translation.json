@@ -1,5 +1,6 @@
 {
     "SignInPage": {
+        "heading":"Sign In",
         "form": {
             "f1": "Email address",
             "f2": "Sign In",
@@ -27,6 +28,61 @@
             "l1": "Loading..."
         }
     },
+
+    "TwoFactorPage":{
+        "heading":"Verify your Enhanced Security (2FA)",
+        "para1":"We sent a text message to",
+        "b1":"+61 ••• ••• •97",
+        "para2":". Enter your verification code to continue signing in.",
+
+        "form":{
+            "ph":"SMS Code",
+            "button1":"Resend Code",
+            "button2":"Confirm",
+            "button3":"Cancel and sign out"
+        },
+        "error": {
+            "e1": "Please enter verification code.",
+            "e2": "Please enter valid verification code."
+        }
+    },
+
+    "SignUpPage":{
+        "heading1":"Create your free clinician listing",
+        "para1":"Create a free profile on WatchDoc and make it easy for your",
+        "para2":"patients to find and connect with you via the WatchDoc app.",
+        "form":{
+            "placeholder1":"First Name*",
+            "placeholder2":"Last Name*",
+            "placeholder3":"Email*",
+            "placeholder4":"Mobile*",
+            "placeholder5":"Practice name*",
+            "placeholder6":"Practice Address*"
+        },
+        "button1":"Sign Up",
+        "para3":"By signing up, you agree to WatchDoc’s",
+        "link1":"Terms and Privacy Statements",
+        "validation":{
+            "common1":"This field is required*",
+            "common2":"Only alphabets are allowed for this field",
+            "email":{
+                "v1":"Email Is Required",
+                "v2":"Please Enter Valid Email"
+            },
+            "mobile":{
+                "v1":"Phone number is not valid",
+                "short":"Phone number is too short",
+                "long":"Phone number is too long"
+            }
+        }
+    },
+
+    "SignupSuccessPage":{
+        "heading":"Success! Thanks for registering.",
+        "para1":"Thanks for signing up for a WatchDoc profile. Our support team will be in touch shortly to complete your registration and run you through the WatchDoc system.",
+        "button":"Back to main site"
+    },
+
     "CreateProfilePage": {
         "register": {
             "r1": "About You"
@@ -187,7 +243,9 @@
             "placeholder2": "Practice Name or Provider Number",
             "placeholder3": "Suburb or Postcode",
             "b1": "Search"
-        }
+            
+        },
+        "button":"Next"
     },
     "CliniciansRequestsTable": {
         "heading": "Clinicians Requests",
@@ -200,7 +258,10 @@
     },
     "PractitionersCard": {
         "message1": "No result found for your search.",
-        "heading1": "Practitioners"
+        "heading1": "Practitioners",
+        "buttonOption1":"Add to WatchDoc",
+        "buttonOption2":"Pending Clinician Approval"
+
     },
     "MyClinicians": {
         "heading1": "My Clinicians",

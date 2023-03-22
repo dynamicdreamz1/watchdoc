@@ -1,56 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import '../../../css/ProfileSettings.css'
 import ChangePassword from './ChangePassword';
 import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
+import { UserContext } from '../../../Store/Context';
 import { Link } from 'react-router-dom';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
   
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+  
+  function a11yProps(index) {
+    return {
       id: `simple-tab-${index}`,
       'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
 export default function ProfileSettingTabs() {
+  const {currentUserData} = useContext(UserContext);
+    const [value, setValue] = React.useState(0);
 
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-  setValue(newValue);
-  };
-    
+    const handleChange = ( newValue) => {
+        setValue(newValue);
+    };
     return (
         <>
         <Box sx={{ width: '100%' }} className="profile-settings">
@@ -64,7 +58,7 @@ export default function ProfileSettingTabs() {
             </Box>
             <div className='tab-content'>
                 <TabPanel value={value} index={0}>
-                    <MyProfile/>
+                    <MyProfile currentUserData={currentUserData}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <ChangePassword/>
