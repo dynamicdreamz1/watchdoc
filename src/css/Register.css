@@ -8,8 +8,8 @@
 .signin-box .logo-block {
     text-align: center;
 }
-.signin-box .form-block .form-title {
-    margin-top: 40px;
+.signin-box .logo-block {
+    margin-bottom: 40px;
 }
 .signin-box .forgot-pw-block {
     text-align: right;

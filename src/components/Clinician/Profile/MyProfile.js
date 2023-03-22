@@ -30,15 +30,15 @@ export default function MyProfile() {
             </div>
                 <div className='input-block'>
                     <label>Email address</label>
-                    <input type="password" name='email-address'></input>
+                    <input type="text" name='email-address'></input>
                 </div>
                 <div className='input-block'>
                     <label>Practice name</label>
-                    <input type="password" name='practice-name'></input>
+                    <input type="text" name='practice-name'></input>
                 </div>
                 <div className='input-block'>
                     <label>Practice Address</label>
-                    <input type="password" name='practice-address'></input>
+                    <input type="text" name='practice-address'></input>
                 </div>
                 <div className='submit-block'>
                     <button type="submit">Save</button>

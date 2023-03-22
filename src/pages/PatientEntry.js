@@ -55,7 +55,8 @@ export default function PatientEntry() {
     if (user?.token) {
         return redirect('/dashboard');
     }
-  return (
+    
+    return (
     <>
     <div className='page-wrapper'>
         <div className='signin-box'>
@@ -77,8 +78,6 @@ export default function PatientEntry() {
             </div>
         </div>
     </div>
-
-
-            </> 
+    </> 
   )
 }

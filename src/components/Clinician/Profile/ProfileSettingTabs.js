@@ -1,53 +1,55 @@
 import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import '../../../css/ProfileSettings.css'
 import ChangePassword from './ChangePassword';
 import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
+import { Link } from 'react-router-dom';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
   
-  function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  function a11yProps(index: number) {
-    return {
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
       id: `simple-tab-${index}`,
       'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
+  };
+}
 
 export default function ProfileSettingTabs() {
 
-    const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+  const handleChange = (event, newValue) => {
+  setValue(newValue);
+  };
     
     return (
         <>
@@ -70,6 +72,9 @@ export default function ProfileSettingTabs() {
                 <TabPanel value={value} index={2}>
                     <EditTwoFactor/>
                 </TabPanel>
+                <Link to="/" className='close-btn'>
+                  <img src='/images/Close-Icon.svg' alt='Close Icon' />
+                </Link>
             </div>
         </Box>
         </>
