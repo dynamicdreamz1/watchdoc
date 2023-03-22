@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -7,16 +7,12 @@ import '../../../css/ProfileSettings.css'
 import ChangePassword from './ChangePassword';
 import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
+import { UserContext } from '../../../Store/Context';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+
   
-  function TabPanel(props: TabPanelProps) {
+  function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
     return (
       <div
         role="tabpanel"
@@ -34,21 +30,29 @@ interface TabPanelProps {
     );
   }
   
-  function a11yProps(index: number) {
+  function a11yProps(index) {
     return {
       id: `simple-tab-${index}`,
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
 
-export default function ProfileSettingTabs() {
 
+
+
+
+
+
+
+
+
+export default function ProfileSettingTabs() {
+  const {currentUserData} = useContext(UserContext);
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = ( newValue) => {
         setValue(newValue);
     };
-    
     return (
         <>
         <Box sx={{ width: '100%' }} className="profile-settings">
@@ -62,7 +66,7 @@ export default function ProfileSettingTabs() {
             </Box>
             <div className='tab-content'>
                 <TabPanel value={value} index={0}>
-                    <MyProfile/>
+                    <MyProfile currentUserData={currentUserData}/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <ChangePassword/>
