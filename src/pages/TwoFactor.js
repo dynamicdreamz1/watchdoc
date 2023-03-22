@@ -15,7 +15,7 @@ export default function TwoFactor() {
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
 
-    const [code,setCode]=useState()
+    const [code,setCode]=useState('')
     const [error, setError] = useState('')
     const { emailId} = useParams();
     let decodedEmail = (Base64.decode(emailId));
@@ -42,7 +42,7 @@ export default function TwoFactor() {
         e.preventDefault()
         
         if (code === "") {
-            setError(t('VerificationPage.error.e1'))
+            setError(t('TwoFactorPage.error.e1'))
         }
 
 
@@ -81,7 +81,7 @@ export default function TwoFactor() {
 
                 })
                 .catch((error) => {
-                    setError(t('VerificationPage.error.e2'))
+                    setError(t('TwoFactorPage.error.e2'))
                 })
         }      
     }
@@ -124,24 +124,24 @@ export default function TwoFactor() {
                     </div>
                 </div>
                 <div className='title-block'>
-                    <h4 className='text-center'>Verify your Enhanced Security (2FA)</h4>
-                    <p>We sent a text message to <strong>+61 ••• ••• •97</strong>. Enter your verification code to continue signing in.</p>
+                    <h4 className='text-center'> {t('TwoFactorPage.heading')} </h4>
+                    <p> {t('TwoFactorPage.para1')} <strong> {t('TwoFactorPage.b1')} </strong> {t('TwoFactorPage.para2')} </p>
                 </div>
                 <div className='form-block'>
                     <form>
                         <div className='input-block'>
-                            <input type="text" name='code' placeholder='SMS Code' value={code} onChange={(e) => setCode(e.target.value)}/>
+                            <input type="text" name='code' placeholder={t('TwoFactorPage.form.ph')} value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
                         {error?<span class="error-message">{error}</span>:null}
                         <div className='resend-code'>
-                                <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}&nbsp;</button>
+                                <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}> {t('TwoFactorPage.form.button1')} &nbsp;</button>
                                 <span className="text">{time}</span>
                             </div>
                         <div className='submit-block'>
-                            <button type='submit'onClick={handleClickConfirm}>Confirm</button>
+                            <button type='submit'onClick={handleClickConfirm}> {t('TwoFactorPage.form.button2')} </button>
                         </div>
                         <div className='cancle-signout text-center'>
-                            <button type='button'onClick={()=>navigate('/signin')}>Cancel and sign out</button>
+                            <button type='button'onClick={()=>navigate('/signin')}> {t('TwoFactorPage.form.button3')} </button>
                         </div>
                     </form>
                 </div>

@@ -75,7 +75,7 @@ const SignIn = () => {
                     </div>
                     <div className='form-block'>
                         <div className='form-title text-center'>
-                            <h1>Sign in</h1>
+                            <h1>{t('SignInPage.heading')}</h1>
                         </div>
                         <div className='LoginError'>{error && error}</div>
 
