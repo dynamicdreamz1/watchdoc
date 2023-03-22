@@ -107,25 +107,6 @@
     font-size: 16px;
     line-height: 20px;
 }
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"] {
-    max-height: 300px;
-    overflow-y: auto;
-}
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"] .MuiMenuItem-root span {
-    display: inline-block;
-    margin-right: 8px;
-}
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"]::-webkit-scrollbar {
-    width: 8px;
-}
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"]::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    border-radius: 25px; 
-}
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"]::-webkit-scrollbar-thumb {
-    background: #00B8E2;
-    border-radius: 25px; 
-}
-.MuiList-root.MuiMenu-list[aria-labelledby="country-code"]::-webkit-scrollbar-thumb:hover {
-    background: #00B8E2; 
+.profile-settings .tab-content form .input-block.update-profile {
+    margin-bottom: 50px;
 }

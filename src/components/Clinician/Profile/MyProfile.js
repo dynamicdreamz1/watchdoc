@@ -27,11 +27,8 @@ export default function MyProfile(props) {
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*")
         
-      });
+    });
 
- 
-
-    
     const handleSubmitForm = (data) => {
         setEditClinicianProfileData({...data})
     }
@@ -43,14 +40,20 @@ export default function MyProfile(props) {
         validationSchema={LoginSchema}
         onSubmit={(values) =>
         { handleSubmitForm(values)}} 
-> 
-{(props) => (
+    > 
+    {(props) => (
     <>
         <div className='my-profile-form'>
             <div className='title-block'>
                 <h2>Profile</h2>
             </div>
             <form onSubmit={props.handleSubmit}>
+            <div className='input-block update-profile'>
+                <div className='image-block'>
+                    <img src="/images/user-picture-placeholder.png" alt="" />
+                </div>
+                <input type="file" name="profile-picture"></input>
+            </div>
             <div className='input-block'>
                 <div className='inputs-wrapper'>
                     <div className='input-item'>
