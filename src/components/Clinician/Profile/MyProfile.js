@@ -55,7 +55,7 @@ export default function MyProfile(props) {
                 <div className='inputs-wrapper'>
                     <div className='input-item'>
                         <label>Title</label>
-                        <select name='title' defaultValue="Hospital" onChange={props?.handleChange}>
+                        <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
                             <option value="Dr">Dr</option>
                             <option value="Hospital">Hospital</option>
                         </select>
