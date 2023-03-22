@@ -572,6 +572,9 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon {
   margin-right: 20px;
   display: flex;
 }
+body .MuiPaper-root.red-alert-table .info {
+  cursor: pointer;
+}
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
   fill: #EA4335;
 }
@@ -1122,6 +1125,15 @@ body .reminder-card-skeleton {
   margin-bottom: 20px;
 }
 /* Alert Card */
+.critical-alerts-wrapper .section-title button {
+  color: #00B8E2;
+  font-size: 13px;
+  line-height: 16px;
+}
+.critical-alerts-wrapper .wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
 .alert-card .text-block .icon {
   width: 10px;
   height: 10px;

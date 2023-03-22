@@ -10,17 +10,18 @@ import BloodGlucose from '../components/Patient/BloodGlucose/BloodGlucose';
 import Temperature from '../components/Patient/Temperature/Temperature';
 import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
+import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
+import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
 
 const PatientsDetails = () => {
     return (
         <div className='content-wrapper'>
             <Sidebar />
-
             <div className='aside'>
                 <Header />
-
-
                 <UserBodyContextProvider >
+                    <PatientProfileBar/>
+                    <CriticalAlerts/>
                     <Latestmeasurement />
                     <Reminders />
                     <Heartrates />

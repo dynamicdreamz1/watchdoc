@@ -106,7 +106,19 @@
 .two-factor-form .text-block p {
     font-size: 16px;
     line-height: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .profile-settings .tab-content form .input-block.update-profile {
     margin-bottom: 50px;
+}
+.profile-settings .tab-content form .input-block.update-profile {
+    margin-bottom: 50px;
+}
+.two-factor-form .inputs-wrapper {
+    display: grid;
+    grid-template-columns: 11% 18%;
+    column-gap: 10px;
+}
+.two-factor-form .text-block {
+    padding-top: 10px;
 }
