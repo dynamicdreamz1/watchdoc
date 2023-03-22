@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, redirect, useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../services/UserService';
 import '../css/Register.css'
@@ -12,7 +12,6 @@ const SignIn = () => {
 
     const user = useContext(UserContext);
 
-
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
@@ -23,6 +22,9 @@ const SignIn = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
+    useEffect(()=>{
+        navigate("/signin")
+    },[])
 
     const handleSubmit = (e) => {
         e.preventDefault()
