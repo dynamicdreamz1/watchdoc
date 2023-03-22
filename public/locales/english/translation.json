@@ -207,7 +207,9 @@
             "placeholder2": "Practice Name or Provider Number",
             "placeholder3": "Suburb or Postcode",
             "b1": "Search"
-        }
+            
+        },
+        "button":"Next"
     },
     "CliniciansRequestsTable": {
         "heading": "Clinicians Requests",
@@ -220,7 +222,10 @@
     },
     "PractitionersCard": {
         "message1": "No result found for your search.",
-        "heading1": "Practitioners"
+        "heading1": "Practitioners",
+        "buttonOption1":"Add to WatchDoc",
+        "buttonOption2":"Pending Clinician Approval"
+
     },
     "MyClinicians": {
         "heading1": "My Clinicians",

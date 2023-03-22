@@ -118,7 +118,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                                     control={
                                                         <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
-                                                    label={element?.status === 1 ? <span className='btn_status'>Pending Clinician Approval</span> : "Add to WatchDoc"} />
+                                                    label={element?.status === 1 ? <span className='btn_status'> {t('PractitionersCard.buttonOption2')} </span> : t('PractitionersCard.buttonOption1')} />
 
                                             </div>
                                         </div>
