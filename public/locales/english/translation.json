@@ -77,6 +77,12 @@
         }
     },
 
+    "SignupSuccessPage":{
+        "heading":"Success! Thanks for registering.",
+        "para1":"Thanks for signing up for a WatchDoc profile. Our support team will be in touch shortly to complete your registration and run you through the WatchDoc system.",
+        "button":"Back to main site"
+    },
+
     "CreateProfilePage": {
         "register": {
             "r1": "About You"
