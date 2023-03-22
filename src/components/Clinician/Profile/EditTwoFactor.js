@@ -21,7 +21,6 @@ export default function EditTwoFactor() {
             <form>
               <div className='input-block'>
                 <label id="country-code">Enter new phone number</label>
-                {console.log(allTimeZone)}
                 <Select
                   labelId="country-code"
                   value={countryCode}

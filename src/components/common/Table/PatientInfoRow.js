@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
@@ -10,9 +11,10 @@ import Temp from './Temp'
 import Wt from './Wt'
 
 export default function PatientInfoRow() {
+  const navigate=useNavigate();
   return (
     <>
-    <TableRow>
+    <TableRow onClick={()=>{navigate('/patientdetails')}}>
         <TableCell><PatientInfo/></TableCell>
         <TableCell><Bp/></TableCell>
         <TableCell><Hr/></TableCell>

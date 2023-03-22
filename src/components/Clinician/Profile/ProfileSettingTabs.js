@@ -72,7 +72,7 @@ export default function ProfileSettingTabs() {
                 <TabPanel value={value} index={2}>
                     <EditTwoFactor/>
                 </TabPanel>
-                <Link to="/" className='close-btn'>
+                <Link to="/dashboard" className='close-btn'>
                   <img src='/images/Close-Icon.svg' alt='Close Icon' />
                 </Link>
             </div>

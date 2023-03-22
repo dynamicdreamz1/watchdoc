@@ -30,6 +30,7 @@ import PatientEntry from './pages/PatientEntry';
 import TwoFactor from './pages/TwoFactor';
 import SignupSuccess from './pages/SignupSuccess';
 import ProfileSettings from './pages/ProfileSettings';
+import PatientsDetails from './pages/PatientsDetails';
 
 function App() {
 
@@ -64,7 +65,9 @@ function App() {
         <Route path='/signupsuccess' element={<SignupSuccess/>} />
 
         <Route path='/ProfileSettings' element={<ProfileSettings/>} />
+        <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
 
+        
 
         
         
