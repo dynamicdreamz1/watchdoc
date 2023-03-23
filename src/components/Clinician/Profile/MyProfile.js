@@ -86,9 +86,9 @@ export default function MyProfile(props) {
                 <div className='image-block'>
                     <img src={imageUrl} alt="" />
                 </div>
-                <form>
+                <div>
                     <input id="file"  type="file" onChange={(e)=>handleImages(e.target.files[0])}/>
-                </form>
+                </div>
             </div>
             <div className='input-block'>
                 <div className='inputs-wrapper'>
