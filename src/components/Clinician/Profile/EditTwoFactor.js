@@ -21,16 +21,19 @@ export default function EditTwoFactor() {
             <form>
               <div className='input-block'>
                 <label id="country-code">Enter new phone number</label>
-                <Select
-                  labelId="country-code"
-                  value={countryCode}
-                  label="Age"
-                  onChange={handleChange}
-                >
-                {allTimeZone.map((data, i) => (
-                  <MenuItem value={data.Name}><span class={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
-                ))}
-              </Select>
+                <div className='inputs-wrapper'>
+                  <Select
+                    labelId="country-code"
+                    value={countryCode}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    {allTimeZone.map((data, i) => (
+                      <MenuItem value={data.Name}><span class={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
+                    ))}
+                  </Select>
+                  <input type="text" name="phone-number"></input>
+                </div>
               </div>
               <div className='text-block'>
                 <p>You are about to change your mobile number. We will send a code to your new number to verify this change.</p>
