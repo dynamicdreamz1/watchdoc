@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import TableShorting from './TableShorting';
 import CriticalPatients from './Tables/CriticalPatients';
 import { useState } from 'react';
-import { ConstructionOutlined } from '@mui/icons-material';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -145,9 +144,8 @@ const handleClickReview=(data)=>{
         return el;
     })
 
-    const ff=[...reviewData,...tempData.flat()]
-    console.log("11111-ffff",ff)
-    setReviewData(tempData)
+    const mulitReviewData=[...reviewData,...tempData]
+    setReviewData(mulitReviewData)
 }
 
 const handleClickUnReview=(data)=>{
@@ -157,7 +155,6 @@ const handleClickUnReview=(data)=>{
     setReviewData(filterData)
 
 }
-    console.log("1111-reviewData",patientData)
     return (
         <>
         <Box sx={{ width: '100%' }}>

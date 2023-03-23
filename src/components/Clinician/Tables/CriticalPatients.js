@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
     const {patientData,handleClickStatus}=props
-    console.log("1212",patientData)
   return (
     <>
     <TableContainer component={Paper} className="red-alert-table">
