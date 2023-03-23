@@ -1,12 +1,15 @@
 import React from 'react'
+import { getCurrentUserData } from '../../../services/UserService';
 
 export default function ChangePassword() {
+    const userData = getCurrentUserData();
+    const {email}=userData;
   return (
     <>
         <div className='change-password-form'>
             <div className='title-block'>
                 <h2>Change your password</h2>
-                <span>You are about to change the password for your WatchDoc account, <strong>Andrew.Smith@WatchDoc.com.au</strong></span>
+                <span>You are about to change the password for your WatchDoc account, <strong>{email}</strong></span>
             </div>
             <form>
                 <div className='input-block'>

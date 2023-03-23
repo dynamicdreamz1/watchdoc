@@ -1,11 +1,11 @@
 import React from 'react'
 import DateTime from './DateTime'
 
-export default function Hr() {
+export default function Hr(props) {
   return (
     <>
     <div className='hr table-data'>
-        <span className='digit'>80bpm</span>
+        <span className='digit'>{props?.el?.hr}</span>
         <DateTime/>
     </div>
     </>

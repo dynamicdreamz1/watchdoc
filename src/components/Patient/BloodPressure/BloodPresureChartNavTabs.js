@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import React from 'react'
+import React, { useState } from 'react'
+import { GetDate } from '../../../Utility/functions';
 import BloodPressureChart from '../../common/Chart/BloodPressureChart';
 import ChartTitle from '../../common/Chart/ChartTitle';
 
@@ -17,7 +18,7 @@ function TabPanel(props) {
       >
         {value === index && (
           <Box sx={{ p: 4 }}>
-            <Typography>{children}</Typography>
+            <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
       </div>
@@ -41,10 +42,14 @@ function TabPanel(props) {
 export default function BloodPresureChartNavTabs() {
 
     const [value, setValue] = React.useState(0);
-
+    const [Date,setDate] = useState(GetDate);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const ChangeDate=(NewDate)=>{
+      setDate(GetDate(NewDate));
+  }
 
     return (
         <>
@@ -56,7 +61,7 @@ export default function BloodPresureChartNavTabs() {
                     <Tab label="Weekly" {...a11yProps(2)} />
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
-                <ChartTitle/>
+                <ChartTitle Date={Date} ChangeDate={ChangeDate}/>
                 
             </Box>
             <TabPanel value={value} index={0}>

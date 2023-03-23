@@ -29,7 +29,7 @@ export default function EditTwoFactor() {
                     onChange={handleChange}
                   >
                     {allTimeZone.map((data, i) => (
-                      <MenuItem value={data.Name}><span class={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
+                      <MenuItem key={i} value={data.Name}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                     ))}
                   </Select>
                   <input type="text" name="phone-number"></input>

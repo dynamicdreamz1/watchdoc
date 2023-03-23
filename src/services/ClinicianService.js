@@ -45,7 +45,6 @@ export const getClinicianData = async () => {
             url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician`,
             headers: headersClinician
         })
-
         return response
     } catch (error) {
         throw error

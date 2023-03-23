@@ -50,7 +50,6 @@ export const headers = {
 }
 
 let token = StoreCookie.getItem('token')
-
 export const headersClinician = {
   "Accept": "application/json",
   Authorization: `Bearer ${token}`

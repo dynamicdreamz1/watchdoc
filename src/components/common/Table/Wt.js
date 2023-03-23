@@ -1,11 +1,11 @@
 import React from 'react'
 import DateTime from './DateTime'
 
-export default function Wt() {
+export default function Wt(props) {
   return (
     <>
         <div className='wt table-data'>
-            <span className='digit'>83.2kg</span>
+            <span className='digit'>{props?.el?.wt}</span>
             <DateTime/>
         </div>
     </>

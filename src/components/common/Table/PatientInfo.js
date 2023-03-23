@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PatientInfo() {
+export default function PatientInfo(props) {
   return (
     <>
     <div className='patient-name table-data'>
@@ -8,8 +8,8 @@ export default function PatientInfo() {
             <img src='/images/AlertIcon.svg' alt="Alert Icon" />
         </div>
         <div className='info'>
-            <span className='name'>Randerson, Michael</span>
-            <span className='age'>46 Years, Male</span>
+            <span className='name'>{props?.el?.name}</span>
+            <span className='age'>{props?.el?.age}, {props?.el?.gender}</span>
         </div>
     </div>
     </>
