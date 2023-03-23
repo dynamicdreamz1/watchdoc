@@ -10,19 +10,20 @@ import Status from './Status'
 import Temp from './Temp'
 import Wt from './Wt'
 
-export default function PatientInfoRow() {
+export default function PatientInfoRow(props) {
   const navigate=useNavigate();
+  const {el,handleClickStatus}=props;
   return (
     <>
     <TableRow >
-        <TableCell onClick={()=>{navigate('/patientdetails')}}><PatientInfo/></TableCell>
-        <TableCell><Bp/></TableCell>
-        <TableCell><Hr/></TableCell>
-        <TableCell><Bo/></TableCell>
-        <TableCell><Bg/></TableCell>
-        <TableCell><Temp/></TableCell>
-        <TableCell><Wt/></TableCell>
-        <TableCell><Status/></TableCell>
+        <TableCell onClick={()=>{navigate('/patientdetails')}}><PatientInfo el={el}/></TableCell>
+        <TableCell><Bp el={el}/></TableCell>
+        <TableCell><Hr el={el}/></TableCell>
+        <TableCell><Bo el={el}/></TableCell>
+        <TableCell><Bg el={el}/></TableCell>
+        <TableCell><Temp el={el}/></TableCell>
+        <TableCell><Wt el={el}/></TableCell>
+        <TableCell onClick={()=>handleClickStatus(el)}><Status el={el}/></TableCell>
     </TableRow>
     </>
   )

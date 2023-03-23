@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import TableShorting from './TableShorting';
 import CriticalPatients from './Tables/CriticalPatients';
+import { useState } from 'react';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -45,7 +47,117 @@ export default function CriticalPatientsAlertTableTabs() {
     const handleChange = (event, newValue) => {
     setValue(newValue);
     };
-    
+    const [reviewData,setReviewData]=useState([])
+    const [patientData,setPatientData]=useState([
+        {
+        "id":1,
+        "name":"Randerson, Michael",
+        "age":"46 Year",
+        "gender":"Male",
+        "bp":"180/80",
+        "date":"16 jan 9:10 Am",
+        "hr":"80bpm",
+        "bo":"97%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"83.2Kg",
+        "status":"Unreviewed"
+    },
+    {
+        "id":2,
+        "name":"johnson",
+        "age":"23 Year",
+        "gender":"Male",
+        "bp":"170/70",
+        "date":"14 jan 9:10 Am",
+        "hr":"70bpm",
+        "bo":"77%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"53.2Kg",
+        "status":"Unreviewed"
+    },
+    {
+        "id":3,
+        "name":"batitsta",
+        "age":"12 Year",
+        "gender":"Male",
+        "bp":"160/60",
+        "date":"13 jan 9:10 Am",
+        "hr":"60bpm",
+        "bo":"67%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"33.2Kg",
+        "status":"Unreviewed"
+    },
+    {
+        "id":4,
+        "name":"loosy",
+        "age":"35 Year",
+        "gender":"Female",
+        "bp":"150/50",
+        "date":"12 jan 9:10 Am",
+        "hr":"50bpm",
+        "bo":"57%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"53.2Kg",
+        "status":"Unreviewed"
+    },
+    {
+        "id":5,
+        "name":"Georgia",
+        "age":"55 Year",
+        "gender":"Female",
+        "bp":"155/50",
+        "date":"10 jan 9:10 Am",
+        "hr":"56bpm",
+        "bo":"69%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"93.2Kg",
+        "status":"Unreviewed"
+    },
+    {
+        "id":6,
+        "name":"Perry",
+        "age":"33 Year",
+        "gender":"Female",
+        "bp":"159/40",
+        "date":"8 jan 9:10 Am",
+        "hr":"51bpm",
+        "bo":"58%",
+        "bg":"No recording",
+        "temp":"No recording",
+        "wt":"43.2Kg",
+        "status":"Unreviewed"
+    }
+]
+    )
+
+const handleClickReview=(data)=>{
+    const filterData=patientData?.filter((el)=>el?.id===data?.id)
+    const finalData=patientData?.filter((el)=>el?.id!==data?.id)
+    setPatientData(finalData)
+    const tempData=filterData.map((el)=>{
+        el.status="Reviewed"
+        return el;
+    })
+
+    const ff=[...reviewData,...tempData.flat()]
+    console.log("11111-ffff",ff)
+    setReviewData(tempData)
+}
+
+const handleClickUnReview=(data)=>{
+    const filterData=reviewData?.filter((el)=>el?.id!==data?.id)
+   const tempData=[{...data,"status":"UnReviewed"}]
+    setPatientData(patientData.concat(tempData))
+    setReviewData(filterData)
+
+}
+    console.log("1111-reviewData",patientData)
     return (
         <>
         <Box sx={{ width: '100%' }}>
@@ -57,10 +169,10 @@ export default function CriticalPatientsAlertTableTabs() {
                 <TableShorting/>
             </Box>
             <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                <CriticalPatients/>
+                <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview}/>
             </TabPanel>
             <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                <CriticalPatients/>
+                <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview}/>
             </TabPanel>
         </Box>
         </>
