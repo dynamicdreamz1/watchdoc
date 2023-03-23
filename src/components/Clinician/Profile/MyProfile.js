@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
-import { getCurrentUserData, ProfileCreation } from '../../../services/UserService';
+import { getCurrentUserData } from '../../../services/UserService';
 
 export default function MyProfile(props) {
     const userData = getCurrentUserData();
