@@ -4,7 +4,6 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import '../css/SignUp.css';
 import { useTranslation } from 'react-i18next';
-import { ProfileCreation, RegisterUser } from '../services/UserService';
 
 const SignUp = () => {
     const navigate = useNavigate();
