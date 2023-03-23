@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import '../css/SignUp.css';
 import { useTranslation } from 'react-i18next';
+import { ProfileCreation, RegisterUser } from '../services/UserService';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -40,6 +41,10 @@ const SignUp = () => {
 
     const handleSubmitForm = (data) => {
         setSignUpUserData({ ...data })
+        const {email}=data;
+        const finalData={"email":email,"role":"Clinician"}
+        // RegisterUser(finalData)
+        // ProfileCreation(data)
         navigate("/signupsuccess")
     }
 

@@ -2,11 +2,12 @@ import React,{useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
-import { getCurrentUserData } from '../../../services/UserService';
+import { getCurrentUserData, ProfileCreation } from '../../../services/UserService';
 
 export default function MyProfile(props) {
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
+    const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
         "title":"",
         "firstname": metaData?.full_name,
@@ -29,8 +30,41 @@ export default function MyProfile(props) {
         
     });
 
+
+
+    const handleImages = (files) => {
+        let validImages = [files].filter((file) => 
+            ['image/jpeg', 'image/png'].includes(file?.type||{})
+        );      
+      
+        validImages.forEach(uploadImages);
+      
+      
+      };
+        const uploadImages =(file)=>{
+
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            setImgSrc(reader?.result)
+           
+          };
+      
+        }
+
+
+
+
+
+
+
+
+
+
     const handleSubmitForm = (data) => {
+        console.log("111-data",data)
         setEditClinicianProfileData({...data})
+        // ProfileCreation(data)
     }
     
     return (
@@ -50,9 +84,11 @@ export default function MyProfile(props) {
             <form onSubmit={props.handleSubmit}>
             <div className='input-block update-profile'>
                 <div className='image-block'>
-                    <img src="/images/user-picture-placeholder.png" alt="" />
+                    <img src={imageUrl} alt="" />
                 </div>
-                <input type="file" name="profile-picture"></input>
+                <form>
+                    <input id="file"  type="file" onChange={(e)=>handleImages(e.target.files[0])}/>
+                </form>
             </div>
             <div className='input-block'>
                 <div className='inputs-wrapper'>

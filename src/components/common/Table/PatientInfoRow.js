@@ -14,8 +14,8 @@ export default function PatientInfoRow() {
   const navigate=useNavigate();
   return (
     <>
-    <TableRow onClick={()=>{navigate('/patientdetails')}}>
-        <TableCell><PatientInfo/></TableCell>
+    <TableRow >
+        <TableCell onClick={()=>{navigate('/patientdetails')}}><PatientInfo/></TableCell>
         <TableCell><Bp/></TableCell>
         <TableCell><Hr/></TableCell>
         <TableCell><Bo/></TableCell>
