@@ -1,11 +1,48 @@
-import { Button} from '@mui/material'
+import { Button, Dialog} from '@mui/material'
 import React from 'react'
+import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
+import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
+import PatientProfileOverlay from '../../Clinician/Overlays/PatientProfileOverlay';
 import PhoneNumber from '../../common/PhoneNumber'
 
 
 export default function PatientProfileBar() {
+
+  const [openProfile, setOpenProfile] = React.useState(false);
+  const [openClincians, setOpenClincians] = React.useState(false);
+  const [openEmergencyContacts, setOpenEmergencyContacts] = React.useState(false);
+
+  const patientQuickNavs = [
+    {
+      key: 1,
+      Name: 'Profile',
+      PopupData: <PatientProfileOverlay/>,
+      handle: setOpenProfile,
+      open: openProfile
+    },
+    {
+      key: 2,
+      Name: 'Clincians',
+      PopupData: <CliniciansOverlay/>,
+      handle: setOpenClincians,
+      open: openClincians
+    },
+    {
+      key: 3,
+      Name: 'Emergency Contacts',
+      PopupData: <EmergencyContactOverlay/>,
+      handle: setOpenEmergencyContacts,
+      open: openEmergencyContacts
+    }
+  ] 
+
+  const handleClose = () => {
+    setOpenProfile(false);
+    setOpenClincians(false);
+    setOpenEmergencyContacts(false);
+  };
     
-    return (
+  return (
     <>
     <div className='patient-profile-bar'>
         <div className='left-block'>
@@ -18,9 +55,17 @@ export default function PatientProfileBar() {
             <PhoneNumber/>
         </div>
         <div className='right-block'>
-            <Button variant="contained">Profile</Button>
-            <Button variant="contained">Clincians</Button>
-            <Button variant="contained">Emergency Contacts</Button>
+            {patientQuickNavs.map((data, i) => (
+              <>
+              <Button variant="contained" onClick={data.handle}>{data.Name}</Button>
+              <Dialog
+                open={data.open}
+                onClose={handleClose}>
+                <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
+                {data.PopupData}
+              </Dialog>
+              </>
+            ))}
         </div>
     </div>
     </>
