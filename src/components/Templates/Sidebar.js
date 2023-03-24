@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-
+import AdminSidebar from './AdminSidebar';
 import { logout} from '../../services/UserService';
 import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 export default function Sidebar() {
 
     const {currentUserData} = useContext(UserContext);
-
     const logoutHandel=()=>{   
         logout();
         window.location.reload();
@@ -32,6 +31,8 @@ export default function Sidebar() {
             return <PatientSidebar/>
           case 'Clinician':
             return <ClinicianSidebar/> 
+          case "Admin":
+            return <AdminSidebar/>
           default:
             return  ''
         }

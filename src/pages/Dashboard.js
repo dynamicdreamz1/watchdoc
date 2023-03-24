@@ -7,6 +7,7 @@ const Dashboard = () => {
 const navigate=useNavigate();
   useEffect(()=>{
     navigate("/dashboard")
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
   return (
