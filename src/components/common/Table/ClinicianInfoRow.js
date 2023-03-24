@@ -12,7 +12,7 @@ export default function ClinicianInfoRow({data}) {
     <>
     <TableRow>
         <TableCell><ClinicianInfo data={data}/></TableCell>
-        <TableCell><Email data={data}/></TableCell>
+        <TableCell><Email email={data?.email}/></TableCell>
         <TableCell><Phone data={data}/></TableCell>
         <TableCell align='center'><ConnectedPatients/></TableCell>
         <TableCell align='center'><PendingPatients/></TableCell>
