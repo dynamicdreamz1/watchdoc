@@ -8,21 +8,21 @@ import { useState } from 'react';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+
     return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography component={'div'}>{children}</Typography>
-          </Box>
-        )}
-      </div>
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography component={'div'}>{children}</Typography>
+                </Box>
+            )}
+        </div>
     );
 }
 
@@ -42,12 +42,14 @@ function a11yProps(index) {
 export default function CriticalPatientsAlertTableTabs() {
 
     const [value, setValue] = React.useState(0);
+    const [viewAll, setViewAll] = useState(false)
 
     const handleChange = (event, newValue) => {
-    setValue(newValue);
+        setViewAll(false)
+        setValue(newValue);
     };
-    const [reviewData,setReviewData]=useState([])
-    const [patientData,setPatientData]=useState([
+    const [reviewData, setReviewData] = useState([])
+    const [patientData, setPatientData] = useState([
         {
             "id": 1,
             "name": "Randerson, Michael",
@@ -135,43 +137,43 @@ export default function CriticalPatientsAlertTableTabs() {
     ]
     )
 
-const handleClickReview=(data)=>{
-    const filterData=patientData?.filter((el)=>el?.id===data?.id)
-    const finalData=patientData?.filter((el)=>el?.id!==data?.id)
-    setPatientData(finalData)
-    const tempData=filterData.map((el)=>{
-        el.status="Reviewed"
-        return el;
-    })
+    const handleClickReview = (data) => {
+        const filterData = patientData?.filter((el) => el?.id === data?.id)
+        const finalData = patientData?.filter((el) => el?.id !== data?.id)
+        setPatientData(finalData)
+        const tempData = filterData.map((el) => {
+            el.status = "Reviewed"
+            return el;
+        })
 
-    const mulitReviewData=[...reviewData,...tempData]
-    setReviewData(mulitReviewData)
-}
+        const mulitReviewData = [...reviewData, ...tempData]
+        setReviewData(mulitReviewData)
+    }
 
-const handleClickUnReview=(data)=>{
-    const filterData=reviewData?.filter((el)=>el?.id!==data?.id)
-   const tempData=[{...data,"status":"UnReviewed"}]
-    setPatientData(patientData.concat(tempData))
-    setReviewData(filterData)
+    const handleClickUnReview = (data) => {
+        const filterData = reviewData?.filter((el) => el?.id !== data?.id)
+        const tempData = [{ ...data, "status": "UnReviewed" }]
+        setPatientData(patientData.concat(tempData))
+        setReviewData(filterData)
 
-}
+    }
     return (
         <>
-        <Box sx={{ width: '100%' }}>
-            <Box className="table-header-block">
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                    <Tab label="Critical Alerts - Unreviewed (12)" {...a11yProps(0)} />
-                    <Tab label="Critical Alerts - Reviewed (6)" {...a11yProps(1)} />
-                </Tabs>
-                <TableShorting/>
+            <Box sx={{ width: '100%' }}>
+                <Box className="table-header-block">
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
+                        <Tab label="Critical Alerts - Unreviewed (12)" {...a11yProps(0)} />
+                        <Tab label="Critical Alerts - Reviewed (6)" {...a11yProps(1)} />
+                    </Tabs>
+                    <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
+                </Box>
+                <TabPanel value={value} index={0} className="table-nav-tabs-content">
+                    <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
+                </TabPanel>
+                <TabPanel value={value} index={1} className="table-nav-tabs-content">
+                    <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
+                </TabPanel>
             </Box>
-            <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview}/>
-            </TabPanel>
-            <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview}/>
-            </TabPanel>
-        </Box>
         </>
     )
 }
