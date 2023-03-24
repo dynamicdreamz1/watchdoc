@@ -549,6 +549,22 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: #fff;
 }
+body .MuiPaper-root.MuiTableContainer-root.table-without-space table {
+  border-spacing: 0;
+  background-color: #fff;
+}
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTableRow-root:nth-child(odd) .MuiTableCell-root {
+  background-color: rgba(249, 249, 249, 0.5);
+}
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTableRow-root.MuiTableRow-head .MuiTableCell-root {
+  background-color: #fff;
+}
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTable-root .MuiTableCell-root {
+  padding: 14px 20px;
+}
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTable-root .MuiTableCell-root {
+  border-radius: 0;
+}
 body .MuiPaper-root.red-alert-table .MuiTable-root .patient-name .icon svg {
   fill: #EA4335;
 }

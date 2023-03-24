@@ -95,3 +95,21 @@
 .high-heart-rate .radios-wrapper .radio-item {
     position: relative;
 }
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper {
+    max-width: 724px;
+}
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .input-block.update-profile {
+    margin-bottom: 35px;
+}
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .input-block {
+    margin-bottom: 22px;
+}
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
+    grid-template-columns: 16% auto auto;
+}
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .country-code .inputs-wrapper {
+    grid-template-columns: 20% 40%;
+}
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .submit-block button {
+    max-width: 156px;
+}

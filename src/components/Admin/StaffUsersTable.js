@@ -1,5 +1,6 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button, Dialog, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
+import AddStaffUser from './AddStaffUser';
   
 const StaffUser = [
     {
@@ -40,8 +41,32 @@ const StaffUser = [
 ];
 
 export default function StaffUsersTable() {
-  return (
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    
+    return (
     <>
+    <Button variant="outlined" onClick={handleClickOpen}>
+        Open alert dialog
+      </Button>
+
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="add-staff-user-dialog"
+        aria-describedby="add-staff-user-dialog"
+        className='add-staff-user-dialog'
+      >
+        <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
+        <AddStaffUser/>
+      </Dialog>
     <TableContainer component={Paper} className="red-alert-table table-without-space">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
