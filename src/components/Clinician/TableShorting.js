@@ -31,7 +31,8 @@ export default function TableShorting(props) {
                 "View Less Data"
             ]);
             props?.setViewAll(!props?.viewAll);
-        } else {
+        }
+        if(option === "View Less Data"){
             setOptions(prevOptions => [
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 t('DashboardPage.SideButton.d3')
