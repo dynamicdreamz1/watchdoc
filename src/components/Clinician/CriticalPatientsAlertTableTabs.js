@@ -166,7 +166,9 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label="Critical Alerts - Unreviewed (12)" {...a11yProps(0)} />
                         <Tab label="Critical Alerts - Reviewed (6)" {...a11yProps(1)} />
                     </Tabs>
-                    <TableShorting patientData={patientData} setPatientData={setPatientData}   setViewAll={setViewAll} viewAll={viewAll} />
+                    <TableShorting patientData={patientData} setPatientData={setPatientData} 
+                    reviewData={reviewData} setReviewData={setReviewData}
+                      setViewAll={setViewAll} viewAll={viewAll} />
                 </Box>
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
                     <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />

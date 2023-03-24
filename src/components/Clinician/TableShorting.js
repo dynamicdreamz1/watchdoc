@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 const ITEM_HEIGHT = 48;
 
 export default function TableShorting(props) {
-
+    const {patientData,setPatientData,reviewData,setReviewData,}=props;
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedOption, setSelectedOption] = React.useState(null);
@@ -34,8 +34,24 @@ export default function TableShorting(props) {
         }
         
         if(option==="Newest to Oldest"){
-            const sortedData = props?.patientData.sort((a, b) => b.date - a.date);
-            
+          
+            const sortedData = patientData.sort((a, b) => b.date - a.date);
+            const reviewedSortedData=reviewData?.sort((a,b)=>b.date - a.date);
+            props?.setViewAll(!props?.viewAll)
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View Less Data"
+            ]);
+            setReviewData(reviewedSortedData)
+            setPatientData(sortedData)
+        }
+        if(option==="Oldest to Newest"){
+            const sortedData=props?.patientData.sort((a,b)=>(a.date-b.date))
+            props?.setViewAll(!props?.viewAll)
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View Less Data"
+            ]);
             props?.setPatientData(sortedData)
         }
         
