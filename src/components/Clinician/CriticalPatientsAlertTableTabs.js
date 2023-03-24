@@ -43,6 +43,7 @@ export default function CriticalPatientsAlertTableTabs() {
 
     const [value, setValue] = React.useState(0);
     const [viewAll, setViewAll] = useState(false)
+    
 
     const handleChange = (event, newValue) => {
         setViewAll(false)
@@ -165,7 +166,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label="Critical Alerts - Unreviewed (12)" {...a11yProps(0)} />
                         <Tab label="Critical Alerts - Reviewed (6)" {...a11yProps(1)} />
                     </Tabs>
-                    <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
+                    <TableShorting patientData={patientData} setPatientData={setPatientData}   setViewAll={setViewAll} viewAll={viewAll} />
                 </Box>
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
                     <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />

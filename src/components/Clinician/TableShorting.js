@@ -31,7 +31,15 @@ export default function TableShorting(props) {
                 "View Less Data"
             ]);
             props?.setViewAll(!props?.viewAll);
-        } else {
+        }
+        
+        if(option==="Newest to Oldest"){
+            const sortedData = props?.patientData.sort((a, b) => b.date - a.date);
+            
+            props?.setPatientData(sortedData)
+        }
+        
+        if (option === "View Less Data") {
             setOptions(prevOptions => [
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 t('DashboardPage.SideButton.d3')
