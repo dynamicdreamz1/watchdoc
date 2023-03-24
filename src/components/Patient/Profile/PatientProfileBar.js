@@ -56,7 +56,7 @@ export default function PatientProfileBar() {
         </div>
         <div className='right-block'>
             {patientQuickNavs.map((data, i) => (
-              <>
+              <React.Fragment key={i}>
               <Button variant="contained" onClick={data.handle}>{data.Name}</Button>
               <Dialog
                 open={data.open}
@@ -64,7 +64,7 @@ export default function PatientProfileBar() {
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
                 {data.PopupData}
               </Dialog>
-              </>
+              </React.Fragment>
             ))}
         </div>
     </div>
