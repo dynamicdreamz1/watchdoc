@@ -31,6 +31,7 @@ import TwoFactor from './pages/TwoFactor';
 import SignupSuccess from './pages/SignupSuccess';
 import ProfileSettings from './pages/ProfileSettings';
 import PatientsDetails from './pages/PatientsDetails';
+import StaffUsers from './pages/StaffUsers';
 
 function App() {
 
@@ -89,6 +90,7 @@ function App() {
         <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <SignIn />} />
         <Route path='patients' element={currentUser ? < Patients/> : <SignIn />} />
         <Route path='clinicians' element={currentUser ? <Clinicians /> : <SignIn />} />
+        <Route path='staff-users' element={currentUser ? <StaffUsers/> : <SignIn />} />
 
       </Routes>
 

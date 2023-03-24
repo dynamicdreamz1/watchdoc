@@ -31,7 +31,7 @@ export default function AdminSidebar() {
                         <ListItemIcon>
                             <img src='/images/User-icon.svg' alt='User Icon' />
                         </ListItemIcon>
-                        <ListItemText>Clinicians</ListItemText>
+                        <ListItemText>Patients</ListItemText>
                     </ListItemButton>
                 </ListItem>
             </NavLink>
@@ -45,6 +45,21 @@ export default function AdminSidebar() {
                     <ListItemButton>
                         <ListItemIcon>
                             <img src='/images/Clinicians-icon.svg' alt='Clinicians Icon' />
+                        </ListItemIcon>
+                        <ListItemText>Clinicians</ListItemText>
+                    </ListItemButton>
+                </ListItem>
+            </NavLink>
+
+            <NavLink
+                to="/staff-users"
+                className={({ isActive }) =>
+                    isActive ? "isActive" : ""
+                }>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <img src='/images/Staff_user.svg' alt='Staff User Icon' />
                         </ListItemIcon>
                         <ListItemText>Staff Users</ListItemText>
                     </ListItemButton>
