@@ -76,7 +76,6 @@ export default function AddStaffUser({staffUser,setOpen}) {
 
 
     const handleSubmitForm = (data) => {
-        console.log("1111-date",data)
         const finalData={
             "id": data?.id,
             "name": data?.firstname,
