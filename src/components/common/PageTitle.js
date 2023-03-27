@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 // import { InnerClinicianContext } from '../../pages/AddClinicianInner';
 
 
-export default function PageTitle({toggle,setToggle}) {
+export default function PageTitle({toggle,setToggle,setOpen}) {
 
   const {t}=useTranslation();
   // const {addData,setAddData}=useContext(InnerClinicianContext)
@@ -24,7 +24,7 @@ export default function PageTitle({toggle,setToggle}) {
          {window.location.pathname==='/editlinkdevice' ? <h1>{t(('DashboardPage.SideBar.title4'))}</h1> : ""}
          {window.location.pathname==="/patients" ? <h1>{t('DashboardPage.SideBar.ClinicianSideBar.t2')}</h1> : ""}
          {window.location.pathname==="/clinicians" ? <h1>{t('DashboardPage.SideBar.ClinicianSideBar.t3')}</h1> : ""}
-         {window.location.pathname==="/staff-users" ? <h1>Staff Users +</h1> : ""}
+         {window.location.pathname==="/staff-users" ? <h1 onClick={()=>setOpen(true)}>Staff Users +</h1> : ""}
         </div>
     </>
   )

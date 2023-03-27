@@ -5,8 +5,8 @@ import AddStaffUser from './AddStaffUser';
   
 
 
-export default function StaffUsersTable() {
-    const [open, setOpen] = React.useState(false);
+export default function StaffUsersTable({setOpen,open}) {
+   
     const [staffUser,setStaffUser]=useState([
         {
             "id": 1,
@@ -155,18 +155,18 @@ export default function StaffUsersTable() {
             ]
         }
     ])
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // };
 
     const handleClose = () => {
         setOpen(false);
     };
     return (
     <>
-    <Button variant="outlined" onClick={handleClickOpen}>
+    {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open alert dialog
-      </Button>
+      </Button> */}
 
     <Dialog
         open={open}
