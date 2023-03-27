@@ -472,6 +472,10 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .account-owner .info span.uname {
   font-weight: 600;
 }
+.account-owner .MuiButton-root {
+  padding: 0;
+  min-width: auto;
+}
 /* Top Header Block */
 .content-wrapper .aside .top-header-block {
   display: flex;
@@ -602,6 +606,10 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data .time {
   font-size: 12px;
   line-height: 15px;
   color: #8D8D8D;
+}
+body .MuiPaper-root .MuiTable-root .status.table-data span {
+  display: inline-block;
+  cursor: pointer;
 }
 body .MuiPaper-root .MuiTable-root .table-data {
   font-family: 'Source Sans Pro', sans-serif;
