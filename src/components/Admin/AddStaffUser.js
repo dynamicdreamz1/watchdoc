@@ -1,12 +1,12 @@
 import { MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 
-export default function AddStaffUser({ staffUser, setOpen }) {
+export default function AddStaffUser({ staffUser, setOpen}) {
     const { t } = useTranslation()
 
     const [countryCode, setcountryCode] = useState('');
@@ -26,7 +26,7 @@ export default function AddStaffUser({ staffUser, setOpen }) {
         "date": new Date().toLocaleDateString(),
         "countrycode": ""
     })
-
+   
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
@@ -163,7 +163,7 @@ export default function AddStaffUser({ staffUser, setOpen }) {
                         <div className='dialog-title'>
                             <h2>Add Staff User</h2>
                         </div>
-                        <form onSubmit={props.handleSubmit}>
+                        <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="userprofile" src={imageUrl} alt="Staf User" />
@@ -195,7 +195,7 @@ export default function AddStaffUser({ staffUser, setOpen }) {
                             </div>
                             <div className='input-block'>
                                 <label>Email address</label>
-                                <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange} />
+                                <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange}/>
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
                             <div className='input-block'>
@@ -210,7 +210,7 @@ export default function AddStaffUser({ staffUser, setOpen }) {
                             </div>
                             <div className='input-block'>
                                 <label>Password</label>
-                                <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} />
+                                <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
                             <div className='input-block country-code'>
