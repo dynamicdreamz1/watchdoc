@@ -1,4 +1,4 @@
-import { Button, Dialog, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {Dialog, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
@@ -155,18 +155,14 @@ export default function StaffUsersTable({setOpen,open}) {
             ]
         }
     ])
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
+
 
     const handleClose = () => {
         setOpen(false);
     };
     return (
     <>
-    {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button> */}
+  
 
     <Dialog
         open={open}
