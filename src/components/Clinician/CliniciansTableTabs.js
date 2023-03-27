@@ -44,7 +44,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
     const [clinicianStaff]=useState([
       {
           "id": 1,
-          "email": "drarpit@gmail.com",
+          "email": "info@neighbourhoodmedical.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -59,8 +59,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
-              },
+                  "meta_value": "Dr Randerson Michael"
+              }, 
               {
                   "id": 8,
                   "meta_key": "zip",
@@ -80,7 +80,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 2,
-          "email": "drarpit@gmail.com",
+          "email": "reception@lincolnmedical.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -95,7 +95,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr johnson"
               },
               {
                   "id": 8,
@@ -116,7 +116,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 3,
-          "email": "drarpit@gmail.com",
+          "email": "beth@ochremedical.com",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -131,7 +131,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr loosy"
               },
               {
                   "id": 8,
@@ -152,7 +152,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 4,
-          "email": "drarpit@gmail.com",
+          "email": "drben@paragon.com",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -167,7 +167,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr Georgia"
               },
               {
                   "id": 8,
@@ -188,7 +188,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 5,
-          "email": "drarpit@gmail.com",
+          "email": "info@walker.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -203,7 +203,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr Perry"
               },
               {
                   "id": 8,
@@ -224,7 +224,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 6,
-          "email": "drarpit@gmail.com",
+          "email": "reception@lincolnmedical.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -239,7 +239,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr Randerson Michael"
               },
               {
                   "id": 8,
@@ -260,7 +260,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 7,
-          "email": "drarpit@gmail.com",
+          "email": "info@walker.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -275,7 +275,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr johnson"
               },
               {
                   "id": 8,
@@ -311,7 +311,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr loosy"
               },
               {
                   "id": 8,
@@ -332,7 +332,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 9,
-          "email": "drarpit@gmail.com",
+          "email": "reception@lincolnmedical.com.au",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -347,7 +347,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr Georgia"
               },
               {
                   "id": 8,
@@ -368,7 +368,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
       },
       {
           "id": 10,
-          "email": "drarpit@gmail.com",
+          "email": "beth@ochremedical.com",
           "email_verified_at": null,
           "t&c": 0,
           "profile_created": 0,
@@ -383,7 +383,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr arpit"
+                  "meta_value": "Dr Perry"
               },
               {
                   "id": 8,
