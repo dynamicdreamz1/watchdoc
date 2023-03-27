@@ -5,11 +5,11 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 // import { getClinicianData } from '../../services/ClinicianService';
 import { useTranslation } from 'react-i18next';
 
-export default function CliniciansRequestsTable() {
-
+export default function CliniciansRequestsTable(props) {
+    const { value } = props;
     // const [data, setData] = useState([])
     // const [loading, setLoading] = useState(false)
-    const {t}=useTranslation();
+    const { t } = useTranslation();
     // useEffect(() => {
     //     setLoading(true)
     //     getClinicianData()
@@ -25,7 +25,7 @@ export default function CliniciansRequestsTable() {
     //         })
     // }, [])
 
-    const obj=[
+    const obj = [
         {
             "id": 3,
             "email": "drarpit@gmail.com",
@@ -152,8 +152,8 @@ export default function CliniciansRequestsTable() {
         }
     ]
 
-    
-  
+
+
     return (
         // actual code
         // <>
@@ -177,11 +177,11 @@ export default function CliniciansRequestsTable() {
         //             </TableHead>
         //             <TableBody>
 
-                       
+
         //                 {data?.length > 0 && data?.map((element) => (
         //                     <React.Fragment key={element.id}><ClinicianInfoRow data={element} /></React.Fragment>
         //                 ))}
-                        
+
         //             </TableBody>
         //         </Table> : <span>{t('CliniciansRequestsTable.notFound')}</span> }
         //         </>
@@ -191,40 +191,45 @@ export default function CliniciansRequestsTable() {
 
         // below code is for fakeData process
         <>
-        <TableContainer component={Paper} className="clinicians-table">
-            <div className='table-title'>
-                <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
-                <h4> {t('CliniciansRequestsTable.heading')}({obj.length})</h4>
-            </div>
-            
-            <>
-           
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
-                        <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
-                        <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
-                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
-                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
+            <TableContainer component={Paper} className="clinicians-table">
+                {value === 0 || value === 1 || value === 2 ? "" :
+                    <div className='table-title'>
+                        <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
+                        <h4> {t('CliniciansRequestsTable.heading')}({obj.length})</h4>
+                    </div>
+                }
+                <>
 
-                   
-                    {obj?.length > 0 && obj?.map((element) => (
-                        <React.Fragment key={element.id}><ClinicianInfoRow data={element} /></React.Fragment>
-                    ))}
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
+                                <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
+                                <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
+                                {value === 0 ? "" :
+                                    <>
+                                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
+                                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
+                                    </>
+                                }
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
 
-                   
-                    
-                </TableBody>
-            </Table> 
-           
-            </>
-            
-        </TableContainer>
-    </>
+
+                            {obj?.length > 0 && obj?.map((element) => (
+                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} /></React.Fragment>
+                            ))}
+
+
+
+                        </TableBody>
+                    </Table>
+
+                </>
+
+            </TableContainer>
+        </>
 
     )
 }
