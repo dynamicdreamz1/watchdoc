@@ -4,7 +4,6 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
-import { DatePicker } from '@mui/x-date-pickers';
 
 export default function AddStaffUser({staffUser,setOpen}) {
 
@@ -21,8 +20,9 @@ export default function AddStaffUser({staffUser,setOpen}) {
         "zip":"",
         "practiceaddress":"",
         "password":"",
-        "userprofile":""        
-        
+        "userprofile":"",
+        "date":new Date().toLocaleDateString(),
+        "countrycode":""     
     })
 
 
@@ -76,12 +76,14 @@ export default function AddStaffUser({staffUser,setOpen}) {
 
 
     const handleSubmitForm = (data) => {
+        console.log("1111-date",data)
         const finalData={
             "id": data?.id,
             "name": data?.firstname,
             "email": data.email,
-            "phone": data?.number,
-            "lastlogin" : "",
+            "phone": `${countryCode} ${data?.number}`,
+            "lastlogin" : data?.date,
+
             "meta_data": [
                 {
                     "id": 11,
@@ -204,8 +206,8 @@ export default function AddStaffUser({staffUser,setOpen}) {
                     label="Age"
                     onChange={handleChange}
                   >
-                    {allTimeZone.map((data, i) => (
-                      <MenuItem key={i} value={data.Name}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
+                    {allTimeZone?.map((data, i) => (
+                      <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                     ))}
                   </Select>
                   <input type="text" name="number" value={props?.values?.number} onChange={props?.handleChange}></input>
