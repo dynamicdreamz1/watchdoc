@@ -62,7 +62,6 @@ export default function MyProfile(props) {
 
 
     const handleSubmitForm = (data) => {
-        console.log("111-data",data)
         setEditClinicianProfileData({...data})
         // ProfileCreation(data)
     }
