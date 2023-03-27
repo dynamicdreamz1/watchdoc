@@ -20,7 +20,6 @@ export default function AddStaffUser({staffUser,setOpen}) {
         "number": "",
         "lastlogin" : "",
         "practicename":"",
-        "zip":"",
         "practiceaddress":"",
         "password":"",
         "userprofile":"",
@@ -28,8 +27,14 @@ export default function AddStaffUser({staffUser,setOpen}) {
         "countrycode":""     
     })
 
-
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
+        id:Yup.string(),
+        date:Yup.string(),
+        title:Yup.string(),
+        lastlogin:Yup.string(),
+        userprofile:Yup.string(),
+        countrycode:Yup.string(),
         firstname: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         lastname: Yup.string().required("This field is required*")
@@ -40,11 +45,15 @@ export default function AddStaffUser({staffUser,setOpen}) {
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
-            .matches(/"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"/gmi, t('SignUpPage.validation.mobile.v1')),
-            // .min(1, t('SignUpPage.validation.mobile.short'))
-            // .max(10, t('SignUpPage.validation.mobile.long')),
-        password:Yup.string().required("This field is required*")
-        .matches("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$","Enter Valid Password")
+            .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
+            .min(10, t('SignUpPage.validation.mobile.short'))
+            .max(10, t('SignUpPage.validation.mobile.long')),
+        password:Yup.string()
+        .required('Please Enter your password')
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        )
     });
 
 
@@ -84,7 +93,6 @@ export default function AddStaffUser({staffUser,setOpen}) {
 
 
     const handleSubmitForm = (data) => {
-        console.log("11111-data",data)
         const finalData={
             "id": data?.id,
             "name": data?.firstname,
@@ -159,7 +167,7 @@ export default function AddStaffUser({staffUser,setOpen}) {
             <form onSubmit={props.handleSubmit}>
                 <div className='input-block update-profile'>
                     <div className='image-block'>
-                        <img  src={imageUrl} alt="Staf User" />
+                        <img name="userprofile" src={imageUrl} alt="Staf User" />
                     </div>
                     <div>
                         <input id="file" type="file"  onChange={(e)=>handleImages(e.target.files[0])}/>
@@ -219,6 +227,7 @@ export default function AddStaffUser({staffUser,setOpen}) {
                       <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                     ))}
                   </Select>
+                  
                   <input type="text" name="number" value={props?.values?.number} onChange={props?.handleChange}></input>
                   <span className="error"> {props.errors.number ? props.errors.number : ""}</span>
                 </div>
