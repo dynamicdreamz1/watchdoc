@@ -65,7 +65,7 @@ function App() {
         <Route path='/twofactoreverification/:emailId' element={<TwoFactor/>} />
         <Route path='/signupsuccess' element={<SignupSuccess/>} />
 
-        <Route path='/ProfileSettings' element={<ProfileSettings/>} />
+        <Route path='/profile-settings' element={<ProfileSettings/>} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
 
         

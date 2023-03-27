@@ -472,6 +472,13 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .account-owner .info span.uname {
   font-weight: 600;
 }
+.account-owner .MuiButton-root {
+  padding: 0;
+  min-width: auto;
+}
+.account-owner .MuiButton-root:hover {
+  background-color: transparent;
+}
 /* Top Header Block */
 .content-wrapper .aside .top-header-block {
   display: flex;
@@ -602,6 +609,10 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data .time {
   font-size: 12px;
   line-height: 15px;
   color: #8D8D8D;
+}
+body .MuiPaper-root .MuiTable-root .status.table-data span {
+  display: inline-block;
+  cursor: pointer;
 }
 body .MuiPaper-root .MuiTable-root .table-data {
   font-family: 'Source Sans Pro', sans-serif;
@@ -783,12 +794,19 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 8px;
   margin-top: 0;
 }
-.MuiList-root.MuiMenu-list .MuiMenuItem-root {
+.MuiList-root.MuiMenu-list .MuiMenuItem-root,
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a {
   font-size: 14px;
   line-height: 20px;
   color: #374151;
   font-family: 'Source Sans Pro', sans-serif;
   padding: 8px;
+}
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a:hover {
+  text-decoration: none;
+}
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a {
+  padding: 0;
 }
 /* Clinician Profile Bar */
 .clinician-profile-tab,
