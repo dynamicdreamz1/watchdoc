@@ -472,6 +472,10 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .account-owner .info span.uname {
   font-weight: 600;
 }
+.account-owner .MuiButton-root {
+  padding: 0;
+  min-width: auto;
+}
 /* Top Header Block */
 .content-wrapper .aside .top-header-block {
   display: flex;
