@@ -302,7 +302,7 @@ button.codeResend[disabled] {
   color: #777777;
 }
 form .input-block .error {
-  color: #fff;
+  color: red;
   margin-top: 5px;
   display: block;
 }
