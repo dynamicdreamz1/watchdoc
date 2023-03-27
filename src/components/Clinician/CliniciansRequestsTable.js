@@ -1,5 +1,5 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React from 'react'
+import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import React,{useState} from 'react'
 import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 // import { getClinicianData } from '../../services/ClinicianService';
@@ -7,9 +7,23 @@ import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
     const { value,clinicianStaff} = props;
-    // const [data, setData] = useState([])
-    // const [loading, setLoading] = useState(false)
     const { t } = useTranslation();
+    // const [loading, setLoading] = useState(false)
+
+    const [data] = useState(clinicianStaff)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(5);
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    const nPages = Math.ceil(data.length / recordsPerPage)
+    const handleChange = (event, value) => {
+        
+        setCurrentPage(value)
+    };
+
     // useEffect(() => {
     //     setLoading(true)
     //     getClinicianData()
@@ -92,7 +106,7 @@ export default function CliniciansRequestsTable(props) {
                         <TableBody>
 
 
-                            {clinicianStaff?.length > 0 && clinicianStaff?.map((element) => (
+                            {currentRecords?.length > 0 && currentRecords?.map((element) => (
                                 <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} /></React.Fragment>
                             ))}
 
@@ -104,6 +118,9 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
+            {currentRecords?.length === 0 ? "" :
+                <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }
         </>
 
     )

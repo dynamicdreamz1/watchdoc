@@ -4,7 +4,7 @@ import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTa
 
 export default function AdminDashboard() {
 
-  const [clinicianStaff, setClinicianStaff]=useState([
+  const [clinicianStaff]=useState([
     {
         "id": 1,
         "email": "drarpit@gmail.com",
@@ -43,6 +43,366 @@ export default function AdminDashboard() {
     },
     {
         "id": 2,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "email": "drarpit@gmail.com",
+        "email_verified_at": null,
+        "t&c": 0,
+        "profile_created": 0,
+        "contact_number": null,
+        "mobile_num_verify": 0,
+        "is_active": 0,
+        "verification_code": 1691,
+        "terra_user_id": null,
+        "created_at": "2023-02-27T06:09:21.000000Z",
+        "updated_at": "2023-02-27T06:09:21.000000Z",
+        "meta_data": [
+            {
+                "id": 6,
+                "meta_key": "full_name",
+                "meta_value": "Dr arpit"
+            },
+            {
+                "id": 8,
+                "meta_key": "zip",
+                "meta_value": "395002"
+            },
+            {
+                "id": 201,
+                "meta_key": "image",
+                "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+            },
+            {
+                "id": 209,
+                "meta_key": "address",
+                "meta_value": "594 Rafe Lane , Southaven , Mississippi."
+            }
+        ]
+    },
+    {
+        "id": 12,
         "email": "drjevin@gmail.com",
         "email_verified_at": "2023-03-24T10:55:51.000000Z",
         "t&c": 0,

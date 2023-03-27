@@ -4,7 +4,7 @@ import CriticalPatientsAlertTableTabs from './CriticalPatientsAlertTableTabs'
 
 export default function ClinicianDashboard() {
 
-  const [clinicianStaff, setClinicianStaff]=useState([
+  const [clinicianStaff]=useState([
     {
         "id": 1,
         "email": "drarpit@gmail.com",
