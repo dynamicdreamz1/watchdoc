@@ -43,7 +43,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
     const [value, setValue] = React.useState(0);
     const [clinicianStaff, setClinicianStaff]=useState([
       {
-          "id": 3,
+          "id": 1,
           "email": "drarpit@gmail.com",
           "email_verified_at": null,
           "t&c": 0,
@@ -79,7 +79,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
           ]
       },
       {
-          "id": 7,
+          "id": 2,
           "email": "drjevin@gmail.com",
           "email_verified_at": "2023-03-24T10:55:51.000000Z",
           "t&c": 0,
