@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useTranslation } from 'react-i18next';
 
-
-
 const ITEM_HEIGHT = 48;
 
 export default function TableShorting(props) {

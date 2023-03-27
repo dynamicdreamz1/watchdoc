@@ -928,6 +928,14 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   max-width: 340px;
   width: 100%;
 }
+.reminder-card .dots-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.reminder-card {
+  position: relative;
+}
 .reminder-card .icon-block,.reminder-card-skeleton .icon-block {
   width: 65px;
   padding-right: 15px;
