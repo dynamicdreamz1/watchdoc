@@ -1,4 +1,4 @@
-import {Dialog, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
@@ -156,7 +156,17 @@ export default function StaffUsersTable({setOpen,open}) {
         }
     ])
 
+    const [data] = useState(staffUser)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(5);
 
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(data.length / recordsPerPage)
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+    };
     const handleClose = () => {
         setOpen(false);
     };
@@ -185,7 +195,7 @@ export default function StaffUsersTable({setOpen,open}) {
                 </TableRow>
             </TableHead>
             <TableBody>
-            {staffUser?.map((data, i) => (
+            {currentRecords?.map((data, i) => (
                 <TableRow
                     key={i}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -201,6 +211,9 @@ export default function StaffUsersTable({setOpen,open}) {
             </TableBody>
         </Table>
     </TableContainer>
+    {currentRecords?.length === 0 ? "" :
+                <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }
     </>
   )
 }
