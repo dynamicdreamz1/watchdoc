@@ -5,7 +5,7 @@ import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { StoreCookie } from '../Utility/sessionStore'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { UserContext } from '../Store/Context'
 import { updateToken } from '../Utility/functions'
 
@@ -15,12 +15,13 @@ const VerificationEmail = () => {
     const { setCurrentUser } = useContext(UserContext)
 
     const [code, setCode] = useState('')
-
+    const location = useLocation();
+    const { id, emailId } = location.state;
     const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
 
-    const { emailId } = useParams();
+    // const { emailId } = useParams();
 
     const { t } = useTranslation();
 
@@ -137,7 +138,7 @@ const VerificationEmail = () => {
                             <p>{t('VerificationPage.form.f1')} <strong>{decodedEmail}.</strong> {t('VerificationPage.form.f2')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-
+                        <h1>your Code Is :{id}</h1>
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
