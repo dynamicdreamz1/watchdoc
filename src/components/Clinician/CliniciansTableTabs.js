@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
+import '../../css/CliniciansTableTabs.css'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -497,18 +498,18 @@ export default function CliniciansTableTabs({open,setOpen}) {
                   <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                   <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
               </Tabs>
-              <div>
-              <select onChange={(e) => handleChangePaginationCount(e.target.value)}  defaultValue={recordsPerPage}>
-                <option value="1"  ></option>
-                <option value="2" ></option>
-                <option value="3"  ></option>
-                <option value="4" ></option>
-                <option value="5"  ></option>
-                <option value="6" ></option>
-                <option value="7"  ></option>
-                <option value="8" ></option>
-                <option value="9"  ></option>
-                <option value="10" ></option>
+              <div className='table'>
+              <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3"  >3</option>
+                <option value="4" >4</option>
+                <option value="5"  >5</option>
+                <option value="6" >6</option>
+                <option value="7"  >7</option>
+                <option value="8" >8</option>
+                <option value="9"  >9</option>
+                <option value="10" >10</option>
             </select>
             </div>
               <TableShorting/>
