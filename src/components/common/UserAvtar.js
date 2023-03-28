@@ -5,7 +5,8 @@ import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
-import { getCurrentUserData } from '../../services/UserService';
+import { getCurrentUserData, logout } from '../../services/UserService';
+import { Link } from 'react-router-dom';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -40,6 +41,11 @@ export default function UserAvtar() {
         setAnchorEl(null);
     };
 
+    const logoutHandel=()=>{   
+        logout();
+        window.location.reload();
+    }
+
     return (
     <>
         <div className='account-owner'>
@@ -73,9 +79,9 @@ export default function UserAvtar() {
                 'aria-labelledby': 'basic-button',
             }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/profile-settings">Settings</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/staff-users">Staff Users</Link></MenuItem>
+                <MenuItem onClick={(e)=>logoutHandel()}>Logout</MenuItem>
             </Menu>
         </div>
     </>

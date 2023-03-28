@@ -302,7 +302,7 @@ button.codeResend[disabled] {
   color: #777777;
 }
 form .input-block .error {
-  color: #fff;
+  color: red;
   margin-top: 5px;
   display: block;
 }
@@ -475,6 +475,9 @@ body .MuiPaper-root.table-skeleton .MuiTableRow-root:nth-child(odd) td {
 .account-owner .MuiButton-root {
   padding: 0;
   min-width: auto;
+}
+.account-owner .MuiButton-root:hover {
+  background-color: transparent;
 }
 /* Top Header Block */
 .content-wrapper .aside .top-header-block {
@@ -791,12 +794,19 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   padding: 8px;
   margin-top: 0;
 }
-.MuiList-root.MuiMenu-list .MuiMenuItem-root {
+.MuiList-root.MuiMenu-list .MuiMenuItem-root,
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a {
   font-size: 14px;
   line-height: 20px;
   color: #374151;
   font-family: 'Source Sans Pro', sans-serif;
   padding: 8px;
+}
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a:hover {
+  text-decoration: none;
+}
+.MuiList-root.MuiMenu-list .MuiMenuItem-root a {
+  padding: 0;
 }
 /* Clinician Profile Bar */
 .clinician-profile-tab,
@@ -917,6 +927,14 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   flex-wrap: wrap;
   max-width: 340px;
   width: 100%;
+}
+.reminder-card .dots-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.reminder-card {
+  position: relative;
 }
 .reminder-card .icon-block,.reminder-card-skeleton .icon-block {
   width: 65px;
