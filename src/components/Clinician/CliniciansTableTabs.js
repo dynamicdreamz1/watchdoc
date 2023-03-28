@@ -41,7 +41,7 @@ function TabPanel(props) {
 
 export default function CliniciansTableTabs({open,setOpen}) {
     const [recordsPerPage,setRecordsPerPage] = useState(5);
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
     const [clinicianStaff]=useState([
       {
           "id": 1,
