@@ -41,7 +41,13 @@ export default function PatientEntry() {
 
                     setLoading(false)
                     setEmail("")
-                    navigate(`/verification/${encodedemail}`)
+                    navigate(`/verification/${encodedemail}`, {
+                        state: {
+                          id: response?.data?.verification_code,
+                          emailId: encodedemail,
+                        },
+                      });
+                    // navigate(`/verification/${encodedemail}`)
                     console.log(response)
                 }
             })

@@ -21,6 +21,7 @@ const SignIn = () => {
       });
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
+    const [code,setCode]=useState()
 
     useEffect(()=>{
         navigate("/signin")
@@ -50,7 +51,13 @@ const SignIn = () => {
 
                     setLoading(false)
                     setEmail("")
-                    navigate(`/twofactoreverification/${encodedemail}`)
+                    navigate(`/twofactoreverification/${encodedemail}`, {
+                        state: {
+                          id: response?.data?.verification_code,
+                          emailId: encodedemail,
+                        },
+                      });
+                    // navigate(`/twofactoreverification/${encodedemail}/${response?.data?.verification_code}`)
                     console.log(response)
                 }
             })
@@ -67,7 +74,6 @@ const SignIn = () => {
 
     return (
         <React.Fragment>
-            
             <div className='page-wrapper'>
                 <div className='signin-box'>
                     <div className='logo-block'>

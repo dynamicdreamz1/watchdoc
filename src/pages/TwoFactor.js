@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { RegisterUser, VerifyEmail } from '../services/UserService';
 import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
@@ -11,15 +11,16 @@ import { StoreCookie } from '../Utility/sessionStore';
 export default function TwoFactor() {
 
     const { setCurrentUser} = useContext(UserContext)
-
+    const location = useLocation();
+    const { id, emailId } = location.state;
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
 
     const [code,setCode]=useState('')
     const [error, setError] = useState('')
-    const { emailId} = useParams();
+    // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
-
+console.log("11111-id",id)
     let navigate = useNavigate()
     const [time, setTime] = useState(60)
 
@@ -112,7 +113,7 @@ export default function TwoFactor() {
     }
 
 
-
+console.log("1111-data",id)
 
   return (
     <>
@@ -128,6 +129,8 @@ export default function TwoFactor() {
                     <p> {t('TwoFactorPage.para1')} <strong> {t('TwoFactorPage.b1')} </strong> {t('TwoFactorPage.para2')} </p>
                 </div>
                 <div className='form-block'>
+            <h1>your Code Is :{id}</h1>
+
                     <form>
                         <div className='input-block'>
                             <input type="text" name='code' placeholder={t('TwoFactorPage.form.ph')} value={code} onChange={(e) => setCode(e.target.value)}/>
