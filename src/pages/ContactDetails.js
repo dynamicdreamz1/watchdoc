@@ -28,12 +28,9 @@ export default function ContactDetails() {
             const data = {
                 mobile_number: mob
             }
-            // console.log(data)
             RegisterMobNumber(data)
                 .then((response) => {
-                    // console.log(response.data.user_data.contact_number)
                     let encodedMobile= Base64.encode(response.data.user_data.contact_number)
-                    // console.log(encodedMobile)
                     console.log(response)
                     navigate(`/verifymobile/${encodedMobile}`)
                     
