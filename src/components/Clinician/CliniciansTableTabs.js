@@ -239,7 +239,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr Randerson Michael"
+                  "meta_value": "Dr johnson"
               },
               {
                   "id": 8,
@@ -275,7 +275,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr johnson"
+                  "meta_value": "Dr Randerson Michael"
               },
               {
                   "id": 8,
