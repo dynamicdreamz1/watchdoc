@@ -42,6 +42,7 @@ function TabPanel(props) {
 export default function CliniciansTableTabs({open,setOpen}) {
     const [recordsPerPage,setRecordsPerPage] = useState(5);
     const [value, setValue] = React.useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [clinicianStaff]=useState([
       {
           "id": 1,
@@ -487,6 +488,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
 
   const handleChangePaginationCount=(value)=>{
     setRecordsPerPage(value)
+    setCurrentPage(1)
+
   }
     
     return (
@@ -525,13 +528,13 @@ export default function CliniciansTableTabs({open,setOpen}) {
         <AddClinician clinicianStaff={clinicianStaff} setOpen={setOpen}/>
       </Dialog>
           <TabPanel value={value} index={0} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </TabPanel>
           <TabPanel value={value} index={1} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </TabPanel>
           <TabPanel value={value} index={2} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </TabPanel>
         </Box>
         </>
