@@ -481,6 +481,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        setCurrentPage(1)
+
     };
     const handleClose = () => {
       setOpen(false);
@@ -501,6 +503,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
                   <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                   <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
               </Tabs>
+              {value===2 ? 
               <div className='table'>
               <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
                 <option value="1" >1</option>
@@ -514,7 +517,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
                 <option value="9"  >9</option>
                 <option value="10" >10</option>
             </select>
-            </div>
+            </div> 
+            : "" }
               <TableShorting/>
           </Box>
           <Dialog
