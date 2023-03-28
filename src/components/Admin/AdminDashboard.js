@@ -4,6 +4,7 @@ import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTa
 
 export default function AdminDashboard() {
 
+    const recordsPerPage = 5;
   const [clinicianStaff]=useState([
     {
         "id": 1,
@@ -442,7 +443,7 @@ export default function AdminDashboard() {
   return (
     <>
         <CriticalPatientsAlertTableTabs/>
-        <CliniciansRequestsTable clinicianStaff={clinicianStaff}/>
+        <CliniciansRequestsTable clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
     </>
   )
 }
