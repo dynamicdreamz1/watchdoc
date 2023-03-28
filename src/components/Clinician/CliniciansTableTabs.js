@@ -39,7 +39,7 @@ function TabPanel(props) {
   }
 
 export default function CliniciansTableTabs({open,setOpen}) {
-
+    const [recordsPerPage,setRecordsPerPage] = useState(5);
     const [value, setValue] = React.useState(0);
     const [clinicianStaff]=useState([
       {
@@ -483,6 +483,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
     const handleClose = () => {
       setOpen(false);
   };
+
+  const handleChangePaginationCount=(value)=>{
+    setRecordsPerPage(value)
+  }
     
     return (
         <>
@@ -493,6 +497,20 @@ export default function CliniciansTableTabs({open,setOpen}) {
                   <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                   <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
               </Tabs>
+              <div>
+              <select onChange={(e) => handleChangePaginationCount(e.target.value)}  defaultValue={recordsPerPage}>
+                <option value="1"  ></option>
+                <option value="2" ></option>
+                <option value="3"  ></option>
+                <option value="4" ></option>
+                <option value="5"  ></option>
+                <option value="6" ></option>
+                <option value="7"  ></option>
+                <option value="8" ></option>
+                <option value="9"  ></option>
+                <option value="10" ></option>
+            </select>
+            </div>
               <TableShorting/>
           </Box>
           <Dialog
@@ -506,13 +524,13 @@ export default function CliniciansTableTabs({open,setOpen}) {
         <AddClinician clinicianStaff={clinicianStaff} setOpen={setOpen}/>
       </Dialog>
           <TabPanel value={value} index={0} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} />
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
           </TabPanel>
           <TabPanel value={value} index={1} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} />
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
           </TabPanel>
           <TabPanel value={value} index={2} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} />
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage}/>
           </TabPanel>
         </Box>
         </>

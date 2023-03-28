@@ -6,13 +6,13 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
-    const { value,clinicianStaff} = props;
+    const { value,clinicianStaff,recordsPerPage} = props;
     const { t } = useTranslation();
     // const [loading, setLoading] = useState(false)
 
     const [data] = useState(clinicianStaff)
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(5);
+    
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
