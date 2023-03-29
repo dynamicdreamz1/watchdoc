@@ -113,8 +113,6 @@ console.log("11111-id",id)
     }
 
 
-console.log("1111-data",id)
-
   return (
     <>
         <div className='page-wrapper'>

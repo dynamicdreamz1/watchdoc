@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 export default function AddStaffUser({ staffUser, setOpen}) {
     const { t } = useTranslation()
     const [showPassword,setShowPassword]=useState(false)
-    const [countryCode, setcountryCode] = useState('');
+    const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
         "id": staffUser.length + 1,
