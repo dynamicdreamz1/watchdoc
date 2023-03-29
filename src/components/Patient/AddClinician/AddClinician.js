@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { InnerClinicianContext } from '../../../pages/AddClinicianInner'
 import { AddClincianOuterContext } from '../../../pages/AddClinicianOuter'
 import { searchClinician } from '../../../services/ClinicianService'
@@ -9,6 +9,7 @@ import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard' 
 
 export default function AddClinician({ status, setStatus }) {
+  const location=useLocation();
   const { t } = useTranslation();
   const [show, setShow] = useState(false)
   const [defaultStatus, setDefaultStatus] = useState(false)
@@ -45,7 +46,7 @@ export default function AddClinician({ status, setStatus }) {
   return (
     <>
   
-      {window.location.pathname === "/addclinician" ?
+      {location.pathname === "/addclinician" ?
         <>
           <ConnectingClinician show={show} setShow={setShow} defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
           <div>

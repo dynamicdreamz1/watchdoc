@@ -13,17 +13,18 @@ import Pagination from '@mui/material/Pagination';
 import { ClinicianCard } from '../../../Utility/Skeleton';
 import { MetaFormeting} from '../../../Utility/functions';
 import defaultUserIcon from "../../../../src/assets/images/defaultUserIcon.png"
+import { useLocation } from 'react-router-dom';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ status, setStatus, isSkeleton }) {
-   
+    const location=useLocation();
     const { t } = useTranslation();
 
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
-    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(window.location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
+    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
 
     const recordsPerPage = 3;
 

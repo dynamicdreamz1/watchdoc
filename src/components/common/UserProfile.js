@@ -3,7 +3,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting } from '../../Utility/functions';
 
-export default function UserProfile({ data,clinicianStaff }) {
+export default function UserProfile({ data,clinicianStaff,handleClickOpenRequestPopUp }) {
   const navigate=useNavigate();
   const location=useLocation();
   const  {image,full_name,address} = MetaFormeting(data);
@@ -19,6 +19,10 @@ export default function UserProfile({ data,clinicianStaff }) {
         allData:clinicianStaff
       },
     });
+    if(location.pathname==="/cliniciandetails"){
+    handleClickOpenRequestPopUp()
+
+    }
 
   }
   return (
