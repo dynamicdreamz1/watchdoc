@@ -215,7 +215,7 @@ const [pendingPatientsData]=useState([
           <Header setOpen={setOpen}/>
           <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]}/>
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
-          <div class="pp-table">
+          <div className="pp-table">
             <div className='table-title'>
               <h4>Patients Pending</h4>
             </div>
