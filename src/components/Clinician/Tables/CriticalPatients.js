@@ -4,13 +4,10 @@ import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
-    const { patientData, handleClickStatus, viewAll,reviewData } = props
+    const { patientData, handleClickStatus, viewAll,reviewData ,mergeAllData} = props
 
-if (reviewData !== undefined) {
 
-    patientData.concat(reviewData);
-
-}
+console.log("11111-mergeAllData",mergeAllData)
     const viewAllData = viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
 
     return (

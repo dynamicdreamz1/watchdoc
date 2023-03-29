@@ -13,7 +13,6 @@ function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
     
-    console.log()
     return (
         <div
             role="tabpanel"
@@ -143,7 +142,10 @@ export default function CriticalPatientsAlertTableTabs() {
         }
     ]
     )
-
+         let finalData=[];
+    if(reviewData !== undefined){
+        finalData=[...patientData,...reviewData]
+    }
     const handleClickReview = (data) => {
         const filterData = patientData?.filter((el) => el?.id === data?.id)
         const finalData = patientData?.filter((el) => el?.id !== data?.id)
@@ -186,7 +188,7 @@ export default function CriticalPatientsAlertTableTabs() {
                     <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
                 </TabPanel>
                 <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={patientData} reviewData={reviewData}  handleClickStatus={handleClickUnReview} viewAll={viewAll} />
+                    <CriticalPatients patientData={patientData} reviewData={reviewData} mergeAllData={finalData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
                 </TabPanel>
             </Box>
         </>
