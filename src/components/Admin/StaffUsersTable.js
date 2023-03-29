@@ -28,7 +28,7 @@ export default function StaffUsersTable({setOpen,open}) {
                 {
                     "id": 207,
                     "meta_key": "image",
-                    "meta_value": "https://this-person-does-not-exist.com/img/avatar-119faca67dffe07e00541b8ebebc92d4.jpg"
+                    "meta_value": "https://this-person-does-not-exist.com/img/avatar-113bb62e332b6a5fa378c77f9a48daaf.jpg"
                 },
                 {
                     "id": 211,
@@ -145,7 +145,7 @@ export default function StaffUsersTable({setOpen,open}) {
                 {
                     "id": 207,
                     "meta_key": "image",
-                    "meta_value": "https://this-person-does-not-exist.com/img/avatar-119faca67dffe07e00541b8ebebc92d4.jpg"
+                    "meta_value": "https://this-person-does-not-exist.com/img/avatar-116a2ef95b9c07c9899b843319d7ae05.jpg"
                 },
                 {
                     "id": 211,
