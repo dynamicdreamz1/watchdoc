@@ -4,16 +4,13 @@ import React, {useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
-import * as Yup from "yup";
-import { useTranslation } from 'react-i18next';
 import { MetaFormeting } from '../../Utility/functions';
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
-    const { t } = useTranslation()
+export default function ClinicianDetailEditProfile({ profileBarData,setOpenProfile }) {
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-    const [addNewStaff, setAddNewStaff] = useState({
+    const [addNewStaff] = useState({
         "title": "Dr",
         "firstname": profileBarData?.firstname,
         "lastname": profileBarData?.lastname,
@@ -89,7 +86,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
 
     const handleSubmitForm = (data) => {
         
-        setOpen(false)
+        setOpenProfile(false)
 
 
 

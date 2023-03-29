@@ -10,12 +10,11 @@ const ClinicianDetails = () => {
   const location = useLocation();
   const { clinicianData ,allData} = location.state;
   const [open, setOpen] = useState(false);
-  const [reviewData, setReviewData] = useState([])
   const [viewAll] = useState(true)
  
   const profileBarData=allData?.filter((el)=>el?.id===clinicianData.id)
 
-    const [patientData, setPatientData] = useState([
+    const [patientData] = useState([
         {
             "id": 1,
             "name": "Randerson, Michael",
@@ -102,7 +101,7 @@ const ClinicianDetails = () => {
         }
     ]
     )
-const [pendingPatientsData,setPendingPatientData]=useState([
+const [pendingPatientsData]=useState([
    {
   "id": 1,
   "name": "Ivan",
@@ -200,13 +199,13 @@ const [pendingPatientsData,setPendingPatientData]=useState([
         // setReviewData(mulitReviewData)
     }
 
-    const handleClickUnReview = (data) => {
-        const filterData = reviewData?.filter((el) => el?.id !== data?.id)
-        const tempData = [{ ...data, "status": "UnReviewed" }]
-        setPatientData(patientData.concat(tempData))
-        setReviewData(filterData)
+    // const handleClickUnReview = (data) => {
+    //     const filterData = reviewData?.filter((el) => el?.id !== data?.id)
+    //     const tempData = [{ ...data, "status": "UnReviewed" }]
+    //     setPatientData(patientData.concat(tempData))
+    //     setReviewData(filterData)
 
-    }
+    // }
     
   return (
     <React.Fragment>

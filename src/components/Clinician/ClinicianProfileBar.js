@@ -3,10 +3,13 @@ import React from 'react'
 import PhoneNumber from '../common/PhoneNumber'
 import UserProfile from '../common/UserProfile'
 import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
+import ClinicianRequest from '../Admin/ClinicianRequest'
 
 export default function ClinicianProfileBar({profileBarData}) {
 
   const [open, setOpen] = React.useState(false);
+  const [openRequest, setOpenRequest] = React.useState(false);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -14,13 +17,25 @@ export default function ClinicianProfileBar({profileBarData}) {
 
   const handleClose = () => {
     setOpen(false);
+    setOpenRequest(false)
   };
+  const handleClickOpenRequestPopUp=()=>{
+    setOpenRequest(true)
+  }
 
   return (
     <>
         <div className='clinician-profile-tab'>
             <div className='left-block'>
-                <UserProfile data={profileBarData}/>
+                <UserProfile data={profileBarData} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}/>
+                <Dialog
+                  open={openRequest}
+                  onClose={handleClose}
+                  aria-labelledby="clinician-profile-dialog"
+                  aria-describedby="clinician-profile-dialog"
+                >
+                  <ClinicianRequest profileBarData={profileBarData} setOpen={setOpen}/>
+                </Dialog>
             </div>
             <div className='right-block d-flex align-items-center'>
                 <PhoneNumber number={profileBarData?.contact_number}/>
