@@ -43,7 +43,7 @@ export default function PatientEntry() {
                     setEmail("")
                     navigate(`/verification/${encodedemail}`, {
                         state: {
-                          id: response?.data?.verification_code,
+                          id: response?.data?.data?.verification_code,
                           emailId: encodedemail,
                         },
                       });

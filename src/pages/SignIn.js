@@ -21,7 +21,6 @@ const SignIn = () => {
       });
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-    const [code,setCode]=useState()
 
     useEffect(()=>{
         navigate("/signin")
@@ -53,7 +52,7 @@ const SignIn = () => {
                     setEmail("")
                     navigate(`/twofactoreverification/${encodedemail}`, {
                         state: {
-                          id: response?.data?.verification_code,
+                          id: response?.data?.data?.verification_code,
                           emailId: encodedemail,
                         },
                       });
