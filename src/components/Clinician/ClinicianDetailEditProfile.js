@@ -107,7 +107,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpenProfi
                 <>
                     <div className='my-profile-form'>
                         <div className='dialog-title'>
-                            <h2>Add Clinician</h2>
+                            <h2>Clinician Profile</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>

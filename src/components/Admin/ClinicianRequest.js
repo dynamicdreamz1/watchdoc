@@ -11,6 +11,11 @@ export default function ClinicianRequest() {
     };
   return (
     <>
+    <div className='my-profile-form clinician-request-form'>
+        <div className='dialog-title'>
+            <h2>Review Clinician Request</h2>
+            <p>The below clinician has completed a WatchDoc profile registration. Please review their registration. They will only be able to access WatchDoc after you have approved their registration.</p>
+        </div>
         <form autoComplete="off">
             <div className='input-block'>
                 <div className='inputs-wrapper'>
@@ -57,6 +62,11 @@ export default function ClinicianRequest() {
                 </div>
             </div>
         </form>
+        <div className='request-actions'>
+            <button type='button' className='btn reject'>Reject</button>
+            <button type='button' className='btn approve'>Approve</button>
+        </div>
+    </div>
     </>
   )
 }
