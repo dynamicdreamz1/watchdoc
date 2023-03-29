@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 
 export default function AddStaffUser({ staffUser, setOpen}) {
     const { t } = useTranslation()
-    const [showPassword,setShowPassword]=useState(false)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
@@ -210,7 +209,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                             </div>
                             <div className='input-block'>
                                 <label>Password</label>
-                                <input type={showPassword ? "text" : "password"}  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
+                                <input type="password"  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
                                 {/* <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
                                     {showPassword?
                                     <RemoveRedEyeOutlinedIcon/>:
