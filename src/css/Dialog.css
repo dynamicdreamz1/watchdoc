@@ -95,19 +95,30 @@
 .high-heart-rate .radios-wrapper .radio-item {
     position: relative;
 }
-.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper {
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper,
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper {
     max-width: 724px;
+}
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .dialog-title h2 {
+    margin-bottom: 32px;
+}
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .dialog-title p {
+    font-size: 18px;
+    line-height: 22px;
 }
 .add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .input-block.update-profile {
     margin-bottom: 35px;
 }
-.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .input-block {
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .input-block,
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .input-block {
     margin-bottom: 22px;
 }
-.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper,
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
     grid-template-columns: 16% auto auto;
 }
-.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .country-code .inputs-wrapper {
+.add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .country-code .inputs-wrapper,
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
     grid-template-columns: 20% 40%;
 }
 .add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .submit-block button {
@@ -131,4 +142,18 @@
 .clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .submit-block button[type="submit"] {
     max-width: 156px;
     margin-top: 5px;
+}
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .dialog-title h2 {
+    margin-bottom: 32px;
+}
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .dialog-title p {
+    font-size: 18px;
+    line-height: 22px;
+}
+.clinician-request-form .request-actions {
+    display: flex;
+    column-gap: 44px;
+}
+.clinician-request-form .request-actions .btn.reject {
+    background-color: #8D8D8D;
 }
