@@ -4,6 +4,10 @@ import { getCurrentUserData } from '../../../services/UserService';
 export default function ChangePassword() {
     const userData = getCurrentUserData();
     const {email}=userData;
+
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+    }
   return (
     <>
         <div className='change-password-form'>
@@ -25,7 +29,7 @@ export default function ChangePassword() {
                     <input type="password" name='confirm-password' placeholder='Confirm your new password'></input>
                 </div>
                 <div className='submit-block'>
-                    <button type="submit">Save</button>
+                    <button type="submit" onClick={handleSubmit}>Save</button>
                 </div>
             </form>
         </div>
