@@ -5,7 +5,7 @@ import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { StoreCookie } from '../Utility/sessionStore'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import { UserContext } from '../Store/Context'
 import { updateToken } from '../Utility/functions'
 
@@ -20,7 +20,6 @@ const VerificationEmail = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
-
     // const { emailId } = useParams();
 
     const { t } = useTranslation();
