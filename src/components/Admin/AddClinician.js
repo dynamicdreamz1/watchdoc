@@ -18,13 +18,14 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         "lastname": "",
         "email": "",
         "number": "",
+        "practicename":"",
         "practiceaddress": "",
+        "password":"",
         "userprofile": "",
-        "countrycode": "",
-        "connectedpatients": "",
-        "pendingpatients": ""
+        "countrycode":""
+        
     })
-
+        
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
@@ -34,23 +35,27 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         userprofile: Yup.string(),
         countrycode: Yup.string(),
         firstname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
         lastname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        email: Yup.string().required("Email Is Required")
+            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        email: Yup.string().required("This field is required*")
+            // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-     
+        
+        practicename :Yup.string()
+        .required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
         practiceaddress: Yup.string().required("This field is required*"),
+        password:Yup.string()
+        .required("This field is required*")
+        .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+            "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        ),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
             .max(10, t('SignUpPage.validation.mobile.long')),
-        connectedpatients : Yup.string()
-        .required('This field is required*'),
-
-        pendingpatients: Yup.string()
-        .required('This field is required*'),
-        
         
     });
 
@@ -159,7 +164,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
                 <>
                     <div className='my-profile-form'>
                         <div className='dialog-title'>
-                            <h2>Add Staff User</h2>
+                            <h2>Add Clinician</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
@@ -197,36 +202,36 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
                             
-                            {/* <div className='input-block'>
+                            <div className='input-block'>
                                 <label>Practice name</label>
                                 <input type="text" name='practicename' value={props?.values?.practicename} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
-                            </div> */}
+                            </div>
                             <div className='input-block'>
                                 <label>Practice Address</label>
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
-                            {/* <div className='input-block'>
+                            <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
-                            </div> */}
+                            </div>
 
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Connected Patients</label>
                                 <input type="number" name='connectedpatients' value={props?.values?.connectedpatients} onChange={props?.handleChange} />
                                 <span className="error"> {props.errors.connectedpatients ? props.errors.connectedpatients : ""}</span>
-                            </div>
+                            </div> */}
 
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Pending Patients</label>
                                 <input type="number" name='pendingpatients' value={props?.values?.pendingpatients} onChange={props?.handleChange} />
                                 <span className="error"> {props.errors.pendingpatients ? props.errors.pendingpatients : ""}</span>
-                            </div>
+                            </div> */}
 
                             <div className='input-block country-code'>
-                                <label id="country-code">Enter new phone number</label>
+                                <label id="country-code">Enter phone number</label>
                                 <div className='inputs-wrapper'>
                                     <Select
                                         labelId="country-code"
@@ -244,7 +249,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
                                 </div>
                             </div>
                             <div className='submit-block'>
-                                <button type="submit">Add Staff User</button>
+                                <button type="submit">Add Clinician</button>
                             </div>
                         </form>
                     </div>
