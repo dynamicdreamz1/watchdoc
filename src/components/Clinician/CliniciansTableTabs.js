@@ -498,7 +498,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
         <>
         <Box sx={{ width: '100%' }}>
             <Box className="table-header-block">
-                <div class="left-block">
+                <div className="left-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
                         <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
                         <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />

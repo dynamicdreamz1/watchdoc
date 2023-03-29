@@ -6,12 +6,12 @@ import Email from './Email'
 import PendingPatients from './PendingPatients'
 import Phone from './Phone'
 
-export default function ClinicianInfoRow({value,data}) {
+export default function ClinicianInfoRow({value,data,clinicianStaff}) {
 
   return (
     <>
     <TableRow>
-        <TableCell><ClinicianInfo data={data}/></TableCell>
+        <TableCell><ClinicianInfo data={data} clinicianStaff={clinicianStaff}/></TableCell>
         <TableCell><Email email={data?.email}/></TableCell>
         <TableCell><Phone data={data}/></TableCell>
         {value === 0 ? "" :

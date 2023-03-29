@@ -107,7 +107,7 @@ export default function CliniciansRequestsTable(props) {
 
 
                             {currentRecords?.length > 0 && currentRecords?.map((element) => (
-                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} /></React.Fragment>
+                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff}/></React.Fragment>
                             ))}
 
 

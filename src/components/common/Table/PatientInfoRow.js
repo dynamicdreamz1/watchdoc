@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
@@ -12,11 +12,21 @@ import Wt from './Wt'
 
 export default function PatientInfoRow(props) {
   const navigate=useNavigate();
+  const location=useLocation();
   const {el,handleClickStatus}=props;
+  // const navigateRoute=location.pathname==="/dashboard" ||location.pathname==="/patients" ?"/patientdetails":location.pathname==="/cliniciandetails"?"":""
+  const handleClicknavigate=()=>{
+    if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
+      navigate("/patientdetails")
+    }
+    
+
+
+  }
   return (
     <>
     <TableRow >
-        <TableCell onClick={()=>{navigate('/patientdetails')}}><PatientInfo el={el}/></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell>
         <TableCell><Bp el={el}/></TableCell>
         <TableCell><Hr el={el}/></TableCell>
         <TableCell><Bo el={el}/></TableCell>

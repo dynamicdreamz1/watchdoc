@@ -6,7 +6,7 @@ export default function Wt(props) {
     <>
         <div className='wt table-data'>
             <span className='digit'>{props?.el?.wt}</span>
-            <DateTime/>
+            <DateTime props={props?.el}/>
         </div>
     </>
   )

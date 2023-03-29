@@ -133,7 +133,7 @@ console.log("11111-id",id)
                         <div className='input-block'>
                             <input type="text" name='code' placeholder={t('TwoFactorPage.form.ph')} value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
-                        {error?<span class="error-message">{error}</span>:null}
+                        {error?<span className="error-message">{error}</span>:null}
                         <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}> {t('TwoFactorPage.form.button1')} &nbsp;</button>
                                 <span className="text">{time}</span>

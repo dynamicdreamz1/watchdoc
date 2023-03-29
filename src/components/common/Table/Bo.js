@@ -6,7 +6,7 @@ export default function Bo(props) {
     <>
     <div className='bo table-data'>
         <span className='digit'>{props?.el?.bo}</span>
-        <DateTime/>
+        <DateTime props={props?.el}/>
     </div>
     </>
   )
