@@ -107,7 +107,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-113bb62e332b6a5fa378c77f9a48daaf.jpg"
               },
               {
                   "id": 209,
@@ -143,7 +143,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-119faca67dffe07e00541b8ebebc92d4.jpg"
+
               },
               {
                   "id": 209,
@@ -179,7 +180,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-116a2ef95b9c07c9899b843319d7ae05.jpg"
+
               },
               {
                   "id": 209,
@@ -251,7 +253,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-113bb62e332b6a5fa378c77f9a48daaf.jpg"
               },
               {
                   "id": 209,
@@ -287,7 +289,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-119faca67dffe07e00541b8ebebc92d4.jpg"
               },
               {
                   "id": 209,
@@ -323,7 +325,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-116a2ef95b9c07c9899b843319d7ae05.jpg"
               },
               {
                   "id": 209,
@@ -395,7 +397,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               {
                   "id": 201,
                   "meta_key": "image",
-                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-114078b498ae9cf56d36202949653ae7.jpg"
+                  "meta_value": "https://this-person-does-not-exist.com/img/avatar-113bb62e332b6a5fa378c77f9a48daaf.jpg"
               },
               {
                   "id": 209,
@@ -498,7 +500,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
         <>
         <Box sx={{ width: '100%' }}>
             <Box className="table-header-block">
-                <div class="left-block">
+                <div className="left-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
                         <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
                         <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
