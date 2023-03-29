@@ -1,6 +1,14 @@
-import React from 'react'
+import { MenuItem, Select } from '@mui/material'
+import React,{useState} from 'react'
+import { allTimeZone } from '../../Utility/countryCode';
+
 
 export default function ClinicianRequest() {
+    const [countryCode, setcountryCode] = useState('+91');
+
+    const handleChange = (event) => {
+        setcountryCode(event.target.value);
+    };
   return (
     <>
     <div className='my-profile-form clinician-request-form'>
@@ -40,7 +48,16 @@ export default function ClinicianRequest() {
             <div className='input-block country-code'>
                 <label id="country-code">Mobile number</label>
                 <div className='inputs-wrapper'>
-                    <input type="text" />
+                <Select
+                                        labelId="country-code"
+                                        value={countryCode}
+                                        label="Age"
+                                        onChange={handleChange}
+                                    >
+                                        {allTimeZone?.map((data, i) => (
+                                            <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
+                                        ))}
+                                    </Select>
                     <input type="text" name="number" defaultValue="451514497" />
                 </div>
             </div>

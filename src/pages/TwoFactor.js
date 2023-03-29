@@ -20,7 +20,6 @@ export default function TwoFactor() {
     const [error, setError] = useState('')
     // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
-console.log("11111-id",id)
     let navigate = useNavigate()
     const [time, setTime] = useState(60)
 
