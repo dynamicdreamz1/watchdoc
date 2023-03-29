@@ -2,6 +2,7 @@ import { Button, Dialog } from '@mui/material'
 import React from 'react'
 import PhoneNumber from '../common/PhoneNumber'
 import UserProfile from '../common/UserProfile'
+import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
 
 export default function ClinicianProfileBar({profileBarData}) {
 
@@ -30,7 +31,7 @@ export default function ClinicianProfileBar({profileBarData}) {
                   aria-labelledby="clinician-profile-dialog"
                   aria-describedby="clinician-profile-dialog"
                 >
-
+                  <ClinicianDetailEditProfile profileBarData={profileBarData} setOpen={setOpen}/>
                 </Dialog>
             </div>
         </div>
