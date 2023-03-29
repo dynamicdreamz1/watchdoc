@@ -1,3 +1,4 @@
+
 import { MenuItem, Select } from '@mui/material'
 import React, {useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
@@ -5,59 +6,50 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
+import { MetaFormeting } from '../../Utility/functions';
 
-export default function AddClinician({ clinicianStaff, setOpen }) {
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
     const { t } = useTranslation()
-
+    const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
-        "id": clinicianStaff?.length + 1,
         "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practicename":"",
-        "practiceaddress": "",
-        "password":"",
+        "firstname": profileBarData?.firstname,
+        "lastname": profileBarData?.lastname,
+        "email": profileBarData?.email,
+        "number": profileBarData?.contact_number,
+        "practicename":profileBarData?.practicename,
+        "practiceaddress": metaData?.address,
         "userprofile": "",
         "countrycode":""
         
     })
-        
-
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    const LoginSchema = Yup.object({
-        id: Yup.string(),
-        title: Yup.string(),
+    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    // const LoginSchema = Yup.object({
+    //     id: Yup.string(),
+    //     title: Yup.string(),
        
-        userprofile: Yup.string(),
-        countrycode: Yup.string(),
-        firstname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        lastname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        email: Yup.string().required("This field is required*")
-            // eslint-disable-next-line no-useless-escape
-            .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+    //     userprofile: Yup.string(),
+    //     countrycode: Yup.string(),
+    //     firstname: Yup.string().required("This field is required*")
+    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     lastname: Yup.string().required("This field is required*")
+    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     email: Yup.string().required("This field is required*")
+    //         // eslint-disable-next-line no-useless-escape
+    //         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         
-        practicename :Yup.string()
-        .required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        practiceaddress: Yup.string().required("This field is required*"),
-        password:Yup.string()
-        .required("This field is required*")
-        .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        ),
-        number: Yup.string().required(t('SignUpPage.validation.common1'))
-            .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
-            .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
+    //     practicename :Yup.string()
+    //     .required("This field is required*")
+    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     practiceaddress: Yup.string().required("This field is required*"),
+    //     number: Yup.string().required(t('SignUpPage.validation.common1'))
+    //         .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
+    //         .min(10, t('SignUpPage.validation.mobile.short'))
+    //         .max(10, t('SignUpPage.validation.mobile.long')),
         
-    });
+    // });
 
 
 
@@ -96,56 +88,8 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
 
 
     const handleSubmitForm = (data) => {
-        const finalData = {
-            "id": data?.id,
-            "name": data?.firstname,
-            "email": data.email,
-            "phone": `${countryCode} ${data?.number}`,
-            "lastlogin": data?.date,
-            "firstname":data?.firstname,
-            "lastname":data?.lastname,
-            "practicename":data?.practicename,
-            "meta_data": [
-                {
-                    "id": 11,
-                    "meta_key": "full_name",
-                    "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
-                },
-                {
-                    "id": 13,
-                    "meta_key": "zip",
-                    "meta_value": data?.zip
-                },
-                {
-                    "id": 207,
-                    "meta_key": "image",
-                    "meta_value": imageUrl
-                },
-                {
-                    "id": 211,
-                    "meta_key": "address",
-                    "meta_value": data?.practiceaddress
-                }
-            ]
-
-        }
-        clinicianStaff.push(finalData)
+        
         setOpen(false)
-        setAddNewStaff({
-            "id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "number": "",
-            "lastlogin": "",
-            "practicename": "",
-            "zip": "",
-            "practiceaddress": "",
-            "password": "",
-            "userprofile": ""
-
-        })
-
 
 
 
@@ -159,7 +103,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
-            validationSchema={LoginSchema}
+            validationSchema=""
             onSubmit={(values) => { handleSubmitForm(values) }}
         >
             {(props) => (
@@ -214,11 +158,11 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
-                            </div>
+                            </div> */}
 
                             {/* <div className='input-block'>
                                 <label>Connected Patients</label>
@@ -251,7 +195,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
                                 </div>
                             </div>
                             <div className='submit-block'>
-                                <button type="submit">Add Clinician</button>
+                                <button type="submit">Update Clinician</button>
                             </div>
                         </form>
                     </div>

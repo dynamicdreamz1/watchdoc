@@ -57,6 +57,9 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Randerson",
+          "lastname":"Michael",
+          "practicename":"Randerson",
           "meta_data": [
               {
                   "id": 6,
@@ -93,6 +96,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr johnson",
+          "lastname":"Jony",
+          "practicename":"johnson",
+
           "meta_data": [
               {
                   "id": 6,
@@ -129,6 +136,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr loosy",
+          "lastname":"Moosy",
+          "practicename":"Lassy",
+
           "meta_data": [
               {
                   "id": 6,
@@ -166,6 +177,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Georgia",
+          "lastname":"Alena",
+          "practicename":"Parker",
+
           "meta_data": [
               {
                   "id": 6,
@@ -203,6 +218,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Perry",
+          "lastname":"Alex",
+          "practicename":"Din",
+
           "meta_data": [
               {
                   "id": 6,
@@ -239,11 +258,15 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Gayle",
+          "lastname":"Chris",
+          "practicename":"Ambros",
+
           "meta_data": [
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr johnson"
+                  "meta_value": "Dr Gayle Chris"
               },
               {
                   "id": 8,
@@ -275,6 +298,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Randerson",
+          "lastname":"Michael",
+          "practicename":"Ferade",
+
           "meta_data": [
               {
                   "id": 6,
@@ -311,11 +338,15 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Dj",
+          "lastname":"Bravo",
+          "practicename":"Lithium",
+
           "meta_data": [
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr loosy"
+                  "meta_value": "Dr Dj Bravo"
               },
               {
                   "id": 8,
@@ -347,11 +378,15 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr David",
+          "lastname":"Warner",
+          "practicename":"Albert",
+
           "meta_data": [
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr Georgia"
+                  "meta_value": "Dr David Warner"
               },
               {
                   "id": 8,
@@ -383,11 +418,15 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Maxwell",
+          "lastname":"Glenn",
+          "practicename":"Thomas",
+
           "meta_data": [
               {
                   "id": 6,
                   "meta_key": "full_name",
-                  "meta_value": "Dr Perry"
+                  "meta_value": "Dr Maxwell Glenn"
               },
               {
                   "id": 8,
@@ -419,6 +458,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-27T06:09:21.000000Z",
           "updated_at": "2023-02-27T06:09:21.000000Z",
+          "firstname":"Dr Arpit",
+          "lastname":"Patel",
+          "practicename":"Alva",
+
           "meta_data": [
               {
                   "id": 6,
@@ -455,6 +498,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
           "terra_user_id": null,
           "created_at": "2023-02-28T00:05:29.000000Z",
           "updated_at": "2023-03-24T10:55:51.000000Z",
+          "firstname":"Dr jevin",
+          "lastname":"Patel",
+          "practicename":"Cruise",
+
          
           "meta_data": [
               {
