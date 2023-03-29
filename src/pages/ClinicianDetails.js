@@ -101,7 +101,7 @@ const ClinicianDetails = () => {
         }
     ]
     )
-const [pendingPatientsData,setPendingPatientData]=useState([
+const [pendingPatientsData]=useState([
    {
   "id": 1,
   "name": "Ivan",
@@ -199,13 +199,13 @@ const [pendingPatientsData,setPendingPatientData]=useState([
         // setReviewData(mulitReviewData)
     }
 
-    const handleClickUnReview = (data) => {
-        const filterData = reviewData?.filter((el) => el?.id !== data?.id)
-        const tempData = [{ ...data, "status": "UnReviewed" }]
-        setPatientData(patientData.concat(tempData))
-        setReviewData(filterData)
+    // const handleClickUnReview = (data) => {
+        // const filterData = reviewData?.filter((el) => el?.id !== data?.id)
+        // const tempData = [{ ...data, "status": "UnReviewed" }]
+        // setPatientData(patientData.concat(tempData))
+        // setReviewData(filterData)
 
-    }
+    // }
     
   return (
     <React.Fragment>
