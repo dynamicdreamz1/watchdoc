@@ -16,7 +16,7 @@ export default function UserProfile({ data }) {
               <div className='user-avtar' onClick={()=>navigate(navigatePath)}>
                 <Avatar className='user-profile-avtar' alt={`${full_name} avtar`} src={image} />
               </div>
-              <div className='user-info'>
+              <div className='user-info' onClick={()=>navigate(navigatePath)}>
                 <span className="fname">{full_name}</span>
                 <span className="position">{address}</span>
               </div>
