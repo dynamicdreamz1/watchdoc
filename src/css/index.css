@@ -556,6 +556,9 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: #fff;
 }
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTable-root .MuiTableCell-head {
+  font-weight: 400;
+}
 body .MuiPaper-root.MuiTableContainer-root.table-without-space table {
   border-spacing: 0;
   background-color: #fff;
