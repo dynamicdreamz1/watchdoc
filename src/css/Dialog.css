@@ -113,3 +113,22 @@
 .add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .submit-block button {
     max-width: 156px;
 }
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper {
+    max-width: 724px;
+}
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .input-block.update-profile {
+    margin-bottom: 32px;
+}
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .input-block {
+    margin-bottom: 17px;
+}
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
+    grid-template-columns: 15% auto auto;
+}
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .input-block.country-code .inputs-wrapper {
+    grid-template-columns: 18% 30%;
+}
+.clinician-profile-dialog .MuiPaper-root.MuiDialog-paper .submit-block button[type="submit"] {
+    max-width: 156px;
+    margin-top: 5px;
+}

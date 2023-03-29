@@ -30,7 +30,9 @@ export default function ClinicianProfileBar({profileBarData}) {
                   onClose={handleClose}
                   aria-labelledby="clinician-profile-dialog"
                   aria-describedby="clinician-profile-dialog"
+                  className='clinician-profile-dialog'
                 >
+                  <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
                   <ClinicianDetailEditProfile profileBarData={profileBarData} setOpen={setOpen}/>
                 </Dialog>
             </div>
