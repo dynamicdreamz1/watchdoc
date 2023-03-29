@@ -12,8 +12,6 @@ export default function CliniciansRequestsTable(props) {
 
     const [data] = useState(clinicianStaff)
     
-    
-
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
