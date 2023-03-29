@@ -4,8 +4,15 @@ import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
-    const { patientData, handleClickStatus, viewAll } = props
+    const { patientData, handleClickStatus, viewAll,reviewData } = props
+
+if (reviewData !== undefined) {
+
+    patientData.concat(reviewData);
+
+}
     const viewAllData = viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
+
     return (
         <>
             <TableContainer component={Paper} className="red-alert-table">

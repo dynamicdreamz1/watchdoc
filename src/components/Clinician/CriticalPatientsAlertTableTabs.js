@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { Box, Tab, Tabs } from '@mui/material';
 import React from 'react'
 import PropTypes from 'prop-types';
@@ -5,10 +6,14 @@ import Typography from '@mui/material/Typography';
 import TableShorting from './TableShorting';
 import CriticalPatients from './Tables/CriticalPatients';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-
+  
+    
+    console.log()
     return (
         <div
             role="tabpanel"
@@ -40,6 +45,7 @@ function a11yProps(index) {
 }
 
 export default function CriticalPatientsAlertTableTabs() {
+    const location=useLocation();
 
     const [value, setValue] = React.useState(0);
     const [viewAll, setViewAll] = useState(false)
@@ -163,8 +169,11 @@ export default function CriticalPatientsAlertTableTabs() {
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                        <Tab label="Critical Alerts - Unreviewed (12)" {...a11yProps(0)} />
-                        <Tab label="Critical Alerts - Reviewed (6)" {...a11yProps(1)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${reviewData.length})`} {...a11yProps(1)} />
+                       {location?.pathname==="/patients" ? 
+                        <Tab label={`View All Patients (${patientData.length})`} {...a11yProps(2)} /> 
+                        : "" }
                     </Tabs>
                     <TableShorting patientData={patientData} setPatientData={setPatientData} 
                     reviewData={reviewData} setReviewData={setReviewData}
@@ -175,6 +184,9 @@ export default function CriticalPatientsAlertTableTabs() {
                 </TabPanel>
                 <TabPanel value={value} index={1} className="table-nav-tabs-content">
                     <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
+                </TabPanel>
+                <TabPanel value={value} index={2} className="table-nav-tabs-content">
+                    <CriticalPatients patientData={patientData} reviewData={reviewData}  handleClickStatus={handleClickUnReview} viewAll={viewAll} />
                 </TabPanel>
             </Box>
         </>
