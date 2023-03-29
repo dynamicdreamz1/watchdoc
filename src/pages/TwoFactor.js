@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import { RegisterUser, VerifyEmail } from '../services/UserService';
 import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
