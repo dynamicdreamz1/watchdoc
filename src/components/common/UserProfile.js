@@ -13,7 +13,6 @@ export default function UserProfile({ data,clinicianStaff }) {
       navigate("");
     }
     if(location?.pathname==="/clinicians")
-    // navigate('/cliniciandetails',)
     navigate(`/cliniciandetails`, {
       state: {
         clinicianData: data,
