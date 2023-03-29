@@ -479,11 +479,6 @@ export default function CliniciansTableTabs({open,setOpen}) {
       }
   ])
 
-    // const handleChange = (event, newValue) => {
-    //     setValue(newValue);
-    //     setCurrentPage(1)
-
-    // };
     const handleClose = () => {
       setOpen(false);
   };
@@ -493,10 +488,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
     setCurrentPage(1)
 
   }
-    const [perPage, setPerPage] = React.useState('');
 
-    const handleChange = (event) => {
-        setPerPage(event.target.value);
+    const handleChange = (event,newValue) => {
+        setValue(newValue);
+         setCurrentPage(1)
     };
     
     return (
@@ -508,8 +503,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
                   <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                   <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
               </Tabs>
-              {value===2 ? 
-              <div className='table'>
+              {/* {value===2 ? 
+              <div className='table'> */}
               {/* <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
                 <option value="1" >1</option>
                 <option value="2" >2</option>
@@ -525,7 +520,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
             <Select 
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={perPage}
+                value={recordsPerPage}
                 label="PerPage"
                 onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
             >
@@ -540,8 +535,8 @@ export default function CliniciansTableTabs({open,setOpen}) {
                 <MenuItem value={9}>9</MenuItem>
                 <MenuItem value={10}>10</MenuItem>
             </Select>
-            </div> 
-            : "" }
+            {/* </div>  */}
+            {/* : "" } */}
               <TableShorting/>
           </Box>
           <Dialog
