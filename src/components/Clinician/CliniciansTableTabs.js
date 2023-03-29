@@ -1,4 +1,4 @@
-import { Box, Dialog, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Dialog, MenuItem, Select, Tab, Tabs, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import TableShorting from './TableShorting';
@@ -479,11 +479,11 @@ export default function CliniciansTableTabs({open,setOpen}) {
       }
   ])
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-        setCurrentPage(1)
+    // const handleChange = (event, newValue) => {
+    //     setValue(newValue);
+    //     setCurrentPage(1)
 
-    };
+    // };
     const handleClose = () => {
       setOpen(false);
   };
@@ -493,6 +493,11 @@ export default function CliniciansTableTabs({open,setOpen}) {
     setCurrentPage(1)
 
   }
+    const [perPage, setPerPage] = React.useState('');
+
+    const handleChange = (event) => {
+        setPerPage(event.target.value);
+    };
     
     return (
         <>
@@ -505,7 +510,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
               </Tabs>
               {value===2 ? 
               <div className='table'>
-              <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
+              {/* <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
                 <option value="1" >1</option>
                 <option value="2" >2</option>
                 <option value="3"  >3</option>
@@ -516,7 +521,25 @@ export default function CliniciansTableTabs({open,setOpen}) {
                 <option value="8" >8</option>
                 <option value="9"  >9</option>
                 <option value="10" >10</option>
-            </select>
+            </select> */}
+            <Select 
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={perPage}
+                label="PerPage"
+                onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
+            >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+            </Select>
             </div> 
             : "" }
               <TableShorting/>
