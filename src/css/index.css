@@ -731,6 +731,7 @@ body .MuiPaper-root.clinicians-table .MuiTableCell-root.status {
 .user-profile {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .user-profile .user-info span.position,
 .patient-profile-bar .patient-info span.position {
@@ -777,6 +778,13 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   font-size: 16px;
   line-height: 20px;
   margin: 0;
+}
+.pp-table .table-title h4 {
+  font-size: 18px;
+  line-height: 22px;
+}
+.pp-table {
+  padding-top: 20px;
 }
 /* Table Tabs */
 .table-nav-tabs button.MuiTab-root {

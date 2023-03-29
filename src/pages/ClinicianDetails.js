@@ -101,7 +101,7 @@ const ClinicianDetails = () => {
         }
     ]
     )
-const [pendingPatientsData]=useState([
+const [pendingPatientsData,setPendingPatientData]=useState([
    {
   "id": 1,
   "name": "Ivan",
@@ -199,13 +199,13 @@ const [pendingPatientsData]=useState([
         // setReviewData(mulitReviewData)
     }
 
-    // const handleClickUnReview = (data) => {
-    //     const filterData = reviewData?.filter((el) => el?.id !== data?.id)
-    //     const tempData = [{ ...data, "status": "UnReviewed" }]
-    //     setPatientData(patientData.concat(tempData))
-    //     setReviewData(filterData)
+    const handleClickUnReview = (data) => {
+        const filterData = reviewData?.filter((el) => el?.id !== data?.id)
+        const tempData = [{ ...data, "status": "UnReviewed" }]
+        setPatientData(patientData.concat(tempData))
+        setReviewData(filterData)
 
-    // }
+    }
     
   return (
     <React.Fragment>
@@ -215,8 +215,12 @@ const [pendingPatientsData]=useState([
           <Header setOpen={setOpen}/>
           <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]}/>
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
-          <span><h4>Patients Pending</h4></span>
-          <CriticalPatients patientData={pendingPatientsData} handleClickStatus={handleClickReview} viewAll={viewAll} />
+          <div class="pp-table">
+            <div className='table-title'>
+              <h4>Patients Pending</h4>
+            </div>
+            <CriticalPatients patientData={pendingPatientsData} handleClickStatus={handleClickReview} viewAll={viewAll} />
+          </div>
         </div>
       </div>
     </React.Fragment>
