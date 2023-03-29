@@ -5,13 +5,11 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function AddStaffUser({ staffUser, setOpen}) {
     const { t } = useTranslation()
     const [showPassword,setShowPassword]=useState(false)
-    const [countryCode, setcountryCode] = useState('');
+    const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
         "id": staffUser.length + 1,
@@ -213,12 +211,12 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                             <div className='input-block'>
                                 <label>Password</label>
                                 <input type={showPassword ? "text" : "password"}  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
-                                <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
+                                {/* <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
                                     {showPassword?
                                     <RemoveRedEyeOutlinedIcon/>:
                                     <VisibilityOffOutlinedIcon/>
 }
-                                </button>
+                                </button> */}
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
                             <div className='input-block country-code'>

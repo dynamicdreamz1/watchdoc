@@ -5,7 +5,7 @@ import { allTimeZone } from '../../../Utility/countryCode';
 
 export default function EditTwoFactor() {
 
-  const [countryCode, setcountryCode] = React.useState('');
+  const [countryCode, setcountryCode] = React.useState('+91');
 
   const handleChange = (event) => {
     setcountryCode(event.target.value);
