@@ -497,48 +497,37 @@ export default function CliniciansTableTabs({open,setOpen}) {
     return (
         <>
         <Box sx={{ width: '100%' }}>
-          <Box className="table-header-block">
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                  <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
-                  <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
-                  <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
-              </Tabs>
-              {/* {value===2 ? 
-              <div className='table'> */}
-              {/* <select onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}>
-                <option value="1" >1</option>
-                <option value="2" >2</option>
-                <option value="3"  >3</option>
-                <option value="4" >4</option>
-                <option value="5"  >5</option>
-                <option value="6" >6</option>
-                <option value="7"  >7</option>
-                <option value="8" >8</option>
-                <option value="9"  >9</option>
-                <option value="10" >10</option>
-            </select> */}
-            <Select 
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={recordsPerPage}
-                label="PerPage"
-                onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
-            >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
-                <MenuItem value={6}>6</MenuItem>
-                <MenuItem value={7}>7</MenuItem>
-                <MenuItem value={8}>8</MenuItem>
-                <MenuItem value={9}>9</MenuItem>
-                <MenuItem value={10}>10</MenuItem>
-            </Select>
-            {/* </div>  */}
-            {/* : "" } */}
-              <TableShorting/>
-          </Box>
+            <Box className="table-header-block">
+                <div class="left-block">
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
+                        <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
+                        <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} />
+                        <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
+                    </Tabs>
+                </div>
+                <div className='right-block'>
+                    <Select 
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={recordsPerPage}
+                        label="PerPage"
+                        onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
+                        className="per-page-select"
+                    >
+                        <MenuItem value={1}>1 per page</MenuItem>
+                        <MenuItem value={2}>2 per page</MenuItem>
+                        <MenuItem value={3}>3 per page</MenuItem>
+                        <MenuItem value={4}>4 per page</MenuItem>
+                        <MenuItem value={5}>5 per page</MenuItem>
+                        <MenuItem value={6}>6 per page</MenuItem>
+                        <MenuItem value={7}>7 per page</MenuItem>
+                        <MenuItem value={8}>8 per page</MenuItem>
+                        <MenuItem value={9}>9 per page</MenuItem>
+                        <MenuItem value={10}>10 per page</MenuItem>
+                    </Select>
+                    <TableShorting/>
+                </div>
+            </Box>
           <Dialog
         open={open}
         onClose={handleClose}

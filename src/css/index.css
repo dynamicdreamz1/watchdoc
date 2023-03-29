@@ -305,6 +305,7 @@ form .input-block .error {
   color: red;
   margin-top: 5px;
   display: block;
+  white-space: nowrap;
 }
 /* Table Pagination */
 .table-pagination {
@@ -636,6 +637,29 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data span.digit,
 body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
+}
+.per-page-select.MuiOutlinedInput-root .MuiSelect-select {
+  background: #FFFFFF;
+  border-radius: 30px;
+  border: 0;
+  box-shadow: none;
+  padding: 10px 92px 10px 25px !important;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #374151;
+  font-size: 14px;
+  line-height: 20px;
+  background-image: url(../../public/images/dropdown-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center right 14px;
+}
+.per-page-select.MuiOutlinedInput-root .MuiSelect-icon {
+  display: none;
+}
+.per-page-select {
+  margin-right: 11px;
+}
+.per-page-select.MuiOutlinedInput-root fieldset {
+  display: none;
 }
 .logout {
   position: absolute;

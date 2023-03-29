@@ -12,7 +12,7 @@ export default function ClinicianProfileBar() {
             </div>
             <div className='right-block d-flex align-items-center'>
                 <PhoneNumber/>
-                <Button variant="contained">Contained</Button>
+                <Button>Profile</Button>
             </div>
         </div>
     </>
