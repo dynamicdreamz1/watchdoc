@@ -2,29 +2,21 @@ import React from 'react'
 import {  Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
+import { useLocation } from 'react-router-dom';
 
 
 export default function CriticalPatients(props) {
+    const location=useLocation();
     const { patientData, viewAll} = props
-    // console.log(location);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const recordsPerPage=2
-    // const indexOfLastRecord = currentPage * recordsPerPage;
-    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    // const currentRecords = patientData.slice(indexOfFirstRecord, indexOfLastRecord);
-    
-    // const nPages = Math.ceil(patientData.length / recordsPerPage)
-
-    // const handleChange = (event, newValue) => {
-    //     setCurrentPage(newValue)
-    // };
-
-    // const handleClick=()=>{
-
-    // }
-
+  
+    let finalDta=[];
+    if(location.pathname==="/patients"){
+        finalDta=[...patientData]
+    }
+    else{
     const viewAllData = viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
-
+        finalDta=[...viewAllData]
+    }
     return (
         <>
             <TableContainer component={Paper} className="red-alert-table">
@@ -41,15 +33,10 @@ export default function CriticalPatients(props) {
                             <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
-                    {viewAllData.length !== 0 && viewAllData?.map((el, I) => {
+                    {finalDta?.length !== 0 && finalDta?.map((el, I) => {
                         return (
                             <TableBody key={I}>
                                 <PatientInfoRow el={el}   />
-                                {/* <PatientInfoRow/>
-                <PatientInfoRow/>
-                <PatientInfoRow/>
-                <PatientInfoRow/>
-                <PatientInfoRow/> */}
                             </TableBody>
 
                         )
