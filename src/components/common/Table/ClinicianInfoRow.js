@@ -28,11 +28,13 @@ export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
         }
 
       </TableRow>
+      {location?.pathname==="/patientdetails" &&
       <FormControlLabel
         control={
           <Checkbox {...label} className={data?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
         label={data?.status === 1 ? <span className='btn_status'> {t('PractitionersCard.buttonOption2')} </span> : t('PractitionersCard.buttonOption1')} />
+}
     </>
   )
 }
