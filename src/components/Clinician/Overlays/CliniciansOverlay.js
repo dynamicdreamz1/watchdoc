@@ -57,6 +57,8 @@ export default function CliniciansOverlay() {
   ]
   )
 
+  console.log(clinicianData?.data?.data?.data)
+  const tempData=clinicianData?.data?.data?.data?.filter((el)=>el.status===1);
   return (
     <>
     <AdminUserContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn,currentPage, setCurrentPage  }}>
@@ -66,8 +68,8 @@ export default function CliniciansOverlay() {
           <p>The following clinicians are connected to this patient.</p>
         </div>
 
-        {clinicianStaff?.length > 0 && clinicianStaff?.map((element) => (
-          <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
+        {tempData?.length > 0 && tempData?.map((element) => (
+          <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={tempData} /></React.Fragment>
         ))}
       
         <button>Connect a Clinician</button>
