@@ -142,10 +142,8 @@ export default function CriticalPatientsAlertTableTabs() {
         }
     ]
     )
-         let finalData=[];
-    if(reviewData !== undefined){
-        finalData=[...patientData,...reviewData]
-    }
+        let  mergeData=[...patientData,...reviewData]
+
     const handleClickReview = (data) => {
         const filterData = patientData?.filter((el) => el?.id === data?.id)
         const finalData = patientData?.filter((el) => el?.id !== data?.id)
@@ -171,10 +169,10 @@ export default function CriticalPatientsAlertTableTabs() {
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                        <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
-                        <Tab label={`Critical Alerts - Unreviewed (${reviewData.length})`} {...a11yProps(1)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${patientData?.length})`}  {...a11yProps(0)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${reviewData?.length})`} {...a11yProps(1)} />
                        {location?.pathname==="/patients" ? 
-                        <Tab label={`View All Patients (${patientData.length})`} {...a11yProps(2)} /> 
+                        <Tab label={`View All Patients (${mergeData?.length})`} {...a11yProps(2)} /> 
                         : "" }
                     </Tabs>
                     <TableShorting patientData={patientData} setPatientData={setPatientData} 
@@ -188,7 +186,7 @@ export default function CriticalPatientsAlertTableTabs() {
                     <CriticalPatients patientData={reviewData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
                 </TabPanel>
                 <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={patientData} reviewData={reviewData} mergeAllData={finalData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
+                    <CriticalPatients patientData={mergeData} handleClickStatus={handleClickUnReview} viewAll={viewAll} />
                 </TabPanel>
             </Box>
         </>
