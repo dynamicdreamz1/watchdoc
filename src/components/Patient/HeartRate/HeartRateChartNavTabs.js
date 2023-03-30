@@ -48,7 +48,8 @@ export default function HeartRateChartNavTabs(Props) {
                 
             </Box>
             <TabPanel value={value} index={0}>
-                {Heartrate ? <HeartRateChart  ChangeDate={ChangeDate} HeartData = {Heartrate}/>: <ChartSkeleton /> }
+                {/* temp commit */}
+                {/* {Heartrate ? <HeartRateChart  ChangeDate={ChangeDate} HeartData = {Heartrate}/>: <ChartSkeleton /> } */}
             </TabPanel>
            
         </Box>

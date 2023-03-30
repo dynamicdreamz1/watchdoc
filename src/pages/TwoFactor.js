@@ -12,7 +12,7 @@ export default function TwoFactor() {
 
     const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
-    const { id, emailId } = location.state;
+    const {emailId } = location.state;
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
 

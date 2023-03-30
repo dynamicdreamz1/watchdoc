@@ -16,7 +16,7 @@ const VerificationEmail = () => {
 
     const [code, setCode] = useState('')
     const location = useLocation();
-    const { id, emailId } = location.state;
+    const {emailId } = location.state;
     const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
