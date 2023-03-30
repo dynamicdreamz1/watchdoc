@@ -542,7 +542,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
         setValue(newValue);
          setCurrentPage(1)
     };
-    
+    console.log("111-value",value)
     return (
         <>
         <Box sx={{ width: '100%' }}>
@@ -554,7 +554,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                     </Tabs>
                 </div>
-                <div className='right-block'>
+               { value===2 && <div className='right-block'>
                     <Select 
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -574,8 +574,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <MenuItem value={9}>9 per page</MenuItem>
                         <MenuItem value={10}>10 per page</MenuItem>
                     </Select>
-                    {/* <TableShorting/> */}
-                </div>
+                </div>}
             </Box>
           <Dialog
         open={open}

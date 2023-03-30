@@ -2,11 +2,12 @@ import {Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer, 
 import React, { useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
+import { useLocation } from 'react-router-dom';
   
 
 
 export default function StaffUsersTable({setOpen,open}) {
-   
+   const location=useLocation();
     const [staffUser,setStaffUser]=useState([
         {
             "id": 1,
@@ -211,8 +212,10 @@ export default function StaffUsersTable({setOpen,open}) {
             </TableBody>
         </Table>
     </TableContainer>
-    {currentRecords?.length === 0 ? "" :
+    
+    {location.pathname!=="/staff-users" && (currentRecords?.length === 0 ? "" :
                 <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+    )
             }
     </>
   )

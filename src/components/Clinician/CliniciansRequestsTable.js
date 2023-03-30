@@ -116,8 +116,12 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
-            {currentRecords?.length === 0 ? "" :
+            { value===2 && (currentRecords?.length === 0 ? "" :
+            <>
+                <button>Next</button>
                 <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+                </>
+            )
             }
         </>
 
