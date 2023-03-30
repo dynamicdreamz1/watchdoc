@@ -1,10 +1,22 @@
-import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import React, { useState } from 'react'
+import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
     const { patientData, handleClickStatus, viewAll,reviewData ,mergeAllData} = props
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage=3
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = patientData.slice(indexOfFirstRecord, indexOfLastRecord);
+    
+    const nPages = Math.ceil(patientData.length / recordsPerPage)
+
+    const handleChange = (event, newValue) => {
+        setCurrentPage(newValue)
+    };
 
 
 console.log("11111-mergeAllData",mergeAllData)
@@ -26,10 +38,10 @@ console.log("11111-mergeAllData",mergeAllData)
                             <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
-                    {viewAllData.length !== 0 && viewAllData?.map((el, I) => {
+                    {currentRecords.length !== 0 && currentRecords?.map((el, I) => {
                         return (
                             <TableBody key={I}>
-                                <PatientInfoRow el={el} handleClickStatus={handleClickStatus} />
+                                <PatientInfoRow el={el} handleClickStatus={handleClickStatus}  />
                                 {/* <PatientInfoRow/>
                 <PatientInfoRow/>
                 <PatientInfoRow/>
@@ -43,6 +55,10 @@ console.log("11111-mergeAllData",mergeAllData)
                     }
                 </Table>
             </TableContainer>
+                
+            {currentRecords?.length === 0 ? "" :
+            <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+                }
         </>
     )
 }
