@@ -55,7 +55,6 @@ export default function CriticalPatientsAlertTableTabs() {
         setDate(GetDate(NewDate));
     }
 
-console.log("11111-Date",date)
     const handleChange = (event, newValue) => {
         setViewAll(false)
         setValue(newValue);
