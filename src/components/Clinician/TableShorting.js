@@ -2,22 +2,30 @@ import { IconButton, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 const ITEM_HEIGHT = 48;
 
 export default function TableShorting(props) {
     const {patientData,setPatientData}=props;
+    const location=useLocation();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedOption, setSelectedOption] = React.useState(null);
-    let [options, setOptions] = useState([
+    const defaultOption=[
         t('DashboardPage.SideButton.d1'),
         t('DashboardPage.SideButton.d2'),
         t('DashboardPage.SideButton.d3')
-    ])
+    ];
+    const specificOption=[
+        t('DashboardPage.SideButton.d1'),
+        t('DashboardPage.SideButton.d2'),
+        "Alphabetical"
+    ]
+    let [options, setOptions] = useState(location?.pathname==="/clinicians"?specificOption:defaultOption)
     const open = Boolean(anchorEl);
 
-
+console.log("11111-options",options)
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };

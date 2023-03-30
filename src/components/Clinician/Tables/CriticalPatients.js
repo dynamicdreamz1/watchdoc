@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import React from 'react'
+import {  Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
-import { useLocation } from 'react-router-dom';
 
 
 export default function CriticalPatients(props) {
     const { patientData, viewAll} = props
-    const location=useLocation();
     // console.log(location);
     // const [currentPage, setCurrentPage] = useState(1);
     // const recordsPerPage=2

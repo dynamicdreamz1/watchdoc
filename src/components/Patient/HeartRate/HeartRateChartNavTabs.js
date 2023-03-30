@@ -3,10 +3,9 @@ import { Box, Tab, Tabs } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import ChartTitle from '../../common/Chart/ChartTitle';
 import { TabPanel } from '../../common/Tabs';
-import HeartRateChart from '../../common/Chart/HeartRateChart';
 import { a11yProps, GetDate } from '../../../Utility/functions';
 import { GetUserTodayHeartRate } from '../../../services/HelthData';
-import { ChartResultRange, ChartSkeleton } from '../../../Utility/Skeleton';
+import { ChartResultRange } from '../../../Utility/Skeleton';
 
   
 
