@@ -126,7 +126,6 @@ export default function TwoFactor() {
                     <p> {t('TwoFactorPage.para1')} <strong> {t('TwoFactorPage.b1')} </strong> {t('TwoFactorPage.para2')} </p>
                 </div>
                 <div className='form-block'>
-            <h1>your Code Is :{id}</h1>
 
                     <form>
                         <div className='input-block'>

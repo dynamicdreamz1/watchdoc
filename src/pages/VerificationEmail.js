@@ -137,7 +137,6 @@ const VerificationEmail = () => {
                             <p>{t('VerificationPage.form.f1')} <strong>{decodedEmail}.</strong> {t('VerificationPage.form.f2')}</p>
                         </div>
                         <div className='eError'> {error}</div>
-                        <h1>your Code Is :{id}</h1>
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
