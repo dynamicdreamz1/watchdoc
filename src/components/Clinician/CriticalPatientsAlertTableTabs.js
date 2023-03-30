@@ -292,7 +292,7 @@ console.log("11111-Date",date)
             {
             location.pathname==="/dashboard"? 
 
-            <button onClick={()=>{setViewAll(!viewAll)}}>{viewAll?'View Less':"View All"}</button>
+            <button className='view-all' onClick={()=>{setViewAll(!viewAll)}}>{viewAll?'View Less':"View All"}</button>
             :""
 }
         </>
