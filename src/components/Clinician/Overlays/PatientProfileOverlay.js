@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 
-
 export const PatientProfileOverlay = ({handleClose}) => {
   const {t}=useTranslation();
   const [userData]=useState({
@@ -15,16 +14,11 @@ export const PatientProfileOverlay = ({handleClose}) => {
     "weight":"52",
     "height":"15",
     "number":"7096555266"
-
-
   })
   
-
-    
-
-    const handleSubmitForm = (data) => {
-      handleClose()
-    }
+  const handleSubmitForm = (data) => {
+    handleClose()
+  }
 
    
             

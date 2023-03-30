@@ -25,6 +25,7 @@ export default function RemindDay() {
           aria-describedby="alert-dialog-description"
           className='reminder-overlay'
         >
+          <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
           <HighHeartrateOverlay/>
         </Dialog>
         <button type="button" className='day'>T</button>

@@ -51,6 +51,9 @@ export default function HighHeartrateOverlay() {
                         <label>180 bpm</label>
                     </div>
                 </div>
+                <div className='submit-block'>
+                    <button type='button' className="btn">Confirm</button>
+                </div>
             </form>
         </div>
     </>
