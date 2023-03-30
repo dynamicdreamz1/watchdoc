@@ -61,7 +61,7 @@ export default function PatientProfileBar() {
               <React.Fragment key={i}>
               <Button variant="contained" onClick={data.handle}>{data.Name}</Button>
               <Dialog
-                open={data.open}
+                open={!!data.open}
                 onClose={handleClose}>
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
                 {data.PopupData}
