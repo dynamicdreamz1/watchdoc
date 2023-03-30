@@ -68,7 +68,7 @@ export default function MyClinicians({ status }) {
         getClinicianData()
 
             .then((res) => {
-
+                console.log(res)
                 setData(res.data.data)
                 setLoading(false)
             })
