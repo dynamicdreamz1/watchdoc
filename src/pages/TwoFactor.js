@@ -140,7 +140,7 @@ export default function TwoFactor() {
                             <button type='submit'onClick={handleClickConfirm}> {t('TwoFactorPage.form.button2')} </button>
                         </div>
                         <div className='cancle-signout text-center'>
-                            <button type='button'onClick={()=>navigate('/signin')}> {t('TwoFactorPage.form.button3')} </button>
+                            <button type='button' onClick={()=>navigate('/signin')}> {t('TwoFactorPage.form.button3')} </button>
                         </div>
                     </form>
                 </div>

@@ -63,22 +63,21 @@ export default function PatientProfileOverlay() {
         </div>
         <form autoComplete="off">
           <div className='input-block'>
-            {/* <div className='inputs-wrapper'> */}
             <div className='input-item'>
               <label>First name</label>
               <input type="text" name='firstname' defaultValue="Michael" />
             </div>
+          </div>
+          <div className='input-block'>
             <div className='input-item'>
               <label>Last name</label>
               <input type="text" name='lastname' defaultValue="Randerson" />
             </div>
-            {/* </div> */}
           </div>
           <div className='input-block'>
             <label>Date Of Birth</label>
             <DatePickerInput ChangeDate={ChangeDate} Date={date} />
           </div>
-
           <div className='input-block'>
             <label>Sex</label>
             <button type="button">
@@ -91,19 +90,16 @@ export default function PatientProfileOverlay() {
               Other
             </button>
           </div>
-
           <div className='input-block'>
             <label>Height(cm)</label>
             <input type="text" name='height' defaultValue="183" />
           </div>
-
-
           <div className='input-block'>
             <label>Email address</label>
             <input type="email" name='email' defaultValue="michael@thefamousgroup.com.au" />
           </div>
           <div className='input-block'>
-            <label>Mobile number</label>
+            <label>Contact number</label>
             <input type="text" name="number" defaultValue="0451514497" />
           </div>
         </form>

@@ -5,6 +5,11 @@
     padding: 65px 70px 50px 70px;
     width: 100%;
 }
+.signin-box .form-title h1 {
+    font-size: 30px;
+    line-height: 37px;
+    font-weight: 600;
+}
 .signin-box .logo-block {
     text-align: center;
 }

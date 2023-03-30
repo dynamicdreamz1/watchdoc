@@ -118,7 +118,7 @@
     grid-template-columns: 16% auto auto;
 }
 .add-staff-user-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .country-code .inputs-wrapper,
-.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .inputs-wrapper {
+.clinician-request-dialog .MuiPaper-root.MuiDialog-paper .my-profile-form .country-code .inputs-wrapper {
     grid-template-columns: 20% 40%;
 }
 .add-staff-user-dialog .MuiPaper-root.MuiDialog-paper form .submit-block button {
