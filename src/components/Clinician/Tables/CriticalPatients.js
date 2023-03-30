@@ -1,11 +1,29 @@
-import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import React, { useState } from 'react'
+import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
+import { useLocation } from 'react-router-dom';
+
 
 export default function CriticalPatients(props) {
-    const { patientData, handleClickStatus, viewAll} = props
+    const { patientData, viewAll} = props
+    const location=useLocation();
+    // console.log(location);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const recordsPerPage=2
+    // const indexOfLastRecord = currentPage * recordsPerPage;
+    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    // const currentRecords = patientData.slice(indexOfFirstRecord, indexOfLastRecord);
+    
+    // const nPages = Math.ceil(patientData.length / recordsPerPage)
 
+    // const handleChange = (event, newValue) => {
+    //     setCurrentPage(newValue)
+    // };
+
+    // const handleClick=()=>{
+
+    // }
 
     const viewAllData = viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
 
@@ -28,7 +46,7 @@ export default function CriticalPatients(props) {
                     {viewAllData.length !== 0 && viewAllData?.map((el, I) => {
                         return (
                             <TableBody key={I}>
-                                <PatientInfoRow el={el} handleClickStatus={handleClickStatus} />
+                                <PatientInfoRow el={el}   />
                                 {/* <PatientInfoRow/>
                 <PatientInfoRow/>
                 <PatientInfoRow/>
@@ -42,6 +60,12 @@ export default function CriticalPatients(props) {
                     }
                 </Table>
             </TableContainer>
+                
+            {/* {currentRecords?.length === 0 ? "" :
+            <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+                }
+
+            { location.pathname==="/dashboard"  ? <button onClick={handleClick}>View All</button> : "" } */}
         </>
     )
 }
