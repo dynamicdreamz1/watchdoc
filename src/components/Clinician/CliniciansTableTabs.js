@@ -574,7 +574,7 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <MenuItem value={9}>9 per page</MenuItem>
                         <MenuItem value={10}>10 per page</MenuItem>
                     </Select>
-                    <TableShorting/>
+                    {/* <TableShorting/> */}
                 </div>
             </Box>
           <Dialog

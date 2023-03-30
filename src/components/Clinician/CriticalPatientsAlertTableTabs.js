@@ -7,6 +7,8 @@ import TableShorting from './TableShorting';
 import CriticalPatients from './Tables/CriticalPatients';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import DatePickerInput from '../common/Table/DatePickerInput';
+import { GetDate } from '../../Utility/functions';
 
 
 function TabPanel(props) {
@@ -45,11 +47,15 @@ function a11yProps(index) {
 
 export default function CriticalPatientsAlertTableTabs() {
     const location=useLocation();
-
+    const [date,setDate] = useState(GetDate);
     const [value, setValue] = React.useState(0);
     const [viewAll, setViewAll] = useState(false)
-    
 
+    const ChangeDate=(NewDate)=>{
+        setDate(GetDate(NewDate));
+    }
+
+console.log("11111-Date",date)
     const handleChange = (event, newValue) => {
         setViewAll(false)
         setValue(newValue);
@@ -229,6 +235,8 @@ export default function CriticalPatientsAlertTableTabs() {
         }
     ]
     )
+
+   
         let  mergeData=[...patientData,...reviewData]
 
     // const handleClickReview = (data) => {
@@ -262,9 +270,14 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`View All Patients (${mergeData?.length})`} {...a11yProps(2)} /> 
                         : "" }
                     </Tabs>
+                    {location.pathname==="/dashboard"?
                     <TableShorting patientData={patientData} setPatientData={setPatientData} 
                     reviewData={reviewData} setReviewData={setReviewData}
                       setViewAll={setViewAll} viewAll={viewAll} />
+                      :location.pathname==="/patients"?
+                      <DatePickerInput ChangeDate={ChangeDate} Date={date}  />
+                      :""
+                    }
                 </Box>
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
                     <CriticalPatients patientData={patientData}  viewAll={viewAll} />
@@ -276,6 +289,12 @@ export default function CriticalPatientsAlertTableTabs() {
                     <CriticalPatients patientData={mergeData}  viewAll={viewAll} />
                 </TabPanel>
             </Box>
+            {
+            location.pathname==="/dashboard"? 
+
+            <button onClick={()=>{setViewAll(!viewAll)}}>{viewAll?'View Less':"View All"}</button>
+            :""
+}
         </>
     )
 }
