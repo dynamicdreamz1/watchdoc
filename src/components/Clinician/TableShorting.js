@@ -25,7 +25,6 @@ export default function TableShorting(props) {
     let [options, setOptions] = useState(location?.pathname==="/clinicians"?specificOption:defaultOption)
     const open = Boolean(anchorEl);
 
-console.log("11111-options",options)
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };

@@ -543,7 +543,6 @@ export default function CliniciansTableTabs({open,setOpen}) {
         setValue(newValue);
          setCurrentPage(1)
     };
-    console.log("111-value",value)
     return (
         <>
         <Box sx={{ width: '100%' }}>
@@ -577,8 +576,9 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <MenuItem value={9}>9 per page</MenuItem>
                         <MenuItem value={10}>10 per page</MenuItem>
                     </Select>
-                </div>
                 <TableShorting  setViewAll={setViewAll} viewAll={viewAll} />
+
+                </div>
                 </>
                 }
             </Box>
