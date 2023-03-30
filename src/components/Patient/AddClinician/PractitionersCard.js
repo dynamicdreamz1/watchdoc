@@ -14,6 +14,7 @@ import { ClinicianCard } from '../../../Utility/Skeleton';
 import { MetaFormeting} from '../../../Utility/functions';
 import defaultUserIcon from "../../../../src/assets/images/defaultUserIcon.png"
 import { useLocation } from 'react-router-dom';
+import { AdminUserContext } from '../../Clinician/Overlays/CliniciansOverlay';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -24,7 +25,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
-    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : AddClincianOuterContext);
+    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"");
 
     const recordsPerPage = 3;
 
@@ -61,8 +62,11 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
 
     useEffect(()=>{
-        const state=currentTableData?.some((element)=>element.status===1)
-        setNextBtn(state)
+        const state=currentTableData?.some((element)=>element.status===1)   
+       
+        if(state !==undefined){
+            setNextBtn(state)
+        }
     })
 
     const addClinician = (ID, ElStatus) => {
