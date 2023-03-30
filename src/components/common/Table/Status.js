@@ -5,7 +5,7 @@ export default function Status(props) {
   return (
     <>
     <div className='wt table-data'>
-        <span className="text color-light-blue">{props?.el?.status}</span>
+        <span className={props?.el?.status==="Reviewed"?"text color-light-green":"text color-light-blue"}>{props?.el?.status}</span>
         {props?.el?.status==="Unreviewed" ? "" :  <DateTime props={props?.el}/> }
 
     </div>
