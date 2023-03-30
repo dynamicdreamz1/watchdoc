@@ -57,8 +57,8 @@ export default function CliniciansOverlay() {
   ]
   )
 
-  console.log(clinicianData?.data?.data?.data)
   const tempData=clinicianData?.data?.data?.data?.filter((el)=>el.status===1);
+
   return (
     <>
     <AdminUserContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData,nextBtn,setNextBtn,currentPage, setCurrentPage  }}>
