@@ -21,7 +21,6 @@ export default function CliniciansRequestsTable(props) {
         
         setCurrentPage(value)
     };
-
     // useEffect(() => {
     //     setLoading(true)
     //     getClinicianData()
@@ -118,7 +117,7 @@ export default function CliniciansRequestsTable(props) {
             </TableContainer>
             { value===2 && (currentRecords?.length === 0 ? "" :
             <>
-                <button>Next</button>
+                {currentPage!==nPages&&<button onClick={()=>{setCurrentPage(currentPage+1)}}>Next</button>}
                 <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
                 </>
             )

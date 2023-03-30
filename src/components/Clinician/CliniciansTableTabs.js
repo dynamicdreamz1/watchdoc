@@ -40,6 +40,7 @@ function TabPanel(props) {
   }
 
 export default function CliniciansTableTabs({open,setOpen}) {
+    const [viewAll, setViewAll] = useState(false)
     const [recordsPerPage,setRecordsPerPage] = useState(5);
     const [value, setValue] = React.useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -554,7 +555,9 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <Tab label={`View All Clinicians  (${clinicianStaff?.length})`} {...a11yProps(1)} />
                     </Tabs>
                 </div>
-               { value===2 && <div className='right-block'>
+               { value===2 && 
+               <>
+               <div className='right-block'>
                     <Select 
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -574,7 +577,10 @@ export default function CliniciansTableTabs({open,setOpen}) {
                         <MenuItem value={9}>9 per page</MenuItem>
                         <MenuItem value={10}>10 per page</MenuItem>
                     </Select>
-                </div>}
+                </div>
+                <TableShorting  setViewAll={setViewAll} viewAll={viewAll} />
+                </>
+                }
             </Box>
           <Dialog
         open={open}
