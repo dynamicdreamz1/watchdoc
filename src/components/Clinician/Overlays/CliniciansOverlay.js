@@ -5,7 +5,7 @@ import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow'
 
 export const AdminUserContext=createContext([]);
 export default function CliniciansOverlay() {
- 
+  const[toggleAddClinicain,setToggleAddClinicain]=useState(false)
 
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })
   const [clinicianData, setClinicianData] = useState([])
@@ -72,8 +72,10 @@ export default function CliniciansOverlay() {
           <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={tempData} /></React.Fragment>
         ))}
       
-        <button>Connect a Clinician</button>
-          <AddClinician status={status} setStatus={setStatus} />
+        <button onClick={()=>setToggleAddClinicain(!toggleAddClinicain)}>Connect a Clinician</button>
+        {toggleAddClinicain?
+          <AddClinician status={status} setStatus={setStatus} />:""
+        }
       </div>
       </AdminUserContext.Provider>
     </>
