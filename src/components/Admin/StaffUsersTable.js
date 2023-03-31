@@ -1,5 +1,5 @@
 import {Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
 import { useLocation } from 'react-router-dom';
@@ -163,7 +163,10 @@ export default function StaffUsersTable({setOpen,open}) {
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    
+    
+        const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+       
     const nPages = Math.ceil(data.length / recordsPerPage)
     const handleChange = (event, value) => {
         setCurrentPage(value)
@@ -196,7 +199,7 @@ export default function StaffUsersTable({setOpen,open}) {
                 </TableRow>
             </TableHead>
             <TableBody>
-            {currentRecords?.map((data, i) => (
+            {    (location.pathname==="/staff-users"?staffUser:currentRecords)?.map((data, i) => (
                 <TableRow
                     key={i}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
