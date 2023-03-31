@@ -269,6 +269,7 @@ button {
   width: 0;
   height: 0;
   position: absolute;
+  opacity: 0;
 }
 .radio-buttons .radio-button input[type="radio"]:checked ~ label {
   background-color: #00b3ca;

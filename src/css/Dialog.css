@@ -8,7 +8,6 @@
     font-size: 26px;
     line-height: 32px;
     font-weight: 300;
-    margin-bottom: 20px; 
 }
 .MuiPaper-root.MuiDialog-paper .dialog-title {
     margin-bottom: 30px;
@@ -26,6 +25,7 @@
     font-size: 16px;
     line-height: 20px;
     color: #000;
+    margin-top: 20px; 
 }
 .MuiPaper-root.MuiDialog-paper .emergency-content span a {
     color: #000;
@@ -156,4 +156,14 @@
 }
 .clinician-request-form .request-actions .btn.reject {
     background-color: #8D8D8D;
+}
+.clinician-overlay .connect-btn {
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}
+.clinician-overlay .connect-btn img {
+    margin-right: 16px;
 }

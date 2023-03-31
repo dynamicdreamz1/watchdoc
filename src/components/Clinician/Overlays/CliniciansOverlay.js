@@ -72,7 +72,7 @@ export default function CliniciansOverlay() {
           <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={tempData} /></React.Fragment>
         ))}
       
-        <button>Connect a Clinician</button>
+        <button className="connect-btn"><img src="/images/Add-rounded-button.svg" alt="" />Connect a Clinician</button>
           <AddClinician status={status} setStatus={setStatus} />
       </div>
       </AdminUserContext.Provider>
