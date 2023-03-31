@@ -187,7 +187,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpenProfi
                                         ))}
                                     </Select>
 
-                                    <input type="text" name="number" value={props?.values?.number} onChange={props?.handleChange}></input>
+                                    <input type="text" name="number" value={props?.values?.number || ""} onChange={props?.handleChange}></input>
                                     <span className="error"> {props.errors.number ? props.errors.number : ""}</span>
                                 </div>
                             </div>
