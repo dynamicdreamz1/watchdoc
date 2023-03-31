@@ -17,9 +17,9 @@ export default function MyProfile(props) {
         "lastname": last_name,
         "email": userData?.email,
         "practicename": "",
-        "practiceaddress": ""
+        "practiceaddress": metaData?.address,
+        "profileImage":""
     })
-
     const LoginSchema = Yup.object({
         firstname: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -33,7 +33,6 @@ export default function MyProfile(props) {
         practiceaddress: Yup.string().required("This field is required*")
         
     });
-
 
 
     const handleImages = (files) => {
@@ -66,8 +65,9 @@ export default function MyProfile(props) {
 
 
     const handleSubmitForm = (data) => {
-        
-        setEditClinicianProfileData({...data})
+        const tempData={...data,profileImage:imageUrl}
+        console.log("11111-tempData",tempData)
+        setEditClinicianProfileData(tempData)
         // ProfileCreation(data)
     }
     
@@ -75,7 +75,7 @@ export default function MyProfile(props) {
         <Formik 
         initialValues={editClinicianProfileData}
         enableReinitialize={true}
-        validationSchema={LoginSchema}
+        validationSchema=""
         onSubmit={(values) =>
         { handleSubmitForm(values)}} 
     > 
