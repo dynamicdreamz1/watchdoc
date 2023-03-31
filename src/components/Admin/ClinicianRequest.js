@@ -1,9 +1,14 @@
 import { MenuItem, Select } from '@mui/material'
 import React,{useState} from 'react'
 import { allTimeZone } from '../../Utility/countryCode';
+import { MetaFormeting } from '../../Utility/functions';
 
 
-export default function ClinicianRequest() {
+export default function ClinicianRequest(props) {
+    const {profileBarData:{firstname,lastname,email,practicename}}=props;
+    
+    const {address}= MetaFormeting(props?.profileBarData)
+
     const [countryCode, setcountryCode] = useState('+91');
 
     const handleChange = (event) => {
@@ -25,25 +30,25 @@ export default function ClinicianRequest() {
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='firstname' defaultValue="Sarah" />
+                        <input type="text" name='firstname' defaultValue={firstname} />
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='lastname' defaultValue="McDonnell"/>
+                        <input type="text" name='lastname' defaultValue={lastname}/>
                     </div>
                 </div>
             </div>
             <div className='input-block'>
                 <label>Email address</label>
-                <input type="email" name='email' defaultValue="info@neighbourhoodmedical.com.au" />
+                <input type="email" name='email' defaultValue={email} />
             </div>
             <div className='input-block'>
                 <label>Practice name</label>
-                <input type="text" name='practicename' defaultValue="Neighbourhood Medical" />
+                <input type="text" name='practicename' defaultValue={practicename} />
             </div>
             <div className='input-block'>
                 <label>Practice Address</label>
-                <input type="text" name='practiceaddress' defaultValue="1A Stuartholme Road, Bardon QLD 4065" />
+                <input type="text" name='practiceaddress' defaultValue={address} />
             </div>
             <div className='input-block country-code'>
                 <label id="country-code">Mobile number</label>
