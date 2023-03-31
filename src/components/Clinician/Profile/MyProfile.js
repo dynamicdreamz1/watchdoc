@@ -7,17 +7,17 @@ import { getCurrentUserData } from '../../../services/UserService';
 export default function MyProfile(props) {
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
-    console.log(metaData);
+    
     const {first_name,last_name}=metaData
-    console.log(userData)
+    
     const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
-        "title":"",
+        "title":"Dr",
         "firstname": first_name,
         "lastname": last_name,
         "email": userData?.email,
         "practicename": "",
-        "practiceaddress": metaData?.address
+        "practiceaddress": ""
     })
 
     const LoginSchema = Yup.object({
@@ -26,6 +26,7 @@ export default function MyProfile(props) {
         lastname: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
+        // eslint-disable-next-line no-useless-escape
         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         practicename: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
@@ -65,6 +66,7 @@ export default function MyProfile(props) {
 
 
     const handleSubmitForm = (data) => {
+        
         setEditClinicianProfileData({...data})
         // ProfileCreation(data)
     }
