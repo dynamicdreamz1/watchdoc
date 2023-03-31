@@ -160,7 +160,7 @@ form .input-block select {
   background-position: center right 12px;
 }
 form .input-block {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 form input::placeholder {
   color: #999999;
@@ -1107,6 +1107,7 @@ body .reminder-card-skeleton {
   font-size: 18px;
   line-height: 24px;
   color: #fff;
+  padding-left: 12px;
 }
 .add-clinician-box .form-box input.name {
   background-image: url(../../public/images/User-icon.svg);
@@ -1116,6 +1117,25 @@ body .reminder-card-skeleton {
 }
 .add-clinician-box .form-box input.postcode {
   background-image: url(../../public/images/MapMarker-icon.svg);
+}
+.clinician-overlay .add-clinician-box {
+  margin-bottom: 0;
+}
+.clinician-overlay .add-clinician-box input {
+  border: 1px solid rgb(141, 141, 141, 0.25);
+  margin-bottom: 12px;
+  border-radius: 3px;
+}
+.clinician-overlay .add-clinician-box .form-box {
+  border: 0;
+  border-radius: 0;
+}
+.clinician-overlay .add-clinician-box .form-box input[type="submit"] {
+  background-color: #00B8E2;
+  border-radius: 3px;
+}
+.clinician-overlay .add-clinician-box .form-box input[type="submit"]:hover {
+  background-color: #06B2CC;
 }
 .practitioners-card h5 {
   font-size: 16px;
