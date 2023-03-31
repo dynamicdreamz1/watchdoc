@@ -22,19 +22,23 @@ export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
         <TableCell><Phone data={data} /></TableCell>
         {value === 0 ? "" :
           <>
-            {location.pathname === "/patientdetails" ? "" : <TableCell align='center'><ConnectedPatients /></TableCell>}
-            {location.pathname === "/patientdetails" ? "" : <TableCell align='center'><PendingPatients /></TableCell>}
+            {location.pathname === "/patientdetails" ? "" :
+            <>
+             <TableCell align='center'><ConnectedPatients /></TableCell>
+             <TableCell align='center'><PendingPatients /></TableCell>
+             </>
+             }
           </>
         }
 
       </TableRow>
-      {location?.pathname==="/patientdetails" &&
-      <FormControlLabel
-        control={
-          <Checkbox {...label} className={data?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
+      {location?.pathname === "/patientdetails" &&
+        <FormControlLabel
+          control={
+            <Checkbox {...label} className={data?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
 
-        label={data?.status === 1 ? <span className='btn_status'> {t('PractitionersCard.buttonOption2')} </span> : t('PractitionersCard.buttonOption1')} />
-}
+          label={data?.status === 1 ? <span className='btn_status'> {t('PractitionersCard.buttonOption2')} </span> : t('PractitionersCard.buttonOption1')} />
+      }
     </>
   )
 }
