@@ -104,9 +104,7 @@ export default function AddClinician({ status, setStatus }) {
         location.pathname==="/patientdetails" ? 
         <>
         <div className='add-clinician-box'>
-            <div className='title'>
-              <p> {t('AddClinician.p1')}</p>
-            </div>
+            <br/> 
             <form onSubmit={handleSubmit}>
               <div className='form-box'>
                 <input type="text" placeholder={t('AddClinician.form.placeholder1')} value={addData?.clinicianName} onChange={(e) => setAddData({ ...addData, clinicianName: e.target.value })} id="" className="name" />

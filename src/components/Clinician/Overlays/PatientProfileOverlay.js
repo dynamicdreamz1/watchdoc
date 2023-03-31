@@ -7,11 +7,10 @@ export const PatientProfileOverlay = ({handleClose}) => {
   const {t}=useTranslation();
   const [userData]=useState({
     "firstName":"Dr Sarah",
+    "email":"michael@thefamousgroup.com.au",
     "lastName":"McDonnell",
-    "preferredFirstName":"Sarah",
     "dob":"2023-03-30",
     "sex":"male",
-    "weight":"52",
     "height":"15",
     "number":"7096555266"
   })
@@ -39,19 +38,19 @@ export const PatientProfileOverlay = ({handleClose}) => {
           </div>
             <form id='main_form' onSubmit={props.handleSubmit}>
                 <div className='input-block'>
-                    <label htmlFor="exampleInputFirstName" >{t('EditProfilePage.form.f1')}</label>
+                    <label htmlFor="exampleInputFirstName" >First name</label>
                     <input type="text" name="firstName" placeholder={t('EditProfilePage.form.f13')} value={props?.values?.firstName} id="exampleInputFirstName" onChange={props?.handleChange} />
                 </div>
-                <div className='input-block'>
+                {/* <div className='input-block'>
                     <label htmlFor="exampleInputPreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
                     <input type="text"  name="preferredFirstName" placeholder={t('EditProfilePage.form.f18')} value={props?.values?.preferredFirstName} id="exampleInputPreferredFirstName" onChange={props?.handleChange} />
-                </div>
+                </div> */}
                 <div className='input-block'>
-                    <label htmlFor="exampleInputLastName" >{t('EditProfilePage.form.f2')}</label>
+                    <label htmlFor="exampleInputLastName" >Last name</label>
                     <input type="text" name="lastName" placeholder={t('EditProfilePage.form.f14')} value={props?.values?.lastName} id="exampleInputLastName" onChange={props?.handleChange} />
                 </div>
                 <div className='input-block'>
-                    <label htmlFor="exampleInputDOB" >{t('EditProfilePage.form.f3')}</label>
+                    <label htmlFor="exampleInputDOB" >Date of birth</label>
                     <input type="date" name="dob"   value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange} />
                 </div>
                 <div className='input-block'>
@@ -71,16 +70,20 @@ export const PatientProfileOverlay = ({handleClose}) => {
                         </div>
                     </div>
                 </div>
-                <div className='input-block'>
+                {/* <div className='input-block'>
                     <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
                     <input type="text"  name="weight"  placeholder={t('EditProfilePage.form.f15')} value={props?.values?.weight} id="exampleInputWeight" onChange={props?.handleChange} />
-                </div>
+                </div> */}
                 <div className='input-block'>
-                    <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
+                    <label htmlFor="exampleInputHeight" >Height (cm)</label>
                     <input type="text" name="height" placeholder={t('EditProfilePage.form.f16')} value={props?.values?.height} id="exampleInputHeight" onChange={props?.handleChange} />
                 </div>
+                <div className='input-block'>
+                                <label>Email address</label>
+                                <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange} />
+                            </div>
                 <div className='input-block country-code'>
-                                <label id="country-code">Enter phone number</label>
+                                <label id="country-code">Contact number</label>
                                 <div className='inputs-wrapper'>
                                     <input type="text" name="number" value={props?.values?.number} onChange={props?.handleChange}></input>
                                 </div>
