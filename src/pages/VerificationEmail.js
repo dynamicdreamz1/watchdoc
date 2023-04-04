@@ -34,11 +34,17 @@ const VerificationEmail = () => {
     }, [])
 
     useEffect(() => {
-        setInterval(() => {
+       let intervalID=setInterval(() => {
+           
             setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
         }, 1000);
 
-    }, []);
+        if(time===0){
+            clearInterval(intervalID)
+        }
+
+        return ()=>clearInterval(intervalID)
+    }, [time]);
 
 
     const handleSubmit = (e) => {
