@@ -49,33 +49,26 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [allClinician, setAllClinician] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const pendingClincians = async () => {
+    let res = await getPendingClinicians()
+    console.log(res)
+    setClinicianStaff(res?.data?.data)
+    setLoading(false)
+  }
+
+  const allClincians = async () => {
+    let res = await getAllClinicians()
+    console.log(res);
+    setAllClinician(res?.data?.data);
+    setLoading(false)
+  }
+
 
   useEffect(() => {
     setLoading(true)
 
-    getPendingClinicians()
-      .then((res) => {
-        console.log(res);
-        setClinicianStaff(res?.data?.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false)
-      })
-
-    getAllClinicians()
-      .then((res) => {
-        console.log(res);
-        setAllClinician(res?.data?.data);
-        setLoading(false)
-
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false)
-      })
-
+    pendingClincians()
+    allClincians()
   }, [])
 
   const handleClose = () => {

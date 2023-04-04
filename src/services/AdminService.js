@@ -12,7 +12,7 @@ export const getStaffUsers = async () => {
         })
         return response
     } catch (error) {
-        throw error
+        return error
     }
 }
 
@@ -26,7 +26,7 @@ export const getPendingClinicians = async () => {
         })
         return response
     } catch (error) {
-        throw error
+        return error
     }
 }
 
@@ -41,6 +41,6 @@ export const getAllClinicians = async () => {
         })
         return response
     } catch (error) {
-        throw error
+        return error
     }
 }
