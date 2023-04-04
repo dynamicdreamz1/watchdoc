@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function PendingPatients() {
+export default function PendingPatients({data}) {
+  
   return (
     <>
-    <div className='pp'><span>1</span></div>
+    <div className='pp'><span>{data?.pending_patients_count}</span></div>
     </>
   )
 }

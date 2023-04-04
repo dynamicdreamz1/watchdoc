@@ -4,9 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting } from '../../Utility/functions';
 
 export default function UserProfile({ data,clinicianStaff,handleClickOpenRequestPopUp }) {
+ 
   const navigate=useNavigate();
   const location=useLocation();
-  const  {image,full_name,address} = MetaFormeting(data);
+  const  {first_name,last_name} = MetaFormeting(data);
+  
   // const navigatePath=location?.pathname==="/staff-users"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staff-users"){
@@ -31,11 +33,11 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
           {
             <>
               <div className='user-avtar' onClick={handleClickNavigate}>
-                <Avatar className='user-profile-avtar' alt={`${full_name} avtar`} src={image} />
+                <Avatar className='user-profile-avtar' alt={`${first_name} ${last_name} avtar`} src='' />
               </div>
               <div className='user-info' onClick={handleClickNavigate}>
-                <span className="fname">{full_name}</span>
-                <span className="position">{address}</span>
+                <span className="fname">{first_name} {last_name}</span>
+                {/* <span className="position">{address}</span> */}
               </div>
             </>
           }

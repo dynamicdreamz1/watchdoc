@@ -24,8 +24,8 @@ export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
           <>
             {location.pathname === "/patientdetails" ? "" :
             <>
-             <TableCell align='center'><ConnectedPatients /></TableCell>
-             <TableCell align='center'><PendingPatients /></TableCell>
+             <TableCell align='center'><ConnectedPatients data={data} /></TableCell>
+             <TableCell align='center'><PendingPatients data={data} /></TableCell>
              </>
              }
           </>
