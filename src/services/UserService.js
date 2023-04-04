@@ -135,6 +135,22 @@ export const VerifyMobileNumber = async (data) => {
     }
 }
 
+export async function UpdateUserProfile(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/upsert_password`,
+            // data: data,
+            headers: headersUser,
+        })
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
 
 
 export const logout = () => {
