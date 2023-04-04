@@ -5,7 +5,7 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage } = props;
+ const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage,handlePreviousPage,handleNextPage,page } = props;
 
     const { t } = useTranslation();    
     const [data] = useState(allClinician)
@@ -53,7 +53,7 @@ export default function CliniciansRequestsTable(props) {
 
                             {currentRecords?.length > 0 && currentRecords?.map((element) => (
                                 <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
-                            ))}
+                            ))}  
 
 
                         </TableBody>
@@ -62,13 +62,8 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
-            {value === 1 && (currentRecords?.length === 0 ? "" :
-                <>
-                    {/* {currentPage!==nPages&&<button onClick={()=>{setCurrentPage(currentPage+1)}}>Next</button>} */}
-                    <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
-                </>
-            )
-            }
+            <button disabled={page === 1} onClick={handlePreviousPage}>Previous Page</button>
+      <button onClick={handleNextPage}>Next Page</button>
         </>
 
     )

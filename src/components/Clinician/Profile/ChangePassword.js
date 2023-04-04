@@ -22,7 +22,6 @@ export default function ChangePassword() {
     });
 
     const handleSubmitForm=(data)=>{
-        console.log("111111-data",data)
         UpdateUserProfile(data)
     }
   return (

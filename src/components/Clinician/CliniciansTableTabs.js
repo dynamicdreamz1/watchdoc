@@ -6,6 +6,7 @@ import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
 import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
+import axios from 'axios';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,6 +52,9 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
+  const [items, setItems] = useState([]);
+  const [page, setPage] = useState(1);
+  const pageCount = 1;
 
   const pendingClincians = async () => {
     let res = await getPendingClinicians()
@@ -64,22 +68,26 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   }
 
   const allClincians = async () => {
-    let res = await getAllClinicians()
-    console.log(res);
+    let res = await getAllClinicians(pageCount)
     if (res?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
-    setAllClinician(res?.data?.data);
+    setAllClinician(res?.data);
     setSecondLoading(false)
   }
-
+  console.log('111111',allClinician);
 
   useEffect(() => {
     setFirstLoading(true)
     setSecondLoading(true)
     pendingClincians()
-    allClincians()
   }, [])
+
+
+  useEffect(() => {
+    allClincians()
+
+  }, [page]);
 
   const handleClose = () => {
     setOpen(false);
@@ -95,6 +103,48 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setValue(newValue);
     setCurrentPage(1)
   };
+
+
+
+
+
+
+
+
+
+
+
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+    axios.get(allClinician?.next_page_url)
+      .then(response => setAllClinician([...allClinician, ...response.data]))
+      .catch(error => console.log(error));
+
+  };
+
+  const handlePreviousPage = () => {
+    setPage(page - 1);
+    axios.get(allClinician?.next_page_url)
+      .then(response => setAllClinician([...allClinician, ...response.data]))
+      .catch(error => console.log(error));
+
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -103,7 +153,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
               <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
-              <Tab label={`View All Clinicians  (${allClinician?.length})`} {...a11yProps(1)} />
+              <Tab label={`View All Clinicians  (${allClinician?.data?.length})`} {...a11yProps(1)} />
             </Tabs>
           </div>
           {value === 1 &&
@@ -165,7 +215,9 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                 <>
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                    <CliniciansRequestsTable value={value} allClinician={allClinician} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data} handleNextPage={handleNextPage}
+                    handlePreviousPage={handlePreviousPage} page={page}
+                    recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                   </TabPanel>
                 </>
               } </> : ""}
