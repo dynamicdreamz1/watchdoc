@@ -47,26 +47,36 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [clinicianStaff, setClinicianStaff] = useState([])
   const [allClinician, setAllClinician] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [firstLoading, setFirstLoading] = useState(false)
+  const [secondLoading, setSecondLoading] = useState(false)
+  const [firstLength, setFirstLength] = useState("")
+  const [secondLength, setSecondLength] = useState("")
 
   const pendingClincians = async () => {
     let res = await getPendingClinicians()
     console.log(res)
+    if (res?.data?.data.length === 0) {
+      setFirstLength("No records found.")
+    }
+
     setClinicianStaff(res?.data?.data)
-    setLoading(false)
+    setFirstLoading(false)
   }
 
   const allClincians = async () => {
     let res = await getAllClinicians()
     console.log(res);
+    if (res?.data?.data.length === 0) {
+      setSecondLength("No records found.")
+    }
     setAllClinician(res?.data?.data);
-    setLoading(false)
+    setSecondLoading(false)
   }
 
 
   useEffect(() => {
-    setLoading(true)
-
+    setFirstLoading(true)
+    setSecondLoading(true)
     pendingClincians()
     allClincians()
   }, [])
@@ -134,26 +144,32 @@ export default function CliniciansTableTabs({ open, setOpen }) {
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
           <AddClinician clinicianStaff={clinicianStaff} setOpen={setOpen} />
         </Dialog>
-
-        {loading ? <div> <br />Loading...</div> :
-
+        {value === 0 ?
           <>
-            {clinicianStaff?.length === 0 ? "No records found." :
-              <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-              </TabPanel>
-            }
-            {/* <TabPanel value={value} index={1} className="table-nav-tabs-content">
-          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-          </TabPanel> */}
+            {firstLoading ? <div> <br />Loading...</div> :
 
-            {allClinician?.length === 0 ? "No records found." :
-              <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                <CliniciansRequestsTable value={value} allClinician={allClinician} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-              </TabPanel>
+              <>
+                {firstLength ? firstLength : ""}
+                <TabPanel value={value} index={0} className="table-nav-tabs-content">
+                  <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                </TabPanel>
+              </>
             }
           </>
-        }
+          : value === 1 ?
+            <>
+              {/* <TabPanel value={value} index={1} className="table-nav-tabs-content">
+          <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          </TabPanel> */}
+              {secondLoading ? <div> <br />Loading...</div> :
+                <>
+                  {secondLength ? secondLength : ""}
+                  <TabPanel value={value} index={1} className="table-nav-tabs-content">
+                    <CliniciansRequestsTable value={value} allClinician={allClinician} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  </TabPanel>
+                </>
+              } </> : ""}
+
       </Box>
     </>
   )
