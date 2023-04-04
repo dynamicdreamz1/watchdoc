@@ -139,8 +139,8 @@ export async function UpdateUserProfile(data) {
     try {
         const response = await axios({
             method: 'post',
-            url: `${process.env.REACT_APP_ENDPOINT}user/upsert_password`,
-            // data: data,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/updateprofile`,
+            data: data,
             headers: headersUser,
         })
         return response;

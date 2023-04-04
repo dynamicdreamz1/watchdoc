@@ -2,7 +2,8 @@ import React,{useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
-import { getCurrentUserData } from '../../../services/UserService';
+import {getCurrentUserData, UpdateUserProfile } from '../../../services/UserService';
+import { StoreCookie } from '../../../Utility/sessionStore';
 
 export default function MyProfile(props) {
     const userData = getCurrentUserData();
@@ -10,18 +11,18 @@ export default function MyProfile(props) {
     const {first_name,last_name}=metaData
     const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
-        "title":"Dr",
-        "firstname": first_name,
-        "lastname": last_name,
+        // "title":"Dr",
+        "first_name": first_name,
+        "last_name": last_name,
         "email": userData?.email,
         "practicename": "",
         "practiceaddress": "",
         "profileImage":""
     })
     const LoginSchema = Yup.object({
-        firstname: Yup.string().required("This field is required*")
+        first_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        lastname: Yup.string().required("This field is required*")
+        last_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
         // eslint-disable-next-line no-useless-escape
@@ -62,10 +63,25 @@ export default function MyProfile(props) {
 
 
 
-    const handleSubmitForm = (data) => {
-        const tempData={...data,profileImage:imageUrl}
-        console.log("11111-tempData",tempData)
-        setEditClinicianProfileData(tempData)
+    const handleSubmitForm = async(data) => {
+        // const tempData={...data,profileImage:imageUrl}
+        const updateData={
+            "first_name": data?.first_name,
+        "last_name": data?.last_name,
+        "email": data?.email,
+
+        }
+       const updatedUserData=await UpdateUserProfile(updateData)
+       StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
+       const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
+        setEditClinicianProfileData({
+            "first_name": tempMetaFormat?.first_name,
+        "last_name": tempMetaFormat?.last_name,
+        "email": updatedUserData?.data?.data?.email,
+        "practicename": "",
+        "practiceaddress": "",
+        "profileImage":""
+        })
         
     }
     
@@ -103,13 +119,13 @@ export default function MyProfile(props) {
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='firstname' placeholder='First Name*'  onChange={props.handleChange} value={props.values.firstname}/>
-                        <span className="error">{props.errors.firstname?props.errors.firstname:""}</span>
+                        <input type="text" name='first_name' placeholder='First Name*'  onChange={props.handleChange} value={props.values.first_name}/>
+                        <span className="error">{props.errors.first_name?props.errors.first_name:""}</span>
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='lastname' placeholder='Last Name*'  onChange={props.handleChange} value={props.values.lastname} />
-                            <span className="error"> {props.errors.lastname?props.errors.lastname:""}</span>
+                        <input type="text" name='last_name' placeholder='Last Name*'  onChange={props.handleChange} value={props.values.last_name} />
+                            <span className="error"> {props.errors.last_name?props.errors.last_name:""}</span>
                     </div>
                 </div>
             </div>
