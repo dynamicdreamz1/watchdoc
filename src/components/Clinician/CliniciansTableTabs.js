@@ -52,7 +52,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
-  const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const pageCount = 1;
 

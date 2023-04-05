@@ -1,11 +1,11 @@
-import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useState } from 'react'
 import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
- const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage,handlePreviousPage,handleNextPage,page } = props;
+ const { value, clinicianStaff, allClinician, recordsPerPage, currentPage,handlePreviousPage,handleNextPage,page } = props;
 
     const { t } = useTranslation();    
     const [data] = useState(allClinician)
@@ -14,10 +14,10 @@ export default function CliniciansRequestsTable(props) {
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = data?.slice(indexOfFirstRecord, indexOfLastRecord);
 
-    const nPages = Math.ceil(data?.length / recordsPerPage)
-    const handleChange = (event, value) => {
-        setCurrentPage(value)
-    };
+    // const nPages = Math.ceil(data?.length / recordsPerPage)
+    // const handleChange = (event, value) => {
+    //     setCurrentPage(value)
+    // };
 
     return (
         
