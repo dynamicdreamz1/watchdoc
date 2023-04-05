@@ -6,7 +6,7 @@ import * as Yup from "yup";
 export default function ChangePassword() {
     const userData = getCurrentUserData();
     const {email}=userData;
-    const [passwordData,setPasswordData]=useState({
+    const [passwordData]=useState({
         currentpassword:"",
         newpassword:"",
         confirmpassword:""

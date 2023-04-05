@@ -1,15 +1,13 @@
-import { Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Dialog,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
-// import { useLocation } from 'react-router-dom';
 import { getStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
 
 
 
 export default function StaffUsersTable({ setOpen, open }) {
-    // const location = useLocation();
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
 
