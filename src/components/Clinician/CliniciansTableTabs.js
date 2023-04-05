@@ -57,7 +57,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 
   const pendingClincians = async () => {
     let res = await getPendingClinicians()
-    console.log(res)
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
@@ -76,7 +75,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setAllClinician(res?.data);
     setSecondLoading(false)
   }
-
 
   useEffect(() => {
     setFirstLoading(true)
