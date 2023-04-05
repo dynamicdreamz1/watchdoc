@@ -46,12 +46,12 @@ export const getAllClinicians = async () => {
 }
 
 
-export const getFilteredClinicians = async (page,pageCount) => {
+export const getFilteredClinicians = async (data) => {
     
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${pageCount}&page=${page}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${data?.pageCount}&page=${data?.page}`,
             headers: headersAdmin
         })
         return response

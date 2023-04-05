@@ -107,7 +107,11 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   };
 
   const filterData = async (pageCount) => {
-    let res = await getFilteredClinicians(page, pageCount)
+    const data={
+      pageCount:pageCount,
+      page:page
+    }
+    let res = await getFilteredClinicians(data)
     setAllClinician(res?.data)
   };
 
