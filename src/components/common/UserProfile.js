@@ -7,7 +7,7 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
  
   const navigate=useNavigate();
   const location=useLocation();
-  const  {first_name,last_name} = MetaFormeting(data);
+  const  {first_name,last_name,profile_pic} = MetaFormeting(data);
   
   // const navigatePath=location?.pathname==="/staff-users"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
   const handleClickNavigate=()=>{
@@ -33,7 +33,7 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
           {
             <>
               <div className='user-avtar' onClick={handleClickNavigate}>
-                <Avatar className='user-profile-avtar' alt={`${first_name} ${last_name} avtar`} src='' />
+                <Avatar className='user-profile-avtar' alt={`${first_name} ${last_name} avtar`} src={profile_pic} />
               </div>
               <div className='user-info' onClick={handleClickNavigate}>
                 <span className="fname">{first_name} {last_name}</span>

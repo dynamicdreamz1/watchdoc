@@ -31,12 +31,27 @@ export const getPendingClinicians = async () => {
 }
 
 
-export const getAllClinicians = async (pageCount) => {
-
+export const getAllClinicians = async () => {
+    
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${pageCount}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const getFilteredClinicians = async (page,pageCount) => {
+    
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${pageCount}&page=${page}`,
             headers: headersAdmin
         })
         return response
