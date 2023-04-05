@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -7,7 +7,6 @@ import '../../../css/ProfileSettings.css'
 import ChangePassword from './ChangePassword';
 import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
-import { UserContext } from '../../../Store/Context';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -44,7 +43,6 @@ function a11yProps(index) {
 }
 
 export default function ProfileSettingTabs() {
-  const {currentUserData} = useContext(UserContext);
 
     const [value, setValue] = React.useState(0);
 
@@ -64,7 +62,7 @@ export default function ProfileSettingTabs() {
             </Box>
             <div className='tab-content'>
                 <TabPanel value={value} index={0}>
-                    <MyProfile currentUserData={currentUserData}/>
+                    <MyProfile />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <ChangePassword/>

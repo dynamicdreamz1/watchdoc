@@ -16,7 +16,6 @@ export default function StaffUsersTable({ setOpen, open }) {
         const response = await getStaffUsers();
         setStaffUser(response.data?.data)
         setLoading(false)
-        console.log(response);
     }
 
     useEffect(() => {

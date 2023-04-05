@@ -1,11 +1,13 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
 import {getCurrentUserData, UpdateUserProfile } from '../../../services/UserService';
 import { StoreCookie } from '../../../Utility/sessionStore';
+import { UserContext } from '../../../Store/Context';
 
-export default function MyProfile(props) {
+export default function MyProfile() {
+    const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
     const {first_name,last_name}=metaData
@@ -72,6 +74,7 @@ export default function MyProfile(props) {
 
         }
        const updatedUserData=await UpdateUserProfile(updateData)
+       setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
        StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
        const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
         setEditClinicianProfileData({

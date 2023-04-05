@@ -70,7 +70,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     if (res?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
-    console.log(res);
     setLength(res?.data?.data.length)
     setAllClinician(res?.data);
     setSecondLoading(false)
@@ -112,7 +111,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   // const handleNextPage = async () => {
   //   setPage(page + 1);
   //   let res = await getFilteredClinicians(page, pageCount)
-  //   console.log(res?.data);
   //   setAllClinician(res?.data);
   // }
   
