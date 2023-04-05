@@ -5,8 +5,7 @@ import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
-import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
-import axios from 'axios';
+import { getAllClinicians, getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,9 +51,9 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
-  const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
-  const pageCount = 1;
+  const page = (1);
+  const [length, setLength] = useState(0);
+  // let pageCount = 2
 
   const pendingClincians = async () => {
     let res = await getPendingClinicians()
@@ -68,26 +67,29 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   }
 
   const allClincians = async () => {
-    let res = await getAllClinicians(pageCount)
+    let res = await getAllClinicians()
     if (res?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
+    console.log(res);
+    setLength(res?.data?.data.length)
     setAllClinician(res?.data);
     setSecondLoading(false)
   }
-  console.log('111111',allClinician);
+
 
   useEffect(() => {
     setFirstLoading(true)
-    setSecondLoading(true)
+
     pendingClincians()
   }, [])
 
 
   useEffect(() => {
+    setSecondLoading(true)
     allClincians()
 
-  }, [page]);
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -104,45 +106,25 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setCurrentPage(1)
   };
 
-
-
-
-
-
-
-
-
-
-
-
-  const handleNextPage = () => {
-    setPage(page + 1);
-    axios.get(allClinician?.next_page_url)
-      .then(response => setAllClinician([...allClinician, ...response.data]))
-      .catch(error => console.log(error));
-
+  const filterData = async (pageCount) => {
+    let res = await getFilteredClinicians(page, pageCount)
+    setAllClinician(res?.data)
   };
 
-  const handlePreviousPage = () => {
-    setPage(page - 1);
-    axios.get(allClinician?.next_page_url)
-      .then(response => setAllClinician([...allClinician, ...response.data]))
-      .catch(error => console.log(error));
-
-  };
-
-
+  // const handleNextPage = async () => {
+  //   setPage(page + 1);
+  //   let res = await getFilteredClinicians(page, pageCount)
+  //   console.log(res?.data);
+  //   setAllClinician(res?.data);
+  // }
+  
 
 
+  
 
-
-
-
-
-
-
-
-
+  // const handlePreviousPage = () => {
+  //   setPage(page - 1);
+  // };
 
 
   return (
@@ -153,7 +135,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
               <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
-              <Tab label={`View All Clinicians  (${allClinician?.data?.length})`} {...a11yProps(1)} />
+              <Tab label={`View All Clinicians   (${length})`} {...a11yProps(1)} />
             </Tabs>
           </div>
           {value === 1 &&
@@ -167,16 +149,16 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                   onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
                   className="per-page-select"
                 >
-                  <MenuItem value={1}>1 per page</MenuItem>
-                  <MenuItem value={2}>2 per page</MenuItem>
-                  <MenuItem value={3}>3 per page</MenuItem>
-                  <MenuItem value={4}>4 per page</MenuItem>
-                  <MenuItem value={5}>5 per page</MenuItem>
-                  <MenuItem value={6}>6 per page</MenuItem>
-                  <MenuItem value={7}>7 per page</MenuItem>
-                  <MenuItem value={8}>8 per page</MenuItem>
-                  <MenuItem value={9}>9 per page</MenuItem>
-                  <MenuItem value={10}>10 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(1)} value={1}>1 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(2)} value={2}>2 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(3)} value={3}>3 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(4)} value={4}>4 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(5)} value={5}>5 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(6)} value={6}>6 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(7)} value={7}>7 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(8)} value={8}>8 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(9)} value={9}>9 per page</MenuItem>
+                  <MenuItem onClick={() => filterData(10)} value={10}>10 per page</MenuItem>
                 </Select>
                 <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
 
@@ -215,9 +197,9 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                 <>
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data} handleNextPage={handleNextPage}
-                    handlePreviousPage={handlePreviousPage} page={page}
-                    recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data}
+                       
+                      recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                   </TabPanel>
                 </>
               } </> : ""}

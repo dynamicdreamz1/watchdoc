@@ -5,11 +5,11 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
- const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage,handlePreviousPage,handleNextPage,page } = props;
+    const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage } = props;
 
-    const { t } = useTranslation();    
+    const { t } = useTranslation();
     const [data] = useState(allClinician)
-    
+
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = data?.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -17,10 +17,14 @@ export default function CliniciansRequestsTable(props) {
     const nPages = Math.ceil(data?.length / recordsPerPage)
     const handleChange = (event, value) => {
         setCurrentPage(value)
+        // if(currentPage<value){
+        //     handleNextPage()
+        // }
+        
     };
 
     return (
-        
+
         <>
             <TableContainer component={Paper} className="clinicians-table">
                 {value === 0 || value === 1 ? "" :
@@ -52,8 +56,8 @@ export default function CliniciansRequestsTable(props) {
                             ))}
 
                             {currentRecords?.length > 0 && currentRecords?.map((element) => (
-                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
-                            ))}  
+                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
+                            ))}
 
 
                         </TableBody>
@@ -62,8 +66,16 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
-            <button disabled={page === 1} onClick={handlePreviousPage}>Previous Page</button>
-      <button onClick={handleNextPage}>Next Page</button>
+            {/* <button disabled={page === 1} onClick={handlePreviousPage}>Previous Page</button>
+      <button onClick={handleNextPage}>Next Page</button> */}
+            {value === 1 && (currentRecords?.length === 0 ? "" :
+                <>
+                    {/* {currentPage!==nPages&&<button onClick={()=>{setCurrentPage(currentPage+1)}}>Next</button>} */}
+                    <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+                </>
+            )
+            }
+
         </>
 
     )
