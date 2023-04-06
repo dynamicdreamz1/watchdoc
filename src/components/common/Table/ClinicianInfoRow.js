@@ -19,7 +19,7 @@ export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
       <TableRow>
         <TableCell><ClinicianInfo data={data} clinicianStaff={clinicianStaff} /></TableCell>
         {location.pathname === "/patientdetails" ? "" : <TableCell><Email email={data?.email} /></TableCell>}
-        <TableCell><Phone data={data} /></TableCell>
+        {location.pathname === "/patientdetails" ? "" : <TableCell><Phone data={data} /></TableCell> }
         {value === 0 ? "" :
           <>
             {location.pathname === "/patientdetails" ? "" :
