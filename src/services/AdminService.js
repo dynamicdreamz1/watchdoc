@@ -59,3 +59,32 @@ export const getFilteredClinicians = async (data) => {
         return error
     }
 }
+
+export async function UpdateUserProfile(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/updateprofile`,
+            data: data,
+            headers: headersAdmin,
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const UpdatePassword = async (apiData) => {
+   
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/upsert_password`,
+            data:apiData,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

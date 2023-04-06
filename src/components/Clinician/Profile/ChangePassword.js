@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { getCurrentUserData, UpdateUserProfile } from '../../../services/UserService';
+import { getCurrentUserData } from '../../../services/UserService';
 import { Formik } from 'formik';
 import * as Yup from "yup";
+import { UpdatePassword } from '../../../services/AdminService';
 
 export default function ChangePassword() {
     const userData = getCurrentUserData();
@@ -11,18 +12,50 @@ export default function ChangePassword() {
         newpassword:"",
         confirmpassword:""
     })
+
+    const [loading,setLoading]=useState(false)
+    const [message,setMessage]=useState('')
+    const [error,setError]=useState('')
     const LoginSchema = Yup.object({
-        currentpassword: Yup.string().required("Password is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        newpassword: Yup.string().required('Password is required*'),
+        currentpassword: Yup.string().required("Old password is required*"),
+        // .matches(
+        //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        //     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        // ),
+        newpassword: Yup.string().required('New password is required*')
+        .matches(
+            // eslint-disable-next-line no-useless-escape
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+            "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        ),
         confirmpassword: Yup.string().required('Password is required*')
            .oneOf([Yup.ref('newpassword'), null], 'Passwords must match')
         
         
     });
 
-    const handleSubmitForm=(data)=>{
-        UpdateUserProfile(data)
+    const handleSubmitForm=async(data)=>{
+        setLoading(true)
+        const apiData={
+            old_password:data?.currentpassword,
+            password:data?.newpassword,
+            password_confirmation:data?.confirmpassword,
+            type:"update"
+        }
+       let res=await UpdatePassword(apiData)
+        console.log(res);
+        setLoading(false)
+
+        if(res?.status===200){
+            setError("")
+            setMessage('Password successfully updated.')
+        }
+
+        if(res?.response?.status===422){
+            setMessage("")
+            setError("Old password is incorrect.")
+        }        
+        
     }
   return (
     <Formik 
@@ -39,6 +72,9 @@ export default function ChangePassword() {
                 <h2>Change your password</h2>
                 <span>You are about to change the password for your WatchDoc account, <strong>{email}</strong></span>
             </div>
+            <div className=''>{message}</div>
+            <div className=''>{error}</div>
+
             <form onSubmit={props.handleSubmit}>
                 <div className='input-block'>
                     <label>Current password</label>
@@ -59,6 +95,7 @@ export default function ChangePassword() {
                     <button type="submit">Save</button>
                 </div>
             </form>
+            <div>{loading? "Loading..." : ""}</div>
         </div>
     </>
      )}

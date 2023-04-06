@@ -135,24 +135,6 @@ export const VerifyMobileNumber = async (data) => {
     }
 }
 
-export async function UpdateUserProfile(data) {
-    try {
-        const response = await axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/updateprofile`,
-            data: data,
-            headers: headersUser,
-        })
-        return response;
-    } catch (error) {
-        throw error;
-    }
-}
-
-
-
-
-
 export const logout = () => {
     StoreCookie.removeItem("token");
     StoreCookie.removeItem("profileCheck");

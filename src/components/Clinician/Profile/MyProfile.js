@@ -2,9 +2,10 @@ import React,{useContext, useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
-import {getCurrentUserData, UpdateUserProfile } from '../../../services/UserService';
+import {getCurrentUserData } from '../../../services/UserService';
 import { StoreCookie } from '../../../Utility/sessionStore';
 import { UserContext } from '../../../Store/Context';
+import { UpdateUserProfile } from '../../../services/AdminService';
 
 export default function MyProfile() {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
@@ -12,6 +13,8 @@ export default function MyProfile() {
     const metaData=  MetaFormeting(userData);
     const {first_name,last_name}=metaData
     const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
+    const [loading,setLoading]=useState(false)
+    const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
         // "title":"Dr",
         "first_name": first_name,
@@ -67,6 +70,7 @@ export default function MyProfile() {
 
     const handleSubmitForm = async(data) => {
         // const tempData={...data,profileImage:imageUrl}
+        setLoading(true)
         const updateData={
             "first_name": data?.first_name,
         "last_name": data?.last_name,
@@ -74,17 +78,25 @@ export default function MyProfile() {
 
         }
        const updatedUserData=await UpdateUserProfile(updateData)
-       setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
-       StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
-       const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
-        setEditClinicianProfileData({
-            "first_name": tempMetaFormat?.first_name,
-        "last_name": tempMetaFormat?.last_name,
-        "email": updatedUserData?.data?.data?.email,
-        "practicename": "",
-        "practiceaddress": "",
-        "profileImage":""
-        })
+       console.log(updatedUserData);
+       setLoading(false)
+       
+       if(updatedUserData.status===200){
+        setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
+        StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
+        const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
+         setEditClinicianProfileData({
+             "first_name": tempMetaFormat?.first_name,
+         "last_name": tempMetaFormat?.last_name,
+         "email": updatedUserData?.data?.data?.email,
+         "practicename": "",
+         "practiceaddress": "",
+         "profileImage":""
+         })
+        setMessage('Profile updated successfully.')
+       }
+
+      
         
     }
     
@@ -102,6 +114,7 @@ export default function MyProfile() {
             <div className='title-block'>
                 <h2>Profile</h2>
             </div>
+            <div>{message}</div>
             <form onSubmit={props.handleSubmit}>
             <div className='input-block update-profile'>
                 <div className='image-block'>
@@ -151,6 +164,7 @@ export default function MyProfile() {
                     <button type="submit">Save</button>
                 </div>
             </form>
+            <div>{loading? "Loading..." : ""}</div>
         </div>
     </>
     )}
