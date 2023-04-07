@@ -86,7 +86,7 @@ export default function TableShorting(props) {
                     },
                 }}
             >
-                {options.map((option) => (
+                { options?.length>0 && options?.map((option) => (
                     <MenuItem key={option} selected={option === selectedOption} onClick={(event) => { handleClose(event, option) }} >
                         {option}
                     </MenuItem>
