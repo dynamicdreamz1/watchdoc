@@ -286,7 +286,7 @@ export default function CriticalPatientsAlertTableTabs() {
 
 
     const handleClose = (event, option) => {
-        console.log('fn called2');
+        
         if (option === "View All") {
             
             setOptions(prevOptions => [
@@ -318,7 +318,6 @@ export default function CriticalPatientsAlertTableTabs() {
         }
 
         if (option === "View Less") {
-            console.log('fn called');
             setOptions(prevOptions => [
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 "View All"
