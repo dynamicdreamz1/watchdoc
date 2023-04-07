@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { Box, Tab, Tabs } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import TableShorting from './TableShorting';
@@ -9,12 +9,13 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DatePickerInput from '../common/Table/DatePickerInput';
 import { GetDate } from '../../Utility/functions';
+import { useTranslation } from 'react-i18next';
 
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
-    
+
+
     return (
         <div
             role="tabpanel"
@@ -46,12 +47,13 @@ function a11yProps(index) {
 }
 
 export default function CriticalPatientsAlertTableTabs() {
-    const location=useLocation();
-    const [date,setDate] = useState(GetDate);
+    const { t } = useTranslation()
+    const location = useLocation();
+    const [date, setDate] = useState(GetDate);
     const [value, setValue] = React.useState(0);
     const [viewAll, setViewAll] = useState(false)
 
-    const ChangeDate=(NewDate)=>{
+    const ChangeDate = (NewDate) => {
         setDate(GetDate(NewDate));
     }
 
@@ -235,8 +237,8 @@ export default function CriticalPatientsAlertTableTabs() {
     ]
     )
 
-   
-        let  mergeData=[...patientData,...reviewData]
+
+    let mergeData = [...patientData, ...reviewData]
 
     // const handleClickReview = (data) => {
     //     const filterData = patientData?.filter((el) => el?.id === data?.id)
@@ -258,6 +260,94 @@ export default function CriticalPatientsAlertTableTabs() {
     //     setReviewData(filterData)
     // }
 
+    // console.log('544',viewAll);
+    const defaultOption = [
+        t('DashboardPage.SideButton.d1'),
+        t('DashboardPage.SideButton.d2'),
+        t('DashboardPage.SideButton.d3')
+
+    ];
+    const specificOption = [
+        t('DashboardPage.SideButton.d1'),
+        t('DashboardPage.SideButton.d2'),
+        "Alphabetical"
+    ]
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [selectedOption, setSelectedOption] = React.useState(null);
+    let [options, setOptions] = useState(location?.pathname === "/clinicians" ? specificOption : defaultOption)
+
+    useEffect(() => {
+
+        handleClose(event, "View All")
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value])
+
+
+    const handleClose = (event, option) => {
+        console.log('fn called2');
+        if (option === "View All") {
+            
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View Less"
+            ]);
+            setViewAll(!viewAll);
+        }
+
+        if (option === "Newest to Oldest") {
+            if (value === 0) {
+                const sortedData = [...patientData].sort((a, b) => b.date - a.date);
+                setPatientData(sortedData)
+            }
+            if (value === 1) {
+                const sortedData = [...reviewData].sort((a, b) => b.date - a.date)
+                setReviewData(sortedData)
+            }
+        }
+        if (option === "Oldest to Newest") {
+            if(value===0){
+            const sortedData = [...patientData].sort((a, b) => (a.date - b.date))
+            setPatientData(sortedData)
+            }
+            if(value===1){
+                const sortedData = [...reviewData].sort((a, b) => (a.date - b.date))
+                setReviewData(sortedData)
+            }
+        }
+
+        if (option === "View Less") {
+            console.log('fn called');
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View All"
+            ]);
+            setViewAll(!viewAll);
+        }
+        setAnchorEl(null);
+        setSelectedOption(option);
+    };
+
+    const handleButtonClick = (e) => {
+        
+        if (e.target.name === "View All") {
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View Less"
+            ]);
+            setViewAll(!viewAll);
+        }
+
+        if (e.target.name === "View Less") {
+            setOptions(prevOptions => [
+                ...prevOptions.slice(0, prevOptions.length - 1),
+                "View All"
+            ]);
+            setViewAll(!viewAll);
+        }
+    }
+
     return (
         <>
             <Box sx={{ width: '100%' }}>
@@ -265,35 +355,37 @@ export default function CriticalPatientsAlertTableTabs() {
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
                         <Tab label={`Critical Alerts - Unreviewed (${patientData?.length})`}  {...a11yProps(0)} />
                         <Tab label={`Critical Alerts - Reviewed (${reviewData?.length})`} {...a11yProps(1)} />
-                       {location?.pathname==="/patients" ? 
-                        <Tab label={`View All Patients (${mergeData?.length})`} {...a11yProps(2)} /> 
-                        : "" }
+                        {location?.pathname === "/patients" ?
+                            <Tab label={`View All Patients (${mergeData?.length})`} {...a11yProps(2)} />
+                            : ""}
                     </Tabs>
-                    {location.pathname==="/dashboard"?
-                    <TableShorting patientData={patientData} setPatientData={setPatientData} 
-                    reviewData={reviewData} setReviewData={setReviewData}
-                      setViewAll={setViewAll} viewAll={viewAll} />
-                      :location.pathname==="/patients"?
-                      <DatePickerInput ChangeDate={ChangeDate} Date={date}  />
-                      :""
+                    {location.pathname === "/dashboard" ?
+                        <TableShorting patientData={patientData} setPatientData={setPatientData}
+                            reviewData={reviewData} setReviewData={setReviewData}
+                            setViewAll={setViewAll} viewAll={viewAll} anchorEl={anchorEl} setAnchorEl={setAnchorEl} handleClose={handleClose} options={options} selectedOption={selectedOption} />
+                        : location.pathname === "/patients" ?
+                            <DatePickerInput ChangeDate={ChangeDate} Date={date} />
+                            : ""
                     }
                 </Box>
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={patientData}  viewAll={viewAll} />
+                    <CriticalPatients patientData={patientData} viewAll={viewAll} />
                 </TabPanel>
                 <TabPanel value={value} index={1} className="table-nav-tabs-content">
                     <CriticalPatients patientData={reviewData} viewAll={viewAll} />
                 </TabPanel>
                 <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={mergeData}  viewAll={viewAll} />
+                    <CriticalPatients patientData={mergeData} viewAll={viewAll} />
                 </TabPanel>
             </Box>
-            {
-            location.pathname==="/dashboard"? 
 
-            <button className='view-all' onClick={()=>{setViewAll(!viewAll)}}>{viewAll?'View Less':"View All"}</button>
-            :""
-}
+
+            {location.pathname === "/dashboard" ?
+                <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
+                }>{viewAll ? 'View Less' : "View All"}</button>
+                : ""}
         </>
     )
 }
+
+
