@@ -112,20 +112,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setAllClinician(res?.data)
   };
 
-  // const handleNextPage = async () => {
-  //   setPage(page + 1);
-  //   let res = await getFilteredClinicians(page, pageCount)
-  //   setAllClinician(res?.data);
-  // }
   
-
-
-  
-
-  // const handlePreviousPage = () => {
-  //   setPage(page - 1);
-  // };
-
 
   return (
     <>

@@ -88,3 +88,24 @@ export const UpdatePassword = async (apiData) => {
         return error
     }
 }
+
+
+
+
+
+
+
+export const addStaffUser = async (data) => {
+
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/upserprofile`,
+            data:data,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

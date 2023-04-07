@@ -5,25 +5,20 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
+import { addStaffUser } from '../../services/AdminService';
 
 export default function AddStaffUser({ staffUser, setOpen}) {
     const { t } = useTranslation()
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
-        "id": staffUser.length + 1,
         "title": "Dr",
         "firstname": "",
         "lastname": "",
         "email": "",
         "number": "",
-        "lastlogin": "",
-        "practicename": "",
         "practiceaddress": "",
         "password": "",
-        "userprofile": "",
-        "date": new Date().toLocaleDateString(),
-        "countrycode": ""
     })
    
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -40,8 +35,6 @@ export default function AddStaffUser({ staffUser, setOpen}) {
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-        practicename: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
@@ -92,51 +85,30 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
 
     const handleSubmitForm = (data) => {
-        const finalData = {
-            "id": data?.id,
-            "name": data?.firstname,
-            "email": data.email,
-            "phone": `${countryCode} ${data?.number}`,
-            "lastlogin": data?.date,
 
-            "meta_data": [
-                {
-                    "id": 11,
-                    "meta_key": "full_name",
-                    "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
-                },
-                {
-                    "id": 13,
-                    "meta_key": "zip",
-                    "meta_value": data?.zip
-                },
-                {
-                    "id": 207,
-                    "meta_key": "image",
-                    "meta_value": imageUrl
-                },
-                {
-                    "id": 211,
-                    "meta_key": "address",
-                    "meta_value": data?.practiceaddress
-                }
-            ]
+        const finalData = {
+            "first_name":data?.firstname,
+            "last_name":data?.lastname,
+            "email":data?.email,
+            "contact_number":`${countryCode} ${data?.number}`,
+            "address":data?.practiceaddress,
+            "password":data?.password,
+            "profile_pic":imageUrl,
+            "type":"create"
 
         }
-        staffUser.push(finalData)
+        const res=addStaffUser(finalData)
+        console.log("1111-finalData",res)
+            
         setOpen(false)
         setAddNewStaff({
-            "id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "number": "",
-            "lastlogin": "",
-            "practicename": "",
-            "zip": "",
-            "practiceaddress": "",
-            "password": "",
-            "userprofile": ""
+        "title": "Dr",
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "number": "",
+        "practiceaddress": "",
+        "password": "",
 
         })
 
@@ -197,11 +169,11 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                                 <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange}/>
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Practice name</label>
                                 <input type="text" name='practicename' value={props?.values?.practicename} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
-                            </div>
+                            </div> */}
                             <div className='input-block'>
                                 <label>Practice Address</label>
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
