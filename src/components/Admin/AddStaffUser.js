@@ -34,6 +34,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
         lastname: Yup.string().required("This field is required*")
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
+            // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
@@ -43,6 +44,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
         password: Yup.string()
             .required('Please Enter your password')
             .matches(
+                // eslint-disable-next-line no-useless-escape
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
                 "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
             )
