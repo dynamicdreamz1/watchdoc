@@ -88,3 +88,18 @@ export const UpdatePassword = async (apiData) => {
         return error
     }
 }
+
+export const CreateClinician = async (apiData) => {
+   
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/upsertclinician`,
+            data:apiData,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

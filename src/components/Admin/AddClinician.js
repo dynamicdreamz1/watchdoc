@@ -5,8 +5,10 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
+import { CreateClinician } from '../../services/AdminService';
 
 export default function AddClinician({ clinicianStaff, setOpen }) {
+    console.log(clinicianStaff);
     const { t } = useTranslation()
 
     const [countryCode, setcountryCode] = useState('+91');
@@ -22,7 +24,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         "practiceaddress": "",
         "password":"",
         "userprofile": "",
-        "countrycode":""
+        "countrycode":"+91"
         
     })
         
@@ -49,6 +51,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         password:Yup.string()
         .required("This field is required*")
         .matches(
+            // eslint-disable-next-line no-useless-escape
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
             "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
         ),
@@ -95,12 +98,27 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
 
 
 
-    const handleSubmitForm = (data) => {
+    const handleSubmitForm =async (data) => {
+
+        console.log(data);
+        const apiData={
+            first_name:data.firstname,
+            last_name:data.lastname,
+            email:data.email,
+            contact_number: `${data.countrycode} ${data.number}`,
+            password:data.password,
+            practice_address:data.practiceaddress,
+            type:"create"
+        }
+        // console.log(apiData);
+       let res=await CreateClinician(apiData)
+       console.log(res);
+
         const finalData = {
             "id": data?.id,
             "name": data?.firstname,
             "email": data.email,
-            "phone": `${countryCode} ${data?.number}`,
+            "phone": `${data.countrycode} ${data?.number}`,
             "lastlogin": data?.date,
             "firstname":data?.firstname,
             "lastname":data?.lastname,
