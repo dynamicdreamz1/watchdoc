@@ -51,14 +51,14 @@ export default function CriticalPatientsAlertTableTabs() {
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
     const [value, setValue] = React.useState(0);
-    const [viewAll, setViewAll] = useState(false)
+    const [viewAll, setViewAll] = useState(true)
 
     const ChangeDate = (NewDate) => {
         setDate(GetDate(NewDate));
     }
 
     const handleChange = (event, newValue) => {
-        setViewAll(false)
+        setViewAll(true)
         setValue(newValue);
     };
 
@@ -279,7 +279,7 @@ export default function CriticalPatientsAlertTableTabs() {
 
     useEffect(() => {
 
-        handleClose(event, "View All")
+        handleClose(event, "View Less")
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value])
@@ -293,6 +293,7 @@ export default function CriticalPatientsAlertTableTabs() {
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 "View Less"
             ]);
+            
             setViewAll(!viewAll);
         }
 
@@ -322,6 +323,7 @@ export default function CriticalPatientsAlertTableTabs() {
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 "View All"
             ]);
+            
             setViewAll(!viewAll);
         }
         setAnchorEl(null);
