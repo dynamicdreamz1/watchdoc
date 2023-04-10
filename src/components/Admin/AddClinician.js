@@ -24,7 +24,6 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         "practiceaddress": "",
         "password":"",
         "userprofile": "",
-        "countrycode":"+91"
         
     })
         
@@ -105,20 +104,20 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
             first_name:data.firstname,
             last_name:data.lastname,
             email:data.email,
-            contact_number: `${data.countrycode} ${data.number}`,
+            contact_number: `${countryCode} ${data.number}`,
             password:data.password,
             practice_address:data.practiceaddress,
             type:"create"
         }
-        // console.log(apiData);
+       
        let res=await CreateClinician(apiData)
        console.log(res);
 
         const finalData = {
             "id": data?.id,
             "name": data?.firstname,
-            "email": data.email,
-            "phone": `${data.countrycode} ${data?.number}`,
+            "email": data?.email,
+            "phone": `${countryCode} ${data?.number}`,
             "lastlogin": data?.date,
             "firstname":data?.firstname,
             "lastname":data?.lastname,
