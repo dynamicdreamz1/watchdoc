@@ -17,9 +17,6 @@ export default function CliniciansRequestsTable(props) {
     const nPages = Math.ceil(data?.length / recordsPerPage)
     const handleChange = (event, value) => {
         setCurrentPage(value)
-        // if(currentPage<value){
-        //     handleNextPage()
-        // }
         
     };
 
