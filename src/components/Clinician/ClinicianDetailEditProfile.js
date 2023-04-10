@@ -1,6 +1,6 @@
 
 import { MenuItem, Select } from '@mui/material'
-import React, {useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
@@ -8,20 +8,39 @@ import { MetaFormeting } from '../../Utility/functions';
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpenProfile }) {
     const metaData=MetaFormeting(profileBarData)
+    console.log("1111-profileBarData",profileBarData)
+
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-    const [addNewStaff] = useState({
+    const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
-        "firstname": profileBarData?.firstname,
-        "lastname": profileBarData?.lastname,
+        "firstname": metaData?.first_name,
+        "lastname":metaData?.last_name,
         "email": profileBarData?.email,
-        "number": profileBarData?.contact_number,
-        "practicename":profileBarData?.practicename,
-        "practiceaddress": metaData?.address,
+        "number": "",
+        "practicename":metaData?.practice_name,
+        "practiceaddress": metaData?.practice_address,
         "userprofile": "",
         "countrycode":""
         
     })
+   useEffect(()=>{
+    if (profileBarData?.contact_number.startsWith("+")) {
+        const country_code = profileBarData?.contact_number?.substring(1, profileBarData?.contact_number.length - 10);
+        setAddNewStaff({...addNewStaff,countrycode:`+ ${country_code}`})
+    }
+    if (profileBarData?.contact_number.startsWith("+")) {
+        const mobile_number = profileBarData?.contact_number.substring(profileBarData?.contact_number.length - 10);
+        setAddNewStaff({...addNewStaff,number:mobile_number})
+      }
+     else {
+        const mobile_number = profileBarData?.contact_number;
+        setAddNewStaff({...addNewStaff,number:mobile_number})
+
+      }
+    
+   },[])
+      
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     // const LoginSchema = Yup.object({
     //     id: Yup.string(),
