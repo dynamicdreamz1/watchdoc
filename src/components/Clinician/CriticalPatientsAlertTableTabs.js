@@ -41,6 +41,7 @@ TabPanel.propTypes = {
 };
 
 function a11yProps(index) {
+
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
@@ -53,6 +54,9 @@ export default function CriticalPatientsAlertTableTabs() {
     const [date, setDate] = useState(GetDate);
     const [value, setValue] = React.useState(0);
     const [viewAll, setViewAll] = useState(true)
+    const [length, setLength] = useState(false)
+    const [loading, setLoading] = useState(false)
+
 
     const ChangeDate = (NewDate) => {
         setDate(GetDate(NewDate));
@@ -239,18 +243,23 @@ export default function CriticalPatientsAlertTableTabs() {
     )
 
 
-    let mergeData = [...patientData, ...reviewData]
+    // let mergeData = [...patientData, ...reviewData]
     const [allData, setAllData] = useState([])
 
-    const allPatientData=async()=>{
-       let res= await getAllPatients()
-       console.log(res);
-       setAllData(res?.data?.data)
+    const allPatientData = async () => {
+        setLoading(true)
+        setLength(true)
+        let res = await getAllPatients()
+        setLength(false)
+        setLoading(false)
+        console.log(res);
+        setAllData(res?.data)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         allPatientData()
-    },[])
+    }, [])
+
 
     // const handleClickReview = (data) => {
     //     const filterData = patientData?.filter((el) => el?.id === data?.id)
@@ -271,6 +280,8 @@ export default function CriticalPatientsAlertTableTabs() {
     //     setPatientData(patientData.concat(tempData))
     //     setReviewData(filterData)
     // }
+
+    // console.log(allData?.data);
 
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
@@ -297,14 +308,14 @@ export default function CriticalPatientsAlertTableTabs() {
 
 
     const handleClose = (event, option) => {
-        
+
         if (option === "View All") {
-            
+
             setOptions(prevOptions => [
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 "View Less"
             ]);
-            
+
             setViewAll(!viewAll);
         }
 
@@ -319,11 +330,11 @@ export default function CriticalPatientsAlertTableTabs() {
             }
         }
         if (option === "Oldest to Newest") {
-            if(value===0){
-            const sortedData = [...patientData].sort((a, b) => (a.date - b.date))
-            setPatientData(sortedData)
+            if (value === 0) {
+                const sortedData = [...patientData].sort((a, b) => (a.date - b.date))
+                setPatientData(sortedData)
             }
-            if(value===1){
+            if (value === 1) {
                 const sortedData = [...reviewData].sort((a, b) => (a.date - b.date))
                 setReviewData(sortedData)
             }
@@ -334,7 +345,7 @@ export default function CriticalPatientsAlertTableTabs() {
                 ...prevOptions.slice(0, prevOptions.length - 1),
                 "View All"
             ]);
-            
+
             setViewAll(!viewAll);
         }
         setAnchorEl(null);
@@ -342,7 +353,7 @@ export default function CriticalPatientsAlertTableTabs() {
     };
 
     const handleButtonClick = (e) => {
-        
+
         if (e.target.name === "View All") {
             setOptions(prevOptions => [
                 ...prevOptions.slice(0, prevOptions.length - 1),
@@ -362,13 +373,14 @@ export default function CriticalPatientsAlertTableTabs() {
 
     return (
         <>
+
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                        <Tab label={`Critical Alerts - Unreviewed (${patientData?.length})`}  {...a11yProps(0)} />
-                        <Tab label={`Critical Alerts - Reviewed (${reviewData?.length})`} {...a11yProps(1)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${length ? 0 : allData?.total})`}  {...a11yProps(0)} />
+                       {location.pathname==="/patients" ? ""  : <Tab label={`Critical Alerts - Reviewed (${length ? 0 : allData?.total})`} {...a11yProps(1)} /> }
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${mergeData?.length})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${length ? 0 : allData?.total})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs>
                     {location.pathname === "/dashboard" ?
@@ -380,23 +392,30 @@ export default function CriticalPatientsAlertTableTabs() {
                             : ""
                     }
                 </Box>
-                <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={patientData} viewAll={viewAll} />
-                </TabPanel>
-                <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={reviewData} viewAll={viewAll} />
-                </TabPanel>
-                <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                    <CriticalPatients patientData={allData} viewAll={viewAll} />
-                </TabPanel>
+                
+                {loading ? <div>Loading... </div>:
+                   <>
+                        <TabPanel value={value} index={0} className="table-nav-tabs-content">
+                            <CriticalPatients patientData={allData?.data} viewAll={viewAll} />
+                        </TabPanel>
+                        <TabPanel value={value} index={1} className="table-nav-tabs-content">
+                            <CriticalPatients patientData={allData?.data} viewAll={viewAll} />
+                        </TabPanel>
+                        <TabPanel value={value} index={2} className="table-nav-tabs-content">
+                            <CriticalPatients patientData={allData?.data} viewAll={viewAll} />
+                        </TabPanel>
+                    
+                </> }
             </Box>
-
+        
 
             {location.pathname === "/dashboard" ?
+            loading ? "" :
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
                 }>{viewAll ? 'View Less' : "View All"}</button>
-                : ""}
-        </>
+                : ""} 
+        </> 
+        
     )
 }
 
