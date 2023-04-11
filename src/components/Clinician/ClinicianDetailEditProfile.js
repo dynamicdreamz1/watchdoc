@@ -1,20 +1,22 @@
 
 import { MenuItem, Select } from '@mui/material'
-import React, {useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
+import { UserContext } from '../../Store/Context';
+import { useLocation } from 'react-router-dom';
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
-    
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
+  const { allClinician, setAllClinician } = useContext(UserContext);
+  
     const {contact_number,id}=(profileBarData);
     
     const metaData=MetaFormeting(profileBarData)
-
     const [countryCode, setcountryCode] = useState('+91');
-    const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
+    const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": metaData?.first_name,
@@ -31,7 +33,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
     if (profileBarData?.contact_number.startsWith("+")) {
         const country_code = profileBarData?.contact_number?.substring(1, profileBarData?.contact_number.length - 10);
         console.log(country_code);
-        // setAddNewStaff({...addNewStaff,countrycode:`+ ${country_code}`})
         setcountryCode(`+${country_code}`)
     }
     if (profileBarData?.contact_number.startsWith("+")) {
@@ -45,11 +46,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
 
       }
       
-    // console.log(addNewStaff.countrycode);
    },[])
-
-   
-   console.log(countryCode,typeof countryCode, "countryCodecountryCode");
 
       
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -79,36 +76,13 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
     // });
 
 
-// console.log("111-imageUrl",imageUrl[0])
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
         
     const handleImages = (files) => {
-            let validImages = [files].filter((file) =>
-            
-                ['image/jpeg', 'image/png'].includes(file?.type)
-            );
-            validImages.forEach(uploadImages);
-
-            
-
-
+        setImgSrc(files)
     };
-    const uploadImages = (file) => {
-        // console.log(file);
-        // let reader = new FileReader();
-        // reader.readAsDataURL(file);
-        // reader.onloadend = () => {
-            setImgSrc(file)
-            
-
-        // };
-
-    }
-
-
-    console.log(imageUrl);
 
 
 
@@ -118,22 +92,20 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
 
     const handleSubmitForm =async(data) => {
 
-        setOpen(false)
-        const apiData={
-            first_name:data.firstname,
-            last_name:data.lastname,
-            email:data.email,
-            contact_number: `${countryCode} ${data.number}`,
-            password:null,
-            practice_address:data.practiceaddress,
-            profile_pic:imageUrl,
-            type:"update",
-            id:id.toString()
-        }
-        console.log("111111111111111",apiData?.profile_pic);
+        const formData = new FormData();
+        formData.append("id", id.toString());
+        formData.append("type", "update");
+        formData.append("first_name", data.firstname);
+        formData.append("last_name", data.lastname);
+        formData.append("email", data.email);
+        formData.append("contact_number", `${countryCode} ${data.number}`);
+        formData.append("password", null);
+        formData.append("practice_address", data.practiceaddress);
+        formData.append("profile_pic",imageUrl);
 
-       let res= await clinicanProfileUpdate(apiData)
-       console.log(res);
+
+        setOpen(false)
+       const response=await clinicanProfileUpdate(formData)
 
 
 
@@ -154,7 +126,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
         >
             {(props) => (
                 <>
-                {/* {console.log(props?.handleChange)} */}
                 <>
                     <div className='my-profile-form'>
                         <div className='dialog-title'>
@@ -163,7 +134,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="profile_pic" src={imageUrl} alt="Staf User" />
+                                    <img name="profile_pic" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />

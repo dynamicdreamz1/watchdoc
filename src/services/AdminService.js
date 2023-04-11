@@ -127,6 +127,7 @@ export const addStaffUser = async (data) => {
 let token = StoreCookie.getItem('token')
 
 export const clinicanProfileUpdate = async (data) => {
+    
 
     try {
         const response = await axios({
@@ -135,8 +136,8 @@ export const clinicanProfileUpdate = async (data) => {
             data:data,
             headers: {
                 "Accept": "application/json",
-        Authorization: `Bearer ${token}`,
-        contentType: "multipart/form-data"
+                Authorization: `Bearer ${token}`,
+                contentType: "multipart/form-data"
             }
         })
         return response

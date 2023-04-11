@@ -1,11 +1,12 @@
 import { Box, Dialog, MenuItem, Select, Tab, Tabs, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
 import { getAllClinicians, getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
+import { UserContext } from '../../Store/Context';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,12 +42,13 @@ function a11yProps(index) {
 }
 
 export default function CliniciansTableTabs({ open, setOpen }) {
+  const { allClinician, setAllClinician } = useContext(UserContext);
   const [viewAll, setViewAll] = useState(false)
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [value, setValue] = React.useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterClinician,setFilterClinician]=useState([])
   const [clinicianStaff, setClinicianStaff] = useState([])
-  const [allClinician, setAllClinician] = useState([])
   const [firstLoading, setFirstLoading] = useState(false)
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
@@ -66,12 +68,12 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   }
 
   const allClincians = async () => {
-    let res = await getAllClinicians()
-    if (res?.data?.data.length === 0) {
+   
+    if (allClinician?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
-    setLength(res?.data?.data.length)
-    setAllClinician(res?.data);
+    setLength(allClinician?.data?.data.length)
+    setFilterClinician(allClinician?.data?.data);
     setSecondLoading(false)
   }
 
@@ -109,7 +111,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
       page:page
     }
     let res = await getFilteredClinicians(data)
-    setAllClinician(res?.data)
+    setFilterClinician(res?.data)
   };
 
   
@@ -184,7 +186,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                 <>
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data}
+                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data}
                        
                       recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                   </TabPanel>

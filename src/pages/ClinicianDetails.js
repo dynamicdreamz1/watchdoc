@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
+import { UserContext } from '../Store/Context'
 
 const ClinicianDetails = () => {
+  const { allClinician, setAllClinician } = useContext(UserContext);
 
   const location = useLocation();
   const { clinicianData ,allData} = location.state;
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
- 
-  const profileBarData=allData?.filter((el)=>el?.id===clinicianData.id)
-
+  const profileBarData=allClinician?.data?.data?.filter((el)=>el?.id===clinicianData.id)
     const [patientData] = useState([
         {
             "id": 1,
@@ -213,7 +213,7 @@ const [pendingPatientsData]=useState([
         <Sidebar/>
         <div className='aside'>
           <Header setOpen={setOpen}/>
-          <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]}/>
+          <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]} />
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           <div className="pp-table">
             <div className='table-title'>
