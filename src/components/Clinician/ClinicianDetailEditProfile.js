@@ -8,7 +8,6 @@ import { MetaFormeting } from '../../Utility/functions';
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpenProfile }) {
     const metaData=MetaFormeting(profileBarData)
-    console.log("1111-profileBarData",profileBarData)
 
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
