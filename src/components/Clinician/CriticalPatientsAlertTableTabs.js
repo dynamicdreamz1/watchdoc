@@ -272,7 +272,6 @@ export default function CriticalPatientsAlertTableTabs() {
     //     setReviewData(filterData)
     // }
 
-    // console.log('544',viewAll);
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
         t('DashboardPage.SideButton.d2'),
