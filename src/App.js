@@ -51,9 +51,13 @@ function App() {
 
 
 
-useEffect(async()=>{
-  let res = await getAllClinicians();
-  setAllClinician(res)
+useEffect(()=>{
+  async function getAllClinicianData() {
+    
+    let res = await getAllClinicians();
+    setAllClinician(res)
+  }
+  getAllClinicianData()
 },[])
 
 

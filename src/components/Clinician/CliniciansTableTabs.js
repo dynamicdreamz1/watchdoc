@@ -5,7 +5,7 @@ import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
-import { getAllClinicians, getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
+import { getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
 import { UserContext } from '../../Store/Context';
 
 function TabPanel(props) {
@@ -54,7 +54,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
   const page = (1);
-  const [length, setLength] = useState(0);
+  
   // let pageCount = 2
 
   const pendingClincians = async () => {
@@ -62,17 +62,18 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
-
+  
     setClinicianStaff(res?.data?.data)
     setFirstLoading(false)
   }
 
-  const allClincians = async () => {
+  const allClincians = () => {
    
     if (allClinician?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
-    setLength(allClinician?.data?.data.length)
+    console.log(allClinician?.data?.total);
+    
     setFilterClinician(allClinician?.data?.data);
     setSecondLoading(false)
   }
@@ -88,6 +89,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setSecondLoading(true)
     allClincians()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClose = () => {
@@ -114,7 +116,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setFilterClinician(res?.data)
   };
 
-  
 
   return (
     <>
@@ -124,7 +125,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
               <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
-              <Tab label={`View All Clinicians   (${length})`} {...a11yProps(1)} />
+              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined ? "0" : allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
           </div>
           {value === 1 &&
