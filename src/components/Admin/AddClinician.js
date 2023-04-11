@@ -24,6 +24,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         "practiceaddress": "",
         "password":"",
         "userprofile": "",
+        "countrycode":""
         
     })
         
