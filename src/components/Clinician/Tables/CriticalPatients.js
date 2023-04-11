@@ -2,11 +2,11 @@ import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 
 export default function CriticalPatients(props) {
-    const location = useLocation();
+    // const location = useLocation();
     const { patientData, viewAll } = props
     // console.log(patientData);
     // let finalDta = [];

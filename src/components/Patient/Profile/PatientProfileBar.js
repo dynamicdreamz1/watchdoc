@@ -1,5 +1,7 @@
 import { Button, Dialog} from '@mui/material'
 import React from 'react'
+import { useLocation } from 'react-router-dom';
+import { MetaFormeting } from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
 import {PatientProfileOverlay} from '../../Clinician/Overlays/PatientProfileOverlay';
@@ -8,6 +10,11 @@ import PhoneNumber from '../../common/PhoneNumber'
 
 export default function PatientProfileBar() {
 
+ const location=useLocation()
+ 
+ const {data,age}=location.state;
+
+  const {first_name,last_name,sex}=MetaFormeting(data)
   const [openProfile, setOpenProfile] = React.useState(false);
   const [openClincians, setOpenClincians] = React.useState(false);
   const [openEmergencyContacts, setOpenEmergencyContacts] = React.useState(false);
@@ -22,7 +29,7 @@ export default function PatientProfileBar() {
     {
       key: 1,
       Name: 'Profile',
-      PopupData: <PatientProfileOverlay handleClose={handleClose}/>,
+      PopupData: <PatientProfileOverlay data={data} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
@@ -36,7 +43,7 @@ export default function PatientProfileBar() {
     {
       key: 3,
       Name: 'Emergency Contacts',
-      PopupData: <EmergencyContactOverlay/>,
+      PopupData: <EmergencyContactOverlay data={data}/>,
       handle: setOpenEmergencyContacts,
       open: openEmergencyContacts
     }
@@ -49,8 +56,8 @@ export default function PatientProfileBar() {
     <div className='patient-profile-bar'>
         <div className='left-block'>
             <div className='patient-info'>
-                <span className="fname">Dr Sarah McDonnell</span>
-                <span className="age">46 Years, Male</span>
+                <span className="fname">{first_name} {last_name}</span>
+                <span className="age">{age} Years, {sex}</span>
             </div>
         </div>
         <div className='center-block'>
