@@ -2,6 +2,7 @@ import React from 'react'
 import DateTime from './DateTime'
 
 export default function Bp(props) {
+  // console.log(props);
   return (
     <>
         <div className='bp table-data'>

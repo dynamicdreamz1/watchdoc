@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { MetaFormeting } from '../../../Utility/functions'
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
@@ -14,19 +15,35 @@ export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
   const {el}=props;
+  // console.log(el);
   // const navigateRoute=location.pathname==="/dashboard" ||location.pathname==="/patients" ?"/patientdetails":location.pathname==="/cliniciandetails"?"":""
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
-      navigate("/patientdetails")
+      navigate("/patientdetails",{state:{
+        data:el,
+        age:age
+      }})
     }
-    
-
-
   }
+  
+  const { first_name, last_name, sex, dob } = MetaFormeting(el)
+
+  const dobStr = dob;
+
+  const dobN = new Date(dobStr);
+
+  const today = new Date();
+
+  const diffMs = today.getTime() - dobN.getTime();
+
+  const age = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365));
+
+
   return (
     <>
     <TableRow >
-        <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell>
+        {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
+        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} last_name={last_name} sex={sex}  age={age} /></TableCell>
         <TableCell><Bp el={el}/></TableCell>
         <TableCell><Hr el={el}/></TableCell>
         <TableCell><Bo el={el}/></TableCell>

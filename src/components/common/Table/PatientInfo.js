@@ -1,17 +1,19 @@
 import React from 'react'
 
-export default function PatientInfo(props) {
+
+export default function PatientInfo({first_name,last_name,sex,age}) {
+
   return (
     <>
-    <div className='patient-name table-data'>
+      <div className='patient-name table-data'>
         <div className='icon'>
-            <img src='/images/AlertIcon.svg' alt="Alert Icon" />
+          <img src='/images/AlertIcon.svg' alt="Alert Icon" />
         </div>
         <div className='info'>
-            <span className='name'>{props?.el?.name}</span>
-            <span className='age'>{props?.el?.age}, {props?.el?.gender}</span>
+          <span className='name'>{first_name} {last_name}</span>
+          <span className='age'>{age}, {sex}</span>
         </div>
-    </div>
+      </div>
     </>
   )
 }
