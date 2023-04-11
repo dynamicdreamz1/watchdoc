@@ -5,9 +5,9 @@ import { MetaFormeting } from '../../Utility/functions';
 
 
 export default function ClinicianRequest(props) {
-    const {profileBarData:{firstname,lastname,email,practicename}}=props;
-    
-    const {address}= MetaFormeting(props?.profileBarData)
+    const {profileBarData:{email,practicename,contact_number}}=props;
+    // console.log(props);
+    const {practice_address,first_name,last_name}= MetaFormeting(props?.profileBarData)
 
     const [countryCode, setcountryCode] = useState('+91');
 
@@ -30,11 +30,11 @@ export default function ClinicianRequest(props) {
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='firstname' defaultValue={firstname} />
+                        <input type="text" name='firstname' defaultValue={first_name} />
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='lastname' defaultValue={lastname}/>
+                        <input type="text" name='lastname' defaultValue={last_name}/>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ export default function ClinicianRequest(props) {
             </div>
             <div className='input-block'>
                 <label>Practice Address</label>
-                <input type="text" name='practiceaddress' defaultValue={address} />
+                <input type="text" name='practiceaddress' defaultValue={practice_address} />
             </div>
             <div className='input-block country-code'>
                 <label id="country-code">Mobile number</label>
@@ -63,7 +63,7 @@ export default function ClinicianRequest(props) {
                                             <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                                         ))}
                                     </Select>
-                    <input type="text" name="number" defaultValue="451514497" />
+                    <input type="text" name="number" defaultValue={contact_number} />
                 </div>
             </div>
         </form>

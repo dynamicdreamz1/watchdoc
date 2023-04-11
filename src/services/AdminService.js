@@ -1,5 +1,6 @@
 import axios from "axios"
 import { headersAdmin } from "../Utility/functions"
+import { StoreCookie } from "../Utility/sessionStore"
 
 
 export const getStaffUsers = async () => {
@@ -15,6 +16,7 @@ export const getStaffUsers = async () => {
         return error
     }
 }
+
 
 export const getPendingClinicians = async () => {
 
@@ -115,6 +117,27 @@ export const addStaffUser = async (data) => {
             url: `${process.env.REACT_APP_ENDPOINT}admin/upserprofile`,
             data:data,
             headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+let token = StoreCookie.getItem('token')
+
+export const clinicanProfileUpdate = async (data) => {
+
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/upsertclinician`,
+            data:data,
+            headers: {
+                "Accept": "application/json",
+        Authorization: `Bearer ${token}`,
+        contentType: "multipart/form-data"
+            }
         })
         return response
     } catch (error) {
