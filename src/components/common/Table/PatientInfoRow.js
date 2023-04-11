@@ -14,6 +14,7 @@ export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
   const {el}=props;
+  // console.log(el);
   // const navigateRoute=location.pathname==="/dashboard" ||location.pathname==="/patients" ?"/patientdetails":location.pathname==="/cliniciandetails"?"":""
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients"){

@@ -144,3 +144,17 @@ export const clinicanProfileUpdate = async (data) => {
         return error
     }
 }
+
+export const getAllPatients = async () => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
+            headers:headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+
+}

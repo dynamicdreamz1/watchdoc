@@ -229,7 +229,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen }) {
                                 <div className='inputs-wrapper'>
                                     <Select
                                         labelId="country-code"
-                                        value={countryCode ? countryCode : "+91"}
+                                        defaultValue={countryCode ? countryCode : "+91"}
                                         label="Age"
                                         onChange={handleChange}
                                     >
