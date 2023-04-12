@@ -62,7 +62,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
-  
+    console.log(res?.data?.data);
     setClinicianStaff(res?.data?.data)
     setFirstLoading(false)
   }
@@ -72,7 +72,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     if (allClinician?.data?.data.length === 0) {
       setSecondLength("No records found.")
     }
-    console.log(allClinician?.data?.total);
     
     setFilterClinician(allClinician?.data?.data);
     setSecondLoading(false)
@@ -173,7 +172,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
               <>
                 {firstLength ? firstLength : ""}
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                  <CliniciansRequestsTable value={value} clinicianStaff={allClinician?.data?.data} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </TabPanel>
               </>
             }
