@@ -112,42 +112,41 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         }
        
        let res=await CreateClinician(apiData)
-       console.log(res);
 
-        const finalData = {
-            "id": data?.id,
-            "name": data?.firstname,
-            "email": data?.email,
-            "phone": `${countryCode} ${data?.number}`,
-            "lastlogin": data?.date,
-            "firstname":data?.firstname,
-            "lastname":data?.lastname,
-            "practicename":data?.practicename,
-            "meta_data": [
-                {
-                    "id": 11,
-                    "meta_key": "full_name",
-                    "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
-                },
-                {
-                    "id": 13,
-                    "meta_key": "zip",
-                    "meta_value": data?.zip
-                },
-                {
-                    "id": 207,
-                    "meta_key": "image",
-                    "meta_value": imageUrl
-                },
-                {
-                    "id": 211,
-                    "meta_key": "address",
-                    "meta_value": data?.practiceaddress
-                }
-            ]
+        // const finalData = {
+        //     "id": data?.id,
+        //     "name": data?.firstname,
+        //     "email": data?.email,
+        //     "phone": `${countryCode} ${data?.number}`,
+        //     "lastlogin": data?.date,
+        //     "firstname":data?.firstname,
+        //     "lastname":data?.lastname,
+        //     "practicename":data?.practicename,
+        //     "meta_data": [
+        //         {
+        //             "id": 11,
+        //             "meta_key": "full_name",
+        //             "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
+        //         },
+        //         {
+        //             "id": 13,
+        //             "meta_key": "zip",
+        //             "meta_value": data?.zip
+        //         },
+        //         {
+        //             "id": 207,
+        //             "meta_key": "image",
+        //             "meta_value": imageUrl
+        //         },
+        //         {
+        //             "id": 211,
+        //             "meta_key": "address",
+        //             "meta_value": data?.practiceaddress
+        //         }
+        //     ]
 
-        }
-        clinicianStaff.push(finalData)
+        // }
+        // clinicianStaff.push(finalData)
         setOpen(false)
         setAddNewStaff({
             "id": "",

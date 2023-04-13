@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
-import { getPendingPatients } from '../services/AdminService'
 
 
 const ClinicianDetails = () => {

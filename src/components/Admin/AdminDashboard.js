@@ -471,7 +471,7 @@ export default function AdminDashboard() {
 
     return (
         <>
-                <CriticalPatientsAlertTableTabs />
+             <CriticalPatientsAlertTableTabs />
             <CliniciansRequestsTable clinicianStaff={pendingPatientsData} loading={loading} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} /> 
         </>
     )

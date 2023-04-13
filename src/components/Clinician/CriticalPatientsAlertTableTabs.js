@@ -253,14 +253,12 @@ export default function CriticalPatientsAlertTableTabs() {
         let res = await getAllPatients()
         setLength(false)
         setLoading(false)
-        console.log(res);
         setAllData(res?.data)
     }
 
     useEffect(() => {
         allPatientData()
     }, [])
-
 
     // const handleClickReview = (data) => {
     //     const filterData = patientData?.filter((el) => el?.id === data?.id)
@@ -371,8 +369,7 @@ export default function CriticalPatientsAlertTableTabs() {
             setViewAll(!viewAll);
         }
     }
-    console.log(value,'111');
-    //  console.log(allData?.data,'222');
+
     return (
         <>
 
@@ -382,7 +379,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${length ? 0 : allData?.total})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${length ? 0 : allData?.data?.length})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs>
                     {location.pathname === "/dashboard" ?

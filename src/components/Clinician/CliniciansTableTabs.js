@@ -48,48 +48,48 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [value, setValue] = React.useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [filterClinician,setFilterClinician]=useState([])
-  const [clinicianStaff, setClinicianStaff] = useState([])
+  const [pendingClinician, setPendingClinician] = useState([])
   const [firstLoading, setFirstLoading] = useState(false)
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
   const page = (1);
   
-  // let pageCount = 2
 
   const pendingClincians = async () => {
+    setFirstLoading(true)
+
     let res = await getPendingClinicians()
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
-    console.log(res);
-    setClinicianStaff(res?.data?.data)
+    setPendingClinician(res?.data?.data)
     setFirstLoading(false)
+  }
+
+
+  const getAllClinicianData=async()=>{
+    setSecondLoading(true)           
+    let res = await getAllClinicians();
+    if(res?.data?.data?.length===0){
+      setSecondLength("No records found.")
+    };
+    setAllClinician(res)
+    setSecondLoading(false)
+  
+
   }
   
   useEffect(() => {
-    setFirstLoading(true)
-
     pendingClincians()
+    getAllClinicianData()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [])
 
 
-  useEffect(() => {
-    setSecondLoading(true)
-    async function getAllClinicianData() {
-      
-      let res = await getAllClinicians();
-      if(res?.data?.total===0){
-        setSecondLength("No records found.")
-      };
-      setAllClinician(res)
-      setSecondLoading(false)
-    }
-    getAllClinicianData()
-    
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -115,16 +115,15 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setFilterClinician(res?.data)
   };
 
-
   return (
     <>
       <Box sx={{ width: '100%' }}>
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-              <Tab label={`Clinicians Pending (${clinicianStaff?.length})`} {...a11yProps(0)} />
+              <Tab label={`Clinicians Pending (${pendingClinician?.length})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
-              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined ? "0" : allClinician?.data?.total})`} {...a11yProps(1)} />
+              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined ? "0" : allClinician?.data?.data?.length})`} {...a11yProps(1)} />
             </Tabs>
           </div>
           {value === 1 &&
@@ -163,7 +162,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
           className='add-staff-user-dialog'
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-          <AddClinician clinicianStaff={clinicianStaff} setOpen={setOpen} />
+          <AddClinician clinicianStaff={pendingClinician} setOpen={setOpen} />
         </Dialog>
         {value === 0 ?
           <>
@@ -172,7 +171,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
               <>
                 {firstLength ? firstLength : ""}
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                  <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </TabPanel>
               </>
             }
