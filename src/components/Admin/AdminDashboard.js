@@ -6,6 +6,7 @@ export default function AdminDashboard() {
 
     const recordsPerPage = 5;
     const [currentPage, setCurrentPage] = useState(1)
+    
     const [clinicianStaff] = useState([
         {
             "id": 1,
@@ -440,15 +441,17 @@ export default function AdminDashboard() {
         //             "meta_key": "address",
         //             "meta_value": "2548 Stuart Street , Bridgeville ,Pennsylvania."
         //         }
-            // ]
+        // ]
         // }
     ])
 
 
+
+
     return (
         <>
-            <CriticalPatientsAlertTableTabs />
-            <CliniciansRequestsTable clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                <CriticalPatientsAlertTableTabs />
+                <CliniciansRequestsTable clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </>
     )
 }

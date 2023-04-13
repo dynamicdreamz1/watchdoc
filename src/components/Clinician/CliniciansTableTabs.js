@@ -1,12 +1,12 @@
 import { Box, Dialog, MenuItem, Select, Tab, Tabs, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
-import { getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
-import { UserContext } from '../../Store/Context';
+import { getAllClinicians, getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,7 +42,7 @@ function a11yProps(index) {
 }
 
 export default function CliniciansTableTabs({ open, setOpen }) {
-  const { allClinician, setAllClinician } = useContext(UserContext);
+  const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [value, setValue] = React.useState(0);
@@ -62,21 +62,11 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
-    console.log(res?.data?.data);
+    console.log(res);
     setClinicianStaff(res?.data?.data)
     setFirstLoading(false)
   }
-
-  const allClincians = () => {
-   
-    if (allClinician?.data?.data.length === 0) {
-      setSecondLength("No records found.")
-    }
-    
-    setFilterClinician(allClinician?.data?.data);
-    setSecondLoading(false)
-  }
-
+  
   useEffect(() => {
     setFirstLoading(true)
 
@@ -86,7 +76,17 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 
   useEffect(() => {
     setSecondLoading(true)
-    allClincians()
+    async function getAllClinicianData() {
+      
+      let res = await getAllClinicians();
+      if(res?.data?.total===0){
+        setSecondLength("No records found.")
+      };
+      setAllClinician(res)
+      setSecondLoading(false)
+    }
+    getAllClinicianData()
+    
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

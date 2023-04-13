@@ -33,34 +33,13 @@ import ProfileSettings from './pages/ProfileSettings';
 import PatientsDetails from './pages/PatientsDetails';
 import StaffUsers from './pages/StaffUsers';
 import ClinicianDetails from './pages/ClinicianDetails';
-import { getAllClinicians } from './services/AdminService';
+
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
-  const [allClinician,setAllClinician]=useState([])
   const user = getCurrentUser();
-
-
-
-
-
-
-
-
-
-
-useEffect(()=>{
-  async function getAllClinicianData() {
-    
-    let res = await getAllClinicians();
-    setAllClinician(res)
-  }
-  getAllClinicianData()
-},[])
-
-
 
 
   useEffect(() => {
@@ -76,7 +55,7 @@ useEffect(()=>{
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser,allClinician,setAllClinician }}>
+    <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
 
      <Routes>
 

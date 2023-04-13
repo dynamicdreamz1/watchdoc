@@ -1,16 +1,15 @@
 
 import { MenuItem, Select } from '@mui/material'
-import React, {useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
-import { UserContext } from '../../Store/Context';
-import { useLocation } from 'react-router-dom';
+
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
-  const { allClinician, setAllClinician } = useContext(UserContext);
+ 
   
     const {contact_number,id}=(profileBarData);
     
@@ -46,6 +45,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
 
       }
       
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
       
@@ -106,6 +106,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
 
         setOpen(false)
        const response=await clinicanProfileUpdate(formData)
+       console.log(response);
 
 
 

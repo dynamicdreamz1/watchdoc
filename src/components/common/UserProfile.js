@@ -5,6 +5,7 @@ import { MetaFormeting } from '../../Utility/functions';
 
 export default function UserProfile({ data,clinicianStaff,handleClickOpenRequestPopUp }) {
  
+ 
   const navigate=useNavigate();
   const location=useLocation();
   const  {first_name,last_name,profile_pic,practice_address} = MetaFormeting(data);
@@ -18,7 +19,7 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
     navigate(`/cliniciandetails`, {
       state: {
         clinicianData: data,
-        allData:clinicianStaff
+        allClinician:clinicianStaff
       },
     });
     if(location.pathname==="/cliniciandetails"){

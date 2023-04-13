@@ -26,7 +26,7 @@ export default function PatientInfoRow(props) {
     }
   }
   
-  const { first_name, last_name, sex, dob } = MetaFormeting(el)
+  const { first_name, full_name, last_name, sex, dob } = MetaFormeting(el)
 
   const dobStr = dob;
 
@@ -43,7 +43,7 @@ export default function PatientInfoRow(props) {
     <>
     <TableRow >
         {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
-        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} last_name={last_name} sex={sex}  age={age} /></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} full_name={full_name} last_name={last_name} sex={sex}  age={age} /></TableCell>
         <TableCell><Bp el={el}/></TableCell>
         <TableCell><Hr el={el}/></TableCell>
         <TableCell><Bo el={el}/></TableCell>
