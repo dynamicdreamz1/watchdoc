@@ -14,8 +14,8 @@ import Wt from './Wt'
 export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
-  const {el}=props;
-  // console.log(el);
+  const {el,value}=props;
+  
   // const navigateRoute=location.pathname==="/dashboard" ||location.pathname==="/patients" ?"/patientdetails":location.pathname==="/cliniciandetails"?"":""
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
@@ -43,7 +43,7 @@ export default function PatientInfoRow(props) {
     <>
     <TableRow >
         {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
-        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} full_name={full_name} last_name={last_name} sex={sex}  age={age} /></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} value={value} full_name={full_name} name={el?.name} last_name={last_name} sex={sex}  age={age} /></TableCell>
         <TableCell><Bp el={el}/></TableCell>
         <TableCell><Hr el={el}/></TableCell>
         <TableCell><Bo el={el}/></TableCell>

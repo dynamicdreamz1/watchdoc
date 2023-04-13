@@ -14,25 +14,11 @@ const ClinicianDetails = () => {
   
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
-  const [pendingPatientsData,setPendingPatientsData]=useState([])
+ 
   const profileBarData=allClinician?.filter((el)=>el?.id===clinicianData.id)
 
 
-  useEffect(()=>{
-    const GetData=async()=>{
-      let res=await getPendingPatients()
-      let data = []
-      for (let i = 0; i < 10; i++) {
-        if(res?.data[i.toString()]?.email){
-          data.push(res?.data[i.toString()])
-        }
-      }
-      setPendingPatientsData(data)
-    }
-    
-    GetData()
-  },[])
-  console.log(pendingPatientsData, "pendingPatientsData");
+  
     const [patientData] = useState([
         {
             "id": 1,
@@ -238,7 +224,7 @@ const ClinicianDetails = () => {
             <div className='table-title'>
               <h4>Patients Pending</h4>
             </div>
-            <CriticalPatients patientData={pendingPatientsData} handleClickStatus={handleClickReview} viewAll={viewAll} />
+            <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           </div>
         </div>
       </div>

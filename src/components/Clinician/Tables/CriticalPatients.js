@@ -7,7 +7,8 @@ import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
     // const location = useLocation();
-    const { patientData, viewAll } = props
+    const { patientData, viewAll,value } = props
+    console.log(patientData);
     // console.log(patientData);
     // let finalDta = [];
     // if (location.pathname === "/patients") {
@@ -47,7 +48,7 @@ export default function CriticalPatients(props) {
                     {patientData?.length !== 0 && patientData?.map((el, I) => {
                         return (
                             <TableBody key={I}>
-                                <PatientInfoRow el={el} />
+                                <PatientInfoRow el={el} value={value} />
                             </TableBody>
 
                         )

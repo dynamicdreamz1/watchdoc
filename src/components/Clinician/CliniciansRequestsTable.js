@@ -5,7 +5,7 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage } = props;
+    const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage,loading } = props;
 
     const { t } = useTranslation();
     const [data] = useState(allClinician)
@@ -31,7 +31,7 @@ export default function CliniciansRequestsTable(props) {
                     </div>
                 }
                 <>
-
+                    {loading ? "Loading..." : 
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -58,7 +58,7 @@ export default function CliniciansRequestsTable(props) {
 
 
                         </TableBody>
-                    </Table>
+                    </Table> }
 
                 </>
 
