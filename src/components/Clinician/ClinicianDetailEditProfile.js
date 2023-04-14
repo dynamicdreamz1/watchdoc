@@ -8,7 +8,7 @@ import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
 
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getAllClinicianData}) {
  
   
     const {contact_number,id}=(profileBarData);
@@ -33,7 +33,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
    useEffect(()=>{
     if (profileBarData?.contact_number.startsWith("+")) {
         const country_code = profileBarData?.contact_number?.substring(1, profileBarData?.contact_number.length - 10);
-        console.log(country_code);
         setcountryCode(`+${country_code}`)
     }
     if (profileBarData?.contact_number.startsWith("+")) {

@@ -1,23 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
+import axios from 'axios'
+import { headersAdmin } from '../Utility/functions'
 
 
 const ClinicianDetails = () => {
 
   const location = useLocation();
-  const { clinicianData  ,allClinician} = location.state;
-  
+  const { clinicianData ,allClinician} = location.state;
+  const [data,setData]=useState(allClinician)
+  const [profileBarData,setProfileBarData]=useState(data?.filter((el)=>el?.id===clinicianData.id))
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
  
-  const profileBarData=allClinician?.filter((el)=>el?.id===clinicianData.id)
+  const getAllClinicianData=async()=>{    
+     try {
+      const response = await axios({
+          method: 'get',
+          url: `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician`,
+          headers: headersAdmin
+      })
+      setData(response?.data?.data)
+  } catch (error) {
+      return error
+  }
+  }
 
 
-  
+useEffect(()=>{
+  setProfileBarData(data?.filter((el)=>el?.id===clinicianData.id))
+},[data])
+ 
     const [patientData] = useState([
         {
             "id": 1,
@@ -210,14 +227,13 @@ const ClinicianDetails = () => {
         // setReviewData(filterData)
 
     // }
-    
   return (
     <React.Fragment>
       <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
           <Header setOpen={setOpen}/>
-          <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]} />
+          <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]} getAllClinicianData={getAllClinicianData}/>
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           <div className="pp-table">
             <div className='table-title'>

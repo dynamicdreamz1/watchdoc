@@ -6,7 +6,6 @@
 
 //     let ProfileCheck = sessionStorage.getItem('profile')
 //     let token=sessionStorage.getItem('token');
-//     // console.log(token)
 
 //     if ( ProfileCheck==='1' && token ) {
 //         return <Component />;

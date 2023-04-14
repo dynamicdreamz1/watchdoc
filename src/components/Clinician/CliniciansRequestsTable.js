@@ -9,7 +9,6 @@ export default function CliniciansRequestsTable(props) {
     const { t } = useTranslation();
     
 
-
     return (
 
         <>
@@ -53,10 +52,9 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
-        
-                <>
-                    <Pagination page={currentPage} onChange={handleChangePage}  count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-                </>
+            {value ===1 &&
+            <Pagination page={currentPage} onChange={handleChangePage}  count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }  
            
 
         </>
