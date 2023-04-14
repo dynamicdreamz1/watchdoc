@@ -5,7 +5,7 @@ import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
-import { getAllClinicians, getFilteredClinicians, getPendingClinicians } from '../../services/AdminService';
+import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
 
 
 function TabPanel(props) {
@@ -54,7 +54,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimit,setDataLimit]=useState(5)
-  const page = (1);
+  
 
 
   const pendingClincians = async () => {
@@ -129,11 +129,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setCurrentPage(1)
   };
 
-  const filterData = async (pageCount) => {
-    const data={
-      pageCount:pageCount,
-      page:page
-    }
+  const handleDataChange =(pageCount) => {
+    setDataLimit(pageCount)
   };
   return (
     <>
@@ -157,16 +154,16 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                   onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
                   className="per-page-select"
                 >
-                  <MenuItem onClick={() => filterData(1)} value={1}>1 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(2)} value={2}>2 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(3)} value={3}>3 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(4)} value={4}>4 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(5)} value={5}>5 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(6)} value={6}>6 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(7)} value={7}>7 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(8)} value={8}>8 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(9)} value={9}>9 per page</MenuItem>
-                  <MenuItem onClick={() => filterData(10)} value={10}>10 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(1)} value={1}>1 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(2)} value={2}>2 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(3)} value={3}>3 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(4)} value={4}>4 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(5)} value={5}>5 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(6)} value={6}>6 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(7)} value={7}>7 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(8)} value={8}>8 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(9)} value={9}>9 per page</MenuItem>
+                  <MenuItem onClick={() => handleDataChange(10)} value={10}>10 per page</MenuItem>
                 </Select>
                 <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
 
