@@ -8,7 +8,7 @@ export const getStaffUsers = async () => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers?limit=5`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers`,
             headers: headersAdmin
         })
         return response
