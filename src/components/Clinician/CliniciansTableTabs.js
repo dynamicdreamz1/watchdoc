@@ -103,7 +103,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   };    
 
 
-
+ 
 
 
 
@@ -134,6 +134,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setDataLimit(pageCount)
   };
 
+  const pageOptions=[1,2,3,4,5,6,7,8,9,10];
+
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -148,25 +150,18 @@ export default function CliniciansTableTabs({ open, setOpen }) {
           {value === 1 &&
             <>
               <div className='right-block'>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={recordsPerPage}
-                  label="PerPage"
-                  onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
-                  className="per-page-select"
-                >
-                  <MenuItem onClick={() => handleDataChange(1)} value={1}>1 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(2)} value={2}>2 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(3)} value={3}>3 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(4)} value={4}>4 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(5)} value={5}>5 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(6)} value={6}>6 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(7)} value={7}>7 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(8)} value={8}>8 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(9)} value={9}>9 per page</MenuItem>
-                  <MenuItem onClick={() => handleDataChange(10)} value={10}>10 per page</MenuItem>
-                </Select>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={recordsPerPage}
+                    label="PerPage"
+                    onChange={(e) => handleChangePaginationCount(e.target.value)} defaultValue={recordsPerPage}
+                    className="per-page-select"
+                  >
+              
+                    {pageOptions.map((pageNumber,I)=>  <MenuItem key={I} onClick={() => handleDataChange(pageNumber)} value={pageNumber}>{pageNumber} per page</MenuItem> )}
+                    
+                  </Select>
                 <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
 
               </div>
