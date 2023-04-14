@@ -1,43 +1,42 @@
-import { Dialog,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Dialog,Pagination,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
 import { getStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
+import { useLocation } from 'react-router-dom';
 
 
 
 export default function StaffUsersTable({ setOpen, open }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
+    let location=useLocation();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
-    const StaffUserData = async () => {
+    const handleChangePage=(e,newValue)=>{
+        setCurrentPage(newValue)
+    }
+        
+
+    const StaffUserData = async (limit,currentPage) => {
         setLoading(true)
-        const response = await getStaffUsers();
+        const response = await getStaffUsers(limit,currentPage);
+        
         setStaffUser(response.data?.data)
         setLoading(false)
+        let nPages=Math.ceil(response.data.total/limit)
+        setTotalPages(nPages)
     }
 
+    let limit=6;
     useEffect(() => {
-        StaffUserData()
-    }, [])
+        StaffUserData(limit,currentPage)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [limit,currentPage])
 
 
-
-    // const [data] = useState(staffUser)
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [recordsPerPage] = useState(5);
-
-    // const indexOfLastRecord = currentPage * recordsPerPage;
-    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-
-
-    // const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-
-    // const nPages = Math.ceil(data.length / recordsPerPage)
-    // const handleChange = (event, value) => {
-    //     setCurrentPage(value)
-    // };
     const handleClose = () => {
         setOpen(false);
     };
@@ -53,7 +52,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
+                <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
             </Dialog>
             {loading ? "Loading..." :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
@@ -90,10 +89,11 @@ export default function StaffUsersTable({ setOpen, open }) {
                 </TableContainer>
             }
 
-            {/* {location.pathname!=="/staff-users" && (currentRecords?.length === 0 ? "" :
-                <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
-    )
-            } */}
+            {location.pathname!=="/staff-users" || loading  ? "" 
+           :
+                <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+   
+            }
         </>
     )
 }
