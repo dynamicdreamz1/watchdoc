@@ -52,10 +52,26 @@ export default function CriticalPatientsAlertTableTabs() {
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
     const [viewAll, setViewAll] = useState(true)
     const [length, setLength] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [allPatientData, setAllPatientData] = useState([])
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const defaultOption = [
+        t('DashboardPage.SideButton.d1'),
+        t('DashboardPage.SideButton.d2'),
+        t('DashboardPage.SideButton.d3')
+
+    ];
+    const specificOption = [
+        t('DashboardPage.SideButton.d1'),
+        t('DashboardPage.SideButton.d2'),
+        "Alphabetical"
+    ]
+    let [options, setOptions] = useState(location?.pathname === "/clinicians" ? specificOption : defaultOption)
 
 
     const ChangeDate = (NewDate) => {
@@ -244,59 +260,26 @@ export default function CriticalPatientsAlertTableTabs() {
     )
 
 
-    // let mergeData = [...patientData, ...reviewData]
-    const [allData, setAllData] = useState([])
 
-    const allPatientData = async () => {
+    const getPatient = async () => {
         setLoading(true)
         setLength(true)
         let res = await getAllPatients()
         setLength(false)
         setLoading(false)
-        setAllData(res?.data)
+        setAllPatientData(res?.data)
     }
 
     useEffect(() => {
-        allPatientData()
+        getPatient()
     }, [])
 
-    // const handleClickReview = (data) => {
-    //     const filterData = patientData?.filter((el) => el?.id === data?.id)
-    //     const finalData = patientData?.filter((el) => el?.id !== data?.id)
-    //     setPatientData(finalData)
-    //     const tempData = filterData.map((el) => {
-    //         e"Reviewed"
-    //         return el;
-    //     })
-
-    //     const mulitReviewData = [...reviewData, ...tempData]
-    //     setReviewData(mulitReviewData)
-    // }
-
-    // const handleClickUnReview = (data) => {
-    //     const filterData = reviewData?.filter((el) => el?.id !== data?.id)
-    //     const tempData = [{ ...data, "status": "UnReviewed" }]
-    //     setPatientData(patientData.concat(tempData))
-    //     setReviewData(filterData)
-    // }
+ 
 
    
 
-    const defaultOption = [
-        t('DashboardPage.SideButton.d1'),
-        t('DashboardPage.SideButton.d2'),
-        t('DashboardPage.SideButton.d3')
 
-    ];
-    const specificOption = [
-        t('DashboardPage.SideButton.d1'),
-        t('DashboardPage.SideButton.d2'),
-        "Alphabetical"
-    ]
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [selectedOption, setSelectedOption] = React.useState(null);
-    let [options, setOptions] = useState(location?.pathname === "/clinicians" ? specificOption : defaultOption)
+    
 
     useEffect(() => {
 
@@ -379,7 +362,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${length ? 0 : allData?.data?.length})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${length ? 0 : allPatientData?.data?.length})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs>
                     {location.pathname === "/dashboard" ?
@@ -401,7 +384,7 @@ export default function CriticalPatientsAlertTableTabs() {
                             <CriticalPatients value={value}  patientData={reviewData} viewAll={viewAll} />
                         </TabPanel> 
                         <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                            <CriticalPatients value={value} loading={loading} patientData={allData?.data} viewAll={viewAll} />
+                            <CriticalPatients value={value} loading={loading} patientData={allPatientData?.data} viewAll={viewAll} />
                         </TabPanel> 
                     
                 </> 

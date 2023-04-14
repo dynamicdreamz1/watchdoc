@@ -12,14 +12,13 @@ export default function StaffUsersTable({ setOpen, open }) {
     const [loading, setLoading] = useState(false)
 
     const StaffUserData = async () => {
-
+        setLoading(true)
         const response = await getStaffUsers();
         setStaffUser(response.data?.data)
         setLoading(false)
     }
 
     useEffect(() => {
-        setLoading(true)
         StaffUserData()
     }, [])
 
@@ -54,7 +53,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} setStaffUser={setStaffUser} setOpen={setOpen} />
+                <AddStaffUser staffUser={staffUser} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
             </Dialog>
             {loading ? "Loading..." :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
@@ -68,8 +67,8 @@ export default function StaffUsersTable({ setOpen, open }) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {/* {    (location.pathname==="/staff-users"?staffUser:currentRecords)?.map((data, i) => ( */}
-                            {staffUser?.length > 0 && staffUser?.map((data, i) => {
+                          
+                            {staffUser?.length !== 0 && staffUser?.map((data, i) => {
 
                                 const { last_login } = MetaFormeting(data)
                                 return (

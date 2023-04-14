@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { addStaffUser } from '../../services/AdminService';
 
-export default function AddStaffUser({ staffUser, setOpen}) {
+export default function AddStaffUser({setOpen,StaffUserData}) {
     const { t } = useTranslation()
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
@@ -100,8 +100,8 @@ export default function AddStaffUser({ staffUser, setOpen}) {
         formData.append("profile_pic",imageUrl,)
         formData.append("type","create")
         
-        const res=addStaffUser(formData)
-        console.log(res);
+        addStaffUser(formData)
+        StaffUserData()
         setOpen(false)
         setAddNewStaff({
         "title": "Dr",

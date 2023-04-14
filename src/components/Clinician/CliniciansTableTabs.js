@@ -179,7 +179,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
           className='add-staff-user-dialog'
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-          <AddClinician clinicianStaff={pendingClinician} setOpen={setOpen} />
+          <AddClinician clinicianStaff={allClinician} setOpen={setOpen} dataLimit={dataLimit} getAllClinicianData={getAllClinicianData}
+          currentPage={currentPage} />
         </Dialog>
         {value === 0 ?
           <>

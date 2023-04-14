@@ -5,9 +5,9 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { CreateClinician } from '../../services/AdminService';
+import { CreateClinician} from '../../services/AdminService';
 
-export default function AddClinician({ clinicianStaff, setOpen }) {
+export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
     const { t } = useTranslation()
 
     const [countryCode, setcountryCode] = useState('+91');
@@ -109,43 +109,11 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
             type:"create"
         }
        
-       let res=await CreateClinician(apiData)
-        console.log(res);
-        // const finalData = {
-        //     "id": data?.id,
-        //     "name": data?.firstname,
-        //     "email": data?.email,
-        //     "phone": `${countryCode} ${data?.number}`,
-        //     "lastlogin": data?.date,
-        //     "firstname":data?.firstname,
-        //     "lastname":data?.lastname,
-        //     "practicename":data?.practicename,
-        //     "meta_data": [
-        //         {
-        //             "id": 11,
-        //             "meta_key": "full_name",
-        //             "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
-        //         },
-        //         {
-        //             "id": 13,
-        //             "meta_key": "zip",
-        //             "meta_value": data?.zip
-        //         },
-        //         {
-        //             "id": 207,
-        //             "meta_key": "image",
-        //             "meta_value": imageUrl
-        //         },
-        //         {
-        //             "id": 211,
-        //             "meta_key": "address",
-        //             "meta_value": data?.practiceaddress
-        //         }
-        //     ]
-
-        // }
-        // clinicianStaff.push(finalData)
+         await CreateClinician(apiData)
+         getAllClinicianData(dataLimit,currentPage)
+        
         setOpen(false)
+         
         setAddNewStaff({
             "id": "",
             "firstname": "",
