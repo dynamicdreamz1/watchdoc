@@ -34,7 +34,6 @@ export const getPendingClinicians = async () => {
 
 
 export const getAllClinicians = async (dataLimit,currentPage) => {
-    // https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician?limit=5&page=${currentPage}
     
     try {
         const response = await axios({
@@ -161,4 +160,17 @@ export const getPendingPatients = async () => {
         return error
     }
 
+}
+
+export const getAllClinicianList = async () => {
+try {
+    const response = await axios({
+        method: 'get',
+        url: `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician`,
+        headers: headersAdmin
+    })
+        return response
+} catch (error) {
+    return error
+}
 }

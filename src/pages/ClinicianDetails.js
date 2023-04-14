@@ -4,8 +4,7 @@ import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
-import axios from 'axios'
-import { headersAdmin } from '../Utility/functions'
+import { getAllClinicianList } from '../services/AdminService'
 
 
 const ClinicianDetails = () => {
@@ -18,21 +17,15 @@ const ClinicianDetails = () => {
   const [viewAll] = useState(true)
  
   const getAllClinicianData=async()=>{    
-     try {
-      const response = await axios({
-          method: 'get',
-          url: `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician`,
-          headers: headersAdmin
-      })
-      setData(response?.data?.data)
-  } catch (error) {
-      return error
-  }
+   let response= getAllClinicianList()
+   console.log(response);
+    setData(response?.data?.data)
   }
 
 
 useEffect(()=>{
   setProfileBarData(data?.filter((el)=>el?.id===clinicianData.id))
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[data])
  
     const [patientData] = useState([
