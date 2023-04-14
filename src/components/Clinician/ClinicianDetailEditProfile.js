@@ -14,7 +14,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
     const {contact_number,id}=(profileBarData);
     
     const metaData=MetaFormeting(profileBarData)
-    // console.log(metaData?.profile_pic);
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
     const [addNewStaff,setAddNewStaff] = useState({

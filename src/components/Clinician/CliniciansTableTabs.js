@@ -45,20 +45,20 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
   const [recordsPerPage, setRecordsPerPage] = useState(5);
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [filterClinician,setFilterClinician]=useState([])
   const [pendingClinician, setPendingClinician] = useState([])
   const [firstLoading, setFirstLoading] = useState(false)
   const [secondLoading, setSecondLoading] = useState(false)
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
+  const [totalPages, setTotalPages] = useState(0);
+  const [dataLimit,setDataLimit]=useState(5)
   const page = (1);
-  
+
 
   const pendingClincians = async () => {
     setFirstLoading(true)
-
     let res = await getPendingClinicians()
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
@@ -68,25 +68,49 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   }
 
 
-  const getAllClinicianData=async()=>{
+  const getAllClinicianData=async(dataLimit,currentPage)=>{
     setSecondLoading(true)           
-    let res = await getAllClinicians();
+    let res = await getAllClinicians(dataLimit,currentPage);
     if(res?.data?.data?.length===0){
       setSecondLength("No records found.")
     };
     setAllClinician(res)
-    setSecondLoading(false)
-  
-
+    setTotalPages(Math.ceil(res.data.total / dataLimit));
+    setSecondLoading(false)  
   }
+
   
   useEffect(() => {
+
     pendingClincians()
-    getAllClinicianData()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   }, [])
+
+
+
+
+
+
+  useEffect(() => {
+    getAllClinicianData(dataLimit,currentPage)
+  }, [currentPage,dataLimit]);
+
+
+  const handleChangePage = (event, newPage) => {
+    setCurrentPage(newPage);
+  };    
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,8 +135,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
       pageCount:pageCount,
       page:page
     }
-    let res = await getFilteredClinicians(data)
-    setFilterClinician(res?.data)
   };
 
   return (
@@ -185,9 +207,9 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                 <>
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data}
-                       
-                      recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                    <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data} setAllClinician={setAllClinician} handleChangePage={handleChangePage}
+                       currentPage={currentPage} totalPages={totalPages}
+                      recordsPerPage={dataLimit}  />
                   </TabPanel>
                 </>
               } </> : ""}

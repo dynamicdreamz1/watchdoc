@@ -28,7 +28,6 @@ export default function TableShorting(props) {
     // const handleClose = (event, option) => {
 
     //     if (option === "View All") {
-    //         console.log(props?.viewAll);
     //         setOptions(prevOptions => [
     //             ...prevOptions.slice(0, prevOptions.length - 1),
     //             "View Less Data"
@@ -48,7 +47,6 @@ export default function TableShorting(props) {
 	// 	}
         
     //     if (option === "View Less Data") {
-    //         console.log(props?.viewAll);
     //         setOptions(prevOptions => [
     //             ...prevOptions.slice(0, prevOptions.length - 1),
     //             t('DashboardPage.SideButton.d3')

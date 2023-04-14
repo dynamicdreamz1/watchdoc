@@ -100,7 +100,6 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
         }
         const res=addStaffUser(finalData)
-        console.log(res);
         setOpen(false)
         setAddNewStaff({
         "title": "Dr",

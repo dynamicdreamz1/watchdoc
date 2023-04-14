@@ -33,12 +33,13 @@ export const getPendingClinicians = async () => {
 }
 
 
-export const getAllClinicians = async () => {
+export const getAllClinicians = async (dataLimit,currentPage) => {
+    // https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician?limit=5&page=${currentPage}
     
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}`,
             headers: headersAdmin
         })
         return response
@@ -48,19 +49,7 @@ export const getAllClinicians = async () => {
 }
 
 
-export const getFilteredClinicians = async (data) => {
-    
-    try {
-        const response = await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${data?.pageCount}&page=${data?.page}`,
-            headers: headersAdmin
-        })
-        return response
-    } catch (error) {
-        return error
-    }
-}
+
 
 export async function UpdateUserProfile(data) {
     try {

@@ -1,24 +1,25 @@
 import { Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React, { useState } from 'react'
+import React from 'react'
 import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician, recordsPerPage, currentPage, setCurrentPage,loading } = props;
-
+    const { value, clinicianStaff, allClinician,loading,handleChangePage,currentPage,totalPages } = props;
     const { t } = useTranslation();
-    const [data] = useState(allClinician)
+    
+   
 
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = data?.slice(indexOfFirstRecord, indexOfLastRecord);
 
-    const nPages = Math.ceil(data?.length / recordsPerPage)
-    const handleChange = (event, value) => {
-        setCurrentPage(value)
+    // const indexOfLastRecord = currentPage * recordsPerPage;
+    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    // const currentRecords = data?.slice(indexOfFirstRecord, indexOfLastRecord);
+
+    // const nPages = Math.ceil(data?.length / recordsPerPage)
+    // const handleChange = (event, value) => {
+    //     setCurrentPage(value)
         
-    };
+    // };
 
     return (
 
@@ -52,7 +53,7 @@ export default function CliniciansRequestsTable(props) {
                                 <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
                             ))}
 
-                            {currentRecords?.length > 0 && currentRecords?.map((element) => (
+                            {allClinician?.length > 0 && allClinician?.map((element) => (
                                 <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
                             ))}
 
@@ -63,15 +64,11 @@ export default function CliniciansRequestsTable(props) {
                 </>
 
             </TableContainer>
-            {/* <button disabled={page === 1} onClick={handlePreviousPage}>Previous Page</button>
-      <button onClick={handleNextPage}>Next Page</button> */}
-            {value === 1 && (currentRecords?.length === 0 ? "" :
+        
                 <>
-                    {/* {currentPage!==nPages&&<button onClick={()=>{setCurrentPage(currentPage+1)}}>Next</button>} */}
-                    <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
+                    <Pagination page={currentPage} onChange={handleChangePage}  count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
                 </>
-            )
-            }
+           
 
         </>
 

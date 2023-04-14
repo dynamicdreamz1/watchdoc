@@ -6,7 +6,6 @@ import { MetaFormeting } from '../../Utility/functions';
 
 export default function ClinicianRequest(props) {
     const {profileBarData:{email,practicename,contact_number}}=props;
-    // console.log(props);
     const {practice_address,first_name,last_name}= MetaFormeting(props?.profileBarData)
 
     const [countryCode, setcountryCode] = useState('+91');
