@@ -122,7 +122,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const handleChangePaginationCount = (value) => {
     setRecordsPerPage(value)
     setCurrentPage(1)
-
   }
 
   const handleChange = (event, newValue) => {
@@ -136,7 +135,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
       page:page
     }
   };
-
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -145,7 +143,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
               <Tab label={`Clinicians Pending (${pendingClinician?.length})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
-              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined ? "0" : allClinician?.data?.data?.length})`} {...a11yProps(1)} />
+              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
           </div>
           {value === 1 &&
