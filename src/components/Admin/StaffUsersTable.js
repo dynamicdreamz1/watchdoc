@@ -30,7 +30,7 @@ export default function StaffUsersTable({ setOpen, open }) {
         setTotalPages(nPages)
     }
 
-    let limit=4;
+    let limit=6;
     useEffect(() => {
         StaffUserData(limit,currentPage)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +52,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
+                <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
             </Dialog>
             {loading ? "Loading..." :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
