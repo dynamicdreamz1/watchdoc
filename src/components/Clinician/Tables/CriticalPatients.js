@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 
 export default function CriticalPatients(props) {
     // const location = useLocation();
-    const { patientData,value } = props
+    const { patientData,value,loading } = props
     // let finalDta = [];
     // if (location.pathname === "/patients") {
     //     finalDta = [...patientData]
@@ -17,7 +17,8 @@ export default function CriticalPatients(props) {
     //     finalDta = [...viewAllData]
     // }
     return (
-        <>
+        <> 
+        {loading ? "Loading..." :
             <TableContainer component={Paper} className="red-alert-table">
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -55,7 +56,7 @@ export default function CriticalPatients(props) {
                     }
                 </Table>
             </TableContainer>
-
+}
             {/* {currentRecords?.length === 0 ? "" :
             <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
                 }

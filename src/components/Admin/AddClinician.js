@@ -110,7 +110,7 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
         }
        
        let res=await CreateClinician(apiData)
-
+        console.log(res);
         // const finalData = {
         //     "id": data?.id,
         //     "name": data?.firstname,
