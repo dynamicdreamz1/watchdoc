@@ -13,7 +13,6 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
-        "id": clinicianStaff?.length + 1,
         "title": "Dr",
         "firstname": "",
         "lastname": "",

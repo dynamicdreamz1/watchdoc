@@ -78,7 +78,6 @@ export default function MyProfile() {
 
         }
        const updatedUserData=await UpdateUserProfile(updateData)
-       console.log(updatedUserData);
        setLoading(false)
        
        if(updatedUserData.status===200){
