@@ -14,7 +14,6 @@ export default function StaffUsersTable({ setOpen, open }) {
     const StaffUserData = async () => {
 
         const response = await getStaffUsers();
-        console.log(response)
         setStaffUser(response.data?.data)
         setLoading(false)
     }

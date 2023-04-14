@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { CreateClinician } from '../../services/AdminService';
 
 export default function AddClinician({ clinicianStaff, setOpen }) {
-    console.log(clinicianStaff);
     const { t } = useTranslation()
 
     const [countryCode, setcountryCode] = useState('+91');
@@ -100,7 +99,6 @@ export default function AddClinician({ clinicianStaff, setOpen }) {
 
     const handleSubmitForm =async (data) => {
 
-        console.log(data);
         const apiData={
             first_name:data.firstname,
             last_name:data.lastname,

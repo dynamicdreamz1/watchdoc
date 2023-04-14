@@ -8,7 +8,6 @@ import Paper from '@mui/material/Paper';
 export default function CriticalPatients(props) {
     // const location = useLocation();
     const { patientData,value } = props
-    // console.log(patientData);
     // let finalDta = [];
     // if (location.pathname === "/patients") {
     //     finalDta = [...patientData]
