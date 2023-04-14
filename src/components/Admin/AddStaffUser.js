@@ -58,24 +58,26 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
 
     const handleImages = (files) => {
-        let validImages = [files].filter((file) =>
-            ['image/jpeg', 'image/png'].includes(file?.type || {})
-        );
+        setImgSrc(files)
+        // let validImages = [files].filter((file) =>
+        //     ['image/jpeg', 'image/png'].includes(file?.type || {})
+        // );
 
-        validImages.forEach(uploadImages);
+        // validImages.forEach(uploadImages);
+
 
 
     };
-    const uploadImages = (file) => {
+    // const uploadImages = (file) => {
 
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setImgSrc(reader?.result)
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         setImgSrc(reader?.result)
 
-        };
+    //     };
 
-    }
+    // }
 
 
 
@@ -87,19 +89,18 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
 
     const handleSubmitForm = (data) => {
-
-        const finalData = {
-            "first_name":data?.firstname,
-            "last_name":data?.lastname,
-            "email":data?.email,
-            "contact_number":`${countryCode} ${data?.number}`,
-            "address":data?.practiceaddress,
-            "password":data?.password,
-            "profile_pic":imageUrl,
-            "type":"create"
-
-        }
-        const res=addStaffUser(finalData)
+        
+        const formData=new FormData();
+        formData.append("first_name",data?.firstname)
+        formData.append("last_name",data?.lastname)
+        formData.append("email",data?.email)
+        formData.append("contact_number",`${countryCode} ${data?.number}`)
+        formData.append("address",data?.practiceaddress,)
+        formData.append("password",data?.password,)
+        formData.append("profile_pic",imageUrl,)
+        formData.append("type","create")
+        
+        const res=addStaffUser(formData)
         console.log(res);
         setOpen(false)
         setAddNewStaff({
@@ -138,7 +139,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="userprofile" src={imageUrl} alt="Staf User" />
+                                    <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />
