@@ -8,18 +8,7 @@ export default function CliniciansRequestsTable(props) {
     const { value, clinicianStaff, allClinician,loading,handleChangePage,currentPage,totalPages } = props;
     const { t } = useTranslation();
     
-   
 
-
-    // const indexOfLastRecord = currentPage * recordsPerPage;
-    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    // const currentRecords = data?.slice(indexOfFirstRecord, indexOfLastRecord);
-
-    // const nPages = Math.ceil(data?.length / recordsPerPage)
-    // const handleChange = (event, value) => {
-    //     setCurrentPage(value)
-        
-    // };
 
     return (
 
