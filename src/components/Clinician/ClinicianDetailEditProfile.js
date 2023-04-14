@@ -16,6 +16,8 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
+    
+    
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": metaData?.first_name,
@@ -101,25 +103,17 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
         formData.append("contact_number", `${countryCode} ${data.number}`);
         formData.append("password", null);
         formData.append("practice_address", data.practiceaddress);
-        formData.append("profile_pic",imageUrl);
+        if(typeof imageUrl == "object" ){
+
+            formData.append("profile_pic",imageUrl);
+        }
 
 
         setOpen(false)
        const response=await clinicanProfileUpdate(formData)
        console.log(response);
-    //    if(response.status===200){
-
-            
-    //    }
-
-
-
-
-
     }
-
-
-
+    
 
 
     return (

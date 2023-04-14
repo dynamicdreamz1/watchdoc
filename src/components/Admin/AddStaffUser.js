@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { addStaffUser } from '../../services/AdminService';
 
-export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage}) {
+export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage}) {
     const { t } = useTranslation()
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
@@ -97,10 +97,14 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage}) 
         formData.append("contact_number",`${countryCode} ${data?.number}`)
         formData.append("address",data?.practiceaddress,)
         formData.append("password",data?.password,)
-        formData.append("profile_pic",imageUrl,)
         formData.append("type","create")
+
+        if(typeof imageUrl==="object"){
+        formData.append("profile_pic",imageUrl)
+        }
         
-        addStaffUser(formData)
+       let res= addStaffUser(formData)
+        console.log(res);
         StaffUserData(limit,currentPage)
         setOpen(false)
         setAddNewStaff({
@@ -113,15 +117,8 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage}) 
         "password": "",
 
         })
-
-
-
-
-
+        setCurrentPage(1)
     }
-
-
-
 
 
     return (

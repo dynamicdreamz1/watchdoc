@@ -22,7 +22,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         "practicename":"",
         "practiceaddress": "",
         "password":"",
-        "userprofile": "",
+        "userprofile": imageUrl,
         "countrycode":""
         
     })
@@ -69,47 +69,46 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
 
 
     const handleImages = (files) => {
+       
         let validImages = [files].filter((file) =>
             ['image/jpeg', 'image/png'].includes(file?.type || {})
         );
-
-        validImages.forEach(uploadImages);
-
+        console.log(validImages[0]);
+        setImgSrc(validImages[0])
+        // validImages.forEach(uploadImages);
 
     };
-    const uploadImages = (file) => {
 
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setImgSrc(reader?.result)
+    // const uploadImages = (file) => {
 
-        };
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         console.log(typeof reader?.result);
+    //         setImgSrc(reader?.result)
 
-    }
+    //     };
 
-
-
-
-
-
-
-
+    // }
 
 
     const handleSubmitForm =async (data) => {
 
-        const apiData={
-            first_name:data.firstname,
-            last_name:data.lastname,
-            email:data.email,
-            contact_number: `${countryCode} ${data.number}`,
-            password:data.password,
-            practice_address:data.practiceaddress,
-            type:"create"
+        const formData = new FormData();
+
+        if(typeof imageUrl == "object" ){
+
+            formData.append("profile_pic",imageUrl);
         }
+        formData.append("first_name", data.firstname);
+        formData.append("last_name", data.lastname);
+        formData.append("email", data.email);
+        formData.append("contact_number", `${countryCode} ${data.number}`);
+        formData.append("password", data.password);
+        formData.append("practice_address", data.practiceaddress);
+        formData.append("type", "create");
        
-         await CreateClinician(apiData)
+         await CreateClinician(formData)
          getAllClinicianData(dataLimit,currentPage)
         
         setOpen(false)
@@ -126,15 +125,8 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
             "practiceaddress": "",
             "password": "",
             "userprofile": ""
-
         })
-
-
-
-
     }
-
-
 
 
 
@@ -154,7 +146,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="userprofile" src={imageUrl} alt="Staf User" />
+                                    <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />
