@@ -48,7 +48,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
    // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
-    //   console.log(countryCode.length);
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     // const LoginSchema = Yup.object({
     //     id: Yup.string(),
@@ -107,7 +106,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
 
 
         setOpen(false)
-       const response=await clinicanProfileUpdate(formData)
+      clinicanProfileUpdate(formData)
        getAllClinicianData()
     }
     

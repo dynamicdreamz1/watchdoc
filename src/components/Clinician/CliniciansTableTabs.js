@@ -79,7 +79,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setSecondLoading(false)  
   }
 
-  
   useEffect(() => {
 
     pendingClincians()

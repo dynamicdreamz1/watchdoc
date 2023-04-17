@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, {useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
@@ -10,17 +10,18 @@ import { getAllClinicianList } from '../services/AdminService'
 const ClinicianDetails = () => {
 
   const location = useLocation();
-  const { clinicianData ,allClinician} = location.state;
+  const { clinicianData ,allClinician} = location?.state;
   const [data,setData]=useState(allClinician)
-  const [profileBarData,setProfileBarData]=useState(data?.filter((el)=>el?.id===clinicianData.id))
+  const [profileBarData,setProfileBarData]=useState(data?.filter((el)=>el?.id===clinicianData?.id))
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
- 
+  
   const getAllClinicianData=async()=>{    
    let response= await getAllClinicianList()
-   setProfileBarData(response?.data?.data?.filter((el)=>el?.id===clinicianData.id))
+   setProfileBarData(response?.data?.data?.filter((el)=>el?.id===clinicianData?.id))
     setData(response?.data?.data)
   }
+ 
 
 
     const [patientData] = useState([
@@ -215,7 +216,7 @@ const ClinicianDetails = () => {
         // setReviewData(filterData)
 
     // }
-    console.log("11111-profileBarData",profileBarData)
+    
   return (
     <React.Fragment>
       <div className='content-wrapper'>

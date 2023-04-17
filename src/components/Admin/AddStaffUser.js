@@ -103,8 +103,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("profile_pic",imageUrl)
         }
         
-       let res= addStaffUser(formData)
-        console.log(res);
+       addStaffUser(formData)
         StaffUserData(limit,currentPage)
         setOpen(false)
         setAddNewStaff({
