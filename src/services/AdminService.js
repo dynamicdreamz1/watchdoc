@@ -166,7 +166,7 @@ export const getAllClinicianList = async () => {
 try {
     const response = await axios({
         method: 'get',
-        url: `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/getallclinician`,
+        url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
         headers: headersAdmin
     })
         return response
