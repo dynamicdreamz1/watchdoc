@@ -110,7 +110,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
 
         setOpen(false)
        const response=await clinicanProfileUpdate(formData)
-       console.log(response);
+       getAllClinicianData()
     }
     
 
