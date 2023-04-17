@@ -30,12 +30,12 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         
     })
    useEffect(()=>{
-    if (profileBarData?.contact_number.startsWith("+")) {
+    if (profileBarData?.contact_number?.startsWith("+")) {
         const country_code = profileBarData?.contact_number?.substring(0, profileBarData?.contact_number.length - 10).trim();
         setcountryCode(`${country_code}`)
     }
-    if (profileBarData?.contact_number.startsWith("+")) {
-        const mobile_number = profileBarData?.contact_number.substring(profileBarData?.contact_number.length - 10);
+    if (profileBarData?.contact_number?.startsWith("+")) {
+        const mobile_number = profileBarData?.contact_number?.substring(profileBarData?.contact_number.length - 10);
         setAddNewStaff({...addNewStaff,number:mobile_number})
         
       }
