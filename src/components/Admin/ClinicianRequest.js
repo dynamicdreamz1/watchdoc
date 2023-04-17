@@ -1,5 +1,5 @@
 import { MenuItem, Select } from '@mui/material'
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { allTimeZone } from '../../Utility/countryCode';
 import { MetaFormeting } from '../../Utility/functions';
 
@@ -7,8 +7,29 @@ import { MetaFormeting } from '../../Utility/functions';
 export default function ClinicianRequest(props) {
     const {profileBarData:{email,practicename,contact_number}}=props;
     const {practice_address,first_name,last_name}= MetaFormeting(props?.profileBarData)
-
     const [countryCode, setcountryCode] = useState('+91');
+    const [mobileNum,setMobileNum]=useState('')
+
+    useEffect(()=>{
+    
+        if (contact_number?.startsWith("+")) {
+            const country_code = contact_number?.substring(0, contact_number?.length - 10).trim();
+            setcountryCode(`${country_code}`)
+        }
+        if (contact_number?.startsWith("+")) {
+            const mobile_number = contact_number?.substring(contact_number?.length - 10);
+            setMobileNum(mobile_number)
+           
+            
+          }
+         else {
+            const mobile_number =contact_number;
+            setMobileNum(mobile_number)
+    
+          }
+          
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+       },[])
 
     const handleChange = (event) => {
         setcountryCode(event.target.value);
@@ -62,7 +83,7 @@ export default function ClinicianRequest(props) {
                                             <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                                         ))}
                                     </Select>
-                    <input type="text" name="number" defaultValue={contact_number} />
+                    <input type="text" name="number" defaultValue={mobileNum} />
                 </div>
             </div>
         </form>
