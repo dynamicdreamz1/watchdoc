@@ -12,7 +12,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
  
   
     const {contact_number,id}=(profileBarData);
-    
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
@@ -32,8 +31,8 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
     })
    useEffect(()=>{
     if (profileBarData?.contact_number.startsWith("+")) {
-        const country_code = profileBarData?.contact_number?.substring(1, profileBarData?.contact_number.length - 10);
-        setcountryCode(`+${country_code}`)
+        const country_code = profileBarData?.contact_number?.substring(0, profileBarData?.contact_number.length - 10).trim();
+        setcountryCode(`${country_code}`)
     }
     if (profileBarData?.contact_number.startsWith("+")) {
         const mobile_number = profileBarData?.contact_number.substring(profileBarData?.contact_number.length - 10);
@@ -49,7 +48,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
    // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
-      
+    //   console.log(countryCode.length);
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     // const LoginSchema = Yup.object({
     //     id: Yup.string(),
@@ -76,7 +75,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         
     // });
 
-
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
@@ -99,7 +97,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         formData.append("first_name", data.firstname);
         formData.append("last_name", data.lastname);
         formData.append("email", data.email);
-        formData.append("contact_number", `${countryCode} ${data.number}`);
+        formData.append("contact_number", `${countryCode}${data.number}`);
         formData.append("password", null);
         formData.append("practice_address", data.practiceaddress);
         if(typeof imageUrl == "object" ){
@@ -198,7 +196,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
                                 <div className='inputs-wrapper'>
                                     <Select
                                         labelId="country-code"
-                                        defaultValue={countryCode ? countryCode : "+91"}
+                                        value={countryCode}
                                         label="Age"
                                         onChange={handleChange}
                                     >
