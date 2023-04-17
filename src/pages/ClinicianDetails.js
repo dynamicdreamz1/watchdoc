@@ -17,8 +17,7 @@ const ClinicianDetails = () => {
   const [viewAll] = useState(true)
  
   const getAllClinicianData=async()=>{    
-   let response= getAllClinicianList()
-   console.log(response);
+   let response= await getAllClinicianList()
     setData(response?.data?.data)
   }
 
@@ -27,7 +26,6 @@ useEffect(()=>{
   setProfileBarData(data?.filter((el)=>el?.id===clinicianData.id))
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[data])
- 
     const [patientData] = useState([
         {
             "id": 1,

@@ -72,7 +72,6 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         let validImages = [files].filter((file) =>
             ['image/jpeg', 'image/png'].includes(file?.type || {})
         );
-        console.log(validImages[0]);
         setImgSrc(validImages[0])
         // validImages.forEach(uploadImages);
 
@@ -83,7 +82,6 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
     //     let reader = new FileReader();
     //     reader.readAsDataURL(file);
     //     reader.onloadend = () => {
-    //         console.log(typeof reader?.result);
     //         setImgSrc(reader?.result)
 
     //     };
