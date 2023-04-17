@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
@@ -18,14 +18,11 @@ const ClinicianDetails = () => {
  
   const getAllClinicianData=async()=>{    
    let response= await getAllClinicianList()
+   setProfileBarData(response?.data?.data?.filter((el)=>el?.id===clinicianData.id))
     setData(response?.data?.data)
   }
 
 
-useEffect(()=>{
-  setProfileBarData(data?.filter((el)=>el?.id===clinicianData.id))
-// eslint-disable-next-line react-hooks/exhaustive-deps
-},[data])
     const [patientData] = useState([
         {
             "id": 1,
@@ -218,6 +215,7 @@ useEffect(()=>{
         // setReviewData(filterData)
 
     // }
+    console.log("11111-profileBarData",profileBarData)
   return (
     <React.Fragment>
       <div className='content-wrapper'>
