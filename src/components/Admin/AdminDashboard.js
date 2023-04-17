@@ -14,9 +14,13 @@ export default function AdminDashboard() {
 
   const GetData = async () => {
     let res = await getPendingPatients()
+    console.log(res);
     let data = []
-    for (let i = 0; i < 10; i++) {
-      if (res?.data[i.toString()]?.email) {
+    const maxKey = Object.keys(res?.data).reduce((a, b) => {
+      return a > b ? a : b;
+    });
+    for (let i = 0; i <= maxKey; i++) {
+      if (res?.data[i.toString()]) {
         data.push(res?.data[i.toString()])
       }
     }
