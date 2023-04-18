@@ -14,7 +14,6 @@ export default function AdminDashboard() {
 
   const GetData = async () => {
     let res = await getPendingPatients()
-    console.log(res);
     let data = []
     const maxKey = Object.keys(res?.data).reduce((a, b) => {
       return a > b ? a : b;

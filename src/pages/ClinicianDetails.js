@@ -18,14 +18,10 @@ const ClinicianDetails = () => {
   
   const getAllClinicianData=async()=>{    
    let response= await getAllClinicianList()
-
-
-
     setProfileBarData(response?.data?.data?.filter((el)=>el?.id===clinicianData?.id))
     setData(response?.data?.data)
   }
  
-
     const [patientData] = useState([
         {
             "id": 1,

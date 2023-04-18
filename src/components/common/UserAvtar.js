@@ -1,6 +1,6 @@
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React, { useContext } from 'react'
+import React, { useState,useContext } from 'react'
 import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
@@ -32,8 +32,7 @@ export default function UserAvtar() {
     const first_leter=first_name?.charAt(0);
     // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
-    
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
