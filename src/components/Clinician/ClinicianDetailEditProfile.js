@@ -106,7 +106,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
 
 
         setOpen(false)
-      clinicanProfileUpdate(formData)
+     await clinicanProfileUpdate(formData)
        getAllClinicianData()
     }
     
