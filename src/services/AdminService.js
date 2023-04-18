@@ -174,3 +174,18 @@ try {
     return error
 }
 }
+
+
+
+export const allInOneClinicianList = async () => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getclinicianlist?query=clinicians-pending`,
+            headers: headersAdmin
+        })
+            return response
+    } catch (error) {
+        return error
+    }
+    }

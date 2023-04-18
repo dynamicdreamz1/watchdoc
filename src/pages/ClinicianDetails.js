@@ -4,7 +4,7 @@ import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
-import { getAllClinicianList } from '../services/AdminService'
+import { allInOneClinicianList} from '../services/AdminService'
 
 
 const ClinicianDetails = () => {
@@ -17,8 +17,8 @@ const ClinicianDetails = () => {
   const [viewAll] = useState(true)
   
   const getAllClinicianData=async()=>{    
-   let response= await getAllClinicianList()
-    setProfileBarData(response?.data?.data?.filter((el)=>el?.id===clinicianData?.id))
+   let response= await allInOneClinicianList()
+    setProfileBarData(response?.data?.filter((el)=>el?.id===clinicianData?.id))
     setData(response?.data?.data)
   }
  
