@@ -29,6 +29,7 @@ export default function UserAvtar() {
     const userData = getCurrentUserData();
     let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
     const {first_name,last_name,full_name} =  MetaFormeting(finalUser);
+    const first_leter=first_name.charAt(0);
     // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
     
@@ -67,7 +68,7 @@ export default function UserAvtar() {
                     variant="dot"
                     >
                         {/* <Avatar alt="Remy Sharp" src="/images/avtar.png" /> */}
-                        <Avatar>B</Avatar>
+                        <Avatar>{first_leter}</Avatar>
                     </StyledBadge>
                 </div>
             </Button>
