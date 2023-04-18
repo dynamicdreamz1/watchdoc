@@ -160,7 +160,7 @@ form .input-block select {
   background-position: center right 12px;
 }
 form .input-block {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 form input::placeholder {
   color: #999999;
@@ -269,6 +269,7 @@ button {
   width: 0;
   height: 0;
   position: absolute;
+  opacity: 0;
 }
 .radio-buttons .radio-button input[type="radio"]:checked ~ label {
   background-color: #00b3ca;
@@ -305,6 +306,7 @@ form .input-block .error {
   color: red;
   margin-top: 5px;
   display: block;
+  white-space: nowrap;
 }
 /* Table Pagination */
 .table-pagination {
@@ -556,6 +558,9 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: #fff;
 }
+body .MuiPaper-root.red-alert-table.table-without-space .MuiTable-root .MuiTableCell-head {
+  font-weight: 400;
+}
 body .MuiPaper-root.MuiTableContainer-root.table-without-space table {
   border-spacing: 0;
   background-color: #fff;
@@ -634,6 +639,29 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .table-data.bg span.dash {
   font-size: 16px;
   line-height: 20px;
 }
+.per-page-select.MuiOutlinedInput-root .MuiSelect-select {
+  background: #FFFFFF;
+  border-radius: 30px;
+  border: 0;
+  box-shadow: none;
+  padding: 10px 92px 10px 25px !important;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #374151;
+  font-size: 14px;
+  line-height: 20px;
+  background-image: url(../../public/images/dropdown-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center right 14px;
+}
+.per-page-select.MuiOutlinedInput-root .MuiSelect-icon {
+  display: none;
+}
+.per-page-select {
+  margin-right: 11px;
+}
+.per-page-select.MuiOutlinedInput-root fieldset {
+  display: none;
+}
 .logout {
   position: absolute;
   bottom: 0;
@@ -704,6 +732,7 @@ body .MuiPaper-root.clinicians-table .MuiTableCell-root.status {
 .user-profile {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .user-profile .user-info span.position,
 .patient-profile-bar .patient-info span.position {
@@ -751,6 +780,13 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   line-height: 20px;
   margin: 0;
 }
+.pp-table .table-title h4 {
+  font-size: 18px;
+  line-height: 22px;
+}
+.pp-table {
+  padding-top: 20px;
+}
 /* Table Tabs */
 .table-nav-tabs button.MuiTab-root {
   text-transform: none;
@@ -774,7 +810,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   margin-right: 5px;
 }
 .table-nav-tabs-content .MuiBox-root {
-  padding: 20px 0;
+  padding: 20px 0 0;
 }
 .table-header-block {
   display: flex;
@@ -1071,6 +1107,7 @@ body .reminder-card-skeleton {
   font-size: 18px;
   line-height: 24px;
   color: #fff;
+  padding-left: 12px;
 }
 .add-clinician-box .form-box input.name {
   background-image: url(../../public/images/User-icon.svg);
@@ -1080,6 +1117,25 @@ body .reminder-card-skeleton {
 }
 .add-clinician-box .form-box input.postcode {
   background-image: url(../../public/images/MapMarker-icon.svg);
+}
+.clinician-overlay .add-clinician-box {
+  margin-bottom: 0;
+}
+.clinician-overlay .add-clinician-box input {
+  border: 1px solid rgb(141, 141, 141, 0.25);
+  margin-bottom: 12px;
+  border-radius: 3px;
+}
+.clinician-overlay .add-clinician-box .form-box {
+  border: 0;
+  border-radius: 0;
+}
+.clinician-overlay .add-clinician-box .form-box input[type="submit"] {
+  background-color: #00B8E2;
+  border-radius: 3px;
+}
+.clinician-overlay .add-clinician-box .form-box input[type="submit"]:hover {
+  background-color: #06B2CC;
 }
 .practitioners-card h5 {
   font-size: 16px;
@@ -1543,6 +1599,21 @@ form .input-block.update-profile:after {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+}
+.view-all {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  padding: 10px 0;
+  max-width: 100px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.view-all:hover {
+  background-color: #00B8E2;
+  color: #fff;
 }
 /* Signup page */
 @media only screen and (max-width: 1370px) {

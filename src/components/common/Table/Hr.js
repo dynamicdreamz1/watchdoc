@@ -6,7 +6,7 @@ export default function Hr(props) {
     <>
     <div className='hr table-data'>
         <span className='digit'>{props?.el?.hr}</span>
-        <DateTime/>
+        <DateTime props={props?.el}/>
     </div>
     </>
   )

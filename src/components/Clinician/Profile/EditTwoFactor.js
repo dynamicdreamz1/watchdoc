@@ -5,11 +5,15 @@ import { allTimeZone } from '../../../Utility/countryCode';
 
 export default function EditTwoFactor() {
 
-  const [countryCode, setcountryCode] = React.useState('');
+  const [countryCode, setcountryCode] = React.useState('+91');
 
   const handleChange = (event) => {
     setcountryCode(event.target.value);
   };
+
+  const handleSuccess=(e)=>{
+    e.preventDefault()
+  }
 
   return (
     <>
@@ -29,7 +33,7 @@ export default function EditTwoFactor() {
                     onChange={handleChange}
                   >
                     {allTimeZone.map((data, i) => (
-                      <MenuItem key={i} value={data.Name}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
+                      <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                     ))}
                   </Select>
                   <input type="text" name="phone-number"></input>
@@ -39,7 +43,7 @@ export default function EditTwoFactor() {
                 <p>You are about to change your mobile number. We will send a code to your new number to verify this change.</p>
               </div>
               <div className='submit-block'>
-                <button type='submit'>Send Code</button>
+                <button type='submit' onClick={handleSuccess}>Send Code</button>
               </div>
             </form>
         </div>

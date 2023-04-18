@@ -1,149 +1,135 @@
+
 import { MenuItem, Select } from '@mui/material'
-import React, {useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
-import * as Yup from "yup";
-import { useTranslation } from 'react-i18next';
-import { CreateClinician} from '../../services/AdminService';
+import { MetaFormeting } from '../../Utility/functions';
+import { clinicanProfileUpdate } from '../../services/AdminService';
 
-export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
-    const { t } = useTranslation()
 
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getAllClinicianData}) {
+ 
+  
+    const {contact_number,id}=(profileBarData);
+    const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
-    const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-    const [addNewStaff, setAddNewStaff] = useState({
+    const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
+    
+    
+    const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practicename":"",
-        "practiceaddress": "",
-        "password":"",
-        "userprofile": imageUrl,
+        "firstname": metaData?.first_name,
+        "lastname":metaData?.last_name,
+        "email": profileBarData?.email,
+        "number": contact_number,
+        "practicename":metaData?.practice_name,
+        "practiceaddress": metaData?.practice_address,
+        "profile_pic": imageUrl,
         "countrycode":""
         
     })
+   useEffect(()=>{
+    if (profileBarData?.contact_number?.startsWith("+")) {
+        const country_code = profileBarData?.contact_number?.substring(0, profileBarData?.contact_number.length - 10).trim();
+        setcountryCode(`${country_code}`)
+    }
+    if (profileBarData?.contact_number?.startsWith("+")) {
+        const mobile_number = profileBarData?.contact_number?.substring(profileBarData?.contact_number.length - 10);
+        setAddNewStaff({...addNewStaff,number:mobile_number})
         
+      }
+     else {
+        const mobile_number = profileBarData?.contact_number;
+        setAddNewStaff({...addNewStaff,number:mobile_number})
 
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    const LoginSchema = Yup.object({
-        id: Yup.string(),
-        title: Yup.string(),
+      }
+      
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   },[])
+
+    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    // const LoginSchema = Yup.object({
+    //     id: Yup.string(),
+    //     title: Yup.string(),
        
-        userprofile: Yup.string(),
-        countrycode: Yup.string(),
-        firstname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        lastname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        email: Yup.string().required("This field is required*")
-            // eslint-disable-next-line no-useless-escape
-            .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+    //     userprofile_picprofile: Yup.string(),
+    //     countrycode: Yup.string(),
+    //     firstname: Yup.string().required("This field is required*")
+    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     lastname: Yup.string().required("This field is required*")
+    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     email: Yup.string().required("This field is required*")
+    //         // eslint-disable-next-line no-useless-escape
+    //         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         
-        practicename :Yup.string()
-        .required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-        practiceaddress: Yup.string().required("This field is required*"),
-        password:Yup.string()
-        .required("This field is required*")
-        .matches(
-            // eslint-disable-next-line no-useless-escape
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        ),
-        number: Yup.string().required(t('SignUpPage.validation.common1'))
-            .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
-            .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
+    //     practicename :Yup.string()
+    //     .required("This field is required*")
+    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+    //     practiceaddress: Yup.string().required("This field is required*"),
+    //     number: Yup.string().required(t('SignUpPage.validation.common1'))
+    //         .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
+    //         .min(10, t('SignUpPage.validation.mobile.short'))
+    //         .max(10, t('SignUpPage.validation.mobile.long')),
         
-    });
-
-
+    // });
 
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
-
-
+        
     const handleImages = (files) => {
-       
-        let validImages = [files].filter((file) =>
-            ['image/jpeg', 'image/png'].includes(file?.type || {})
-        );
-        setImgSrc(validImages[0])
-        // validImages.forEach(uploadImages);
-
+        setImgSrc(files)
     };
 
-    // const uploadImages = (file) => {
-
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-
-    //     };
-
-    // }
 
 
-    const handleSubmitForm =async (data) => {
+
+
+
+
+    const handleSubmitForm =async(data) => {
 
         const formData = new FormData();
-
+        formData.append("id", id.toString());
+        formData.append("type", "update");
+        formData.append("first_name", data.firstname);
+        formData.append("last_name", data.lastname);
+        formData.append("email", data.email);
+        formData.append("contact_number", `${countryCode}${data.number}`);
+        formData.append("password", null);
+        formData.append("practice_address", data.practiceaddress);
         if(typeof imageUrl == "object" ){
 
             formData.append("profile_pic",imageUrl);
         }
-        formData.append("first_name", data.firstname);
-        formData.append("last_name", data.lastname);
-        formData.append("email", data.email);
-        formData.append("contact_number", `${countryCode} ${data.number}`);
-        formData.append("password", data.password);
-        formData.append("practice_address", data.practiceaddress);
-        formData.append("type", "create");
-       
-         await CreateClinician(formData)
-         getAllClinicianData(dataLimit,currentPage)
-        
-        setOpen(false)
-         
-        setAddNewStaff({
-            "id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "number": "",
-            "lastlogin": "",
-            "practicename": "",
-            "zip": "",
-            "practiceaddress": "",
-            "password": "",
-            "userprofile": ""
-        })
-    }
 
+
+        setOpen(false)
+     await clinicanProfileUpdate(formData)
+       getAllClinicianData()
+    }
+    
 
 
     return (
         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
-            validationSchema={LoginSchema}
+            validationSchema=""
             onSubmit={(values) => { handleSubmitForm(values) }}
         >
             {(props) => (
                 <>
+                <>
                     <div className='my-profile-form'>
                         <div className='dialog-title'>
-                            <h2>Add Clinician</h2>
+                            <h2>Clinician Profile</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
+                                    <img name="profile_pic" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />
@@ -186,11 +172,11 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
-                            </div>
+                            </div> */}
 
                             {/* <div className='input-block'>
                                 <label>Connected Patients</label>
@@ -218,15 +204,16 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                                         ))}
                                     </Select>
 
-                                    <input type="text" name="number" value={props?.values?.number} onChange={props?.handleChange}></input>
+                                    <input type="text" name="number" value={props?.values?.number || ""} onChange={props?.handleChange}></input>
                                     <span className="error"> {props.errors.number ? props.errors.number : ""}</span>
                                 </div>
                             </div>
                             <div className='submit-block'>
-                                <button type="submit">Add Clinician</button>
+                                <button type="submit">Update Clinician</button>
                             </div>
                         </form>
                     </div>
+                </>
                 </>
             )}
         </Formik>

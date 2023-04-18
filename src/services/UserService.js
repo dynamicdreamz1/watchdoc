@@ -135,8 +135,6 @@ export const VerifyMobileNumber = async (data) => {
     }
 }
 
-
-
 export const logout = () => {
     StoreCookie.removeItem("token");
     StoreCookie.removeItem("profileCheck");

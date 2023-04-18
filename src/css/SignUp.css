@@ -38,6 +38,9 @@
 .signup-page-wrapper .form-block .submit-block button {
     background-color: #4C4A96;
 }
+.signup-page-wrapper .form-block .submit-block button:hover {
+    background-color: rgba(76, 74, 150, 0.9);
+}
 .signup-page-wrapper .form-block form input::placeholder {
     color: #374151;
     opacity: 1; /* Firefox */
@@ -57,10 +60,14 @@
 .signup-page-wrapper .form-block .signup-bottom-text p a {
     text-decoration: underline;
 }
+.signup-page-wrapper .form-block .signup-bottom-text p a:hover {
+    color: #4e4b93;
+}
 .success-page-wrapper .text-block .text h1 {
     font-size: 60px;
     line-height: 60px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 .success-page-wrapper .text-block .text p {
     font-size: 18px;

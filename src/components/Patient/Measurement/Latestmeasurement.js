@@ -31,7 +31,6 @@ export default function Latestmeasurement() {
      },[])
 
      useEffect(() => {
-        //console.log(oxygen_data?.avg_saturation_percentage);
         SetBloodOygenMeasurment({...BloodOygenMeasurment,...{result:oxygen_data?.avg_saturation_percentage}});
       // eslint-disable-next-line react-hooks/exhaustive-deps
      },[oxygen_data?.avg_saturation_percentage])

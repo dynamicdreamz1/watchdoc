@@ -24,7 +24,6 @@ export default function MyClinicians({ status }) {
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
     const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-    // console.log(currentRecords)
 
     const nPages = Math.ceil(data.length / recordsPerPage)
     const { addData, setClinicianData } = useContext(InnerClinicianContext)
@@ -68,7 +67,7 @@ export default function MyClinicians({ status }) {
         getClinicianData()
 
             .then((res) => {
-
+                console.log(res)
                 setData(res.data.data)
                 setLoading(false)
             })

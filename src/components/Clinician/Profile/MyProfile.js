@@ -1,35 +1,42 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
-import { getCurrentUserData } from '../../../services/UserService';
+import {getCurrentUserData } from '../../../services/UserService';
+import { StoreCookie } from '../../../Utility/sessionStore';
+import { UserContext } from '../../../Store/Context';
+import { UpdateUserProfile } from '../../../services/AdminService';
 
-export default function MyProfile(props) {
+export default function MyProfile() {
+    const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
+    const {first_name,last_name}=metaData
     const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
+    const [loading,setLoading]=useState(false)
+    const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
-        "title":"",
-        "firstname": metaData?.full_name,
-        "lastname": "",
+        // "title":"Dr",
+        "first_name": first_name,
+        "last_name": last_name,
         "email": userData?.email,
         "practicename": "",
-        "practiceaddress": metaData?.address
+        "practiceaddress": "",
+        "profileImage":""
     })
-
     const LoginSchema = Yup.object({
-        firstname: Yup.string().required("This field is required*")
+        first_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        lastname: Yup.string().required("This field is required*")
+        last_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
+        // eslint-disable-next-line no-useless-escape
         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         practicename: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*")
         
     });
-
 
 
     const handleImages = (files) => {
@@ -61,16 +68,42 @@ export default function MyProfile(props) {
 
 
 
-    const handleSubmitForm = (data) => {
-        setEditClinicianProfileData({...data})
-        // ProfileCreation(data)
+    const handleSubmitForm = async(data) => {
+        // const tempData={...data,profileImage:imageUrl}
+        setLoading(true)
+        const updateData={
+            "first_name": data?.first_name,
+        "last_name": data?.last_name,
+        "email": data?.email,
+
+        }
+       const updatedUserData=await UpdateUserProfile(updateData)
+       setLoading(false)
+       
+       if(updatedUserData.status===200){
+        setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
+        StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
+        const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
+         setEditClinicianProfileData({
+             "first_name": tempMetaFormat?.first_name,
+         "last_name": tempMetaFormat?.last_name,
+         "email": updatedUserData?.data?.data?.email,
+         "practicename": "",
+         "practiceaddress": "",
+         "profileImage":""
+         })
+        setMessage('Profile updated successfully.')
+       }
+
+      
+        
     }
     
     return (
         <Formik 
         initialValues={editClinicianProfileData}
         enableReinitialize={true}
-        validationSchema={LoginSchema}
+        validationSchema=""
         onSubmit={(values) =>
         { handleSubmitForm(values)}} 
     > 
@@ -80,6 +113,7 @@ export default function MyProfile(props) {
             <div className='title-block'>
                 <h2>Profile</h2>
             </div>
+            <div>{message}</div>
             <form onSubmit={props.handleSubmit}>
             <div className='input-block update-profile'>
                 <div className='image-block'>
@@ -100,13 +134,13 @@ export default function MyProfile(props) {
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='firstname' placeholder='First Name*'  onChange={props.handleChange} value={props.values.firstname}/>
-                        <span className="error">{props.errors.firstname?props.errors.firstname:""}</span>
+                        <input type="text" name='first_name' placeholder='First Name*'  onChange={props.handleChange} value={props.values.first_name}/>
+                        <span className="error">{props.errors.first_name?props.errors.first_name:""}</span>
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='lastname' placeholder='Last Name*'  onChange={props.handleChange} value={props.values.lastname} />
-                            <span className="error"> {props.errors.lastname?props.errors.lastname:""}</span>
+                        <input type="text" name='last_name' placeholder='Last Name*'  onChange={props.handleChange} value={props.values.last_name} />
+                            <span className="error"> {props.errors.last_name?props.errors.last_name:""}</span>
                     </div>
                 </div>
             </div>
@@ -129,6 +163,7 @@ export default function MyProfile(props) {
                     <button type="submit">Save</button>
                 </div>
             </form>
+            <div>{loading? "Loading..." : ""}</div>
         </div>
     </>
     )}

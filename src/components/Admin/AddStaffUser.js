@@ -5,28 +5,20 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { addStaffUser } from '../../services/AdminService';
 
-export default function AddStaffUser({ staffUser, setOpen}) {
+export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage}) {
     const { t } = useTranslation()
-    const [showPassword,setShowPassword]=useState(false)
-    const [countryCode, setcountryCode] = useState('');
+    const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
-        "id": staffUser.length + 1,
         "title": "Dr",
         "firstname": "",
         "lastname": "",
         "email": "",
         "number": "",
-        "lastlogin": "",
-        "practicename": "",
         "practiceaddress": "",
         "password": "",
-        "userprofile": "",
-        "date": new Date().toLocaleDateString(),
-        "countrycode": ""
     })
    
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -42,9 +34,8 @@ export default function AddStaffUser({ staffUser, setOpen}) {
         lastname: Yup.string().required("This field is required*")
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
+            // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-        practicename: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
@@ -53,6 +44,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
         password: Yup.string()
             .required('Please Enter your password')
             .matches(
+                // eslint-disable-next-line no-useless-escape
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
                 "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
             )
@@ -66,24 +58,26 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
 
     const handleImages = (files) => {
-        let validImages = [files].filter((file) =>
-            ['image/jpeg', 'image/png'].includes(file?.type || {})
-        );
+        setImgSrc(files)
+        // let validImages = [files].filter((file) =>
+        //     ['image/jpeg', 'image/png'].includes(file?.type || {})
+        // );
 
-        validImages.forEach(uploadImages);
+        // validImages.forEach(uploadImages);
+
 
 
     };
-    const uploadImages = (file) => {
+    // const uploadImages = (file) => {
 
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setImgSrc(reader?.result)
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         setImgSrc(reader?.result)
 
-        };
+    //     };
 
-    }
+    // }
 
 
 
@@ -95,61 +89,35 @@ export default function AddStaffUser({ staffUser, setOpen}) {
 
 
     const handleSubmitForm = (data) => {
-        const finalData = {
-            "id": data?.id,
-            "name": data?.firstname,
-            "email": data.email,
-            "phone": `${countryCode} ${data?.number}`,
-            "lastlogin": data?.date,
+        
+        const formData=new FormData();
+        formData.append("first_name",data?.firstname)
+        formData.append("last_name",data?.lastname)
+        formData.append("email",data?.email)
+        formData.append("contact_number",`${countryCode} ${data?.number}`)
+        formData.append("address",data?.practiceaddress,)
+        formData.append("password",data?.password,)
+        formData.append("type","create")
 
-            "meta_data": [
-                {
-                    "id": 11,
-                    "meta_key": "full_name",
-                    "meta_value": `${data?.title} ${data?.firstname} ${data?.lastname}`
-                },
-                {
-                    "id": 13,
-                    "meta_key": "zip",
-                    "meta_value": data?.zip
-                },
-                {
-                    "id": 207,
-                    "meta_key": "image",
-                    "meta_value": imageUrl
-                },
-                {
-                    "id": 211,
-                    "meta_key": "address",
-                    "meta_value": data?.practiceaddress
-                }
-            ]
-
+        if(typeof imageUrl==="object"){
+        formData.append("profile_pic",imageUrl)
         }
-        staffUser.push(finalData)
+        
+       addStaffUser(formData)
+        StaffUserData(limit,currentPage)
         setOpen(false)
         setAddNewStaff({
-            "id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "number": "",
-            "lastlogin": "",
-            "practicename": "",
-            "zip": "",
-            "practiceaddress": "",
-            "password": "",
-            "userprofile": ""
+        "title": "Dr",
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "number": "",
+        "practiceaddress": "",
+        "password": "",
 
         })
-
-
-
-
+        setCurrentPage(1)
     }
-
-
-
 
 
     return (
@@ -168,7 +136,7 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                         <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="userprofile" src={imageUrl} alt="Staf User" />
+                                    <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />
@@ -200,11 +168,11 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                                 <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange}/>
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Practice name</label>
                                 <input type="text" name='practicename' value={props?.values?.practicename} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
-                            </div>
+                            </div> */}
                             <div className='input-block'>
                                 <label>Practice Address</label>
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
@@ -212,13 +180,13 @@ export default function AddStaffUser({ staffUser, setOpen}) {
                             </div>
                             <div className='input-block'>
                                 <label>Password</label>
-                                <input type={showPassword ? "text" : "password"}  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
-                                <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
+                                <input type="password"  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
+                                {/* <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
                                     {showPassword?
                                     <RemoveRedEyeOutlinedIcon/>:
                                     <VisibilityOffOutlinedIcon/>
 }
-                                </button>
+                                </button> */}
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
                             <div className='input-block country-code'>

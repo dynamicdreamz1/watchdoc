@@ -32,13 +32,16 @@ import SignupSuccess from './pages/SignupSuccess';
 import ProfileSettings from './pages/ProfileSettings';
 import PatientsDetails from './pages/PatientsDetails';
 import StaffUsers from './pages/StaffUsers';
+import ClinicianDetails from './pages/ClinicianDetails';
+
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
-
   const user = getCurrentUser();
+
+
   useEffect(() => {
 
     const role = getCurrentUserRole();
@@ -67,6 +70,8 @@ function App() {
 
         <Route path='/profile-settings' element={<ProfileSettings/>} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
+        <Route path='/cliniciandetails' element={currentUser ? <ClinicianDetails /> : <SignIn />} />
+
 
         
 

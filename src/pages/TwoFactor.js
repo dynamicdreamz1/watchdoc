@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import { RegisterUser, VerifyEmail } from '../services/UserService';
 import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
@@ -12,7 +12,7 @@ export default function TwoFactor() {
 
     const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
-    const { id, emailId } = location.state;
+    const {emailId } = location.state;
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
 
@@ -20,7 +20,6 @@ export default function TwoFactor() {
     const [error, setError] = useState('')
     // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
-console.log("11111-id",id)
     let navigate = useNavigate()
     const [time, setTime] = useState(60)
 
@@ -31,11 +30,17 @@ console.log("11111-id",id)
     }, [])
 
     useEffect(() => {
-        setInterval(() => {
+        let intervalID= setInterval(() => {
             setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
+            
         }, 1000);
 
-    }, []);
+        if(time===0){
+            clearInterval(intervalID)
+        }
+
+        return ()=>clearInterval(intervalID)
+    }, [time]);
 
 
 
@@ -113,8 +118,6 @@ console.log("11111-id",id)
     }
 
 
-console.log("1111-data",id)
-
   return (
     <>
         <div className='page-wrapper'>
@@ -129,13 +132,12 @@ console.log("1111-data",id)
                     <p> {t('TwoFactorPage.para1')} <strong> {t('TwoFactorPage.b1')} </strong> {t('TwoFactorPage.para2')} </p>
                 </div>
                 <div className='form-block'>
-            <h1>your Code Is :{id}</h1>
 
                     <form>
                         <div className='input-block'>
                             <input type="text" name='code' placeholder={t('TwoFactorPage.form.ph')} value={code} onChange={(e) => setCode(e.target.value)}/>
                         </div>
-                        {error?<span class="error-message">{error}</span>:null}
+                        {error?<span className="error-message">{error}</span>:null}
                         <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}> {t('TwoFactorPage.form.button1')} &nbsp;</button>
                                 <span className="text">{time}</span>
@@ -144,7 +146,7 @@ console.log("1111-data",id)
                             <button type='submit'onClick={handleClickConfirm}> {t('TwoFactorPage.form.button2')} </button>
                         </div>
                         <div className='cancle-signout text-center'>
-                            <button type='button'onClick={()=>navigate('/signin')}> {t('TwoFactorPage.form.button3')} </button>
+                            <button type='button' onClick={()=>navigate('/signin')}> {t('TwoFactorPage.form.button3')} </button>
                         </div>
                     </form>
                 </div>
