@@ -28,7 +28,7 @@ export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
     const userData = getCurrentUserData();
     let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
-    const {first_name,last_name,full_name} =  MetaFormeting(finalUser);
+    const {first_name,last_name,full_name,profile_pic} =  MetaFormeting(finalUser);
     const first_leter=first_name?.charAt(0);
     // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
@@ -45,7 +45,6 @@ export default function UserAvtar() {
         logout();
         window.location.reload();
     }
-
     return (
     <>
         <div className='account-owner'>
@@ -66,8 +65,8 @@ export default function UserAvtar() {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     variant="dot"
                     >
-                        {/* <Avatar alt="Remy Sharp" src="/images/avtar.png" /> */}
-                        <Avatar>{first_leter}</Avatar>
+                        <Avatar alt="Remy Sharp" src={profile_pic===null?"/images/user-picture-placeholder.png":profile_pic} />
+                        {/* <Avatar>{first_leter}</Avatar> */}
                     </StyledBadge>
                 </div>
             </Button>

@@ -11,8 +11,8 @@ export default function MyProfile() {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
-    const {first_name,last_name}=metaData
-    const [ imageUrl, setImgSrc ] = useState("/images/user-picture-placeholder.png");
+    const {first_name,last_name,profile_pic}=metaData
+    const [ imageUrl, setImgSrc ] = useState(profile_pic===null?"/images/user-picture-placeholder.png":profile_pic);
     const [loading,setLoading]=useState(false)
     const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
