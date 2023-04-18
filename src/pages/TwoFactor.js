@@ -12,11 +12,11 @@ export default function TwoFactor() {
 
     const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
-    const {emailId } = location.state;
+    const {emailId,id } = location.state;
     const { t } = useTranslation();
     const [show, setShow] = useState(true)
 
-    const [code,setCode]=useState('')
+    const [code,setCode]=useState(id)
     const [error, setError] = useState('')
     // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
@@ -116,7 +116,6 @@ export default function TwoFactor() {
                 return error
             })
     }
-
 
   return (
     <>
