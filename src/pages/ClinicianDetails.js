@@ -21,6 +21,8 @@ const ClinicianDetails = () => {
     setProfileBarData(response?.data?.filter((el)=>el?.id===clinicianData?.id))
     setData(response?.data)
   }
+
+
     const [patientData] = useState([
         {
             "id": 1,

@@ -22,7 +22,7 @@ export default function MyProfile() {
         "email": userData?.email,
         "practicename": "",
         "practiceaddress": "",
-        "profileImage":""
+        "profile_pic":imageUrl
     })
     // const LoginSchema = Yup.object({
     //     first_name: Yup.string().required("This field is required*")
@@ -40,25 +40,26 @@ export default function MyProfile() {
 
 
     const handleImages = (files) => {
-        let validImages = [files].filter((file) => 
-            ['image/jpeg', 'image/png'].includes(file?.type||{})
-        );      
-      
-        validImages.forEach(uploadImages);
-      
-      
-      };
-        const uploadImages =(file)=>{
+        setImgSrc(files)
 
-          let reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onloadend = () => {
-            setImgSrc(reader?.result)
+    //     let validImages = [files].filter((file) => 
+    //         ['image/jpeg', 'image/png'].includes(file?.type||{})
+    //     );      
+      
+    //     validImages.forEach(uploadImages);
+      
+      
+    //   };
+    //     const uploadImages =(file)=>{
+
+    //       let reader = new FileReader();
+    //       reader.readAsDataURL(file);
+    //       reader.onloadend = () => {
+    //         setImgSrc(reader?.result)
            
-          };
+    //       };
       
         }
-
 
 
 
@@ -69,17 +70,26 @@ export default function MyProfile() {
 
 
     const handleSubmitForm = async(data) => {
-        // const tempData={...data,profileImage:imageUrl}
-        setLoading(true)
-        const updateData={
-            "first_name": data?.first_name,
-        "last_name": data?.last_name,
-        "email": data?.email,
 
-        }
-       const updatedUserData=await UpdateUserProfile(updateData)
-       setLoading(false)
+        setLoading(true)
+        const formData = new FormData();
+        formData.append("first_name", data?.first_name);
+        formData.append("last_name", data?.last_name);
+        formData.append("email", data.email);
        
+        if(typeof imageUrl == "object" ){
+
+            formData.append("profile_pic",imageUrl);
+        }
+        // const updateData={
+        //     "first_name": data?.first_name,
+        // "last_name": data?.last_name,
+        // "email": data?.email,
+        // "profile_pic":imageUrl
+
+        // }
+       const updatedUserData=await UpdateUserProfile(formData)
+       setLoading(false)
        if(updatedUserData.status===200){
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
@@ -117,10 +127,10 @@ export default function MyProfile() {
             <form onSubmit={props.handleSubmit}>
             <div className='input-block update-profile'>
                 <div className='image-block'>
-                    <img src={imageUrl} alt="" />
+                    <img src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="" />
                 </div>
                 <div>
-                    <input id="file"  type="file" onChange={(e)=>handleImages(e.target.files[0])}/>
+                    <input id="file" name="profile_pic" type="file" onChange={(e)=>handleImages(e.target.files[0])}/>
                 </div>
             </div>
             <div className='input-block'>

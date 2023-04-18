@@ -6,6 +6,7 @@ import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
 import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
+import { TableSkeleton } from '../../Utility/Skeleton';
 
 
 function TabPanel(props) {
@@ -179,7 +180,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
         </Dialog>
         {value === 0 ?
           <>
-            {firstLoading ? <div> <br />Loading...</div> :
+            {firstLoading ? <div> <br /><TableSkeleton /></div> :
 
               <>
                 {firstLength ? firstLength : ""}
@@ -194,7 +195,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
               {/* <TabPanel value={value} index={1} className="table-nav-tabs-content">
           <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
           </TabPanel> */}
-              {secondLoading ? <div> <br />Loading...</div> :
+              {secondLoading ? <div> <br /><TableSkeleton /></div> :
                 <>
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">

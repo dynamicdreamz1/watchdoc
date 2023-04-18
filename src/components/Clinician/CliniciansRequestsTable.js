@@ -3,6 +3,7 @@ import React from 'react'
 import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
+import { TableSkeleton } from '../../Utility/Skeleton';
 
 export default function CliniciansRequestsTable(props) {
     const { value, clinicianStaff, allClinician,loading,handleChangePage,currentPage,totalPages } = props;
@@ -20,7 +21,7 @@ export default function CliniciansRequestsTable(props) {
                     </div>
                 }
                 <>
-                    {loading ? "Loading..." : 
+                    {loading ? <TableSkeleton /> : 
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
