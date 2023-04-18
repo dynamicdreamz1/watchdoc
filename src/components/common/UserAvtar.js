@@ -66,7 +66,8 @@ export default function UserAvtar() {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     variant="dot"
                     >
-                        <Avatar alt="Remy Sharp" src="/images/avtar.png" />
+                        {/* <Avatar alt="Remy Sharp" src="/images/avtar.png" /> */}
+                        <Avatar>B</Avatar>
                     </StyledBadge>
                 </div>
             </Button>
