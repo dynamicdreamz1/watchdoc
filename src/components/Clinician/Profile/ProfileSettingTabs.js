@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -44,7 +44,7 @@ function a11yProps(index) {
 
 export default function ProfileSettingTabs() {
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
