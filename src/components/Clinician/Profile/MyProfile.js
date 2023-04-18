@@ -1,6 +1,6 @@
 import React,{useContext, useState} from 'react'
 import { Formik } from 'formik';
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
 import {getCurrentUserData } from '../../../services/UserService';
 import { StoreCookie } from '../../../Utility/sessionStore';
@@ -24,19 +24,19 @@ export default function MyProfile() {
         "practiceaddress": "",
         "profileImage":""
     })
-    const LoginSchema = Yup.object({
-        first_name: Yup.string().required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        last_name: Yup.string().required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        email: Yup.string().required("Email Is Required")
-        // eslint-disable-next-line no-useless-escape
-        .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-        practicename: Yup.string().required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        practiceaddress: Yup.string().required("This field is required*")
+    // const LoginSchema = Yup.object({
+    //     first_name: Yup.string().required("This field is required*")
+    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    //     last_name: Yup.string().required("This field is required*")
+    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    //     email: Yup.string().required("Email Is Required")
+    //     // eslint-disable-next-line no-useless-escape
+    //     .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+    //     practicename: Yup.string().required("This field is required*")
+    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+    //     practiceaddress: Yup.string().required("This field is required*")
         
-    });
+    // });
 
 
     const handleImages = (files) => {

@@ -12,8 +12,8 @@ export default function PatientEntry() {
 
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [setError] = useState('')
+    const [setLoading] = useState(false)
     const { t } = useTranslation()
 
 
