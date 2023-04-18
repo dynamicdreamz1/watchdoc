@@ -19,9 +19,8 @@ const ClinicianDetails = () => {
   const getAllClinicianData=async()=>{    
    let response= await allInOneClinicianList()
     setProfileBarData(response?.data?.filter((el)=>el?.id===clinicianData?.id))
-    setData(response?.data?.data)
+    setData(response?.data)
   }
- 
     const [patientData] = useState([
         {
             "id": 1,
