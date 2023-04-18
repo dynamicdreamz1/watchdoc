@@ -40,8 +40,8 @@ const SignUp = () => {
 
     const handleSubmitForm = (data) => {
         setSignUpUserData({ ...data })
-        const {email}=data;
-        const finalData={"email":email,"role":"Clinician"}
+        // const {email}=data;
+        // const finalData={"email":email,"role":"Clinician"}
         // RegisterUser(finalData)
         // ProfileCreation(data)
         navigate("/signupsuccess")
