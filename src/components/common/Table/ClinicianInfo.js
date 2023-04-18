@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import UserProfile from '../UserProfile'
 import { Dialog } from '@mui/material';
 import ClinicianRequest from '../../Admin/ClinicianRequest';
-import { MetaFormeting } from '../../../Utility/functions';
 
 export default function ClinicianInfo({data,clinicianStaff}) {
   // const [data,setData]=useState(allClinician)
@@ -26,7 +25,7 @@ export default function ClinicianInfo({data,clinicianStaff}) {
   return (
     <>
         <div className='name'>
-            <UserProfile data={data} clinicianStaff={clinicianStaff} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}/>
+            <UserProfile data={data} clinicianStaff={clinicianStaff} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} open={open}/>
             <Dialog
                   open={openRequest}
                   onClose={handleClose}
