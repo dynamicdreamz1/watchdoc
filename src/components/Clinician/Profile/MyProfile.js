@@ -16,7 +16,7 @@ export default function MyProfile() {
     const [loading,setLoading]=useState(false)
     const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
-        // "title":"Dr",
+        "title":"Dr",
         "first_name": first_name,
         "last_name": last_name,
         "email": userData?.email,
@@ -127,37 +127,38 @@ export default function MyProfile() {
                 <div className='inputs-wrapper'>
                     <div className='input-item'>
                         <label>Title</label>
-                        <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
+                        <input type="text" name='title' placeholder='Title*'   value={props?.values?.title}/>
+                        {/* <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
                             <option value="Dr">Dr</option>
                             <option value="Hospital">Hospital</option>
-                        </select>
+                        </select> */}
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='first_name' placeholder='First Name*'  onChange={props.handleChange} value={props.values.first_name}/>
-                        <span className="error">{props.errors.first_name?props.errors.first_name:""}</span>
+                        <input type="text" name='first_name' placeholder='First Name*'  onChange={props?.handleChange} value={props?.values?.first_name}/>
+                        <span className="error">{props?.errors?.first_name?props?.errors?.first_name:""}</span>
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='last_name' placeholder='Last Name*'  onChange={props.handleChange} value={props.values.last_name} />
-                            <span className="error"> {props.errors.last_name?props.errors.last_name:""}</span>
+                        <input type="text" name='last_name' placeholder='Last Name*'  onChange={props?.handleChange} value={props?.values.last_name} />
+                            <span className="error"> {props?.errors?.last_name?props?.errors?.last_name:""}</span>
                     </div>
                 </div>
             </div>
                 <div className='input-block'>
                     <label>Email address</label>
-                    <input type="email" name='email' placeholder='Email*'  onChange={props.handleChange} value={props.values.email}/>
-                            <span className="error">  {props.errors.email?props.errors.email:""}</span>
+                    <input type="email" name='email' placeholder='Email*'  onChange={props?.handleChange} value={props?.values?.email}/>
+                            <span className="error">  {props?.errors?.email?props?.errors?.email:""}</span>
                 </div>
                 <div className='input-block'>
                     <label>Practice name</label>
-                    <input type="text" name='practicename' placeholder='Practice name*'  onChange={props.handleChange} value={props.values.practicename}/>
-                            <span className="error">{props.errors.practicename?props.errors.practicename:""}</span>
+                    <input type="text" name='practicename' placeholder='Practice name*'  onChange={props?.handleChange} value={props?.values?.practicename}/>
+                            <span className="error">{props?.errors?.practicename?props?.errors?.practicename:""}</span>
                 </div>
                 <div className='input-block'>
                     <label>Practice Address</label>
-                    <input type="text" name='practiceaddress' placeholder='Practice Address*'  onChange={props.handleChange} value={props.values.practiceaddress} />
-                            <span className="error">{props.errors.practiceaddress?props.errors.practiceaddress:""}</span>
+                    <input type="text" name='practiceaddress' placeholder='Practice Address*'  onChange={props?.handleChange} value={props?.values?.practiceaddress} />
+                            <span className="error">{props?.errors?.practiceaddress?props?.errors?.practiceaddress:""}</span>
                 </div>
                 <div className='submit-block'>
                     <button type="submit">Save</button>
