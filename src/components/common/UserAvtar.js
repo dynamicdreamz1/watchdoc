@@ -29,7 +29,7 @@ export default function UserAvtar() {
     const userData = getCurrentUserData();
     let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
     const {first_name,last_name,full_name,profile_pic} =  MetaFormeting(finalUser);
-    const first_leter=first_name?.charAt(0);
+    // const first_leter=first_name?.charAt(0);
     // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
     const [anchorEl, setAnchorEl] = useState(null);
