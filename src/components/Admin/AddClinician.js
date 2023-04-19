@@ -6,10 +6,11 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { CreateClinician} from '../../services/AdminService';
+import { useLocation } from 'react-router-dom';
 
 export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
     const { t } = useTranslation()
-
+    const location=useLocation();
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [addNewStaff, setAddNewStaff] = useState({
@@ -26,7 +27,6 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         
     })
         
-
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
@@ -106,8 +106,9 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         formData.append("type", "create");
        
          await CreateClinician(formData)
-         getAllClinicianData(dataLimit,currentPage)
-        
+         if(location?.pathname!=="/cliniciandetails"){
+         getAllClinicianData(dataLimit,currentPage)  
+         }      
         setOpen(false)
          
         setAddNewStaff({
@@ -153,10 +154,12 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                                 <div className='inputs-wrapper'>
                                     <div className='input-item'>
                                         <label>Title</label>
-                                        <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
+                                        <input type="text" name='title' value={props?.values?.title} onChange={props?.handleChange} disabled/>
+
+                                        {/* <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
                                             <option value="Dr">Dr</option>
                                             <option value="Hospital">Hospital</option>
-                                        </select>
+                                        </select> */}
                                     </div>
                                     <div className='input-item'>
                                         <label>First name</label>
