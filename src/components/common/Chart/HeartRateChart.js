@@ -7,7 +7,7 @@ export default function HeartRateChart({HeartData}) {
  
 
 
-    const dataPoints =  Object.entries(HeartData?.details).map((t,k) => {
+    const dataPoints =  HeartData?.details && Object?.entries(HeartData?.details).map((t,k) => {
           return { x: new Date(t[0]), y: [t[1]?.minrate, t[1]?.maxrate]}
     })
 

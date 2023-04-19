@@ -74,7 +74,7 @@ export const GetUserHeartRateData=async(currentUserData,Date,rang)=>{
         
         const response = await axios({
             method: "GET",
-            url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid=${terra_user_id}&start_date=${Date}&type=body&range=${rang}`,
+            url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid="2dc9fa77-6540-4be5-97b7-40174b43e77c"&start_date=${Date}&type=body&range=${rang}`,
             headers: headersWithToken,
         })
         return response;
