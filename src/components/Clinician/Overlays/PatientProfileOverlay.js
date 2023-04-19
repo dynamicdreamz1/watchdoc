@@ -15,7 +15,7 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
         "email": email,
         "lastName": last_name || data?.last_name,
         "dob": dob,
-        "sex": sex || data?.gender,
+        "sex": sex,
         "height": height,
         "number": contact_number
     })
