@@ -17,6 +17,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         "lastname": "",
         "email": "",
         "number": "",
+        "practicename":"",
         "practiceaddress": "",
         "password": "",
     })
@@ -32,6 +33,8 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         firstname: Yup.string().required("This field is required*")
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         lastname: Yup.string().required("This field is required*")
+            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+            practicename: Yup.string().required("This field is required*")
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
             // eslint-disable-next-line no-useless-escape
@@ -168,11 +171,11 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                 <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange}/>
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
-                            {/* <div className='input-block'>
+                            <div className='input-block'>
                                 <label>Practice name</label>
                                 <input type="text" name='practicename' value={props?.values?.practicename} onChange={props?.handleChange} />
-                                <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
-                            </div> */}
+                                <span className="error">{props?.errors?.practicename ? props?.errors?.practicename : ""}</span>
+                            </div>
                             <div className='input-block'>
                                 <label>Practice Address</label>
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
