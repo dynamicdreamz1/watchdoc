@@ -91,7 +91,7 @@ export default function CriticalPatientsAlertTableTabs() {
             "first_name": "Randerson",
             "last_name":"Michael",
             "age": "46 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "180/80",
             "date": new Date('2023-01-16T09:10:00'),
             "hr": "80bpm",
@@ -99,14 +99,20 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "83.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"Randerson@gmail.com",
+            "contact_number":7096555266,
+            "dob":"1999-08-06",
+            "height":"98"
         },
         {
             "id": 2,
             "name": "johnson",
             "first_name":"johnson",
+            "last_name":"mike",
+
             "age": "23 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "170/70",
             "date": new Date('2023-01-25T10:10:00'),
             "hr": "70bpm",
@@ -114,14 +120,20 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"johnson@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"102"
         },
         {
             "id": 3,
             "name": "batitsta",
             "first_name":"batitsta",
+            "last_name":"remy",
+
             "age": "12 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "160/60",
             "date": new Date('2023-02-01T12:10:00'),
             "hr": "60bpm",
@@ -129,14 +141,21 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "33.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"batitsta@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"155"
+            
         },
         {
             "id": 4,
             "name": "loosy",
             "first_name":"loosy",
+            "last_name":"bella",
+
             "age": "35 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "150/50",
             "date": new Date('2023-03-15T08:10:00'),
             "hr": "50bpm",
@@ -144,14 +163,20 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"loosy@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"145"
         },
         {
             "id": 5,
             "name": "Georgia",
             "first_name":"Georgia",
+            "last_name":"Tella",
+
             "age": "55 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "155/50",
             "date": new Date('2023-03-24T09:20:00'),
             "hr": "56bpm",
@@ -159,14 +184,20 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "93.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"Georgia@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"135"
         },
         {
             "id": 6,
             "name": "Perry",
             "first_name":"Perry",
+            "last_name":"John",
+
             "age": "33 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "159/40",
             "date": new Date('2023-03-18T06:30:00'),
             "hr": "51bpm",
@@ -174,7 +205,10 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "43.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"125"
         }
     ])
 
@@ -185,7 +219,7 @@ export default function CriticalPatientsAlertTableTabs() {
             "first_name":"Randerson",
             "last_name":"Michael",
             "age": "46 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "180/80",
             "date": new Date('2023-01-16T09:10:00'),
             "hr": "80bpm",
@@ -193,14 +227,19 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "83.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"Randerson@gmail.com",
+            "contact_number":7096555266,
+            "dob":"1999-08-06",
+            "height":"98"
         },
         {
             "id": 2,
             "name": "johnson",
             "first_name":"johnson",
+            "last_name":"mike",
             "age": "23 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "170/70",
             "date": new Date('2023-01-25T10:10:00'),
             "hr": "70bpm",
@@ -208,14 +247,21 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"johnson@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"102"
+
+
         },
         {
             "id": 3,
             "name": "batitsta",
             "first_name":"batitsta",
+            "last_name":"remy",
             "age": "12 Year",
-            "gender": "Male",
+            "gender": "male",
             "bp": "160/60",
             "date": new Date('2023-02-01T12:10:00'),
             "hr": "60bpm",
@@ -223,14 +269,21 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "33.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"batitsta@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"155"
+
+
         },
         {
             "id": 4,
             "name": "loosy",
             "first_name":"loosy",
+            "last_name":"bella",
             "age": "35 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "150/50",
             "date": new Date('2023-03-15T08:10:00'),
             "hr": "50bpm",
@@ -238,14 +291,21 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"loosy@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"145"
+
+
         },
         {
             "id": 5,
             "name": "Georgia",
             "first_name":"Georgia",
+            "last_name":"Tella",
             "age": "55 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "155/50",
             "date": new Date('2023-03-24T09:20:00'),
             "hr": "56bpm",
@@ -253,14 +313,21 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "93.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"Georgia@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"135"
+
+
         },
         {
             "id": 6,
             "name": "Perry",
             "first_name":"Perry",
+            "last_name":"John",
             "age": "33 Year",
-            "gender": "Female",
+            "gender": "female",
             "bp": "159/40",
             "date": new Date('2023-03-18T06:30:00'),
             "hr": "51bpm",
@@ -268,7 +335,13 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "43.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"Perry@gmail.com",
+            "contact_number":7894561232,
+            "dob":"1999-08-06",
+            "height":"125"
+
+
         }
     ]
     )
