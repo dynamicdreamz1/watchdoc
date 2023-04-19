@@ -87,7 +87,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     pendingClincians(limit,currentPage)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, [currentPage])
 
 
@@ -141,7 +140,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-              <Tab label={`Clinicians Pending (${pendingClinician?.total})`} {...a11yProps(0)} />
+              <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined ? "0" :pendingClinician?.total })`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
               <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
