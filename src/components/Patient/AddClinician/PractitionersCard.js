@@ -34,7 +34,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const handleChange = (event, value) => {
         setCurrentPage(value)
     }
-console.log("111-clinicianData",clinicianData)
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
 
@@ -102,7 +101,8 @@ console.log("111-clinicianData",clinicianData)
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
                                 
                                
-                                let data= MetaFormeting(element)  
+                                let data= MetaFormeting(element)
+                                console.log(data);  
                                 return (
 
                                     <div key={element.id}>                                   
