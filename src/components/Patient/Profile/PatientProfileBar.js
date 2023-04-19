@@ -13,7 +13,6 @@ export default function PatientProfileBar() {
  const location=useLocation()
  
  const {data,age}=location.state;
-
   const {first_name,last_name,sex}=MetaFormeting(data)
   const [openProfile, setOpenProfile] = React.useState(false);
   const [openClincians, setOpenClincians] = React.useState(false);
@@ -49,15 +48,15 @@ export default function PatientProfileBar() {
     }
   ] 
 
- 
+  console.log(age);
     
   return (
     <>
     <div className='patient-profile-bar'>
         <div className='left-block'>
             <div className='patient-info'>
-                <span className="fname">{first_name} {last_name}</span>
-                <span className="age">{age} Years, {sex}</span>
+                <span className="fname">{first_name} {data?.first_name} {last_name} {data?.last_name} </span>
+                <span className="age">{age} Years {data?.age}, {sex} {data?.gender} </span>
             </div>
         </div>
         <div className='center-block'>

@@ -6,15 +6,16 @@ import { MetaFormeting } from '../../../Utility/functions';
 
 export const PatientProfileOverlay = ({ handleClose, data }) => {
     const { first_name, last_name, dob, sex, height } = MetaFormeting(data)
+
     const {email,contact_number}=(data);
     
     const { t } = useTranslation();
     const [userData] = useState({
-        "firstName": first_name,
+        "firstName": first_name || data?.first_name,
         "email": email,
-        "lastName": last_name,
+        "lastName": last_name || data?.last_name,
         "dob": dob,
-        "sex": sex,
+        "sex": sex || data?.gender,
         "height": height,
         "number": contact_number
     })
