@@ -6,7 +6,6 @@ import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
 import ClinicianRequest from '../Admin/ClinicianRequest'
 
 export default function ClinicianProfileBar({profileBarData,getAllClinicianData}) {
-
   const [open, setOpen] = useState(false);
   const [openRequest, setOpenRequest] = useState(false);
 
@@ -40,7 +39,7 @@ export default function ClinicianProfileBar({profileBarData,getAllClinicianData}
                 </Dialog>
             </div>
             <div className='right-block d-flex align-items-center'>
-                <PhoneNumber number={profileBarData?.contact_number}/>
+                <PhoneNumber Number={profileBarData?.contact_number}/>
                 <Button onClick={handleClickOpen}>Profile</Button>
                 <Dialog
                   open={open}
