@@ -37,7 +37,7 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
               </div>
               <div className='user-info' onClick={handleClickNavigate}>
                 <span className="fname">{first_name} {last_name}</span>
-                <span className="position">{practice_address}</span>
+                <span className="position">{`WatchDoc, Suite 4/2 Pittwin Road North,Capalaba , Qld 4157`}</span>
               </div>
             </>
           }
