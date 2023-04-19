@@ -87,7 +87,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [reviewData, setReviewData] = useState([
         {
             "id": 1,
-            "name": "Randerson, Michael",
+            "name": "Randerson",
             "first_name": "Randerson",
             "last_name":"Michael",
             "age": "46 Year",
@@ -216,7 +216,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [patientData, setPatientData] = useState([
         {
             "id": 1,
-            "name": "Randerson, Michael",
+            "name": "Randerson",
             "first_name":"Randerson",
             "last_name":"Michael",
             "age": "46 Year",
