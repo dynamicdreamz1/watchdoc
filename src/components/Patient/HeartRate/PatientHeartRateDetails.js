@@ -4,7 +4,7 @@ import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { UserContext } from '../../../Store/Context'
-import { GetDate } from '../../../Utility/functions'
+// import { GetDate } from '../../../Utility/functions'
 import { GetUserHeartRateData } from '../../../services/HelthData'
 
 export default function PatientHeartRateDetails() {
@@ -13,7 +13,7 @@ export default function PatientHeartRateDetails() {
   const [heartRateValue,setHeartRateValue]=useState()
 
   const {currentUserData} = useContext(UserContext);
-  const [Date] = useState(GetDate);
+  const [Date,setDate] = useState("2023-03-21");
  const [timeType,setTimeType]=useState(0)
 
 useEffect(() => {
@@ -28,8 +28,7 @@ useEffect(() => {
 
  fetchData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[timeType]);
-
+},[timeType,Date]);
   return (
     <>
     <div className='phrd d-flex flex-wrap'>
@@ -40,7 +39,7 @@ useEffect(() => {
             <AlertTriggerCard HeartRateAvg={heartRateValue?.summary}/>
         </div>
         <div className="chart-wrapper">
-            <HeartRateChartNavTabs  setTimeType={setTimeType}/>
+            <HeartRateChartNavTabs  setTimeType={setTimeType}  HeartRateAvg={heartRateValue} setDate={setDate} Date={Date}/>
         </div>
     </div>
     </>

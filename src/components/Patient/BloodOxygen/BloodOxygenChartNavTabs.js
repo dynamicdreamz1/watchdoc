@@ -40,8 +40,9 @@ function TabPanel(props) {
   }
 
 export default function BloodOxygenChartNavTabs(props) {
+  const {bloodOxygenData,Date,setDate}=props
     const [value, setValue] = useState(0);
-    const [Date,setDate] = useState(GetDate);
+    // const [Date,setDate] = useState(GetDate);
     const handleChange = (event, newValue) => {
       const valueType=newValue===0?'hourly':newValue===1?'daily':newValue===2?'weekly':newValue===3?'monthly':"";
       props?.setTimeType(valueType)
@@ -52,7 +53,6 @@ export default function BloodOxygenChartNavTabs(props) {
     const ChangeDate=(NewDate)=>{
       setDate(GetDate(NewDate));
   }
-
     
     return (
         <>
@@ -64,7 +64,7 @@ export default function BloodOxygenChartNavTabs(props) {
                     <Tab label="Weekly" {...a11yProps(2)} />
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
-                <ChartTitle Date={Date} ChangeDate={ChangeDate}/>
+                <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={bloodOxygenData}/>
             </Box>
             <TabPanel value={value} index={0}>
               <BloodOxygenChart/>
