@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GetUserBloodOxyenData } from '../../../services/HelthData'
 import { UserContext } from '../../../Store/Context'
-import { GetDate } from '../../../Utility/functions'
+// import { GetDate } from '../../../Utility/functions'
 import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
@@ -9,7 +9,7 @@ import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
 
 export default function PatientBloodOxygenDetails() {
   const {currentUserData} = useContext(UserContext);
-  const [Date] = useState(GetDate);
+  const [Date,setDate] = useState("2023-03-21");
  const [timeType,setTimeType]=useState(0)
  const [bloodOxygenData,setBloodOxygenData]=useState()
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function PatientBloodOxygenDetails() {
   
    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeType]);
+  }, [timeType,Date]);
 
 
 
@@ -39,7 +39,7 @@ export default function PatientBloodOxygenDetails() {
             <AlertTriggerCard HeartRateAvg={bloodOxygenData?.summary}/>
         </div>
         <div className='chart-wrapper'>
-            <BloodOxygenChartNavTabs data={bloodOxygenData} setTimeType={setTimeType}/>
+            <BloodOxygenChartNavTabs bloodOxygenData={bloodOxygenData?.summary} setTimeType={setTimeType} setDate={setDate} Date={Date}/>
         </div>
     </div>
     </>

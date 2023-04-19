@@ -1,24 +1,25 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { TableSkeleton } from '../../../Utility/Skeleton';
 
 
 export default function CriticalPatients(props) {
-    // const location = useLocation();
+    const location = useLocation();
     const { patientData,value,loading } = props
-    // let finalDta = [];
-    // if (location.pathname === "/patients") {
-    //     finalDta = [...patientData]
-    // }
-    // else {
-    //     const viewAllData = viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
-    //     finalDta = [...viewAllData]
-    // }
+    let finalDta = [];
+    if (location.pathname === "/patients") {
+        finalDta = patientData;
+    }
+    else {
+        const viewAllData = props?.viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
+        finalDta = [...viewAllData]
+    }
     return (
         <> 
-        {loading ? "Loading..." :
+        {loading ? <TableSkeleton /> :
             <TableContainer component={Paper} className="red-alert-table">
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -44,7 +45,7 @@ export default function CriticalPatients(props) {
 
                     } */}
 
-                    {patientData?.length !== 0 && patientData?.map((el, I) => {
+                    {finalDta?.length !== 0 && finalDta?.map((el, I) => {
                         return (
                             <TableBody key={I}>
                                 <PatientInfoRow el={el} value={value} />

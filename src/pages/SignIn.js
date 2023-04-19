@@ -43,7 +43,7 @@ const SignIn = () => {
         RegisterUser(data)
             .then((response) => {
                 if (typeof response === "string") {
-                    setError(response)
+                    setError("User not found")
                     setLoading(false)
 
                 } else {
@@ -85,7 +85,6 @@ const SignIn = () => {
                         <div className='form-title text-center'>
                             <h1>{t('SignInPage.heading')}</h1>
                         </div>
-                        <div className='LoginError'>{error && error}</div>
 
                         <form>
                             <div className='input-block'>
@@ -104,6 +103,8 @@ const SignIn = () => {
                             <div className='forgot-pw-block'>
                                 <a href={{}}>{t('SignInPage.form.f11')}</a>
                             </div>
+                        <div className='LoginError'>{error && error}</div>
+
                             <div className='submit-block'>
                                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('SignInPage.form.f2')}</button>
                             </div>

@@ -55,16 +55,18 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimit,setDataLimit]=useState(5)
-  
+  let limit=5;
+  const [pages, setPages] = useState(0);
 
-
-  const pendingClincians = async () => {
+  const pendingClincians = async (limit,currentPage) => {
     setFirstLoading(true)
-    let res = await getPendingClinicians()
+    let res = await getPendingClinicians(limit,currentPage)
     if (res?.data?.data.length === 0) {
       setFirstLength("No records found.")
     }
-    setPendingClinician(res?.data?.data)
+    setPendingClinician(res?.data)
+    let nPages=Math.ceil(res?.data?.total/limit)
+    setPages(nPages)
     setFirstLoading(false)
   }
 
@@ -82,12 +84,10 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 
   useEffect(() => {
 
-    pendingClincians()
+    pendingClincians(limit,currentPage)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-
-  }, [])
-
+  }, [currentPage])
 
 
 
@@ -104,7 +104,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 
 
  
-
 
 
 
@@ -141,7 +140,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-              <Tab label={`Clinicians Pending (${pendingClinician?.length})`} {...a11yProps(0)} />
+              <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined ? "0" :pendingClinician?.total })`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
               <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
@@ -185,7 +184,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
               <>
                 {firstLength ? firstLength : ""}
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                  <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician?.data} recordsPerPage={recordsPerPage} totalPages={pages}  handleChangePage={handleChangePage}
+                   currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </TabPanel>
               </>
             }

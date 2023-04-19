@@ -11,19 +11,18 @@ import { updateToken } from '../Utility/functions'
 
 
 const VerificationEmail = () => {
-
-    const { setCurrentUser } = useContext(UserContext)
-
-    const [code, setCode] = useState('')
     const location = useLocation();
-    const {emailId } = location.state;
+
+    const {emailId,id } = location.state;
+    const { setCurrentUser } = useContext(UserContext)
     const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
+    const [code, setCode] = useState(id)
+
     // const { emailId } = useParams();
 
     const { t } = useTranslation();
-
     const [time, setTime] = useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
@@ -146,7 +145,7 @@ const VerificationEmail = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('VerificationPage.form.f3')}</label>
-                                <input type="password" placeholder={t('VerificationPage.form.f4')} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
+                                <input type="text" placeholder={t('VerificationPage.form.f4')} value={code} id="exampleInputCode" onChange={(e) => setCode(e.target.value)} />
                             </div>
                             <div className='resend-code'>
                                 <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('VerificationPage.form.f7')}&nbsp;</button>

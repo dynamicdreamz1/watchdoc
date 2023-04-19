@@ -6,9 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../Utility/Skeleton';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician,loading,handleChangePage,currentPage,totalPages } = props;
+    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages} = props;
     const { t } = useTranslation();
-    
 
     return (
 
@@ -21,42 +20,42 @@ export default function CliniciansRequestsTable(props) {
                     </div>
                 }
                 <>
-                    {loading ? <TableSkeleton /> : 
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
-                                <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
-                                <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
-                                {value === 0 ? "" :
-                                    <>
-                                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
-                                        <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
-                                    </>
-                                }
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+                    {loading ? <TableSkeleton /> :
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
+                                    <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
+                                    <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
+                                    {value === 0 ? "" :
+                                        <>
+                                            <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
+                                            <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
+                                        </>
+                                    }
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
 
-                            {clinicianStaff?.length > 0 && clinicianStaff?.map((element) => (
-                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
-                            ))}
+                                {clinicianStaff?.length > 0 && clinicianStaff?.map((element) => (
+                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
+                                ))}
 
-                            {allClinician?.length > 0 && allClinician?.map((element) => (
-                                <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
-                            ))}
+                                {allClinician?.length > 0 && allClinician?.map((element) => (
+                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
+                                ))}
 
 
-                        </TableBody>
-                    </Table> }
+                            </TableBody>
+                        </Table>}
 
                 </>
 
             </TableContainer>
-            {value ===1 &&
-            <Pagination page={currentPage} onChange={handleChangePage}  count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-            }  
-           
+
+
+                <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+
 
         </>
 

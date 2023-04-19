@@ -5,13 +5,14 @@ import ChartTitle from '../../common/Chart/ChartTitle';
 import { TabPanel } from '../../common/Tabs';
 import { a11yProps, GetDate } from '../../../Utility/functions';
 import { GetUserTodayHeartRate } from '../../../services/HelthData';
-import { ChartResultRange } from '../../../Utility/Skeleton';
-
+import { ChartResultRange, ChartSkeleton } from '../../../Utility/Skeleton';
+import HeartRateChart from '../../common/Chart/HeartRateChart';
   
 
 export default function HeartRateChartNavTabs(Props) {
+    const {HeartRateAvg,setDate,Date}=Props;
     const [value, setValue] = React.useState(0);
-    const [Date,setDate] = useState(GetDate);
+    // const [Date,setDate] = useState(GetDate);
     const handleChange = (event, newValue) => {
     const valueType=newValue===0?'hourly':newValue===1?'daily':newValue===2?'weekly':newValue===3?'monthly':"";
 
@@ -30,8 +31,6 @@ export default function HeartRateChartNavTabs(Props) {
         setDate(GetDate(NewDate));
     }
 
-
-
     return (
         <>
        
@@ -43,12 +42,12 @@ export default function HeartRateChartNavTabs(Props) {
                     <Tab label="Weekly" {...a11yProps(2)} />
                     <Tab label="Monthly" {...a11yProps(3)} />
                 </Tabs>
-                {Heartrate ?  <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData = {Heartrate}/> : <ChartResultRange/> }
+                {Heartrate ?  <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData = {HeartRateAvg?.summary}/> : <ChartResultRange/> }
                 
             </Box>
             <TabPanel value={value} index={0}>
                 {/* temp commit */}
-                {/* {Heartrate ? <HeartRateChart  ChangeDate={ChangeDate} HeartData = {Heartrate}/>: <ChartSkeleton /> } */}
+                {HeartRateAvg ? <HeartRateChart  ChangeDate={ChangeDate} HeartData = {HeartRateAvg}/>: <ChartSkeleton /> }
             </TabPanel>
            
         </Box>

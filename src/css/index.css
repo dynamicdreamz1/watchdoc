@@ -1616,6 +1616,23 @@ form .input-block.update-profile:after {
   background-color: #00B8E2;
   color: #fff;
 }
+.clinician-overlay .card {
+  border-bottom: 1px solid #E5E7EB;
+  border-radius: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.clinician-overlay .table-pagination .MuiPagination-ul {
+  margin-left: auto;
+  margin-right: auto;
+}
+.MuiDialog-container .radio-buttons .radio-button input[type="radio"]:checked ~ label {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #E5E7EB;
+}
+.MuiDialog-container .radio-buttons .radio-button label {border: 1px solid #E5E7EB;}
 /* Signup page */
 @media only screen and (max-width: 1370px) {
   .sidebar nav ul li .MuiButtonBase-root, .logout button {

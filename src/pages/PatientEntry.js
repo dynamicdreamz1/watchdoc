@@ -13,7 +13,7 @@ export default function PatientEntry() {
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [setError] = useState('')
-    const [setLoading] = useState(false)
+    const [loading,setLoading] = useState(false)
     const { t } = useTranslation()
 
 
@@ -81,6 +81,14 @@ export default function PatientEntry() {
                         <button type="submit" onClick={(e) => handleSubmit(e)}>Continue</button>
                     </div>
                 </form>
+                <div className='or-text'>
+                    <span>OR</span>
+                </div>
+                <div className='login-options'>
+                    <button type='button'><img src="/images/google-icon.png" alt="Google Icon" />Continue with Google</button>
+                    <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />Continue with Apple</button>
+                    <button type='button'><img src="/images/key-icon.png" alt="SSO Icon" />Continue with SSO</button>
+                </div>
             </div>
         </div>
     </div>

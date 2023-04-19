@@ -18,12 +18,12 @@ export const getStaffUsers = async (recordPerPage,currentPage) => {
 }
 
 
-export const getPendingClinicians = async () => {
+export const getPendingClinicians = async (limit,pages) => {
 
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=clinicians-pending`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=clinicians-pending&limit=${limit}&page=${pages}`,
             headers: headersAdmin
         })
         return response
