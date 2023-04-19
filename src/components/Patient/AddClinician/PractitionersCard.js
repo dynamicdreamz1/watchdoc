@@ -101,7 +101,8 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
                                 
                                
-                                let data= MetaFormeting(element)  
+                                let data= MetaFormeting(element)
+                                console.log(data);  
                                 return (
 
                                     <div key={element.id}>                                   
