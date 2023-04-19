@@ -52,7 +52,7 @@ export default function PatientInfoRow(props) {
         <TableCell><Bg el={el}/></TableCell>
         <TableCell><Temp el={el}/></TableCell>
         <TableCell><Wt el={el} value={value} /></TableCell>
-        <TableCell ><Status el={el}/></TableCell>
+        <TableCell ><Status el={el} value={value} /></TableCell>
     </TableRow>
     </>
   )
