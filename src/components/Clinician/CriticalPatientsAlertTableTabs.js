@@ -100,8 +100,6 @@ export default function CriticalPatientsAlertTableTabs() {
             "temp": "No recording",
             "wt": "83.2Kg",
             "status": "Reviewed",
-            "email":"Randerson@gmail.com",
-            "contact_number":7096555266,
             "dob":"1999-08-06",
             "height":"98",
             "email":"randerson@gmail.com",
