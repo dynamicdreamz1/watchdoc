@@ -67,9 +67,9 @@ export default function CliniciansOverlay() {
             <p>The following clinicians are connected to this patient.</p>
           </div>
 
-          {tempData?.length > 0 && tempData?.map((element) => (
+          {/* {tempData?.length > 0 && tempData?.map((element) => (
             <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={tempData} /></React.Fragment>
-          ))}
+          ))} */}
 
           <button className="connect-btn" onClick={() => setToggleAddClinicain(!toggleAddClinicain)}><img src="/images/Add-rounded-button.svg" alt="" />Connect a Clinician</button>
           {toggleAddClinicain ?

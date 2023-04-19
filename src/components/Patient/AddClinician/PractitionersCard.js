@@ -34,7 +34,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const handleChange = (event, value) => {
         setCurrentPage(value)
     }
-
+console.log("111-clinicianData",clinicianData)
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
 
@@ -88,7 +88,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
             lastExecution = Date.now()
         }
     }
-    
     return (
         <React.Fragment>
             {isSkeleton
@@ -104,7 +103,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                 
                                
                                 let data= MetaFormeting(element)  
-                                
                                 return (
 
                                     <div key={element.id}>                                   
@@ -112,12 +110,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                         <div className='card d-flex' key={I}>
                                         <div className='user-image'>
                                         
-                                            <img src={data?.image?data?.image:defaultUserIcon} alt='User' />
+                                            <img src={(data?.image ||data?.profile_pic) ||defaultUserIcon} alt='User' />
                                    
                                         </div>
                                         <div className='text-block'>
-                                         <>{data?.full_name}</>
-                                        <>{data?.address}</>
+                                         <>{data?.first_name}</>
+                                        <>{data?.address ||data?.practice_address}</>
                                             <div className='add-fav'  >
                                                 <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
                                                     control={
