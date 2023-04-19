@@ -9,6 +9,7 @@
     font-size: 30px;
     line-height: 37px;
     font-weight: 600;
+    margin-bottom: 25px;
 }
 .signin-box .logo-block {
     text-align: center;
@@ -56,10 +57,66 @@
 .signin-box form .input-block .show-hide svg {
     fill: #C4C4C4;
 }
+.signin-box .login-options button {
+    background: #FFFFFF;
+    border: 0.25px solid #C6C6C6;
+    border-radius: 9px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.54);
+    cursor: pointer;
+}
+.signin-box .login-options button:not(:last-child) {
+    margin-bottom: 18px;
+}
+.signin-box .login-options button img {
+    margin-right: 15px;
+}
+.signin-box .login-options button.apple-icon {
+    background-color: #000000;
+    color: #fff;
+    border-color: #000;
+}
+.signin-box .login-options button img {
+    margin-right: 15px;
+}
+.signin-box .login-options button.apple-icon {
+    background-color: #000000;
+    color: #fff;
+    border-color: #000;
+}
+.signin-box .or-text {
+    text-align: center;
+}
+.signin-box .or-text span {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+.signin-box .or-text {
+    position: relative;
+    height: 20px;
+    margin: 15px 0;
+}
+.signin-box .or-text:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(198, 198, 198, 0.5);
+    left: 0;
+    top: 10px;
+}
 .LoginError {
     color: red;
-    height: 40px;
-}
-.LoginLoader{
-    height: 40px;
 }
