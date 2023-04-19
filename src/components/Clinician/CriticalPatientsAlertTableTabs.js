@@ -88,6 +88,8 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 1,
             "name": "Randerson, Michael",
+            "first_name": "Randerson",
+            "last_name":"Michael",
             "age": "46 Year",
             "gender": "Male",
             "bp": "180/80",
@@ -102,6 +104,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 2,
             "name": "johnson",
+            "first_name":"johnson",
             "age": "23 Year",
             "gender": "Male",
             "bp": "170/70",
@@ -116,6 +119,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 3,
             "name": "batitsta",
+            "first_name":"batitsta",
             "age": "12 Year",
             "gender": "Male",
             "bp": "160/60",
@@ -130,6 +134,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 4,
             "name": "loosy",
+            "first_name":"loosy",
             "age": "35 Year",
             "gender": "Female",
             "bp": "150/50",
@@ -144,6 +149,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 5,
             "name": "Georgia",
+            "first_name":"Georgia",
             "age": "55 Year",
             "gender": "Female",
             "bp": "155/50",
@@ -158,6 +164,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 6,
             "name": "Perry",
+            "first_name":"Perry",
             "age": "33 Year",
             "gender": "Female",
             "bp": "159/40",
@@ -175,6 +182,8 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 1,
             "name": "Randerson, Michael",
+            "first_name":"Randerson",
+            "last_name":"Michael",
             "age": "46 Year",
             "gender": "Male",
             "bp": "180/80",
@@ -189,6 +198,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 2,
             "name": "johnson",
+            "first_name":"johnson",
             "age": "23 Year",
             "gender": "Male",
             "bp": "170/70",
@@ -203,6 +213,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 3,
             "name": "batitsta",
+            "first_name":"batitsta",
             "age": "12 Year",
             "gender": "Male",
             "bp": "160/60",
@@ -217,6 +228,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 4,
             "name": "loosy",
+            "first_name":"loosy",
             "age": "35 Year",
             "gender": "Female",
             "bp": "150/50",
@@ -231,6 +243,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 5,
             "name": "Georgia",
+            "first_name":"Georgia",
             "age": "55 Year",
             "gender": "Female",
             "bp": "155/50",
@@ -245,6 +258,7 @@ export default function CriticalPatientsAlertTableTabs() {
         {
             "id": 6,
             "name": "Perry",
+            "first_name":"Perry",
             "age": "33 Year",
             "gender": "Female",
             "bp": "159/40",
