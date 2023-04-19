@@ -17,6 +17,8 @@ const SignUp = () => {
         "practiceaddress": ""
     })
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    /* eslint-disable no-useless-escape */
+
 
     const LoginSchema = Yup.object({
         firstname: Yup.string().required(t('SignUpPage.validation.common1'))
@@ -25,6 +27,7 @@ const SignUp = () => {
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
+
         mobile: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
@@ -40,8 +43,8 @@ const SignUp = () => {
 
     const handleSubmitForm = (data) => {
         setSignUpUserData({ ...data })
-        const {email}=data;
-        const finalData={"email":email,"role":"Clinician"}
+        // const {email}=data;
+        // const finalData={"email":email,"role":"Clinician"}
         // RegisterUser(finalData)
         // ProfileCreation(data)
         navigate("/signupsuccess")

@@ -23,6 +23,7 @@ export default function PatientBloodOxygenDetails() {
    }
   
    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeType]);
 
 

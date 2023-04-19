@@ -1,6 +1,6 @@
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React, { useContext } from 'react'
+import React, { useState,useContext } from 'react'
 import Badge from '@mui/material/Badge';
 import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
@@ -28,11 +28,11 @@ export default function UserAvtar() {
     const {currentUserData} = useContext(UserContext);
     const userData = getCurrentUserData();
     let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
-    const {first_name,last_name,full_name} =  MetaFormeting(finalUser);
+    const {first_name,last_name,full_name,profile_pic} =  MetaFormeting(finalUser);
+    // const first_leter=first_name?.charAt(0);
     // const {full_name}=MetaFormeting(finalUser)
     const {t}=useTranslation()
-    
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -45,7 +45,6 @@ export default function UserAvtar() {
         logout();
         window.location.reload();
     }
-
     return (
     <>
         <div className='account-owner'>
@@ -66,7 +65,8 @@ export default function UserAvtar() {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     variant="dot"
                     >
-                        <Avatar alt="Remy Sharp" src="/images/avtar.png" />
+                        <Avatar alt="Remy Sharp" src={profile_pic===null?"/images/user-picture-placeholder.png":profile_pic} />
+                        {/* <Avatar>{first_leter}</Avatar> */}
                     </StyledBadge>
                 </div>
             </Button>

@@ -5,6 +5,7 @@ import AddStaffUser from './AddStaffUser';
 import { getStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
+import { TableSkeleton } from '../../Utility/Skeleton';
 
 
 
@@ -54,7 +55,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
                 <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
             </Dialog>
-            {loading ? "Loading..." :
+            {loading ? <TableSkeleton /> :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>

@@ -1588,6 +1588,7 @@ form .input-block.update-profile:after {
   bottom: -10px;
   right: -3px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 form .input-block.update-profile:after {
   content: "";

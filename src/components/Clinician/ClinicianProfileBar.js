@@ -1,5 +1,5 @@
 import { Button, Dialog } from '@mui/material'
-import React from 'react'
+import React,{useState} from 'react'
 import PhoneNumber from '../common/PhoneNumber'
 import UserProfile from '../common/UserProfile'
 import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
@@ -7,8 +7,8 @@ import ClinicianRequest from '../Admin/ClinicianRequest'
 
 export default function ClinicianProfileBar({profileBarData,getAllClinicianData}) {
 
-  const [open, setOpen] = React.useState(false);
-  const [openRequest, setOpenRequest] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [openRequest, setOpenRequest] = useState(false);
 
 
   const handleClickOpen = () => {
