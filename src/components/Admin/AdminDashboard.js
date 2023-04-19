@@ -13,6 +13,7 @@ export default function AdminDashboard() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const GetData = async () => {
+    setLoading(true)
     let res = await getPendingPatients()
     let data = []
     const maxKey = Object.keys(res?.data).reduce((a, b) => {
@@ -28,7 +29,6 @@ export default function AdminDashboard() {
   }
 
   useEffect(() => {
-    setLoading(true)
     GetData()
   }, [])
 
