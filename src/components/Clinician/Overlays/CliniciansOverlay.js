@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import AddClinician from '../../Patient/AddClinician/AddClinician'
-import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow'
+// import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow'
 
 
 export const AdminUserContext = createContext([]);
@@ -57,7 +57,7 @@ export default function CliniciansOverlay() {
   // ]
   // )
 
-  const tempData = clinicianData?.data?.data?.data?.filter((el) => el.status === 1);
+  // const tempData = clinicianData?.data?.data?.data?.filter((el) => el.status === 1);
   return (
     <>
       <AdminUserContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData, nextBtn, setNextBtn, currentPage, setCurrentPage }}>
