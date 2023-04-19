@@ -48,7 +48,6 @@ export default function PatientProfileBar() {
     }
   ] 
 
-  console.log(age);
     
   return (
     <>
@@ -56,7 +55,7 @@ export default function PatientProfileBar() {
         <div className='left-block'>
             <div className='patient-info'>
                 <span className="fname">{first_name} {data?.first_name} {last_name} {data?.last_name} </span>
-                <span className="age">{age} Years {data?.age}, {sex} {data?.gender} </span>
+                <span className="age">{age ? `${age} Year` : `${data?.age}`}, {sex} {data?.gender} </span>
             </div>
         </div>
         <div className='center-block'>
