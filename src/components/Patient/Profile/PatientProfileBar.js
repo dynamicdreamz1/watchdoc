@@ -59,7 +59,7 @@ export default function PatientProfileBar() {
             </div>
         </div>
         <div className='center-block'>
-            <PhoneNumber/>
+            <PhoneNumber Number={data?.contact_number} />
         </div>
         <div className='right-block'>
             {patientQuickNavs.map((data, i) => (
