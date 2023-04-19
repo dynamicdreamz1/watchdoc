@@ -185,7 +185,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
               <>
                 {firstLength ? firstLength : ""}
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                  <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician?.data} recordsPerPage={recordsPerPage} totalPages={pages}  handleChangePage={handleChangePage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician?.data} recordsPerPage={recordsPerPage} totalPages={pages}  handleChangePage={handleChangePage}
+                   currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </TabPanel>
               </>
             }

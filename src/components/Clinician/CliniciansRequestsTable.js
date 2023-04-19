@@ -6,10 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../Utility/Skeleton';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages,pages } = props;
+    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages} = props;
     const { t } = useTranslation();
 
-    // console.log(value);
     return (
 
         <>
@@ -54,12 +53,8 @@ export default function CliniciansRequestsTable(props) {
 
             </TableContainer>
 
-            {value === 0 ?
+
                 <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-                : ""}
-            {value === 1 &&
-                <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-            }
 
 
         </>
