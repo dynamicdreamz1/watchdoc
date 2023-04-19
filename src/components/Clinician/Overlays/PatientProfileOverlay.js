@@ -8,18 +8,16 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
     const { first_name, last_name, dob, sex, height } = MetaFormeting(data)
 
     const {email,contact_number}=(data);
-    console.log(data.gender,sex);
     const { t } = useTranslation();
     const [userData] = useState({
         "firstName": first_name || data?.first_name,
         "email": email,
         "lastName": last_name || data?.last_name,
-        "dob": dob,
-        "sex": sex,
-        "height": height,
+        "dob": dob || data?.dob,
+        "sex": sex || data?.gender,
+        "height": height ||data?.height,
         "number": contact_number
     })
-
     const handleSubmitForm = (data) => {
         handleClose()
     }
