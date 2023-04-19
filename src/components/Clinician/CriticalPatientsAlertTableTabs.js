@@ -103,7 +103,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "email":"Randerson@gmail.com",
             "contact_number":7096555266,
             "dob":"1999-08-06",
-            "height":"98"
+            "height":"98",
+            "email":"randerson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 2,
@@ -122,9 +124,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "53.2Kg",
             "status": "Reviewed",
             "email":"johnson@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"102"
+            "height":"102",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 3,
@@ -143,10 +145,10 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "33.2Kg",
             "status": "Reviewed",
             "email":"batitsta@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"155"
+            "height":"155",
             
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 4,
@@ -165,9 +167,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "53.2Kg",
             "status": "Reviewed",
             "email":"loosy@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"145"
+            "height":"145",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 5,
@@ -186,9 +188,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "93.2Kg",
             "status": "Reviewed",
             "email":"Georgia@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"135"
+            "height":"135",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 6,
@@ -206,9 +208,10 @@ export default function CriticalPatientsAlertTableTabs() {
             "temp": "No recording",
             "wt": "43.2Kg",
             "status": "Reviewed",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"125"
+            "height":"125",
+            "email":"Perry@gmail.com",
+            "contact_number":"+91 9428137843"
         }
     ])
 
@@ -228,10 +231,10 @@ export default function CriticalPatientsAlertTableTabs() {
             "temp": "No recording",
             "wt": "83.2Kg",
             "status": "Unreviewed",
-            "email":"Randerson@gmail.com",
-            "contact_number":7096555266,
             "dob":"1999-08-06",
-            "height":"98"
+            "height":"98",
+            "email":"randerson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 2,
@@ -249,11 +252,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "53.2Kg",
             "status": "Unreviewed",
             "email":"johnson@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"102"
-
-
+            "height":"102",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 3,
@@ -271,11 +272,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "33.2Kg",
             "status": "Unreviewed",
             "email":"batitsta@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"155"
-
-
+            "height":"155",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 4,
@@ -293,11 +292,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "53.2Kg",
             "status": "Unreviewed",
             "email":"loosy@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"145"
-
-
+            "height":"145",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 5,
@@ -315,11 +312,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "93.2Kg",
             "status": "Unreviewed",
             "email":"Georgia@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"135"
-
-
+            "height":"135",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 6,
@@ -337,11 +332,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "wt": "43.2Kg",
             "status": "Unreviewed",
             "email":"Perry@gmail.com",
-            "contact_number":7894561232,
             "dob":"1999-08-06",
-            "height":"125"
-
-
+            "height":"125",
+            "contact_number":"+91 9428137843"
         }
     ]
     )
