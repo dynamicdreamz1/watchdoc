@@ -34,7 +34,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const handleChange = (event, value) => {
         setCurrentPage(value)
     }
-console.log("111-clinicianData",clinicianData)
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
 
