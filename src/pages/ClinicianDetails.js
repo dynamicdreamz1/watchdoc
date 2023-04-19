@@ -5,6 +5,8 @@ import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
 import { allInOneClinicianList} from '../services/AdminService'
+import { Dialog } from '@mui/material'
+import AddClinician from '../components/Admin/AddClinician'
 
 
 const ClinicianDetails = () => {
@@ -15,12 +17,16 @@ const ClinicianDetails = () => {
   const [profileBarData,setProfileBarData]=useState(data?.filter((el)=>el?.id===clinicianData?.id))
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
+  const  [openAddClinicianPopUp,setOpenAddClinicianPopUp]=useState(false)
   
   const getAllClinicianData=async()=>{    
    let response= await allInOneClinicianList()
     setProfileBarData(response?.data?.filter((el)=>el?.id===clinicianData?.id))
     setData(response?.data)
   }
+  const handleClose = () => {
+    setOpenAddClinicianPopUp(false);
+  };
 
 
     // const [patientData] = useState([
@@ -315,7 +321,19 @@ const [pendingPatientsData]=useState([
       <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header setOpen={setOpen}/>
+          <Header setOpen={setOpenAddClinicianPopUp}/>
+         <div>
+         <Dialog
+          open={openAddClinicianPopUp}
+          onClose={handleClose}
+          aria-labelledby="add-staff-user-dialog"
+          aria-describedby="add-staff-user-dialog"
+          className='add-staff-user-dialog'
+        >
+          <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
+          <AddClinician clinicianStaff={data} setOpen={setOpenAddClinicianPopUp} />
+        </Dialog>
+         </div>
           <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]} getAllClinicianData={getAllClinicianData}/>
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           <div className="pp-table">

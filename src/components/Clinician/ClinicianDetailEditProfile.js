@@ -139,10 +139,12 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
                                 <div className='inputs-wrapper'>
                                     <div className='input-item'>
                                         <label>Title</label>
-                                        <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
+                                        <input type="text" name='title' value={props?.values?.title}  onChange={props?.handleChange} disabled/>
+
+                                        {/* <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
                                             <option value="Dr">Dr</option>
                                             <option value="Hospital">Hospital</option>
-                                        </select>
+                                        </select> */}
                                     </div>
                                     <div className='input-item'>
                                         <label>First name</label>
