@@ -99,7 +99,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "83.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"randerson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 2,
@@ -114,7 +116,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"johnson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 3,
@@ -129,7 +133,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "33.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"batitsta@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 4,
@@ -144,7 +150,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"loosy@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 5,
@@ -159,7 +167,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "93.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"Georgia@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 6,
@@ -174,7 +184,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "43.2Kg",
-            "status": "Reviewed"
+            "status": "Reviewed",
+            "email":"Perry@gmail.com",
+            "contact_number":"+91 9428137843"
         }
     ])
 
@@ -193,7 +205,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "83.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"randerson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 2,
@@ -208,7 +222,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"johnson@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 3,
@@ -223,7 +239,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "33.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"batitsta@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 4,
@@ -238,7 +256,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "53.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"loosy@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 5,
@@ -253,7 +273,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "93.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"Georgia@gmail.com",
+            "contact_number":"+91 9428137843"
         },
         {
             "id": 6,
@@ -268,7 +290,9 @@ export default function CriticalPatientsAlertTableTabs() {
             "bg": "No recording",
             "temp": "No recording",
             "wt": "43.2Kg",
-            "status": "Unreviewed"
+            "status": "Unreviewed",
+            "email":"Perry@gmail.com",
+            "contact_number":"+91 9428137843"
         }
     ]
     )
