@@ -1,10 +1,11 @@
 import React from 'react'
 
 export default function DateTime(props) {
+  const {value}=props
   return (
     <>
         <span className="time">
-          {/* {props?.props?.date.toDateString()} */}
+          { value===0 || value===1 ? props?.props?.date.toDateString() : ""}
           </span>
     </>
   )
