@@ -1,8 +1,9 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 export default function AdminSidebar() {
+    const location=useLocation();
   return (
     <>
         <List>
@@ -24,7 +25,7 @@ export default function AdminSidebar() {
             <NavLink
                 to="/patients"
                 className={({ isActive }) =>
-                    isActive ? "isActive" : ""
+                    isActive || location.pathname==="/patientdetails"? "isActive" : ""
                 }>
                 <ListItem disablePadding>
                     <ListItemButton>
@@ -39,7 +40,7 @@ export default function AdminSidebar() {
             <NavLink
                 to="/clinicians"
                 className={({ isActive }) =>
-                    isActive ? "isActive" : ""
+                    isActive || location.pathname==="/cliniciandetails"? "isActive" : ""
                 }>
                 <ListItem disablePadding>
                     <ListItemButton>
