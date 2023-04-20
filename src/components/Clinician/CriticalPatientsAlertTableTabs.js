@@ -355,6 +355,7 @@ export default function CriticalPatientsAlertTableTabs() {
 
     useEffect(() => {
         getPatient(dataLimit,currentPage)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage,dataLimit])
 
  
@@ -450,7 +451,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${length ? 0 : allPatientData?.data?.length})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${length ? 0 : allPatientData?.total})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs>
                     {location.pathname === "/dashboard" ?
