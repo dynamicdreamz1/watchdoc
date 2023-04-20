@@ -15,6 +15,7 @@ export default function StaffUsersTable({ setOpen, open }) {
     let location=useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    let limit=10;
 
     const handleChangePage=(e,newValue)=>{
         setCurrentPage(newValue)
@@ -31,7 +32,6 @@ export default function StaffUsersTable({ setOpen, open }) {
         setTotalPages(nPages)
     }
 
-    let limit=6;
     useEffect(() => {
         StaffUserData(limit,currentPage)
     // eslint-disable-next-line react-hooks/exhaustive-deps

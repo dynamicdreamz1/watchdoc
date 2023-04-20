@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Pagination, Tab, Tabs } from '@mui/material';
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
@@ -59,6 +59,10 @@ export default function CriticalPatientsAlertTableTabs() {
     const [allPatientData, setAllPatientData] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [dataLimit]=useState(10)
+
 
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
@@ -342,17 +346,23 @@ export default function CriticalPatientsAlertTableTabs() {
     const getPatient = async () => {
         setLoading(true)
         setLength(true)
-        let res = await getAllPatients()
+        let res = await getAllPatients(dataLimit,currentPage)
+        setTotalPages(Math.ceil(res.data.total / dataLimit))
         setLength(false)
         setLoading(false)
         setAllPatientData(res?.data)
     }
 
     useEffect(() => {
-        getPatient()
-    }, [])
+        getPatient(dataLimit,currentPage)
+    }, [currentPage,dataLimit])
 
  
+
+    const handleChangePage = (event, newPage) => {
+        setCurrentPage(newPage);
+      };    
+    
 
    
 
@@ -469,11 +479,13 @@ export default function CriticalPatientsAlertTableTabs() {
             </Box>
         
 
-            {location.pathname === "/dashboard" ?
-        
+            {location.pathname === "/dashboard" ?        
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
                 }>{viewAll ? 'View Less' : "View All"}</button>
                 : ""} 
+            { value===2 &&
+            <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+}
         </> 
         
     )

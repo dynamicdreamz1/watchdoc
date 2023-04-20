@@ -56,8 +56,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
-  const [dataLimit,setDataLimit]=useState(5)
-  let limit=5;
+  const [dataLimit,setDataLimit]=useState(10)
+  let limit=10;
   const [pages, setPages] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);

@@ -134,11 +134,13 @@ export const clinicanProfileUpdate = async (data) => {
     }
 }
 
-export const getAllPatients = async () => {
+export const getAllPatients = async (dataLimit,currentPage) => {
+    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/admin/allpatients?limit=${dataLimit}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
+            url:tempUrl,
+            // url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
             headers:headersAdmin
         })
         return response
