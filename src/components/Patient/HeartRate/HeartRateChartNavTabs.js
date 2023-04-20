@@ -26,7 +26,6 @@ export default function HeartRateChartNavTabs(Props) {
             SetHeartRate(Data) } );
     },[Date])
 
-
     const ChangeDate=(NewDate)=>{
         setDate(GetDate(NewDate));
     }

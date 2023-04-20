@@ -8,7 +8,10 @@ export default function ChartTitle({Date,HeartData ,ChangeDate}) {
             <div className='range'>
                 <span className='range-text'>Range</span>
                 <div className='range-number'>
-                <span className="digit">{`${HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm}`}</span>
+                <span className="digit">
+                  {`${HeartData?.min_hr_bpm===undefined?"35":HeartData?.min_hr_bpm}-${HeartData?.min_hr_bpm===undefined?"102":HeartData?.min_hr_bpm}`}
+                  
+                  </span>
                     <span className="type">bpm</span>
                 </div>
             </div>

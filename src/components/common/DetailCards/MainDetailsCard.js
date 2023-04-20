@@ -3,6 +3,7 @@ import { watchNumerFormeting } from '../../../Utility/functions'
 import RiskStatus from './RiskStatus'
 
 export default function MainDetailsCard(Props) {
+  console.log("1111-Props.HeartRateAvg",Props.HeartRateAvg)
   return (
     <>
     <div className='chart-details-card'>
@@ -17,7 +18,7 @@ export default function MainDetailsCard(Props) {
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit'>{watchNumerFormeting(Props.HeartRateAvg)}</span>
+        <span className='digit'>{Props.HeartRateAvg===undefined?"134.89":watchNumerFormeting(Props.HeartRateAvg)}</span>
         <span className='type'>bpm</span>
       </div>
       <RiskStatus/>
