@@ -91,7 +91,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [reviewData, setReviewData] = useState([
         {
             "id": 1,
-            "name": "Randerson",
+            "name": "Randerson, Michael",
             "first_name": "Randerson",
             "last_name":"Michael",
             "age": "46 Year",
@@ -111,7 +111,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 2,
-            "name": "johnson",
+            "name": "johnson, mike",
             "first_name":"johnson",
             "last_name":"mike",
 
@@ -132,7 +132,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 3,
-            "name": "batitsta",
+            "name": "batitsta, remy",
             "first_name":"batitsta",
             "last_name":"remy",
 
@@ -154,7 +154,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 4,
-            "name": "loosy",
+            "name": "loosy, bella",
             "first_name":"loosy",
             "last_name":"bella",
 
@@ -175,7 +175,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 5,
-            "name": "Georgia",
+            "name": "Georgia, Tella",
             "first_name":"Georgia",
             "last_name":"Tella",
 
@@ -196,7 +196,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 6,
-            "name": "Perry",
+            "name": "Perry, John",
             "first_name":"Perry",
             "last_name":"John",
 
@@ -220,7 +220,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [patientData, setPatientData] = useState([
         {
             "id": 1,
-            "name": "Randerson",
+            "name": "Randerson, Michael",
             "first_name":"Randerson",
             "last_name":"Michael",
             "age": "46 Year",
@@ -240,7 +240,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 2,
-            "name": "johnson",
+            "name": "johnson, mike",
             "first_name":"johnson",
             "last_name":"mike",
             "age": "23 Year",
@@ -260,7 +260,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 3,
-            "name": "batitsta",
+            "name": "batitsta, remy",
             "first_name":"batitsta",
             "last_name":"remy",
             "age": "12 Year",
@@ -280,7 +280,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 4,
-            "name": "loosy",
+            "name": "loosy, bella",
             "first_name":"loosy",
             "last_name":"bella",
             "age": "35 Year",
@@ -300,7 +300,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 5,
-            "name": "Georgia",
+            "name": "Georgia, Tella",
             "first_name":"Georgia",
             "last_name":"Tella",
             "age": "55 Year",
@@ -320,7 +320,7 @@ export default function CriticalPatientsAlertTableTabs() {
         },
         {
             "id": 6,
-            "name": "Perry",
+            "name": "Perry, John",
             "first_name":"Perry",
             "last_name":"John",
             "age": "33 Year",

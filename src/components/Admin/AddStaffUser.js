@@ -91,7 +91,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
 
 
 
-    const handleSubmitForm = (data) => {
+    const handleSubmitForm = async(data) => {
         
         const formData=new FormData();
         formData.append("first_name",data?.firstname)
@@ -106,7 +106,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("profile_pic",imageUrl)
         }
         
-       addStaffUser(formData)
+       await addStaffUser(formData)
         StaffUserData(limit,currentPage)
         setOpen(false)
         setAddNewStaff({
