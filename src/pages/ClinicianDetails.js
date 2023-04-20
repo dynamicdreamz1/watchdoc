@@ -136,7 +136,7 @@ const ClinicianDetails = () => {
       },
       {
           "id": 2,
-          "name": "johnson",
+          "name": "johnson, mike",
           "first_name":"johnson",
           "age": "23 Year",
           "gender": "Male",
@@ -151,7 +151,7 @@ const ClinicianDetails = () => {
       },
       {
           "id": 3,
-          "name": "batitsta",
+          "name": "batitsta, remy",
           "first_name":"batitsta",
           "age": "12 Year",
           "gender": "Male",
@@ -166,7 +166,7 @@ const ClinicianDetails = () => {
       },
       {
           "id": 4,
-          "name": "loosy",
+          "name": "loosy, bella",
           "first_name":"loosy",
           "age": "35 Year",
           "gender": "Female",
@@ -181,7 +181,7 @@ const ClinicianDetails = () => {
       },
       {
           "id": 5,
-          "name": "Georgia",
+          "name": "Georgia, Tella",
           "first_name":"Georgia",
           "age": "55 Year",
           "gender": "Female",
@@ -196,7 +196,7 @@ const ClinicianDetails = () => {
       },
       {
           "id": 6,
-          "name": "Perry",
+          "name": "Perry, John",
           "first_name":"Perry",
           "age": "33 Year",
           "gender": "Female",
@@ -213,7 +213,7 @@ const ClinicianDetails = () => {
 const [pendingPatientsData]=useState([
    {
   "id": 1,
-  "name": "Ivan",
+  "name": "Ivan, Santa",
   "age": "46 Year",
   "gender": "Male",
   "bp": "180/80",
@@ -227,7 +227,7 @@ const [pendingPatientsData]=useState([
 },
 {
   "id": 2,
-  "name": "Gilbert",
+  "name": "Gilbert, John",
   "age": "23 Year",
   "gender": "Male",
   "bp": "170/70",
@@ -241,7 +241,7 @@ const [pendingPatientsData]=useState([
 },
 {
   "id": 3,
-  "name": "Dan",
+  "name": "Dan, Abramov",
   "age": "12 Year",
   "gender": "Male",
   "bp": "160/60",
@@ -255,7 +255,7 @@ const [pendingPatientsData]=useState([
 },
 {
   "id": 4,
-  "name": "Roberto",
+  "name": "Roberto, gel",
   "age": "35 Year",
   "gender": "Female",
   "bp": "150/50",
@@ -269,7 +269,7 @@ const [pendingPatientsData]=useState([
 },
 {
   "id": 5,
-  "name": "Nathaniel",
+  "name": "Nathaniel cruise,",
   "age": "55 Year",
   "gender": "Female",
   "bp": "155/50",
@@ -283,7 +283,7 @@ const [pendingPatientsData]=useState([
 },
 {
   "id": 6,
-  "name": "Lewis",
+  "name": "Lewis, rechard",
   "age": "33 Year",
   "gender": "Female",
   "bp": "159/40",
