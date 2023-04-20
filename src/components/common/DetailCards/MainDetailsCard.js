@@ -3,7 +3,6 @@ import { watchNumerFormeting } from '../../../Utility/functions'
 import RiskStatus from './RiskStatus'
 
 export default function MainDetailsCard(Props) {
-  console.log("1111-Props.HeartRateAvg",Props.HeartRateAvg)
   return (
     <>
     <div className='chart-details-card'>
