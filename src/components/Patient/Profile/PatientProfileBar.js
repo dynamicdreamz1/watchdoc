@@ -54,7 +54,7 @@ export default function PatientProfileBar() {
     <div className='patient-profile-bar'>
         <div className='left-block'>
             <div className='patient-info'>
-                <span className="fname">{first_name} {data?.first_name} {last_name} {data?.last_name} </span>
+                <span className="fname">{first_name} {data?.first_name}, {last_name} {data?.last_name} </span>
                 <span className="age">{age ? `${age} Year` : `${data?.age}`}, {sex} {data?.gender} </span>
             </div>
         </div>
