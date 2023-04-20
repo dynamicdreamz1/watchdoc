@@ -102,7 +102,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                 
                                
                                 let data= MetaFormeting(element)
-                                console.log(data);  
                                 return (
 
                                     <div key={element.id}>                                   
