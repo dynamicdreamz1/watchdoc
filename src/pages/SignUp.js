@@ -14,7 +14,8 @@ const SignUp = () => {
         "email": "",
         "mobile": "",
         "practicename": "",
-        "practiceaddress": ""
+        "practiceaddress": "",
+        "password":""
     })
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     /* eslint-disable no-useless-escape */
@@ -27,6 +28,13 @@ const SignUp = () => {
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
+        password:Yup.string()
+            .required("This field is required*")
+            .matches(
+                // eslint-disable-next-line no-useless-escape
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),
 
         mobile: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
@@ -76,29 +84,29 @@ const SignUp = () => {
                                     <span className="error">{props.errors.firstname ? props.errors.firstname : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='lastname' placeholder={t('SignUpPage.form.placeholder2')} onChange={props.handleChange} value={props.values.lastname} />
-                                    <span className="error"> {props.errors.lastname ? props.errors.lastname : ""}</span>
+                                    <input type="text" name='lastname' placeholder={t('SignUpPage.form.placeholder2')} onChange={props.handleChange} value={props?.values?.lastname} />
+                                    <span className="error"> {props?.errors?.lastname ? props?.errors?.lastname : ""}</span>
 
                                 </div>
                                 <div className='input-block'>
-                                    <input type="email" name='email' placeholder={t('SignUpPage.form.placeholder3')} onChange={props.handleChange} value={props.values.email} />
-                                    <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
+                                    <input type="email" name='email' placeholder={t('SignUpPage.form.placeholder3')} onChange={props.handleChange} value={props?.values?.email} />
+                                    <span className="error">  {props?.errors?.email ? props?.errors?.email : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="password" name='password' placeholder="password*" autoComplete='off'/>
-                                    <span className="error"></span>
+                                    <input type="password" name='password' placeholder="password*" value={props?.values?.password} autoComplete='off' onChange={props.handleChange}/>
+                                    <span className="error">  {props?.errors?.password ? props?.errors?.password : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='mobile' placeholder={t('SignUpPage.form.placeholder4')} onChange={props.handleChange} value={props.values.mobile} />
-                                    <span className="error"> {props.errors.mobile ? props.errors.mobile : ""}</span>
+                                    <input type="text" name='mobile' placeholder={t('SignUpPage.form.placeholder4')} onChange={props.handleChange} value={props?.values?.mobile} />
+                                    <span className="error"> {props?.errors?.mobile ? props?.errors?.mobile : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='practicename' placeholder={t('SignUpPage.form.placeholder5')} onChange={props.handleChange} value={props.values.practicename} />
-                                    <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
+                                    <input type="text" name='practicename' placeholder={t('SignUpPage.form.placeholder5')} onChange={props.handleChange} value={props?.values?.practicename} />
+                                    <span className="error">{props?.errors?.practicename ? props?.errors?.practicename : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='practiceaddress' placeholder={t('SignUpPage.form.placeholder6')} onChange={props.handleChange} value={props.values.practiceaddress} />
-                                    <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
+                                    <input type="text" name='practiceaddress' placeholder={t('SignUpPage.form.placeholder6')} onChange={props.handleChange} value={props?.values?.practiceaddress} />
+                                    <span className="error">{props?.errors?.practiceaddress ? props?.errors?.practiceaddress : ""}</span>
                                 </div>
                                 <div className='submit-block'>
                                     <button type='submit' > {t('SignUpPage.button1')} </button>
