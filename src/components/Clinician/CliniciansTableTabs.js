@@ -47,7 +47,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [value, setValue] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pendingClinician, setPendingClinician] = useState([])
