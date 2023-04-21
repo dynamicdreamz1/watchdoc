@@ -213,6 +213,8 @@ const ClinicianDetails = () => {
 const [pendingPatientsData]=useState([
    {
   "id": 1,
+  "first_name":"Ivan",
+  "last_name":"Santa",
   "name": "Ivan, Santa",
   "age": "46 Year",
   "gender": "Male",
@@ -223,10 +225,15 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "83.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"Ivan@gmail.com",
+  "mobileNum":9874563217,
+  
 },
 {
   "id": 2,
+  "first_name":"Gilbert",
+  "last_name":"John",
   "name": "Gilbert, John",
   "age": "23 Year",
   "gender": "Male",
@@ -237,11 +244,15 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "53.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"Gilbert@gmail.com",
+  "mobileNum":9874563217
 },
 {
   "id": 3,
   "name": "Dan, Abramov",
+  "first_name":"Dan",
+  "last_name":"Abramov",
   "age": "12 Year",
   "gender": "Male",
   "bp": "160/60",
@@ -251,11 +262,15 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "33.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"Dan@gmail.com",
+  "mobileNum":9874563217
 },
 {
   "id": 4,
   "name": "Roberto, gel",
+  "first_name":"Roberto",
+  "last_name":"gel",
   "age": "35 Year",
   "gender": "Female",
   "bp": "150/50",
@@ -265,11 +280,15 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "53.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"Roberto@gmail.com",
+  "mobileNum":9874563217
 },
 {
   "id": 5,
   "name": "Nathaniel cruise,",
+  "first_name":"Nathaniel",
+  "last_name":"cruise",
   "age": "55 Year",
   "gender": "Female",
   "bp": "155/50",
@@ -279,11 +298,15 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "93.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"cruise@gmail.com",
+  "mobileNum":9874563217
 },
 {
   "id": 6,
   "name": "Lewis, rechard",
+  "first_name":"Lewis",
+  "last_name":"rechard",
   "age": "33 Year",
   "gender": "Female",
   "bp": "159/40",
@@ -293,7 +316,9 @@ const [pendingPatientsData]=useState([
   "bg": "No recording",
   "temp": "No recording",
   "wt": "43.2Kg",
-  "status": "Pending"
+  "status": "Pending",
+  "email":"lewis@gmail.com",
+  "mobileNum":9874563217
 }])
     const handleClickReview = (data) => {
         // const filterData = patientData?.filter((el) => el?.id === data?.id)

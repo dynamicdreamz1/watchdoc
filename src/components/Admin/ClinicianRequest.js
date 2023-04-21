@@ -9,7 +9,6 @@ export default function ClinicianRequest(props) {
     const {practice_address,first_name,last_name}= MetaFormeting(props?.profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [mobileNum,setMobileNum]=useState('')
-
     useEffect(()=>{
     
         if (contact_number?.startsWith("+")) {
@@ -50,17 +49,17 @@ export default function ClinicianRequest(props) {
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
-                        <input type="text" name='firstname' defaultValue={first_name} />
+                        <input type="text" name='firstname' defaultValue={first_name || props?.profileBarData?.first_name} />
                     </div>
                     <div className='input-item'>
                         <label>Last name</label>
-                        <input type="text" name='lastname' defaultValue={last_name}/>
+                        <input type="text" name='lastname' defaultValue={last_name || props?.profileBarData?.last_name}/>
                     </div>
                 </div>
             </div>
             <div className='input-block'>
                 <label>Email address</label>
-                <input type="email" name='email' defaultValue={email} />
+                <input type="email" name='email' defaultValue={email || props?.profileBarData?.email} />
             </div>
             <div className='input-block'>
                 <label>Practice name</label>
@@ -83,7 +82,7 @@ export default function ClinicianRequest(props) {
                                             <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>
                                         ))}
                                     </Select>
-                    <input type="text" name="number" defaultValue={mobileNum} />
+                    <input type="text" name="number" defaultValue={mobileNum || props?.profileBarData?.mobileNum} />
                 </div>
             </div>
         </form>

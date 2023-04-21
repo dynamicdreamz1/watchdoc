@@ -14,7 +14,7 @@ import Wt from './Wt'
 export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
-  const {el,value}=props;
+  const {el,value,handleClickOpenRequestPopUp}=props;
   const {age,gender}=el
 
  
@@ -45,7 +45,7 @@ export default function PatientInfoRow(props) {
     <>
     <TableRow >
         {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
-        <TableCell onClick={handleClicknavigate}><PatientInfo first_name={first_name} value={value} full_name={full_name} name={el?.name} last_name={last_name} sex={sex}  DynamicAge={DynamicAge} staticAge={age} staticGender={gender} /></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} first_name={first_name} value={value} full_name={full_name} name={el?.name} last_name={last_name} sex={sex}  DynamicAge={DynamicAge} staticAge={age} staticGender={gender} /></TableCell>
         <TableCell><Bp el={el} value={value} /></TableCell>
         <TableCell><Hr el={el} value={value} /></TableCell>
         <TableCell><Bo el={el} value={value} /></TableCell>
