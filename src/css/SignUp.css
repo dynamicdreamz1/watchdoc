@@ -9,7 +9,7 @@
     background-position: top right;
     justify-content: flex-start;
     background-size: contain;
-    padding: 60px 60px 60px 120px;
+    padding: 40px 60px 40px 120px;
 }
 .signup-page-wrapper .form-block {
     max-width: 600px;
@@ -25,7 +25,7 @@
     line-height: 60px;
     color: #fff;
     font-weight: 600;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .signup-page-wrapper .form-block .text-block p {
     font-size: 18px;
@@ -33,10 +33,11 @@
     color: #fff;
 }
 .signup-page-wrapper .form-block .text-block {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 .signup-page-wrapper .form-block .submit-block button {
     background-color: #4C4A96;
+    margin-top: 10px;
 }
 .signup-page-wrapper .form-block .submit-block button:hover {
     background-color: rgba(76, 74, 150, 0.9);
@@ -52,7 +53,7 @@
     color: #374151;
 }
 .signup-page-wrapper .form-block .signup-bottom-text {
-    padding-top: 35px;
+    padding-top: 30px;
 }
 .signup-page-wrapper .form-block .signup-bottom-text p,.signup-page-wrapper .form-block .signup-bottom-text p a {
     color: #fff;

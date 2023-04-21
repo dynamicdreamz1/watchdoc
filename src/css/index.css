@@ -552,7 +552,7 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-head {
   font-family: 'Source Sans Pro', sans-serif;
 }
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
-  padding: 9px 20px;
+  padding: 12px 20px;
   color: #000;
   border: 0;
   font-family: 'Source Sans Pro', sans-serif;
