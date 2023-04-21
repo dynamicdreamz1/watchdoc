@@ -75,41 +75,31 @@ const SignUp = () => {
                                     <input type="text" name='firstname' placeholder={t('SignUpPage.form.placeholder1')} onChange={props.handleChange} value={props.values.firstname} />
                                     <span className="error">{props.errors.firstname ? props.errors.firstname : ""}</span>
                                 </div>
-
                                 <div className='input-block'>
                                     <input type="text" name='lastname' placeholder={t('SignUpPage.form.placeholder2')} onChange={props.handleChange} value={props.values.lastname} />
                                     <span className="error"> {props.errors.lastname ? props.errors.lastname : ""}</span>
 
                                 </div>
-
-
                                 <div className='input-block'>
                                     <input type="email" name='email' placeholder={t('SignUpPage.form.placeholder3')} onChange={props.handleChange} value={props.values.email} />
                                     <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                                 </div>
-
-
-
+                                <div className='input-block'>
+                                    <input type="password" name='password' placeholder="password*" autoComplete='off'/>
+                                    <span className="error"></span>
+                                </div>
                                 <div className='input-block'>
                                     <input type="text" name='mobile' placeholder={t('SignUpPage.form.placeholder4')} onChange={props.handleChange} value={props.values.mobile} />
                                     <span className="error"> {props.errors.mobile ? props.errors.mobile : ""}</span>
                                 </div>
-
-
                                 <div className='input-block'>
                                     <input type="text" name='practicename' placeholder={t('SignUpPage.form.placeholder5')} onChange={props.handleChange} value={props.values.practicename} />
                                     <span className="error">{props.errors.practicename ? props.errors.practicename : ""}</span>
                                 </div>
-
-
-
-
                                 <div className='input-block'>
                                     <input type="text" name='practiceaddress' placeholder={t('SignUpPage.form.placeholder6')} onChange={props.handleChange} value={props.values.practiceaddress} />
                                     <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                                 </div>
-
-
                                 <div className='submit-block'>
                                     <button type='submit' > {t('SignUpPage.button1')} </button>
                                 </div>
