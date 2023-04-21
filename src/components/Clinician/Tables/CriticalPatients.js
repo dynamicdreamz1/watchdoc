@@ -14,7 +14,7 @@ export default function CriticalPatients(props) {
         finalDta = patientData;
     }
     else {
-        const viewAllData = props?.viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 3);
+        const viewAllData = props?.viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 8);
         finalDta = [...viewAllData]
     }
     return (

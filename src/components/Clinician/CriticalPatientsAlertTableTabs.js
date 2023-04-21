@@ -64,6 +64,13 @@ export default function CriticalPatientsAlertTableTabs() {
   const [dataLimit]=useState(10)
 
 
+//   const [tempCurrentPage, settempCurrentPage] = useState(1);
+//   const [itemsPerPage] = useState(10);
+
+
+//   const [tempUnReviewCurrentPage, settempUnReviewPageCurrentPage] = useState(1);
+  
+
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
         t('DashboardPage.SideButton.d2'),
@@ -214,7 +221,127 @@ export default function CriticalPatientsAlertTableTabs() {
             "height":"125",
             "email":"Perry@gmail.com",
             "contact_number":"+91 9428137843"
-        }
+        },
+        {
+            "id": 7,
+            "name": "Yami, James",
+            "first_name": "Yami",
+            "last_name":"James",
+            "age": "56 Year",
+            "gender": "female",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Yami@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 8,
+            "name": "Michel, phelps",
+            "first_name": "Michel",
+            "last_name":"Phelps",
+            "age": "88 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"phelps@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 9,
+            "name": "Aema, jack",
+            "first_name": "Aema",
+            "last_name":"Jack",
+            "age": "16 Year",
+            "gender": "female",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Aema@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 10,
+            "name": "Rose, Taylor",
+            "first_name": "Rose",
+            "last_name":"Taylor",
+            "age": "26 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Taylor@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 11,
+            "name": "Eliana, Dcruz",
+            "first_name": "Eliana",
+            "last_name":"Dcruz",
+            "age": "55 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Eliana@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 12,
+            "name": "Anderson, Tye",
+            "first_name": "Anderson",
+            "last_name":"Tye",
+            "age": "23 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Reviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Tye@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
     ])
 
     const [patientData, setPatientData] = useState([
@@ -337,9 +464,161 @@ export default function CriticalPatientsAlertTableTabs() {
             "dob":"1999-08-06",
             "height":"125",
             "contact_number":"+91 9428137843"
-        }
+        },
+        {
+            "id": 7,
+            "name": "Yami, James",
+            "first_name": "Yami",
+            "last_name":"James",
+            "age": "56 Year",
+            "gender": "female",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Yami@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 8,
+            "name": "Michel, phelps",
+            "first_name": "Michel",
+            "last_name":"Phelps",
+            "age": "88 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"phelps@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 9,
+            "name": "Aema, jack",
+            "first_name": "Aema",
+            "last_name":"Jack",
+            "age": "16 Year",
+            "gender": "female",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Aema@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 10,
+            "name": "Rose, Taylor",
+            "first_name": "Rose",
+            "last_name":"Taylor",
+            "age": "26 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Taylor@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 11,
+            "name": "Eliana, Dcruz",
+            "first_name": "Eliana",
+            "last_name":"Dcruz",
+            "age": "55 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Eliana@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
+        {
+            "id": 12,
+            "name": "Anderson, Tye",
+            "first_name": "Anderson",
+            "last_name":"Tye",
+            "age": "23 Year",
+            "gender": "male",
+            "bp": "180/80",
+            "date": new Date('2023-01-16T09:10:00'),
+            "hr": "80bpm",
+            "bo": "97%",
+            "bg": "No recording",
+            "temp": "No recording",
+            "wt": "83.2Kg",
+            "status": "Unreviewed",
+            "dob":"1999-08-06",
+            "height":"98",
+            "email":"Tye@gmail.com",
+            "contact_number":"+91 9428137843"
+        },
     ]
     )
+
+  
+
+    
+
+// const indexOfLastItem = tempCurrentPage * itemsPerPage;
+//   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+//   const currentItems = reviewData?.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+// const indexOfLastItemUnreviewed = tempUnReviewCurrentPage * itemsPerPage;
+//   const indexOfFirstItemUnreviewed = indexOfLastItemUnreviewed - itemsPerPage;
+//   const currentItemsUnreviewed = patientData?.slice(indexOfFirstItemUnreviewed, indexOfLastItemUnreviewed);
+
+
+
+
+// const handleChangeStaticPage=(event,value)=>{
+//     settempCurrentPage(value);
+
+// }
+// const handleChangeUnReviewStaticPage=(event,value)=>{
+//     settempUnReviewPageCurrentPage(value)
+// }
+
+
+
+
+
+
+
 
 
 
@@ -487,6 +766,14 @@ export default function CriticalPatientsAlertTableTabs() {
             { value===2 &&
             <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
 }
+{/* {
+    value===1 &&
+    <Pagination page={tempCurrentPage} onChange={handleChangeStaticPage} count={Math.ceil(reviewData?.length / 10)} variant="outlined" shape="rounded" className='table-pagination' />
+}
+{
+    (value===0 &&  location.pathname !== "/dashboard") &&
+    <Pagination page={tempUnReviewCurrentPage} onChange={handleChangeUnReviewStaticPage} count={Math.ceil(reviewData?.length / 10)} variant="outlined" shape="rounded" className='table-pagination' />
+} */}
         </> 
         
     )
