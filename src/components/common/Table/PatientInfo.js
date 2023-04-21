@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 
 
 export default function PatientInfo({last_name,sex,DynamicAge,first_name,name,value,staticAge,staticGender,el,handleClickOpenRequestPopUp}) {
-  
   const location=useLocation()
   return (
     <>
@@ -11,7 +10,7 @@ export default function PatientInfo({last_name,sex,DynamicAge,first_name,name,va
         <div className='icon'>
           <img src='/images/AlertIcon.svg' alt="Alert Icon" />
         </div>
-        <div className='info'onClick={()=>handleClickOpenRequestPopUp(el)}>
+        <div className='info'onClick={()=>el?.status==="Pending" && handleClickOpenRequestPopUp(el)}>
           <span className='name'>{value===0 || value===1 || location.pathname==="/cliniciandetails" ? `${name}` :  `${first_name && last_name ? `${first_name} ${last_name}` : ''}`    } </span>
           {/* <span className='name'>{name}</span> */}
 
