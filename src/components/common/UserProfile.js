@@ -9,9 +9,9 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
   const navigate=useNavigate();
   const location=useLocation();
   const  {first_name,last_name,profile_pic} = MetaFormeting(data);
-  // const navigatePath=location?.pathname==="/staff-users"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
+  // const navigatePath=location?.pathname==="/staffusers"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
   const handleClickNavigate=()=>{
-    if(location?.pathname==="/staff-users"){
+    if(location?.pathname==="/staffusers"){
       navigate("");
     }
     if(location?.pathname==="/clinicians")

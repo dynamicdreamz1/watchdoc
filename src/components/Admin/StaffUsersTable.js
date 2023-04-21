@@ -90,7 +90,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 </TableContainer>
             }
 
-            {location.pathname!=="/staff-users" || loading  ? "" 
+            {location.pathname!=="/staffusers" || loading  ? "" 
            :
                 <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
    

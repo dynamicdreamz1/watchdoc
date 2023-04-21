@@ -95,7 +95,7 @@ function App() {
         <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <SignIn />} />
         <Route path='patients' element={currentUser ? < Patients/> : <SignIn />} />
         <Route path='clinicians' element={currentUser ? <Clinicians /> : <SignIn />} />
-        <Route path='staff-users' element={currentUser ? <StaffUsers/> : <SignIn />} />
+        <Route path='staffusers' element={currentUser ? <StaffUsers/> : <SignIn />} />
 
       </Routes>
 

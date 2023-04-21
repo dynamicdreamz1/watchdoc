@@ -80,7 +80,7 @@ export default function UserAvtar() {
             }}
             >
                 <MenuItem onClick={handleClose}><Link to="/profile-settings">Settings</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to="/staff-users">Staff Users</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/staffusers">Staff Users</Link></MenuItem>
                 <MenuItem onClick={(e)=>logoutHandel()}>Logout</MenuItem>
             </Menu>
         </div>

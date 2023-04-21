@@ -53,7 +53,7 @@ export default function AdminSidebar() {
             </NavLink>
 
             <NavLink
-                to="/staff-users"
+                to="/staffusers"
                 className={({ isActive }) =>
                     isActive ? "isActive" : ""
                 }>

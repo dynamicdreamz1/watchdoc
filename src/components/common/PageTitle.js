@@ -26,7 +26,7 @@ const location=useLocation();
               location.pathname === '/editlinkdevice' ? <h1>{t(('DashboardPage.SideBar.title4'))}</h1> :
                 location.pathname === "/patients" ? <h1>{t('DashboardPage.SideBar.ClinicianSideBar.t2')}</h1> :
                   (location.pathname === "/clinicians" || location.pathname === "/cliniciandetails") ? <h1>{t('DashboardPage.SideBar.ClinicianSideBar.t3')} <button onClick={() => setOpen(true)} type='button'><img src="/images/Add-Button-White.svg" alt='button' /></button></h1> :
-                    location.pathname === "/staff-users" ? <h1>Staff Users <button onClick={() => setOpen(true)} type='button'><img src="/images/Add-Button-White.svg" alt='button' /></button></h1> : ""}
+                    location.pathname === "/staffusers" ? <h1>Staff Users <button onClick={() => setOpen(true)} type='button'><img src="/images/Add-Button-White.svg" alt='button' /></button></h1> : ""}
       </div>
     </>
   )
