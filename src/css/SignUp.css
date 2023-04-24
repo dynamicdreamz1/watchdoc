@@ -81,3 +81,17 @@
 .success-page-wrapper .text-block .text {
     max-width: 530px;
 }
+.success-page-wrapper {
+    align-items: inherit;
+}
+.success-page-wrapper .text-block {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.success-page-wrapper .text-block .logo-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -11,8 +11,7 @@ export default function Reminders() {
      
     <div className='reminder-cards-wrapper mt-22'>
         <div className='section-title'>
-            <h5>{t('PatientDashboard.Reminders.title')} </h5>
-            <div onClick={handleClickOpenPopUp}><AddCircleOutlineRoundedIcon /></div>
+            <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button" onClick={handleClickOpenPopUp}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
         </div>
         <div className='wrapper d-flex flex-wrap'>
             <ReminderCard/>
