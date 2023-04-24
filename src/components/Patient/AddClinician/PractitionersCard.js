@@ -28,7 +28,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"");
 
     const recordsPerPage = 3;
-
     const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
  
     const handleChange = (event, value) => {
@@ -37,7 +36,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
 
-    const currentTableData = clinicianData?.data?.data?.data?.slice(firstPageIndex, lastPageIndex)
+    const currentTableData = clinicianData?.data?.data?.data?.filter((el)=>el?.status !==1).slice(firstPageIndex, lastPageIndex)
     const payload = {
         clinician_name: addData?.clinicianName,
         practice_name: addData?.practitionerName,

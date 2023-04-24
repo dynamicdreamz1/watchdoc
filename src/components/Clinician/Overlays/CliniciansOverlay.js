@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import AddClinician from '../../Patient/AddClinician/AddClinician'
+import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow';
 // import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow'
 
 
@@ -57,7 +58,8 @@ export default function CliniciansOverlay() {
   // ]
   // )
 
-  // const tempData = clinicianData?.data?.data?.data?.filter((el) => el.status === 1);
+  const tempData = clinicianData?.data?.data?.data?.filter((el) => el.status === 1);
+  console.log("111111-tempData",tempData)
   return (
     <>
       <AdminUserContext.Provider value={{ addData, setAddData, clinicianData, setClinicianData, nextBtn, setNextBtn, currentPage, setCurrentPage }}>
@@ -67,9 +69,9 @@ export default function CliniciansOverlay() {
             <p>The following clinicians are connected to this patient.</p>
           </div>
 
-          {/* {tempData?.length > 0 && tempData?.map((element) => (
+          {tempData?.length > 0 && tempData?.map((element) => (
             <React.Fragment key={element.id}><ClinicianInfoRow data={element} clinicianStaff={tempData} /></React.Fragment>
-          ))} */}
+          ))}
 
           <button className="connect-btn" onClick={() => setToggleAddClinicain(!toggleAddClinicain)}><img src="/images/Add-rounded-button.svg" alt="" />Connect a Clinician</button>
           {toggleAddClinicain ?
