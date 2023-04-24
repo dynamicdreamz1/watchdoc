@@ -2,12 +2,12 @@ import React,{useState} from 'react'
 import { useTranslation } from 'react-i18next'
 import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
-import { Button, Dialog } from '@mui/material';
+import { Dialog } from '@mui/material';
 
 export default function Reminders() {
   const [open,setOpen]=useState(false)
   const {t}=useTranslation()
-
+console.log("11111-open",open)
   const handleClose = () => {
     setOpen(false);
   };
