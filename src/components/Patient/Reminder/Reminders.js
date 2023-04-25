@@ -7,7 +7,6 @@ import { Dialog } from '@mui/material';
 export default function Reminders() {
   const [open,setOpen]=useState(false)
   const {t}=useTranslation()
-console.log("11111-open",open)
   const handleClose = () => {
     setOpen(false);
   };
@@ -32,7 +31,7 @@ console.log("11111-open",open)
           <WeightYourselfReminderOverlay />
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
-            <ReminderCard/>
+            <ReminderCard/> 
             <ReminderCard/>
             <ReminderCard/>
         </div>
