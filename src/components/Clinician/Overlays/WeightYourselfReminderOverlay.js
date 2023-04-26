@@ -13,38 +13,38 @@ export default function WeightYourselfReminderOverlay() {
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span>Time</span>
           </div>
-          <input type='text' name="time" value="10:00 am" />
+          <input type='text' name="time" defaultValue="10:00 am" />
           <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span>Days</span>
           </div>
           <div className='radios-wrapper'>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Monday"/>
+              <input type="radio" name="day" defaultValue="Every Monday"/>
               <label>Every Monday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Tuesday"/>
+              <input type="radio" name="day" defaultValue="Every Tuesday"/>
               <label>Every Tuesday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Wednesday"/>
+              <input type="radio" name="day" defaultValue="Every Wednesday"/>
               <label>Every Wednesday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Thursday"/>
+              <input type="radio" name="day" defaultValue="Every Thursday"/>
               <label>Every Thursday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Friday"/>
+              <input type="radio" name="day" defaultValue="Every Friday"/>
               <label>Every Friday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Saturday"/>
+              <input type="radio" name="day" defaultValue="Every Saturday"/>
               <label>Every Saturday</label>
             </div>
             <div className='radio-item'>
-              <input type="radio" name="day" value="Every Sunday"/>
+              <input type="radio" name="day" defaultValue="Every Sunday"/>
               <label>Every Sunday</label>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { RegisterUser } from '../services/UserService';
 import { Base64 } from 'js-base64';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
+import AppleLogin from 'react-apple-login';
 
 
 
@@ -14,10 +15,10 @@ import jwt_decode from "jwt-decode";
 export default function PatientEntry() {
     const user = useContext(UserContext);
     const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";
-
+  
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
-    const [error,setError] = useState('')
+    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
@@ -61,6 +62,7 @@ export default function PatientEntry() {
                 console.log(error);
                 return error
             })
+            
 
     }
 
@@ -69,15 +71,15 @@ export default function PatientEntry() {
     }
     const handleLoginSuccess = (response) => {
         let decoded = jwt_decode(response?.credential);
-        console.log("11111-decode",decoded)
+        console.log("11111-decode", decoded)
 
-        
+
 
     };
     const handleLoginFailure = (error) => {
         setError(error);
     };
-   
+
 
     return (
         <>
@@ -95,7 +97,7 @@ export default function PatientEntry() {
                                     value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className='submit-block' >
-                                <button type="submit" onClick={(e,response) => handleSubmit(e,response)}>Continue</button>
+                                <button type="submit" onClick={(e, response) => handleSubmit(e, response)}>Continue</button>
                             </div>
                         </form>
                         <div className='or-text'>
@@ -116,7 +118,17 @@ export default function PatientEntry() {
                                     responseType="code,token"
                                 />
                             </button>
-                            <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />Continue with Apple</button>
+                            <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />
+                                <AppleLogin
+                                     clientId="com.example.myapp"
+                                     redirectURI="https://example.com"
+                                     onSuccess={handleLoginSuccess}
+                                     onFailure={handleLoginFailure}
+                                     scope="name email"
+                                     usePopup={false}
+                                     buttonText="Continue With Apple"
+                                />
+                            </button>   
                             <button type='button'><img src="/images/key-icon.png" alt="SSO Icon" />Continue with SSO</button>
                         </div>
                     </div>
