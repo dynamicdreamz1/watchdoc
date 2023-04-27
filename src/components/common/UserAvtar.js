@@ -6,7 +6,7 @@ import { UserContext } from '../../Store/Context';
 import { MetaFormeting } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
 import { getCurrentUserData, logout } from '../../services/UserService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 '& .MuiBadge-badge': {
@@ -25,6 +25,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function UserAvtar() {
+    const navigate=useNavigate();
     const {currentUserData} = useContext(UserContext);
     const userData = getCurrentUserData();
     let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
@@ -40,9 +41,15 @@ export default function UserAvtar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
     const logoutHandel=()=>{   
         logout();
+        if(currentUserData?.role==='User'){
+            navigate("/patiententry")
+        }
+        else{
+            navigate("/signin")
+
+        }
         window.location.reload();
     }
     return (
@@ -80,7 +87,7 @@ export default function UserAvtar() {
             }}
             >
                 <MenuItem onClick={handleClose}><Link to="/profile-settings">Settings</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to="/staffusers">Staff Users</Link></MenuItem>
+                {currentUserData?.role==="Admin" && <MenuItem onClick={handleClose}><Link to="/staffusers">Staff Users</Link></MenuItem>}
                 <MenuItem onClick={(e)=>logoutHandel()}>Logout</MenuItem>
             </Menu>
         </div>

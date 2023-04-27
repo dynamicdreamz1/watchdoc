@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,useState } from 'react'
 import { Link, redirect, useNavigate } from 'react-router-dom';
 import {UserLogin } from '../services/UserService';
 import '../css/Register.css'
@@ -24,10 +24,10 @@ const SignIn = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    useEffect(()=>{
-        navigate("/signin")
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    // useEffect(()=>{
+    //     navigate("/signin")
+    //      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[])
 
 
 
@@ -36,7 +36,7 @@ const SignIn = () => {
          // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
         password:Yup.string()
-            .required("This field is required*")
+            .required("Password is required*")
             .matches(
                 // eslint-disable-next-line no-useless-escape
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
