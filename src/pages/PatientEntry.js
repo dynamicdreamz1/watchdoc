@@ -71,7 +71,6 @@ export default function PatientEntry() {
     }
     const handleLoginSuccess = (response) => {
         let decoded = jwt_decode(response?.credential);
-        console.log("11111-decode", decoded)
 
 
 
