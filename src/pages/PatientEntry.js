@@ -71,7 +71,35 @@ export default function PatientEntry() {
     }
     const handleLoginSuccess = (response) => {
         let decoded = jwt_decode(response?.credential);
+        const data = {
+            email: decoded?.email
+        }
+        RegisterUser(data)
+            .then((response) => {
+                console.log("111-register response",response)
+                if (typeof response === "string") {
+                    setError(response)
+                    setLoading(false)
 
+                } else {
+                    let encodedemail = Base64.encode(response?.data?.data?.email)
+
+                    setLoading(false)
+                    setEmail("")
+                    navigate(`/verification/${encodedemail}`, {
+                        state: {
+                            id: response?.data?.data?.verification_code,
+                            emailId: encodedemail,
+                        },
+                    });
+                    // navigate(`/verification/${encodedemail}`)
+                    console.log(response)
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                return error
+            })
 
 
     };
