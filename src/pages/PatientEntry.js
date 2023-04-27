@@ -95,6 +95,7 @@ export default function PatientEntry() {
                             <div className='input-block'>
                                 <input type="email" placeholder={t('SignInPage.form.f1')}
                                     value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+                                    <div className='LoginError'>{error && error}</div>
                             </div>
                             <div className='submit-block' >
                                 <button type="submit" onClick={(e, response) => handleSubmit(e, response)}>Continue</button>

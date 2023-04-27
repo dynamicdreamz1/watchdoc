@@ -4,27 +4,29 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import '../css/SignUp.css';
 import { useTranslation } from 'react-i18next';
+import { ClinicianRegister } from '../services/UserService';
 
 const SignUp = () => {
     const navigate = useNavigate();
     const { t } = useTranslation()
     const [signUpUserData, setSignUpUserData] = useState({
-        "firstname": "",
-        "lastname": "",
+        "first_name": "",
+        "last_name": "",
         "email": "",
-        "mobile": "",
-        "practicename": "",
-        "practiceaddress": "",
+        "contact_number": "",
+        "practice_name": "",
+        "practice_address": "",
         "password":""
     })
+    const [error,setError]=useState("")
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     /* eslint-disable no-useless-escape */
 
 
     const LoginSchema = Yup.object({
-        firstname: Yup.string().required(t('SignUpPage.validation.common1'))
+        first_name: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
-        lastname: Yup.string().required(t('SignUpPage.validation.common1'))
+            last_name: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
@@ -36,26 +38,28 @@ const SignUp = () => {
                 "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
             ),
 
-        mobile: Yup.string().required(t('SignUpPage.validation.common1'))
+        contact_number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
             .max(10, t('SignUpPage.validation.mobile.long')),
-        practicename: Yup.string().required(t('SignUpPage.validation.common1'))
+        practice_name: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
-        practiceaddress: Yup.string().required(t('SignUpPage.validation.common1'))
+        practice_address: Yup.string().required(t('SignUpPage.validation.common1'))
 
     });
 
 
 
 
-    const handleSubmitForm = (data) => {
+    const handleSubmitForm = async(data) => {
         setSignUpUserData({ ...data })
-        // const {email}=data;
-        // const finalData={"email":email,"role":"Clinician"}
-        // RegisterUser(finalData)
-        // ProfileCreation(data)
+        const res=await ClinicianRegister(data)
+        if(res?.status===200){
         navigate("/signupsuccess")
+        }
+        else{
+            setError(res)
+        }
     }
 
 
@@ -80,12 +84,12 @@ const SignUp = () => {
                             </div>
                             <form onSubmit={props.handleSubmit}>
                                 <div className='input-block'>
-                                    <input type="text" name='firstname' placeholder={t('SignUpPage.form.placeholder1')} onChange={props.handleChange} value={props.values.firstname} />
-                                    <span className="error">{props.errors.firstname ? props.errors.firstname : ""}</span>
+                                    <input type="text" name='first_name' placeholder={t('SignUpPage.form.placeholder1')} onChange={props.handleChange} value={props.values.first_name} />
+                                    <span className="error">{props.errors.first_name ? props.errors.first_name : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='lastname' placeholder={t('SignUpPage.form.placeholder2')} onChange={props.handleChange} value={props?.values?.lastname} />
-                                    <span className="error"> {props?.errors?.lastname ? props?.errors?.lastname : ""}</span>
+                                    <input type="text" name='last_name' placeholder={t('SignUpPage.form.placeholder2')} onChange={props.handleChange} value={props?.values?.last_name} />
+                                    <span className="error"> {props?.errors?.last_name ? props?.errors?.last_name : ""}</span>
 
                                 </div>
                                 <div className='input-block'>
@@ -97,17 +101,18 @@ const SignUp = () => {
                                     <span className="error">  {props?.errors?.password ? props?.errors?.password : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='mobile' placeholder={t('SignUpPage.form.placeholder4')} onChange={props.handleChange} value={props?.values?.mobile} />
-                                    <span className="error"> {props?.errors?.mobile ? props?.errors?.mobile : ""}</span>
+                                    <input type="text" name='contact_number' placeholder={t('SignUpPage.form.placeholder4')} onChange={props.handleChange} value={props?.values?.contact_number} />
+                                    <span className="error"> {props?.errors?.contact_number ? props?.errors?.contact_number : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='practicename' placeholder={t('SignUpPage.form.placeholder5')} onChange={props.handleChange} value={props?.values?.practicename} />
-                                    <span className="error">{props?.errors?.practicename ? props?.errors?.practicename : ""}</span>
+                                    <input type="text" name='practice_name' placeholder={t('SignUpPage.form.placeholder5')} onChange={props.handleChange} value={props?.values?.practice_name} />
+                                    <span className="error">{props?.errors?.practice_name ? props?.errors?.practice_name : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="text" name='practiceaddress' placeholder={t('SignUpPage.form.placeholder6')} onChange={props.handleChange} value={props?.values?.practiceaddress} />
-                                    <span className="error">{props?.errors?.practiceaddress ? props?.errors?.practiceaddress : ""}</span>
+                                    <input type="text" name='practice_address' placeholder={t('SignUpPage.form.placeholder6')} onChange={props.handleChange} value={props?.values?.practice_address} />
+                                    <span className="error">{props?.errors?.practice_address ? props?.errors?.practice_address : ""}</span>
                                 </div>
+                                <div className='LoginError'>{error && error}</div>
                                 <div className='submit-block'>
                                     <button type='submit' > {t('SignUpPage.button1')} </button>
                                 </div>
