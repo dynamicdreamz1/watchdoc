@@ -76,7 +76,6 @@ export default function PatientEntry() {
         }
         RegisterUser(data)
             .then((response) => {
-                console.log("111-register response",response)
                 if (typeof response === "string") {
                     setError(response)
                     setLoading(false)
