@@ -7,7 +7,7 @@ import { RegisterUser } from '../services/UserService';
 import { Base64 } from 'js-base64';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
-import AppleLogin from 'react-apple-login';
+// import AppleLogin from 'react-apple-login';
 
 
 
@@ -146,7 +146,7 @@ export default function PatientEntry() {
                                 />
                             </button>
                             <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />
-                                <AppleLogin
+                                {/* <AppleLogin
                                      clientId="com.example.myapp"
                                      redirectURI="https://example.com"
                                      onSuccess={handleLoginSuccess}
@@ -154,7 +154,7 @@ export default function PatientEntry() {
                                      scope="name email"
                                      usePopup={false}
                                      buttonText="Continue With Apple"
-                                />
+                                /> */}
                             </button>   
                             <button type='button'><img src="/images/key-icon.png" alt="SSO Icon" />Continue with SSO</button>
                         </div>
