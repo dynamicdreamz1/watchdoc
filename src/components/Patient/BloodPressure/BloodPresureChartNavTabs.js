@@ -39,7 +39,7 @@ function TabPanel(props) {
     };
   }
 
-export default function BloodPresureChartNavTabs() {
+export default function     BloodPresureChartNavTabs() {
 
     const [value, setValue] = React.useState(0);
     const [Date,setDate] = useState(GetDate);

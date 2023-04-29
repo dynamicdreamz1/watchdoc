@@ -19,11 +19,13 @@ export default function AdminDashboard() {
     const maxKey = Object.keys(res?.data).reduce((a, b) => {
       return a > b ? a : b;
     });
+
     for (let i = 0; i <= maxKey; i++) {
       if (res?.data[i.toString()]) {
         data.push(res?.data[i.toString()])
       }
     }
+
     setPendingPatientsData(data)
     setLoading(false)
   }
@@ -31,7 +33,6 @@ export default function AdminDashboard() {
   useEffect(() => {
     GetData()
   }, [])
-
 
 
 
