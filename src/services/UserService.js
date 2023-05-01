@@ -88,6 +88,21 @@ export async function UserLogin(data) {
 }
 
 
+export async function ForgotUserPassword(data) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}forgot_password`,
+            data: data,
+        })
+
+        return response;
+    } catch (error) {
+        return error.response.data.message;
+    }
+}
+
+
 
 export async function ClinicianRegister(data) {
     try {

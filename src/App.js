@@ -33,8 +33,9 @@ import ProfileSettings from './pages/ProfileSettings';
 import PatientsDetails from './pages/PatientsDetails';
 import StaffUsers from './pages/StaffUsers';
 import ClinicianDetails from './pages/ClinicianDetails';
-
-
+import ForgotPassword from '../src/pages/ForgotPassword'
+import VerificationForPassword from './pages/VerificationForPassword';
+import NewPassword from './pages/NewPassword';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -67,6 +68,12 @@ function App() {
         <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
         <Route path='/twofactoreverification/:emailId' element={<TwoFactor />} />
         <Route path='/signupsuccess' element={<SignupSuccess />} />
+        <Route path='/forgetpassword' element={<ForgotPassword />} />
+        <Route path='/verificationforgetpassword' element={<VerificationForPassword />} />
+        <Route path='/newpassword' element={<NewPassword />} />
+
+
+
 
         <Route path='/profile-settings' element={<ProfileSettings />} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />

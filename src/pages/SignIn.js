@@ -108,7 +108,6 @@ const SignIn = () => {
     if (user?.token) {
         return redirect('/dashboard');
     }
-
     return (
         <Formik
         initialValues={loginData}
@@ -151,7 +150,7 @@ const SignIn = () => {
 
                             </div>
                             <div className='forgot-pw-block'>
-                                <a href={{}}>{t('SignInPage.form.f11')}</a>
+                                <Link to='/forgetpassword'>{t('SignInPage.form.f11')}</Link>
                             </div>
                         <div className='LoginError'>{error && error}</div>
 
