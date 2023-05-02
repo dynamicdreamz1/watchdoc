@@ -1,15 +1,15 @@
 import { Base64 } from 'js-base64'
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import '../css/Verification.css'
 import { ForgotUserPassword, RegisterUser } from '../services/UserService'
-import { useLocation, useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 const VerificationForPassword = () => {
     const location = useLocation();
 
-    const {email,otp } = location.state;
+    const { email, otp } = location.state;
     const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
@@ -20,36 +20,36 @@ const VerificationForPassword = () => {
     const [time, setTime] = useState(60)
     let decodedEmail = (Base64.decode(email));
 
-   
 
-   
 
-    const handleSubmit = async(e) => {
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const result={
-            email:email,
-            verify_otp:code
-          }
-          const res=await ForgotUserPassword(result)
-       
-          if(res?.status===200){
-            if(res?.data?.message!=="Wrong OTP"){
-            navigate(`/newpassword`, {
-                state: {
-                    email:email                  
-                 
-                },
-              });
-          }
-          else{
-            setError(res?.data?.message)
+        const result = {
+            email: email,
+            verify_otp: code
         }
+        const res = await ForgotUserPassword(result)
+
+        if (res?.status === 200) {
+            if (res?.data?.message !== "Wrong OTP") {
+                navigate(`/newpassword`, {
+                    state: {
+                        email: email
+
+                    },
+                });
+            }
+            else {
+                setError(res?.data?.message)
+            }
         }
 
-       
-          
 
-       
+
+
+
     }
 
     const resendCode = (e) => {
@@ -62,11 +62,11 @@ const VerificationForPassword = () => {
         const data = {
             email: decodedEmail
         }
-        
+
         RegisterUser(data)
             .then((response) => {
                 if (typeof response === "string") {
-                    setError(response)                  
+                    setError(response)
 
                 } else {
                     console.log(response)
