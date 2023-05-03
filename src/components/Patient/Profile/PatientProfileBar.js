@@ -12,7 +12,7 @@ export default function PatientProfileBar() {
 
  const location=useLocation()
  
- const {data,age}=location.state;
+  const {data,age}=location.state;
   const {first_name,last_name,sex}=MetaFormeting(data)
   const [openProfile, setOpenProfile] = React.useState(false);
   const [openClincians, setOpenClincians] = React.useState(false);

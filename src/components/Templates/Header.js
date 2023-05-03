@@ -8,7 +8,6 @@ import UserAvtar from '../common/UserAvtar'
 export default function Header({ toggle, setToggle, setOpen }) {
 
   const { currentUserData } = useContext(UserContext);
-
   return (
     <>
       <div className='top-header-block d-flex align-items-center justify-content-between'>
