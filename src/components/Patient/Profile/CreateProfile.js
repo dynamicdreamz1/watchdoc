@@ -4,6 +4,7 @@ import '../../../css/CreateProfile.css'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { StoreCookie } from '../../../Utility/sessionStore';
+import { MetaFormeting } from '../../../Utility/functions';
 
 const CreateProfile = () => {
 
@@ -67,8 +68,9 @@ const CreateProfile = () => {
                         setLoading(false)
                         setErrorN(t('CreateProfilePage.error.e8'))
                     }
-                    let Fname=(res.data.meta_data[0].meta_value)
-                    StoreCookie.setItem('name',Fname)
+                    // let Fname=(res.data.meta_data[0].meta_value)
+                     const {first_name}= MetaFormeting(res.data)
+                    StoreCookie.setItem('name',first_name)
                     let profileCheck = (res.data.profile_created)
                     setSuccess(true)
                     StoreCookie.setItem('profileCheck', profileCheck)

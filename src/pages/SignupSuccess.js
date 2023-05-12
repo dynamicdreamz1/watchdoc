@@ -7,17 +7,20 @@ export default function SignupSuccess() {
   return (
     <>
         <div className='page-wrapper success-page-wrapper'>
-          
-            <div className='text-block'>
-                <div className='text'>
-                    <h1> {t('SignupSuccessPage.heading')} </h1>
-                    <p> {t('SignupSuccessPage.para1')} </p>
-                    <Link to="/signin">
-                    <button type='button' className='btn'> {t('SignupSuccessPage.button')} </button>
-                    </Link>
-
-                </div>
+          <div className='text-block'>
+            <div class="logo-block">
+              <div class="logo">
+                <img src="/images/WatchDoc-LOGO.svg" alt="WatchDoc Logo" />
+              </div>
             </div>
+            <div className='text'>
+              <h1> {t('SignupSuccessPage.heading')} </h1>
+              <p> {t('SignupSuccessPage.para1')} </p>
+              <Link to="/signin">
+                <button type='button' className='btn'> {t('SignupSuccessPage.button')} </button>
+              </Link>
+            </div>
+          </div>
         </div>
     </>
   )

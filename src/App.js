@@ -6,7 +6,7 @@ Bgit sthavik
 
 import React, { useEffect, useState } from 'react'
 import './css/App.css'
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import VerificationEmail from './pages/VerificationEmail';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
@@ -33,8 +33,9 @@ import ProfileSettings from './pages/ProfileSettings';
 import PatientsDetails from './pages/PatientsDetails';
 import StaffUsers from './pages/StaffUsers';
 import ClinicianDetails from './pages/ClinicianDetails';
-
-
+import ForgotPassword from '../src/pages/ForgotPassword'
+import VerificationForPassword from './pages/VerificationForPassword';
+import NewPassword from './pages/NewPassword';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -51,13 +52,13 @@ function App() {
       const userData = getCurrentUserData();
       setCurrentUserData({ userData, role, IsActive });
     }
-  
+
   }, [user]);
 
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
 
-     <Routes>
+      <Routes>
 
         <Route exact path="/" element={currentUser ? <Dashboard /> : <SignIn />} />
         <Route exact path="/signin" element={currentUser ? <Dashboard /> : <SignIn />} />
@@ -65,18 +66,24 @@ function App() {
 
         <Route exact path="/signup" element={<SignUp />} />
         <Route path='/verification/:emailId' element={currentUser ? <Dashboard /> : <VerificationEmail />} />
-        <Route path='/twofactoreverification/:emailId' element={<TwoFactor/>} />
-        <Route path='/signupsuccess' element={<SignupSuccess/>} />
+        <Route path='/twofactoreverification/:emailId' element={<TwoFactor />} />
+        <Route path='/signupsuccess' element={<SignupSuccess />} />
+        <Route path='/forgetpassword' element={<ForgotPassword />} />
+        <Route path='/verificationforgetpassword' element={<VerificationForPassword />} />
+        <Route path='/newpassword' element={<NewPassword />} />
 
-        <Route path='/profile-settings' element={<ProfileSettings/>} />
+
+
+
+        <Route path='/profile-settings' element={<ProfileSettings />} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
         <Route path='/cliniciandetails' element={currentUser ? <ClinicianDetails /> : <SignIn />} />
 
 
-        
 
-        
-        
+
+
+
 
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
 
@@ -93,9 +100,9 @@ function App() {
         <Route path='edit-profile' element={currentUser ? <EditProfileInner /> : <SignIn />} />
         <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <SignIn />} />
         <Route path='editlinkdevice' element={currentUser ? <LinkDeviceInner /> : <SignIn />} />
-        <Route path='patients' element={currentUser ? < Patients/> : <SignIn />} />
+        <Route path='patients' element={currentUser ? < Patients /> : <SignIn />} />
         <Route path='clinicians' element={currentUser ? <Clinicians /> : <SignIn />} />
-        <Route path='staff-users' element={currentUser ? <StaffUsers/> : <SignIn />} />
+        <Route path='staffusers' element={currentUser ? <StaffUsers /> : <SignIn />} />
 
       </Routes>
 

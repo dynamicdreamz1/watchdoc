@@ -1,4 +1,4 @@
-import { Dialog,Pagination,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
@@ -12,30 +12,30 @@ import { TableSkeleton } from '../../Utility/Skeleton';
 export default function StaffUsersTable({ setOpen, open }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
-    let location=useLocation();
+    let location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    let limit = 10;
 
-    const handleChangePage=(e,newValue)=>{
+    const handleChangePage = (e, newValue) => {
         setCurrentPage(newValue)
     }
-        
 
-    const StaffUserData = async (limit,currentPage) => {
+
+    const StaffUserData = async (limit, currentPage) => {
         setLoading(true)
-        const response = await getStaffUsers(limit,currentPage);
-        
+        const response = await getStaffUsers(limit, currentPage);
+
         setStaffUser(response.data?.data)
         setLoading(false)
-        let nPages=Math.ceil(response.data.total/limit)
+        let nPages = Math.ceil(response.data.total / limit)
         setTotalPages(nPages)
     }
 
-    let limit=6;
     useEffect(() => {
-        StaffUserData(limit,currentPage)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit,currentPage])
+        StaffUserData(limit, currentPage)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [limit, currentPage])
 
 
     const handleClose = () => {
@@ -53,7 +53,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData}/>
+                <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
             </Dialog>
             {loading ? <TableSkeleton /> :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
@@ -67,7 +67,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                          
+
                             {staffUser?.length !== 0 && staffUser?.map((data, i) => {
 
                                 const { last_login } = MetaFormeting(data)
@@ -90,10 +90,10 @@ export default function StaffUsersTable({ setOpen, open }) {
                 </TableContainer>
             }
 
-            {location.pathname!=="/staff-users" || loading  ? "" 
-           :
+            {location.pathname !== "/staffusers" || loading ? ""
+                :
                 <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-   
+
             }
         </>
     )

@@ -1,8 +1,14 @@
 import CanvasJSReact from '../../../lib/canvasjs.react';
 
-const BloodOxygenChart = () => {
+const BloodOxygenChart = ({bloodOxygenData}) => {
 	let CanvasJSChart = CanvasJSReact.CanvasJSChart;
-	
+
+
+
+	const dataPoints =  bloodOxygenData?.data?.details && Object?.entries(bloodOxygenData?.data?.details).map((t,k) => {
+		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
+
+  })
 
 	const options = {
 		theme: "light2",
@@ -44,7 +50,8 @@ const BloodOxygenChart = () => {
 			markerColor: "#00B8E2",
 			markerSize: 10,
 			toolTipContent: "<span><strong>Time:</strong> {x}</span><br> <span><strong>Blood Oxygen:</strong> {y}%</span>",
-			dataPoints: [
+			dataPoints: 
+			[
                 { x: new Date(2023, 0, 16, 0, 0), y: 92},
                 { x: new Date(2023, 0, 16, 2, 0), y: 93},
                 { x: new Date(2023, 0, 16, 4, 0), y: 96},

@@ -4,10 +4,12 @@ import Paper from '@mui/material/Paper';
 import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../Utility/Skeleton';
+import { useLocation } from 'react-router-dom';
 
 export default function CliniciansRequestsTable(props) {
     const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages} = props;
     const { t } = useTranslation();
+    const location=useLocation();
 
     return (
 
@@ -54,8 +56,8 @@ export default function CliniciansRequestsTable(props) {
             </TableContainer>
 
 
-                <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-
+                {location?.pathname!=="/dashboard" && <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+}
 
         </>
 

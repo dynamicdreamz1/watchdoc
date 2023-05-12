@@ -552,7 +552,7 @@ body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-head {
   font-family: 'Source Sans Pro', sans-serif;
 }
 body .MuiPaper-root.red-alert-table .MuiTable-root .MuiTableCell-root {
-  padding: 9px 20px;
+  padding: 12px 20px;
   color: #000;
   border: 0;
   font-family: 'Source Sans Pro', sans-serif;
@@ -1633,6 +1633,9 @@ form .input-block.update-profile:after {
   border: 1px solid #E5E7EB;
 }
 .MuiDialog-container .radio-buttons .radio-button label {border: 1px solid #E5E7EB;}
+.reminder-cards-wrapper .section-title button {
+  margin-left: 12px;
+}
 /* Signup page */
 @media only screen and (max-width: 1370px) {
   .sidebar nav ul li .MuiButtonBase-root, .logout button {

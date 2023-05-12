@@ -9,12 +9,12 @@ const Clinicians = () => {
   return (
     <React.Fragment>
       <div className='content-wrapper'>
-        <Sidebar/>
+        <Sidebar />
         <div className='aside'>
-          <Header setOpen={setOpen}/>
-          <CliniciansTableTabs open={open} setOpen={setOpen}/>
+          <Header setOpen={setOpen} />
+          <CliniciansTableTabs open={open} setOpen={setOpen} />
         </div>
-    </div>
+      </div>
     </React.Fragment>
   )
 }

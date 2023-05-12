@@ -11,8 +11,8 @@ export default function MyProfile() {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
-    const {first_name,last_name,profile_pic}=metaData
-    const [ imageUrl, setImgSrc ] = useState(profile_pic===null?"/images/user-picture-placeholder.png":profile_pic);
+    const {first_name,last_name,profile_pic,practice_address,practice_name}=metaData
+    const [ imageUrl, setImgSrc ] = useState((profile_pic===null ||profile_pic===undefined )?"/images/user-picture-placeholder.png":profile_pic);
     const [loading,setLoading]=useState(false)
     const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
@@ -20,8 +20,8 @@ export default function MyProfile() {
         "first_name": first_name,
         "last_name": last_name,
         "email": userData?.email,
-        "practicename": "",
-        "practiceaddress": "",
+        "practicename": practice_name,
+        "practiceaddress": practice_address,
         "profile_pic":imageUrl
     })
     // const LoginSchema = Yup.object({
@@ -37,7 +37,6 @@ export default function MyProfile() {
     //     practiceaddress: Yup.string().required("This field is required*")
         
     // });
-
 
     const handleImages = (files) => {
         setImgSrc(files)
@@ -76,21 +75,17 @@ export default function MyProfile() {
         formData.append("first_name", data?.first_name);
         formData.append("last_name", data?.last_name);
         formData.append("email", data.email);
+        formData.append("practice_name", data?.practicename);
+         formData.append("practice_address", data?.practiceaddress);
        
         if(typeof imageUrl == "object" ){
 
             formData.append("profile_pic",imageUrl);
         }
-        // const updateData={
-        //     "first_name": data?.first_name,
-        // "last_name": data?.last_name,
-        // "email": data?.email,
-        // "profile_pic":imageUrl
-
-        // }
+        
        const updatedUserData=await UpdateUserProfile(formData)
        setLoading(false)
-       if(updatedUserData.status===200){
+       if(updatedUserData?.status===200){
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
@@ -98,11 +93,12 @@ export default function MyProfile() {
              "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
          "email": updatedUserData?.data?.data?.email,
-         "practicename": "",
-         "practiceaddress": "",
-         "profileImage":""
+         "practicename": updatedUserData?.practicename,
+         "practiceaddress": updatedUserData?.practiceaddress,
          })
         setMessage('Profile updated successfully.')
+        setTimeout(() => setMessage(""), 2000);
+
        }
 
       

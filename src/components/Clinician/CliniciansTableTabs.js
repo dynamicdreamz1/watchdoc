@@ -7,6 +7,7 @@ import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
 import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
 import { TableSkeleton } from '../../Utility/Skeleton';
+import { useTranslation } from 'react-i18next';
 
 
 function TabPanel(props) {
@@ -43,9 +44,10 @@ function a11yProps(index) {
 }
 
 export default function CliniciansTableTabs({ open, setOpen }) {
+  const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [value, setValue] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pendingClinician, setPendingClinician] = useState([])
@@ -54,9 +56,23 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
-  const [dataLimit,setDataLimit]=useState(5)
-  let limit=5;
+  const [dataLimit,setDataLimit]=useState(10)
+  let limit=10;
   const [pages, setPages] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const specificOption = [
+    t('DashboardPage.SideButton.d1'),
+    t('DashboardPage.SideButton.d2'),
+    "Alphabetical"
+]
+let [options, setOptions] = useState(specificOption)
+
+
+
+
+
 
   const pendingClincians = async (limit,currentPage) => {
     setFirstLoading(true)
@@ -87,7 +103,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     pendingClincians(limit,currentPage)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage])
+
+  }, [currentPage,limit])
 
 
 
@@ -104,6 +121,37 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 
 
  
+
+
+
+
+  const handleCloseVieAllPopUP = (event, option) => {
+
+    if (option === "View All") {
+
+        setOptions(prevOptions => [
+            ...prevOptions.slice(0, prevOptions.length - 1),
+            "View Less"
+        ]);
+
+        setViewAll(!viewAll);
+    }
+
+    
+    
+
+    if (option === "View Less") {
+        setOptions(prevOptions => [
+            ...prevOptions.slice(0, prevOptions.length - 1),
+            "View All"
+        ]);
+
+        setViewAll(!viewAll);
+    }
+    setAnchorEl(null);
+    setSelectedOption(option);
+};
+
 
 
 
@@ -132,7 +180,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
     setDataLimit(pageCount)
   };
 
-  const pageOptions=[1,2,3,4,5,6,7,8,9,10];
+  const pageOptions=[10,20,30,40,50,60,70,80,90,100];
 
   return (
     <>
@@ -140,7 +188,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-              <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined ? "0" :pendingClinician?.total })`} {...a11yProps(0)} />
+              <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />
               {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
               <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
@@ -160,7 +208,8 @@ export default function CliniciansTableTabs({ open, setOpen }) {
                     {pageOptions.map((pageNumber,I)=>  <MenuItem key={I} onClick={() => handleDataChange(pageNumber)} value={pageNumber}>{pageNumber} per page</MenuItem> )}
 
                   </Select>
-                <TableShorting setViewAll={setViewAll} viewAll={viewAll} />
+                <TableShorting setViewAll={setViewAll} viewAll={viewAll} anchorEl={anchorEl}
+                 setAnchorEl={setAnchorEl} handleClose={handleCloseVieAllPopUP} options={options} selectedOption={selectedOption}/>
 
               </div>
             </>

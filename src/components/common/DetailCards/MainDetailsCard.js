@@ -17,7 +17,7 @@ export default function MainDetailsCard(Props) {
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit'>{watchNumerFormeting(Props.HeartRateAvg)}</span>
+        <span className='digit'>{Props.HeartRateAvg===undefined?"134.89":watchNumerFormeting(Props.HeartRateAvg)}</span>
         <span className='type'>bpm</span>
       </div>
       <RiskStatus/>

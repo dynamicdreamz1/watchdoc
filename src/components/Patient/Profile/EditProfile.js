@@ -9,7 +9,7 @@ import { StoreCookie } from '../../../Utility/sessionStore'
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    let finalUser=currentUserData?.userData?.meta_data.length===0?userData:currentUserData?.userData;
+    let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
     const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(finalUser);
 
     const [firstName, SetFirstName] = useState(first_name)
@@ -25,16 +25,16 @@ export const EditProfile = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    const BMI=(Weight/Math.pow((Height),2))
+    const BMI = (Weight / Math.pow((Height), 2))
 
-    const roundedBMI=Math.round(BMI*100)/100
+    const roundedBMI = Math.round(BMI * 100) / 100
 
     const handleSubmit = (e) => {
 
         e.preventDefault()
 
         if (firstName === "" || firstName === undefined) {
-          
+
             setErrorN(t('EditProfilePage.error.e1'))
         }
 
@@ -155,7 +155,7 @@ export const EditProfile = () => {
 
                 <div className='input-block'>
                     <label htmlFor="exampleInputBMI" >{t('EditProfilePage.form.f19')}</label>
-                    <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI"/>
+                    <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" />
                 </div>
 
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('EditProfilePage.form.f9')}</button>

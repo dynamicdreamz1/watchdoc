@@ -1,68 +1,105 @@
-import React, { useContext, useEffect, useState } from 'react'
+
+import React, { useContext,useState } from 'react'
 import { Link, redirect, useNavigate } from 'react-router-dom';
-import { RegisterUser } from '../services/UserService';
+import {UserLogin } from '../services/UserService';
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
 import { Base64 } from 'js-base64';
 import { UserContext } from '../Store/Context';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { Formik } from 'formik';
+import * as Yup from "yup";
 
 const SignIn = () => {
 
     const user = useContext(UserContext);
-
     let navigate = useNavigate()
-    const [email, setEmail] = useState('')
+    const [loginData]=useState({
+        "email":"",
+        "password":""
+    })
     const [error, setError] = useState('')
-    const [passwordValue, setPasswordvalue] = React.useState({
-        password: "",
-        showPassword: false,
-      });
+    const [showPassword, setShowPassword] =useState(false)       
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    useEffect(()=>{
-        navigate("/signin")
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    // useEffect(()=>{
+    //     navigate("/signin")
+    //      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
 
-        if (email === "") {
+
+    const LoginSchema = Yup.object({        
+        email: Yup.string().required(t('SignUpPage.validation.email.v1'))
+         // eslint-disable-next-line no-useless-escape
+            .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
+        password:Yup.string()
+            .required("Password is required*")
+            .matches(
+                // eslint-disable-next-line no-useless-escape
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),    
+
+    });
+
+
+
+
+
+    const handleSubmitForm = (data) => {
+
+        if (data?.email === "") {
 
             setError(t('SignInPage.error.e1'))
             return
         }
-        const data = {
-            email: email
-        }
+        
         setLoading(true)
-
-        RegisterUser(data)
+      
+        UserLogin(data)
             .then((response) => {
-                if (typeof response === "string") {
-                    setError("User not found")
-                    setLoading(false)
+                if(response?.status===200){
+                    let encodedemail = Base64.encode(response?.data?.email)
+                    // let encodedemail = Base64.encode(data?.email)
 
-                } else {
-                    let encodedemail = Base64.encode(response?.data?.data?.email)
 
                     setLoading(false)
-                    setEmail("")
                     navigate(`/twofactoreverification/${encodedemail}`, {
                         state: {
-                          id: response?.data?.data?.verification_code,
+                          id: response?.data?.verification_code,
                           emailId: encodedemail,
                         },
                       });
                     // navigate(`/twofactoreverification/${encodedemail}/${response?.data?.verification_code}`)
                     console.log(response)
+
                 }
+                else {
+                    setError(response)
+                    setLoading(false)
+
+                }
+                //  else {
+                //     let encodedemail = Base64.encode(response?.data?.email)
+                //     // let encodedemail = Base64.encode(data?.email)
+
+
+                //     setLoading(false)
+                //     navigate(`/twofactoreverification/${encodedemail}`, {
+                //         state: {
+                //           id: response?.data?.verification_code,
+                //           emailId: encodedemail,
+                //         },
+                //       });
+                //     // navigate(`/twofactoreverification/${encodedemail}/${response?.data?.verification_code}`)
+                //     console.log(response)
+                // }
             })
             .catch((error) => {
-                console.log(error);
+               setError(error)
                 return error
             })
 
@@ -71,8 +108,14 @@ const SignIn = () => {
     if (user?.token) {
         return redirect('/dashboard');
     }
-
     return (
+        <Formik
+        initialValues={loginData}
+        enableReinitialize={true}
+        validationSchema={LoginSchema}
+        onSubmit={(values) => { handleSubmitForm(values) }}
+    >
+        {(props) => (
         <React.Fragment>
             <div className='page-wrapper'>
                 <div className='signin-box'>
@@ -86,27 +129,33 @@ const SignIn = () => {
                             <h1>{t('SignInPage.heading')}</h1>
                         </div>
 
-                        <form>
+                        <form onSubmit={props.handleSubmit} autoComplete="off">
                             <div className='input-block'>
-                                <input type="email" placeholder={t('SignInPage.form.f1')} 
-                                value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" placeholder={t('SignInPage.form.f1')}  name="email"
+                                value={props?.values?.email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={props.handleChange}/>
+                                    <span className="error">{props?.errors?.email ? props?.errors?.email : ""}</span>
+
                             </div>
                             <div className='input-block'>
-                                <input type={passwordValue.showPassword ? "text" : "password"}  placeholder={t('SignInPage.form.f7')} />
-                                <button className='show-hide' type="button" onClick={()=>setPasswordvalue({...passwordValue,showPassword:!passwordValue.showPassword})}>
-                                    {passwordValue?.showPassword?
+                                <input name="password" type={showPassword ? "text" : "password"} onChange={props.handleChange}
+                                 value={props?.values?.password} placeholder={t('SignInPage.form.f7')} />
+                                <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
+                                    {showPassword?
                                     <RemoveRedEyeOutlinedIcon/>:
                                     <VisibilityOffOutlinedIcon/>
 }
                                 </button>
+                                <span className="error">{props?.errors?.password ? props?.errors?.password : ""}</span>
+
+
                             </div>
                             <div className='forgot-pw-block'>
-                                <a href={{}}>{t('SignInPage.form.f11')}</a>
+                                <Link to='/forgetpassword'>{t('SignInPage.form.f11')}</Link>
                             </div>
                         <div className='LoginError'>{error && error}</div>
 
                             <div className='submit-block'>
-                                <button type="submit" onClick={(e) => handleSubmit(e)}>{t('SignInPage.form.f2')}</button>
+                                <button type="submit">{t('SignInPage.form.f2')}</button>
                             </div>
                             {loading ? <b>{t('SignInPage.loader.l1')}</b> : ""}
                             <div className='not-user-block text-center'>
@@ -122,6 +171,8 @@ const SignIn = () => {
             </div>
 
         </React.Fragment>
+         )}
+         </Formik>
     )
 }
 

@@ -3,7 +3,7 @@ import { headersAdmin } from "../Utility/functions"
 import { StoreCookie } from "../Utility/sessionStore"
 
 
-export const getStaffUsers = async (recordPerPage,currentPage) => {
+export const getStaffUsers = async (recordPerPage, currentPage) => {
 
     try {
         const response = await axios({
@@ -18,7 +18,7 @@ export const getStaffUsers = async (recordPerPage,currentPage) => {
 }
 
 
-export const getPendingClinicians = async (limit,pages) => {
+export const getPendingClinicians = async (limit, pages) => {
 
     try {
         const response = await axios({
@@ -33,8 +33,8 @@ export const getPendingClinicians = async (limit,pages) => {
 }
 
 
-export const getAllClinicians = async (dataLimit,currentPage) => {
-    
+export const getAllClinicians = async (dataLimit, currentPage) => {
+
     try {
         const response = await axios({
             method: 'get',
@@ -65,12 +65,12 @@ export async function UpdateUserProfile(data) {
 }
 
 export const UpdatePassword = async (apiData) => {
-   
+
     try {
         const response = await axios({
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}user/upsert_password`,
-            data:apiData,
+            data: apiData,
             headers: headersAdmin
         })
         return response
@@ -79,15 +79,15 @@ export const UpdatePassword = async (apiData) => {
     }
 }
 
-        
+
 
 export const CreateClinician = async (apiData) => {
-   
+
     try {
         const response = await axios({
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}admin/upsertclinician`,
-            data:apiData,
+            data: apiData,
             headers: headersAdmin
         })
         return response
@@ -103,7 +103,7 @@ export const addStaffUser = async (data) => {
         const response = await axios({
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}admin/upserprofile`,
-            data:data,
+            data: data,
             headers: headersAdmin
         })
         return response
@@ -115,13 +115,13 @@ export const addStaffUser = async (data) => {
 let token = StoreCookie.getItem('token')
 
 export const clinicanProfileUpdate = async (data) => {
-    
+
 
     try {
         const response = await axios({
             method: 'post',
             url: `${process.env.REACT_APP_ENDPOINT}admin/upsertclinician`,
-            data:data,
+            data: data,
             headers: {
                 "Accept": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -134,12 +134,14 @@ export const clinicanProfileUpdate = async (data) => {
     }
 }
 
-export const getAllPatients = async () => {
+export const getAllPatients = async (dataLimit, currentPage) => {
+    const tempUrl = `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/allpatients?limit=${dataLimit}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
-            headers:headersAdmin
+            url: tempUrl,
+            // url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
+            headers: headersAdmin
         })
         return response
     } catch (error) {
@@ -153,7 +155,7 @@ export const getPendingPatients = async () => {
         const response = await axios({
             method: 'get',
             url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients`,
-            headers:headersAdmin
+            headers: headersAdmin
         })
         return response
     } catch (error) {
@@ -163,16 +165,16 @@ export const getPendingPatients = async () => {
 }
 
 export const getAllClinicianList = async () => {
-try {
-    const response = await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
-        headers: headersAdmin
-    })
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
+            headers: headersAdmin
+        })
         return response
-} catch (error) {
-    return error
-}
+    } catch (error) {
+        return error
+    }
 }
 
 
@@ -184,8 +186,8 @@ export const allInOneClinicianList = async () => {
             url: `${process.env.REACT_APP_ENDPOINT}admin/getclinicianlist?query=clinicians-pending`,
             headers: headersAdmin
         })
-            return response
+        return response
     } catch (error) {
         return error
     }
-    }
+}

@@ -73,6 +73,53 @@ export async function ProfileCreation(data) {
     }
 }
 
+export async function UserLogin(data) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}login`,
+            data: data,
+        })
+
+        return response;
+    } catch (error) {
+        return error.response.data.message;
+    }
+}
+
+
+export async function ForgotUserPassword(data) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}forgot_password`,
+            data: data,
+        })
+
+        return response;
+    } catch (error) {
+        return error.response.data.message;
+    }
+}
+
+
+
+export async function ClinicianRegister(data) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_ENDPOINT}clinician_signup`,
+            data: data,
+            headers: headers
+        })
+
+        return response;
+    } catch (error) {
+        return error.response.data.message;
+    }
+}
+
+
 
 export async function RegisterUser(data) {
     try {

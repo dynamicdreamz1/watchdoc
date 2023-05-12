@@ -7,7 +7,7 @@ import { UpdatePassword } from '../../../services/AdminService';
 export default function ChangePassword() {
     const userData = getCurrentUserData();
     const {email}=userData;
-    const [passwordData]=useState({
+    const [passwordData,setPassword]=useState({
         currentpassword:"",
         newpassword:"",
         confirmpassword:""
@@ -15,7 +15,7 @@ export default function ChangePassword() {
 
     const [loading,setLoading]=useState(false)
     const [message,setMessage]=useState('')
-    const [error,setError]=useState('')
+   
     const LoginSchema = Yup.object({
         currentpassword: Yup.string().required("Old password is required*"),
         // .matches(
@@ -43,18 +43,21 @@ export default function ChangePassword() {
             type:"update"
         }
        let res=await UpdatePassword(apiData)
-        console.log(res);
         setLoading(false)
 
         if(res?.status===200){
-            setError("")
+            
             setMessage('Password successfully updated.')
         }
 
         if(res?.response?.status===422){
-            setMessage("")
-            setError("Old password is incorrect.")
-        }        
+            setMessage("Old password is incorrect.")
+        }   
+        setPassword({
+        currentpassword:"",
+        newpassword:"",
+        confirmpassword:""
+        })     
         
     }
   return (
@@ -72,8 +75,7 @@ export default function ChangePassword() {
                 <h2>Change your password</h2>
                 <span>You are about to change the password for your WatchDoc account, <strong>{email}</strong></span>
             </div>
-            <div className=''>{message}</div>
-            <div className=''>{error}</div>
+          
 
             <form onSubmit={props.handleSubmit}>
                 <div className='input-block'>
@@ -91,6 +93,9 @@ export default function ChangePassword() {
                     <input type="password" name='confirmpassword'  onChange={props.handleChange} placeholder='Confirm your new password' value={props?.values?.confirmpassword}></input>
                     <span className="error">{props.errors.confirmpassword?props.errors.confirmpassword:""}</span>
                 </div>
+                <div className='input-block'>
+                <span className="error">{message}</span>
+            </div>
                 <div className='submit-block'>
                     <button type="submit">Save</button>
                 </div>

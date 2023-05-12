@@ -6,21 +6,21 @@ import ClinicianDashboard from '../Clinician/ClinicianDashboard'
 import AdminDashboard from '../Admin/AdminDashboard'
 
 export default function Aside() {
-  const {currentUserData} = useContext(UserContext);
+  const { currentUserData } = useContext(UserContext);
 
-  
+
   return (
     <div className='aside'>
-    
+
       <Header />
       {(() => {
         switch (currentUserData?.role) {
           case 'User':
-            return <PatientDashboard/>
+            return <PatientDashboard />
           case 'Clinician':
-            return <ClinicianDashboard/>
+            return <ClinicianDashboard />
           default:
-            return <AdminDashboard/>
+            return <AdminDashboard />
         }
       })()}
     </div>

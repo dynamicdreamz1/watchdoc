@@ -1,45 +1,49 @@
-import React, { useContext, useEffect ,useState} from 'react'
+import React, { useEffect ,useState} from 'react'
 import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import { UserContext } from '../../../Store/Context'
-// import { GetDate } from '../../../Utility/functions'
+import { GetDate } from '../../../Utility/functions'
 import { GetUserHeartRateData } from '../../../services/HelthData'
+import moment from 'moment'
 
-export default function PatientHeartRateDetails() {
+
+export default function PatientHeartRateDetails({terraId}) {
   // const {heart_data} = useContext(UserBodyContext);
   // const {heart_rate_data} = heart_data;
+  const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
+  const defaultEndDate = moment().format('YYYY-MM-DD');
   const [heartRateValue,setHeartRateValue]=useState()
+  const [Date,setDate] = useState(GetDate);
+  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate});
 
-  const {currentUserData} = useContext(UserContext);
-  const [Date,setDate] = useState("2023-03-21");
- const [timeType,setTimeType]=useState(0)
+  const [timeType,setTimeType]=useState('daily')
 
-useEffect(() => {
+const fetchData=async()=>{
 
-  async function fetchData() {
+ const result= await GetUserHeartRateData(timeType,terraId,FinalDate)
+  setHeartRateValue(result);
+}
 
-      await GetUserHeartRateData(currentUserData,Date,timeType).then(response => response.data).then(response =>{
-
-        setHeartRateValue(response);
-      })
- }
-
- fetchData();
+useEffect(() => { 
+  if(terraId){
+ fetchData()
+  }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[timeType,Date]);
+},[terraId,timeType,FinalDate]);
+
+
   return (
     <>
     <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-            <MainDetailsCard HeartRateAvg={heartRateValue?.summary?.avg_hr_bpm}/>
+            <MainDetailsCard HeartRateAvg={heartRateValue?.data?.summary?.avg_hr_bpm}/>
             <ShowAllDataCard/>
-            <AlertTriggerCard HeartRateAvg={heartRateValue?.summary}/>
-            <AlertTriggerCard HeartRateAvg={heartRateValue?.summary}/>
+            <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>
+            <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>
         </div>
         <div className="chart-wrapper">
-            <HeartRateChartNavTabs  setTimeType={setTimeType}  HeartRateAvg={heartRateValue} setDate={setDate} Date={Date}/>
+            <HeartRateChartNavTabs  setTimeType={setTimeType}  HeartRateAvg={heartRateValue} setDate={setDate} Date={Date} setFinalDate={setFinalDate}/>
         </div>
     </div>
     </>
