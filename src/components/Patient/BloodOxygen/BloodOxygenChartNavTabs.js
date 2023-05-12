@@ -56,6 +56,7 @@ export default function BloodOxygenChartNavTabs(props) {
   }
   return (
     <>
+    
       <Box sx={{ width: '100%' }}>
         <Box>
           <Tabs value={value} onChange={handleChange} aria-label="Chart Tabs" className='chart-tabs'>
