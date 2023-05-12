@@ -6,7 +6,6 @@ import './i18n/i18n'
 import { BrowserRouter } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Provider } from 'react-redux';
-import store from  '../src/Store/store'
 
 
 
@@ -14,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <GoogleOAuthProvider clientId="555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com">
-    <Provider store={store}>
+    <Provider >
     <BrowserRouter>
 
       <App />
