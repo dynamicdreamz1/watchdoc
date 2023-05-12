@@ -1,10 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import CanvasJSReact from '../../../lib/canvasjs.react';
 
-const BloodPressureChart = () => {
+const BloodPressureChart = ({bloodPressureData}) => {
 	const chartRef = useRef(null);
 	const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 	let chart = chartRef?.current;
+
+
+
+	
+
+
 
 	const toggleDataSeries = (e) => {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -112,6 +118,7 @@ const BloodPressureChart = () => {
 				]
 			}
 		]
+		
 	}
 	return (
 		<>

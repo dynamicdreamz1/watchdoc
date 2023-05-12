@@ -6,42 +6,48 @@ import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
+import moment from 'moment'
 
-export default function PatientBloodOxygenDetails() {
-  const {currentUserData} = useContext(UserContext);
-  const [Date,setDate] = useState("2023-03-21");
- const [timeType,setTimeType]=useState(0)
- const [bloodOxygenData,setBloodOxygenData]=useState()
+export default function PatientBloodOxygenDetails({ terraId }) {
+  const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
+  const defaultEndDate = moment().format('YYYY-MM-DD');
+  const [Date, setDate] = useState("2023-03-21");
+  const [timeType, setTimeType] = useState('daily')
+  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
+
+  const [bloodOxygenData, setBloodOxygenData] = useState()
+
+
+  const fetchData = async () => {
+    const result = await GetUserBloodOxyenData(timeType, terraId, FinalDate)
+    setBloodOxygenData(result);
+  }
+
+
+
+
   useEffect(() => {
-
-    async function fetchData() {
-  
-        await GetUserBloodOxyenData(currentUserData,Date,timeType).then(response => response.data).then(response =>{
-  
-          setBloodOxygenData(response);
-        })
-   }
-  
-   fetchData();
+    if(terraId){
+    fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeType,Date]);
-
+  }, [terraId, timeType, FinalDate]);
 
 
 
   return (
     <>
-    <div className='phrd d-flex flex-wrap'>
+      <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-            <MainDetailsCard HeartRateAvg={bloodOxygenData?.summary?.avg_saturation_percentage}/>
-            <MainDetailsCard HeartRateAvg={bloodOxygenData?.summary?.avg_saturation_percentage} />
-            <ShowAllDataCard HeartRateAvg={bloodOxygenData?.summary}/>
-            <AlertTriggerCard HeartRateAvg={bloodOxygenData?.summary}/>
+          <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} />
+          <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} />
+          <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
+          <AlertTriggerCard HeartRateAvg={bloodOxygenData?.data?.summary} />
         </div>
         <div className='chart-wrapper'>
-            <BloodOxygenChartNavTabs bloodOxygenData={bloodOxygenData?.summary} setTimeType={setTimeType} setDate={setDate} Date={Date}/>
+          <BloodOxygenChartNavTabs bloodOxygenData={bloodOxygenData} setTimeType={setTimeType} setDate={setDate} Date={Date} setFinalDate={setFinalDate} />
         </div>
-    </div>
+      </div>
     </>
   )
 }

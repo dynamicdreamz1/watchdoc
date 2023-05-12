@@ -10,7 +10,7 @@ export default function MeasurementCard(props) {
         <div className='measurment-card'>
             <MeasurementStatus status={props?.block?.status}/>
             <MeasurementTitle icon={props?.block?.icon} type={props?.block?.type}/>
-            <MeasurementResult result={props?.block?.result} label={props?.block?.label}/>
+            <MeasurementResult result={props?.block?.key} label={props?.block?.label} data={props?.data}/>
             <MeasurementLastRecording time={props?.block?.time}/>
         </div>
     </>

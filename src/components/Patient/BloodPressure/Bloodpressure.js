@@ -5,7 +5,7 @@ import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
 
-export default function Bloodpressure() {
+export default function Bloodpressure({terraId}) {
   const {t}=useTranslation()
   return (
     <div className='mt-22'>
@@ -22,7 +22,7 @@ export default function Bloodpressure() {
           <AlertTriggerCard/>
         </div>
         <div className='chart-wrapper'>
-          <BloodPresureChartNavTabs/>
+          <BloodPresureChartNavTabs terraId={terraId}/>
         </div>
       </div>
     </div>

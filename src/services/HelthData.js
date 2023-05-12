@@ -38,9 +38,8 @@ export const GetUserDailyBodyData = async () =>{
 
 
 
-export const GetUserBloodOxyenData=async(currentUserData,Date,rang)=>{
-    const {terra_user_id}=currentUserData?.userData
-    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodoxygen?userid=2dc9fa77-6540-4be5-97b7-40174b43e77c&type=body&range=${rang}&start_date=${Date}`
+export const GetUserBloodOxyenData=async(rangType,terraId,FinalDate)=>{
+    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodoxygen?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
 
     try {
         
@@ -71,9 +70,9 @@ export const GetUserBloodOxyenData=async(currentUserData,Date,rang)=>{
 
 
 
-export const GetUserHeartRateData=async(currentUserData,Date,rang)=>{
-    const {terra_user_id}=currentUserData?.userData
-    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/heartrate?userid=2dc9fa77-6540-4be5-97b7-40174b43e77c&start_date=${Date}&type=body&range=`
+export const GetUserHeartRateData=async(rangType,terraId,FinalDate)=>{
+    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/heartrate?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
+
     try {
         
         const response = await axios({
@@ -89,6 +88,46 @@ export const GetUserHeartRateData=async(currentUserData,Date,rang)=>{
     }
     
 }
+
+
+
+
+
+
+
+export const GetUserBloodPressureData=async(rangType,terraId,FinalDate)=>{
+    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodpressure?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
+
+    try {
+        
+        const response = await axios({
+            method: "GET",
+            url:tempUrl,
+            // url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid="2dc9fa77-6540-4be5-97b7-40174b43e77c"&start_date=${Date}&type=body&range=${rang}`,
+            headers: headersWithToken,
+        })
+        return response;
+    } catch (error) {
+
+        return error;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const GetUserTodayHeartRate = async (Date,rang='hourly')=> {
