@@ -6,8 +6,11 @@ const BloodPressureChart = ({bloodPressureData}) => {
 	const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 	let chart = chartRef?.current;
 
-
-console.log("111111-bloodPressureData",bloodPressureData)
+	// const dataPoints =  bloodPressureData?.data?.details && Object?.entries(bloodPressureData?.data?.details).map((t,k) => {
+	// 			return { x: new Date(t[0]), y: [t[1]?.diastolic_bp]}
+		
+	// 	  })
+		// console.log("111111-2222-dataPoints",bloodPressureData)
 	
 
 

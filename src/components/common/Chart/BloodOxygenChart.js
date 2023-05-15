@@ -9,6 +9,7 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 // 		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
 
 //   })
+// console.log("111111-2222-dataPoints",dataPoints)
 
 	const options = {
 		theme: "light2",
@@ -21,8 +22,8 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 		    valueFormatString: "h tt",
             interval: 6,
             intervalType: "hour",
-            minimum: new Date(2023, 0, 15, 23, 0),
-            maximum: new Date(2023, 0, 17, 0, 0),
+            // minimum: new Date(2023, 0, 15, 23, 0),
+            // maximum: new Date(2023, 0, 17, 0, 0),
             labelFontFamily: "Source Sans Pro', sans-serif",
             labelFontSize: 12,
             labelFontColor: "#8D8D8D",
