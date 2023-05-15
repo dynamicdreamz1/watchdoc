@@ -5,8 +5,8 @@ import { UserContext } from '../Store/Context';
 import '../css/Register.css'
 import { RegisterUser } from '../services/UserService';
 import { Base64 } from 'js-base64';
-import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from "jwt-decode";
+// import { GoogleLogin } from '@react-oauth/google';
+// import jwt_decode from "jwt-decode";
 // import AppleLogin from 'react-apple-login';
 
 
@@ -14,7 +14,7 @@ import jwt_decode from "jwt-decode";
 
 export default function PatientEntry() {
     const user = useContext(UserContext);
-    const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";
+    // const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";
   
     let navigate = useNavigate()
     const [email, setEmail] = useState('')
@@ -69,42 +69,42 @@ export default function PatientEntry() {
     if (user?.token) {
         return redirect('/dashboard');
     }
-    const handleLoginSuccess = (response) => {
-        let decoded = jwt_decode(response?.credential);
-        const data = {
-            email: decoded?.email
-        }
-        RegisterUser(data)
-            .then((response) => {
-                if (typeof response === "string") {
-                    setError(response)
-                    setLoading(false)
+    // const handleLoginSuccess = (response) => {
+    //     let decoded = jwt_decode(response?.credential);
+    //     const data = {
+    //         email: decoded?.email
+    //     }
+    //     RegisterUser(data)
+    //         .then((response) => {
+    //             if (typeof response === "string") {
+    //                 setError(response)
+    //                 setLoading(false)
 
-                } else {
-                    let encodedemail = Base64.encode(response?.data?.data?.email)
+    //             } else {
+    //                 let encodedemail = Base64.encode(response?.data?.data?.email)
 
-                    setLoading(false)
-                    setEmail("")
-                    navigate(`/verification/${encodedemail}`, {
-                        state: {
-                            id: response?.data?.data?.verification_code,
-                            emailId: encodedemail,
-                        },
-                    });
-                    // navigate(`/verification/${encodedemail}`)
-                    console.log(response)
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                return error
-            })
+    //                 setLoading(false)
+    //                 setEmail("")
+    //                 navigate(`/verification/${encodedemail}`, {
+    //                     state: {
+    //                         id: response?.data?.data?.verification_code,
+    //                         emailId: encodedemail,
+    //                     },
+    //                 });
+    //                 // navigate(`/verification/${encodedemail}`)
+    //                 console.log(response)
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             return error
+    //         })
 
 
-    };
-    const handleLoginFailure = (error) => {
-        setError(error);
-    };
+    // };
+    // const handleLoginFailure = (error) => {
+    //     setError(error);
+    // };
 
 
     return (
@@ -133,8 +133,8 @@ export default function PatientEntry() {
 
 
                         <div className='login-options'>
-                            {/* <button type='button'><img src="/images/google-icon.png" alt="Google Icon" />Continue with Google</button> */}
-                            <button type='button'>
+                            <button type='button'><img src="/images/google-icon.png" alt="Google Icon" />Continue with Google</button>
+                            {/* <button type='button'>
 
                                 <GoogleLogin
                                     clientId={clientId}
@@ -144,7 +144,7 @@ export default function PatientEntry() {
                                     cookiePolicy={"single_host_origin"}
                                     responseType="code,token"
                                 />
-                            </button>
+                            </button> */}
                             <button type='button' className="apple-icon"><img src="/images/apple-icon.png" alt="Apple Icon" />
                                 {/* <AppleLogin
                                      clientId="com.example.myapp"

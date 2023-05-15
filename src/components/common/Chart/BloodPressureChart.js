@@ -7,9 +7,8 @@ const BloodPressureChart = ({bloodPressureData}) => {
 	let chart = chartRef?.current;
 
 
-
+console.log("111111-bloodPressureData",bloodPressureData)
 	
-
 
 
 	const toggleDataSeries = (e) => {
@@ -75,7 +74,8 @@ const BloodPressureChart = ({bloodPressureData}) => {
 				markerSize: 10,
 				showInLegend: true,
 				toolTipContent: "<span><strong>Date:</strong> {x}</span><br><span><strong>Systolic Range:</strong> {y}</span>",
-				dataPoints: [
+				dataPoints: 
+				[
 					{ x: new Date("2017- 01- 02"), y: 60 },
 					{ x: new Date("2017- 01- 05"), y: 65 },
 					{ x: new Date("2017- 01- 07"), y: 50 },

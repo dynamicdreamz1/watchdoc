@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetUserBloodOxyenData } from '../../../services/HelthData'
-import { UserContext } from '../../../Store/Context'
+// import { UserContext } from '../../../Store/Context'
 // import { GetDate } from '../../../Utility/functions'
 import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'

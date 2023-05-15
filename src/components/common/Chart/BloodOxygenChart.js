@@ -5,10 +5,10 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 
 
 
-	const dataPoints =  bloodOxygenData?.data?.details && Object?.entries(bloodOxygenData?.data?.details).map((t,k) => {
-		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
+// 	const dataPoints =  bloodOxygenData?.data?.details && Object?.entries(bloodOxygenData?.data?.details).map((t,k) => {
+// 		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
 
-  })
+//   })
 
 	const options = {
 		theme: "light2",
