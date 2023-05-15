@@ -30,7 +30,6 @@ export default function Latestmeasurement() {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [heart_rate_data?.summary?.avg_hr_bpm])
 
-    // console.log("11111-latestData", latestData)
 
 
     // useEffect(() => {

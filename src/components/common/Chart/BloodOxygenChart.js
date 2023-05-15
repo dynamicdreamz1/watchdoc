@@ -9,7 +9,6 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 // 		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
 
 //   })
-// console.log("111111-2222-dataPoints",dataPoints)
 
 	const options = {
 		theme: "light2",

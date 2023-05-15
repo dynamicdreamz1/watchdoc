@@ -10,7 +10,6 @@ const BloodPressureChart = ({bloodPressureData}) => {
 				return { x: new Date(t[0]), y: [t[1]?.diastolic_bp]}
 		
 		  })
-		console.log("111111-2222-dataPoints",dataPoints)
 	
 
 	const toggleDataSeries = (e) => {

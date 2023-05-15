@@ -46,7 +46,6 @@ export default function Bloodpressure({terraId}) {
   }, [terraId, timeType, FinalDate]);
 
 
-console.log("1111-bloodPressureData",bloodPressureData)
 
 const action={
   FinalDate,
