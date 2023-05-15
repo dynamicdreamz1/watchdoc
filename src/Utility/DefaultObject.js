@@ -55,8 +55,8 @@ export const Defaultmeasurment = [
     {
         "key": "blood_pressure",
 
-        "status": "normal",
-        "icon": "blood-oxygen-icon.svg",
+        "status": "high",
+        "icon": "heart-rate-icon.svg",
         "type": "Blood Pressure",
         "result": "",
         "label": "bpm",
@@ -69,7 +69,7 @@ export const Defaultmeasurment = [
         "icon": "blood-oxygen-icon.svg",
         "type": "Blood Oxygen",
         "result": "",
-        "label": "bpm",
+        "label": "%",
         "time": "1 min ago"
     },
 
@@ -123,4 +123,47 @@ export const Defaultmeasurment = [
     //     "label": "",
     //     "time": "No data"
     // }
+]
+
+
+
+
+
+
+
+
+
+
+export const defaultMainCardData = [
+
+    {
+        "id": "latest_heart_rate",
+        "name":"Heart Rate",
+        "status": "high",
+        "icon": "heart-rate-icon.svg",
+        "type": "Heart Rate",
+        "result": '',
+        "label": "bpm",
+        "time": ""
+    },
+    {
+        "id": "resting_heart_rate",
+        "name":"Resting Heart Rate",
+        "status": "",
+        "icon": "heart-rate-icon.svg",
+        "type": "Heart Rate",
+        "result": '',
+        "label": "bpm",
+        "time": ""
+    },
+    {
+        "id": "sleep_heart_rate",
+        "name":"Sleep",
+        "status": "",
+        "icon": "heart-rate-icon.svg",
+        "type": "Heart Rate",
+        "result": '',
+        "label": "bpm",
+        "time": ""
+    },
 ]

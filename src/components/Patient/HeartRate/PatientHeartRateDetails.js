@@ -6,6 +6,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { GetDate } from '../../../Utility/functions'
 import { GetUserHeartRateData } from '../../../services/HelthData'
 import moment from 'moment'
+import { defaultMainCardData } from '../../../Utility/DefaultObject'
 
 
 export default function PatientHeartRateDetails({terraId}) {
@@ -33,11 +34,19 @@ useEffect(() => {
 },[terraId,timeType,FinalDate]);
 
 
+
   return (
     <>
     <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-            <MainDetailsCard HeartRateAvg={heartRateValue?.data?.summary?.avg_hr_bpm}/>
+          {defaultMainCardData && defaultMainCardData?.map((el,I)=>{
+            return (
+            <MainDetailsCard HeartRateAvg={heartRateValue?.data} key={I} el={el}/>
+
+
+            )
+          })
+          }
             <ShowAllDataCard/>
             <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>
             <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>

@@ -1,6 +1,7 @@
+
 import React from 'react'
 
-export default function RiskStatus({el}) {
+export default function RiskStatusForBloodOxygen({el}) {
   return (
     <>
     <div className='r-status d-flex align-items-center'>

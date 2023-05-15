@@ -4,6 +4,7 @@ import 'react-date-range/dist/theme/default.css';
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from 'moment';
+import { watchNumerFormeting } from '../../../Utility/functions';
 
 
 
@@ -26,7 +27,8 @@ export default function ChartTitle({HeartData,setFinalDate,dataKey}) {
     setState({ start, end, label });
   };
 
-const finalData=dataKey==="bloodOxygen"?HeartData?.avg_saturation_percentage:
+const finalData=dataKey==="bloodOxygen"?watchNumerFormeting(HeartData?.avg_saturation_percentage):
+
 dataKey==="heartrate"?`${HeartData?.min_hr_bpm===(null || undefined)?"35":HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm===(null||undefined)?"102":HeartData?.max_hr_bpm}`:
 dataKey==="bloodPressure"?`${HeartData?.min_hr_bpm===(null || undefined)?"35":HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm===(null||undefined)?"102":HeartData?.max_hr_bpm}`
 :""

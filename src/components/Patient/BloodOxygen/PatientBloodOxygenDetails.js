@@ -7,6 +7,7 @@ import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
 import moment from 'moment'
+import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 
 export default function PatientBloodOxygenDetails({ terraId }) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
@@ -39,8 +40,9 @@ export default function PatientBloodOxygenDetails({ terraId }) {
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-          <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} />
-          <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} />
+          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary}/>
+          {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
+          {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
           <AlertTriggerCard HeartRateAvg={bloodOxygenData?.data?.summary} />
         </div>

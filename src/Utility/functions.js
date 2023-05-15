@@ -18,6 +18,25 @@ export const ageCalc = (date) => {
 }
 
 
+// calculate diffrence between time in minutes
+
+export const calculateTimeDifferenceInMinutes = (dateString) => {
+  if(dateString===""){
+    return 0;
+  }
+  const givenDate = new Date(dateString);
+  const currentDate = new Date();
+  
+  const differenceInMilliseconds = currentDate - givenDate;
+  const differenceInMinutes = Math.round(differenceInMilliseconds / 60000);
+  
+  return differenceInMinutes;
+}
+
+
+
+
+
 export const MetaFormeting = (metadata) => {
 
   let userpforle = [];

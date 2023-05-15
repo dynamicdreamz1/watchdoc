@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect} from 'react';
 import CanvasJSReact from '../../../lib/canvasjs.react';
 
 const BloodPressureChart = ({bloodPressureData}) => {
@@ -6,13 +6,12 @@ const BloodPressureChart = ({bloodPressureData}) => {
 	const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 	let chart = chartRef?.current;
 
-	// const dataPoints =  bloodPressureData?.data?.details && Object?.entries(bloodPressureData?.data?.details).map((t,k) => {
-	// 			return { x: new Date(t[0]), y: [t[1]?.diastolic_bp]}
+	const dataPoints =  bloodPressureData?.data?.details && Object?.entries(bloodPressureData?.data?.details).map((t,k) => {
+				return { x: new Date(t[0]), y: [t[1]?.diastolic_bp]}
 		
-	// 	  })
-		// console.log("111111-2222-dataPoints",bloodPressureData)
+		  })
+		console.log("111111-2222-dataPoints",dataPoints)
 	
-
 
 	const toggleDataSeries = (e) => {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -38,8 +37,8 @@ const BloodPressureChart = ({bloodPressureData}) => {
 			title: "",
 			intervalType: "",
 			interval: 15,
-			minimum: new Date("2017- 01- 01"),
-          	maximum: new Date("2017- 01- 31"),
+			// minimum: new Date("2017- 01- 01"),
+          	// maximum: new Date("2017- 01- 31"),
 			valueFormatString: "DD MMM",
 			labelFontFamily: "Source Sans Pro', sans-serif",
 			labelFontSize: 12,
@@ -103,7 +102,9 @@ const BloodPressureChart = ({bloodPressureData}) => {
 				markerType: "circle",
 				markerSize: 10,
 				toolTipContent: "<span><strong>Date:</strong> {x}</span><br><span><strong>Diastolic Range:</strong> {y}</span>",
-				dataPoints: [
+				dataPoints: 
+
+				 [
 					{ x: new Date("2017- 01- 02"), y: 110 },
 					{ x: new Date("2017- 01- 05"), y: 120 },
 					{ x: new Date("2017- 01- 07"), y: 90 },

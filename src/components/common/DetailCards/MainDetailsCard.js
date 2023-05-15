@@ -1,26 +1,30 @@
 import React from 'react'
-import { watchNumerFormeting } from '../../../Utility/functions'
 import RiskStatus from './RiskStatus'
+import { calculateTimeDifferenceInMinutes } from '../../../Utility/functions'
 
 export default function MainDetailsCard(Props) {
+  const {el,HeartRateAvg}=Props
+
+
+
   return (
     <>
     <div className='chart-details-card'>
       <div className='title d-flex justify-content-between'>
         <div className='measurment-title d-flex align-items-center'>
           <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
-          <span className='name d-flex'>Heart Rate</span>
+          <span className='name d-flex'>{el?.name}</span>
         </div>
         <span className='time d-flex align-items-center'>
-          1 min ago
+          {`${calculateTimeDifferenceInMinutes(HeartRateAvg?.heart_data?.[el?.id]?.date===undefined?"":HeartRateAvg?.heart_data?.[el?.id]?.date)} min ago`}
           <img src='/images/angle-right.svg' alt='Angle Right' />
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit'>{Props.HeartRateAvg===undefined?"134.89":watchNumerFormeting(Props.HeartRateAvg)}</span>
-        <span className='type'>bpm</span>
+        <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span>
+        <span className='type'>{el?.label}</span>
       </div>
-      <RiskStatus/>
+      <RiskStatus el={el}/>
     </div>  
     </>
   )

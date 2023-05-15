@@ -1,11 +1,8 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react'
-import { GetDate } from '../../../Utility/functions';
+import React from 'react'
 import BloodPressureChart from '../../common/Chart/BloodPressureChart';
 import ChartTitle from '../../common/Chart/ChartTitle';
-import moment from 'moment';
-import { GetUserBloodPressureData } from '../../../services/HelthData';
 import { ChartSkeleton } from '../../../Utility/Skeleton';
 
 function TabPanel(props) {
@@ -42,38 +39,15 @@ function a11yProps(index) {
   };
 }
 
-export default function BloodPresureChartNavTabs({ terraId }) {
-  const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
-  const defaultEndDate = moment().format('YYYY-MM-DD');
-  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
-  const [bloodPressureData, setBloodPressureData] = useState()
-  const [timeType, setTimeType] = useState('daily')
-
-  const [value, setValue] = React.useState(0);
-  const [Date, setDate] = useState(GetDate);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const ChangeDate = (NewDate) => {
-    setDate(GetDate(NewDate));
-  }
-
-
-
-  const fetchData = async () => {
-
-    const result = await GetUserBloodPressureData(timeType, terraId, FinalDate)
-    setBloodPressureData(result);
-  }
-
-  useEffect(() => {
-    if (terraId) {
-      fetchData()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [terraId, timeType, FinalDate]);
-
+export default function BloodPresureChartNavTabs({ action }) {
+  const { FinalDate,
+    setFinalDate,
+    bloodPressureData,
+    setBloodPressureData,
+    timeType,
+    setTimeType,
+    handleChange,
+    ChangeDate, value } = action
 
 
   return (
