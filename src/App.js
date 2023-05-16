@@ -55,6 +55,11 @@ function App() {
 
   }, [user]);
 
+
+
+
+
+  
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
 
