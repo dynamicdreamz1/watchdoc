@@ -1,9 +1,9 @@
 import React from 'react'
 import RiskStatusForbloodPressure from './RiskStatusForbloodPressure';
+import { GetdayHourMin } from '../../../Utility/functions';
 
 export default function MainDetailsCardForWeight({latestData}) {
-
-
+  const  date = GetdayHourMin(latestData?.latest?.weight?.date)
   return (
     <>
     <div className='chart-details-card'>
@@ -16,8 +16,7 @@ export default function MainDetailsCardForWeight({latestData}) {
 
         </div>
         <span className='time d-flex align-items-center'>
-          {/* {`${calculateTimeDifferenceInMinutes(HeartRateAvg?.heart_data?.[el?.id]?.date===undefined?"":HeartRateAvg?.heart_data?.[el?.id]?.date)} min ago`} */}
-          1 min ago
+        {`${date.data} ${date.lable} ago`}
           <img src='/images/angle-right.svg' alt='Angle Right' />
         </span>
       </div>

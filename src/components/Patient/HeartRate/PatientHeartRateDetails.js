@@ -6,7 +6,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { GetDate } from '../../../Utility/functions'
 import { GetUserHeartRateData } from '../../../services/HelthData'
 import moment from 'moment'
-import { defaultMainCardData } from '../../../Utility/DefaultObject'
+import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Utility/DefaultObject'
 
 
 export default function PatientHeartRateDetails({terraId,latestData}) {
@@ -44,8 +44,14 @@ useEffect(() => {
           })
           }
             <ShowAllDataCard/>
-            <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>
-            <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary}/>
+            {defaultHeartRateAlertTrigger && defaultHeartRateAlertTrigger?.map((el,I)=>{
+              return(
+            <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary} el={el} key={I}/>
+
+
+              )
+            })
+}
         </div>
         <div className="chart-wrapper">
             <HeartRateChartNavTabs  setTimeType={setTimeType}  HeartRateAvg={heartRateValue} setDate={setDate} Date={Date} setFinalDate={setFinalDate}/>

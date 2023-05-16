@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AlertTriggerCard(props) {
+export default function AlertTriggerCardBloodOxygen(props) {
   const {el}=props;
   return (
     <>

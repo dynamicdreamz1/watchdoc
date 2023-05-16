@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { GetUserBloodOxyenData } from '../../../services/HelthData'
-import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
 import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
+import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
+import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 
-export default function PatientBloodOxygenDetails({ terraId,latestData }) {
+export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
   const [Date, setDate] = useState("2023-03-21");
@@ -22,8 +23,8 @@ export default function PatientBloodOxygenDetails({ terraId,latestData }) {
   }
 
   useEffect(() => {
-    if(terraId){
-    fetchData();
+    if (terraId) {
+      fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
@@ -33,11 +34,16 @@ export default function PatientBloodOxygenDetails({ terraId,latestData }) {
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} latestData={latestData}/>
-          {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
-          {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
+          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} latestData={latestData} />
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
-          <AlertTriggerCard HeartRateAvg={bloodOxygenData?.data?.summary} />
+          {defaultBloodOxygenAlertTrigger && defaultBloodOxygenAlertTrigger?.map((el, I) => {
+            return (
+              <AlertTriggerCardBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} el={el} key={I} />
+
+
+            )
+          })
+          }
         </div>
         <div className='chart-wrapper'>
           <BloodOxygenChartNavTabs bloodOxygenData={bloodOxygenData} setTimeType={setTimeType} setDate={setDate} Date={Date} setFinalDate={setFinalDate} />

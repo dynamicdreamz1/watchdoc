@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AlertTriggerCard(props) {
+export default function AlertTriggerCardWeight(props) {
   const {el}=props;
   return (
     <>

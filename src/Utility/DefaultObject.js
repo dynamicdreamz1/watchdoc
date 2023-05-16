@@ -167,3 +167,81 @@ export const defaultMainCardData = [
         "time": ""
     },
 ]
+
+
+
+export const defaultHeartRateAlertTrigger=[
+    {
+        "id":1,
+        "title":"Low Heart Rate Alert Trigger",
+        "result":"40",
+        "lable":"bpm",
+        "type":"min_hr_bpm",
+    },
+    {
+        "id":2,
+        "title":"High Heart Rate Alert Trigger",
+        "result":"140",
+        "lable":"bpm",
+        "type":"max_hr_bpm"
+    }
+]
+
+
+export const defaultBloodPressureAlertTrigger=[
+    {
+        "id":1,
+        "title":"Low Systolic Alert Trigger",
+        "result":"70",
+        "lable":"",
+        "type":"",
+    },
+    {
+        "id":2,
+        "title":"High Systolic Alert Trigger",
+        "result":"140",
+        "lable":"",
+        "type":""
+    },
+    {
+        "id":3,
+        "title":"Low Diastolic Alert Trigger",
+        "result":"50",
+        "lable":"",
+        "type":""
+    }, {
+        "id":4,
+        "title":"High Diastolic Alert Trigger",
+        "result":"130",
+        "lable":"",
+        "type":""
+    }
+]
+
+export const defaultBloodOxygenAlertTrigger=[
+    {
+        "id":1,
+        "title":"Low Blood Oxygen Alert Trigger",
+        "result":"90",
+        "lable":"%",
+        "type":"",
+    }
+   
+]
+
+export const defaultWeightAlertTrigger=[
+    {
+        "id":1,
+        "title":"Low Weight Alert Trigger",
+        "result":"75",
+        "lable":"",
+        "type":"",
+    },
+    {
+        "id":2,
+        "title":"High Weight Alert Trigger",
+        "result":"95",
+        "lable":"",
+        "type":""
+    }
+]

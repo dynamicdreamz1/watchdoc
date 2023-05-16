@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import { useTranslation } from 'react-i18next'
-import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
 import moment from 'moment'
 import { GetDate } from '../../../Utility/functions'
 import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
+import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
+import { defaultBloodPressureAlertTrigger } from '../../../Utility/DefaultObject'
 
 
 
@@ -75,10 +76,14 @@ const action={
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForBloodPressure action={action}/>
           <ShowAllDataCard/>
-          <AlertTriggerCard/>
-          <AlertTriggerCard/>
-          <AlertTriggerCard/>
-          <AlertTriggerCard/>
+          {defaultBloodPressureAlertTrigger && defaultBloodPressureAlertTrigger?.map((el,I)=>{
+            return(
+              <AlertTriggerCardForBloodPressure el={el} key={I} />
+
+            )
+          })
+}
+         
         </div>
         <div className='chart-wrapper'>
           <BloodPresureChartNavTabs terraId={terraId} action={action}/>

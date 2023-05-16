@@ -95,7 +95,8 @@ export const updateToken = () => {
 
 export const  GetdayHourMin = (data) =>{
   if(data===""){
-    return 0;
+    return {lable : "minutes", data : 0}
+
   }
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
   const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');

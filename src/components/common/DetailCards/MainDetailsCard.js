@@ -1,9 +1,11 @@
 import React from 'react'
 import RiskStatus from './RiskStatus'
-import { calculateTimeDifferenceInMinutes } from '../../../Utility/functions'
+import { GetdayHourMin} from '../../../Utility/functions'
 
 export default function MainDetailsCard(Props) {
   const {el,HeartRateAvg}=Props
+
+  const  date = GetdayHourMin(HeartRateAvg?.heart_data?.[el?.id]?.date===undefined?"":HeartRateAvg?.heart_data?.[el?.id]?.date)
 
 
 
@@ -16,7 +18,7 @@ export default function MainDetailsCard(Props) {
           <span className='name d-flex'>{el?.name}</span>
         </div>
         <span className='time d-flex align-items-center'>
-          {`${calculateTimeDifferenceInMinutes(HeartRateAvg?.heart_data?.[el?.id]?.date===undefined?"":HeartRateAvg?.heart_data?.[el?.id]?.date)} min ago`}
+          {`${date.data} ${date.lable} ago`}
           <img src='/images/angle-right.svg' alt='Angle Right' />
         </span>
       </div>
