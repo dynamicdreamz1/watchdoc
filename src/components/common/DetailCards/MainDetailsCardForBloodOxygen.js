@@ -1,7 +1,9 @@
 import React from 'react'
 import RiskStatusForBloodOxygen from './RiskStatusForBloodOxygen';
 
-export default function MainDetailsCardForBloodOxygen(HeartRateAvg) {
+export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData}) {
+
+  console.log("11111-",HeartRateAvg,latestData)
 
 
   return (
@@ -22,8 +24,8 @@ export default function MainDetailsCardForBloodOxygen(HeartRateAvg) {
       </div>
       <div className='measurment-result'>
         {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
-        <span className='digit'>180/18</span>
-
+        <span className='digit'>{latestData?.latest?.blood_oxygen?.count}</span>
+        <span className='type'>%</span>
         {/* <span className='type'>{el?.label}</span> */}
 
       </div>

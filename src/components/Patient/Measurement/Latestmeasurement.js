@@ -1,28 +1,26 @@
-import React, {useEffect, useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
-// import { UserBodyContext } from '../../../Store/Context';
 import {Defaultmeasurment } from '../../../Utility/DefaultObject';
-// import { watchNumerFormeting } from '../../../Utility/functions';
 import MeasurementCard from '../Measurement/MeasurementCard'
-import { getLatestMeasurement } from '../../../services/PatientsService';
 
-export default function Latestmeasurement() {
-    const [latestData, setlatestData] = useState({})
-    // const { heart_data, oxygen_data } = useContext(UserBodyContext);
+export default function Latestmeasurement({latestData}) {
     const { t } = useTranslation()
+
+    // const [latestData, setlatestData] = useState({})
+    // const { heart_data, oxygen_data } = useContext(UserBodyContext);
     // const [Heartmeasurment, Setmeasurment] = useState(DefaultHeartmeasurment);
     // const [BloodPressuerMeasurment, SetBloodPressuerMeasurment] = useState(DefaultBloodPressuerMeasurment);
     // const [BloodOygenMeasurment, SetBloodOygenMeasurment] = useState(DefaultBloodOygenMeasurment);
 
-    useEffect(() => {
-        async function fetchData() {
-            await getLatestMeasurement().then(response => response.data).then(response => {
-                setlatestData(response);
-            })
-        }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         await getLatestMeasurement().then(response => response.data).then(response => {
+    //             setlatestData(response);
+    //         })
+    //     }
+    //     fetchData();
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
 
     // useEffect(() => {

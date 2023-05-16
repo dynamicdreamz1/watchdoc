@@ -5,7 +5,7 @@ import ChartTitle from '../../common/Chart/ChartTitle';
 import { TabPanel } from '../../common/Tabs';
 import { a11yProps, GetDate } from '../../../Utility/functions';
 // import { GetUserTodayHeartRate } from '../../../services/HelthData';
-import { ChartResultRange, ChartSkeleton } from '../../../Utility/Skeleton';
+import { ChartSkeleton } from '../../../Utility/Skeleton';
 import HeartRateChart from '../../common/Chart/HeartRateChart';
 // import { getLatestMeasurement } from '../../../services/PatientsService';
 

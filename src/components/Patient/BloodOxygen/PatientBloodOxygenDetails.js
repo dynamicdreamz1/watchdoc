@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { GetUserBloodOxyenData } from '../../../services/HelthData'
-// import { UserContext } from '../../../Store/Context'
-// import { GetDate } from '../../../Utility/functions'
 import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
-import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
 import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 
-export default function PatientBloodOxygenDetails({ terraId }) {
+export default function PatientBloodOxygenDetails({ terraId,latestData }) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
   const [Date, setDate] = useState("2023-03-21");
@@ -34,13 +31,13 @@ export default function PatientBloodOxygenDetails({ terraId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
 
-
+console.log("11111-bloodOxygenData",bloodOxygenData?.data)
 
   return (
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary}/>
+          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} latestData={latestData}/>
           {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
           {/* <MainDetailsCard HeartRateAvg={bloodOxygenData?.data?.summary?.avg_saturation_percentage} /> */}
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />

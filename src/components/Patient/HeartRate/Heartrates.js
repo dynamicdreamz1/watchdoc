@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PatientHeartRateDetails from './PatientHeartRateDetails'
 
-export default function Heartrates({terraId}) {
+export default function Heartrates({terraId,latestData}) {
   const {t}=useTranslation()
 
   return (
@@ -10,7 +10,7 @@ export default function Heartrates({terraId}) {
         <div className='section-title'>
             <h5>{t('PatientDashboard.HeartRate.title')}</h5>
         </div>
-        <PatientHeartRateDetails terraId={terraId}/>
+        <PatientHeartRateDetails terraId={terraId} latestData={latestData}/>
     </div>
   )
 }

@@ -8,16 +8,27 @@ import BloodOxygen from './BloodOxygen/BloodOxygen'
 import BloodGlucose from './BloodGlucose/BloodGlucose'
 import Temperature from './Temperature/Temperature'
 import Weight from './Weight/Weight'
-import { getProviderTerraId } from '../../services/PatientsService'
+import { getLatestMeasurement, getProviderTerraId } from '../../services/PatientsService'
 
 
 export default function PatientDashboard() {
-
-
+  const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
-
-
   const finalId = terraId?.data?.map(item => item.terra_id);
+
+
+
+  useEffect(() => {
+    async function fetchData() {
+        await getLatestMeasurement().then(response => response.data).then(response => {
+            setlatestData(response);
+        })
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+
 
 
   useEffect(() => {
@@ -32,16 +43,19 @@ export default function PatientDashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
+
+ 
+
     
   return (
         
         <UserBodyContextProvider >
-          <Latestmeasurement />        
+          <Latestmeasurement latestData={latestData}/>        
           <Reminders />
-          <Heartrates terraId={finalId?.[0]}/>
-          <Bloodpressure terraId={finalId?.[0]}/>
-          <BloodOxygen terraId={finalId?.[0]}/>
-          <Weight/>
+          <Heartrates terraId={finalId?.[0]} latestData={latestData} />
+          <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
+          <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>
+          <Weight latestData={latestData}/>
           <BloodGlucose/>
           <Temperature/>
         </UserBodyContextProvider>

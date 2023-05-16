@@ -7,13 +7,12 @@ import moment from 'moment'
 import { GetDate } from '../../../Utility/functions'
 import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
-export default function Bloodpressure({terraId}) {
+
+
+
+
+export default function Bloodpressure({terraId,latestData}) {
   const {t}=useTranslation()
-
-
-
-
-
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
   const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
@@ -56,7 +55,8 @@ const action={
   setTimeType,
   handleChange,
   ChangeDate,
-  value
+  value,
+  latestData
 
 
 }

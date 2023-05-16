@@ -9,9 +9,7 @@ import moment from 'moment'
 import { defaultMainCardData } from '../../../Utility/DefaultObject'
 
 
-export default function PatientHeartRateDetails({terraId}) {
-  // const {heart_data} = useContext(UserBodyContext);
-  // const {heart_rate_data} = heart_data;
+export default function PatientHeartRateDetails({terraId,latestData}) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
   const [heartRateValue,setHeartRateValue]=useState()
@@ -33,15 +31,13 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 },[terraId,timeType,FinalDate]);
 
-
-
   return (
     <>
     <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
           {defaultMainCardData && defaultMainCardData?.map((el,I)=>{
             return (
-            <MainDetailsCard HeartRateAvg={heartRateValue?.data} key={I} el={el}/>
+            <MainDetailsCard HeartRateAvg={heartRateValue?.data} key={I} el={el} latestData={latestData}/>
 
 
             )

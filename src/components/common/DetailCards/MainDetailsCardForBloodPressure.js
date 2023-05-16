@@ -2,9 +2,7 @@ import React from 'react'
 import RiskStatusForbloodPressure from './RiskStatusForbloodPressure';
 
 export default function MainDetailsCardForBloodPressure({action}) {
-  const {bloodPressureData}=action
-
-
+  const {bloodPressureData,latestData}=action
   return (
     <>
     <div className='chart-details-card'>
@@ -23,7 +21,7 @@ export default function MainDetailsCardForBloodPressure({action}) {
       </div>
       <div className='measurment-result'>
         {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
-        <span className='digit'>180/18</span>
+        <span className='digit'>{latestData?.latest?.blood_pressure?.count}</span>
 
         {/* <span className='type'>{el?.label}</span> */}
 

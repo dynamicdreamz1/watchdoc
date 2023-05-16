@@ -1,7 +1,7 @@
 import React from 'react'
 import RiskStatusForbloodPressure from './RiskStatusForbloodPressure';
 
-export default function MainDetailsCardForWeight() {
+export default function MainDetailsCardForWeight({latestData}) {
 
 
   return (
@@ -22,7 +22,7 @@ export default function MainDetailsCardForWeight() {
       </div>
       <div className='measurment-result'>
         {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
-        <span className='digit'>55 Kg</span>
+        <span className='digit'>{latestData?.latest?.weight?.count} Kg</span>
 
         {/* <span className='type'>{el?.label}</span> */}
 
