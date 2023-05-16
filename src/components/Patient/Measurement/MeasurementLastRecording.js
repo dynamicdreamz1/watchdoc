@@ -1,9 +1,10 @@
 import React from 'react'
-import {GetdayHourMin} from "../../../Utility/functions"
+import { GetdayHourMin } from "../../../Utility/functions"
 
 export default function MeasurementLastRecording(props) {
   const {latest}=props?.data
   const  date = GetdayHourMin(latest?.[props?.result]?.date)
+
   return (
     <>
     <div className='mlr'>
