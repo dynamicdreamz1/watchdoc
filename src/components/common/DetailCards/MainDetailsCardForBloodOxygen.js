@@ -3,8 +3,6 @@ import RiskStatusForBloodOxygen from './RiskStatusForBloodOxygen';
 
 export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData}) {
 
-  console.log("11111-",HeartRateAvg,latestData)
-
 
   return (
     <>

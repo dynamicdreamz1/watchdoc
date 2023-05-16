@@ -1,4 +1,5 @@
 import { StoreCookie } from "./sessionStore";
+import moment from "moment";
 
 export const ageCalc = (date) => {
 
@@ -90,4 +91,29 @@ export const updateToken = () => {
   headersClinician.Authorization = `Bearer ${token}`;
   headersUser.Authorization = `Bearer ${token}`;
   headersAdmin.Authorization= `Bearer ${token}`
+}
+
+export const  GetdayHourMin = (data) =>{
+  if(data===""){
+    return 0;
+  }
+  const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
+  const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
+  const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
+  const day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
+  const minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
+  const hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
+  const months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  if (minutes <= 60) {
+    return {lable : "minutes", data : minutes}
+  }
+  else if (hours <= 24) {
+    return {lable : "hours", data : hours} 
+  }
+  else if (day <= 30 || 28 || 31) {
+    return {lable : "days", data : day}
+  }
+  else if (months <= 12) {
+    return {lable : "months", data : months}
+  }
 }

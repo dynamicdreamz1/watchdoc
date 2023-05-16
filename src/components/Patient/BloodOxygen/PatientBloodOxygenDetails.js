@@ -21,9 +21,6 @@ export default function PatientBloodOxygenDetails({ terraId,latestData }) {
     setBloodOxygenData(result);
   }
 
-
-
-
   useEffect(() => {
     if(terraId){
     fetchData();
@@ -31,7 +28,6 @@ export default function PatientBloodOxygenDetails({ terraId,latestData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
 
-console.log("11111-bloodOxygenData",bloodOxygenData?.data)
 
   return (
     <>

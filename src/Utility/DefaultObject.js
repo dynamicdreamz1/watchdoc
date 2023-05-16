@@ -59,7 +59,7 @@ export const Defaultmeasurment = [
         "icon": "heart-rate-icon.svg",
         "type": "Blood Pressure",
         "result": "",
-        "label": "bpm",
+        "label": "",
         "time": "1 min ago"
     },
     {

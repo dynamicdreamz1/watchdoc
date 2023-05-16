@@ -11,7 +11,7 @@ export default function MeasurementCard(props) {
             <MeasurementStatus status={props?.block?.status}/>
             <MeasurementTitle icon={props?.block?.icon} type={props?.block?.type}/>
             <MeasurementResult result={props?.block?.key} label={props?.block?.label} data={props?.data}/>
-            <MeasurementLastRecording time={props?.block?.time}/>
+            <MeasurementLastRecording time={props?.block?.time} result={props?.block?.key} data={props?.data}/>
         </div>
     </>
   )
