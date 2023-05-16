@@ -3,7 +3,7 @@ import RiskStatusForBloodOxygen from './RiskStatusForBloodOxygen';
 
 export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData}) {
 
-  console.log("11111-",HeartRateAvg,latestData)
+ 
 
 
   return (
@@ -11,7 +11,8 @@ export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData})
     <div className='chart-details-card'>
       <div className='title d-flex justify-content-between'>
         <div className='measurment-title d-flex align-items-center'>
-          <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
+        <span className='icon d-flex'><img src={`/images/blood-oxygen-icon.svg`} alt='Blood Oxygen Icon'/></span>
+
           <span className='name d-flex'>Latest Blood Oxygen</span>
           {/* <span className='name d-flex'>{el?.name}</span> */}
 
