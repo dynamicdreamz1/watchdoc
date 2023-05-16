@@ -9,8 +9,9 @@ export default function MainDetailsCardForWeight({latestData}) {
     <div className='chart-details-card'>
       <div className='title d-flex justify-content-between'>
         <div className='measurment-title d-flex align-items-center'>
-          <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
-          <span className='name d-flex'>Latest Weight</span>
+        <span className='icon d-flex'><img src={`/images/weight-icon.svg`} alt='Weight Icon'/></span>
+
+          <span className='name d-flex'>Weight</span>
           {/* <span className='name d-flex'>{el?.name}</span> */}
 
         </div>

@@ -1,13 +1,15 @@
 
 import React from 'react'
+import MeasurementStatusForBloodOxygen from '../../Patient/Measurement/MeasurementStatusForBloodOxygen'
 
-export default function RiskStatusForbloodPressure({el}) {
+export default function RiskStatusForbloodPressure() {
   return (
     <>
     <div className='r-status d-flex align-items-center'>
-       {el?.status && <span className='icon'></span>}
-        <span className='text'>High</span>
+    <MeasurementStatusForBloodOxygen  />       
+    <span className='text'>Good</span>
     </div>
+    
     </>
   )
 }

@@ -40,12 +40,13 @@ function a11yProps(index) {
 }
 
 export default function BloodPresureChartNavTabs({ action }) {
-  const { FinalDate,
+  const { 
+    // FinalDate,
     setFinalDate,
     bloodPressureData,
-    setBloodPressureData,
-    timeType,
-    setTimeType,
+    // setBloodPressureData,
+    // timeType,
+    // setTimeType,
     handleChange,
     ChangeDate, value } = action
 
@@ -68,7 +69,7 @@ export default function BloodPresureChartNavTabs({ action }) {
         </TabPanel>
         <TabPanel value={value} index={1}>
           {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData} /> : <ChartSkeleton />}
-
+    
         </TabPanel>
         <TabPanel value={value} index={2}>
           {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData} /> : <ChartSkeleton />}
