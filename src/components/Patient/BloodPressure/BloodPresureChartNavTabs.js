@@ -49,7 +49,18 @@ export default function BloodPresureChartNavTabs({ action }) {
     // setTimeType,
     handleChange,
     isBloodPressureSkeleton,
-    ChangeDate, value } = action
+     value } = action
+
+const  HeartData=bloodPressureData?.data?.summary
+
+    const chartTitleAction={
+      value,
+      Date,
+      HeartData,
+      setFinalDate,
+      dataKey:"bloodPressure"
+  }
+  
 
    
   return (
@@ -62,7 +73,7 @@ export default function BloodPresureChartNavTabs({ action }) {
             <Tab label="Weekly" {...a11yProps(1)} />
             <Tab label="Monthly" {...a11yProps(2)} />
           </Tabs>
-          <ChartTitle Date={Date} value={value} ChangeDate={ChangeDate} HeartData={bloodPressureData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodPressure" />
+          <ChartTitle titleAction={chartTitleAction} />
 
         </Box>
         <TabPanel value={value} index={0}>

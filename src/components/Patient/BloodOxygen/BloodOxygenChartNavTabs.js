@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react'
 import ChartTitle from '../../common/Chart/ChartTitle';
 import BloodOxygenChart from '../../common/Chart/BloodOxygenChart';
-import { GetDate } from '../../../Utility/functions';
 import { ChartSkeleton } from '../../../Utility/Skeleton';
 
 function TabPanel(props) {
@@ -41,10 +40,10 @@ function a11yProps(index) {
 }
 
 export default function BloodOxygenChartNavTabs({titleAction}) {
-  // const { bloodOxygenData, Date, setDate, setFinalDate } = props
-  const{isBloodOxygenSkeleton,bloodOxygenData, setTimeType,setDate,Date,setFinalDate}=titleAction
+  
+  const{isBloodOxygenSkeleton,bloodOxygenData, setTimeType,setFinalDate}=titleAction
   const [value, setValue] = useState(0);
-  // const [Date,setDate] = useState(GetDate);
+  const HeartData=bloodOxygenData?.data?.summary
   const handleChange = (event, newValue) => {
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
     setTimeType(valueType)
@@ -52,9 +51,16 @@ export default function BloodOxygenChartNavTabs({titleAction}) {
   };
 
 
-  const ChangeDate = (NewDate) => {
-    setDate(GetDate(NewDate));
-  }
+
+  const chartTitleAction={
+    value,
+    HeartData,
+    setFinalDate,
+    dataKey:"bloodOxygen"
+}
+
+
+
   return (
     <>
     
@@ -66,7 +72,7 @@ export default function BloodOxygenChartNavTabs({titleAction}) {
             <Tab label="Weekly" {...a11yProps(1)} />
             <Tab label="Monthly" {...a11yProps(2)} />
           </Tabs>
-          <ChartTitle Date={Date} value={value} ChangeDate={ChangeDate} HeartData={bloodOxygenData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodOxygen" />
+          <ChartTitle titleAction={chartTitleAction} />
         </Box>
         <TabPanel value={value} index={0}>
           {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}

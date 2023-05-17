@@ -10,7 +10,6 @@ import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
-  const [Date, setDate] = useState("2023-03-21");
   const [timeType, setTimeType] = useState('daily')
   const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
   const [isBloodOxygenSkeleton,setIsBloodOxygenSkeleton]=useState(false);
@@ -35,7 +34,6 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     isBloodOxygenSkeleton,
     bloodOxygenData,
     setTimeType,
-    setDate,
     Date,
     setFinalDate
 

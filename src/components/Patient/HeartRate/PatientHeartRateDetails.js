@@ -3,7 +3,6 @@ import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import { GetDate } from '../../../Utility/functions'
 import { GetUserHeartRateData } from '../../../services/HelthData'
 import moment from 'moment'
 import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Utility/DefaultObject'
@@ -12,7 +11,6 @@ import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Util
 export default function PatientHeartRateDetails({terraId,latestData}) {
   const start = moment().format('YYYY-MM-DD');
   const [heartRateValue,setHeartRateValue]=useState()
-  const [Date,setDate] = useState(GetDate);
   const [FinalDate, setFinalDate] = useState({ start: start, end: start});
   const [timeType,setTimeType]=useState('daily')
   const [isHeartrateSkeleton,setIsHeartrateSkeleton]=useState(false)
@@ -37,9 +35,7 @@ const action={
   isHeartrateSkeleton,
   setTimeType,
   HeartRateAvg:heartRateValue,
-  setDate,
   setFinalDate,
-  Date
 
 }
 

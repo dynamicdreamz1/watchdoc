@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
 import moment from 'moment'
-import { GetDate } from '../../../Utility/functions'
 import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
 import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
@@ -22,14 +21,11 @@ export default function Bloodpressure({terraId,latestData}) {
   const [isBloodPressureSkeleton,setIsBloodPressureSkeleton]=useState(false)
 
   const [value, setValue] =useState(0);
-  const [Date, setDate] = useState(GetDate);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const ChangeDate = (NewDate) => {
-    setDate(GetDate(NewDate));
-  }
+  
 
 
   const fetchData = async () => {
@@ -56,11 +52,9 @@ const action={
   timeType,
   setTimeType,
   handleChange,
-  ChangeDate,
   value,
   latestData,
   isBloodPressureSkeleton,
-  value
 
 
 }

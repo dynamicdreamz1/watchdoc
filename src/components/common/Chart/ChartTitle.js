@@ -1,33 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import DateRangePicker from "react-bootstrap-daterangepicker";
-import "bootstrap-daterangepicker/daterangepicker.css";
-import moment from 'moment';
 import { watchNumerFormeting } from '../../../Utility/functions';
 import MonthPickerComponent from '../../common/MonthlyDatePicker';
 import DatePickerComponent from '../../common/DaylyDatePicker';
 import WeekPickerComponent from '../WeeklyDatePicker';
-// import WeekPickerComponent from '../../common/WeeklyDatePicker';
 
 
-export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
-  const [storedValue, setStreValue]=useState(value)
-  const [state, setState] = useState({ start: "", end: "", label: "" });
-  const { start, end } = state;
-  const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
-  const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
-  const defaultEndDate = moment().format('YYYY-MM-DD');
-  let defaultDateRange = `${defaultStartDate} - ${defaultEndDate}`;
+export default function ChartTitle({titleAction}) {
 
-  const handleCancel = () => {
-    setState({ start: "", end: "" });
-  };
+  const {value,HeartData,setFinalDate,dataKey}=titleAction || {}
+  // const [state, setState] = useState({ start: "", end: "", label: "" });
+  // const { start, end } = state;
+  // const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
+  // let defaultDateRange = `${defaultStartDate} - ${defaultEndDate}`;
+  // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
+  // const defaultEndDate = moment().format('YYYY-MM-DD');
 
-  const handleCallback = (start, end, label) => {
-    setFinalDate({ start: start.format("YYYY-MM-DD"), end: end.format("YYYY-MM-DD") })
-    setState({ start, end, label });
-  };
+  
+  
 
   const finalData =
     dataKey === "bloodOxygen"
@@ -44,7 +35,6 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
             : ""
           : "";
 
-console.log("111111-value",value)
   return (
     <>
       <div className='chart-title-block d-flex justify-content-between'>
