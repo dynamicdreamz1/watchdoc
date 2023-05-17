@@ -3,7 +3,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { watchNumerFormeting } from '../../../Utility/functions';
 import MonthPickerComponent from '../../common/MonthlyDatePicker';
-import DatePickerComponent from '../../common/DaylyDatePicker';
+import DatePickerComponent from '../DailyDatePicker';
 import WeekPickerComponent from '../WeeklyDatePicker';
 
 
@@ -17,8 +17,6 @@ export default function ChartTitle({titleAction}) {
   // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   // const defaultEndDate = moment().format('YYYY-MM-DD');
 
-  
-  console.log("value",value);
 
   const finalData =
     dataKey === "bloodOxygen"

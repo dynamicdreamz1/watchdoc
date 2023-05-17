@@ -6,12 +6,13 @@ import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
 export default function DatePickerComponent({setFinalDate}) {
-  const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
+  const [selectedDate, setSelectedDate] = useState();
   const handleDateChange = (date) => {
     setSelectedDate(date)
     setFinalDate({ start: date.format("YYYY-MM-DD") ,end: moment().format("YYYY-MM-DD")})
   };
 
+  console.log("selectedDate",selectedDate);
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <DatePicker
