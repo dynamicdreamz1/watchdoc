@@ -57,13 +57,13 @@ export default function HeartRateChartNavTabs(Props) {
 
                 </Box>
                 <TabPanel value={value} index={0}>
-                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
+                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
+                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
+                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
                 </TabPanel>
 
             </Box>

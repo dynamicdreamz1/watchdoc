@@ -68,18 +68,18 @@ export default function BloodOxygenChartNavTabs(props) {
           <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={bloodOxygenData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodOxygen" />
         </Box>
         <TabPanel value={value} index={0}>
-          {bloodOxygenData ? <BloodOxygenChart bloodOxygenData={bloodOxygenData} /> : <ChartSkeleton />}
+          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodOxygenData ? <BloodOxygenChart bloodOxygenData={bloodOxygenData} /> : <ChartSkeleton />}
+          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodOxygenData ? <BloodOxygenChart bloodOxygenData={bloodOxygenData} /> : <ChartSkeleton />}
+          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         {/* <TabPanel value={value} index={3}>
-            {bloodOxygenData ?  <BloodOxygenChart bloodOxygenData={bloodOxygenData}/>:<ChartSkeleton />}
+            {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodOxygenChart bloodOxygenData={bloodOxygenData}/>}
 
             </TabPanel> */}
       </Box>

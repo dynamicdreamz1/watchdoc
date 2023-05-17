@@ -50,7 +50,7 @@ export default function BloodPresureChartNavTabs({ action }) {
     handleChange,
     ChangeDate, value } = action
 
-
+   
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -65,18 +65,18 @@ export default function BloodPresureChartNavTabs({ action }) {
 
         </Box>
         <TabPanel value={value} index={0}>
-          {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData} /> : <ChartSkeleton />}
+          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData} /> : <ChartSkeleton />}
+          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
     
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData} /> : <ChartSkeleton />}
+          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
 
         </TabPanel>
         {/* <TabPanel value={value} index={3}>
-            {bloodPressureData ? <BloodPressureChart bloodPressureData={bloodPressureData}/>:<ChartSkeleton />}
+            {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData}/>}
 
             </TabPanel> */}
       </Box>

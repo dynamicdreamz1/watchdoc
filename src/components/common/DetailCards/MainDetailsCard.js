@@ -6,9 +6,9 @@ export default function MainDetailsCard(Props) {
   const {el,HeartRateAvg}=Props
 
   const  date = GetdayHourMin(HeartRateAvg?.heart_data?.[el?.id]?.date===undefined?"":HeartRateAvg?.heart_data?.[el?.id]?.date)
+  const colorRed=el?.id==='latest_heart_rate'?"red":'';
 
-
-
+  
   return (
     <>
     <div className='chart-details-card'>
@@ -23,7 +23,7 @@ export default function MainDetailsCard(Props) {
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span>
+        <span className='digit' style={{color:colorRed}}>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span>
         <span className='type'>{el?.label}</span>
       </div>
       <RiskStatus el={el}/>

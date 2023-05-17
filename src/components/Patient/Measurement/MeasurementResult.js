@@ -5,7 +5,6 @@ export default function MeasurementResult(props) {
   const lableName = [props?.result]
   const colorRed = lableName[0] === "heart_rate" || lableName[0] === "blood_pressure" ?'red' : ""
 
-  console.log("[props?.result]",);
   return (
     <>
     <div className='measurment-result'>

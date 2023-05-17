@@ -9,6 +9,7 @@ export default function MainDetailsCardForBloodPressure({action}) {
 
 
 
+
   return (
     <>
     <div className='chart-details-card'>
@@ -26,7 +27,7 @@ export default function MainDetailsCardForBloodPressure({action}) {
       </div>
       <div className='measurment-result'>
         {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
-        <span className='digit'>{latestData?.latest?.blood_pressure?.count}</span>
+        <span className='digit' style={{color:'red'}}>{latestData?.latest?.blood_pressure?.count}</span>
 
         {/* <span className='type'>{el?.label}</span> */}
 

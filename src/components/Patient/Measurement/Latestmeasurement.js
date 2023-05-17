@@ -53,9 +53,7 @@ export default function Latestmeasurement({latestData}) {
                 <h5>{t('PatientDashboard.Measurement.title1')}</h5>
             </div>
             <div className='wrapper d-flex flex-wrap'>
-                {/* <MeasurementCard block={Heartmeasurment} /> */}
-                {/* <MeasurementCard block={Heartmeasurment} data={latestData} />
-                <MeasurementCard block={BloodOygenMeasurment} data={latestData} /> */}
+             
                 {
                     Defaultmeasurment?.map((block, i) => {
                         return <MeasurementCard key={i} block={block} data={latestData}/>
