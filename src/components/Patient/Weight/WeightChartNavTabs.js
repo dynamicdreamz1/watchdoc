@@ -55,7 +55,7 @@ export default function WeightChartNavTabs() {
                     <Tab label="Weekly" {...a11yProps(1)} />
                     <Tab label="Monthly" {...a11yProps(2)} />
                 </Tabs>
-                <ChartTitle/>
+                <ChartTitle value={value}/>
             </Box>
             <TabPanel value={value} index={0}>
                 <WeightChart/>
