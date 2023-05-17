@@ -12,7 +12,6 @@ import WeekPickerComponent from '../WeeklyDatePicker';
 
 
 export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
-  const [storedValue, setStreValue]=useState(value)
   const [state, setState] = useState({ start: "", end: "", label: "" });
   const { start, end } = state;
   const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
