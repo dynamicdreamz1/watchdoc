@@ -66,7 +66,7 @@ export default function BloodOxygenChartNavTabs({titleAction}) {
             <Tab label="Weekly" {...a11yProps(1)} />
             <Tab label="Monthly" {...a11yProps(2)} />
           </Tabs>
-          <ChartTitle  value={value} Date={Date} ChangeDate={ChangeDate} HeartData={bloodOxygenData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodOxygen" />
+          <ChartTitle Date={Date} value={value} ChangeDate={ChangeDate} HeartData={bloodOxygenData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodOxygen" />
         </Box>
         <TabPanel value={value} index={0}>
           {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}

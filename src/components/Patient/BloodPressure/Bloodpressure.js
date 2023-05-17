@@ -32,7 +32,6 @@ export default function Bloodpressure({terraId,latestData}) {
   }
 
 
-
   const fetchData = async () => {
     setIsBloodPressureSkeleton(true)
     const result = await GetUserBloodPressureData(timeType, terraId, FinalDate)
@@ -60,7 +59,8 @@ const action={
   ChangeDate,
   value,
   latestData,
-  isBloodPressureSkeleton
+  isBloodPressureSkeleton,
+  value
 
 
 }

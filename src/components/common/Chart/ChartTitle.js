@@ -43,7 +43,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
             : ""
           : "";
 
-
+console.log("111111-value",value)
   return (
     <>
       <div className='chart-title-block d-flex justify-content-between'>
