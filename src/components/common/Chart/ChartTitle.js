@@ -7,6 +7,7 @@ import moment from 'moment';
 import { watchNumerFormeting } from '../../../Utility/functions';
 import MonthPickerComponent from '../../common/MonthlyDatePicker';
 import DatePickerComponent from '../../common/DaylyDatePicker';
+import WeekPickerComponent from '../WeeklyDatePicker';
 // import WeekPickerComponent from '../../common/WeeklyDatePicker';
 
 
@@ -62,7 +63,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent /> : value === 1 ?  { /*<WeekPickerComponent />*/}:value === 2 ? <MonthPickerComponent /> : ''}
+        {value===0 ? <DatePickerComponent /> : value === 1 ?  <WeekPickerComponent />:value === 2 ? <MonthPickerComponent /> : ''}
         
 
         {/* <DateRangePicker
