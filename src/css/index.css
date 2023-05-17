@@ -195,6 +195,14 @@ button[type="submit"]:hover,.btn:hover {
 .phone-number {
   text-decoration: none;
 }
+.normal{
+  background-color: #86DF2F;
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-radius: 10px;
+  margin-right: 6px;
+}
 form .input-block label {
   font-size: 15px;
   line-height: 18px;
