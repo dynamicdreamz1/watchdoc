@@ -7,6 +7,7 @@ import { a11yProps, GetDate } from '../../../Utility/functions';
 // import { GetUserTodayHeartRate } from '../../../services/HelthData';
 import { ChartSkeleton } from '../../../Utility/Skeleton';
 import HeartRateChart from '../../common/Chart/HeartRateChart';
+import DatePickerComponent from '../../common/DatePickerComponent';
 // import { getLatestMeasurement } from '../../../services/PatientsService';
 
 
@@ -54,7 +55,7 @@ export default function HeartRateChartNavTabs(Props) {
                     {/* {Heartrate ?  */}
                     <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={HeartRateAvg?.data?.summary} setFinalDate={setFinalDate} dataKey="heartrate" />
                     {/* : <ChartResultRange />} */}
-
+                    <DatePickerComponent />
                 </Box>
                 <TabPanel value={value} index={0}>
                     {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
