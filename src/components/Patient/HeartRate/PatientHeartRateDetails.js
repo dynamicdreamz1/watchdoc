@@ -10,11 +10,11 @@ import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Util
 
 
 export default function PatientHeartRateDetails({terraId,latestData}) {
-  const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
-  const defaultEndDate = moment().format('YYYY-MM-DD');
+  // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
+  const start = moment().format('YYYY-MM-DD');
   const [heartRateValue,setHeartRateValue]=useState()
   const [Date,setDate] = useState(GetDate);
-  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate});
+  const [FinalDate, setFinalDate] = useState({ start: start, end: start});
 
   const [timeType,setTimeType]=useState('daily')
 

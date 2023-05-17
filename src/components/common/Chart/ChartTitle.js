@@ -20,9 +20,6 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
   const defaultEndDate = moment().format('YYYY-MM-DD');
   let defaultDateRange = `${defaultStartDate} - ${defaultEndDate}`;
 
-
-
-  console.log("storedValue",value);
   const handleCancel = () => {
     setState({ start: "", end: "" });
   };
@@ -63,9 +60,8 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent /> : value === 1 ?  <WeekPickerComponent />:value === 2 ? <MonthPickerComponent /> : ''}
+        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ?  { /*<WeekPickerComponent />*/}:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : ''}
         
-
         {/* <DateRangePicker
           initialSettings={{
             // startDate: start ? start.toDate() : moment().subtract(29, "days"),
