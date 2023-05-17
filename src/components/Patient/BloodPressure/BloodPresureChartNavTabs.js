@@ -62,7 +62,7 @@ export default function BloodPresureChartNavTabs({ action }) {
             <Tab label="Weekly" {...a11yProps(1)} />
             <Tab label="Monthly" {...a11yProps(2)} />
           </Tabs>
-          <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={bloodPressureData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodPressure" />
+          <ChartTitle Date={Date} value={value} ChangeDate={ChangeDate} HeartData={bloodPressureData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodPressure" />
 
         </Box>
         <TabPanel value={value} index={0}>
