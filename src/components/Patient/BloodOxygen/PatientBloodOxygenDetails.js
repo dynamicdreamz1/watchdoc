@@ -11,7 +11,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const defaultEndDate = moment().format('YYYY-MM-DD');
   const [timeType, setTimeType] = useState('daily')
-  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
+  const [FinalDate, setFinalDate] = useState({ start: start, end: start });
   const [isBloodOxygenSkeleton,setIsBloodOxygenSkeleton]=useState(false);
   const [bloodOxygenData, setBloodOxygenData] = useState()
 

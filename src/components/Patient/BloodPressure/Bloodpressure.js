@@ -14,8 +14,8 @@ import { defaultBloodPressureAlertTrigger } from '../../../Utility/DefaultObject
 export default function Bloodpressure({terraId,latestData}) {
   const {t}=useTranslation()
   const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
-  const defaultEndDate = moment().format('YYYY-MM-DD');
-  const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
+  const start = moment().format('YYYY-MM-DD');
+  const [FinalDate, setFinalDate] = useState({ start: start, end: start });
   const [bloodPressureData, setBloodPressureData] = useState()
   const [timeType, setTimeType] = useState('daily')
   const [isBloodPressureSkeleton,setIsBloodPressureSkeleton]=useState(false)
