@@ -11,15 +11,21 @@ export default function DatePickerComponent() {
     setSelectedDate(date);
   };
 
-  console.log("111111111-selectedDate", selectedDate)
+  // console.log("111111111-selectedDate", selectedDate)
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
-      <DatePicker
-        value={selectedDate}
-        onChange={(newValue) => setSelectedDate(newValue)}
-        renderInput={(props) => <TextField {...props} />}
-      />
+       <DatePicker
+          views={['month']}
+          label="Month"
+          minDate={new Date('2012-03-01')}
+          maxDate={new Date('2023-06-01')}
+          value={selectedDate}
+          onChange={(newValue) => {
+            setSelectedDate(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} helperText={null} />}
+        />
     </LocalizationProvider>
   );
-}
+}   

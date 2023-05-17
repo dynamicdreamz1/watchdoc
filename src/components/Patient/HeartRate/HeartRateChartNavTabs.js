@@ -7,7 +7,6 @@ import { a11yProps, GetDate } from '../../../Utility/functions';
 // import { GetUserTodayHeartRate } from '../../../services/HelthData';
 import { ChartSkeleton } from '../../../Utility/Skeleton';
 import HeartRateChart from '../../common/Chart/HeartRateChart';
-import DatePickerComponent from '../../common/DatePickerComponent';
 // import { getLatestMeasurement } from '../../../services/PatientsService';
 
 
@@ -40,7 +39,7 @@ export default function HeartRateChartNavTabs(Props) {
     const ChangeDate = (NewDate) => {
         setDate(GetDate(NewDate));
     }
-
+    console.log("value",value);
     return (
         <>
 
@@ -53,18 +52,18 @@ export default function HeartRateChartNavTabs(Props) {
                         <Tab label="Monthly" {...a11yProps(2)} />
                     </Tabs>
                     {/* {Heartrate ?  */}
-                    <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={HeartRateAvg?.data?.summary} setFinalDate={setFinalDate} dataKey="heartrate" />
+                    <ChartTitle value={value} Date={Date} ChangeDate={ChangeDate} HeartData={HeartRateAvg?.data?.summary} setFinalDate={setFinalDate} dataKey="heartrate" />
                     {/* : <ChartResultRange />} */}
-                    <DatePickerComponent />
+
                 </Box>
                 <TabPanel value={value} index={0}>
-                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
+                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
+                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    {HeartRateAvg?.data?.details?.length===0 ? <ChartSkeleton />: <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} />}
+                    {HeartRateAvg ? <HeartRateChart ChangeDate={ChangeDate} HeartData={HeartRateAvg} /> : <ChartSkeleton />}
                 </TabPanel>
 
             </Box>

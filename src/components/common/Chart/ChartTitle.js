@@ -5,10 +5,13 @@ import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from 'moment';
 import { watchNumerFormeting } from '../../../Utility/functions';
+import MonthPickerComponent from '../../common/MonthlyDatePicker';
+import DatePickerComponent from '../../common/DaylyDatePicker';
+// import WeekPickerComponent from '../../common/WeeklyDatePicker';
 
 
-
-export default function ChartTitle({ HeartData, setFinalDate, dataKey }) {
+export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
+  const [storedValue, setStreValue]=useState(value)
   const [state, setState] = useState({ start: "", end: "", label: "" });
   const { start, end } = state;
   const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
@@ -18,6 +21,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey }) {
 
 
 
+  console.log("storedValue",value);
   const handleCancel = () => {
     setState({ start: "", end: "" });
   };
@@ -42,7 +46,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey }) {
             : ""
           : "";
 
-  console.log("1111-HeartData",finalData)
+  // console.log("1111-HeartData",finalData)
 
   return (
     <>
@@ -58,8 +62,10 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey }) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
+        {value===0 ? <DatePickerComponent /> : value === 1 ?  { /*<WeekPickerComponent />*/}:value === 2 ? <MonthPickerComponent /> : ''}
+        
 
-        <DateRangePicker
+        {/* <DateRangePicker
           initialSettings={{
             // startDate: start ? start.toDate() : moment().subtract(29, "days"),
             startDate: start ? start.toDate() : moment(),
@@ -85,7 +91,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey }) {
           <div className="input-group" id="reportrange">
             <input type="text" className="form-control date" value={labeldaterange ? labeldaterange : defaultDateRange} readOnly />
           </div>
-        </DateRangePicker>
+        </DateRangePicker> */}
 
       </div>
     </>
