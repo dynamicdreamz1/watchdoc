@@ -50,10 +50,10 @@ export default function WeightChartNavTabs() {
         <Box sx={{ width: '100%' }}>
             <Box>
                 <Tabs value={value} onChange={handleChange} aria-label="Chart Tabs" className='chart-tabs'>
-                    <Tab label="Hourly" {...a11yProps(0)} />
-                    <Tab label="Daily" {...a11yProps(1)} />
-                    <Tab label="Weekly" {...a11yProps(2)} />
-                    <Tab label="Monthly" {...a11yProps(3)} />
+                    {/* <Tab label="Hourly" {...a11yProps(0)} /> */}
+                    <Tab label="Daily" {...a11yProps(0)} />
+                    <Tab label="Weekly" {...a11yProps(1)} />
+                    <Tab label="Monthly" {...a11yProps(2)} />
                 </Tabs>
                 <ChartTitle/>
             </Box>
@@ -61,14 +61,14 @@ export default function WeightChartNavTabs() {
                 <WeightChart/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+            <WeightChart/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+            <WeightChart/>
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            {/* <TabPanel value={value} index={3}>
 
-            </TabPanel>
+            </TabPanel> */}
         </Box>
         </>
     )
