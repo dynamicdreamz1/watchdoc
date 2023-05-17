@@ -40,13 +40,14 @@ function a11yProps(index) {
   };
 }
 
-export default function BloodOxygenChartNavTabs(props) {
-  const { bloodOxygenData, Date, setDate, setFinalDate } = props
+export default function BloodOxygenChartNavTabs({titleAction}) {
+  // const { bloodOxygenData, Date, setDate, setFinalDate } = props
+  const{isBloodOxygenSkeleton,bloodOxygenData, setTimeType,setDate,Date,setFinalDate}=titleAction
   const [value, setValue] = useState(0);
   // const [Date,setDate] = useState(GetDate);
   const handleChange = (event, newValue) => {
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
-    props?.setTimeType(valueType)
+    setTimeType(valueType)
     setValue(newValue);
   };
 
@@ -68,14 +69,14 @@ export default function BloodOxygenChartNavTabs(props) {
           <ChartTitle Date={Date} ChangeDate={ChangeDate} HeartData={bloodOxygenData?.data?.summary} setFinalDate={setFinalDate} dataKey="bloodOxygen" />
         </Box>
         <TabPanel value={value} index={0}>
-          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodOxygenData?.data?.details?.length===0 ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         {/* <TabPanel value={value} index={3}>

@@ -44,7 +44,6 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
             : ""
           : "";
 
-  // console.log("1111-HeartData",finalData)
 
   return (
     <>
@@ -60,7 +59,7 @@ export default function ChartTitle({ HeartData, setFinalDate, dataKey,value }) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ?  { /*<WeekPickerComponent />*/}:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : ''}
+        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent />:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : ''}
         
         {/* <DateRangePicker
           initialSettings={{

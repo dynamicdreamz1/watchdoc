@@ -19,6 +19,7 @@ export default function Bloodpressure({terraId,latestData}) {
   const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
   const [bloodPressureData, setBloodPressureData] = useState()
   const [timeType, setTimeType] = useState('daily')
+  const [isBloodPressureSkeleton,setIsBloodPressureSkeleton]=useState(false)
 
   const [value, setValue] =useState(0);
   const [Date, setDate] = useState(GetDate);
@@ -33,9 +34,10 @@ export default function Bloodpressure({terraId,latestData}) {
 
 
   const fetchData = async () => {
-
+    setIsBloodPressureSkeleton(true)
     const result = await GetUserBloodPressureData(timeType, terraId, FinalDate)
     setBloodPressureData(result);
+    setIsBloodPressureSkeleton(false)
   }
 
   useEffect(() => {
@@ -57,7 +59,8 @@ const action={
   handleChange,
   ChangeDate,
   value,
-  latestData
+  latestData,
+  isBloodPressureSkeleton
 
 
 }

@@ -10,18 +10,18 @@ import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Util
 
 
 export default function PatientHeartRateDetails({terraId,latestData}) {
-  // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const start = moment().format('YYYY-MM-DD');
   const [heartRateValue,setHeartRateValue]=useState()
   const [Date,setDate] = useState(GetDate);
   const [FinalDate, setFinalDate] = useState({ start: start, end: start});
-
   const [timeType,setTimeType]=useState('daily')
+  const [isHeartrateSkeleton,setIsHeartrateSkeleton]=useState(false)
 
 const fetchData=async()=>{
-
+  setIsHeartrateSkeleton(true)
  const result= await GetUserHeartRateData(timeType,terraId,FinalDate)
   setHeartRateValue(result);
+  setIsHeartrateSkeleton(false)
 }
 
 useEffect(() => { 
@@ -30,6 +30,19 @@ useEffect(() => {
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 },[terraId,timeType,FinalDate]);
+
+
+
+const action={
+  isHeartrateSkeleton,
+  setTimeType,
+  HeartRateAvg:heartRateValue,
+  setDate,
+  setFinalDate,
+  Date
+
+}
+
 
   return (
     <>
@@ -54,7 +67,7 @@ useEffect(() => {
 }
         </div>
         <div className="chart-wrapper">
-            <HeartRateChartNavTabs  setTimeType={setTimeType}  HeartRateAvg={heartRateValue} setDate={setDate} Date={Date} setFinalDate={setFinalDate}/>
+            <HeartRateChartNavTabs action={action}/>
         </div>
     </div>
     </>

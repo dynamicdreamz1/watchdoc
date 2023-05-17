@@ -13,13 +13,15 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const [Date, setDate] = useState("2023-03-21");
   const [timeType, setTimeType] = useState('daily')
   const [FinalDate, setFinalDate] = useState({ start: defaultStartDate, end: defaultEndDate });
-
+  const [isBloodOxygenSkeleton,setIsBloodOxygenSkeleton]=useState(false);
   const [bloodOxygenData, setBloodOxygenData] = useState()
 
 
   const fetchData = async () => {
+    setIsBloodOxygenSkeleton(true)
     const result = await GetUserBloodOxyenData(timeType, terraId, FinalDate)
     setBloodOxygenData(result);
+    setIsBloodOxygenSkeleton(false)
   }
 
   useEffect(() => {
@@ -28,6 +30,16 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
+
+  const titleAction={
+    isBloodOxygenSkeleton,
+    bloodOxygenData,
+    setTimeType,
+    setDate,
+    Date,
+    setFinalDate
+
+  }
 
 
   return (
@@ -46,7 +58,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
           }
         </div>
         <div className='chart-wrapper'>
-          <BloodOxygenChartNavTabs bloodOxygenData={bloodOxygenData} setTimeType={setTimeType} setDate={setDate} Date={Date} setFinalDate={setFinalDate} />
+          <BloodOxygenChartNavTabs  titleAction={titleAction} />
         </div>
       </div>
     </>

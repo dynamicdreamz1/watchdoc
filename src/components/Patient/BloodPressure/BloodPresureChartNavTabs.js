@@ -48,6 +48,7 @@ export default function BloodPresureChartNavTabs({ action }) {
     // timeType,
     // setTimeType,
     handleChange,
+    isBloodPressureSkeleton,
     ChangeDate, value } = action
 
    
@@ -65,14 +66,14 @@ export default function BloodPresureChartNavTabs({ action }) {
 
         </Box>
         <TabPanel value={value} index={0}>
-          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
+          {bloodPressureData?.data?.details?.length===0 || isBloodPressureSkeleton? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
+          {bloodPressureData?.data?.details?.length===0 || isBloodPressureSkeleton ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
     
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodPressureData?.data?.details?.length===0 ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
+          {bloodPressureData?.data?.details?.length===0  || isBloodPressureSkeleton ? <ChartSkeleton />: <BloodPressureChart bloodPressureData={bloodPressureData} />}
 
         </TabPanel>
         {/* <TabPanel value={value} index={3}>
