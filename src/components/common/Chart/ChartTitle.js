@@ -17,6 +17,7 @@ export default function ChartTitle({titleAction}) {
   // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   // const defaultEndDate = moment().format('YYYY-MM-DD');
 
+  
 
   const finalData =
     dataKey === "bloodOxygen"
@@ -47,7 +48,7 @@ export default function ChartTitle({titleAction}) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent />:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
+        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent setFinalDate={setFinalDate} />:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
         
         {/* <DateRangePicker
           initialSettings={{

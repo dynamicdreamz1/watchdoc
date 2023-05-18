@@ -30,7 +30,6 @@ useEffect(() => {
 },[terraId,timeType,FinalDate]);
 
 
-
 const action={
   isHeartrateSkeleton,
   setTimeType,
