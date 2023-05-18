@@ -1,10 +1,14 @@
 import React from 'react'
 import RiskStatusForBloodOxygen from './RiskStatusForBloodOxygen';
-import { GetdayHourMin } from '../../../Utility/functions';
+import { GetdayHourMin, convertDecimalToPercentage } from '../../../Utility/functions';
 
 export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData}) {
 
   const  date = GetdayHourMin(latestData?.latest?.blood_oxygen?.date)
+
+  const result=typeof latestData?.latest?.blood_oxygen?.count === 'number' &&
+  latestData?.latest?.blood_oxygen?.count % 1 !== 0?convertDecimalToPercentage(latestData?.latest?.blood_oxygen?.count,0):
+  latestData?.latest?.blood_oxygen?.count;
  
   return (
     <>
@@ -24,7 +28,7 @@ export default function MainDetailsCardForBloodOxygen({HeartRateAvg,latestData})
       </div>
       <div className='measurment-result'>
         {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
-        <span className='digit'>{latestData?.latest?.blood_oxygen?.count}</span>
+        <span className='digit'>{result}</span>
         <span className='type'>%</span>
         {/* <span className='type'>{el?.label}</span> */}
 
