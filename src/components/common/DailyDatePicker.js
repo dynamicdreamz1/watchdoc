@@ -16,6 +16,7 @@ export default function DatePickerComponent({setFinalDate}) {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <DatePicker
+        maxDate={moment()}
         value={selectedDate}
         onChange={(newValue) => handleDateChange(newValue)}
         renderInput={(props) => <TextField {...props} />}

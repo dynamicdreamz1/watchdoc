@@ -19,6 +19,7 @@ export default function DatePickerComponent({setFinalDate}) {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
        <DatePicker
+         maxDate={moment()}
         openTo="month"
           views={['year','month']}
           label="Month"

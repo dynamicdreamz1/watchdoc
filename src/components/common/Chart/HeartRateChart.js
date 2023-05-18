@@ -6,7 +6,7 @@ export default function HeartRateChart({HeartData}) {
 
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
-          return { x: new Date(t[0]), y: [t[1]?.minrate, t[1]?.maxrate]}
+          return { x: new Date(t[0]), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
     })
 		const options = {
 			theme: "light2",
