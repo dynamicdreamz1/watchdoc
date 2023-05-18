@@ -33,7 +33,7 @@ export default function ChartTitle({titleAction}) {
             ? `${HeartData.min_hr_bpm}-${HeartData.max_hr_bpm}`
             : ""
           : "";
-
+  
   return (
     <>
       <div className='chart-title-block d-flex justify-content-between'>
