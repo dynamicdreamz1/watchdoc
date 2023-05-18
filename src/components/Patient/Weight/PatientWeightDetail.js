@@ -4,6 +4,7 @@ import WeightChartNavTabs from './WeightChartNavTabs'
 import MainDetailsCardForWeight from '../../common/DetailCards/MainDetailsCardForWeight'
 import AlertTriggerCardWeight from '../../common/DetailCards/AlertTriggerCardWeight';
 import { defaultWeightAlertTrigger } from '../../../Utility/DefaultObject'
+import { ChartSkeleton } from '../../../Utility/Skeleton';
 
 export default function PatientWeightDetail({latestData}) {
   return (
@@ -21,7 +22,8 @@ export default function PatientWeightDetail({latestData}) {
 }
         </div>
         <div className='chart-wrapper'>
-            <WeightChartNavTabs/>
+            {/* <WeightChartNavTabs/> */}
+            <ChartSkeleton />
         </div>
     </div>
     </>
