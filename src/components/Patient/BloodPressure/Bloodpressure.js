@@ -23,13 +23,9 @@ export default function Bloodpressure({terraId,latestData}) {
   const [value, setValue] =useState(0);
   const handleChange = (event, newValue) => {
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
-
-        setTimeType(valueType)
+    setTimeType(valueType)
     setValue(newValue);
   };
-
-  
-
 
   const fetchData = async () => {
     setIsBloodPressureSkeleton(true)
@@ -57,14 +53,7 @@ const action={
   value,
   latestData,
   isBloodPressureSkeleton,
-
-
 }
-
-
-
-
-
 
   return (
     <div className='mt-22'>
