@@ -22,6 +22,9 @@ export default function Bloodpressure({terraId,latestData}) {
 
   const [value, setValue] =useState(0);
   const handleChange = (event, newValue) => {
+    const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
+
+        setTimeType(valueType)
     setValue(newValue);
   };
 
@@ -41,7 +44,6 @@ export default function Bloodpressure({terraId,latestData}) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
-
 
 
 const action={

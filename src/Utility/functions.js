@@ -118,3 +118,9 @@ export const  GetdayHourMin = (data) =>{
     return {lable : "months", data : months}
   }
 }
+
+
+export const convertDecimalToPercentage = (decimal, decimalPlaces = 0) => {
+  const percentage = decimal * 100;
+  return percentage.toFixed(decimalPlaces);
+};

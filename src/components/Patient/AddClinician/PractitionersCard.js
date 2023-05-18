@@ -60,12 +60,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
 
     useEffect(()=>{
-        const state=currentTableData?.some((element)=>element.status===1)   
-       
+        const state=clinicianData?.data?.data?.data?.some((element)=>element.status===1)   
+      
         if(state !==undefined){
             setNextBtn(state)
         }
-    })
+    },[currentTableData])
 
     const addClinician = (ID, ElStatus) => {
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
