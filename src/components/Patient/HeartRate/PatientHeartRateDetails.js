@@ -17,9 +17,12 @@ export default function PatientHeartRateDetails({terraId,latestData}) {
 
 const fetchData=async()=>{
   setIsHeartrateSkeleton(true)
- const result= await GetUserHeartRateData(timeType,terraId,FinalDate)
-  setHeartRateValue(result);
-  setIsHeartrateSkeleton(false)
+  if (timeType && FinalDate) {
+    const result= await GetUserHeartRateData(timeType,terraId,FinalDate)
+    setHeartRateValue(result);
+   setIsHeartrateSkeleton(false)
+  }
+  
 }
 
 useEffect(() => { 
@@ -27,7 +30,7 @@ useEffect(() => {
  fetchData()
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[terraId,timeType,FinalDate]);
+},[terraId,FinalDate]);
 
 
 const action={
