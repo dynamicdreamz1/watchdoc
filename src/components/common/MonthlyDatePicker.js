@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -15,6 +15,12 @@ export default function DatePickerComponent({setFinalDate}) {
     setFinalDate({ start: firstdate, end: lastdate })
   };
 
+  useEffect(()=>{
+    const firstdate = selectedDate.startOf('month').format('YYYY-MM-DD');
+    const lastdate = selectedDate.endOf('month').format('YYYY-MM-DD');
+    setFinalDate({ start: firstdate, end: lastdate })
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>

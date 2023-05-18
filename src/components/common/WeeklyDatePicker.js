@@ -4,7 +4,7 @@ import { TextField } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 
-export default function WeekPickerComponent() {
+export default function WeekPickerComponent({setFinalDate}) {
   const [startDate, setStartDate] = React.useState(null);
   const [endDate, setEndDate] = React.useState(null);
 
@@ -22,6 +22,20 @@ export default function WeekPickerComponent() {
     setEndDate(date);
     setStartDate(dayjs(date).subtract(6, 'day').toDate()); // Automatically set the start date as 6 days before the end date
   };
+
+
+
+
+  // useEffect(()=>{
+  //   if(setFinalDate !== undefined){
+  //    setFinalDate({ start: selectedDate, end: selectedDate })
+  //   }
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
+  //  },[])
+
+
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
