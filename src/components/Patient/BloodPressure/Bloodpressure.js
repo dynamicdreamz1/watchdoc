@@ -6,7 +6,7 @@ import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
 import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
 import { defaultBloodPressureAlertTrigger } from '../../../Utility/DefaultObject'
-import { ChartSkeleton } from '../../../Utility/Skeleton'
+import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton'
 
 
 
@@ -75,7 +75,7 @@ const action={
         </div>
         <div className='chart-wrapper'>
           {/* <BloodPresureChartNavTabs terraId={terraId} action={action}/> */}
-          <ChartSkeleton />
+          <DefaultChartSkeleton />
         </div>
       </div>
     </div>
