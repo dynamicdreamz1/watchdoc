@@ -16,6 +16,7 @@
     "dayjs": "^1.11.7",
     "encrypt-storage": "^2.12.14",
     "flag-icons": "^6.6.6",
+    "formik": "^2.2.9",
     "formik-yup": "^0.0.5",
     "i18next": "^22.4.9",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -32,7 +33,8 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.10",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
