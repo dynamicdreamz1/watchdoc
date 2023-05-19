@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react'
 import ChartTitle from '../../common/Chart/ChartTitle';
 import BloodOxygenChart from '../../common/Chart/BloodOxygenChart';
-import { ChartSkeleton } from '../../../Utility/Skeleton';
+import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,10 +41,11 @@ function a11yProps(index) {
 
 export default function BloodOxygenChartNavTabs({titleAction}) {
   
-  const{isBloodOxygenSkeleton,bloodOxygenData, setTimeType,setFinalDate}=titleAction
+  const{isBloodOxygenSkeleton,bloodOxygenData, setTimeType,setFinalDate,setBloodOxygenData}=titleAction
   const [value, setValue] = useState(0);
   const HeartData=bloodOxygenData?.data?.summary
   const handleChange = (event, newValue) => {
+    setBloodOxygenData()
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
     setTimeType(valueType)
     setValue(newValue);
@@ -72,17 +73,19 @@ export default function BloodOxygenChartNavTabs({titleAction}) {
             <Tab label="Weekly" {...a11yProps(1)} />
             <Tab label="Monthly" {...a11yProps(2)} />
           </Tabs>
-          <ChartTitle titleAction={chartTitleAction} />
+          <ChartTitle titleAction={chartTitleAction} setData={setBloodOxygenData} />
         </Box>
+
+        
         <TabPanel value={value} index={0}>
-          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodOxygenData?.data?.details?.length===0 || isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
 
         </TabPanel>
         {/* <TabPanel value={value} index={3}>

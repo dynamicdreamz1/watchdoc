@@ -7,9 +7,9 @@ import DatePickerComponent from '../DailyDatePicker';
 import WeekPickerComponent from '../WeeklyDatePicker';
 
 
-export default function ChartTitle({titleAction}) {
+export default function ChartTitle({titleAction,setData}) {
 
-  const {value,HeartData,setFinalDate,dataKey,setHeartRateValue}=titleAction || {}
+  const {value,HeartData,setFinalDate,dataKey}=titleAction || {}
   // const [state, setState] = useState({ start: "", end: "", label: "" });
   // const { start, end } = state;
   // const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
@@ -17,7 +17,9 @@ export default function ChartTitle({titleAction}) {
   // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   // const defaultEndDate = moment().format('YYYY-MM-DD');
 
-  
+  const dataClear =()=>{
+    setData()
+  }
 
   const finalData =
     dataKey === "bloodOxygen"
@@ -48,9 +50,9 @@ export default function ChartTitle({titleAction}) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> :
-         value === 1 ? <WeekPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} />:
-         value === 2 ? <MonthPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> : 
+        {value===0 ? <DatePickerComponent dataClear={dataClear} setFinalDate={setFinalDate} /> :
+         value === 1 ? <WeekPickerComponent dataClear={dataClear} setFinalDate={setFinalDate} />:
+         value === 2 ? <MonthPickerComponent dataClear={dataClear} setFinalDate={setFinalDate} /> : 
          <DatePickerComponent setFinalDate={setFinalDate} />}
         
         {/* <DateRangePicker

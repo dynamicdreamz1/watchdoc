@@ -5,7 +5,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 
 
-export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) {
+export default function WeekPickerComponent({dataClear, setFinalDate }) {
   const [date, setDate] = useState({
     startWeekDate: moment().startOf('week').day(0),
     endWeekDate: moment().endOf('week').day(6)
@@ -13,7 +13,7 @@ export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) 
   const [focus, setFocus] = useState(null);
 
   const handleDatesChange = ({ startDate }) => {
-    setHeartRateValue()
+    dataClear()
     const selectedDate = moment(startDate);
     const startOfWeek = selectedDate.clone().add(1, 'week').startOf('week').day(0);
     const endOfWeek = selectedDate.clone().add(1, 'week').startOf('week').day(6);

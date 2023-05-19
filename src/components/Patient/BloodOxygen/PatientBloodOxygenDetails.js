@@ -6,6 +6,7 @@ import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsC
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
 import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
+import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
@@ -19,9 +20,11 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
 
   const fetchData = async () => {
     setIsBloodOxygenSkeleton(true)
+    if (timeType && FinalDate) {
     const result = await GetUserBloodOxyenData(timeType, terraId, FinalDate)
     setBloodOxygenData(result);
     setIsBloodOxygenSkeleton(false)
+    }
   }
 
   useEffect(() => {
@@ -29,16 +32,17 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
       fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [terraId, timeType, FinalDate]);
+  }, [terraId, FinalDate]);
 
-  // const titleAction={
-  //   isBloodOxygenSkeleton,
-  //   bloodOxygenData,
-  //   setTimeType,
-  //   Date,
-  //   setFinalDate
+  const titleAction={
+    isBloodOxygenSkeleton,
+    bloodOxygenData,
+    setTimeType,
+    Date,
+    setFinalDate,
+    setBloodOxygenData
 
-  // }
+  }
 
 
   return (
@@ -57,8 +61,8 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
           }
         </div>
         <div className='chart-wrapper'>
-          {/* <BloodOxygenChartNavTabs  titleAction={titleAction} /> */}
-          <DefaultChartSkeleton />
+          <BloodOxygenChartNavTabs  titleAction={titleAction} />
+          {/* <DefaultChartSkeleton /> */}
         </div>
       </div>
     </>

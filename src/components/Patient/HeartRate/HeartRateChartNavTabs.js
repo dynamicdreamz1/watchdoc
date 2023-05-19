@@ -19,7 +19,6 @@ export default function HeartRateChartNavTabs({ action }) {
     };
 
     const titleAction = {
-        setHeartRateValue,
         value,
         HeartData,
         setFinalDate,
@@ -39,7 +38,7 @@ export default function HeartRateChartNavTabs({ action }) {
                         <Tab label="Monthly" {...a11yProps(2)} />
                     </Tabs>
 
-                    <ChartTitle setHeartRateValue titleAction={titleAction} />
+                    <ChartTitle titleAction={titleAction} setData={setHeartRateValue} />
                     {/* : <ChartResultRange />} */}
 
                 </Box>
