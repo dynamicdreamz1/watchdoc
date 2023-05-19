@@ -20,7 +20,6 @@ export default function ChartTitle({titleAction,setData}) {
   const dataClear =()=>{
     setData()
   }
-
   const finalData =
     dataKey === "bloodOxygen"
       ? HeartData?.avg_saturation_percentage
@@ -43,10 +42,9 @@ export default function ChartTitle({titleAction,setData}) {
           <span className='range-text'>{finalData ?'Range':''}</span>
           <div className='range-number'>
             <span className="digit">
-              {/* {`${HeartData?.min_hr_bpm===(null || undefined)?"35":HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm===(null||undefined)?"102":HeartData?.max_hr_bpm}`} */}
               {finalData}
             </span>
-            <span className="type">{finalData ?'bpm':''}</span>
+            <span className="type">{finalData &&( dataKey === "heartrate" ?'bpm': dataKey === "bloodOxygen"?'%': dataKey === "bloodPressure"?"":"")}</span>
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
