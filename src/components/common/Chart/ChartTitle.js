@@ -9,7 +9,7 @@ import WeekPickerComponent from '../WeeklyDatePicker';
 
 export default function ChartTitle({titleAction}) {
 
-  const {value,HeartData,setFinalDate,dataKey}=titleAction || {}
+  const {value,HeartData,setFinalDate,dataKey,setHeartRateValue}=titleAction || {}
   // const [state, setState] = useState({ start: "", end: "", label: "" });
   // const { start, end } = state;
   // const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
@@ -38,17 +38,17 @@ export default function ChartTitle({titleAction}) {
     <>
       <div className='chart-title-block d-flex justify-content-between'>
         <div className='range'>
-          <span className='range-text'>Range</span>
+          <span className='range-text'>{finalData ?'Range':''}</span>
           <div className='range-number'>
             <span className="digit">
               {/* {`${HeartData?.min_hr_bpm===(null || undefined)?"35":HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm===(null||undefined)?"102":HeartData?.max_hr_bpm}`} */}
               {finalData}
             </span>
-            <span className="type">{finalData===""?'':'bpm'}</span>
+            <span className="type">{finalData ?'bpm':''}</span>
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent setFinalDate={setFinalDate} />:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
+        {value===0 ? <DatePickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} />:value === 2 ? <MonthPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
         
         {/* <DateRangePicker
           initialSettings={{

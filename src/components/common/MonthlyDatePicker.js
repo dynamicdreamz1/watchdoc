@@ -5,10 +5,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
-export default function DatePickerComponent({setFinalDate}) {
+export default function DatePickerComponent({setFinalDate,setHeartRateValue}) {
   const [selectedDate, setSelectedDate] = useState(moment());
 
   const handleDateChange = (date) => {
+    setHeartRateValue()
     setSelectedDate(date)
     const firstdate = moment(date).startOf('month').format('YYYY-MM-DD');
     const lastdate=moment(date).endOf('month').format("YYYY-MM-DD"); 

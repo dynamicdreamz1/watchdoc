@@ -37,6 +37,7 @@ const action={
   isHeartrateSkeleton,
   setTimeType,
   HeartRateAvg:heartRateValue,
+  setHeartRateValue,
   setFinalDate,
 
 }
