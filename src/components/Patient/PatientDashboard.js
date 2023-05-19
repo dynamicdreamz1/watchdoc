@@ -15,9 +15,7 @@ export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = terraId?.data?.map(item => item.terra_id);
-
-
-
+  
   useEffect(() => {
     async function fetchData() {
         await getLatestMeasurement().then(response => response.data).then(response => {
@@ -28,25 +26,16 @@ export default function PatientDashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
-
-
-
   useEffect(() => {
     async function fetchData() {
-  
         const result=await getProviderTerraId()
-        setTerraId(result)
-         
+        setTerraId(result)         
    }
   
    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-
- 
-
-    
   return (
         
         <UserBodyContextProvider >
