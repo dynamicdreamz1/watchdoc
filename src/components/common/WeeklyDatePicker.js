@@ -6,15 +6,11 @@ import moment from 'moment';
 
 
 export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) {
-
-
-
   const [date, setDate] = useState({
     startWeekDate: moment().startOf('week').day(0),
     endWeekDate: moment().endOf('week').day(6)
   });
   const [focus, setFocus] = useState(null);
-
 
   const handleDatesChange = ({ startDate }) => {
     setHeartRateValue()
@@ -39,18 +35,11 @@ export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) 
       startWeekDate: startOfWeek,
       endWeekDate: endOfWeek
     });
-
-
-
   };
-
-
 
   const handleFocusChange = (focusedInput) => {
     setFocus(focusedInput);
   };
-
-
 
   useEffect(()=>{ 
     const firstdate = moment(date?.startWeekDate, "ddd MMM DD YYYY HH:mm:ss [GMT] Z").format("YYYY-MM-DD");
@@ -59,13 +48,7 @@ export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) 
 
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
-
-
-
-
   return (
-
 
     <div>
       <DateRangePicker
