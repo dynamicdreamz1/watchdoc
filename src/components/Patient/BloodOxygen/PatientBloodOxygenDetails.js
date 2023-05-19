@@ -5,7 +5,6 @@ import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
 import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
-import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {

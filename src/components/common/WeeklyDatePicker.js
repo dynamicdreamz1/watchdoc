@@ -52,6 +52,8 @@ export default function WeekPickerComponent({dataClear, setFinalDate }) {
 
     <div>
       <DateRangePicker
+       startDateId="startDateId"
+       endDateId="endDateId"
         startDate={date.startWeekDate}
         endDate={date.endWeekDate}
         focusedInput={focus}
