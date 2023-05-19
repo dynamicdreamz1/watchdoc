@@ -14,11 +14,11 @@ import { getLatestMeasurement, getProviderTerraId } from '../../services/Patient
 export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
-  const finalId = terraId?.data?.map(item => item.terra_id);
+  const finalId = terraId?.data?.map(item => item?.terra_id);
   
   useEffect(() => {
     async function fetchData() {
-        await getLatestMeasurement().then(response => response.data).then(response => {
+        await getLatestMeasurement().then(response => response?.data).then(response => {
             setlatestData(response);
         })
     }
