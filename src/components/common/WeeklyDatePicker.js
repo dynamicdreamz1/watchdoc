@@ -1,91 +1,71 @@
-import  React,{useState} from 'react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { TextField } from '@mui/material';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
+import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment';
 
-export default function WeekPickerComponent({setFinalDate}) {
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
 
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-    const newEndDate = dayjs(date).add(6, 'day').toDate(); // Calculate new end date based on selected start date
-    if (dayjs(newEndDate).month() === dayjs(date).month()) {
-      setEndDate(newEndDate);
-    } else {
-      setEndDate(dayjs(date).endOf('month').toDate()); // Set end date to the last day of the month if it's in a different month
-    }
-  };
-
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-    setStartDate(dayjs(date).subtract(6, 'day').toDate()); // Automatically set the start date as 6 days before the end date
-  };
+export default function WeekPickerComponent({ setFinalDate }) {
 
 
 
-  const [date, setDate] = useState({});
+  const [date, setDate] = useState({
+    startWeekDate: moment().startOf('week').day(0),
+    endWeekDate: moment().endOf('week').day(6)
+  });
   const [focus, setFocus] = useState(null);
 
-  const handleDatesChange = (dates) => {
-    setDate(dates);
+
+  const handleDatesChange = ({ startDate }) => {
+    const selectedDate = moment(startDate);
+
+    const startOfWeek = selectedDate.clone().subtract(1, 'week').startOf('week').day(0);
+    const endOfWeek = selectedDate.clone().subtract(1, 'week').endOf('week').day(6);
+
+    setDate({
+      startWeekDate: startOfWeek,
+      endWeekDate: endOfWeek
+    });
+
+    if (startOfWeek && endOfWeek) {
+      setFocus(null);
+    } else if (startOfWeek) {
+      setFocus('endDate');
+    } else {
+      setFocus('startDate');
+    }
+
+
+
   };
+
+
 
   const handleFocusChange = (focusedInput) => {
     setFocus(focusedInput);
   };
- 
 
 
-  // useEffect(()=>{
-  //   if(setFinalDate !== undefined){
-  //    setFinalDate({ start: selectedDate, end: selectedDate })
-  //   }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
- 
-  //  },[])
+  console.log("11111-date", date)
+
 
 
 
 
   return (
-    // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    //   <DatePicker
-    //     label="Start Date"
-    //     value={startDate}
-    //     onChange={handleStartDateChange}
-    //     renderInput={(params) => <TextField {...params} />}
-    //   />
-    //   <DatePicker
-    //     label="End Date"
-    //     value={endDate}
-    //     onChange={handleEndDateChange}
-    //     renderInput={(params) => (
-    //       <TextField
-    //         {...params}
-    //         readOnly={!startDate} // Disable the input field when no start date is selected
-    //       />
-    //     )}
-    //     minDate={startDate} // Set minimum date as the selected start date
-    //     maxDate={dayjs(startDate).add(6, 'day').toDate()} // Set maximum date as 6 days ahead of the selected start date
-    //     disabled // Disable the end date field if no start date is selected
-    //   />
-    // </LocalizationProvider>
 
 
     <div>
       <DateRangePicker
-        startDate={date.startDate}
-        endDate={date.endDate}
+        startDate={date.startWeekDate}
+        endDate={date.endWeekDate}
         focusedInput={focus}
         onDatesChange={handleDatesChange}
         onFocusChange={handleFocusChange}
         startDateOffset={(day) => day.subtract(3, 'days')}
         endDateOffset={(day) => day.add(3, 'days')}
+        numberOfMonths={1}
+        isOutsideRange={() => false}
       />
     </div>
   );
