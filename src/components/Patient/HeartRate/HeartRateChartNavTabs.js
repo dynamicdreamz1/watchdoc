@@ -6,21 +6,20 @@ import { a11yProps} from '../../../Utility/functions';
 import { ChartSkeleton } from '../../../Utility/Skeleton';
 import HeartRateChart from '../../common/Chart/HeartRateChart';
 
-
 export default function HeartRateChartNavTabs({action}) {
-    const {isHeartrateSkeleton,setTimeType,HeartRateAvg,setFinalDate}=action;
+    const {isHeartrateSkeleton,setTimeType,HeartRateAvg,setFinalDate,setHeartRateValue}=action;
     const [value, setValue] = React.useState(0);
     const HeartData=HeartRateAvg?.data?.summary;
+
     const handleChange = (event, newValue) => {
         const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
-
+        setHeartRateValue()
         setTimeType(valueType)
         setValue(newValue);
     };
-   
-
-    
+       
     const titleAction={
+        setHeartRateValue,
         value,
         HeartData,
         setFinalDate,
@@ -39,7 +38,7 @@ export default function HeartRateChartNavTabs({action}) {
                         <Tab label="Monthly" {...a11yProps(2)} />
                     </Tabs>
                     
-                    <ChartTitle titleAction={titleAction} />
+                    <ChartTitle setHeartRateValue titleAction={titleAction} />
                     {/* : <ChartResultRange />} */}
 
                 </Box>

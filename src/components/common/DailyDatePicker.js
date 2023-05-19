@@ -6,9 +6,10 @@ import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
 export default function DatePickerComponent(props) {
-  const {setFinalDate}=props
+  const {setFinalDate,setHeartRateValue}=props
   const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
   const handleDateChange = (date) => {
+    setHeartRateValue()
     setSelectedDate(date)
     setFinalDate({ start: date.format("YYYY-MM-DD") ,end: date.format("YYYY-MM-DD")})
   };

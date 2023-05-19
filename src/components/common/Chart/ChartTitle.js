@@ -9,7 +9,7 @@ import WeekPickerComponent from '../WeeklyDatePicker';
 
 export default function ChartTitle({titleAction}) {
 
-  const {value,HeartData,setFinalDate,dataKey}=titleAction || {}
+  const {value,HeartData,setFinalDate,dataKey,setHeartRateValue}=titleAction || {}
   // const [state, setState] = useState({ start: "", end: "", label: "" });
   // const { start, end } = state;
   // const labeldaterange = start && end ? start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD") : "";
@@ -48,7 +48,7 @@ export default function ChartTitle({titleAction}) {
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
-        {value===0 ? <DatePickerComponent setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent setFinalDate={setFinalDate} />:value === 2 ? <MonthPickerComponent setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
+        {value===0 ? <DatePickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> : value === 1 ? <WeekPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} />:value === 2 ? <MonthPickerComponent setHeartRateValue={setHeartRateValue} setFinalDate={setFinalDate} /> : <DatePickerComponent setFinalDate={setFinalDate} />}
         
         {/* <DateRangePicker
           initialSettings={{
