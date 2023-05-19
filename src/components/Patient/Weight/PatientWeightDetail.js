@@ -3,7 +3,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import MainDetailsCardForWeight from '../../common/DetailCards/MainDetailsCardForWeight'
 import AlertTriggerCardWeight from '../../common/DetailCards/AlertTriggerCardWeight';
 import { defaultWeightAlertTrigger } from '../../../Utility/DefaultObject'
-import { ChartSkeleton } from '../../../Utility/Skeleton';
+import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton';
 
 export default function PatientWeightDetail({latestData}) {
   return (
@@ -22,7 +22,7 @@ export default function PatientWeightDetail({latestData}) {
         </div>
         <div className='chart-wrapper'>
             {/* <WeightChartNavTabs/> */}
-            <ChartSkeleton />
+            <DefaultChartSkeleton />
         </div>
     </div>
     </>
