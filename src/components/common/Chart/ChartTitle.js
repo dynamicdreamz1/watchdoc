@@ -38,13 +38,13 @@ export default function ChartTitle({titleAction}) {
     <>
       <div className='chart-title-block d-flex justify-content-between'>
         <div className='range'>
-          <span className='range-text'>Range</span>
+          <span className='range-text'>{finalData ?'Range':''}</span>
           <div className='range-number'>
             <span className="digit">
               {/* {`${HeartData?.min_hr_bpm===(null || undefined)?"35":HeartData?.min_hr_bpm}-${HeartData?.max_hr_bpm===(null||undefined)?"102":HeartData?.max_hr_bpm}`} */}
               {finalData}
             </span>
-            <span className="type">{finalData===""?'':'bpm'}</span>
+            <span className="type">{finalData ?'bpm':''}</span>
           </div>
         </div>
         {/* <DatePickerInput ChangeDate={ChangeDate} Date={Date}  /> */}
