@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 
 
-export default function WeekPickerComponent({ setFinalDate }) {
+export default function WeekPickerComponent({setHeartRateValue, setFinalDate }) {
 
 
 
@@ -17,15 +17,10 @@ export default function WeekPickerComponent({ setFinalDate }) {
 
 
   const handleDatesChange = ({ startDate }) => {
+    setHeartRateValue()
     const selectedDate = moment(startDate);
-
-    const startOfWeek = selectedDate.clone().subtract(1, 'week').startOf('week').day(0);
-    const endOfWeek = selectedDate.clone().subtract(1, 'week').endOf('week').day(6);
-
-    setDate({
-      startWeekDate: startOfWeek,
-      endWeekDate: endOfWeek
-    });
+    const startOfWeek = selectedDate.clone().add(1, 'week').startOf('week').day(0);
+    const endOfWeek = selectedDate.clone().add(1, 'week').startOf('week').day(6);
 
     if (startOfWeek && endOfWeek) {
       setFocus(null);
@@ -34,6 +29,16 @@ export default function WeekPickerComponent({ setFinalDate }) {
     } else {
       setFocus('startDate');
     }
+
+    const firstdate = moment(startOfWeek, "ddd MMM DD YYYY HH:mm:ss [GMT] Z").format("YYYY-MM-DD");
+    const lastdate = moment(endOfWeek, "ddd MMM DD YYYY HH:mm:ss [GMT] Z").format("YYYY-MM-DD");
+    
+    setFinalDate({ start: firstdate, end: lastdate })
+
+    setDate({
+      startWeekDate: startOfWeek,
+      endWeekDate: endOfWeek
+    });
 
 
 
@@ -46,7 +51,14 @@ export default function WeekPickerComponent({ setFinalDate }) {
   };
 
 
-  console.log("11111-date", date)
+
+  useEffect(()=>{ 
+    const firstdate = moment(date?.startWeekDate, "ddd MMM DD YYYY HH:mm:ss [GMT] Z").format("YYYY-MM-DD");
+    const lastdate = moment(date?.endWeekDate, "ddd MMM DD YYYY HH:mm:ss [GMT] Z").format("YYYY-MM-DD");    
+    setFinalDate({ start: firstdate, end: lastdate })
+
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
 
 
