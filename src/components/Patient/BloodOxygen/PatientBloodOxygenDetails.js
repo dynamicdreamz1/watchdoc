@@ -5,7 +5,7 @@ import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
 import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
-import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton'
+import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');

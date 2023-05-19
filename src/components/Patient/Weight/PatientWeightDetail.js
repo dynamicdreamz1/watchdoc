@@ -3,7 +3,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import MainDetailsCardForWeight from '../../common/DetailCards/MainDetailsCardForWeight'
 import AlertTriggerCardWeight from '../../common/DetailCards/AlertTriggerCardWeight';
 import { defaultWeightAlertTrigger } from '../../../Utility/DefaultObject'
-import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton';
+import {  DefaultChartSkeleton } from '../../../Utility/Skeleton';
 
 export default function PatientWeightDetail({latestData}) {
   return (

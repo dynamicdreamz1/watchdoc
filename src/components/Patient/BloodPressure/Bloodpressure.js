@@ -6,7 +6,7 @@ import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
 import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
 import { defaultBloodPressureAlertTrigger } from '../../../Utility/DefaultObject'
-import { ChartSkeleton, DefaultChartSkeleton } from '../../../Utility/Skeleton'
+import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
 
 
 
