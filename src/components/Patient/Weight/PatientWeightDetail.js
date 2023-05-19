@@ -1,6 +1,5 @@
 import React from 'react'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import WeightChartNavTabs from './WeightChartNavTabs'
 import MainDetailsCardForWeight from '../../common/DetailCards/MainDetailsCardForWeight'
 import AlertTriggerCardWeight from '../../common/DetailCards/AlertTriggerCardWeight';
 import { defaultWeightAlertTrigger } from '../../../Utility/DefaultObject'

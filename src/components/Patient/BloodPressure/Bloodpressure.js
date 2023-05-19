@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useTranslation } from 'react-i18next'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import BloodPresureChartNavTabs from './BloodPresureChartNavTabs'
 import moment from 'moment'
 import { GetUserBloodPressureData } from '../../../services/HelthData'
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GetUserBloodOxyenData } from '../../../services/HelthData'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs'
 import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
@@ -32,14 +31,14 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, timeType, FinalDate]);
 
-  const titleAction={
-    isBloodOxygenSkeleton,
-    bloodOxygenData,
-    setTimeType,
-    Date,
-    setFinalDate
+  // const titleAction={
+  //   isBloodOxygenSkeleton,
+  //   bloodOxygenData,
+  //   setTimeType,
+  //   Date,
+  //   setFinalDate
 
-  }
+  // }
 
 
   return (
