@@ -1,6 +1,4 @@
 import React from 'react'
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
 import { watchNumerFormeting } from '../../../Utility/functions';
 import MonthPickerComponent from '../../common/MonthlyDatePicker';
 import DatePickerComponent from '../DailyDatePicker';
