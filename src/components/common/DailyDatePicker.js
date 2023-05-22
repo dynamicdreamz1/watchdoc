@@ -9,6 +9,11 @@ export default function DatePickerComponent({setFinalDate,dataClear}) {
   // const {setFinalDate,dataClear}=props
   const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
   const handleDateChange = (date) => {
+    if (date === null) {
+    
+      setSelectedDate(null); // Update state with null value
+      return;
+    }
     dataClear()
     setSelectedDate(date)
     setFinalDate({ start: date.format("YYYY-MM-DD") ,end: date.format("YYYY-MM-DD")})
