@@ -46,8 +46,8 @@ export default function PatientDashboard() {
           <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
           <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>
           <Weight latestData={latestData}/>
-          <Sleep latestData={latestData}/>
-          <Step latestData={latestData}/>
+          {/* <Sleep latestData={latestData}/>
+          <Step latestData={latestData}/> */}
           <BloodGlucose/>
           <Temperature/>
         </UserBodyContextProvider>
