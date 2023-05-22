@@ -4,7 +4,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import moment from 'moment'
 import MainDetailsCardForSleep from '../../common/DetailCards/MainDetailsCardForSleep';
 // import AlertTriggerCardSleep from '../../common/DetailCards/AlertTriggerCardSleep'
-import { defaultSleepAlertTrigger } from '../../../Utility/DefaultObject'
+// import { defaultSleepAlertTrigger } from '../../../Utility/DefaultObject'
 import { DefaultChartSkeleton } from '../../../Utility/Skeleton';
 // import SleepChartNavTabs from './SleepChartNavTabs';
 
@@ -32,14 +32,14 @@ export default function PatientSleepDetails({ terraId, latestData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, FinalDate]);
 
-  const titleAction={
-    isSleepSkeleton,
-    SleepData,
-    setTimeType,
-    setFinalDate,
-    setSleepData
+  // const titleAction={
+  //   isSleepSkeleton,
+  //   SleepData,
+  //   setTimeType,
+  //   setFinalDate,
+  //   setSleepData
 
-  }
+  // }
 
 
   return (
