@@ -1,15 +1,17 @@
 
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { RegisterMobNumber } from '../services/UserService';
 import { VerifyMobileNumber } from '../services/UserService';
 
 const VerifyMobile = () => {
+    const location = useLocation();
 
+    const {id } = location.state;
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const [code, setCode] = useState('')
+    const [code] = useState(id)
     const [error, setError] = useState('')
     const { mobileN } = useParams()
     const [show, setShow] = useState(true)
@@ -85,7 +87,7 @@ const VerifyMobile = () => {
                         <form>
                             <div className='input-block'>
                                 <label htmlFor="exampleInputCode" >{t('verifyMobile.label')}</label>
-                                <input type="password" placeholder={t('verifyMobile.placeholder')} onChange={(e) => setCode(e.target.value)} id="exampleInputCode" />
+                                <input type="number" placeholder={t('verifyMobile.placeholder')} value={code} id="exampleInputCode" />
                             </div>
 
                             <button disabled={show} className='codeResend' onClick={(e) => resendCode(e)}>{t('verifyMobile.b1')}</button>

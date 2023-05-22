@@ -32,7 +32,12 @@ export default function ContactDetails() {
                 .then((response) => {
                     let encodedMobile= Base64.encode(response.data.user_data.contact_number)
                     console.log(response)
-                    navigate(`/verifymobile/${encodedMobile}`)
+                    // navigate(`/verifymobile/${encodedMobile}`)
+                    navigate(`/verifymobile/${encodedMobile}`, {
+                        state: {
+                            id: response?.data?.verification_code,
+                        },
+                    });
                     
                 })
 
