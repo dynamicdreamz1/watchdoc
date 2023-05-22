@@ -7,9 +7,10 @@ import Heartrates from './HeartRate/Heartrates'
 import BloodOxygen from './BloodOxygen/BloodOxygen'
 import BloodGlucose from './BloodGlucose/BloodGlucose'
 import Temperature from './Temperature/Temperature'
+import Sleep from "./Sleep/Sleep"
 import Weight from './Weight/Weight'
 import { getLatestMeasurement, getProviderTerraId } from '../../services/PatientsService'
-
+import Step  from './Step/Step'
 
 export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
@@ -45,6 +46,8 @@ export default function PatientDashboard() {
           <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
           <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>
           <Weight latestData={latestData}/>
+          <Sleep latestData={latestData}/>
+          <Step latestData={latestData}/>
           <BloodGlucose/>
           <Temperature/>
         </UserBodyContextProvider>
