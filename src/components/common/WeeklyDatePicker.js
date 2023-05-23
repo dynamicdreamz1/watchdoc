@@ -33,7 +33,7 @@ const CustomPickersDay = styled(PickersDay, {
 }));
 
 function Day(props) {
-  const { day, selectedDay, ...other } = props;
+  const { day,setFinalDate, selectedDay, ...other } = props;
 
   if (selectedDay == null) {
     return <PickersDay day={day} {...other} />;
@@ -45,7 +45,6 @@ function Day(props) {
   const dayIsBetween = day.isBetween(start, end, null, '[]');
   const isFirstDay = day.isSame(start, 'day');
   const isLastDay = day.isSame(end, 'day');
-
 
   return (
     <CustomPickersDay
@@ -59,24 +58,23 @@ function Day(props) {
   );
 }
 
-export default function WeeklyDatePicker({ dataClear, setFinalDate }) {
-  const [value, setValue] = React.useState(dayjs('2022-04-17'));
+export default function WeeklyDatePicker({dataClear,setFinalDate}) {
+  const [value, setValue] = React.useState(dayjs('2023-04-17'));
 
   const handleDateChange = (date) => {
+    const firstdate = date?.startOf('week').format('YYYY-MM-DD');
+    const lastdate = date?.endOf('week').format('YYYY-MM-DD');
     dataClear()
     setValue(date)
-
-    const start = dayjs(date).startOf('week');
-    const end = dayjs(date).endOf('week');
-
-    const firstDate = start.format('DD-MM-YYYY');
-    const lastDate = end.format('DD-MM-YYYY');
-
-    setFinalDate({ start: firstDate, end: lastDate })
-
-
+    setFinalDate({ start: firstdate, end: lastdate })
   };
 
+  React.useEffect(()=>{
+    const firstdate = value?.startOf('week').format('YYYY-MM-DD');
+    const lastdate = value?.endOf('week').format('YYYY-MM-DD');
+    setFinalDate({ start: firstdate, end: lastdate })
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -88,6 +86,7 @@ export default function WeeklyDatePicker({ dataClear, setFinalDate }) {
         slotProps={{
           day: {
             selectedDay: value,
+            setFinalDate:setFinalDate
           },
         }}
       />
