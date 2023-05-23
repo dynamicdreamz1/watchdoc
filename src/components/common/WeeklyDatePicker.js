@@ -79,7 +79,7 @@ export default function WeeklyDatePicker({dataClear,setFinalDate}) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        maxDate={moment()}
+        // maxDate={moment()}
         value={value}
         onChange={(newValue) => handleDateChange(newValue)}
         slots={{ day: Day }}
