@@ -46,10 +46,6 @@ function Day(props) {
   const isFirstDay = day.isSame(start, 'day');
   const isLastDay = day.isSame(end, 'day');
 
-  const firstdate = moment(start).format('YYYY-MM-DD');
-  const lastdate=moment(end).format("YYYY-MM-DD"); 
-
-  // setFinalDate({ start: firstdate, end: lastdate })
 
   return (
     <CustomPickersDay
@@ -63,12 +59,22 @@ function Day(props) {
   );
 }
 
-export default function WeeklyDatePicker({dataClear}) {
+export default function WeeklyDatePicker({ dataClear, setFinalDate }) {
   const [value, setValue] = React.useState(dayjs('2022-04-17'));
 
   const handleDateChange = (date) => {
     dataClear()
     setValue(date)
+
+    const start = dayjs(date).startOf('week');
+    const end = dayjs(date).endOf('week');
+
+    const firstDate = start.format('DD-MM-YYYY');
+    const lastDate = end.format('DD-MM-YYYY');
+
+    setFinalDate({ start: firstDate, end: lastDate })
+
+
   };
 
 
