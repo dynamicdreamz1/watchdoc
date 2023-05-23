@@ -51,7 +51,6 @@ function Day(props) {
 
   // setFinalDate({ start: firstdate, end: lastdate })
 
-
   return (
     <CustomPickersDay
       {...other}
@@ -76,6 +75,7 @@ export default function WeeklyDatePicker({dataClear}) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
+        maxDate={moment()}
         value={value}
         onChange={(newValue) => handleDateChange(newValue)}
         slots={{ day: Day }}
