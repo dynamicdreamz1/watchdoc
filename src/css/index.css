@@ -314,7 +314,7 @@ form .input-block .error {
   color: red;
   margin-top: 5px;
   display: block;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 /* Table Pagination */
 .table-pagination {

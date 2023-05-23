@@ -46,9 +46,9 @@
 }
 .signin-box form .input-block .show-hide {
     position: absolute;
-    top: 50%;
+    top: 15%;
     right: 12px;
-    transform: translateY(-50%);
+    /* transform: translateY(-50%); */
     display: flex;
 }
 .signin-box form .input-block {
