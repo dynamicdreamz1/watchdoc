@@ -5,6 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
+
 export default function DatePickerComponent({setFinalDate,dataClear}) {
   const [selectedDate, setSelectedDate] = useState(moment());
 
@@ -17,8 +18,8 @@ export default function DatePickerComponent({setFinalDate,dataClear}) {
   };
 
   useEffect(()=>{
-    const firstdate = selectedDate.startOf('month').format('YYYY-MM-DD');
-    const lastdate = selectedDate.endOf('month').format('YYYY-MM-DD');
+    const firstdate = selectedDate?.startOf('month').format('YYYY-MM-DD');
+    const lastdate = selectedDate?.endOf('month').format('YYYY-MM-DD');
     setFinalDate({ start: firstdate, end: lastdate })
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
@@ -27,7 +28,7 @@ export default function DatePickerComponent({setFinalDate,dataClear}) {
     <LocalizationProvider dateAdapter={AdapterMoment}>
        <DatePicker
          maxDate={moment()}
-        openTo="month"
+          openTo="month"
           views={['year','month']}
           label="Month"
           value={selectedDate}

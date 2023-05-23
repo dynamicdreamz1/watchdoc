@@ -6,11 +6,10 @@ import TextField from '@mui/material/TextField';
 import moment from 'moment';
 
 export default function DatePickerComponent({setFinalDate,dataClear}) {
-  // const {setFinalDate,dataClear}=props
-  const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
+  const [selectedDate, setSelectedDate] = useState();
+  
   const handleDateChange = (date) => {
     if (date === null) {
-    
       setSelectedDate(null); // Update state with null value
       return;
     }
@@ -21,7 +20,7 @@ export default function DatePickerComponent({setFinalDate,dataClear}) {
 
   useEffect(()=>{
    if(setFinalDate !== undefined){
-    setFinalDate({ start: selectedDate, end: selectedDate })
+    setFinalDate({ start: moment().format("YYYY-MM-DD"), end: moment().format("YYYY-MM-DD") })
    }
      // eslint-disable-next-line react-hooks/exhaustive-deps
 
