@@ -22,8 +22,6 @@ export default function DatePickerComponent({setFinalDate,dataClear}) {
    if(setFinalDate !== undefined){
     setFinalDate({ start: moment().format("YYYY-MM-DD"), end: moment().format("YYYY-MM-DD") })
    }
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-
   },[])
 
   return (
