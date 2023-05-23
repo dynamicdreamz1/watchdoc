@@ -6,7 +6,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
-import moment from 'moment';
 
 dayjs.extend(isBetweenPlugin);
 
