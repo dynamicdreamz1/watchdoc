@@ -72,6 +72,8 @@ export default function WeeklyDatePicker({dataClear,setFinalDate}) {
   React.useEffect(()=>{
     const firstdate = value?.startOf('week').format('YYYY-MM-DD');
     const lastdate = value?.endOf('week').format('YYYY-MM-DD');
+    setValue(dayjs())
+
     setFinalDate({ start: firstdate, end: lastdate })
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
