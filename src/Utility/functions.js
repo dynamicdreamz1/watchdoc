@@ -134,7 +134,7 @@ export const requestAndApprovePatient = (data) => {
         const data = JSON.parse(metaData.latest)
 
         const object = {
-            id: metaData.id,
+            id: item.id,
             name: `${metaData?.first_name} ${metaData?.last_name}`,
             first_name: metaData?.first_name,
             last_name: metaData?.last_name,

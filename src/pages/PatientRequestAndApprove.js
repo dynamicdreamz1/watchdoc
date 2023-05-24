@@ -6,10 +6,10 @@ import { MetaFormeting, requestAndApprovePatient } from '../Utility/functions'
 const PatientRequestAnd = ({PatientRequestData,PatientApproveData}) => {
 
   const [viewAll] = useState(true)
-const res=MetaFormeting(PatientApproveData?.patients?.map((el)=>el))
-console.log("11111-res",PatientApproveData?.patients?.map((el)=>el),res)
   const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients)
   const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request)
+
+  console.log("PatientApprove",PatientApprove);
     const handleClickReview = (data) => {
     }   
   return (
