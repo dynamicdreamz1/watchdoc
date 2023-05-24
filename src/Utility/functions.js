@@ -134,7 +134,7 @@ export const requestAndApprovePatient = (data) => {
         item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
         const data = JSON.parse(metaData.latest)
         const object = {
-            id: metaData.id,
+            id: item.id,
             name: `${metaData?.first_name} ${metaData?.last_name}`,
             first_name: metaData?.first_name,
             last_name: metaData?.last_name,
@@ -150,8 +150,6 @@ export const requestAndApprovePatient = (data) => {
             status: "Reviewed"
         }
         arr.push(object)
-        console.log("metaData",metaData);
-        console.log("metaData",data);
       })
       return arr;
     }

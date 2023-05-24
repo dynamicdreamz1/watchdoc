@@ -6,9 +6,10 @@ import { requestAndApprovePatient } from '../Utility/functions'
 const PatientRequestAnd = ({PatientRequestData,PatientApproveData}) => {
 
   const [viewAll] = useState(true)
-  const PatientApprove = requestAndApprovePatient(PatientApproveData.patients)
-  const PatientRequest = requestAndApprovePatient(PatientRequestData.pending_request)
+  const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients)
+  const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request)
 
+  console.log("PatientApprove",PatientApprove);
     const handleClickReview = (data) => {
     }   
     
