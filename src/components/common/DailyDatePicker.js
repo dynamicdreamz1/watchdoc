@@ -4,7 +4,6 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import moment from 'moment';
-import dayjs from 'dayjs';
 
 export default function DatePickerComponent({ setFinalDate, dataClear }) {
   const [selectedDate, setSelectedDate] = useState(moment()); 

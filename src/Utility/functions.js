@@ -39,7 +39,6 @@ export const calculateTimeDifferenceInMinutes = (dateString) => {
 
 
 export const MetaFormeting = (metadata) => {
-
   let userpforle = [];
   metadata?.meta_data?.map(item => userpforle[item?.meta_key] = item?.meta_value)
   return userpforle;
@@ -133,6 +132,7 @@ export const requestAndApprovePatient = (data) => {
         let metaData = {};
         item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
         const data = JSON.parse(metaData.latest)
+
         const object = {
             id: metaData.id,
             name: `${metaData?.first_name} ${metaData?.last_name}`,
@@ -150,8 +150,6 @@ export const requestAndApprovePatient = (data) => {
             status: "Reviewed"
         }
         arr.push(object)
-        console.log("metaData",metaData);
-        console.log("metaData",data);
       })
       return arr;
     }
