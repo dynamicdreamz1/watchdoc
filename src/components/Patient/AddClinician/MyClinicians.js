@@ -9,9 +9,13 @@ import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../../Utility/Skeleton';
 import Pagination from '@mui/material/Pagination';
 import { InnerClinicianContext } from '../../../pages/AddClinicianInner';
+import Swal from 'sweetalert2';
+
+
 
 
 export default function MyClinicians({ status }) {
+
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation();
@@ -35,25 +39,37 @@ export default function MyClinicians({ status }) {
     }, [nPages, currentPage])
 
 
-    const DeleteRequest = (ID) => {
-        const confirmBox = window.confirm('Are you sure do you want to cancel this request ?')
+    const DeleteRequest = async (ID) => {
 
-        if (confirmBox === true) {
-            const apiData = {
-                id: ID,
-                relation: 'unlink'
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this item!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the delete operation
+                const apiData = {
+                    id: ID,
+                    relation: 'unlink'
+                }
+
+
+
+                addDoctor(apiData)
+                    .then((res) => {
+                        setDeleteStatus(!deleteStatus)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+                Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
             }
+        });
 
-
-
-            addDoctor(apiData)
-                .then((res) => {
-                    setDeleteStatus(!deleteStatus)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
     }
 
     const deletedData = {
@@ -94,7 +110,7 @@ export default function MyClinicians({ status }) {
 
 
     const handleChange = (event, value) => {
-        
+
         setCurrentPage(value)
     };
 
