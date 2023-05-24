@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Latestmeasurement from '../components/Patient/Measurement/Latestmeasurement'
 import { UserBodyContextProvider } from '../Store/Context'
 import Reminders from '../components/Patient/Reminder/Reminders';
@@ -12,8 +12,33 @@ import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
 import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
 import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
+import { getLatestMeasurement, getProviderTerraId } from '../services/PatientsService';
 
 const PatientsDetails = () => {
+    const [latestData, setlatestData] = useState({})
+  const [terraId,setTerraId]=useState([])
+  const finalId = terraId?.data?.map(item => item?.terra_id);
+  
+  useEffect(() => {
+    async function fetchData() {
+        await getLatestMeasurement().then(response => response?.data).then(response => {
+            setlatestData(response);
+        })
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+  useEffect(() => {
+    async function fetchData() {
+        const result=await getProviderTerraId()
+        setTerraId(result)         
+   }
+  
+   fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+
     return (
         <div className='content-wrapper'>
             <Sidebar />
@@ -22,11 +47,11 @@ const PatientsDetails = () => {
                 <UserBodyContextProvider >
                     <PatientProfileBar/>
                     <CriticalAlerts/>
-                    <Latestmeasurement />
+                    <Latestmeasurement latestData={latestData} />
                     <Reminders />
-                    <Heartrates />
-                    <Bloodpressure />
-                    <BloodOxygen />
+                    <Heartrates terraId={finalId?.[0]} latestData={latestData}/>
+                    <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
+                    <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>
                     <Weight />
                     <BloodGlucose />
                     <Temperature />

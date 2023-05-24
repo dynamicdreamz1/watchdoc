@@ -9,14 +9,14 @@ export default function DatePickerInput({Date, ChangeDate}) {
     return (
         <>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
+        {/* <DatePicker
             className='date-picker'
             label=""
             value={Date}
             onChange={ChangeDate}
             disableFuture={true}
             renderInput={(params) => <TextField {...params} />}
-        />
+        /> */}
         </LocalizationProvider>
         </>
     )
