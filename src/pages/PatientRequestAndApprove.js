@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { useLocation } from 'react-router-dom'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import { requestAndApprovePatient } from '../Utility/functions'
 
@@ -7,11 +6,8 @@ import { requestAndApprovePatient } from '../Utility/functions'
 const PatientRequestAnd = ({PatientRequestData,PatientApproveData}) => {
 
   const [viewAll] = useState(true)
-
   const PatientApprove = requestAndApprovePatient(PatientApproveData.patients)
   const PatientRequest = requestAndApprovePatient(PatientRequestData.pending_request)
-
-  console.log("PatientApprove",PatientApprove);
 
     const handleClickReview = (data) => {
     }   
