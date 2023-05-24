@@ -12,6 +12,7 @@ import { GetDate } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
 import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
+import { TableSkeleton } from '../../Utility/Skeleton';
 
 
 function TabPanel(props) {
@@ -620,9 +621,10 @@ export default function CriticalPatientsAlertTableTabs() {
         let patientApprove = await ClinicianGetApprovePatientsRequest()
         // setTotalPages(Math.ceil(patientRequest?.data?.total / dataLimit))
         setLength(false)
-        setLoading(false)
         setPatientRequestData(patientRequest?.data)
         setPatientApproveData(patientApprove.data)
+        setLoading(false)
+
     }
 
     useEffect(() => {
@@ -746,7 +748,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         </TabPanel> 
                         <TabPanel value={value} index={2} className="table-nav-tabs-content">
                             {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
-                            <PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData}   />
+                            {loading ? <TableSkeleton />:<PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData}   />}
                         </TabPanel> 
                     
                 </> 
