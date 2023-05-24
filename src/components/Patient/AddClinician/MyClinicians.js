@@ -43,7 +43,7 @@ export default function MyClinicians({ status }) {
 
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Once deleted, you will not be able to recover this item!',
+            text: 'Once deleted, you will not be able to recover this clinician!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
