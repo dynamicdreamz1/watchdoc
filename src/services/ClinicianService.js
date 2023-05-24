@@ -50,3 +50,33 @@ export const getClinicianData = async () => {
         throw error
     }
 }
+
+export const ClinicianGetPatientsRequest = async () => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patient_request`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+export const ClinicianGetApprovePatientsRequest = async () => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patients`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+
+}

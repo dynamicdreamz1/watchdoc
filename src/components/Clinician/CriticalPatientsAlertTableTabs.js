@@ -10,7 +10,8 @@ import { useLocation } from 'react-router-dom';
 import DatePickerInput from '../common/Table/DatePickerInput';
 import { GetDate } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
-import { getAllPatients } from '../../services/AdminService';
+import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
+import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
 
 
 function TabPanel(props) {
@@ -56,7 +57,8 @@ export default function CriticalPatientsAlertTableTabs() {
     const [viewAll, setViewAll] = useState(true)
     const [length, setLength] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [allPatientData, setAllPatientData] = useState([])
+    const [PatientRequestData, setPatientRequestData] = useState([])
+    const [PatientApproveData, setPatientApproveData] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -590,8 +592,6 @@ export default function CriticalPatientsAlertTableTabs() {
 
   
 
-    
-
 // const indexOfLastItem = tempCurrentPage * itemsPerPage;
 //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 //   const currentItems = reviewData?.slice(indexOfFirstItem, indexOfLastItem);
@@ -613,27 +613,20 @@ export default function CriticalPatientsAlertTableTabs() {
 //     settempUnReviewPageCurrentPage(value)
 // }
 
-
-
-
-
-
-
-
-
-
     const getPatient = async () => {
         setLoading(true)
         setLength(true)
-        let res = await getAllPatients(dataLimit,currentPage)
-        setTotalPages(Math.ceil(res.data.total / dataLimit))
+        let patientRequest = await ClinicianGetPatientsRequest()
+        let patientApprove = await ClinicianGetApprovePatientsRequest()
+        // setTotalPages(Math.ceil(patientRequest?.data?.total / dataLimit))
         setLength(false)
         setLoading(false)
-        setAllPatientData(res?.data)
+        setPatientRequestData(patientRequest?.data)
+        setPatientApproveData(patientApprove.data)
     }
 
     useEffect(() => {
-        getPatient(dataLimit,currentPage)
+        getPatient()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage,dataLimit])
 
@@ -730,9 +723,9 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${length ? 0 : allPatientData?.total})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${length ? 0 : 1})`} {...a11yProps(2)} />
                             : ""}
-                    </Tabs>
+                    </Tabs> 
                     {location.pathname === "/dashboard" ?
                         <TableShorting patientData={patientData} setPatientData={setPatientData}
                             reviewData={reviewData} setReviewData={setReviewData}
@@ -752,12 +745,12 @@ export default function CriticalPatientsAlertTableTabs() {
                             <CriticalPatients value={value}  patientData={reviewData} viewAll={viewAll} />
                         </TabPanel> 
                         <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                            <CriticalPatients value={value} loading={loading} patientData={allPatientData?.data} viewAll={viewAll} />
+                            {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
+                            <PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData}   />
                         </TabPanel> 
                     
                 </> 
             </Box>
-        
 
             {location.pathname === "/dashboard" ?        
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }

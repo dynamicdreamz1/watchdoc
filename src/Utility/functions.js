@@ -124,3 +124,35 @@ export const convertDecimalToPercentage = (decimal, decimalPlaces = 0) => {
   const percentage = decimal * 100;
   return percentage.toFixed(decimalPlaces);
 };
+
+
+export const requestAndApprovePatient = (data) => {
+  const arr = [];
+  if (data) {
+      data.map(item=>{
+        let metaData = {};
+        item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
+        const data = JSON.parse(metaData.latest)
+        const object = {
+            id: metaData.id,
+            name: `${metaData?.first_name} ${metaData?.last_name}`,
+            first_name: metaData?.first_name,
+            last_name: metaData?.last_name,
+            age: "No recording",
+            gender: metaData?.sex,
+            bp: data?.blood_pressure?.count,
+            date: "",
+            hr: data?.heart_rate?.count,
+            bo: data?.blood_oxygen?.count,
+            bg: '' ,
+            temp: data?.temperature?.count,
+            wt: metaData?.weight,
+            status: "Reviewed"
+        }
+        arr.push(object)
+        console.log("metaData",metaData);
+        console.log("metaData",data);
+      })
+      return arr;
+    }
+}
