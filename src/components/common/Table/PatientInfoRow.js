@@ -9,6 +9,8 @@ import PatientInfo from './PatientInfo'
 import Status from './Status'
 import Temp from './Temp'
 import Wt from './Wt'
+import Sleep from './Sleep'
+import Step from './Step'
 
 export default function PatientInfoRow(props) {
   const navigate=useNavigate();
@@ -26,13 +28,7 @@ export default function PatientInfoRow(props) {
     }
   }
 
-  // const dobStr = dob;
-
-  // const dobN = new Date(dobStr);
-
-  // const today = new Date();
-
-  // const diffMs = today.getTime() - dobN.getTime();
+  
 
   const DynamicAge = 10
 
@@ -48,6 +44,9 @@ export default function PatientInfoRow(props) {
         <TableCell><Bg el={el}/></TableCell>
         <TableCell><Temp el={el}/></TableCell>
         <TableCell><Wt el={el} value={value} /></TableCell>
+        <TableCell><Sleep el={el} /></TableCell>
+        <TableCell><Step el={el} /></TableCell>
+
         <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>
     </TableRow>
     </>

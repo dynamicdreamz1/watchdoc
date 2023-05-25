@@ -44,6 +44,8 @@ export default function CriticalPatients(props) {
                                 <TableCell>BG</TableCell>
                                 <TableCell>Temp</TableCell>
                                 <TableCell>Wt</TableCell>
+                                <TableCell>Sleep</TableCell>
+                                <TableCell>Step</TableCell>
                                 <TableCell>Status</TableCell>
                             </TableRow>
                         </TableHead>
