@@ -1,7 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { MetaFormeting } from '../../../Utility/functions'
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
