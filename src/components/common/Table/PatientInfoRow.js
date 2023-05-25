@@ -45,7 +45,7 @@ export default function PatientInfoRow(props) {
     <>
     <TableRow >
         {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
-        <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}  value={value}   DynamicAge={DynamicAge} staticAge={age} staticGender={gender} /></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}  value={value} /></TableCell>
         <TableCell><Bp el={el} value={value} /></TableCell>
         <TableCell><Hr el={el} value={value} /></TableCell>
         <TableCell><Bo el={el} value={value} /></TableCell>

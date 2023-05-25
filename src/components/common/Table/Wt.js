@@ -4,14 +4,13 @@ import DateTime from './DateTime'
 
 export default function Wt(props) {
   const {value,el}=props;
-  console.log("ele",el);
   const weight = el?.metaData?.weight?.count
-
+  var date = moment(el?.metaData?.weight?.date).format("DD MMM h:mm A");
   return (
     <>
         <div className='wt table-data'>
-            <span className='digit'>{weight}</span>
-            <DateTime props={props?.el} value={value}/>
+            <span className='digit'>{weight} Kg</span>
+            <DateTime date={date}/>
         </div>
     </>
   )
