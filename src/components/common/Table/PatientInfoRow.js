@@ -17,20 +17,19 @@ export default function PatientInfoRow(props) {
   const location=useLocation();
   const {el,value,handleClickOpenRequestPopUp,handleClickStatus}=props;
 
- 
   // const navigateRoute=location.pathname==="/dashboard" ||location.pathname==="/patients" ?"/patientdetails":location.pathname==="/cliniciandetails"?"":""
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
       navigate("/patientdetails",{state:{
-        data:el,
-        age:DynamicAge
+        id:el.id,
+        // age:DynamicAge
       }})
     }
   }
-
+ 
   
 
-  const DynamicAge = 10
+  // const DynamicAge = 10
 
 
   return (

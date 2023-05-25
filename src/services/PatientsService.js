@@ -16,6 +16,20 @@ export async function getLatestMeasurement() {
     }
 }
 
+export async function getLatestpatientDetails(id) {
+    try {
+        const response = await axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_ENDPOINT}clinician/providers_with_profile?user_id=${id}`,
+            headers: headersClinician
+            
+        })
+
+        return response;
+    } catch (error) {
+        return error.response.data.message;
+    }
+}
 
 export const getProviderTerraId = async () => {
 

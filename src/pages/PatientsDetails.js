@@ -12,16 +12,21 @@ import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
 import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
 import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
-import { getLatestMeasurement, getProviderTerraId } from '../services/PatientsService';
+import { getLatestpatientDetails, getProviderTerraId } from '../services/PatientsService';
+import { useLocation } from 'react-router-dom';
+import { MetaFormeting } from '../Utility/functions';
+
 
 const PatientsDetails = () => {
-    const [latestData, setlatestData] = useState({})
+  const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = terraId?.data?.map(item => item?.terra_id);
+  const { state } = useLocation();
+
   
   useEffect(() => {
     async function fetchData() {
-        await getLatestMeasurement().then(response => response?.data).then(response => {
+        await getLatestpatientDetails(state.id).then(response => response?.data).then(response => {
             setlatestData(response);
         })
     }
@@ -29,6 +34,8 @@ const PatientsDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
+
+const patientData = MetaFormeting(latestData?.data?.user_data)
   useEffect(() => {
     async function fetchData() {
         const result=await getProviderTerraId()
@@ -47,7 +54,7 @@ const PatientsDetails = () => {
                 <UserBodyContextProvider >
                     <PatientProfileBar/>
                     <CriticalAlerts/>
-                    <Latestmeasurement latestData={latestData} />
+                    <Latestmeasurement latestData={patientData} />
                     <Reminders />
                     <Heartrates terraId={finalId?.[0]} latestData={latestData}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
