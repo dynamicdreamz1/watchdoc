@@ -1,15 +1,23 @@
 import React, {useState} from 'react'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import {  requestAndApprovePatient } from '../Utility/functions'
+import { ClinicianPatientStatus } from '../services/ClinicianService'
 
 
-const PatientRequestAnd = ({PatientRequestData,PatientApproveData}) => {
+const PatientRequestAnd = ({PatientRequestData,PatientApproveData,getPatient}) => {
 
   const [viewAll] = useState(true)
-  const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients)
-  const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request)
-
-    const handleClickReview = (data) => {
+  const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients?.data)
+  const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request?.data)
+    const handleClickReview = async (id,status) => {
+      const finalData={
+        id:id,
+        approval:status==='Reviewed'?"reject":status==='Approve'?'approve':'reject'
+      }
+      const result= await ClinicianPatientStatus(finalData)
+      if(result.status===200){
+      getPatient()  
+      }
     }   
   return (
     <React.Fragment>

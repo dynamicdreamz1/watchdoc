@@ -147,7 +147,7 @@ export const requestAndApprovePatient = (data) => {
             bg: '' ,
             temp: data?.temperature?.count,
             wt: metaData?.weight,
-            status: "Reviewed"
+            status: item?.request_status===1?"Reviewed":"Pending"
         }
         arr.push(object)
       })

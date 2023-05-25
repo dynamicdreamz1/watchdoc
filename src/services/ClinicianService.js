@@ -80,3 +80,24 @@ export const ClinicianGetApprovePatientsRequest = async () => {
     }
 
 }
+
+
+
+export const ClinicianPatientStatus = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/approve_patient_request`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            headers: headersClinician,
+            data:data
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
+
