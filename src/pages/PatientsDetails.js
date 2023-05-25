@@ -36,6 +36,11 @@ const PatientsDetails = () => {
 
 
 const patientData = MetaFormeting(latestData?.data?.user_data)
+const finalLatest={
+    latest:patientData?.latest ? JSON.parse(patientData.latest) : null,
+    role_name:[],
+    user_data:{}
+}
   useEffect(() => {
     async function fetchData() {
         const result=await getProviderTerraId()
@@ -54,7 +59,7 @@ const patientData = MetaFormeting(latestData?.data?.user_data)
                 <UserBodyContextProvider >
                     <PatientProfileBar/>
                     <CriticalAlerts/>
-                    <Latestmeasurement latestData={latestData} />
+                    <Latestmeasurement latestData={finalLatest} />
                     <Reminders />
                     <Heartrates terraId={finalId?.[0]} latestData={latestData}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
