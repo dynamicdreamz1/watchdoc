@@ -124,6 +124,11 @@ export const convertDecimalToPercentage = (decimal, decimalPlaces = 0) => {
   return percentage.toFixed(decimalPlaces);
 };
 
+const calculateAge = (birthday) => {
+  const startDate = new Date();
+  const endDate = new Date(birthday);
+  return Math.abs(moment.duration(endDate - startDate).years());
+}
 
 export const requestAndApprovePatient = (data) => {
   const arr = [];
@@ -131,14 +136,14 @@ export const requestAndApprovePatient = (data) => {
       data?.map(item=>{
         let metaData = {};
         item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
-        const  age = moment(metaData?.dob, "YYYY/MM/DD").month(0).from(moment().month(0))
+        const  age = calculateAge(moment(metaData?.dob,"YYYY-MM-DD").format("YYYY-MM-DD"))
         const data = JSON.parse(metaData.latest)
         const object = {
             id: item.id,
             name: `${metaData?.first_name} ${metaData?.last_name}`, 
             first_name: metaData?.first_name,
             last_name: metaData?.last_name,
-            age: age,
+            age: `${age} Years`,
             gender: metaData?.sex,
             status: item.request_status===1?"Reviewed" : "Pending",
             metaData:data,

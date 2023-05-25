@@ -5,7 +5,6 @@ import { ClinicianPatientStatus } from '../services/ClinicianService'
 
 
 const PatientRequestAnd = ({PatientRequestData,PatientApproveData,getPatient}) => {
-
   const [viewAll] = useState(true)
   const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients?.data)
   const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request?.data)
