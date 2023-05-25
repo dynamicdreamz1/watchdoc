@@ -9,7 +9,7 @@ import ClinicianRequest from '../../Admin/ClinicianRequest';
 
 export default function CriticalPatients(props) {
     const location = useLocation();
-    const { patientData, value, loading,handleClickStatus } = props
+    const { patientData, value, loading,handleClickStatus} = props
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
@@ -71,7 +71,7 @@ export default function CriticalPatients(props) {
                         {finalDta?.length !== 0 && finalDta?.map((el, I) => {
                             return (
                                 <TableBody key={I}>
-                                    <PatientInfoRow el={el} value={value} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} handleClickStatus={handleClickStatus} />
+                                    <PatientInfoRow el={el} value={value} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} handleClickStatus={handleClickStatus}  />
                                 </TableBody>
 
                             )

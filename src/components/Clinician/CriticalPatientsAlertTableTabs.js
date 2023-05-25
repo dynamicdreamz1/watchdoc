@@ -540,26 +540,6 @@ export default function CriticalPatientsAlertTableTabs() {
 
   
 
-// const indexOfLastItem = tempCurrentPage * itemsPerPage;
-//   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-//   const currentItems = reviewData?.slice(indexOfFirstItem, indexOfLastItem);
-
-
-
-// const indexOfLastItemUnreviewed = tempUnReviewCurrentPage * itemsPerPage;
-//   const indexOfFirstItemUnreviewed = indexOfLastItemUnreviewed - itemsPerPage;
-//   const currentItemsUnreviewed = patientData?.slice(indexOfFirstItemUnreviewed, indexOfLastItemUnreviewed);
-
-
-
-
-// const handleChangeStaticPage=(event,value)=>{
-//     settempCurrentPage(value);
-
-// }
-// const handleChangeUnReviewStaticPage=(event,value)=>{
-//     settempUnReviewPageCurrentPage(value)
-// }
 
     const getPatient = async () => {
         setLoading(true)
@@ -662,6 +642,9 @@ export default function CriticalPatientsAlertTableTabs() {
             setViewAll(!viewAll);
         }
     }
+    const handleClickReview = async (id,status) => {
+       
+      }   
 
     return (
         <>
@@ -685,13 +668,12 @@ export default function CriticalPatientsAlertTableTabs() {
                     }
                 </Box>
                 
-                
                    <>
                         <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                            <CriticalPatients value={value} patientData={patientData} viewAll={viewAll} />
+                            <CriticalPatients value={value} patientData={patientData} viewAll={viewAll} handleClickStatus={handleClickReview}/>
                         </TabPanel>
                          <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                            <CriticalPatients value={value}  patientData={reviewData} viewAll={viewAll} />
+                            <CriticalPatients value={value}  patientData={reviewData} viewAll={viewAll} handleClickStatus={handleClickReview}/>
                         </TabPanel> 
                         <TabPanel value={value} index={2} className="table-nav-tabs-content">
                             {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
