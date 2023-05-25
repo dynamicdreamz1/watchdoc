@@ -128,26 +128,19 @@ export const convertDecimalToPercentage = (decimal, decimalPlaces = 0) => {
 export const requestAndApprovePatient = (data) => {
   const arr = [];
   if (data) {
-      data.map(item=>{
+      data?.map(item=>{
         let metaData = {};
         item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
         const data = JSON.parse(metaData.latest)
-
         const object = {
             id: item.id,
-            name: `${metaData?.first_name} ${metaData?.last_name}`,
+            name: `${metaData?.first_name} ${metaData?.last_name}`, 
             first_name: metaData?.first_name,
             last_name: metaData?.last_name,
             age: "No recording",
             gender: metaData?.sex,
-            bp: data?.blood_pressure?.count,
-            date: "",
-            hr: data?.heart_rate?.count,
-            bo: data?.blood_oxygen?.count,
-            bg: '' ,
-            temp: data?.temperature?.count,
-            wt: metaData?.weight,
-            status: "Reviewed"
+            status: item.request_status===1?"Reviewed" : "Pending",
+            metaData:data,
         }
         arr.push(object)
       })
