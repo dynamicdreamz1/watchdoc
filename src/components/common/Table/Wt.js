@@ -1,5 +1,6 @@
 import React from 'react'
 import DateTime from './DateTime'
+import moment from 'moment';
 
 export default function Wt(props) {
   const {value,el}=props;
