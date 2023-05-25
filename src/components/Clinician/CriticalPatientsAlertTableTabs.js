@@ -56,7 +56,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [date, setDate] = useState(GetDate);
     const [value, setValue] = useState(0);
     const [viewAll, setViewAll] = useState(true)
-    const [length, setLength] = useState(false)
+    // const [length, setLength] = useState(false)
     const [loading, setLoading] = useState(false)
     const [PatientRequestData, setPatientRequestData] = useState([])
     const [PatientApproveData, setPatientApproveData] = useState([])
@@ -544,11 +544,9 @@ export default function CriticalPatientsAlertTableTabs() {
 
     const getPatient = async () => {
         setLoading(true)
-        setLength(true)
         let patientRequest = await ClinicianGetPatientsRequest()
         let patientApprove = await ClinicianGetApprovePatientsRequest()
         // setTotalPages(Math.ceil(patientRequest?.data?.total / dataLimit))
-        setLength(false)
         setPatientRequestData(patientRequest?.data)
         setPatientApproveData(patientApprove.data)
         setLoading(false)
@@ -646,7 +644,6 @@ export default function CriticalPatientsAlertTableTabs() {
     const handleClickReview = async (id,status) => {
        
       }   
-
     return (
         <>
 
@@ -656,7 +653,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${length ? 0 : 1})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${PatientApproveData?.patients?.data?.length?PatientApproveData?.patients?.data?.length:0})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs> 
                     {location.pathname === "/dashboard" ?
