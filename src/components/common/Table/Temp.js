@@ -1,11 +1,13 @@
 import React from 'react'
 
 export default function Temp(props) {
+
+  const {value,el}=props;
+  const temp = el?.metaData?.temperature?.count
   return (
     <>
-        <div className='temp table-data'>
-            {/* <span className='dash'>-</span> */}
-            <span className='time'>{props?.el?.temp}</span>
+        <div className='bg table-data'>
+            <span className='digit'>{temp}</span>
         </div>
     </>
   )

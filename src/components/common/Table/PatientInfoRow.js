@@ -27,24 +27,23 @@ export default function PatientInfoRow(props) {
       }})
     }
   }
-  const { first_name, full_name, last_name, sex, dob } = MetaFormeting(el)
 
-  const dobStr = dob;
+  // const dobStr = dob;
 
-  const dobN = new Date(dobStr);
+  // const dobN = new Date(dobStr);
 
-  const today = new Date();
+  // const today = new Date();
 
-  const diffMs = today.getTime() - dobN.getTime();
+  // const diffMs = today.getTime() - dobN.getTime();
 
-  const DynamicAge = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365));
+  const DynamicAge = 10
 
 
   return (
     <>
     <TableRow >
         {/* <TableCell onClick={handleClicknavigate}><PatientInfo el={el}/></TableCell> */}
-        <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} first_name={el?.first_name} value={value} full_name={full_name} name={el?.name} last_name={el?.last_name} sex={sex}  DynamicAge={DynamicAge} staticAge={age} staticGender={gender} /></TableCell>
+        <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}  value={value}   DynamicAge={DynamicAge} staticAge={age} staticGender={gender} /></TableCell>
         <TableCell><Bp el={el} value={value} /></TableCell>
         <TableCell><Hr el={el} value={value} /></TableCell>
         <TableCell><Bo el={el} value={value} /></TableCell>
