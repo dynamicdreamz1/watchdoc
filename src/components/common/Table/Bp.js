@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default function Bp(props) {
 
-  const {value ,el}=props;
+  const {el}=props;
   const bp = el?.metaData?.blood_pressure?.count
   const momentObj = moment(el?.metaData?.blood_pressure?.date, 'YY-MM-DD HH-mm-ss');
   const momentString = momentObj.format("DD MMM h:mm A");
