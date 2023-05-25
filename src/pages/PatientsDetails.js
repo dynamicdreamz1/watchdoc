@@ -54,7 +54,7 @@ const patientData = MetaFormeting(latestData?.data?.user_data)
                 <UserBodyContextProvider >
                     <PatientProfileBar/>
                     <CriticalAlerts/>
-                    <Latestmeasurement latestData={patientData} />
+                    <Latestmeasurement latestData={latestData} />
                     <Reminders />
                     <Heartrates terraId={finalId?.[0]} latestData={latestData}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
