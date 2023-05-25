@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default function Temp(props) {
 
-  const {value,el}=props;
+  const {el}=props;
   const temp = el?.metaData?.temperature?.count
   var date = moment(el?.metaData?.temperature?.date).format("DD MMM h:mm A");
   return (

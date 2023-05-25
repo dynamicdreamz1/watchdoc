@@ -1,7 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { MetaFormeting } from '../../../Utility/functions'
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
@@ -14,9 +13,7 @@ import Wt from './Wt'
 export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
-  const {el,value,handleClickOpenRequestPopUp}=props;
-
-  // console.log("ele",ele);
+  const {el,value,handleClickOpenRequestPopUp,handleClickStatus}=props;
   const {age,gender}=el
 
  
@@ -52,7 +49,7 @@ export default function PatientInfoRow(props) {
         <TableCell><Bg el={el}/></TableCell>
         <TableCell><Temp el={el}/></TableCell>
         <TableCell><Wt el={el} value={value} /></TableCell>
-        <TableCell ><Status el={el} value={value} /></TableCell>
+        <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>
     </TableRow>
     </>
   )

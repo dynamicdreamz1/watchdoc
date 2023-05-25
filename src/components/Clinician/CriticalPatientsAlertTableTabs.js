@@ -569,7 +569,7 @@ export default function CriticalPatientsAlertTableTabs() {
         // setTotalPages(Math.ceil(patientRequest?.data?.total / dataLimit))
         setLength(false)
         setPatientRequestData(patientRequest?.data)
-        setPatientApproveData(patientApprove.data)
+        setPatientApproveData(patientApprove?.data)
         setLoading(false)
 
     }
@@ -695,13 +695,13 @@ export default function CriticalPatientsAlertTableTabs() {
                         </TabPanel> 
                         <TabPanel value={value} index={2} className="table-nav-tabs-content">
                             {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
-                            {loading ? <TableSkeleton />:<PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData}   />}
+                            {loading ? <TableSkeleton />:<PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData} getPatient={getPatient}  />}
                         </TabPanel> 
                     
                 </> 
             </Box>
 
-            {location.pathname === "/dashboard" ?        
+            {location?.pathname === "/dashboard" ?        
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
                 }>{viewAll ? 'View Less' : "View All"}</button>
                 : ""} 
