@@ -124,7 +124,7 @@ export const convertDecimalToPercentage = (decimal, decimalPlaces = 0) => {
   return percentage.toFixed(decimalPlaces);
 };
 
-const calculateAge = (birthday) => {
+export const calculateAge = (birthday) => {
   const startDate = new Date();
   const endDate = new Date(birthday);
   return Math.abs(moment.duration(endDate - startDate).years());

@@ -26,7 +26,7 @@ const PatientsDetails = () => {
   
   useEffect(() => {
     async function fetchData() {
-        await getLatestpatientDetails(state.id).then(response => response?.data).then(response => {
+        await getLatestpatientDetails(state?.id).then(response => response?.data).then(response => {
             setlatestData(response);
         })
     }
@@ -34,12 +34,11 @@ const PatientsDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
-
 const patientData = MetaFormeting(latestData?.data?.user_data)
 const finalLatest={
-    latest:patientData?.latest ? JSON.parse(patientData.latest) : null,
+    latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
     role_name:[],
-    user_data:{}
+    user_data:latestData?.data?.user_data
 }
   useEffect(() => {
     async function fetchData() {
@@ -57,7 +56,7 @@ const finalLatest={
             <div className='aside'>
                 <Header />
                 <UserBodyContextProvider >
-                    <PatientProfileBar/>
+                    <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
                     <Reminders />

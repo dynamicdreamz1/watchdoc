@@ -1,23 +1,24 @@
 import { Button, Dialog} from '@mui/material'
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { MetaFormeting } from '../../../Utility/functions';
+import { MetaFormeting,calculateAge} from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
 import {PatientProfileOverlay} from '../../Clinician/Overlays/PatientProfileOverlay';
 import PhoneNumber from '../../common/PhoneNumber'
+import { ChartResultRange } from '../../../Utility/Skeleton';
 
 
-export default function PatientProfileBar() {
+export default function PatientProfileBar({latestData}) {
 
  const location=useLocation()
  
-  const {data,age}=location.state;
-  const {first_name,last_name,sex}=MetaFormeting(data)
+  const {data}=location.state;
+  const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
+  const age=calculateAge(dob)
   const [openProfile, setOpenProfile] = React.useState(false);
   const [openClincians, setOpenClincians] = React.useState(false);
   const [openEmergencyContacts, setOpenEmergencyContacts] = React.useState(false);
-
   const handleClose = () => {
     setOpenProfile(false);
     setOpenClincians(false);
@@ -48,15 +49,20 @@ export default function PatientProfileBar() {
     }
   ] 
 
-    
   return (
     <>
+    
     <div className='patient-profile-bar'>
         <div className='left-block'>
+        {latestData?.user_data ?
+   
             <div className='patient-info'>
-                <span className="fname">{first_name} {data?.first_name}, {last_name} {data?.last_name} </span>
-                <span className="age">{age ? `${age} Year` : `${data?.age}`}, {sex} {data?.gender} </span>
+                <span className="fname">{first_name},{last_name}</span>
+                <span className="age">{age} Years, {sex}</span>
             </div>
+            :
+      <ChartResultRange />
+        }
         </div>
         <div className='center-block'>
             <PhoneNumber Number={data?.contact_number} />
