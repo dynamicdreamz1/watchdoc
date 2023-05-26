@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { Box, Pagination, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs } from '@mui/material';
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,6 @@ import { GetDate } from '../../Utility/functions';
 import { useTranslation } from 'react-i18next';
 import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
-import { TableSkeleton } from '../../Utility/Skeleton';
 
 
 function TabPanel(props) {
@@ -56,23 +55,31 @@ export default function CriticalPatientsAlertTableTabs() {
     const [date, setDate] = useState(GetDate);
     const [value, setValue] = useState(0);
     const [viewAll, setViewAll] = useState(true)
-    // const [length, setLength] = useState(false)
-    const [loading, setLoading] = useState(false)
     const [PatientRequestData, setPatientRequestData] = useState([])
     const [PatientApproveData, setPatientApproveData] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages] = useState(0);
-  const [dataLimit]=useState(10)
 
 
-//   const [tempCurrentPage, settempCurrentPage] = useState(1);
-//   const [itemsPerPage] = useState(10);
+
+    const [recordsPerPagePendingPatient] = useState(10);
+    const [currentPagePendingPatient, setCurrentPagePendingPatient] = useState(1);
+    const [totalPagesPendingPatient, setTotalPagesPendingPatient] = useState(0);
+    const [dataLimitPendingPatient] = useState(1)
+    const [loadingPendingPatient, setLoadingPendingPatient] = useState(false)
 
 
-//   const [tempUnReviewCurrentPage, settempUnReviewPageCurrentPage] = useState(1);
-  
+
+
+    const [recordsPerPageApprovePatient] = useState(10);
+    const [currentPageApprovePatient, setCurrentPageApprovePatient] = useState(1);
+    const [totalPagesApprovePatient, setTotalPagesApprovePatient] = useState(0);
+    const [dataLimitApprovePatient] = useState(1)
+    const [loadingApprovePatient, setLoadingApprovePatient] = useState(false)
+
+
+
+
 
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
@@ -99,476 +106,500 @@ export default function CriticalPatientsAlertTableTabs() {
     };
 
     const [reviewData, setReviewData] = useState(
-        [     
-        {
-            "id": 1,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "Reviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+        [
+            {
+                "id": 1,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "Reviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 2,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "Reviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 2,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "Reviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 3,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "Reviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 3,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "Reviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 4,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "Reviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 4,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "Reviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 5,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "Reviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 5,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "Reviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        
-    ])
+            },
+
+        ])
 
     const [patientData, setPatientData] = useState(
         [
-        {
-            "id": 1,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            {
+                "id": 1,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 2,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 2,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 3,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 3,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 4,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 4,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 5,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 5,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-        {
-            "id": 6,
-            "name": "sanjay patel",
-            "first_name": "sanjay",
-            "last_name": "patel",
-            "age": "No recording",
-            "gender": "male",
-            "status": "unreviewed",
-            "metaData": {
-                "heart_rate": {
-                    "date": "11-05-23 05:50:21",
-                    "count": 74
-                },
-                "blood_pressure": {
-                    "date": "11-05-23 01:00:09",
-                    "count": "110/90"
-                },
-                "blood_oxygen": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 96
-                },
-                "sleep": {
-                    "date": "11-05-23 12:21:31",
-                    "count": 28080
-                },
-                "weight": {
-                    "date": "11-05-23 01:00:09",
-                    "count": 65
-                },
-                "step": {
-                    "date": "16-05-23 12:00:00",
-                    "count": 0
-                },
-                "temperature": {
-                    "date": "11-05-23 12:16:22",
-                    "count": 39
+            },
+            {
+                "id": 6,
+                "name": "sanjay patel",
+                "first_name": "sanjay",
+                "last_name": "patel",
+                "age": "No recording",
+                "gender": "male",
+                "status": "unreviewed",
+                "metaData": {
+                    "heart_rate": {
+                        "date": "11-05-23 05:50:21",
+                        "count": 74
+                    },
+                    "blood_pressure": {
+                        "date": "11-05-23 01:00:09",
+                        "count": "110/90"
+                    },
+                    "blood_oxygen": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 96
+                    },
+                    "sleep": {
+                        "date": "11-05-23 12:21:31",
+                        "count": 28080
+                    },
+                    "weight": {
+                        "date": "11-05-23 01:00:09",
+                        "count": 65
+                    },
+                    "step": {
+                        "date": "16-05-23 12:00:00",
+                        "count": 0
+                    },
+                    "temperature": {
+                        "date": "11-05-23 12:16:22",
+                        "count": 39
+                    }
                 }
-            }
-        },
-       
-        
-    ]
+            },
+
+
+        ]
     )
 
-  
 
 
-    const getPatient = async () => {
-        setLoading(true)
-        let patientRequest = await ClinicianGetPatientsRequest()
-        let patientApprove = await ClinicianGetApprovePatientsRequest()
-        // setTotalPages(Math.ceil(patientRequest?.data?.total / dataLimit))
-        setPatientRequestData(patientRequest?.data)
-        setPatientApproveData(patientApprove.data)
-        setLoading(false)
+
+
+    const getPendingPatient = async (dataLimitPendingPatient, currentPagePendingPatient) => {
+        setLoadingPendingPatient(true)
+        let response = await ClinicianGetPatientsRequest(dataLimitPendingPatient, currentPagePendingPatient)
+        setTotalPagesPendingPatient(Math.ceil(response?.data?.pending_request?.total / dataLimitPendingPatient));
+        setPatientRequestData(response?.data)
+        setLoadingPendingPatient(false)
 
     }
 
+
+    const getApproveRequest = async (dataLimitPendingPatient, currentPage) => {
+        setLoadingApprovePatient(true)
+        let response = await ClinicianGetApprovePatientsRequest(dataLimitPendingPatient, currentPage)
+        setTotalPagesApprovePatient(Math.ceil(response?.data?.patients?.total / dataLimitPendingPatient))
+        setPatientApproveData(response.data)
+        setLoadingApprovePatient(false)
+
+    }
+
+
+
     useEffect(() => {
-        getPatient()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage,dataLimit])
-
- 
-
-    const handleChangePage = (event, newPage) => {
-        setCurrentPage(newPage);
-      };    
-    
-
-   
+        getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
+        // eslint-disable-next-line react-hooks/exhaustive-deps    
+    }, [currentPageApprovePatient, dataLimitApprovePatient])
 
 
-    
+
+
+
+    useEffect(() => {
+        getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentPagePendingPatient, dataLimitPendingPatient])
+
+
+
+    const handleChangePagePendingPatient = (event, newPage) => {
+        setCurrentPagePendingPatient(newPage);
+    };
+    const handleChangePageApprovePatient = (event, newPage) => {
+        setCurrentPageApprovePatient(newPage);
+    };
+
+
+
+
+
+
+
 
     useEffect(() => {
 
@@ -641,9 +672,36 @@ export default function CriticalPatientsAlertTableTabs() {
             setViewAll(!viewAll);
         }
     }
-    const handleClickReview = async (id,status) => {
-       
-      }   
+    const handleClickReview = async (id, status) => {
+
+    }
+
+    const action = {
+        recordsPerPagePendingPatient,
+        currentPagePendingPatient,
+        totalPagesPendingPatient,
+        dataLimitPendingPatient,
+        recordsPerPageApprovePatient,
+        currentPageApprovePatient,
+        totalPagesApprovePatient,
+        dataLimitApprovePatient,
+        PatientRequestData,
+        PatientApproveData,
+        getPendingPatient,
+        getApproveRequest,
+        handleChangePageApprovePatient,
+        handleChangePagePendingPatient,
+        loadingApprovePatient,
+        loadingPendingPatient
+
+    }
+
+
+
+
+
+
+
     return (
         <>
 
@@ -651,11 +709,11 @@ export default function CriticalPatientsAlertTableTabs() {
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
-                       <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} /> 
+                        <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} />
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${PatientApproveData?.patients?.data?.length?PatientApproveData?.patients?.data?.length:0})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${PatientApproveData?.patients?.data?.length ? PatientApproveData?.patients?.data?.length : 0})`} {...a11yProps(2)} />
                             : ""}
-                    </Tabs> 
+                    </Tabs>
                     {location.pathname === "/dashboard" ?
                         <TableShorting patientData={patientData} setPatientData={setPatientData}
                             reviewData={reviewData} setReviewData={setReviewData}
@@ -665,39 +723,29 @@ export default function CriticalPatientsAlertTableTabs() {
                             : ""
                     }
                 </Box>
-                
-                   <>
-                        <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                            <CriticalPatients value={value} patientData={patientData} viewAll={viewAll} handleClickStatus={handleClickReview}/>
-                        </TabPanel>
-                         <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                            <CriticalPatients value={value}  patientData={reviewData} viewAll={viewAll} handleClickStatus={handleClickReview}/>
-                        </TabPanel> 
-                        <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                            {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
-                            {loading ? <TableSkeleton />:<PatientRequestAndApprove loading={loading} PatientRequestData={PatientRequestData} PatientApproveData={PatientApproveData} getPatient={getPatient}  />}
-                        </TabPanel> 
-                    
-                </> 
+
+                <>
+                    <TabPanel value={value} index={0} className="table-nav-tabs-content">
+                        <CriticalPatients value={value} patientData={patientData} viewAll={viewAll} handleClickStatus={handleClickReview} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1} className="table-nav-tabs-content">
+                        <CriticalPatients value={value} patientData={reviewData} viewAll={viewAll} handleClickStatus={handleClickReview} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2} className="table-nav-tabs-content">
+                        {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
+                        <PatientRequestAndApprove action={action} />
+                    </TabPanel>
+
+                </>
             </Box>
 
-            {location.pathname === "/dashboard" ?        
+            {location.pathname === "/dashboard" ?
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
                 }>{viewAll ? 'View Less' : "View All"}</button>
-                : ""} 
-            { value===2 &&
-            <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-}
-{/* {
-    value===1 &&
-    <Pagination page={tempCurrentPage} onChange={handleChangeStaticPage} count={Math.ceil(reviewData?.length / 10)} variant="outlined" shape="rounded" className='table-pagination' />
-}
-{
-    (value===0 &&  location.pathname !== "/dashboard") &&
-    <Pagination page={tempUnReviewCurrentPage} onChange={handleChangeUnReviewStaticPage} count={Math.ceil(reviewData?.length / 10)} variant="outlined" shape="rounded" className='table-pagination' />
-} */}
-        </> 
-        
+                : ""}
+
+        </>
+
     )
 }
 

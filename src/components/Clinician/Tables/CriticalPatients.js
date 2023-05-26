@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Dialog, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Dialog,Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
 import { useLocation } from 'react-router-dom';
-import { TableSkeleton } from '../../../Utility/Skeleton';
 import ClinicianRequest from '../../Admin/ClinicianRequest';
 
 
 export default function CriticalPatients(props) {
     const location = useLocation();
-    const { patientData, value, loading,handleClickStatus} = props
+    const { patientData, value,handleClickStatus} = props
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
@@ -30,9 +29,10 @@ export default function CriticalPatients(props) {
         setProfileBarData(data)
         setOpenRequest(true)
     }
+   
     return (
         <>
-            {loading ? <TableSkeleton /> :
+           
                 <TableContainer component={Paper} className="red-alert-table">
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
@@ -82,12 +82,8 @@ export default function CriticalPatients(props) {
                         }
                     </Table>
                 </TableContainer>
-            }
-            {/* {currentRecords?.length === 0 ? "" :
-            <Pagination page={currentPage} onChange={handleChange} count={nPages} variant="outlined" shape="rounded" className='table-pagination' />
-                }
-
-            { location.pathname==="/dashboard"  ? <button onClick={handleClick}>View All</button> : "" } */}
+            
+            
         </>
     )
 }
