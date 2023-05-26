@@ -29,7 +29,7 @@ export default function PatientProfileBar({latestData}) {
     {
       key: 1,
       Name: 'Profile',
-      PopupData: <PatientProfileOverlay data={data} handleClose={handleClose}/>,
+      PopupData: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
@@ -43,7 +43,7 @@ export default function PatientProfileBar({latestData}) {
     {
       key: 3,
       Name: 'Emergency Contacts',
-      PopupData: <EmergencyContactOverlay data={data}/>,
+      PopupData: <EmergencyContactOverlay data={latestData}/>,
       handle: setOpenEmergencyContacts,
       open: openEmergencyContacts
     }
