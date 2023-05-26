@@ -24,7 +24,6 @@ export default function PatientProfileBar({latestData}) {
     setOpenClincians(false);
     setOpenEmergencyContacts(false);
   };
-  console.log("latestData",latestData);
 
   const patientQuickNavs = [
     {
