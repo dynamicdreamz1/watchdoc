@@ -43,7 +43,7 @@ export default function PatientProfileBar({latestData}) {
     {
       key: 3,
       Name: 'Emergency Contacts',
-      PopupData: <EmergencyContactOverlay data={data}/>,
+      PopupData: <EmergencyContactOverlay data={latestData}/>,
       handle: setOpenEmergencyContacts,
       open: openEmergencyContacts
     }
