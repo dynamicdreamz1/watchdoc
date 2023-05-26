@@ -20,10 +20,10 @@ import { MetaFormeting } from '../Utility/functions';
 const PatientsDetails = () => {
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
-  const finalId = terraId?.data?.map(item => item?.terra_id);
+  const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const { state } = useLocation();
 
-  
+
   useEffect(() => {
     async function fetchData() {
         await getLatestpatientDetails(state.id).then(response => response?.data).then(response => {
@@ -33,7 +33,6 @@ const PatientsDetails = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
-
 
 const patientData = MetaFormeting(latestData?.data?.user_data)
 const finalLatest={
@@ -61,10 +60,10 @@ const finalLatest={
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
                     <Reminders />
-                    <Heartrates terraId={finalId?.[0]} latestData={latestData}/>
-                    <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
-                    <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>
-                    <Weight />
+                    <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
+                    <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
+                    <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>
+                    <Weight terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodGlucose />
                     <Temperature />
                 </UserBodyContextProvider>
