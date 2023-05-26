@@ -5,8 +5,6 @@ import { MetaFormeting } from '../../../Utility/functions'
 export default function EmergencyContactOverlay({data}) {
   const latestData=MetaFormeting(data?.user_data)
   const emergency = latestData?.emergency_contact ? JSON.parse(latestData?.emergency_contact) : null;
-  console.log("emergency",emergency);
-  // const {email,contact_number}=(data);
   
   return (
     <>
