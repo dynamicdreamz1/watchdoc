@@ -24,12 +24,13 @@ export default function PatientProfileBar({latestData}) {
     setOpenClincians(false);
     setOpenEmergencyContacts(false);
   };
+  console.log("latestData",latestData);
 
   const patientQuickNavs = [
     {
       key: 1,
       Name: 'Profile',
-      PopupData: <PatientProfileOverlay data={data} handleClose={handleClose}/>,
+      PopupData: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
