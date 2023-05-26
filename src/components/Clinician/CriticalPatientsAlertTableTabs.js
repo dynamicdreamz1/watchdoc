@@ -65,7 +65,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [recordsPerPagePendingPatient] = useState(10);
     const [currentPagePendingPatient, setCurrentPagePendingPatient] = useState(1);
     const [totalPagesPendingPatient, setTotalPagesPendingPatient] = useState(0);
-    const [dataLimitPendingPatient] = useState(1)
+    const [dataLimitPendingPatient] = useState(5)
     const [loadingPendingPatient, setLoadingPendingPatient] = useState(false)
 
 
@@ -74,7 +74,7 @@ export default function CriticalPatientsAlertTableTabs() {
     const [recordsPerPageApprovePatient] = useState(10);
     const [currentPageApprovePatient, setCurrentPageApprovePatient] = useState(1);
     const [totalPagesApprovePatient, setTotalPagesApprovePatient] = useState(0);
-    const [dataLimitApprovePatient] = useState(1)
+    const [dataLimitApprovePatient] = useState(5)
     const [loadingApprovePatient, setLoadingApprovePatient] = useState(false)
 
 
