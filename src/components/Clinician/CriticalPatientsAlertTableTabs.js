@@ -697,11 +697,6 @@ export default function CriticalPatientsAlertTableTabs() {
     }
 
 
-
-
-
-
-
     return (
         <>
 
@@ -711,7 +706,7 @@ export default function CriticalPatientsAlertTableTabs() {
                         <Tab label={`Critical Alerts - Unreviewed (${patientData.length})`}  {...a11yProps(0)} />
                         <Tab label={`Critical Alerts - Reviewed (${reviewData.length})`} {...a11yProps(1)} />
                         {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${PatientApproveData?.patients?.data?.length ? PatientApproveData?.patients?.data?.length : 0})`} {...a11yProps(2)} />
+                            <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
                             : ""}
                     </Tabs>
                     {location.pathname === "/dashboard" ?
