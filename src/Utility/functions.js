@@ -137,7 +137,7 @@ export const requestAndApprovePatient = (data) => {
         let metaData = {};
         item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
         const  age = calculateAge(moment(metaData?.dob,"YYYY-MM-DD").format("YYYY-MM-DD"))
-        const data = JSON.parse(metaData.latest)
+        const data = metaData.latest?JSON.parse(metaData.latest):null
         const object = {
             id: item.id,
             name: `${metaData?.first_name} ${metaData?.last_name}`, 
