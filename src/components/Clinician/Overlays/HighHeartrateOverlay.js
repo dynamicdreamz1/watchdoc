@@ -2,7 +2,7 @@ import React from "react";
 // import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
 export default function HighHeartrateOverlay({ setOpenReminder }) {
-    
+
   const reminderTypeArray = [
     {
       id: 1,
@@ -39,6 +39,7 @@ export default function HighHeartrateOverlay({ setOpenReminder }) {
         <form>
           {reminderTypeArray?.map((el, I) => {
             return (
+                <>
               <div className="reminder-card" key={I}>
                 {/* <ReminderOptions /> */}
                 <div className="icon-block">
@@ -60,6 +61,8 @@ export default function HighHeartrateOverlay({ setOpenReminder }) {
                   </div>
                 </div>
               </div>
+                <br/>
+              </>
             );
           })}
         </form>
