@@ -1,15 +1,45 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 // import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
 export default function HighHeartrateOverlay({setOpenReminder}) {
 
-  const {t}=useTranslation()
+
+const reminderTypeArray=[
+  {
+    id:1,
+    name:"MEDICATION",
+    buttonText:"Add Reminder"
+  },
+  {
+    id:2,
+    name:"WEIGHT",
+    buttonText:"Add Reminder"
+  },
+   {
+    id:3,
+    name:"BLOOD PRESSURE",
+    buttonText:"Add Reminder"
+  },
+  {
+    id:4,
+    name:"CUSTOME",
+    buttonText:"Add Reminder"
+  }
+]
+
+
+
+
+
+
+
+
   const handleClose = () => {
     setOpenReminder(false);
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (name) => {
+    console.log("1111111-bname",name)
     setOpenReminder(true);
   };
   return (
@@ -20,7 +50,10 @@ export default function HighHeartrateOverlay({setOpenReminder}) {
           <p></p>
         </div>
         <form>
-            <div className="reminder-card">
+
+          {reminderTypeArray?.map((el,I)=>{
+            return(
+              <div className="reminder-card" key={I}>
               {/* <ReminderOptions /> */}
               <div className="icon-block">
                 <div className="reminder-icon">
@@ -32,75 +65,19 @@ export default function HighHeartrateOverlay({setOpenReminder}) {
               </div>
               <div className="content-block">
                 <div className="r-title">
-                  <h4>MEDICATION</h4>
+                  <h4>{el?.name}</h4>
                 </div>
                 <div className='reminder-date'>
-                    <button onClick={handleClickOpen}>Add Reminder</button>
+                    <button onClick={()=>handleClickOpen(el?.name)}>{el?.buttonText}</button>
                 </div>
-              </div>
+              </div>     
+
+            </div>    
+
+            )
+          })
             
-            </div>
-            <br/>
-            <div className="reminder-card">
-              {/* <ReminderOptions /> */}
-              <div className="icon-block">
-                <div className="reminder-icon">
-                  <img
-                    src="/images/person-weight-icon.svg"
-                    alt="Person Weight Icon"
-                  />
-                </div>
-              </div>
-              <div className="content-block">
-                <div className="r-title">
-                  <h4>WEIGHT</h4>
-                </div>
-                <div className='reminder-date'>
-                    <button onClick={handleClickOpen}>Add Reminder</button>
-                </div>
-              </div>
-            </div>
-            <br/>
-            <div className="reminder-card">
-              {/* <ReminderOptions /> */}
-              <div className="icon-block">
-                <div className="reminder-icon">
-                  <img
-                    src="/images/person-weight-icon.svg"
-                    alt="Person Weight Icon"
-                  />
-                </div>
-              </div>
-              <div className="content-block">
-                <div className="r-title">
-                  <h4>BLOOD PRESSURE</h4>
-                </div>
-                <div className='reminder-date'>
-                    <button onClick={handleClickOpen}>Add Reminder</button>
-                </div>
-              </div>
-            </div>
-            <br/>
-            <div className="reminder-card">
-              {/* <ReminderOptions /> */}
-              <div className="icon-block">
-                <div className="reminder-icon">
-                  <img
-                    src="/images/person-weight-icon.svg"
-                    alt="Person Weight Icon"
-                  />
-                </div>
-              </div>
-              <div className="content-block">
-                <div className="r-title">
-                  <h4>CUSTOME</h4>
-                </div>
-                <div className='reminder-date'>
-                    <button onClick={handleClickOpen}>Add Reminder</button>
-                </div>
-              </div>
-            </div>
-            <br/>
+}    
         </form>
       </div>
     </>
