@@ -12,14 +12,14 @@ import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
 import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
 import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
-import { getLatestpatientDetails} from '../services/PatientsService';
+import { getLatestpatientDetails, getProviderTerraId} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
 import { MetaFormeting } from '../Utility/functions';
 
 
 const PatientsDetails = () => {
   const [latestData, setlatestData] = useState({})
-//   const [terraId,setTerraId]=useState([])
+  const [terraId,setTerraId]=useState([])
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const { state } = useLocation();
 
@@ -38,7 +38,8 @@ const patientData = MetaFormeting(latestData?.data?.user_data)
 const finalLatest={
     latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
     role_name:[],
-    user_data:latestData?.data?.user_data
+    user_data:latestData?.data?.user_data,
+    user_reminder:latestData?.data?.user_reminder
 }
 //   useEffect(() => {
 //     async function fetchData() {
@@ -49,6 +50,15 @@ const finalLatest={
 //    fetchData();
 //     // eslint-disable-next-line react-hooks/exhaustive-deps
 //   },[]);
+  useEffect(() => {
+    async function fetchData() {
+        const result=await getProviderTerraId()
+        setTerraId(result)         
+   }
+   fetchData();
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+},[]);
+
     return (
         <div className='content-wrapper'>
             <Sidebar />
@@ -58,7 +68,7 @@ const finalLatest={
                     <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
-                    <Reminders />
+                    <Reminders latestData={finalLatest} />
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>

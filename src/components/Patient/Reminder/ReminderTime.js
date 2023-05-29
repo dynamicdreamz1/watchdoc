@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ReminderTime() {
+export default function ReminderTime({reminderTime}) {
   return (
     <>
     <div className='reminder-date'>
-        <span>Time: 9:30 am</span>
+        <span>Time {reminderTime}</span>
     </div>
     </>
   )

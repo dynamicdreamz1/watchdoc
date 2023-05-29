@@ -6,7 +6,7 @@ import ReminderTime from './ReminderTime'
 import ReminderTitle from './ReminderTitle'
 
 
-export default function ReminderCard() {
+export default function ReminderCard({reminderData}) {
   return (
     <>
     <div className='reminder-card'>
@@ -15,9 +15,9 @@ export default function ReminderCard() {
             <ReminderIcon/>
         </div>
         <div className='content-block'>
-            <ReminderTitle/>
-            <RemindDay/>
-            <ReminderTime/>
+            <ReminderTitle reminderType={reminderData?.reminder_type}/>
+            <RemindDay reminderDay={reminderData?.day}/>
+            <ReminderTime reminderTime={reminderData?.time}/>
         </div>
     </div>
     </>

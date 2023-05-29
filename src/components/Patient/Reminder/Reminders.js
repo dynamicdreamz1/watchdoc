@@ -4,7 +4,7 @@ import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
 import { Dialog } from '@mui/material';
 
-export default function Reminders() {
+export default function Reminders({latestData}) {
   const [open,setOpen]=useState(false)
   const {t}=useTranslation()
   const handleClose = () => {
@@ -31,9 +31,9 @@ export default function Reminders() {
           <WeightYourselfReminderOverlay />
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
-            <ReminderCard/> 
-            <ReminderCard/>
-            <ReminderCard/>
+        {latestData?.user_reminder?.map((data, i) => (
+            <ReminderCard  reminderData={data}/> 
+        ))}
         </div>
     </div>
   )
