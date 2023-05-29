@@ -2,10 +2,10 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import {Defaultmeasurment } from '../../../Utility/DefaultObject';
 import MeasurementCard from '../Measurement/MeasurementCard'
+import { DashboardResultRange } from '../../../Utility/Skeleton';
 
 export default function Latestmeasurement({latestData}) {
     const { t } = useTranslation()
-
     return (
 
         <div className='measurment-cards-wrapper mt-22'>
@@ -17,7 +17,7 @@ export default function Latestmeasurement({latestData}) {
              
                 {
                     Defaultmeasurment?.map((block, i) => {
-                        return <MeasurementCard key={i} block={block} data={latestData}/>
+                        return latestData.latest ?   <MeasurementCard key={i} block={block} data={latestData}/> :  <DashboardResultRange/>
                     })
                 }
             </div>

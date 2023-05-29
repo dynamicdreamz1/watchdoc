@@ -40,6 +40,16 @@ export const ChartResultRange = () => {
     )
 }
 
+export const DashboardResultRange = () => {
+    return(
+        <>
+            <Stack spacing={1} className="chart-result-skeleton">
+                <Skeleton variant="rectangular" width={180} height={140}/>
+            </Stack>
+        </>
+    )
+}
+
 export const ChartSkeleton = () => {
     return(
         <>
