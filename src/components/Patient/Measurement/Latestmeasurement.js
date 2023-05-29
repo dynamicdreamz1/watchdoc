@@ -17,7 +17,7 @@ export default function Latestmeasurement({latestData}) {
              
                 {
                     Defaultmeasurment?.map((block, i) => {
-                        return latestData.latest ?   <MeasurementCard key={i} block={block} data={latestData}/> :  <DashboardResultRange/>
+                        return latestData.latest ?   <MeasurementCard key={i} block={block} data={latestData}/> :  <DashboardResultRange key={i}/>
                     })
                 }
             </div>
