@@ -1,7 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 // import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
-export default function HighHeartrateOverlay() {
+export default function HighHeartrateOverlay({setOpenReminder}) {
+
+  const {t}=useTranslation()
+  const handleClose = () => {
+    setOpenReminder(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpenReminder(true);
+  };
   return (
     <>
       <div  className="high-heart-rate">
@@ -25,7 +35,7 @@ export default function HighHeartrateOverlay() {
                   <h4>MEDICATION</h4>
                 </div>
                 <div className='reminder-date'>
-                    <button>Add Reminder</button>
+                    <button onClick={handleClickOpen}>Add Reminder</button>
                 </div>
               </div>
             
@@ -46,7 +56,7 @@ export default function HighHeartrateOverlay() {
                   <h4>WEIGHT</h4>
                 </div>
                 <div className='reminder-date'>
-                    <button>Add Reminder</button>
+                    <button onClick={handleClickOpen}>Add Reminder</button>
                 </div>
               </div>
             </div>
@@ -66,7 +76,7 @@ export default function HighHeartrateOverlay() {
                   <h4>BLOOD PRESSURE</h4>
                 </div>
                 <div className='reminder-date'>
-                    <button>Add Reminder</button>
+                    <button onClick={handleClickOpen}>Add Reminder</button>
                 </div>
               </div>
             </div>
@@ -86,7 +96,7 @@ export default function HighHeartrateOverlay() {
                   <h4>CUSTOME</h4>
                 </div>
                 <div className='reminder-date'>
-                    <button>Add Reminder</button>
+                    <button onClick={handleClickOpen}>Add Reminder</button>
                 </div>
               </div>
             </div>

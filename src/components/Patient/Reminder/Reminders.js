@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useTranslation } from 'react-i18next'
 import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
@@ -7,14 +7,21 @@ import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay'
 
 export default function Reminders({latestData}) {
   const [open,setOpen]=useState(false)
+  const [openReminder,setOpenReminder]=useState(false)
   const {t}=useTranslation()
+  
   const handleClose = () => {
     setOpen(false);
+    setOpenReminder(false)
   };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  useEffect(()=>{
+  },[openReminder])
+ 
   return (
      
     <div  className='reminder-cards-wrapper mt-22'>
@@ -29,8 +36,8 @@ export default function Reminders({latestData}) {
           className='reminder-overlay'
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-          {/* <WeightYourselfReminderOverlay /> */}
-          <HighHeartrateOverlay  />
+          
+          {openReminder=== true ? <WeightYourselfReminderOverlay /> : <HighHeartrateOverlay setOpenReminder={setOpenReminder}  />}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, I) => (
