@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 
 export default function WeightYourselfReminderOverlay() {
   const [selectedValue, setSelectedValue] = useState([]);
@@ -24,9 +28,6 @@ export default function WeightYourselfReminderOverlay() {
 
   const handleClickAddReminder=()=>{}
 
-
-
-  console.log("1111111-selectedvalue", selectedValue)
   return (
     <>
       <div className='high-heart-rate'>
@@ -39,8 +40,9 @@ export default function WeightYourselfReminderOverlay() {
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span>Time</span>
           </div>
-          <input type='text' name="time" defaultValue="10:00 am" />
-          <div className='clock-title'>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <TimePicker label="Basic time picker" />
+          </LocalizationProvider>          <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span>Days</span>
           </div>
