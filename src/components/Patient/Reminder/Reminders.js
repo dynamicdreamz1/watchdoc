@@ -33,8 +33,8 @@ export default function Reminders({latestData}) {
           <HighHeartrateOverlay  />
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
-        {latestData?.user_reminder?.map((data, i) => (
-            <ReminderCard  reminderData={data}/> 
+        {latestData?.user_reminder?.map((data, I) => (
+            <ReminderCard  reminderData={data} key={I}/> 
         ))}
         </div>
     </div>
