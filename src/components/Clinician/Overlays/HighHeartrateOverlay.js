@@ -1,61 +1,98 @@
-import React from 'react'
+import React from "react";
+// import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
 export default function HighHeartrateOverlay() {
   return (
     <>
-        <div className='high-heart-rate'>
-            <div className='dialog-title'>
-                <h2>High Heart Rate</h2>
-                <p>Set when a critical alert will be triggered.</p>
-            </div>
-            <form>
-                <div className='radios-wrapper'>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="Off"/>
-                        <label>Off</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="100 bpm"/>
-                        <label>100 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="110 bpm"/>
-                        <label>110 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="120 bpm"/>
-                        <label>120 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="130 bpm"/>
-                        <label>130 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="140 bpm"/>
-                        <label>140 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="150 bpm"/>
-                        <label>150 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="160 bpm"/>
-                        <label>160 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="170 bpm"/>
-                        <label>170 bpm</label>
-                    </div>
-                    <div className='radio-item'>
-                        <input type="radio" name="heartrate" value="180 bpm"/>
-                        <label>180 bpm</label>
-                    </div>
-                </div>
-                <div className='submit-block'>
-                    <button type='button' className="btn">Confirm</button>
-                </div>
-            </form>
+      <div  className="high-heart-rate">
+        <div className="dialog-title">
+          <h2>Reminder Type</h2>
+          <p></p>
         </div>
+        <form>
+            <div className="reminder-card">
+              {/* <ReminderOptions /> */}
+              <div className="icon-block">
+                <div className="reminder-icon">
+                  <img
+                    src="/images/person-weight-icon.svg"
+                    alt="Person Weight Icon"
+                  />
+                </div>
+              </div>
+              <div className="content-block">
+                <div className="r-title">
+                  <h4>MEDICATION</h4>
+                </div>
+                <div className='reminder-date'>
+                    <button>Add Reminder</button>
+                </div>
+              </div>
+            
+            </div>
+            <br/>
+            <div className="reminder-card">
+              {/* <ReminderOptions /> */}
+              <div className="icon-block">
+                <div className="reminder-icon">
+                  <img
+                    src="/images/person-weight-icon.svg"
+                    alt="Person Weight Icon"
+                  />
+                </div>
+              </div>
+              <div className="content-block">
+                <div className="r-title">
+                  <h4>WEIGHT</h4>
+                </div>
+                <div className='reminder-date'>
+                    <button>Add Reminder</button>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div className="reminder-card">
+              {/* <ReminderOptions /> */}
+              <div className="icon-block">
+                <div className="reminder-icon">
+                  <img
+                    src="/images/person-weight-icon.svg"
+                    alt="Person Weight Icon"
+                  />
+                </div>
+              </div>
+              <div className="content-block">
+                <div className="r-title">
+                  <h4>BLOOD PRESSURE</h4>
+                </div>
+                <div className='reminder-date'>
+                    <button>Add Reminder</button>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div className="reminder-card">
+              {/* <ReminderOptions /> */}
+              <div className="icon-block">
+                <div className="reminder-icon">
+                  <img
+                    src="/images/person-weight-icon.svg"
+                    alt="Person Weight Icon"
+                  />
+                </div>
+              </div>
+              <div className="content-block">
+                <div className="r-title">
+                  <h4>CUSTOME</h4>
+                </div>
+                <div className='reminder-date'>
+                    <button>Add Reminder</button>
+                </div>
+              </div>
+            </div>
+            <br/>
+        </form>
+      </div>
     </>
-  )
+  );
 }

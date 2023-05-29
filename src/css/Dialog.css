@@ -59,6 +59,7 @@
 }
 .reminder-overlay .MuiPaper-root.MuiDialog-paper {
     padding: 40px 45px 50px 45px;
+    background-color: #F5F5F5;
 }
 .high-heart-rate .radios-wrapper .radio-item input {
     position: absolute;

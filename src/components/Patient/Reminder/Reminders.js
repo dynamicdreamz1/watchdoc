@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
 import { Dialog } from '@mui/material';
+import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
 
 export default function Reminders({latestData}) {
   const [open,setOpen]=useState(false)
@@ -16,7 +17,7 @@ export default function Reminders({latestData}) {
   };
   return (
      
-    <div className='reminder-cards-wrapper mt-22'>
+    <div  className='reminder-cards-wrapper mt-22'>
         <div className='section-title'>
             <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
         </div>
@@ -28,7 +29,8 @@ export default function Reminders({latestData}) {
           className='reminder-overlay'
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-          <WeightYourselfReminderOverlay />
+          {/* <WeightYourselfReminderOverlay /> */}
+          <HighHeartrateOverlay  />
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, i) => (
