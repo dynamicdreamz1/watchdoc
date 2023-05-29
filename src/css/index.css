@@ -110,6 +110,10 @@ body span {
 .space-40 {
   height: 40px;
 }
+
+.color-light-green{
+  color: #86E826 !important;
+}
 .page-wrapper {
   height: 100vh;
   overflow-y: auto;

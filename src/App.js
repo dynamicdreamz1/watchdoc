@@ -36,6 +36,7 @@ import ClinicianDetails from './pages/ClinicianDetails';
 import ForgotPassword from '../src/pages/ForgotPassword'
 import VerificationForPassword from './pages/VerificationForPassword';
 import NewPassword from './pages/NewPassword';
+import AllClinician from './pages/AllClinician';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -83,6 +84,8 @@ function App() {
         <Route path='/profile-settings' element={<ProfileSettings />} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
         <Route path='/cliniciandetails' element={currentUser ? <ClinicianDetails /> : <SignIn />} />
+        <Route path='/alluserclinician' element={currentUser ? <AllClinician /> : <SignIn />} />
+
 
 
 

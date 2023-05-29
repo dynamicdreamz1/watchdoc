@@ -12,14 +12,14 @@ import Header from '../components/Templates/Header';
 import Sidebar from '../components/Templates/Sidebar';
 import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
 import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
-import { getLatestpatientDetails, getProviderTerraId } from '../services/PatientsService';
+import { getLatestpatientDetails} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
 import { MetaFormeting } from '../Utility/functions';
 
 
 const PatientsDetails = () => {
   const [latestData, setlatestData] = useState({})
-  const [terraId,setTerraId]=useState([])
+//   const [terraId,setTerraId]=useState([])
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const { state } = useLocation();
 
@@ -40,16 +40,15 @@ const finalLatest={
     role_name:[],
     user_data:latestData?.data?.user_data
 }
-  useEffect(() => {
-    async function fetchData() {
-        const result=await getProviderTerraId()
-        setTerraId(result)         
-   }
+//   useEffect(() => {
+//     async function fetchData() {
+//         const result=await getProviderTerraId()
+//         // setTerraId(result)         
+//    }
   
-   fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
-
+//    fetchData();
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   },[]);
     return (
         <div className='content-wrapper'>
             <Sidebar />

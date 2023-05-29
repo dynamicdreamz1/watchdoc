@@ -1,6 +1,6 @@
 import { Button, Dialog} from '@mui/material'
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting,calculateAge} from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
@@ -10,9 +10,8 @@ import { ChartResultRange } from '../../../Utility/Skeleton';
 
 
 export default function PatientProfileBar({latestData}) {
-
+const navigate=useNavigate();
  const location=useLocation()
- 
   const {data}=location.state;
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
   const age=calculateAge(dob)
@@ -24,6 +23,14 @@ export default function PatientProfileBar({latestData}) {
     setOpenClincians(false);
     setOpenEmergencyContacts(false);
   };
+
+  const handleClickClinician=()=>{
+    navigate(`/alluserclinician`, {
+      state: {
+        userId:latestData?.user_data?.id
+      },
+    });
+  }
 
   const patientQuickNavs = [
     {
@@ -70,7 +77,7 @@ export default function PatientProfileBar({latestData}) {
         <div className='right-block'>
             {patientQuickNavs.map((data, i) => (
               <React.Fragment key={i}>
-              <Button variant="contained" onClick={data.handle}>{data.Name}</Button>
+              <Button variant="contained" onClick={data?.Name==='Clincians'?handleClickClinician:data.handle}>{data.Name}</Button>
               <Dialog
                 open={!!data.open}
                 onClose={handleClose}>

@@ -101,3 +101,21 @@ export const ClinicianPatientStatus = async (data) => {
 
 
 
+
+export const RelatedAllUserClinician = async (id,dataLimit, currentPage) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
+
