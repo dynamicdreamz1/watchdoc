@@ -49,7 +49,7 @@ export default function Reminders({latestData,fetchData}) {
     <div  className='reminder-cards-wrapper mt-22'>
 
         <div className='section-title'>
-            <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
+             <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
         </div>
         <Dialog
           open={open}
