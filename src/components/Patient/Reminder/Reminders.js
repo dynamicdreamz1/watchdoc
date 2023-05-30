@@ -4,6 +4,7 @@ import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
 import { Dialog } from '@mui/material';
 import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
+import { ReminderCardSkeleton, ReminderSkeleton } from '../../../Utility/Skeleton';
 
 export default function Reminders({latestData,fetchData}) {
   const {t}=useTranslation()
@@ -47,7 +48,7 @@ export default function Reminders({latestData,fetchData}) {
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, I) => (
-            <ReminderCard  reminderData={data} key={I}/> 
+            data  ? <ReminderCard  reminderData={data} key={I}/> : <ReminderCardSkeleton />
         ))}
         </div>
     </div>
