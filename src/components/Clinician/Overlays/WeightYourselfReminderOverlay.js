@@ -13,9 +13,8 @@ import dayjs from 'dayjs';
 
 export default function WeightYourselfReminderOverlay({actionReminderDay}) {
   const {filterDay,reminderType,latestData,setOpen,fetchData,setOpenReminder}=actionReminderDay
-  // const [selectedValue, setSelectedValue] = useState(filterDay);
   const [checked, setChecked] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(dayjs());
 
   const handleTimeChange = (date) => {
     setSelectedDate(date);
@@ -65,24 +64,7 @@ useEffect(()=>{
     setChecked(newChecked);
   };
 
-  // const handleChange = (e) => {
-  //   const value = e.target.value;
-  //   if (e.target.checked) {
-  //     setSelectedValue((prevSelectedValues) => [...prevSelectedValues, value]);
-  //   } else {
-  //     setSelectedValue((prevSelectedValues) =>
-  //       prevSelectedValues.filter((v) => v !== value)
-  //     );
-  //   }
-  // };
-
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   const value = e.target.value;
-  //   setSelectedValue((prevSelectedValues) =>
-  //     prevSelectedValues.filter((v) => v !== value)
-  //   );
-  // };
+  
 
   const handleClickAddReminder=async()=>{
     const timeData = extractTimeData(selectedDate);
@@ -148,9 +130,7 @@ useEffect(()=>{
             disablePadding
           >
             <ListItemButton>
-              {/* <ListItemText id={labelId} primary={`Every ${value.id.day}`} /> */}
               <div className='radio-item'>
-              {/* <input className={selectedValue.includes('Every Monday')?'checked':""} type="radio" id="monday" name="day" value.id="Every Monday" checked={selectedValue.includes('Every Monday')} onChange={handleChange} onClick={handleClick} /> */}
               <label htmlFor="monday">Every {value.day}</label>
             </div>
             </ListItemButton>
@@ -158,36 +138,7 @@ useEffect(()=>{
         );
       })}
     </List>
-          {/* <div className='radios-wrapper'>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('1')?'checked':""} type="radio" id="monday" name="day" value="1" checked={selectedValue.includes('1')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="monday">Every Monday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('2')?'checked':""} type="radio" id="tuesday" name="day" value="2" checked={selectedValue.includes('2')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="tuesday">Every Tuesday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('3')?'checked':""} type="radio" id="wednesday" name="day" value="3" checked={selectedValue.includes('3')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="wednesday">Every Wednesday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('4')?'checked':""} type="radio" id="thursday" name="day" value="4" checked={selectedValue.includes('4')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="thursday">Every Thursday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('5')?'checked':""} type="radio" id="friday" name="day" value="5" checked={selectedValue.includes('5')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="friday">Every Friday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('6')?'checked':""} type="radio" id="saturday" name="day" value="6" checked={selectedValue.includes('6')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="saturday">Every Saturday</label>
-            </div>
-            <div className='radio-item'>
-              <input className={selectedValue.includes('7')?'checked':""} type="radio" id="sunday" name="day" value="7" checked={selectedValue.includes('7')} onChange={handleChange} onClick={handleClick} />
-              <label htmlFor="sunday">Every Sunday</label>
-            </div>
-          </div> */}
+     
           <div className='submit-block'>
             <button type='button' className="btn" onClick={handleClickAddReminder}>Add Reminder</button>
           </div>
