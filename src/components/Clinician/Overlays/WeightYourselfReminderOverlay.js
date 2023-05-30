@@ -69,15 +69,23 @@ useEffect(()=>{
   const handleClickAddReminder=async()=>{
     const timeData = extractTimeData(selectedDate);
 
-    const remindertypevalue=reminderType==='medication'?1:reminderType==='weight'?2:reminderType==='blood_pressure'?3:reminderType==='custome'?4:''
+    const remindertypevalue=reminderType==='medication'?3:reminderType==='weight'?1:reminderType==='blood_pressure'?2:reminderType==='custome'?4:''
     const data={
       user_id:latestData?.user_data?.id,
       reminder_id:remindertypevalue,
       ...timeData,
       day:checked      
     }
-
-    const res=await StoreReminderData(data)
+    const formData = new FormData();
+    formData.append('user_id', latestData?.user_data?.id)  
+    formData.append('reminder_id', remindertypevalue)  
+    formData.append('time', timeData?.time)  
+    formData.append('time_in_hour', timeData?.time_in_hour)  
+    formData.append('time_in_mint', timeData?.time_in_mint)  
+    formData.append('time_am_pm', timeData?.time_am_pm)  
+    formData.append('day', checked)  
+    formData.append('time_zone', timeData?.time_zone)  
+    const res=await StoreReminderData(formData)
     setOpen(false)
 
     if (res?.status === 200) {
