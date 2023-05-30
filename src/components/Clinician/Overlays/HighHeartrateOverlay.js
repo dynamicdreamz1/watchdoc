@@ -45,7 +45,7 @@ export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
         <form>
           {reminderTypeArray?.map((el, I) => {
             return (
-
+              <>
               <div className="reminder-card" key={I}>
                 <div className="icon-block">
                   <div className="reminder-icon">
@@ -67,8 +67,8 @@ export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
                 </div>
               </div>
 
-
-
+              <br/>
+              </>
             );
           })}
         </form>
