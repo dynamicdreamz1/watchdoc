@@ -11,7 +11,8 @@ import {day} from "../../../Utility/commonConstant"
 import dayjs from 'dayjs';
 
 
-export default function WeightYourselfReminderOverlay({filterDay,reminderType,latestData,setOpen}) {
+export default function WeightYourselfReminderOverlay({actionReminderDay}) {
+  const {filterDay,reminderType,latestData,setOpen,fetchData,setOpenReminder}=actionReminderDay
   // const [selectedValue, setSelectedValue] = useState(filterDay);
   const [checked, setChecked] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
