@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,13 +8,20 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Checkbox from '@mui/material/Checkbox';
 
 
-export default function WeightYourselfReminderOverlay() {
-  const [selectedValue, setSelectedValue] = useState([]);
-
+export default function WeightYourselfReminderOverlay({filterDay}) {
+  // const [selectedValue, setSelectedValue] = useState(filterDay);
   const [checked, setChecked] = React.useState([]);
 
+useEffect(()=>{
+  if(filterDay!==undefined){
+  setChecked(filterDay)
+  }
+},filterDay)
+ 
+console.log("1111-checked",filterDay,checked)
+
   const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
+    const currentIndex = checked?.indexOf(value);
     const newChecked = [...checked];
     if (currentIndex === -1) {
       newChecked.push(value);
@@ -24,7 +31,6 @@ export default function WeightYourselfReminderOverlay() {
     
     setChecked(newChecked);
   };
-  console.log("fsasafs",checked);
 
   // const handleChange = (e) => {
   //   const value = e.target.value;
@@ -39,31 +45,31 @@ export default function WeightYourselfReminderOverlay() {
 
   const day = [
     {
-      id :0,
+      id :1,
       day : "Monday"
     },
     {
-      id :1,
+      id :2,
       day : "Tuesday"
     },
     {
-      id :2,
+      id :3,
       day : "Wednesday"
     },
     {
-      id :3,
+      id :4,
       day : "Thursday"
     },
     {
-      id :4,
+      id :5,
       day : "Friday"
     },
     {
-      id :5,
+      id :6,
       day : "Saturday"
     },
     {
-      id :6,
+      id :7,
       day : "Sunday"
     }
 ]
@@ -76,6 +82,8 @@ export default function WeightYourselfReminderOverlay() {
   // };
 
   const handleClickAddReminder=()=>{}
+
+
 
   return (
     <>
@@ -98,7 +106,7 @@ export default function WeightYourselfReminderOverlay() {
 
 
     <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {day.map((value) => {
+      {day?.map((value) => {
         const labelId = `checkbox-list-secondary-label-${value.id}`;
         return (
           <ListItem
@@ -127,31 +135,31 @@ export default function WeightYourselfReminderOverlay() {
     </List>
           {/* <div className='radios-wrapper'>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Monday')?'checked':""} type="radio" id="monday" name="day" value="Every Monday" checked={selectedValue.includes('Every Monday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('1')?'checked':""} type="radio" id="monday" name="day" value="1" checked={selectedValue.includes('1')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="monday">Every Monday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Tuesday')?'checked':""} type="radio" id="tuesday" name="day" value="Every Tuesday" checked={selectedValue.includes('Every Tuesday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('2')?'checked':""} type="radio" id="tuesday" name="day" value="2" checked={selectedValue.includes('2')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="tuesday">Every Tuesday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Wednesday')?'checked':""} type="radio" id="wednesday" name="day" value="Every Wednesday" checked={selectedValue.includes('Every Wednesday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('3')?'checked':""} type="radio" id="wednesday" name="day" value="3" checked={selectedValue.includes('3')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="wednesday">Every Wednesday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Thursday')?'checked':""} type="radio" id="thursday" name="day" value="Every Thursday" checked={selectedValue.includes('Every Thursday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('4')?'checked':""} type="radio" id="thursday" name="day" value="4" checked={selectedValue.includes('4')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="thursday">Every Thursday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Friday')?'checked':""} type="radio" id="friday" name="day" value="Every Friday" checked={selectedValue.includes('Every Friday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('5')?'checked':""} type="radio" id="friday" name="day" value="5" checked={selectedValue.includes('5')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="friday">Every Friday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Saturday')?'checked':""} type="radio" id="saturday" name="day" value="Every Saturday" checked={selectedValue.includes('Every Saturday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('6')?'checked':""} type="radio" id="saturday" name="day" value="6" checked={selectedValue.includes('6')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="saturday">Every Saturday</label>
             </div>
             <div className='radio-item'>
-              <input className={selectedValue.includes('Every Sunday')?'checked':""} type="radio" id="sunday" name="day" value="Every Sunday" checked={selectedValue.includes('Every Sunday')} onChange={handleChange} onClick={handleClick} />
+              <input className={selectedValue.includes('7')?'checked':""} type="radio" id="sunday" name="day" value="7" checked={selectedValue.includes('7')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="sunday">Every Sunday</label>
             </div>
           </div> */}

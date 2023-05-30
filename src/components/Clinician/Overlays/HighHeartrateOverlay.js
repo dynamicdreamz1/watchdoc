@@ -1,32 +1,37 @@
 import React from "react";
 // import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
-export default function HighHeartrateOverlay({ setOpenReminder }) {
+export default function HighHeartrateOverlay({ setOpenReminder, setreminderType, latestData }) {
 
   const reminderTypeArray = [
     {
       id: 1,
       name: "MEDICATION",
       buttonText: "Add Reminder",
+      reminder_type:"medication"
     },
     {
       id: 2,
       name: "WEIGHT",
       buttonText: "Add Reminder",
+      reminder_type:"weight"
     },
     {
       id: 3,
       name: "BLOOD PRESSURE",
       buttonText: "Add Reminder",
+      reminder_type:"blood_pressure"
     },
     {
       id: 4,
       name: "CUSTOME",
       buttonText: "Add Reminder",
+      reminder_type:"custome"
     },
   ];
 
-  const handleClickOpen = (name) => {
+  const handleClickOpen = (type) => {
+    setreminderType(type)
     setOpenReminder(true);
   };
   return (
@@ -39,15 +44,26 @@ export default function HighHeartrateOverlay({ setOpenReminder }) {
         <form>
           {reminderTypeArray?.map((el, I) => {
             return (
-                <>
-              <div className="reminder-card" key={I}>
-                {/* <ReminderOptions /> */}
-                <div className="icon-block">
-                  <div className="reminder-icon">
-                    <img
-                      src="/images/person-weight-icon.svg"
-                      alt="Person Weight Icon"
-                    />
+              <>
+                <div className="reminder-card" key={I}>
+                  {/* <ReminderOptions /> */}
+                  <div className="icon-block">
+                    <div className="reminder-icon">
+                      <img
+                        src="/images/person-weight-icon.svg"
+                        alt="Person Weight Icon"
+                      />
+                    </div>
+                  </div>
+                  <div className="content-block">
+                    <div className="r-title">
+                      <h4>{el?.name}</h4>
+                    </div>
+                    <div className="reminder-date">
+                      <button onClick={() => handleClickOpen(el?.reminder_type)}>
+                       {el?.buttonText}
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="content-block">
@@ -60,7 +76,6 @@ export default function HighHeartrateOverlay({ setOpenReminder }) {
                     </button>
                   </div>
                 </div>
-              </div>
                 <br/>
               </>
             );
