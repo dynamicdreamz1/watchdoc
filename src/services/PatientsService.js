@@ -27,7 +27,7 @@ export async function getLatestpatientDetails(id) {
 
         return response;
     } catch (error) {
-        return error.response.data.message;
+        return error?.response?.data?.message;
     }
 }
 

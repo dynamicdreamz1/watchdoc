@@ -976,6 +976,7 @@ body .MuiPaper-root.clinicians-table .table-title h4 {
   flex-wrap: wrap;
   max-width: 340px;
   width: 100%;
+  margin-left: 10px;
 }
 .reminder-card .dots-icon {
   position: absolute;
