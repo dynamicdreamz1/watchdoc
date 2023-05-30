@@ -1,34 +1,33 @@
 import React from "react";
-// import ReminderOptions from "../../Patient/Reminder/ReminderOptions";
 
-export default function HighHeartrateOverlay({ setOpenReminder, setreminderType, latestData }) {
-
+export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
+  const { setOpenReminder, setreminderType } = actionReminderTypeOption
   const reminderTypeArray = [
     {
       id: 3,
       name: "MEDICATION",
       buttonText: "Add Reminder",
-      reminder_type:"medication"
+      reminder_type: "medication"
     },
     {
-      
+
       id: 1,
       name: "WEIGHT",
       buttonText: "Add Reminder",
-      reminder_type:"weight"
+      reminder_type: "weight"
     },
     {
       id: 2,
       name: "BLOOD PRESSURE",
       buttonText: "Add Reminder",
-      reminder_type:"blood_pressure"
+      reminder_type: "blood_pressure"
     },
-    
+
     {
       id: 4,
       name: "CUSTOME",
       buttonText: "Add Reminder",
-      reminder_type:"custome"
+      reminder_type: "custome"
     },
   ];
 
@@ -46,40 +45,30 @@ export default function HighHeartrateOverlay({ setOpenReminder, setreminderType,
         <form>
           {reminderTypeArray?.map((el, I) => {
             return (
-              <>
-                <div className="reminder-card" key={I}>
-                  {/* <ReminderOptions /> */}
-                  <div className="icon-block">
-                    <div className="reminder-icon">
-                      <img
-                        src="/images/person-weight-icon.svg"
-                        alt="Person Weight Icon"
-                      />
-                    </div>
-                  </div>
-                  <div className="content-block">
-                    <div className="r-title">
-                      <h4>{el?.name}</h4>
-                    </div>
-                    <div className="reminder-date submit-block-data">
-                      <button onClick={() => handleClickOpen(el?.reminder_type)}>
-                       {el?.buttonText}
-                      </button>
-                    </div>
+
+              <div className="reminder-card" key={I}>
+                <div className="icon-block">
+                  <div className="reminder-icon">
+                    <img
+                      src="/images/person-weight-icon.svg"
+                      alt="Person Weight Icon"
+                    />
                   </div>
                 </div>
-                {/* <div className="content-block">
+                <div className="content-block">
                   <div className="r-title">
                     <h4>{el?.name}</h4>
                   </div>
                   <div className="reminder-date submit-block-data">
-                    <button onClick={() => handleClickOpen(el?.name)}>
+                    <button onClick={() => handleClickOpen(el?.reminder_type)}>
                       {el?.buttonText}
                     </button>
                   </div>
-                </div> */}
-                <br/>
-              </>
+                </div>
+              </div>
+
+
+
             );
           })}
         </form>
