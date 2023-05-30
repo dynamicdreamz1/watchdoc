@@ -12,8 +12,8 @@ import dayjs from 'dayjs';
 
 export default function WeightYourselfReminderOverlay({filterDay,reminderType,latestData,setOpen}) {
   // const [selectedValue, setSelectedValue] = useState(filterDay);
-  const [checked, setChecked] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [checked, setChecked] = useState((!Array.isArray(filterDay) || filterDay.length === 0)?[]:filterDay);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleTimeChange = (date) => {
     setSelectedDate(date);
@@ -24,7 +24,10 @@ export default function WeightYourselfReminderOverlay({filterDay,reminderType,la
 
 
   const extractTimeData = (date) => {
-    if (date) {
+    if (!date) {
+      date = new Date(); // Set date to current date if it is undefined
+    }
+   
       const time = dayjs(date).format('hh:mm A');
       let time_in_hour = dayjs(date).hour();
       const time_in_mint = dayjs(date).minute();
@@ -42,9 +45,8 @@ export default function WeightYourselfReminderOverlay({filterDay,reminderType,la
         time_am_pm,
         time_zone,
       };
-    }
+    
 
-    return null;
   };
 
 
@@ -53,10 +55,11 @@ export default function WeightYourselfReminderOverlay({filterDay,reminderType,la
 
 
 
-useEffect(()=>{
-  if(filterDay!==undefined){
+useEffect(()=>{ 
+  (!Array.isArray(filterDay) || filterDay.length === 0)?
+  setChecked([])
+  :
   setChecked(filterDay)
-  }
 },[filterDay])
  
 
@@ -124,12 +127,17 @@ useEffect(()=>{
   const handleClickAddReminder=async()=>{
     const timeData = extractTimeData(selectedDate);
 
+    let dayArray = checked;
+    if (!Array.isArray(dayArray) || dayArray.length === 0) {
+      dayArray = []; 
+    }
+
     const remindertypevalue=reminderType==='medication'?1:reminderType==='weight'?2:reminderType==='blood_pressure'?3:reminderType==='custome'?4:''
     const data={
       user_id:latestData?.user_data?.id,
       reminder_id:remindertypevalue,
       ...timeData,
-      day:checked      
+      day:dayArray      
     }
 
     const res=await StoreReminderData(data)
@@ -137,7 +145,7 @@ useEffect(()=>{
 
 
   }
-
+console.log("111-checked-",checked)
 
   return (
     <>

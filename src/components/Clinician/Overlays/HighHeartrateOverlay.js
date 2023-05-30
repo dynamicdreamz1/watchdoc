@@ -5,6 +5,13 @@ export default function HighHeartrateOverlay({ setOpenReminder, setreminderType,
 
   const reminderTypeArray = [
     {
+      id: 3,
+      name: "MEDICATION",
+      buttonText: "Add Reminder",
+      reminder_type:"medication"
+    },
+    {
+      
       id: 1,
       name: "WEIGHT",
       buttonText: "Add Reminder",
@@ -16,12 +23,7 @@ export default function HighHeartrateOverlay({ setOpenReminder, setreminderType,
       buttonText: "Add Reminder",
       reminder_type:"blood_pressure"
     },
-    {
-      id: 3,
-      name: "MEDICATION",
-      buttonText: "Add Reminder",
-      reminder_type:"medication"
-    },
+    
     {
       id: 4,
       name: "CUSTOME",
