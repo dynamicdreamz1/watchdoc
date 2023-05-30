@@ -2,29 +2,78 @@ import React, { useState } from 'react'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import Checkbox from '@mui/material/Checkbox';
 
 
 export default function WeightYourselfReminderOverlay() {
   const [selectedValue, setSelectedValue] = useState([]);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      setSelectedValue((prevSelectedValues) => [...prevSelectedValues, value]);
-    } else {
-      setSelectedValue((prevSelectedValues) =>
-        prevSelectedValues.filter((v) => v !== value)
-      );
-    }
-  };
+  const [checked, setChecked] = React.useState([]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-    setSelectedValue((prevSelectedValues) =>
-      prevSelectedValues.filter((v) => v !== value)
-    );
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    
+    setChecked(newChecked);
   };
+  console.log("fsasafs",checked);
+
+  // const handleChange = (e) => {
+  //   const value = e.target.value;
+  //   if (e.target.checked) {
+  //     setSelectedValue((prevSelectedValues) => [...prevSelectedValues, value]);
+  //   } else {
+  //     setSelectedValue((prevSelectedValues) =>
+  //       prevSelectedValues.filter((v) => v !== value)
+  //     );
+  //   }
+  // };
+
+  const day = [
+    {
+      id :0,
+      day : "Monday"
+    },
+    {
+      id :1,
+      day : "Tuesday"
+    },
+    {
+      id :2,
+      day : "Wednesday"
+    },
+    {
+      id :3,
+      day : "Thursday"
+    },
+    {
+      id :4,
+      day : "Friday"
+    },
+    {
+      id :5,
+      day : "Saturday"
+    },
+    {
+      id :6,
+      day : "Sunday"
+    }
+]
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   const value = e.target.value;
+  //   setSelectedValue((prevSelectedValues) =>
+  //     prevSelectedValues.filter((v) => v !== value)
+  //   );
+  // };
 
   const handleClickAddReminder=()=>{}
 
@@ -46,7 +95,37 @@ export default function WeightYourselfReminderOverlay() {
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span>Days</span>
           </div>
-          <div className='radios-wrapper'>
+
+
+    <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      {day.map((value) => {
+        const labelId = `checkbox-list-secondary-label-${value.id}`;
+        return (
+          <ListItem
+            key={value.id}
+            secondaryAction={
+              <Checkbox
+                edge="end"
+                onChange={handleToggle(value.id)}
+                checked={checked.indexOf(value.id) !== -1}
+                inputProps={{ 'aria-labelledby': labelId }}
+                className="Every Monday"
+              />
+            }
+            disablePadding
+          >
+            <ListItemButton>
+              {/* <ListItemText id={labelId} primary={`Every ${value.id.day}`} /> */}
+              <div className='radio-item'>
+              {/* <input className={selectedValue.includes('Every Monday')?'checked':""} type="radio" id="monday" name="day" value.id="Every Monday" checked={selectedValue.includes('Every Monday')} onChange={handleChange} onClick={handleClick} /> */}
+              <label htmlFor="monday">Every {value.day}</label>
+            </div>
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
+          {/* <div className='radios-wrapper'>
             <div className='radio-item'>
               <input className={selectedValue.includes('Every Monday')?'checked':""} type="radio" id="monday" name="day" value="Every Monday" checked={selectedValue.includes('Every Monday')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="monday">Every Monday</label>
@@ -75,7 +154,7 @@ export default function WeightYourselfReminderOverlay() {
               <input className={selectedValue.includes('Every Sunday')?'checked':""} type="radio" id="sunday" name="day" value="Every Sunday" checked={selectedValue.includes('Every Sunday')} onChange={handleChange} onClick={handleClick} />
               <label htmlFor="sunday">Every Sunday</label>
             </div>
-          </div>
+          </div> */}
           <div className='submit-block'>
             <button type='button' className="btn" onClick={handleClickAddReminder}>Add Reminder</button>
           </div>
