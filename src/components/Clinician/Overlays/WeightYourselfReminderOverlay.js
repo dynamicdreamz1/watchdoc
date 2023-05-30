@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -6,19 +6,59 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Checkbox from '@mui/material/Checkbox';
+import { StoreReminderData } from '../../../services/ClinicianService';
+import dayjs from 'dayjs';
 
 
-export default function WeightYourselfReminderOverlay({filterDay}) {
+export default function WeightYourselfReminderOverlay({filterDay,reminderType,latestData,setOpen}) {
   // const [selectedValue, setSelectedValue] = useState(filterDay);
-  const [checked, setChecked] = React.useState([]);
+  const [checked, setChecked] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleTimeChange = (date) => {
+    setSelectedDate(date);
+    
+  };
+
+
+
+
+  const extractTimeData = (date) => {
+    if (date) {
+      const time = dayjs(date).format('hh:mm A');
+      let time_in_hour = dayjs(date).hour();
+      const time_in_mint = dayjs(date).minute();
+      const time_am_pm = dayjs(date).format('A');
+      const time_zone = dayjs(date).format('Z');
+
+      if (time_in_hour > 12) {
+        time_in_hour -= 12;
+      }
+
+      return {
+        time,
+        time_in_hour,
+        time_in_mint,
+        time_am_pm,
+        time_zone,
+      };
+    }
+
+    return null;
+  };
+
+
+
+
+
+
 
 useEffect(()=>{
   if(filterDay!==undefined){
   setChecked(filterDay)
   }
-},filterDay)
+},[filterDay])
  
-console.log("1111-checked",filterDay,checked)
 
   const handleToggle = (value) => () => {
     const currentIndex = checked?.indexOf(value);
@@ -81,8 +121,22 @@ console.log("1111-checked",filterDay,checked)
   //   );
   // };
 
-  const handleClickAddReminder=()=>{}
+  const handleClickAddReminder=async()=>{
+    const timeData = extractTimeData(selectedDate);
 
+    const remindertypevalue=reminderType==='medication'?1:reminderType==='weight'?2:reminderType==='blood_pressure'?3:reminderType==='custome'?4:''
+    const data={
+      user_id:latestData?.user_data?.id,
+      reminder_id:remindertypevalue,
+      ...timeData,
+      day:checked      
+    }
+
+    const res=await StoreReminderData(data)
+    setOpen(false)
+
+
+  }
 
 
   return (
@@ -98,8 +152,12 @@ console.log("1111-checked",filterDay,checked)
             <span className='days-data'>Time</span>
           </div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <TimePicker label="Basic time picker" />
-          </LocalizationProvider>          <div className='clock-title'>
+      <TimePicker
+        label="Basic time picker"
+        value={selectedDate}
+        onChange={handleTimeChange}
+      />
+    </LocalizationProvider>      <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span className='days-data'>Days</span>
           </div>

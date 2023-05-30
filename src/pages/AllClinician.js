@@ -25,7 +25,6 @@ export default function AllClinician() {
     const [dataLimit] = useState(5)
 
 
-    console.log("1111-allclinicianData",allclinicianData)
 
 
     const handleChange = (event, newPage) => {

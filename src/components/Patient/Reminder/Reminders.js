@@ -11,7 +11,6 @@ export default function Reminders({latestData}) {
   const [openReminder,setOpenReminder]=useState(false)
   const [reminderType,setreminderType]=useState('')
   const [filterDay,setFilterDay]=useState([])
-
   
   const handleClose = () => {
     setOpen(false);
@@ -43,7 +42,7 @@ export default function Reminders({latestData}) {
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
           
-          {openReminder=== true ? <WeightYourselfReminderOverlay filterDay={filterDay}/> : <HighHeartrateOverlay setOpenReminder={setOpenReminder} setreminderType={setreminderType} latestData={latestData} />}
+          {openReminder=== true ? <WeightYourselfReminderOverlay filterDay={filterDay} reminderType={reminderType} latestData={latestData} setOpen={setOpen}/> : <HighHeartrateOverlay setOpenReminder={setOpenReminder} setreminderType={setreminderType} latestData={latestData} />}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, I) => (
