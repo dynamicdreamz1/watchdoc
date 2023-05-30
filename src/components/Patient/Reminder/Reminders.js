@@ -6,9 +6,12 @@ import { Dialog } from '@mui/material';
 import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
 
 export default function Reminders({latestData}) {
+  const {t}=useTranslation()
   const [open,setOpen]=useState(false)
   const [openReminder,setOpenReminder]=useState(false)
-  const {t}=useTranslation()
+  const [reminderType,setreminderType]=useState('')
+  const [filterDay,setFilterDay]=useState([])
+
   
   const handleClose = () => {
     setOpen(false);
@@ -20,7 +23,10 @@ export default function Reminders({latestData}) {
   };
 
   useEffect(()=>{
-  },[openReminder])
+    const result=latestData?.user_reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()
+    setFilterDay(result)
+  },[openReminder,reminderType])
+
  
   return (
      
@@ -37,7 +43,7 @@ export default function Reminders({latestData}) {
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
           
-          {openReminder=== true ? <WeightYourselfReminderOverlay /> : <HighHeartrateOverlay setOpenReminder={setOpenReminder}  />}
+          {openReminder=== true ? <WeightYourselfReminderOverlay filterDay={filterDay}/> : <HighHeartrateOverlay setOpenReminder={setOpenReminder} setreminderType={setreminderType} latestData={latestData} />}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, I) => (
