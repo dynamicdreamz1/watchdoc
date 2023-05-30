@@ -54,7 +54,7 @@ export default function HighHeartrateOverlay({ setOpenReminder }) {
                   <div className="r-title">
                     <h4>{el?.name}</h4>
                   </div>
-                  <div className="reminder-date">
+                  <div className="reminder-date submit-block-data">
                     <button onClick={() => handleClickOpen(el?.name)}>
                       {el?.buttonText}
                     </button>

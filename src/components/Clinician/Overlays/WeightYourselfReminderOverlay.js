@@ -87,13 +87,13 @@ export default function WeightYourselfReminderOverlay() {
         <form>
           <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
-            <span>Time</span>
+            <span className='days-data'>Time</span>
           </div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
           <TimePicker label="Basic time picker" />
           </LocalizationProvider>          <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
-            <span>Days</span>
+            <span className='days-data'>Days</span>
           </div>
 
 

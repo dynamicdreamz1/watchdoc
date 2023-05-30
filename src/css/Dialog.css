@@ -168,3 +168,25 @@
 .clinician-overlay .connect-btn img {
     margin-right: 16px;
 }
+.clock-title{
+    margin: 10px;
+  }
+  .days-data{
+    margin-left: 10px;
+    position: absolute;
+  }
+  .submit-block-data{
+    background-color: #00B8E2;
+    border-radius: 6px;
+    border: 0;
+    color: #fff;
+    width: 43%;
+    font-size: 15px;
+    line-height: 13px;
+    height: 38px;
+    padding: 13px 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.2s;
+    margin-left: 20px;
+  }
