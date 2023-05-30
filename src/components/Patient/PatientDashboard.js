@@ -17,12 +17,13 @@ export default function PatientDashboard() {
   const [terraId,setTerraId]=useState([])
   const finalId = terraId?.data?.map(item => item?.terra_id);
   
+  async function fetchData() {
+    await getLatestMeasurement().then(response => response?.data).then(response => {
+        setlatestData(response);
+    })
+  }
   useEffect(() => {
-    async function fetchData() {
-        await getLatestMeasurement().then(response => response?.data).then(response => {
-            setlatestData(response);
-        })
-    }
+   
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
@@ -36,12 +37,12 @@ export default function PatientDashboard() {
    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-
+  console.log("latestData",latestData);
   return (
         
         <UserBodyContextProvider >
           <Latestmeasurement latestData={latestData}/>        
-          <Reminders />
+          <Reminders latestData={latestData} fetchData={fetchData} />
           <Heartrates terraId={finalId?.[0]} latestData={latestData} />
           <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
           <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>

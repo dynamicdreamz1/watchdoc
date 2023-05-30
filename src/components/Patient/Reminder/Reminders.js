@@ -23,7 +23,7 @@ export default function Reminders({latestData,fetchData}) {
   };
 
   useEffect(()=>{
-    const result=latestData?.user_reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
+    const result=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
     result?.shift()
     setFilterDay(result)
   },[openReminder,reminderType])
@@ -64,7 +64,7 @@ export default function Reminders({latestData,fetchData}) {
            : <HighHeartrateOverlay  actionReminderTypeOption={actionReminderTypeOption}/>}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
-        {latestData?.user_reminder?.map((data, I) => (
+        {latestData?.reminder?.map((data, I) => (
             data  ? <ReminderCard  reminderData={data} key={I}/> : <ReminderCardSkeleton />
         ))}
         </div>

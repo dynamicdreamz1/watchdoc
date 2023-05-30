@@ -39,7 +39,7 @@ const finalLatest={
     latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
     role_name:[],
     user_data:latestData?.data?.user_data,
-    user_reminder:latestData?.data?.user_reminder
+    reminder:latestData?.data?.user_reminder
 }
 //   useEffect(() => {
 //     async function fetchData() {
