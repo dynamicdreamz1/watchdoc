@@ -15,6 +15,7 @@ import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
 import { getLatestpatientDetails, getProviderTerraId} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
 import { MetaFormeting } from '../Utility/functions';
+import { ReminderCardSkeleton } from '../Utility/Skeleton';
 
 
 const PatientsDetails = () => {
@@ -42,7 +43,7 @@ const finalLatest={
     latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
     role_name:[],
     user_data:latestData?.data?.user_data,
-    user_reminder:latestData?.data?.user_reminder
+    reminder:latestData?.data?.user_reminder
 }
 //   useEffect(() => {
 //     async function fetchData() {
@@ -71,7 +72,7 @@ const finalLatest={
                     <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
-                    <Reminders latestData={finalLatest} fetchData={fetchData} loadingSkeleton={loadingSkeleton}/>
+                   { loadingSkeleton ? <ReminderCardSkeleton /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>

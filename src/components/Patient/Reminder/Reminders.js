@@ -6,7 +6,6 @@ import { Dialog } from '@mui/material';
 import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ReminderCardSkeleton, ReminderSkeleton } from '../../../Utility/Skeleton';
 
 export default function Reminders({latestData,fetchData}) {
   const {t}=useTranslation()
@@ -25,7 +24,7 @@ export default function Reminders({latestData,fetchData}) {
   };
 
   useEffect(()=>{
-    const result=latestData?.user_reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
+    const result=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
     result?.shift()
     setFilterDay(result)
   },[openReminder,reminderType])
@@ -68,8 +67,8 @@ export default function Reminders({latestData,fetchData}) {
            : <HighHeartrateOverlay  actionReminderTypeOption={actionReminderTypeOption}/>}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
-        {latestData?.user_reminder?.map((data, I) => (
-            data  ? <ReminderCard  reminderData={data} key={I}/> : <ReminderCardSkeleton />
+        {latestData?.reminder?.map((data, I) => (
+            <ReminderCard  reminderData={data} key={I}/> 
         ))}
         </div>
     </div>
