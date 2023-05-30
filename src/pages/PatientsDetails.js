@@ -19,14 +19,17 @@ import { MetaFormeting } from '../Utility/functions';
 
 const PatientsDetails = () => {
     const location=useLocation()
+  const { state } = location || {};
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
-  const { state } = location || {};
+  const [loadingSkeleton,setLoadingSkeleton]=useState(false)
 
   const fetchData=async()=>{
+    setLoadingSkeleton(true)
     const response= await getLatestpatientDetails(state?.id).then(response => response?.data)
     setlatestData(response);
+    setLoadingSkeleton(false)
   }
 
   useEffect(() => {
@@ -68,7 +71,7 @@ const finalLatest={
                     <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
-                    <Reminders latestData={finalLatest} fetchData={fetchData} />
+                    <Reminders latestData={finalLatest} fetchData={fetchData} loadingSkeleton={loadingSkeleton}/>
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>
