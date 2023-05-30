@@ -131,16 +131,18 @@ useEffect(()=>{
     if (!Array.isArray(dayArray) || dayArray.length === 0) {
       dayArray = []; 
     }
-
+    const formData = new FormData();
     const remindertypevalue=reminderType==='medication'?1:reminderType==='weight'?2:reminderType==='blood_pressure'?3:reminderType==='custome'?4:''
-    const data={
-      user_id:latestData?.user_data?.id,
-      reminder_id:remindertypevalue,
-      ...timeData,
-      day:dayArray      
-    }
+    formData.append('user_id', latestData?.user_data?.id); // Add the file to the FormData object
+    formData.append('reminder_id', remindertypevalue)
+    formData.append('day', dayArray)
+    formData.append('time', timeData?.time)
+    formData.append('time_in_hour', timeData?.time_in_hour)
+    formData.append('time_in_mint', timeData?.time_in_mint)
+    formData.append('time_am_pm', timeData?.time_am_pm)
+    formData.append('time_zone', timeData?.time_zone)
 
-    const res=await StoreReminderData(data)
+    const res=await StoreReminderData(formData)
     setOpen(false)
 
 
