@@ -4,6 +4,8 @@ import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
 import { Dialog } from '@mui/material';
 import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Reminders({latestData,fetchData}) {
   const {t}=useTranslation()
@@ -34,7 +36,7 @@ export default function Reminders({latestData,fetchData}) {
     filterDay,
     reminderType,
     latestData,
-    setOpen
+    setOpen,
   }
 
   const actionReminderTypeOption={
@@ -46,6 +48,8 @@ export default function Reminders({latestData,fetchData}) {
   return (
      
     <div  className='reminder-cards-wrapper mt-22'>
+
+       <ToastContainer />
         <div className='section-title'>
             <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
         </div>

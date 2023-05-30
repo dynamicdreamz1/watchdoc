@@ -8,6 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Checkbox from '@mui/material/Checkbox';
 import { StoreReminderData } from '../../../services/ClinicianService';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 
 export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
@@ -130,10 +131,20 @@ export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
     const res = await StoreReminderData(formData)
     setOpen(false)
     if (res?.status === 200) {
+      toast.success(res?.data?.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: "",
+        theme: "colored",
+        });
       setOpenReminder(false)
       fetchData()
     }
-
+   
 
   }
 
