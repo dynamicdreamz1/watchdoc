@@ -23,13 +23,12 @@ const PatientsDetails = () => {
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const { state } = useLocation();
 
+  const fetchData=async()=>{
+    const response= await getLatestpatientDetails(state?.id).then(response => response?.data)
+    setlatestData(response);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-        await getLatestpatientDetails(state?.id).then(response => response?.data).then(response => {
-            setlatestData(response);
-        })
-    }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
@@ -68,7 +67,7 @@ const finalLatest={
                     <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts/>
                     <Latestmeasurement latestData={finalLatest} />
-                    <Reminders latestData={finalLatest} />
+                    <Reminders latestData={finalLatest} fetchData={fetchData} />
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>
