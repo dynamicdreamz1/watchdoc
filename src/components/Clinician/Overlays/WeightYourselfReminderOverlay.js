@@ -97,10 +97,16 @@ useEffect(()=>{
     const res=await StoreReminderData(data)
     setOpen(false)
 
+    if (res?.status === 200) {
+      setOpenReminder(false)
+      fetchData()
+    }
+   
 
   }
   return (
     <>
+
       <div className='high-heart-rate'>
         <div className='dialog-title'>
           <h2>Weigh Yourself</h2>
