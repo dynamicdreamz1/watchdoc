@@ -10,7 +10,7 @@ import { StoreReminderData } from '../../../services/ClinicianService';
 import dayjs from 'dayjs';
 
 
-export default function WeightYourselfReminderOverlay({fetchData,filterDay,reminderType,latestData,setOpen}) {
+export default function WeightYourselfReminderOverlay({setOpenReminder,fetchData,filterDay,reminderType,latestData,setOpen}) {
   // const [selectedValue, setSelectedValue] = useState(filterDay);
   const [checked, setChecked] = useState((!Array.isArray(filterDay) || filterDay.length === 0)?[]:filterDay);
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -133,7 +133,7 @@ useEffect(()=>{
       dayArray = []; 
     }
     const formData = new FormData();
-    const remindertypevalue=reminderType==='medication'?1:reminderType==='weight'?2:reminderType==='blood_pressure'?3:reminderType==='custome'?4:''
+    const remindertypevalue=reminderType==='medication'?3:reminderType==='weight'?1:reminderType==='blood_pressure'?2:reminderType==='custome'?4:''
     formData.append('user_id', latestData?.user_data?.id); 
     formData.append('reminder_id', remindertypevalue)
     formData.append('day', dayArray)
@@ -145,6 +145,7 @@ useEffect(()=>{
     const res=await StoreReminderData(formData)
     setOpen(false)
     if(res?.status===200){
+      setOpenReminder(false)
       fetchData()
     }
 

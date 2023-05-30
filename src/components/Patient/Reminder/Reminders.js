@@ -42,7 +42,7 @@ export default function Reminders({latestData,fetchData}) {
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
           
-          {openReminder=== true ? <WeightYourselfReminderOverlay fetchData={fetchData} filterDay={filterDay} reminderType={reminderType} latestData={latestData} setOpen={setOpen}/> : <HighHeartrateOverlay setOpenReminder={setOpenReminder} setreminderType={setreminderType} latestData={latestData} />}
+          {openReminder=== true ? <WeightYourselfReminderOverlay setOpenReminder={setOpenReminder} fetchData={fetchData} filterDay={filterDay} reminderType={reminderType} latestData={latestData} setOpen={setOpen}/> : <HighHeartrateOverlay setOpenReminder={setOpenReminder} setreminderType={setreminderType} latestData={latestData} />}
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.user_reminder?.map((data, I) => (
