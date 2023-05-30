@@ -18,10 +18,11 @@ import { MetaFormeting } from '../Utility/functions';
 
 
 const PatientsDetails = () => {
+    const location=useLocation()
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
-  const { state } = useLocation();
+  const { state } = location || {};
 
   const fetchData=async()=>{
     const response= await getLatestpatientDetails(state?.id).then(response => response?.data)
