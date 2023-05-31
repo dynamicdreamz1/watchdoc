@@ -1,36 +1,9 @@
 import React from "react";
+import { REMINDER_TYPE_ARRAY } from "../../../Utility/commonConstant"
 
 export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
   const { setOpenReminder, setreminderType } = actionReminderTypeOption
-  const reminderTypeArray = [
-    {
-      id: 3,
-      name: "MEDICATION",
-      buttonText: "Add Reminder",
-      reminder_type: "medication"
-    },
-    {
-
-      id: 1,
-      name: "WEIGHT",
-      buttonText: "Add Reminder",
-      reminder_type: "weight"
-    },
-    {
-      id: 2,
-      name: "BLOOD PRESSURE",
-      buttonText: "Add Reminder",
-      reminder_type: "blood_pressure"
-    },
-
-    {
-      id: 4,
-      name: "CUSTOME",
-      buttonText: "Add Reminder",
-      reminder_type: "custome"
-    },
-  ];
-
+ 
   const handleClickOpen = (type) => {
     setreminderType(type)
     setOpenReminder(true);
@@ -43,7 +16,7 @@ export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
           <p></p>
         </div>
         <form>
-          {reminderTypeArray?.map((el, I) => {
+          {REMINDER_TYPE_ARRAY?.map((el, I) => {
             return (
               <>
               <div className="reminder-card" key={I}>
