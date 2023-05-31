@@ -140,7 +140,7 @@ export default function MyClinicians({ status }) {
                                 <TableBody>
 
                                     {currentRecords?.map(el => {
-
+                                            console.log("el",el);
                                         return <TableRow key={el.id}>
                                             <TableCell className='user-profile-cell'>
                                                 <UserProfile data={el} />
@@ -151,7 +151,7 @@ export default function MyClinicians({ status }) {
                                             <TableCell>
                                                 <Phone number={el?.contact_number} />
                                             </TableCell>
-                                            <TableCell align="center" className='status'>Pending</TableCell>
+                                            <TableCell align="center" className={el.request_status === 1 ? "text color-light-green" : "status"}>{el.request_status === 1 ? "Reviewed" : "Pending"}</TableCell>
                                             <TableCell align="center" > <button onClick={() => DeleteRequest(el.id)}> Delete<img src="" alt="" /> </button></TableCell>
                                         </TableRow>
                                     })}
