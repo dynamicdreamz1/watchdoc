@@ -31,3 +31,33 @@ export const day = [
       day : "Sunday"
     }
 ]
+
+
+export  const REMINDER_TYPE_ARRAY = [
+  {
+    id: 3,
+    name: "MEDICATION",
+    buttonText: "Add Reminder",
+    reminder_type: "medication"
+  },
+  {
+
+    id: 1,
+    name: "WEIGHT",
+    buttonText: "Add Reminder",
+    reminder_type: "weight"
+  },
+  {
+    id: 2,
+    name: "BLOOD PRESSURE",
+    buttonText: "Add Reminder",
+    reminder_type: "blood_pressure"
+  },
+
+  {
+    id: 4,
+    name: "CUSTOME",
+    buttonText: "Add Reminder",
+    reminder_type: "custome"
+  },
+];
