@@ -11,9 +11,6 @@ import UserProfile from '../components/common/UserProfile';
 import Email from '../components/common/Table/Email';
 import Phone from '../components/common/Table/Phone';
 
-
-
-
 export default function AllClinician() {
     const location = useLocation()
     const { state } = location;
