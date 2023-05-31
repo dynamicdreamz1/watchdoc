@@ -119,10 +119,11 @@ useEffect(()=>{
         value={selectedDate}
         onChange={handleTimeChange}
       />
-    </LocalizationProvider>      <div className='clock-title'>
+    </LocalizationProvider>      
+    <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
-            <span className='days-data'>Days</span>
-          </div>
+          <span className='days-data'>Days</span>
+       </div>
 
 
     <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -160,3 +161,116 @@ useEffect(()=>{
     </>
   )
 }
+
+
+// import * as React from 'react';
+// import { useTheme } from '@mui/material/styles'
+// import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+// import {AccordionDetails ,Typography,AccordionSummary ,Checkbox, ListItem, ListItemButton,Accordion,InputLabel,FormControl,styled} from '@mui/material';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+// import dayjs from 'dayjs';
+// import {day} from "../../../Utility/commonConstant"
+
+
+// const AccordionData = styled((props) => (
+//   <Accordion disableGutters elevation={0} square {...props} />
+// ))(({ theme }) => ({
+//   border: `1px solid ${theme.palette.divider}`,
+//   '&:not(:last-child)': {
+//     borderBottom: 0,
+//   },
+//   '&:before': {
+//     display: 'none',
+//   },
+// }));
+
+// const AccordionSummaryData = styled((props) => (
+//   <AccordionSummary
+//     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+//     {...props}
+//   />
+// ))(({ theme }) => ({
+//   backgroundColor:
+//     theme.palette.mode === 'dark'
+//       ? 'rgba(255, 255, 255, .05)'
+//       : 'rgba(0, 0, 0, .03)',
+//   flexDirection: 'row-reverse',
+//   '& .AccordionSummary-expandIconWrapper.Mui-expanded': {
+//     transform: 'rotate(90deg)',
+//   },
+//   '& .AccordionSummary-content': {
+//     marginLeft: theme.spacing(1),
+//   },
+// }));
+
+// const AccordionDetailsData = styled(AccordionDetails)(({ theme }) => ({
+//   padding: theme.spacing(2),
+//   borderTop: '1px solid rgba(0, 0, 0, .125)',
+// }));
+
+
+// export default function MultipleSelectChip() {
+//   const theme = useTheme();
+//   const [expanded, setExpanded] = React.useState('panel1');
+//   const [selectedDate, setSelectedDate] = React.useState(dayjs());
+//   const [checked, setChecked] = React.useState([]);
+
+//     const handleTimeChange = (date) => {
+//       setSelectedDate(date);
+      
+//     };
+
+//   const handleChange = (panel) => (event, newExpanded) => {
+//     setExpanded(newExpanded ? panel : false);
+//   };
+
+//   return (
+//     <div>
+//       <FormControl sx={{ m: 1, width: 300 }}>
+//         <InputLabel id="demo-multiple-chip-label"></InputLabel>
+//         <div>
+//       {day?.map((value) => {
+//         const labelId = `checkbox-list-secondary-label-${value.id}`;
+//         return (
+//           <ListItem
+//             key={value.id}
+//             secondaryAction={
+//               <Checkbox
+//                 edge="end"
+//                 // onChange={handleToggle(value.id)}
+//                 checked={checked.indexOf(value.id) !== -1}
+//                 inputProps={{ 'aria-labelledby': labelId }}
+//                 className="Every Monday"
+//               />
+//             }
+//             disablePadding
+//           >
+//             <ListItemButton>
+//               <div className='radio-item'>
+//               {/* <label htmlFor="monday">Every {value.day}</label> */}
+                              
+//               <AccordionData  onChange={handleChange('panel1')}>
+//                 <AccordionSummaryData aria-controls="panel1d-content" id="panel1d-header">
+//                   <Typography>Every {value.day}</Typography>
+//                 </AccordionSummaryData>
+//                 <AccordionDetailsData>
+//                   <LocalizationProvider dateAdapter={AdapterDayjs}>
+//                   <TimePicker
+//                     label="Basic time picker"
+//                     value={selectedDate}
+//                     onChange={handleTimeChange}
+//                   />
+//                 </LocalizationProvider> 
+//                 </AccordionDetailsData>
+//               </AccordionData>
+//             </div>
+//             </ListItemButton>
+//           </ListItem>
+//         );
+//       })}
+//     </div>
+//       </FormControl>
+//     </div>
+//   );
+// }

@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function ReminderCard({reminderData,latestData,fetchData}) {
+  
   const handleClickDeleteReminder=async()=>{
     const formData=new FormData()
     formData.append("user_id",latestData?.user_data?.id)
