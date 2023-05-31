@@ -21,7 +21,7 @@ export default function MyClinicians({ status }) {
     const { t } = useTranslation();
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(3);
+    const [recordsPerPage] = useState(5);
     const [deleteStatus, setDeleteStatus] = useState(false);
 
     const indexOfLastRecord = currentPage * recordsPerPage;
