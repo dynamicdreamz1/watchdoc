@@ -100,7 +100,7 @@ useEffect(()=>{
 
       <div className='high-heart-rate'>
         <div className='dialog-title'>
-          <h2>Weigh Yourself</h2>
+          <h2>{reminderType?reminderType:""} Yourself</h2>
           <p>We recommend you weigh yourself between two and seven times a week in the morning before breakfast.</p>
         </div>
         <form>
