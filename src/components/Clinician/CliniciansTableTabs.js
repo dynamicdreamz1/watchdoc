@@ -69,11 +69,6 @@ export default function CliniciansTableTabs({ open, setOpen }) {
 ]
 let [options, setOptions] = useState(specificOption)
 
-
-
-
-
-
   const pendingClincians = async (limit,currentPage) => {
     setFirstLoading(true)
     let res = await getPendingClinicians(limit,currentPage)
@@ -85,7 +80,6 @@ let [options, setOptions] = useState(specificOption)
     setPages(nPages)
     setFirstLoading(false)
   }
-
 
   const getAllClinicianData=async(dataLimit,currentPage)=>{
     setSecondLoading(true)           
@@ -99,31 +93,17 @@ let [options, setOptions] = useState(specificOption)
   }
 
   useEffect(() => {
-
     pendingClincians(limit,currentPage)
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, [currentPage,limit])
-
-
-
-
 
   useEffect(() => {
     getAllClinicianData(dataLimit,currentPage)
   }, [currentPage,dataLimit]);
 
-
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
   };    
-
-
- 
-
-
-
 
   const handleCloseVieAllPopUP = (event, option) => {
 
@@ -137,9 +117,6 @@ let [options, setOptions] = useState(specificOption)
         setViewAll(!viewAll);
     }
 
-    
-    
-
     if (option === "View Less") {
         setOptions(prevOptions => [
             ...prevOptions.slice(0, prevOptions.length - 1),
@@ -151,16 +128,6 @@ let [options, setOptions] = useState(specificOption)
     setAnchorEl(null);
     setSelectedOption(option);
 };
-
-
-
-
-
-
-
-
-
-
 
   const handleClose = () => {
     setOpen(false);
