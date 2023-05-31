@@ -1,19 +1,21 @@
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import React from 'react'
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CancelIcon from '@mui/icons-material/Cancel';
 const ITEM_HEIGHT = 48;
 
-export default function ReminderOptions() {
+export default function ReminderOptions({handleClickDeleteReminder}) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleClick = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    
     
     return (
     <>
@@ -23,10 +25,11 @@ export default function ReminderOptions() {
             aria-controls={open ? 'long-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-haspopup="true"
-            onClick={handleClick}
+            onClick={handleClickDeleteReminder}
             className="dots-icon"
         >
-            <MoreVertIcon />
+            {/* <MoreVertIcon /> */}
+            <CancelIcon />
         </IconButton>
         <Menu
             id="long-menu"

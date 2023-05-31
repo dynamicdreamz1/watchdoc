@@ -4,6 +4,7 @@ import ReminderCard from './ReminderCard'
 import WeightYourselfReminderOverlay from '../../Clinician/Overlays/WeightYourselfReminderOverlay';
 import { Dialog } from '@mui/material';
 import HighHeartrateOverlay from '../../Clinician/Overlays/HighHeartrateOverlay';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function Reminders({latestData,fetchData}) {
@@ -46,6 +47,7 @@ export default function Reminders({latestData,fetchData}) {
   return (
      
     <div  className='reminder-cards-wrapper mt-22'>
+    <ToastContainer />
 
         <div className='section-title'>
              <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
@@ -65,7 +67,7 @@ export default function Reminders({latestData,fetchData}) {
         </Dialog>
         <div className='wrapper d-flex flex-wrap'>
         {latestData?.reminder?.map((data, I) => (
-            <ReminderCard  reminderData={data} key={I}/> 
+            <ReminderCard  reminderData={data} key={I} latestData={latestData} fetchData={fetchData}/> 
         ))}
         </div>
     </div>
