@@ -9,6 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { StoreReminderData } from '../../../services/ClinicianService';
 import {day} from "../../../Utility/commonConstant"
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 
 
@@ -71,12 +72,6 @@ useEffect(()=>{
     const timeData = extractTimeData(selectedDate);
 
     const remindertypevalue=reminderType==='medication'?3:reminderType==='weight'?1:reminderType==='blood_pressure'?2:reminderType==='custome'?4:''
-    const data={
-      user_id:latestData?.user_data?.id,
-      reminder_id:remindertypevalue,
-      ...timeData,
-      day:checked      
-    }
     const formData = new FormData();
     formData.append('user_id', latestData?.user_data?.id)  
     formData.append('reminder_id', remindertypevalue)  
@@ -91,7 +86,16 @@ useEffect(()=>{
 
     if (res?.status === 200) {
       setOpenReminder(false)
-      fetchData()
+      await fetchData()
+      toast.success(res?.data?.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
     }
    
 

@@ -6,7 +6,7 @@ import ReminderTime from './ReminderTime'
 import ReminderTitle from './ReminderTitle'
 import { DeletereminderCard } from '../../../services/ClinicianService'
 import Swal from 'sweetalert2'
-import { ToastContainer, toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -29,7 +29,7 @@ export default function ReminderCard({reminderData,latestData,fetchData}) {
   
       if (result.isConfirmed) {
         const res = await DeletereminderCard(formData);       
-        fetchData()
+        await fetchData()
         toast.success(res?.data?.message, {
           position: 'top-right',
           autoClose: 3000,
