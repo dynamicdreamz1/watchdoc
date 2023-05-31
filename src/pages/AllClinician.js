@@ -24,15 +24,9 @@ export default function AllClinician() {
     const [totalpageCount,setTotalPageCount]=useState(0)
     const [dataLimit] = useState(5)
 
-
-
-
     const handleChange = (event, newPage) => {
         setCurrentPage(newPage);
     };
-
-
-
 
     const fetchData = async (dataLimit, currentPage) => {
         setLoading(true)
@@ -95,7 +89,7 @@ export default function AllClinician() {
                                                         <TableCell>
                                                             <Phone number={el?.contact_number} />
                                                         </TableCell>
-                                                        <TableCell align="center"className={el?.request_status===1? "color-light-green" : "status text color-light-blue"}>{el?.request_status===1?"Reviewed":"Pending"}</TableCell>
+                                                            <TableCell align="center"className={el?.request_status===1? "color-light-green" : "status text color-light-blue"}>{el?.request_status===1?"Reviewed":"Pending"}</TableCell>
                                                     </TableRow>
                                                 })}
                                             </TableBody>
