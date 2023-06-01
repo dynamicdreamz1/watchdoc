@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AlertCard from './AlertCard'
 
-export default function CriticalAlerts({latestData}) {
+export default function CriticalAlerts({latestData,fetchData}) {
   const [viewAllBtn,setViewAllBtn]=useState(false)
   
   const viewLessData=latestData?.criteria_alert && latestData?.criteria_alert?.slice(0,4);
@@ -17,7 +17,7 @@ export default function CriticalAlerts({latestData}) {
             <div className='wrapper'>
               {
                finalData?.map((item, I) => {
-                return <> <AlertCard alertData={item} key={I}/> <br/></>
+                return <> <AlertCard alertData={item} key={I} fetchData={fetchData}/> <br/></>
               })
               }
             </div>
