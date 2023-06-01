@@ -4,7 +4,6 @@ import { StoreCookie } from "../Utility/sessionStore"
 
 
 export const getStaffUsers = async (recordPerPage, currentPage) => {
-
     try {
         const response = await axios({
             method: 'get',
@@ -17,9 +16,7 @@ export const getStaffUsers = async (recordPerPage, currentPage) => {
     }
 }
 
-
 export const getPendingClinicians = async (limit, pages) => {
-
     try {
         const response = await axios({
             method: 'get',
@@ -32,9 +29,7 @@ export const getPendingClinicians = async (limit, pages) => {
     }
 }
 
-
 export const getAllClinicians = async (dataLimit, currentPage) => {
-
     try {
         const response = await axios({
             method: 'get',
@@ -46,9 +41,6 @@ export const getAllClinicians = async (dataLimit, currentPage) => {
         return error
     }
 }
-
-
-
 
 export async function UpdateUserProfile(data) {
     try {
@@ -65,7 +57,6 @@ export async function UpdateUserProfile(data) {
 }
 
 export const UpdatePassword = async (apiData) => {
-
     try {
         const response = await axios({
             method: 'post',
@@ -79,10 +70,7 @@ export const UpdatePassword = async (apiData) => {
     }
 }
 
-
-
 export const CreateClinician = async (apiData) => {
-
     try {
         const response = await axios({
             method: 'post',
@@ -96,9 +84,7 @@ export const CreateClinician = async (apiData) => {
     }
 }
 
-
 export const addStaffUser = async (data) => {
-
     try {
         const response = await axios({
             method: 'post',
@@ -115,8 +101,6 @@ export const addStaffUser = async (data) => {
 let token = StoreCookie.getItem('token')
 
 export const clinicanProfileUpdate = async (data) => {
-
-
     try {
         const response = await axios({
             method: 'post',
@@ -176,8 +160,6 @@ export const getAllClinicianList = async () => {
         return error
     }
 }
-
-
 
 export const allInOneClinicianList = async () => {
     try {

@@ -24,7 +24,6 @@ export async function getLatestpatientDetails(id) {
             headers: headersClinician
             
         })
-
         return response;
     } catch (error) {
         return error?.response?.data?.message;
@@ -32,8 +31,6 @@ export async function getLatestpatientDetails(id) {
 }
 
 export const getProviderTerraId = async () => {
-
-
     try {
 
         const response = await axios({
@@ -45,6 +42,4 @@ export const getProviderTerraId = async () => {
     } catch (error) {
         return error;
     }
-
-
 }

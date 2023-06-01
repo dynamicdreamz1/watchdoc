@@ -3,15 +3,11 @@ import { headersUser,headers } from "../Utility/functions";
 import { StoreCookie } from "../Utility/sessionStore"
 
 export const getCurrentUser = () => {
-
     return StoreCookie.getItem("token");
 };
 
-
 export const getCurrentUserData = () => {
-
     return StoreCookie.getItem("user_details");
-
 };
 
 export const getCurrentUserRole = () => {
@@ -22,13 +18,8 @@ export const getCurrentUserIsActive = () => {
     return StoreCookie.getItem("is_active");
 }
   
-
-
 export const fetchCurrentUser = async () => {
-
-
     try {
-
         const response = await axios({
             method: "GET",
             url: `${process.env.REACT_APP_ENDPOINT}me`,
@@ -38,10 +29,7 @@ export const fetchCurrentUser = async () => {
     } catch (error) {
         return error;
     }
-
-
 }
-
 
 export const RegisterMobNumber = async (data) => {
     try {
@@ -57,7 +45,6 @@ export const RegisterMobNumber = async (data) => {
         return error;
     }
 }
-
 
 export async function ProfileCreation(data) {
     try {
@@ -87,7 +74,6 @@ export async function UserLogin(data) {
     }
 }
 
-
 export async function ForgotUserPassword(data) {
     try {
         const response = await axios({
@@ -101,8 +87,6 @@ export async function ForgotUserPassword(data) {
         return error.response.data.message;
     }
 }
-
-
 
 export async function ClinicianRegister(data) {
     try {
@@ -119,8 +103,6 @@ export async function ClinicianRegister(data) {
     }
 }
 
-
-
 export async function RegisterUser(data) {
     try {
         const response = await axios({
@@ -136,7 +118,6 @@ export async function RegisterUser(data) {
     }
 }
 
-
 export const userConsent = async (data) => {
     try {
         const response = await axios({
@@ -150,7 +131,6 @@ export const userConsent = async (data) => {
         return error;
     }
 }
-
 
 export async function VerifyEmail(data) {
     try {

@@ -2,8 +2,6 @@ import axios from "axios"
 import { headersClinician } from "../Utility/functions";
 
 export const searchClinician = async (data) => {
-
-
     try {
         const response = await axios({
             method: 'get',
@@ -19,7 +17,6 @@ export const searchClinician = async (data) => {
 }
 
 export const addDoctor = async (data) => {
-
     try {
         const response = await axios({
             method: 'post',
@@ -81,8 +78,6 @@ export const ClinicianGetApprovePatientsRequest = async (dataLimit, currentPage)
 
 }
 
-
-
 export const ClinicianPatientStatus = async (data) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/approve_patient_request`
     try {
@@ -99,9 +94,6 @@ export const ClinicianPatientStatus = async (data) => {
 
 }
 
-
-
-
 export const RelatedAllUserClinician = async (id,dataLimit, currentPage) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}`
     try {
@@ -116,8 +108,6 @@ export const RelatedAllUserClinician = async (id,dataLimit, currentPage) => {
     }
 
 }
-
-
 
 export const StoreReminderData = async (data) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}user/store_reminder`
@@ -134,9 +124,6 @@ export const StoreReminderData = async (data) => {
     }
 
 }
-
-
-
 
 export const DeletereminderCard = async (data) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}user/delete_reminder`
