@@ -10,12 +10,12 @@ const VerificationForPassword = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const { t } = useTranslation();
-    let decodedEmail = (Base64.decode(email));
     const { email, otp } = location.state;
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(otp)
     const [time, setTime] = useState(60)
+    let decodedEmail = (Base64.decode(email));
 
     const handleSubmit = async (e) => {
         e.preventDefault()

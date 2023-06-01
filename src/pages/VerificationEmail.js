@@ -15,12 +15,12 @@ const VerificationEmail = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const {emailId,id } = location.state;
-    let decodedEmail = (Base64.decode(emailId));
     const { setCurrentUser } = useContext(UserContext)
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(id)
     const [time, setTime] = useState(60)
+    let decodedEmail = (Base64.decode(emailId));
 
     useEffect(() => {
         setTimeout(() => {
