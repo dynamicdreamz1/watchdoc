@@ -51,7 +51,7 @@ export default function AlertCard({alertData ,fetchData}) {
         <span className={alertData.admin_status === "1" ? "text alert-status color-light-green-data" : "alert-status status-data"}>{alertData.admin_status === "1" ? "Reviewed" : "Pending"}</span>
         </div>
         <div className='button-block'>
-            <Button onClick={()=>handleClickDeleteReminder(alertData.id,alertData.user_id)} variant="contained">Mark as Reviewed</Button>
+            <Button disabled={alertData.admin_status === "1" ? true : false} onClick={()=>handleClickDeleteReminder(alertData?.id,alertData?.user_id)} variant="contained">Mark as Reviewed</Button>
         </div>
     </div>
     </>
