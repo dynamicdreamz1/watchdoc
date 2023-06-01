@@ -9,7 +9,6 @@ export default function MainDetailsCardForBloodPressure({action}) {
 
 
 
-
   return (
     <>
     <div className='chart-details-card'>
