@@ -27,13 +27,7 @@ export default function Status(props) {
         {el?.status==="Unreviewed" || el?.status==="Pending" ? "" :  <DateTime props={el} value={value} /> }
 
     </div> */}
-
-
-
-
     </>
   )
 }
-
-
 
