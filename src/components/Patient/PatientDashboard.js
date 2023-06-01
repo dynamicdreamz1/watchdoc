@@ -37,7 +37,6 @@ export default function PatientDashboard() {
    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-  console.log("latestData",latestData);
   return (
         
         <UserBodyContextProvider >
