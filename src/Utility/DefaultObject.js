@@ -1,5 +1,4 @@
 export const BodyObject = {
-
     blood_pressure_data: {},
     temperature_data: {},
     measurements_data: {},
@@ -18,7 +17,6 @@ export const DefaultHeartmeasurment = {
     "result": '',
     "label": "bpm",
     "time": ""
-
 }
 
 export const DefaultBloodPressuerMeasurment = {
@@ -30,7 +28,6 @@ export const DefaultBloodPressuerMeasurment = {
     "time": ""
 }
 
-
 export const DefaultBloodOygenMeasurment = {
     "status": "normal",
     "icon": "blood-oxygen-icon.svg",
@@ -39,7 +36,6 @@ export const DefaultBloodOygenMeasurment = {
     "label": "%",
     "time": "1 min ago"
 }
-
 
 export const Defaultmeasurment = [
 
@@ -54,7 +50,6 @@ export const Defaultmeasurment = [
     },
     {
         "key": "blood_pressure",
-
         "status": "high",
         "icon": "heart-rate-icon.svg",
         "type": "Blood Pressure",
@@ -64,7 +59,6 @@ export const Defaultmeasurment = [
     },
     {
         "key": "blood_oxygen",
-
         "status": "normal",
         "icon": "blood-oxygen-icon.svg",
         "type": "Blood Oxygen",
@@ -85,7 +79,6 @@ export const Defaultmeasurment = [
     // },
     {
         "key": "weight",
-
         "status": "normal",
         "icon": "weight-icon.svg",
         "type": "Weight",
@@ -95,7 +88,6 @@ export const Defaultmeasurment = [
     },
     {
         "key": "step",
-
         "status": "none",
         "icon": "temperature-icon.svg",
         "type": "Step",
@@ -105,7 +97,6 @@ export const Defaultmeasurment = [
     },
     {
         "key": "sleep",
-
         "status": "none",
         "icon": "temperature-icon.svg",
         "type": "Sleep",
@@ -124,12 +115,6 @@ export const Defaultmeasurment = [
     //     "time": "No data"
     // }
 ]
-
-
-
-
-
-
 
 
 
@@ -245,3 +230,64 @@ export const defaultWeightAlertTrigger=[
         "type":""
     }
 ]
+
+
+export const day = [
+    {
+      id :1,
+      day : "Monday"
+    },
+    {
+      id :2,
+      day : "Tuesday"
+    },
+    {
+      id :3,
+      day : "Wednesday"
+    },
+    {
+      id :4,
+      day : "Thursday"
+    },
+    {
+      id :5,
+      day : "Friday"
+    },
+    {
+      id :6,
+      day : "Saturday"
+    },
+    {
+      id :7,
+      day : "Sunday"
+    }
+]
+
+
+export  const REMINDER_TYPE_ARRAY = [
+  {
+    id: 3,
+    name: "MEDICATION",
+    buttonText: "Add Reminder",
+    reminder_type: "medication"
+  },
+  {
+    id: 1,
+    name: "WEIGHT",
+    buttonText: "Add Reminder",
+    reminder_type: "weight"
+  },
+  {
+    id: 2,
+    name: "BLOOD PRESSURE",
+    buttonText: "Add Reminder",
+    reminder_type: "blood_pressure"
+  },
+
+  {
+    id: 4,
+    name: "CUSTOME",
+    buttonText: "Add Reminder",
+    reminder_type: "custome"
+  },
+];

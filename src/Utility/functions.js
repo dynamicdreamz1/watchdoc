@@ -2,7 +2,6 @@ import { StoreCookie } from "./sessionStore";
 import moment from "moment";
 
 export const ageCalc = (date) => {
-
   var dob = new Date(date);
   //calculate month difference from current date in time  
   var month_diff = Date.now() - dob.getTime();
@@ -18,9 +17,7 @@ export const ageCalc = (date) => {
   return Math.abs(year - 1970);
 }
 
-
 // calculate diffrence between time in minutes
-
 export const calculateTimeDifferenceInMinutes = (dateString) => {
   if(dateString===""){
     return 0;
@@ -33,10 +30,6 @@ export const calculateTimeDifferenceInMinutes = (dateString) => {
   
   return differenceInMinutes;
 }
-
-
-
-
 
 export const MetaFormeting = (metadata) => {
   let userpforle = [];

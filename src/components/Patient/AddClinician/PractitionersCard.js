@@ -29,10 +29,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
     const recordsPerPage = 3;
     const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
- 
-    const handleChange = (event, value) => {
-        setCurrentPage(value)
-    }
+
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
 
@@ -45,8 +42,6 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
    
     useEffect(() => {
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
-
-
             searchClinician(payload)
                 .then((res) => {
                     setClinicianData(res)
@@ -58,10 +53,8 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [btnStatus])
 
-
     useEffect(()=>{
-        const state=clinicianData?.data?.data?.data?.some((element)=>element.status===1)   
-      
+        const state=clinicianData?.data?.data?.data?.some((element)=>element.status===1)
         if(state !==undefined){
             setNextBtn(state)
         }
@@ -86,6 +79,11 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
             lastExecution = Date.now()
         }
     }
+
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+    }
+
     return (
         <React.Fragment>
             {isSkeleton
@@ -98,18 +96,14 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
                         {
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
-                                
-                               
                                 let data= MetaFormeting(element)
                                 return (
 
                                     <div key={element.id}>                                   
                                     
                                         <div className='card d-flex' key={I}>
-                                        <div className='user-image'>
-                                        
-                                            <img src={(data?.image ||data?.profile_pic) ||defaultUserIcon} alt='User' />
-                                   
+                                        <div className='user-image'>                                        
+                                            <img src={(data?.image ||data?.profile_pic) ||defaultUserIcon} alt='User' />                                   
                                         </div>
                                         <div className='text-block'>
                                          <>{data?.first_name}</>
@@ -124,22 +118,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                             </div>
                                         </div>
                                     </div>
-                                    
-                              
-                                </div>                          
-
-   
-
-
-
-
+                                </div>   
 
                                 )
                             })
 
                         }
-
-
                     </div>
 
                     {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :

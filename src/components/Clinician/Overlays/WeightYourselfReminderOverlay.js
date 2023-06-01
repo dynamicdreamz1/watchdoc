@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Checkbox from '@mui/material/Checkbox';
 import { StoreReminderData } from '../../../services/ClinicianService';
-import {day} from "../../../Utility/commonConstant"
+import {day} from "../../../Utility/DefaultObject"
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 

@@ -2,8 +2,6 @@
 
 Bgit sthavik
 */
-
-
 import React, { useEffect, useState } from 'react'
 import './css/App.css'
 import { Routes, Route } from 'react-router-dom';
@@ -78,23 +76,12 @@ function App() {
         <Route path='/verificationforgetpassword' element={<VerificationForPassword />} />
         <Route path='/newpassword' element={<NewPassword />} />
 
-
-
-
         <Route path='/profile-settings' element={<ProfileSettings />} />
         <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
         <Route path='/cliniciandetails' element={currentUser ? <ClinicianDetails /> : <SignIn />} />
         <Route path='/alluserclinician' element={currentUser ? <AllClinician /> : <SignIn />} />
 
-
-
-
-
-
-
-
         <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
-
         <Route path='/thankyou' element={currentUser ? <Thankyou /> : <SignIn />} />
         <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <SignIn />} />
         <Route path='/verifymobile/:mobileN' element={currentUser ? <VerifyMobile /> : <SignIn />} />
@@ -111,9 +98,7 @@ function App() {
         <Route path='patients' element={currentUser ? < Patients /> : <SignIn />} />
         <Route path='clinicians' element={currentUser ? <Clinicians /> : <SignIn />} />
         <Route path='staffusers' element={currentUser ? <StaffUsers /> : <SignIn />} />
-
       </Routes>
-
     </UserContext.Provider>
 
   );

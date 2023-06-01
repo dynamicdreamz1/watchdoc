@@ -12,17 +12,13 @@ import { updateToken } from '../Utility/functions'
 
 const VerificationEmail = () => {
     const location = useLocation();
-
+    const navigate = useNavigate()
+    const { t } = useTranslation();
     const {emailId,id } = location.state;
     const { setCurrentUser } = useContext(UserContext)
-    const navigate = useNavigate()
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(id)
-
-    // const { emailId } = useParams();
-
-    const { t } = useTranslation();
     const [time, setTime] = useState(60)
     let decodedEmail = (Base64.decode(emailId));
 
@@ -34,14 +30,11 @@ const VerificationEmail = () => {
 
     useEffect(() => {
        let intervalID=setInterval(() => {
-           
             setTime(prevCount => (prevCount > 0) ? prevCount - 1 : 0);
         }, 1000);
-
         if(time===0){
             clearInterval(intervalID)
         }
-
         return ()=>clearInterval(intervalID)
     }, [time]);
 
@@ -52,8 +45,6 @@ const VerificationEmail = () => {
         if (code === "") {
             setError(t('VerificationPage.error.e1'))
         }
-
-
         else {
             const data = {
                 email: emailId,
@@ -77,26 +68,20 @@ const VerificationEmail = () => {
                     if (roles[0].name === "Clinician") {
                         navigate('/dashboard')
                     }
-
                     else if (roles[0].name === "User") {
                         if (profile_created === 1) {
                             navigate('/dashboard')
                         }
-
                         else {
                             navigate('/userConsent')
                         }
                     }
-
                     else if (roles[0].name === "Hospital") {
                         navigate('/dashboard')
                     }
-
                     else {
                         navigate("/dashboard")
                     }
-                    
-
                 })
                 .catch((error) => {
                     setError(t('VerificationPage.error.e2'))
@@ -119,7 +104,6 @@ const VerificationEmail = () => {
             .then((response) => {
                 if (typeof response === "string") {
                     setError(response)                  
-
                 } else {
                     console.log(response)
                 }
