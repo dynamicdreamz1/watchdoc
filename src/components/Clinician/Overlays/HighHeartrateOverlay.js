@@ -7,6 +7,7 @@ export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
     setreminderType(type)
     setOpenReminder(true);
   };
+  
   return (
     <>
       <div className="high-heart-rate">

@@ -26,7 +26,7 @@ export default function ClinicianProfileBar({profileBarData,getAllClinicianData}
     <>
         <div className='clinician-profile-tab'>
             <div className='left-block'>
-                <UserProfile data={profileBarData} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}/>
+                <UserProfile profileBarData={profileBarData} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}/>
                 <Dialog
                   open={openRequest}
                   onClose={handleClose}
