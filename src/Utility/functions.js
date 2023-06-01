@@ -97,7 +97,6 @@ export const  GetdayHourMin = (data) =>{
     return {lable : "minutes", data : 0}
 
   }
-  // console.log("alertData.alert_date",data);
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
   const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
   const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 

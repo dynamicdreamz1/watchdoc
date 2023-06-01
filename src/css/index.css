@@ -1276,7 +1276,7 @@ body .reminder-card-skeleton {
   width: 106px;
 }
 .alert-card .text-block {
-  width: calc(100% - 106px);
+  width: calc(90% - 106px);
 }
 .alert-card .button-block .MuiButtonBase-root {
   background-color: #F5F5F5;
@@ -1674,4 +1674,13 @@ form .input-block.update-profile:after {
   .measurment-card, .measurment-skeleton {
       max-width: 155px;
   }
+}
+.alert-status{
+  margin-right: 130px;
+}
+.color-light-green-data{
+  color: lightgreen;
+}
+.status-data{
+  color: rgb(55 214 244)
 }
