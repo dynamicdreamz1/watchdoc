@@ -7,7 +7,6 @@ export default function RiskStatusForBloodOxygen() {
     <>
     <div className='r-status d-flex align-items-center'>
     <MeasurementStatusForBloodOxygen  />       
-      
         <span className='text'>Good</span>
     </div>
     </>

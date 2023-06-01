@@ -8,7 +8,6 @@ export default function RiskStatusForbloodPressure() {
     <span className='normal m-status alert'></span>
     <span className='text'>Good</span>
     </div>
-    
     </>
   )
 }
