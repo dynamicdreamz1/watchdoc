@@ -15,13 +15,11 @@ export default function PatientWeightDetail({latestData}) {
             {defaultWeightAlertTrigger && defaultWeightAlertTrigger?.map((el,I)=>{
               return(
             <AlertTriggerCardWeight el={el} key={I}/>
-
               )
             })
 }
         </div>
         <div className='chart-wrapper'>
-            {/* <WeightChartNavTabs/> */}
             <DefaultChartSkeleton />
         </div>
     </div>

@@ -2,8 +2,7 @@ import React from "react";
 import { REMINDER_TYPE_ARRAY } from "../../../Utility/commonConstant"
 
 export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
-  const { setOpenReminder, setreminderType } = actionReminderTypeOption
- 
+  const { setOpenReminder, setreminderType } = actionReminderTypeOption 
   const handleClickOpen = (type) => {
     setreminderType(type)
     setOpenReminder(true);
@@ -39,7 +38,6 @@ export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
                   </div>
                 </div>
               </div>
-
               <br/>
               </>
             );

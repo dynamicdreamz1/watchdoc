@@ -83,7 +83,6 @@ useEffect(()=>{
     formData.append('time_zone', timeData?.time_zone)  
     const res=await StoreReminderData(formData)
     setOpen(false)
-
     if (res?.status === 200) {
       setOpenReminder(false)
       await fetchData()
@@ -97,12 +96,10 @@ useEffect(()=>{
         theme: "colored",
       });
     }
-   
-
   }
+
   return (
     <>
-
       <div className='high-heart-rate'>
         <div className='dialog-title'>
           <h2>{reminderType?reminderType:""} Yourself</h2>
@@ -124,8 +121,6 @@ useEffect(()=>{
             <img src='/images/clock-icon.svg' alt="Click Icon" />
           <span className='days-data'>Days</span>
        </div>
-
-
     <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {day?.map((value) => {
         const labelId = `checkbox-list-secondary-label-${value.id}`;
@@ -151,8 +146,7 @@ useEffect(()=>{
           </ListItem>
         );
       })}
-    </List>
-     
+    </List>     
           <div className='submit-block'>
             <button type='button' className="btn" onClick={handleClickAddReminder}>Add Reminder</button>
           </div>

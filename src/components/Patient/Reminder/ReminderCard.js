@@ -59,7 +59,6 @@ export default function ReminderCard({reminderData,latestData,fetchData}) {
 }
   return (
     <>
-
     <div className='reminder-card'>
         <ReminderOptions handleClickDeleteReminder={handleClickDeleteReminder}/>
         <div className='icon-block'>

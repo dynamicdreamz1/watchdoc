@@ -52,15 +52,12 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
           {defaultBloodOxygenAlertTrigger && defaultBloodOxygenAlertTrigger?.map((el, I) => {
             return (
               <AlertTriggerCardBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} el={el} key={I} />
-
-
             )
           })
           }
         </div>
         <div className='chart-wrapper'>
           <BloodOxygenChartNavTabs  titleAction={titleAction} />
-          {/* <DefaultChartSkeleton /> */}
         </div>
       </div>
     </>

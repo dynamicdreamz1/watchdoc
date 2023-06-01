@@ -13,27 +13,24 @@ import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
 
 export default function Bloodpressure({terraId,latestData}) {
   const {t}=useTranslation()
-  // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
   const start = moment().format('YYYY-MM-DD');
   const [FinalDate, setFinalDate] = useState({ start: start, end: start });
   const [bloodPressureData, setBloodPressureData] = useState()
   const [timeType, setTimeType] = useState('daily')
   const [isBloodPressureSkeleton,setIsBloodPressureSkeleton]=useState(false)
-
   const [value, setValue] =useState(0);
+
   const handleChange = (event, newValue) => {
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
     setTimeType(valueType)
     setValue(newValue);
   };
-
   const fetchData = async () => {
     setIsBloodPressureSkeleton(true)
     const result = await GetUserBloodPressureData(timeType, terraId, FinalDate)
     setBloodPressureData(result);
     setIsBloodPressureSkeleton(false)
   }
-
   useEffect(() => {
     if (terraId) {
       fetchData()
@@ -70,11 +67,9 @@ const action={
 
             )
           })
-}
-         
+}         
         </div>
         <div className='chart-wrapper'>
-          {/* <BloodPresureChartNavTabs terraId={terraId} action={action}/> */}
           <DefaultChartSkeleton />
         </div>
       </div>

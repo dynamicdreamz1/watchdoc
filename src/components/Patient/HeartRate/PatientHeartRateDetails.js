@@ -50,8 +50,6 @@ const action={
           {defaultMainCardData && defaultMainCardData?.map((el,I)=>{
             return (
             <MainDetailsCard HeartRateAvg={heartRateValue?.data} key={I} el={el} latestData={latestData}/>
-
-
             )
           })
           }
@@ -59,8 +57,6 @@ const action={
             {defaultHeartRateAlertTrigger && defaultHeartRateAlertTrigger?.map((el,I)=>{
               return(
             <AlertTriggerCard HeartRateAvg={heartRateValue?.data?.summary} el={el} key={I}/>
-
-
               )
             })
 }
