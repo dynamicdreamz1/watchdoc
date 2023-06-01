@@ -4,10 +4,7 @@ import { GetdayHourMin } from '../../../Utility/functions';
 
 export default function MainDetailsCardForBloodPressure({action}) {
   const {latestData}=action
-
   const  date = GetdayHourMin(latestData?.latest?.blood_pressure?.date)
-
-
 
   return (
     <>

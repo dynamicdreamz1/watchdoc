@@ -3,12 +3,10 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting } from '../../Utility/functions';
 
-export default function UserProfile({ data,clinicianStaff,handleClickOpenRequestPopUp }) {
- 
- 
+export default function UserProfile({ profileBarData,clinicianStaff,handleClickOpenRequestPopUp }) {
   const navigate=useNavigate();
   const location=useLocation();
-  const  {first_name,last_name,profile_pic} = MetaFormeting(data);
+  const  {first_name,last_name,profile_pic} = MetaFormeting(profileBarData);
   // const navigatePath=location?.pathname==="/staffusers"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staffusers"){
@@ -17,12 +15,12 @@ export default function UserProfile({ data,clinicianStaff,handleClickOpenRequest
     if(location?.pathname==="/clinicians")
     navigate(`/cliniciandetails`, {
       state: {
-        clinicianData: data,
+        clinicianData: profileBarData,
         allClinician:clinicianStaff
       },
     });
     if(location.pathname==="/cliniciandetails" || location?.pathname==="/dashboard"){
-    handleClickOpenRequestPopUp(data)
+    handleClickOpenRequestPopUp(profileBarData)
 
     }
 

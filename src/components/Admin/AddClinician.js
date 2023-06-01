@@ -126,8 +126,6 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         })
     }
 
-
-
     return (
         <Formik
             initialValues={addNewStaff}

@@ -11,9 +11,6 @@ export default function MainDetailsCardForBloodOxygen({ titleAction }) {
       bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage
     : 0;
 
-
-
-
   return (
     <>
       <div className='chart-details-card'>

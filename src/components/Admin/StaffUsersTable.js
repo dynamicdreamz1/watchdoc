@@ -21,11 +21,9 @@ export default function StaffUsersTable({ setOpen, open }) {
         setCurrentPage(newValue)
     }
 
-
     const StaffUserData = async (limit, currentPage) => {
         setLoading(true)
         const response = await getStaffUsers(limit, currentPage);
-
         setStaffUser(response.data?.data)
         setLoading(false)
         let nPages = Math.ceil(response.data.total / limit)
@@ -41,10 +39,9 @@ export default function StaffUsersTable({ setOpen, open }) {
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
         <>
-
-
             <Dialog
                 open={open}
                 onClose={handleClose}
