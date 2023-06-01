@@ -18,7 +18,6 @@ export default function Reminders({latestData,fetchData}) {
     setOpen(false);
     setOpenReminder(false)
   };
-
   const handleClickOpen = () => {
     setOpen(true);
   };

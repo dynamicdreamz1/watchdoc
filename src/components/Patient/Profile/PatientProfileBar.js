@@ -57,12 +57,10 @@ const navigate=useNavigate();
   ] 
 
   return (
-    <>
-    
+    <>    
     <div className='patient-profile-bar'>
         <div className='left-block'>
-        {latestData?.user_data ?
-   
+        {latestData?.user_data ?   
             <div className='patient-info'>
                 <span className="fname">{first_name},{last_name}</span>
                 <span className="age">{age} Years, {sex}</span>
