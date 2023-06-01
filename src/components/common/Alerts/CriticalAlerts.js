@@ -1,7 +1,7 @@
 import React from 'react'
 import AlertCard from './AlertCard'
 
-export default function CriticalAlerts() {
+export default function CriticalAlerts({latestData}) {
   return (
     <>
         <div className='critical-alerts-wrapper mt-22'>
@@ -10,9 +10,11 @@ export default function CriticalAlerts() {
                 <button type='button'>View All Alerts (41)</button>
             </div>
             <div className='wrapper'>
-                <AlertCard/>
-                <AlertCard/>
-                <AlertCard/>
+              {
+                latestData?.criteria_alert?.map((item, i) => {
+                return  <AlertCard alertData={item}/>
+              })
+              }
             </div>
         </div>
     </>

@@ -97,6 +97,7 @@ export const  GetdayHourMin = (data) =>{
     return {lable : "minutes", data : 0}
 
   }
+  // console.log("alertData.alert_date",data);
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
   const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
   const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
@@ -105,16 +106,16 @@ export const  GetdayHourMin = (data) =>{
   const hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
   const months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
   if (minutes <= 60) {
-    return {lable : "minutes", data : minutes}
+    return {lable : "minutes", data :parseInt(minutes)}
   }
   else if (hours <= 24) {
-    return {lable : "hours", data : hours} 
+    return {lable : "hours", data : parseInt(hours)} 
   }
   else if (day <= 30 || 28 || 31) {
-    return {lable : "days", data : day}
+    return {lable : "days", data : parseInt(day)}
   }
   else if (months <= 12) {
-    return {lable : "months", data : months}
+    return {lable : "months", data : parseInt(months)}
   }
 }
 

@@ -39,11 +39,13 @@ const PatientsDetails = () => {
 }, []);
 
 const patientData = MetaFormeting(latestData?.data?.user_data)
+
 const finalLatest={
     latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
     role_name:[],
     user_data:latestData?.data?.user_data,
-    reminder:latestData?.data?.user_reminder
+    reminder:latestData?.data?.user_reminder,
+    criteria_alert:latestData?.data?.criteria_alert
 }
 //   useEffect(() => {
 //     async function fetchData() {
@@ -70,7 +72,7 @@ const finalLatest={
                 <Header />
                 <UserBodyContextProvider >
                     <PatientProfileBar latestData={finalLatest}/>
-                    <CriticalAlerts/>
+                    <CriticalAlerts latestData={finalLatest}/>
                     <Latestmeasurement latestData={finalLatest} />
                    { loadingSkeleton ? <ReminderCardSkeleton /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
