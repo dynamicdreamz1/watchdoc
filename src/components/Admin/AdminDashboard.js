@@ -9,7 +9,6 @@ export default function AdminDashboard() {
   const recordsPerPage = 5;
   const [pendingPatientsData, setPendingPatientsData] = useState([])
   const [loading, setLoading] = useState(false)
-
   const [currentPage, setCurrentPage] = useState(1)
 
   const GetData = async () => {
@@ -25,7 +24,6 @@ export default function AdminDashboard() {
         data.push(res?.data[i.toString()])
       }
     }
-
     setPendingPatientsData(data)
     setLoading(false)
   }
@@ -33,8 +31,6 @@ export default function AdminDashboard() {
   useEffect(() => {
     GetData()
   }, [])
-
-
 
 
   return (

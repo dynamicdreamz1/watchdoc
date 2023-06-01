@@ -53,8 +53,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             )
     });
 
-
-
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
@@ -67,9 +65,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         // );
 
         // validImages.forEach(uploadImages);
-
-
-
     };
     // const uploadImages = (file) => {
 
@@ -81,15 +76,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     //     };
 
     // }
-
-
-
-
-
-
-
-
-
 
     const handleSubmitForm = async(data) => {
         
