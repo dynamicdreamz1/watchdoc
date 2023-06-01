@@ -64,7 +64,7 @@ const finalLatest={
                 <Header />
                 <UserBodyContextProvider >
                     <PatientProfileBar latestData={finalLatest}/>
-                    <CriticalAlerts latestData={finalLatest}/>
+                    <CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>
                     <Latestmeasurement latestData={finalLatest} />
                    { loadingSkeleton ? <ReminderCardSkeleton /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
