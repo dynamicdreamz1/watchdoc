@@ -48,17 +48,7 @@ export default function CriticalPatients(props) {
                                 <TableCell>Step</TableCell>
                                 <TableCell>Status</TableCell>
                             </TableRow>
-                        </TableHead>
-                        {/* {finalDta?.length !== 0 && finalDta?.map((el, I) => {
-                        return (
-                            <TableBody key={I}>
-                                <PatientInfoRow el={el}   />
-                            </TableBody>
-
-                        )
-                    })
-
-                    } */}
+                        </TableHead>                        
                         <Dialog
                             open={openRequest}
                             onClose={handleClose}
@@ -75,10 +65,8 @@ export default function CriticalPatients(props) {
                                 <TableBody key={I}>
                                     <PatientInfoRow el={el} value={value} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} handleClickStatus={handleClickStatus}  />
                                 </TableBody>
-
                             )
                         })
-
                         }
                     </Table>
                 </TableContainer>
