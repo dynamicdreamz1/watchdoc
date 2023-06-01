@@ -64,7 +64,6 @@ const action={
           {defaultBloodPressureAlertTrigger && defaultBloodPressureAlertTrigger?.map((el,I)=>{
             return(
               <AlertTriggerCardForBloodPressure el={el} key={I} />
-
             )
           })
 }         

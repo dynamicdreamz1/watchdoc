@@ -18,12 +18,12 @@ const navigate=useNavigate();
   const [openProfile, setOpenProfile] = React.useState(false);
   const [openClincians, setOpenClincians] = React.useState(false);
   const [openEmergencyContacts, setOpenEmergencyContacts] = React.useState(false);
+
   const handleClose = () => {
     setOpenProfile(false);
     setOpenClincians(false);
     setOpenEmergencyContacts(false);
   };
-
   const handleClickClinician=()=>{
     navigate(`/alluserclinician`, {
       state: {

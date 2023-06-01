@@ -14,7 +14,6 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const [isBloodOxygenSkeleton,setIsBloodOxygenSkeleton]=useState(false);
   const [bloodOxygenData, setBloodOxygenData] = useState()
 
-
   const fetchData = async () => {
     setIsBloodOxygenSkeleton(true)
     if (timeType && FinalDate) {
@@ -39,10 +38,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     setFinalDate,
     setBloodOxygenData,
     latestData
-
   }
-
-
   return (
     <>
       <div className='phrd d-flex flex-wrap'>

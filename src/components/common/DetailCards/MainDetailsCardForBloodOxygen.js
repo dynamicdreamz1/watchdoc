@@ -17,9 +17,7 @@ export default function MainDetailsCardForBloodOxygen({ titleAction }) {
         <div className='title d-flex justify-content-between'>
           <div className='measurment-title d-flex align-items-center'>
             <span className='icon d-flex'><img src={`/images/blood-oxygen-icon.svg`} alt='Blood Oxygen Icon' /></span>
-
             <span className='name d-flex'>Latest Blood Oxygen</span>
-
           </div>
           <span className='time d-flex align-items-center'>
             {date.data} {date.lable} ago
@@ -29,10 +27,8 @@ export default function MainDetailsCardForBloodOxygen({ titleAction }) {
         <div className='measurment-result'>
           <span className='digit'>{result}</span>
           <span className='type'>%</span>
-
         </div>
         <RiskStatusForBloodOxygen />
-
       </div>
     </>
   )
