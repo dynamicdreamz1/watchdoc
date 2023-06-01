@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 
 
 export default function SearchBar() {
-
   const { t } = useTranslation();
   return (
     <>
