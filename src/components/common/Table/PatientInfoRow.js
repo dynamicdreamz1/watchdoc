@@ -25,10 +25,6 @@ export default function PatientInfoRow(props) {
     }
   }
  
-  
-
-
-
   return (
     <>
     <TableRow >
