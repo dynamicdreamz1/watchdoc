@@ -8,8 +8,6 @@ import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
-  // const defaultStartDate = moment().subtract(7, 'days').format('YYYY-MM-DD');
-  // const defaultEndDate = moment().format('YYYY-MM-DD');
   const start = moment().format('YYYY-MM-DD');
   const [timeType, setTimeType] = useState('daily')
   const [FinalDate, setFinalDate] = useState({ start: start, end: start });
@@ -39,7 +37,8 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     setTimeType,
     Date,
     setFinalDate,
-    setBloodOxygenData
+    setBloodOxygenData,
+    latestData
 
   }
 
@@ -48,7 +47,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-          <MainDetailsCardForBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} latestData={latestData} />
+          <MainDetailsCardForBloodOxygen titleAction={titleAction} />
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
           {defaultBloodOxygenAlertTrigger && defaultBloodOxygenAlertTrigger?.map((el, I) => {
             return (

@@ -12,7 +12,7 @@ import { ChartResultRange } from '../../../Utility/Skeleton';
 export default function PatientProfileBar({latestData}) {
 const navigate=useNavigate();
  const location=useLocation()
-  const {data}=location.state;
+  const {data}=location.state || {};
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
   const age=calculateAge(dob)
   const [openProfile, setOpenProfile] = React.useState(false);
