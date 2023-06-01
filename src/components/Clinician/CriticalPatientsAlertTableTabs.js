@@ -727,7 +727,6 @@ export default function CriticalPatientsAlertTableTabs() {
                         <CriticalPatients value={value} patientData={reviewData} viewAll={viewAll} handleClickStatus={handleClickReview} />
                     </TabPanel>
                     <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                        {/* <CriticalPatients value={value} loading={loading} patientData={PatientRequestData?.data} viewAll={viewAll} /> */}
                         <PatientRequestAndApprove action={action} />
                     </TabPanel>
 

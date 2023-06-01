@@ -7,25 +7,31 @@ import { TableSkeleton } from '../Utility/Skeleton'
 
 
 const PatientRequestAnd = ({action}) => {
-
-
-const {PatientRequestData,PatientApproveData,getPendingPatient,dataLimitApprovePatient, currentPageApprovePatient,
-   getApproveRequest, loadingApprovePatient,loadingPendingPatient,dataLimitPendingPatient, currentPagePendingPatient}=action
+const {PatientRequestData,PatientApproveData,
+  getPendingPatient,dataLimitApprovePatient,
+  currentPageApprovePatient,getApproveRequest,
+  loadingApprovePatient,loadingPendingPatient,
+  dataLimitPendingPatient, currentPagePendingPatient}=action
 
   const [viewAll] = useState(true)
   const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients?.data)
   const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request?.data)
+
+
+
     const handleClickReview = async (id,status) => {
       const finalData={
         id:id,
         approval:status==='Reviewed'?"reject":status==='Approve'?'approve':'reject'
       }
       const result= await ClinicianPatientStatus(finalData)
-      if(result.status===200){       
+      if(result?.status===200){       
         getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
         getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
       }
-    }   
+    }  
+    
+    
   return (
     <React.Fragment>
         <div className=''>
