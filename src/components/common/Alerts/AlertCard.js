@@ -4,7 +4,6 @@ import { GetdayHourMin } from '../../../Utility/functions';
 
 export default function AlertCard({alertData }) {
   const time = GetdayHourMin(alertData.alert_date)
-  console.log("alertData",alertData);
   return (
     <>
     <div className='alert-card d-flex'>

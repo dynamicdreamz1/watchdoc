@@ -12,7 +12,7 @@ export default function CriticalAlerts({latestData}) {
             <div className='wrapper'>
               {
                 latestData?.criteria_alert?.map((item, i) => {
-                return  <AlertCard alertData={item}/>
+                return <> <AlertCard alertData={item}/> <br/></>
               })
               }
             </div>
