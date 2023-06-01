@@ -83,7 +83,6 @@ export default function MyClinicians({ status }) {
         getClinicianData()
 
             .then((res) => {
-                console.log(res)
                 setData(res.data.data)
                 setLoading(false)
             })
@@ -95,7 +94,6 @@ export default function MyClinicians({ status }) {
         if (addData.clinicianName || addData.practitionerName || addData.code) {
             searchClinician(deletedData)
                 .then((res) => {
-                    console.log(res)
                     setClinicianData(res)
 
                 })
@@ -140,7 +138,6 @@ export default function MyClinicians({ status }) {
                                 <TableBody>
 
                                     {currentRecords?.map(el => {
-                                            console.log("el",el);
                                         return <TableRow key={el.id}>
                                             <TableCell className='user-profile-cell'>
                                                 <UserProfile data={el} />
