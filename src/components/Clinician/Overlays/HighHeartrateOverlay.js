@@ -1,5 +1,5 @@
 import React from "react";
-import { REMINDER_TYPE_ARRAY } from "../../../Utility/commonConstant"
+import { REMINDER_TYPE_ARRAY } from "../../../Utility/DefaultObject"
 
 export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
   const { setOpenReminder, setreminderType } = actionReminderTypeOption
