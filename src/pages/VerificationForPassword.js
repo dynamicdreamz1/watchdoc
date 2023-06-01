@@ -8,21 +8,14 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const VerificationForPassword = () => {
     const location = useLocation();
-
-    const { email, otp } = location.state;
     const navigate = useNavigate()
+    const { t } = useTranslation();
+    let decodedEmail = (Base64.decode(email));
+    const { email, otp } = location.state;
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(otp)
-
-
-    const { t } = useTranslation();
     const [time, setTime] = useState(60)
-    let decodedEmail = (Base64.decode(email));
-
-
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -45,11 +38,6 @@ const VerificationForPassword = () => {
                 setError(res?.data?.message)
             }
         }
-
-
-
-
-
     }
 
     const resendCode = (e) => {
@@ -106,8 +94,6 @@ const VerificationForPassword = () => {
         </React.Fragment>
     )
 }
-
-
 
 export default VerificationForPassword;
 
