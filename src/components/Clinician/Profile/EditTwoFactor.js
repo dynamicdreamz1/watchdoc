@@ -23,15 +23,9 @@ export default function EditTwoFactor() {
         
     });
    
-
-
   const handleChange = (event) => {
     setcountryCode(event.target.value);
   };
-
-  // const handleSuccess=(e)=>{
-  //   e.preventDefault()
-  // }
 
   const handleSubmitForm=(value)=>{
     setEditClinicianProfileData(value)

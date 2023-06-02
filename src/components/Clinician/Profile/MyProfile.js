@@ -69,17 +69,15 @@ export default function MyProfile() {
 
 
     const handleSubmitForm = async(data) => {
-
         setLoading(true)
         const formData = new FormData();
         formData.append("first_name", data?.first_name);
         formData.append("last_name", data?.last_name);
         formData.append("email", data.email);
         formData.append("practice_name", data?.practicename);
-         formData.append("practice_address", data?.practiceaddress);
+        formData.append("practice_address", data?.practiceaddress);
        
         if(typeof imageUrl == "object" ){
-
             formData.append("profile_pic",imageUrl);
         }
         
@@ -98,11 +96,7 @@ export default function MyProfile() {
          })
         setMessage('Profile updated successfully.')
         setTimeout(() => setMessage(""), 2000);
-
        }
-
-      
-        
     }
     
     return (
@@ -134,10 +128,6 @@ export default function MyProfile() {
                     <div className='input-item'>
                         <label>Title</label>
                         <input type="text" name='title' placeholder='Title*' disabled  defaultValue={props?.values?.title}/>
-                        {/* <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
-                            <option value="Dr">Dr</option>
-                            <option value="Hospital">Hospital</option>
-                        </select> */}
                     </div>
                     <div className='input-item'>
                         <label>First name</label>
