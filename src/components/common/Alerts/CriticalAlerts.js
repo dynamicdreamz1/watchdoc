@@ -14,7 +14,7 @@ export default function CriticalAlerts({latestData,fetchData}) {
                 <h5>Critical Alerts</h5>
                 {latestData?.criteria_alert?.length ===0?"":<button type='button' onClick={()=>setViewAllBtn(!viewAllBtn)}>
                   {!viewAllBtn?
-                `View All Alerts (${finalData?.length?finalData?.length:0})`
+                `View All Alerts (${viewAllData?.length?viewAllData?.length:0})`
                 :`View Less Alerts (${finalData?.length?finalData?.length:0})`}
                 </button>}
             </div>
