@@ -9,7 +9,6 @@ export default function AlertTriggerCard(props) {
             {el?.title}
         </span>
         <span className='number'>
-            {/* {props?.HeartRateAvg?.min_hr_bpm} {`bpm`} */}
             {el?.result} {el?.lable}
             <img src='/images/angle-right.svg' alt='Angle Right'/>
         </span>

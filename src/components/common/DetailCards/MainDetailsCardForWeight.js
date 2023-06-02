@@ -10,10 +10,7 @@ export default function MainDetailsCardForWeight({latestData}) {
       <div className='title d-flex justify-content-between'>
         <div className='measurment-title d-flex align-items-center'>
         <span className='icon d-flex'><img src={`/images/weight-icon.svg`} alt='Weight Icon'/></span>
-
           <span className='name d-flex'>Weight</span>
-          {/* <span className='name d-flex'>{el?.name}</span> */}
-
         </div>
         <span className='time d-flex align-items-center'>
         {`${date.data} ${date.lable} ago`}
@@ -21,14 +18,9 @@ export default function MainDetailsCardForWeight({latestData}) {
         </span>
       </div>
       <div className='measurment-result'>
-        {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
         <span className='digit'>{latestData?.latest?.weight?.count} Kg</span>
-
-        {/* <span className='type'>{el?.label}</span> */}
-
       </div>
       <RiskStatusForbloodPressure/>
-
     </div>  
     </>
   )
