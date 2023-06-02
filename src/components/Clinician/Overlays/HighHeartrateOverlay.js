@@ -3,6 +3,7 @@ import { REMINDER_TYPE_ARRAY } from "../../../Utility/DefaultObject"
 
 export default function HighHeartrateOverlay({ actionReminderTypeOption }) {
   const { setOpenReminder, setreminderType } = actionReminderTypeOption 
+  
   const handleClickOpen = (type) => {
     setreminderType(type)
     setOpenReminder(true);

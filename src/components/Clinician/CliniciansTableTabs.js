@@ -106,14 +106,11 @@ let [options, setOptions] = useState(specificOption)
   };    
 
   const handleCloseVieAllPopUP = (event, option) => {
-
     if (option === "View All") {
-
         setOptions(prevOptions => [
             ...prevOptions.slice(0, prevOptions.length - 1),
             "View Less"
         ]);
-
         setViewAll(!viewAll);
     }
 
@@ -122,7 +119,6 @@ let [options, setOptions] = useState(specificOption)
             ...prevOptions.slice(0, prevOptions.length - 1),
             "View All"
         ]);
-
         setViewAll(!viewAll);
     }
     setAnchorEl(null);

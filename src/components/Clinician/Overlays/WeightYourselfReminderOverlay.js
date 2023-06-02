@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import Checkbox from '@mui/material/Checkbox';
-import { StoreReminderData } from '../../../services/ClinicianService';
-import {day} from "../../../Utility/DefaultObject"
+import { List ,ListItem,ListItemButton,Checkbox } from '@mui/material';
 import dayjs from 'dayjs';
+import { StoreReminderData } from '../../../services/ClinicianService';
+import { day } from "../../../Utility/DefaultObject"
 import { toast } from 'react-toastify';
-
-
 
 export default function WeightYourselfReminderOverlay({actionReminderDay}) {
   const {filterDay,reminderType,latestData,setOpen,fetchData,setOpenReminder}=actionReminderDay
@@ -65,7 +60,6 @@ useEffect(()=>{
     
     setChecked(newChecked);
   };
-
   
 
   const handleClickAddReminder=async()=>{

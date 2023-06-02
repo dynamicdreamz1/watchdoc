@@ -12,7 +12,6 @@ export default function CliniciansRequestsTable(props) {
     const location=useLocation();
 
     return (
-
         <>
             <TableContainer component={Paper} className="clinicians-table">
                 {value === 0 || value === 1 ? "" :
@@ -46,16 +45,10 @@ export default function CliniciansRequestsTable(props) {
                                 {allClinician?.length > 0 && allClinician?.map((element) => (
                                     <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
                                 ))}
-
-
                             </TableBody>
                         </Table>}
-
                 </>
-
             </TableContainer>
-
-
                 {location?.pathname!=="/dashboard" && <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
 }
 

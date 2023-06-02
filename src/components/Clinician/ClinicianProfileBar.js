@@ -9,7 +9,6 @@ export default function ClinicianProfileBar({profileBarData,getAllClinicianData}
   const [open, setOpen] = useState(false);
   const [openRequest, setOpenRequest] = useState(false);
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -18,6 +17,7 @@ export default function ClinicianProfileBar({profileBarData,getAllClinicianData}
     setOpen(false);
     setOpenRequest(false)
   };
+
   const handleClickOpenRequestPopUp=()=>{
     setOpenRequest(true)
   }

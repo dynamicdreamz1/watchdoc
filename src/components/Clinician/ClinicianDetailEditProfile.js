@@ -8,14 +8,11 @@ import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
 
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getAllClinicianData}) {
- 
-  
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getAllClinicianData}) { 
     const {contact_number,id}=(profileBarData);
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
-    
     
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
@@ -29,6 +26,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         "countrycode":""
         
     })
+    
    useEffect(()=>{
     if (profileBarData?.contact_number?.startsWith("+")) {
         const country_code = profileBarData?.contact_number?.substring(0, profileBarData?.contact_number.length - 10).trim();
@@ -82,14 +80,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         setImgSrc(files)
     };
 
-
-
-
-
-
-
-    const handleSubmitForm =async(data) => {
-
+     const handleSubmitForm =async(data) => {
         const formData = new FormData();
         formData.append("id", id.toString());
         formData.append("type", "update");
@@ -100,18 +91,13 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         formData.append("password", null);
         formData.append("practice_address", data.practiceaddress);
         if(typeof imageUrl == "object" ){
-
             formData.append("profile_pic",imageUrl);
         }
-
-
         setOpen(false)
      await clinicanProfileUpdate(formData)
        getAllClinicianData()
     }
     
-
-
     return (
         <Formik
             initialValues={addNewStaff}
@@ -140,11 +126,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
                                     <div className='input-item'>
                                         <label>Title</label>
                                         <input type="text" name='title' value={props?.values?.title}  onChange={props?.handleChange} disabled/>
-
-                                        {/* <select name='title' defaultValue={props?.values?.title} onChange={props?.handleChange}>
-                                            <option value="Dr">Dr</option>
-                                            <option value="Hospital">Hospital</option>
-                                        </select> */}
                                     </div>
                                     <div className='input-item'>
                                         <label>First name</label>
@@ -174,24 +155,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
-                            {/* <div className='input-block'>
-                                <label>Password</label>
-                                <input type="password" name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
-                                <span className="error">{props.errors.password ? props.errors.password : ""}</span>
-                            </div> */}
-
-                            {/* <div className='input-block'>
-                                <label>Connected Patients</label>
-                                <input type="number" name='connectedpatients' value={props?.values?.connectedpatients} onChange={props?.handleChange} />
-                                <span className="error"> {props.errors.connectedpatients ? props.errors.connectedpatients : ""}</span>
-                            </div> */}
-
-                            {/* <div className='input-block'>
-                                <label>Pending Patients</label>
-                                <input type="number" name='pendingpatients' value={props?.values?.pendingpatients} onChange={props?.handleChange} />
-                                <span className="error"> {props.errors.pendingpatients ? props.errors.pendingpatients : ""}</span>
-                            </div> */}
-
                             <div className='input-block country-code'>
                                 <label id="country-code">Enter phone number</label>
                                 <div className='inputs-wrapper'>
