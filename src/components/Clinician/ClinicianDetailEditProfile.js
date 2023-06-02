@@ -94,7 +94,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
             formData.append("profile_pic",imageUrl);
         }
         setOpen(false)
-     await clinicanProfileUpdate(formData)
+        await clinicanProfileUpdate(formData)
        getAllClinicianData()
     }
     
