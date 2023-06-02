@@ -25,10 +25,8 @@ export default function HeartRateChartNavTabs({ action }) {
         dataKey: "heartrate"
     }
 
-
     return (
         <>
-
             <Box sx={{ width: '100%' }}>
                 <Box>
                     <Tabs value={value} onChange={handleChange} aria-label="Chart Tabs" className='chart-tabs'>
@@ -37,10 +35,7 @@ export default function HeartRateChartNavTabs({ action }) {
                         <Tab label="Weekly" {...a11yProps(1)} />
                         <Tab label="Monthly" {...a11yProps(2)} />
                     </Tabs>
-
                     <ChartTitle titleAction={titleAction} setData={setHeartRateValue} />
-                    {/* : <ChartResultRange />} */}
-
                 </Box>
                 <TabPanel value={value} index={0}>
                     {HeartRateAvg?.data?.details?.length === 0 ? <DefaultChartSkeleton /> :
@@ -57,7 +52,6 @@ export default function HeartRateChartNavTabs({ action }) {
                         isHeartrateSkeleton ? <ChartSkeleton /> :
                             <HeartRateChart HeartData={HeartRateAvg} />}
                 </TabPanel>
-
             </Box>
         </>
     )

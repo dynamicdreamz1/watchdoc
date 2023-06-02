@@ -13,8 +13,6 @@ export default function MainDetailsCardForBloodPressure({action}) {
         <div className='measurment-title d-flex align-items-center'>
           <span className='icon d-flex'><img src='/images/heart-rate-icon.svg' alt='Heart Rate Icon'/></span>
           <span className='name d-flex'>Latest Blood Pressure</span>
-          {/* <span className='name d-flex'>{el?.name}</span> */}
-
         </div>
         <span className='time d-flex align-items-center'>
          {`${date.data} ${date.lable} ago`}
@@ -22,14 +20,9 @@ export default function MainDetailsCardForBloodPressure({action}) {
         </span>
       </div>
       <div className='measurment-result'>
-        {/* <span className='digit'>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span> */}
         <span className='digit' style={{color:'red'}}>{latestData?.latest?.blood_pressure?.count}</span>
-
-        {/* <span className='type'>{el?.label}</span> */}
-
       </div>
       <RiskStatusForbloodPressure/>
-
     </div>  
     </>
   )
