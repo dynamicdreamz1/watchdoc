@@ -47,11 +47,8 @@ export default function AlertCard({alertData ,fetchData}) {
             <span className='title'>{alertData?.alert_message} {alertData.alert_limit}</span>
             <span className='time'>{time.data} {time.lable} Ago</span>
         </div>
-        <div>
-        <span className={alertData.admin_status === "1" ? "text alert-status color-light-green-data" : "alert-status status-data"}>{alertData.admin_status === "1" ? "Reviewed" : "Pending"}</span>
-        </div>
         <div className='button-block'>
-            <Button disabled={alertData.admin_status === "1" ? true : false} onClick={()=>handleClickDeleteReminder(alertData?.id,alertData?.user_id)} variant="contained">Mark as Reviewed</Button>
+         {alertData.admin_status === "1" ?  <span className='color-light-green-data'>Reviewed</span> :    <Button onClick={()=>handleClickDeleteReminder(alertData?.id,alertData?.user_id)} variant="contained">Mark as Reviewed</Button> }  
         </div>
     </div>
     </>

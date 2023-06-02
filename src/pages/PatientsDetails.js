@@ -19,10 +19,9 @@ import { ReminderCardSkeleton } from '../Utility/Skeleton';
 
 
 const PatientsDetails = () => {
-    const location=useLocation()
+  const location=useLocation()
   const { state } = location || {};
   const [latestData, setlatestData] = useState({})
-//   const [terraId,setTerraId]=useState([])
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const [loadingSkeleton,setLoadingSkeleton]=useState(false)
 
@@ -48,15 +47,6 @@ const finalLatest={
     criteria_alert:latestData?.data?.criteria_alert
 }
 
-//   useEffect(() => {
-//     async function fetchData() {
-//         const result=await getProviderTerraId()
-//         setTerraId(result)         
-//    }
-//    fetchData();
-//    // eslint-disable-next-line react-hooks/exhaustive-deps
-// },[]);
-
     return (
         <div className='content-wrapper'>
             <Sidebar />
@@ -66,7 +56,7 @@ const finalLatest={
                     <PatientProfileBar latestData={finalLatest}/>
                     <CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>
                     <Latestmeasurement latestData={finalLatest} />
-                   { loadingSkeleton ? <ReminderCardSkeleton /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
+                   { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
                     <Bloodpressure terraId={finalId?.[0]} latestData={finalLatest}/>
                     <BloodOxygen terraId={finalId?.[0]} latestData={finalLatest}/>
