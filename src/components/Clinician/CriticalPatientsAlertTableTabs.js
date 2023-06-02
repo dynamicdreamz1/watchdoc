@@ -58,26 +58,17 @@ export default function CriticalPatientsAlertTableTabs() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
 
-
-
     const [recordsPerPagePendingPatient] = useState(10);
     const [currentPagePendingPatient, setCurrentPagePendingPatient] = useState(1);
     const [totalPagesPendingPatient, setTotalPagesPendingPatient] = useState(0);
     const [dataLimitPendingPatient] = useState(5)
     const [loadingPendingPatient, setLoadingPendingPatient] = useState(false)
 
-
-
-
     const [recordsPerPageApprovePatient] = useState(10);
     const [currentPageApprovePatient, setCurrentPageApprovePatient] = useState(1);
     const [totalPagesApprovePatient, setTotalPagesApprovePatient] = useState(0);
     const [dataLimitApprovePatient] = useState(5)
     const [loadingApprovePatient, setLoadingApprovePatient] = useState(false)
-
-
-
-
 
     const defaultOption = [
         t('DashboardPage.SideButton.d1'),
@@ -98,11 +89,9 @@ export default function CriticalPatientsAlertTableTabs() {
     }
 
     const handleChange = (event, newValue) => {
-
         setViewAll(true)
         setValue(newValue);
     };
-
     const [reviewData, setReviewData] = useState(
         [
             {
@@ -544,10 +533,6 @@ export default function CriticalPatientsAlertTableTabs() {
         ]
     )
 
-
-
-
-
     const getPendingPatient = async (dataLimitPendingPatient, currentPagePendingPatient) => {
         setLoadingPendingPatient(true)
         let response = await ClinicianGetPatientsRequest(dataLimitPendingPatient, currentPagePendingPatient)
@@ -556,7 +541,6 @@ export default function CriticalPatientsAlertTableTabs() {
         setLoadingPendingPatient(false)
 
     }
-
 
     const getApproveRequest = async (dataLimitPendingPatient, currentPage) => {
         setLoadingApprovePatient(true)
@@ -567,16 +551,10 @@ export default function CriticalPatientsAlertTableTabs() {
 
     }
 
-
-
     useEffect(() => {
         getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
         // eslint-disable-next-line react-hooks/exhaustive-deps    
     }, [currentPageApprovePatient, dataLimitApprovePatient])
-
-
-
-
 
     useEffect(() => {
         getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
@@ -592,17 +570,8 @@ export default function CriticalPatientsAlertTableTabs() {
         setCurrentPageApprovePatient(newPage);
     };
 
-
-
-
-
-
-
-
     useEffect(() => {
-
         handleClose(event, "View Less")
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value])
 
