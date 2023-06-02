@@ -25,9 +25,6 @@ import { StoreCookie } from "../Utility/sessionStore";
 
 let token = StoreCookie.getItem('token')
 function PrivateDashboard({ Component }) {
-
-    console.log(token)
-
     if (token) {
         return <Component />;
     }
