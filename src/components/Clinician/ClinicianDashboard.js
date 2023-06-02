@@ -79,7 +79,6 @@ export default function ClinicianDashboard() {
             ]
         }
     ])
-
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage=5
     return (

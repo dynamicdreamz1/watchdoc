@@ -20,7 +20,7 @@ export default function MeasurementResult(props) {
     <>
     <div className='measurment-result'>
         <span className='digit' style={{color:colorRed}}>{result}</span>
-        <span className='type'>{props.label}</span>
+        <span className='type'>{props?.label}</span>
     </div>
     </>
   )

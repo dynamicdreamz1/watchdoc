@@ -14,7 +14,7 @@ export default function Latestmeasurement({latestData}) {
             <div className='wrapper d-flex flex-wrap'>             
                 {
                     Defaultmeasurment?.map((block, i) => {
-                        return latestData.latest ?   <MeasurementCard key={i} block={block} data={latestData}/> :  <DashboardResultRange key={i}/>
+                        return latestData?.latest ?   <MeasurementCard key={i} block={block} data={latestData}/> :  <DashboardResultRange key={i}/>
                     })
                 }
             </div>

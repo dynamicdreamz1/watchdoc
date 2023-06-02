@@ -39,9 +39,7 @@ const action={
   HeartRateAvg:heartRateValue,
   setHeartRateValue,
   setFinalDate,
-
 }
-
 
   return (
     <>

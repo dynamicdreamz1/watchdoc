@@ -12,7 +12,11 @@ export default function CriticalAlerts({latestData,fetchData}) {
         <div className='critical-alerts-wrapper mt-22'>
             <div className="section-title d-flex align-items-center justify-content-between">
                 <h5>Critical Alerts</h5>
-                <button type='button' onClick={()=>setViewAllBtn(!viewAllBtn)}>{!viewAllBtn?`View All Alerts (${finalData?.length?finalData?.length:0})`:`View Less Alerts (${finalData?.length?finalData?.length:0})`}</button>
+                {latestData?.criteria_alert?.length ===0?"":<button type='button' onClick={()=>setViewAllBtn(!viewAllBtn)}>
+                  {!viewAllBtn?
+                `View All Alerts (${finalData?.length?finalData?.length:0})`
+                :`View Less Alerts (${finalData?.length?finalData?.length:0})`}
+                </button>}
             </div>
             <div className='wrapper'>
               {
