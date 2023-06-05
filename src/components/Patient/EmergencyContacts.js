@@ -58,6 +58,41 @@ const EmergencyContacts = () => {
     setToggle(!toggle);
   };
 
+  const handleClickDelete=async(data)=>{
+    console.log("11111-data",data)
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("id", data?.id);
+    formData.append("first_name", data?.metaData?.first_name);
+    formData.append("last_name", data?.metaData?.last_name);
+    formData.append("mobile_number", data?.metaData?.mobile_number);
+    formData.append("email_address", data?.metaData?.email_address);
+    formData.append("action", "delete");
+    const res = await AddEmergencyContact(formData);
+    console.log("111111-res",res)
+    if(res?.status===200){
+      setLoading(false)
+      const result=finalData?.filter((el)=>el?.id !==data?.metaData?.id)
+      setFinalData(result)
+      toast.success(res?.data?.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+
+    }
+    
+
+  }
+
+console.log("11111-finalData",finalData)
+
+
+
   const handleSubmitForm = async (data) => {
     setLoading(true);
     const formData = new FormData();
@@ -218,9 +253,9 @@ const EmergencyContacts = () => {
                                 <TableBody>
 
                                     {finalData?.map(el => {
-                                        return <TableRow key={el.id}>
+                                        return <TableRow key={el?.id}>
                                             <TableCell className='user-profile-cell'>
-                                               {`${el.metaData.first_name} ${el.metaData.last_name}`}
+                                               {`${el?.metaData.first_name} ${el?.metaData.last_name}`}
                                             </TableCell>
                                             <TableCell>
                                                 <Email email={el?.metaData?.email_address} />
@@ -228,7 +263,7 @@ const EmergencyContacts = () => {
                                             <TableCell>
                                                 <Phone number={el?.metaData?.mobile_number} />
                                             </TableCell>
-                                            <TableCell align="center" > <button > Delete<img src="" alt="" /> </button></TableCell>
+                                            <TableCell align="center" > <button onClick={()=>handleClickDelete(el)}> Delete<img src="" alt=""/> </button></TableCell>
                                         </TableRow>
                                     })}
                                 </TableBody>
