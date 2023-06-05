@@ -9,6 +9,7 @@ import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import EmergencyContacts from '../../Patient/EmergencyContacts';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,6 +59,7 @@ export default function ProfileSettingTabs() {
                 <Tab label="Profile" {...a11yProps(0)} />
                 <Tab label="Password" {...a11yProps(1)} />
                 <Tab label="Two-factor authentication" {...a11yProps(2)} />
+                <Tab label="Emergency contacts" {...a11yProps(3)} />
                 </Tabs>
             </Box>
             <div className='tab-content'>
@@ -69,6 +71,9 @@ export default function ProfileSettingTabs() {
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <EditTwoFactor/>
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    <EmergencyContacts/>
                 </TabPanel>
                 <Link to="/dashboard" className='close-btn'>
                   <img src='/images/Close-Icon.svg' alt='Close Icon' />

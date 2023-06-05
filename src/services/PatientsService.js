@@ -32,7 +32,6 @@ export async function getLatestpatientDetails(id) {
 
 export const getProviderTerraId = async () => {
     try {
-
         const response = await axios({
             method: "GET",
             url: `${process.env.REACT_APP_ENDPOINT}user/providers`,
@@ -42,4 +41,22 @@ export const getProviderTerraId = async () => {
     } catch (error) {
         return error;
     }
+}
+
+
+
+export const AddEmergencyContact=async(data)=>{
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}user/desert-emergency-contact`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            headers: headersClinician,
+            data:data
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+
 }

@@ -3,12 +3,26 @@ import CanvasJSReact from '../../../lib/canvasjs.react';
 const BloodOxygenChart = ({bloodOxygenData}) => {
 	let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+	
+	
+	const dataPoints = bloodOxygenData?.data?.details && bloodOxygenData?.data?.details?.map((item) => {
+		const dateComponents = item.date.split("T")[0].split("-");
+		const timeComponents = item.date.substring(11).split(":");
+	  
+		const year = parseInt(dateComponents[0]);
+		const month = parseInt(dateComponents[1]) - 1;
+		const day = parseInt(dateComponents[2]);
+	  
+		const hour = parseInt(timeComponents[0]);
+		const minute = parseInt(timeComponents[1]);
+	  
+		return { x: new Date(year, month, day, hour, minute), y: item.avg_saturation_percentage };
+	  });
+	  
 
-
-// 	const dataPoints =  bloodOxygenData?.data?.details && Object?.entries(bloodOxygenData?.data?.details).map((t,k) => {
-// 		return { x: new Date(t[0]), y: [t[1]?.avg_saturation_percentage]}
-
-//   })
+	
+	  
+console.log("11111-bloodOxygenData",bloodOxygenData,dataPoints)
 
 	const options = {
 		theme: "light2",
@@ -50,8 +64,7 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 			markerColor: "#00B8E2",
 			markerSize: 10,
 			toolTipContent: "<span><strong>Time:</strong> {x}</span><br> <span><strong>Blood Oxygen:</strong> {y}%</span>",
-			dataPoints: 
-			[
+			dataPoints: [
                 { x: new Date(2023, 0, 16, 0, 0), y: 92},
                 { x: new Date(2023, 0, 16, 2, 0), y: 93},
                 { x: new Date(2023, 0, 16, 4, 0), y: 96},
