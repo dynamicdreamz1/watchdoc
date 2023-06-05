@@ -22,7 +22,6 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 
 	
 	  
-console.log("11111-bloodOxygenData",bloodOxygenData,dataPoints)
 
 	const options = {
 		theme: "light2",

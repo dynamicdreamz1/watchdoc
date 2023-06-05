@@ -5,6 +5,7 @@ import { getCurrentUserData, ProfileCreation } from '../../../services/UserServi
 import { UserContext } from '../../../Store/Context'
 import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
+import { ToastContainer } from 'react-toastify'
 
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
@@ -108,6 +109,8 @@ export const EditProfile = () => {
 
     return (
         <>
+    <ToastContainer />
+
             <form id='main_form'>
                 <div className='errorMessage'>{errorN}</div>
                 <div className='SuccessMessage'>{message}</div>

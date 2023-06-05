@@ -24,7 +24,6 @@ const PatientsDetails = () => {
   const [latestData, setlatestData] = useState({})
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const [loadingSkeleton,setLoadingSkeleton]=useState(false)
-
   const fetchData=async()=>{
     setLoadingSkeleton(true)
     const response= await getLatestpatientDetails(state?.id).then(response => response?.data)
@@ -46,7 +45,7 @@ const finalLatest={
     reminder:latestData?.data?.user_reminder,
     criteria_alert:latestData?.data?.criteria_alert
 }
-
+console.log("1111-finalLatest",finalLatest)
     return (
         <div className='content-wrapper'>
             <Sidebar />
