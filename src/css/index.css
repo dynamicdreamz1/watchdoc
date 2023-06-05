@@ -291,9 +291,11 @@ button {
 }
 .color-light-blue {
   color: #00B8E2;
+  padding: 5px;
 }
 .color-light-green {
   color: #86E826;
+  padding: 5px;
 }
 .color-red {
   color: #EA4335;
