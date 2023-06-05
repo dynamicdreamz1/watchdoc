@@ -220,7 +220,7 @@ const EmergencyContacts = () => {
                                     {finalData?.map(el => {
                                         return <TableRow key={el.id}>
                                             <TableCell className='user-profile-cell'>
-                                               {`${el.metaData.first_name}`}
+                                               {`${el.metaData.first_name} ${el.metaData.last_name}`}
                                             </TableCell>
                                             <TableCell>
                                                 <Email email={el?.metaData?.email_address} />
