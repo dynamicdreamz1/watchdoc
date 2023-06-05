@@ -27,7 +27,7 @@ export default function PatientEntry() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         if (!emailPattern.test(email)) {
             
             setError('Please enter valid email')
@@ -131,6 +131,7 @@ export default function PatientEntry() {
                                     value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
                                     <div className='LoginError'>{error && error}</div>
                             </div>
+                            <span>{loading?loading:""}</span>
                             <div className='submit-block' >
                                 <button type="submit" onClick={(e, response) => handleSubmit(e, response)}>Continue</button>
                             </div>
