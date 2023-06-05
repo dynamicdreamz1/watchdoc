@@ -5,7 +5,6 @@ import { RegisterMobNumber } from '../services/UserService';
 import { Base64 } from 'js-base64';
 
 export default function ContactDetails() {
-
     const { t } = useTranslation();
     const [mobileN, setMobileN] = useState('')
     const [error, setError] = useState('')
@@ -40,13 +39,11 @@ export default function ContactDetails() {
                     });
                     
                 })
-
                 .catch((error) => {
                     console.log(error)
                     setError(error.response.data.message)
                     
                 })
-
         }
 
     }
