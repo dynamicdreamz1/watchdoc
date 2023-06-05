@@ -1,5 +1,7 @@
+import { getCurrentUserData } from "../services/UserService";
 import { StoreCookie } from "./sessionStore";
 import moment from "moment";
+
 
 export const ageCalc = (date) => {
   var dob = new Date(date);
@@ -145,4 +147,18 @@ export const requestAndApprovePatient = (data) => {
       })
       return arr;
     }
+}
+
+
+export const getEmergencyContact = () =>{
+  const array = []
+  let object = {}
+  const userData = getCurrentUserData()
+  userData?.meta_data?.map((item) =>{
+      if (item.meta_key === 'emergency_contact') {
+          object =  {id : item.id,meta_key: item.meta_key, metaData : JSON.parse(item.meta_value) }
+          array.push(object)
+      }
+  })
+  return array
 }
