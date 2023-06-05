@@ -27,11 +27,18 @@ export default function PatientEntry() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (email === "") {
+        const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!emailPattern.test(email)) {
+            
+            setError('Please enter valid email')
+            return
+        }
+        else if (email === "") {
 
             setError(t('SignInPage.error.e1'))
             return
         }
+        else{
         const data = {
             email: email
         }
@@ -63,6 +70,7 @@ export default function PatientEntry() {
                 return error
             })
             
+        }
 
     }
 
