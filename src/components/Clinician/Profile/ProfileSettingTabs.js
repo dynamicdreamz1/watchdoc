@@ -10,6 +10,7 @@ import EditTwoFactor from './EditTwoFactor';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import EmergencyContacts from '../../Patient/EmergencyContacts';
+import { ToastContainer } from 'react-toastify';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,6 +53,8 @@ export default function ProfileSettingTabs() {
     };
     return (
         <>
+    <ToastContainer />
+
         <Box sx={{ width: '100%' }} className="profile-settings">
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="tab-list-block">
                 <h1>Settings</h1>

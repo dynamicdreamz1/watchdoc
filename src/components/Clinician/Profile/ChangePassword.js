@@ -3,6 +3,7 @@ import { getCurrentUserData } from '../../../services/UserService';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { UpdatePassword } from '../../../services/AdminService';
+import { toast } from 'react-toastify';
 
 export default function ChangePassword() {
     const userData = getCurrentUserData();
@@ -46,12 +47,33 @@ export default function ChangePassword() {
         setLoading(false)
 
         if(res?.status===200){
-            
+            toast.success('Password successfully updated.', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
             setMessage('Password successfully updated.')
+        setTimeout(() => setMessage(""), 2000);
+
         }
 
         if(res?.response?.status===422){
+            toast.success("Old password is incorrect.", {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
             setMessage("Old password is incorrect.")
+        setTimeout(() => setMessage(""), 2000);
+
         }   
         setPassword({
         currentpassword:"",

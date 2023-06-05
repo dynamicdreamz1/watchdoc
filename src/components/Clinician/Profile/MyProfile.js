@@ -6,6 +6,7 @@ import {getCurrentUserData } from '../../../services/UserService';
 import { StoreCookie } from '../../../Utility/sessionStore';
 import { UserContext } from '../../../Store/Context';
 import { UpdateUserProfile } from '../../../services/AdminService';
+import { toast } from 'react-toastify';
 
 export default function MyProfile() {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
@@ -20,8 +21,8 @@ export default function MyProfile() {
         "first_name": first_name,
         "last_name": last_name,
         "email": userData?.email,
-        "practicename": practice_name,
-        "practiceaddress": practice_address,
+        "practicename": practice_name || "",
+        "practiceaddress": practice_address || "",
         "profile_pic":imageUrl
     })
     // const LoginSchema = Yup.object({
@@ -84,6 +85,15 @@ export default function MyProfile() {
        const updatedUserData=await UpdateUserProfile(formData)
        setLoading(false)
        if(updatedUserData?.status===200){
+        toast.success('Profile updated successfully.', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+          });
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);

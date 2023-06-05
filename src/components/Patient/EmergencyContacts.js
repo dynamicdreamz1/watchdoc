@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { t } from 'i18next';
 import * as Yup from "yup";
 import { AddEmergencyContact } from '../../services/PatientsService';
+import { toast } from 'react-toastify';
 
 
 
@@ -53,8 +54,19 @@ const EmergencyContacts = () => {
 
     const res= await AddEmergencyContact(formData)
     if(res?.status===200){
-      setLoading(false)
+    setLoading(false)
+    toast.success(res?.data?.message, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
     setmessage(res?.data?.message)
+    setTimeout(() => setmessage(""), 2000);
+
     }
 
   }
@@ -102,14 +114,15 @@ const EmergencyContacts = () => {
                     <input type="email" name='email' placeholder='Email*'  onChange={props?.handleChange} value={props?.values?.email}/>
                             <span className="error">  {props?.errors?.email?props?.errors?.email:""}</span>
                 </div>
+                <div className='input-block'>
+            <span className="error">{loading? "Loading..." : ""}</span>
+            <span className="error">{message? message : ""}</span>
+            </div>
                 <div className='submit-block'>
                     <button type="submit">Save</button>
                 </div>
             </form>
-            <div className='input-block'>
-            <span className="error">{loading? "Loading..." : ""}</span>
-            <span className="error">{message? message : ""}</span>
-            </div>
+           
 
         </div>
 </>

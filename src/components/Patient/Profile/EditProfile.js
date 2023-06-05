@@ -5,7 +5,7 @@ import { getCurrentUserData, ProfileCreation } from '../../../services/UserServi
 import { UserContext } from '../../../Store/Context'
 import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
@@ -73,11 +73,23 @@ export const EditProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
+                    toast.success('Profile updated successfully.', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                      });
                     setLoading(false)
                     StoreCookie.setItem("user_details", res?.data);
                     setCurrentUserData({ ...currentUserData, userData: res?.data })
                     setMessage(t('EditProfilePage.message.m1'))
                     setErrorN("")
+                    setTimeout(() => {
+                        setMessage("")
+                    }, 3000);
 
 
                 })
