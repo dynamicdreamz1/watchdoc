@@ -53,54 +53,20 @@ const EmergencyContacts = () => {
         "Please Enter Valid Email"
       ),
   });
-
   const handleClick = () => {
     setToggle(!toggle);
   };
 
-  const handleClickDelete=async(data)=>{
-    console.log("11111-data",data)
+  const handleSubmitForm = async (data,id,type) => {
     setLoading(true);
+    console.log("data",data);
     const formData = new FormData();
-    formData.append("id", data?.id);
-    formData.append("first_name", data?.metaData?.first_name);
-    formData.append("last_name", data?.metaData?.last_name);
-    formData.append("mobile_number", data?.metaData?.mobile_number);
-    formData.append("email_address", data?.metaData?.email_address);
-    formData.append("action", "delete");
-    const res = await AddEmergencyContact(formData);
-    console.log("111111-res",res)
-    if(res?.status===200){
-      setLoading(false)
-      const result=finalData?.filter((el)=>el?.id !==data?.metaData?.id)
-      setFinalData(result)
-      toast.success(res?.data?.message, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
-      });
-
-    }
-    
-
-  }
-
-console.log("11111-finalData",finalData)
-
-
-
-  const handleSubmitForm = async (data) => {
-    setLoading(true);
-    const formData = new FormData();
+    formData.append("id",type === 1 ? "" : id)
     formData.append("first_name", data?.first_name);
     formData.append("last_name", data?.last_name);
     formData.append("mobile_number", data?.emergencyNumber);
     formData.append("email_address", data?.email);
-    formData.append("action", "insert");
+    formData.append("action", type === 1 ?  "insert" : "delete");
 
     const res = await AddEmergencyContact(formData);
     if (res?.status === 200) {
@@ -150,7 +116,7 @@ console.log("11111-finalData",finalData)
           enableReinitialize={true}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
-            handleSubmitForm(values);
+            handleSubmitForm(values,"",1);
           }}
         >
           {(props) => (
@@ -248,6 +214,9 @@ console.log("11111-finalData",finalData)
                                         <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
                                         <TableCell>{t('MyClinicians.tableCell2')}</TableCell>
                                         <TableCell>{t('MyClinicians.tableCell3')}</TableCell>
+                                        <TableCell></TableCell>
+                                        <TableCell></TableCell>
+
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -263,11 +232,13 @@ console.log("11111-finalData",finalData)
                                             <TableCell>
                                                 <Phone number={el?.metaData?.mobile_number} />
                                             </TableCell>
-                                            <TableCell align="center" > <button onClick={()=>handleClickDelete(el)}> Delete<img src="" alt=""/> </button></TableCell>
+                                            {/* <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,3)}> Update<img src="" alt=""/> </button></TableCell> */}
+                                            <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,2)}> Delete<img src="" alt=""/> </button></TableCell>
                                         </TableRow>
                                     })}
                                 </TableBody>
-                            </Table> : <>{t('MyClinicians.notAdd')}</>}
+                            </Table>
+                            : <>{t('MyClinicians.notAdd')}</>} 
                     </>
                 }
     </>
