@@ -4,7 +4,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
@@ -14,13 +13,14 @@ import { AddEmergencyContact } from "../../services/PatientsService";
 import { toast } from "react-toastify";
 import {  getEmergencyContact } from "../../Utility/functions";
 import { TableSkeleton } from "../../Utility/Skeleton";
-import UserProfile from "../common/UserProfile";
 import Email from "../common/Table/Email";
 import Phone from "../common/Table/Phone";
+import { StoreCookie } from "../../Utility/sessionStore";
 
 const EmergencyContacts = () => {
     const emergencyData = getEmergencyContact()
-  const [initialData] = useState({
+    const [finalData,setFinalData]=useState(emergencyData)
+  const [initialData,setInitialData] = useState({
     first_name: "",
     last_name: "",
     email: "",
@@ -30,7 +30,6 @@ const EmergencyContacts = () => {
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
   
-
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -71,6 +70,15 @@ const EmergencyContacts = () => {
     const res = await AddEmergencyContact(formData);
     if (res?.status === 200) {
       setLoading(false);
+      const array = [];
+      let object = {};
+      res?.data?.user_data?.meta_data?.map((item) =>{
+        if (item.meta_key === 'emergency_contact') {
+            object =  {id : item.id,meta_key: item.meta_key, metaData : JSON.parse(item.meta_value) }
+            array.push(object)
+        }
+      })
+      setFinalData(array);
       toast.success(res?.data?.message, {
         position: "top-right",
         autoClose: 3000,
@@ -80,7 +88,13 @@ const EmergencyContacts = () => {
         draggable: true,
         theme: "colored",
       });
+      StoreCookie.setItem("user_details", JSON.stringify(res?.data?.user_data));
       setmessage(res?.data?.message);
+      setInitialData({first_name: "",
+      last_name: "",
+      email: "",
+      emergencyNumber: ""})
+      setToggle(false)
       setTimeout(() => setmessage(""), 2000);
     }
   };
@@ -192,7 +206,7 @@ const EmergencyContacts = () => {
       )}
                {loading === true ? <TableSkeleton /> :
                     <>
-                        {emergencyData?.length > 0 ?
+                        {finalData?.length > 0 ?
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
@@ -203,7 +217,7 @@ const EmergencyContacts = () => {
                                 </TableHead>
                                 <TableBody>
 
-                                    {emergencyData?.map(el => {
+                                    {finalData?.map(el => {
                                         return <TableRow key={el.id}>
                                             <TableCell className='user-profile-cell'>
                                                {`${el.metaData.first_name}`}

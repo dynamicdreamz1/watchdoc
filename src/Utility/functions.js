@@ -155,7 +155,7 @@ export const getEmergencyContact = () =>{
   let object = {}
   const userData = getCurrentUserData()
   userData?.meta_data?.map((item) =>{
-      if (item.meta_key === 'emergency_contact') {
+      if (item?.meta_key === 'emergency_contact') {
           object =  {id : item.id,meta_key: item.meta_key, metaData : JSON.parse(item.meta_value) }
           array.push(object)
       }
