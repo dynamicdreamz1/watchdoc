@@ -99,7 +99,10 @@ export const  GetdayHourMin = (data) =>{
   const minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
   const hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
   const months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
+
   if (minutes <= 60) {
+    console.log("minutes",minutes <= 60);
     return {lable : "minutes", data :parseInt(minutes)}
   }
   else if (hours <= 24) {
@@ -110,7 +113,11 @@ export const  GetdayHourMin = (data) =>{
   }
   else if (months <= 12) {
     return {lable : "months", data : parseInt(months)}
+  }else{
+    return {lable : "years", data : parseInt(years)}
+
   }
+  
 }
 
 
