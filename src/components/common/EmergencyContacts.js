@@ -16,6 +16,9 @@ import { TableSkeleton } from "../../Utility/Skeleton";
 import Email from "./Table/Email";
 import Phone from "./Table/Phone";
 import { StoreCookie } from "../../Utility/sessionStore";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 const EmergencyContacts = () => {
   const emergencyData = getEmergencyContact()
@@ -256,8 +259,9 @@ const EmergencyContacts = () => {
                     <TableCell>
                       <Phone number={el?.metaData?.mobile_number} />
                     </TableCell>
-                    <TableCell align="center" > <button onClick={() => handleClickEdit(el?.metaData, el.id, 3)}> Update<img src="" alt="" /> </button></TableCell>
-                    <TableCell align="center" > <button onClick={() => handleSubmitForm(el?.metaData, el.id, 2)}> Delete<img src="" alt="" /> </button></TableCell>
+                    <TableCell align="center" > <button onClick={() => handleClickEdit(el?.metaData, el.id, 3)}><EditIcon/><img src="" alt="" /> </button></TableCell>
+                    <TableCell align="center" > <button onClick={() => handleSubmitForm(el?.metaData, el.id, 2)}> <DeleteIcon /><img src="" alt="" /> </button></TableCell>
+                    
                   </TableRow>
                 })}
               </TableBody>
