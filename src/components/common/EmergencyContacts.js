@@ -21,6 +21,7 @@ const EmergencyContacts = () => {
     const emergencyData = getEmergencyContact()
     const [finalData,setFinalData]=useState(emergencyData)
   const [initialData,setInitialData] = useState({
+    id:"",
     first_name: "",
     last_name: "",
     email: "",
@@ -57,16 +58,36 @@ const EmergencyContacts = () => {
     setToggle(!toggle);
   };
 
+const handleClickUpdate=(data,id,type)=>{
+  setToggle(true)
+}
+
+
+
+
+
+
   const handleSubmitForm = async (data,id,type) => {
+    if(data?.id===null || data?.id===""){
+    setLoading(false);
+      setToggle(true)
+      setInitialData({
+        id:id,
+        first_name: data?.first_name,
+        last_name: data?.last_name,
+        email: data?.email_address,
+        emergencyNumber: data?.mobile_number
+      })
+    }
+    else{
     setLoading(true);
-    console.log("data",data);
     const formData = new FormData();
     formData.append("id",type === 1 ? "" : id)
     formData.append("first_name", data?.first_name);
     formData.append("last_name", data?.last_name);
     formData.append("mobile_number", data?.emergencyNumber);
     formData.append("email_address", data?.email);
-    formData.append("action", type === 1 ?  "insert" : "delete");
+    formData.append("action", type === 1 ?  "insert" :type === 2? "delete":"update");
 
     const res = await AddEmergencyContact(formData);
     if (res?.status === 200) {
@@ -82,7 +103,7 @@ const EmergencyContacts = () => {
       setFinalData(array);
       toast.success(res?.data?.message, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -98,6 +119,7 @@ const EmergencyContacts = () => {
       setToggle(false)
       setTimeout(() => setmessage(""), 2000);
     }
+  }
   };
 
   return (
@@ -116,7 +138,7 @@ const EmergencyContacts = () => {
           enableReinitialize={true}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
-            handleSubmitForm(values,"",1);
+            handleSubmitForm(values,values?.id?values?.id:"",values?.id?3:1);
           }}
         >
           {(props) => (
@@ -232,7 +254,7 @@ const EmergencyContacts = () => {
                                             <TableCell>
                                                 <Phone number={el?.metaData?.mobile_number} />
                                             </TableCell>
-                                            {/* <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,3)}> Update<img src="" alt=""/> </button></TableCell> */}
+                                            <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,3)}> Update<img src="" alt=""/> </button></TableCell>
                                             <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,2)}> Delete<img src="" alt=""/> </button></TableCell>
                                         </TableRow>
                                     })}
