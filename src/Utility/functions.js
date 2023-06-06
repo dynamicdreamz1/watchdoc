@@ -102,7 +102,6 @@ export const  GetdayHourMin = (data) =>{
   const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
 
   if (minutes <= 60) {
-    console.log("minutes",minutes <= 60);
     return {lable : "minutes", data :parseInt(minutes)}
   }
   else if (hours <= 24) {
