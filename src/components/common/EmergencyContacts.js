@@ -77,15 +77,11 @@ const EmergencyContacts = () => {
       emergencyNumber: data?.mobile_number
     })
 
-
   }
 
 
 
   const handleSubmitForm = async (data, id, type) => {
-    console.log("111111-data", data, id, type)
-
-
     setLoading(true);
     const formData = new FormData();
     formData.append("id", type === 1 ? "" : id)
@@ -149,7 +145,6 @@ const EmergencyContacts = () => {
           enableReinitialize={true}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
-            console.log("1111111-values",values)
             handleSubmitForm(values,values?.id?values?.id:"",values?.id?3:1);
           }}
         >
@@ -157,7 +152,6 @@ const EmergencyContacts = () => {
             <>
               <div className="my-profile-form">
                 <div className="title-block">
-                  {/* <h2>Emergency Contact</h2> */}
                 </div>
                 <form onSubmit={props.handleSubmit}>
                   <div className="input-block">
