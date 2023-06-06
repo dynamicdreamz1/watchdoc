@@ -9,7 +9,7 @@ import MyProfile from './MyProfile';
 import EditTwoFactor from './EditTwoFactor';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import EmergencyContacts from '../../Patient/EmergencyContacts';
+import EmergencyContacts from '../../common/EmergencyContacts';
 import { ToastContainer } from 'react-toastify';
 
 function TabPanel(props) {

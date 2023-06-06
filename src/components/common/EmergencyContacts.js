@@ -13,8 +13,8 @@ import { AddEmergencyContact } from "../../services/PatientsService";
 import { toast } from "react-toastify";
 import {  getEmergencyContact } from "../../Utility/functions";
 import { TableSkeleton } from "../../Utility/Skeleton";
-import Email from "../common/Table/Email";
-import Phone from "../common/Table/Phone";
+import Email from "./Table/Email";
+import Phone from "./Table/Phone";
 import { StoreCookie } from "../../Utility/sessionStore";
 
 const EmergencyContacts = () => {
