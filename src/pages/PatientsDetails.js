@@ -45,7 +45,6 @@ const finalLatest={
     reminder:latestData?.data?.user_reminder,
     criteria_alert:latestData?.data?.criteria_alert
 }
-console.log("1111-finalLatest",finalLatest)
     return (
         <div className='content-wrapper'>
             <Sidebar />

@@ -1,30 +1,48 @@
 import React, { useState } from 'react'
 import AlertCard from './AlertCard'
+import { getAllProfileAlert } from '../../../services/ClinicianService';
+import { Pagination } from '@mui/material';
 
 export default function CriticalAlerts({latestData,fetchData}) {
-  const [viewAllBtn,setViewAllBtn]=useState(false)
+  const [data,setData]=useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [dataLimitApprovePatient] = useState(5)
+  const [loadingApprovePatient, setLoading] = useState(false)
+
+  const getAllAlert = async(id,pageLimit,currentPage ) =>{
+    setLoading(true)
+    if (latestData?.user_data?.id) {
+      const res = await getAllProfileAlert(id,pageLimit, currentPage);
+      setTotalPages(Math.ceil(res?.data?.alert_data?.total / pageLimit))
+      setData(res?.data?.alert_data?.data)
+      setLoading(false)
+    }
+  }
+
+  const handleChangePageApprovePatient = (event, newPage) => {
+    setCurrentPage(newPage);
+};
+  React.useEffect(()=>{
+    getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
+  },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])
   
-  const viewLessData=latestData?.criteria_alert && latestData?.criteria_alert?.slice(0,4);
-  const viewAllData=latestData?.criteria_alert && latestData?.criteria_alert?.slice(0,latestData?.criteria_alert?.length)
-  const finalData=viewAllBtn?viewAllData:viewLessData
+
   return (
     <>
         <div className='critical-alerts-wrapper mt-22'>
             <div className="section-title d-flex align-items-center justify-content-between">
                 <h5>Critical Alerts</h5>
-                {latestData?.criteria_alert?.length ===0?"":<button type='button' onClick={()=>setViewAllBtn(!viewAllBtn)}>
-                  {!viewAllBtn?
-                `View All Alerts (${viewAllData?.length?viewAllData?.length:0})`
-                :`View Less Alerts (${finalData?.length?finalData?.length:0})`}
-                </button>}
             </div>
             <div className='wrapper'>
               {
-               finalData?.map((item, I) => {
+               data?.map((item, I) => {
                 return <> <AlertCard alertData={item} key={I} fetchData={fetchData}/> <br/></>
               })
               }
             </div>
+            <Pagination page={currentPage} onChange={handleChangePageApprovePatient} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+
         </div>
     </>
   )

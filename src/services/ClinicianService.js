@@ -156,6 +156,20 @@ export const reviewUserProfileAlert = async (data) => {
 
 }
 
+export const getAllProfileAlert = async (id,limit,currentPage) => {
+    console.log("id",id);
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_all_alert?user_id=${id}&limit=${limit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
 
+}
 
 
