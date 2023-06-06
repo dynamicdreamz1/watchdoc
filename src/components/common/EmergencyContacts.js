@@ -11,17 +11,17 @@ import { t } from "i18next";
 import * as Yup from "yup";
 import { AddEmergencyContact } from "../../services/PatientsService";
 import { toast } from "react-toastify";
-import {  getEmergencyContact } from "../../Utility/functions";
+import { getEmergencyContact } from "../../Utility/functions";
 import { TableSkeleton } from "../../Utility/Skeleton";
 import Email from "./Table/Email";
 import Phone from "./Table/Phone";
 import { StoreCookie } from "../../Utility/sessionStore";
 
 const EmergencyContacts = () => {
-    const emergencyData = getEmergencyContact()
-    const [finalData,setFinalData]=useState(emergencyData)
-  const [initialData,setInitialData] = useState({
-    id:"",
+  const emergencyData = getEmergencyContact()
+  const [finalData, setFinalData] = useState(emergencyData)
+  const [initialData, setInitialData] = useState({
+    id: "",
     first_name: "",
     last_name: "",
     email: "",
@@ -30,7 +30,7 @@ const EmergencyContacts = () => {
   const [message, setmessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
-  
+
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -55,49 +55,55 @@ const EmergencyContacts = () => {
       ),
   });
   const handleClick = () => {
+    if(!toggle){
+      setInitialData({
+        id: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        emergencyNumber: ""
+      })
+    }
     setToggle(!toggle);
   };
 
-const handleClickUpdate=(data,id,type)=>{
-  setToggle(true)
-}
+  const handleClickEdit = (data, id, type) => {
+    setToggle(true)
+    setInitialData({
+      id: id,
+      first_name: data?.first_name,
+      last_name: data?.last_name,
+      email: data?.email_address,
+      emergencyNumber: data?.mobile_number
+    })
+
+
+  }
 
 
 
+  const handleSubmitForm = async (data, id, type) => {
+    console.log("111111-data", data, id, type)
 
 
-
-  const handleSubmitForm = async (data,id,type) => {
-    if(data?.id===null || data?.id===""){
-    setLoading(false);
-      setToggle(true)
-      setInitialData({
-        id:id,
-        first_name: data?.first_name,
-        last_name: data?.last_name,
-        email: data?.email_address,
-        emergencyNumber: data?.mobile_number
-      })
-    }
-    else{
     setLoading(true);
     const formData = new FormData();
-    formData.append("id",type === 1 ? "" : id)
+    formData.append("id", type === 1 ? "" : id)
     formData.append("first_name", data?.first_name);
     formData.append("last_name", data?.last_name);
     formData.append("mobile_number", data?.emergencyNumber);
     formData.append("email_address", data?.email);
-    formData.append("action", type === 1 ?  "insert" :type === 2? "delete":"update");
+    formData.append("action", type === 1 ? "insert" : type === 2 ? "delete" : "update");
 
     const res = await AddEmergencyContact(formData);
     if (res?.status === 200) {
       setLoading(false);
       const array = [];
       let object = {};
-      res?.data?.user_data?.meta_data?.map((item) =>{
+      res?.data?.user_data?.meta_data?.map((item) => {
         if (item.meta_key === 'emergency_contact') {
-            object =  {id : item.id,meta_key: item.meta_key, metaData : JSON.parse(item.meta_value) }
-            array.push(object)
+          object = { id: item.id, meta_key: item.meta_key, metaData: JSON.parse(item.meta_value) }
+          array.push(object)
         }
       })
       setFinalData(array);
@@ -112,14 +118,19 @@ const handleClickUpdate=(data,id,type)=>{
       });
       StoreCookie.setItem("user_details", JSON.stringify(res?.data?.user_data));
       setmessage(res?.data?.message);
-      setInitialData({first_name: "",
-      last_name: "",
-      email: "",
-      emergencyNumber: ""})
+      setInitialData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        emergencyNumber: ""
+      })
       setToggle(false)
       setTimeout(() => setmessage(""), 2000);
     }
-  }
+    else{
+      setFinalData(emergencyData)
+    }
+
   };
 
   return (
@@ -138,6 +149,7 @@ const handleClickUpdate=(data,id,type)=>{
           enableReinitialize={true}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
+            console.log("1111111-values",values)
             handleSubmitForm(values,values?.id?values?.id:"",values?.id?3:1);
           }}
         >
@@ -227,42 +239,42 @@ const handleClickUpdate=(data,id,type)=>{
       ) : (
         ""
       )}
-               {loading === true ? <TableSkeleton /> :
-                    <>
-                        {finalData?.length > 0 ?
-                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
-                                        <TableCell>{t('MyClinicians.tableCell2')}</TableCell>
-                                        <TableCell>{t('MyClinicians.tableCell3')}</TableCell>
-                                        <TableCell></TableCell>
-                                        <TableCell></TableCell>
+      {loading === true ? <TableSkeleton /> :
+        <>
+          {finalData?.length > 0 ?
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>{t('MyClinicians.tableCell1')}</TableCell>
+                  <TableCell>{t('MyClinicians.tableCell2')}</TableCell>
+                  <TableCell>{t('MyClinicians.tableCell3')}</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
 
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
+                </TableRow>
+              </TableHead>
+              <TableBody>
 
-                                    {finalData?.map(el => {
-                                        return <TableRow key={el?.id}>
-                                            <TableCell className='user-profile-cell'>
-                                               {`${el?.metaData.first_name} ${el?.metaData.last_name}`}
-                                            </TableCell>
-                                            <TableCell>
-                                                <Email email={el?.metaData?.email_address} />
-                                            </TableCell>
-                                            <TableCell>
-                                                <Phone number={el?.metaData?.mobile_number} />
-                                            </TableCell>
-                                            <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,3)}> Update<img src="" alt=""/> </button></TableCell>
-                                            <TableCell align="center" > <button onClick={()=>handleSubmitForm(el?.metaData,el.id,2)}> Delete<img src="" alt=""/> </button></TableCell>
-                                        </TableRow>
-                                    })}
-                                </TableBody>
-                            </Table>
-                            : <>{t('MyClinicians.notAdd')}</>} 
-                    </>
-                }
+                {finalData?.map(el => {
+                  return <TableRow key={el?.id}>
+                    <TableCell className='user-profile-cell'>
+                      {`${el?.metaData.first_name} ${el?.metaData.last_name}`}
+                    </TableCell>
+                    <TableCell>
+                      <Email email={el?.metaData?.email_address} />
+                    </TableCell>
+                    <TableCell>
+                      <Phone number={el?.metaData?.mobile_number} />
+                    </TableCell>
+                    <TableCell align="center" > <button onClick={() => handleClickEdit(el?.metaData, el.id, 3)}> Update<img src="" alt="" /> </button></TableCell>
+                    <TableCell align="center" > <button onClick={() => handleSubmitForm(el?.metaData, el.id, 2)}> Delete<img src="" alt="" /> </button></TableCell>
+                  </TableRow>
+                })}
+              </TableBody>
+            </Table>
+            : <>{t('MyClinicians.notAdd')}</>}
+        </>
+      }
     </>
   );
 };
