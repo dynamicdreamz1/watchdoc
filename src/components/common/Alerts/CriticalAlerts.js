@@ -31,7 +31,7 @@ export default function CriticalAlerts({latestData,fetchData}) {
 
   return (
     <>
-    {data.length > 0 ?<div className='critical-alerts-wrapper mt-22'>
+    {data?.length > 0 ?<div className='critical-alerts-wrapper mt-22'>
             <div className="section-title d-flex align-items-center justify-content-between">
                 <h5>Critical Alerts</h5>
             </div>

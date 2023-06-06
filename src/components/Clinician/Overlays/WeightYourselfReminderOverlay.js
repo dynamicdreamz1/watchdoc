@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { List ,ListItem,ListItemButton,Checkbox } from '@mui/material';
+import { List ,ListItem,ListItemButton,Checkbox, TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import { StoreReminderData } from '../../../services/ClinicianService';
 import { day } from "../../../Utility/DefaultObject"
 import { toast } from 'react-toastify';
 
 export default function WeightYourselfReminderOverlay({actionReminderDay}) {
-  const {filterDay,reminderType,latestData,setOpen,fetchData,setOpenReminder}=actionReminderDay
+  const {filterDay,reminderType,latestData,setOpen,fetchData,setOpenReminder,reminderTitle,setReminderTitle}=actionReminderDay
   const [checked, setChecked] = useState([]);
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [titleError, setTitleError] = useState('');
+  const [daysError, setDaysError] = useState('');
+
 
   const handleTimeChange = (date) => {
     setSelectedDate(date);
@@ -60,14 +63,38 @@ useEffect(()=>{
     
     setChecked(newChecked);
   };
+
+  const handleTitleChange = (event) => {
+    setReminderTitle(event.target.value);
+    setTitleError('');
+  };
   
 
   const handleClickAddReminder=async()=>{
-    const timeData = extractTimeData(selectedDate);
+    if (reminderTitle.trim() === '') {
+      setTitleError('Reminder title is required');    
+      setTimeout(() =>setTitleError(''), 2000);
 
+    }
+    if(checked?.length===0){
+      // setDaysError('Please select at least one day')
+      toast.error('Please select at least one day', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+      setTimeout(() =>setDaysError(''), 2000);
+    }
+    if(reminderTitle.trim() !== '' && checked?.length > 0){
+    const timeData = extractTimeData(selectedDate);
     const remindertypevalue=reminderType==='medication'?3:reminderType==='weight'?1:reminderType==='blood_pressure'?2:reminderType==='custome'?4:''
     const formData = new FormData();
     formData.append('user_id', latestData?.user_data?.id)  
+    formData.append('reminder_title', reminderTitle)  
     formData.append('reminder_id', remindertypevalue)  
     formData.append('time', timeData?.time)  
     formData.append('time_in_hour', timeData?.time_in_hour)  
@@ -91,6 +118,7 @@ useEffect(()=>{
       });
     }
   }
+  }
 
   return (
     <>
@@ -100,6 +128,17 @@ useEffect(()=>{
           <p>We recommend you {reminderType?reminderType:""} yourself between two and seven times a week in the morning before breakfast.</p>
         </div>
         <form>
+          <div>
+          <TextField
+          label="Reminder Title"
+          variant="outlined"
+          fullWidth
+          value={reminderTitle}
+          onChange={handleTitleChange}
+          error={Boolean(titleError)}
+          helperText={titleError}
+        />
+          </div>
           <div className='clock-title'>
             <img src='/images/clock-icon.svg' alt="Click Icon" />
             <span className='days-data'>Time</span>
@@ -141,6 +180,11 @@ useEffect(()=>{
         );
       })}
     </List>     
+    {daysError && (
+        <div className='error-text'>
+          {daysError}
+        </div>
+      )}
           <div className='submit-block'>
             <button type='button' className="btn" onClick={handleClickAddReminder}>Add Reminder</button>
           </div>

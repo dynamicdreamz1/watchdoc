@@ -13,6 +13,8 @@ export default function Reminders({latestData,fetchData}) {
   const [openReminder,setOpenReminder]=useState(false)
   const [reminderType,setreminderType]=useState('')
   const [filterDay,setFilterDay]=useState([])
+  const [reminderTitle,setReminderTitle]=useState()
+
   
   const handleClose = () => {
     setOpen(false);
@@ -24,6 +26,8 @@ export default function Reminders({latestData,fetchData}) {
 
   useEffect(()=>{
     const result=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
+    const titleresult=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)
+    setReminderTitle(titleresult!==undefined && (titleresult?.length===0?"":titleresult[0].reminder_title))
     setFilterDay(result)
   },[openReminder,reminderType])
 
@@ -35,6 +39,8 @@ export default function Reminders({latestData,fetchData}) {
     reminderType,
     latestData,
     setOpen,
+    reminderTitle,
+    setReminderTitle
   }
 
   const actionReminderTypeOption={
