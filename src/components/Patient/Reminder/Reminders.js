@@ -27,7 +27,6 @@ export default function Reminders({latestData,fetchData}) {
   useEffect(()=>{
     const result=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)?.map((elem)=>elem?.day)?.flat()?.map((el=>parseInt(el,10)))
     const titleresult=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)
-    console.log("1111-titleresult",titleresult)
     setReminderTitle(titleresult!==undefined && (titleresult?.length===0?"":titleresult[0].reminder_title||""))
     setFilterDay(result)
   },[openReminder,reminderType])
