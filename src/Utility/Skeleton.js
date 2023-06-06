@@ -134,6 +134,16 @@ export const MeasurmentCardSkeleton = ()=> {
     )
 }
 
+export const AlertSkeleton = ()=> {
+    return (
+        <>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+        </>
+    )
+}
+
 export const TableSkeleton = ()=>  {
   return (
     <>

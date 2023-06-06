@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AlertCard from './AlertCard'
 import { getAllProfileAlert } from '../../../services/ClinicianService';
 import { Pagination } from '@mui/material';
+import { AlertSkeleton } from '../../../Utility/Skeleton';
 
 export default function CriticalAlerts({latestData,fetchData}) {
   const [data,setData]=useState([])
@@ -26,7 +27,7 @@ export default function CriticalAlerts({latestData,fetchData}) {
   React.useEffect(()=>{
     getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
   },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])
-  
+
 
   return (
     <>
@@ -34,13 +35,15 @@ export default function CriticalAlerts({latestData,fetchData}) {
             <div className="section-title d-flex align-items-center justify-content-between">
                 <h5>Critical Alerts</h5>
             </div>
-            <div className='wrapper'>
+            {
+              loadingApprovePatient ? <AlertSkeleton /> :  <div className='wrapper'>
               {
                data?.map((item, I) => {
                 return <> <AlertCard alertData={item} key={I} fetchData={fetchData}/> <br/></>
               })
               }
             </div>
+            }
             <Pagination page={currentPage} onChange={handleChangePageApprovePatient} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
 
         </div>
