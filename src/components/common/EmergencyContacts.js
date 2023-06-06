@@ -90,7 +90,6 @@ const EmergencyContacts = () => {
     formData.append("mobile_number", data?.emergencyNumber);
     formData.append("email_address", data?.email);
     formData.append("action", type === 1 ? "insert" : type === 2 ? "delete" : "update");
-
     const res = await AddEmergencyContact(formData);
     if (res?.status === 200) {
       setLoading(false);
@@ -126,7 +125,6 @@ const EmergencyContacts = () => {
     else{
       setFinalData(emergencyData)
     }
-
   };
 
   return (
@@ -244,11 +242,9 @@ const EmergencyContacts = () => {
                   <TableCell>{t('MyClinicians.tableCell3')}</TableCell>
                   <TableCell></TableCell>
                   <TableCell></TableCell>
-
                 </TableRow>
               </TableHead>
               <TableBody>
-
                 {finalData?.map(el => {
                   return <TableRow key={el?.id}>
                     <TableCell className='user-profile-cell'>
