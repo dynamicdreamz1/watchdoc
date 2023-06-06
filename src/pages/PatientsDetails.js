@@ -52,7 +52,7 @@ const finalLatest={
                 <Header />
                 <UserBodyContextProvider >
                     <PatientProfileBar latestData={finalLatest}/>
-                    {finalLatest?.criteria_alert?.length !==0 &&<CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>}
+                   <CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>
                     <Latestmeasurement latestData={finalLatest} />
                    { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
                     <Heartrates terraId={finalId?.[0]} latestData={finalLatest}/>
