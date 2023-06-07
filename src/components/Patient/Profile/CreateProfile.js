@@ -5,72 +5,83 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { StoreCookie } from '../../../Utility/sessionStore';
 import { MetaFormeting } from '../../../Utility/functions';
+import { Field, Formik } from 'formik';
+import * as Yup from 'yup';
+
 
 const CreateProfile = () => {
+    const [createnewUser, setCreateNewUser] = useState({
+        "firstname": "",
+        "lastname": "",
+        "preferredFirstName": "",
+        "dob": "",
+        "sex": "",
+        "weight": "",
+        "height": "",
 
-    const [firstName, SetFirstName] = useState('')
-    const [preferredFirstName, setPreferredFirstName] = useState("")
-    const [lastName, SetLastName] = useState('')
-    const [dob, SetDOB] = useState('')
-    const [sex, setSex] = useState("")
-    const [Weight, SetWeight] = useState("")
-    const [Height, SetHeight] = useState("")
+    })
     const [errorN, setErrorN] = useState('')
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
     const navigate = useNavigate();
 
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
 
-        if (firstName === "") {
-            setErrorN(t('CreateProfilePage.error.e1'))
-        }
+    const LoginSchema = Yup.object({
+        firstname: Yup.string()
+          .required("This field is required*")
+          .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        preferredFirstName: Yup.string()
+        .required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        lastname: Yup.string()
+          .required("This field is required*")
+          .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        dob: Yup.date().required("This field is required*"),
+        sex: Yup.string().required("This field is required*"),
+        weight: Yup.string().required("This field is required*"),
+        height: Yup.string().required("This field is required*"),
+      });
 
-        else if (lastName === "") {
-            setErrorN(t('CreateProfilePage.error.e2'))
-        }
 
-        else if (dob === "") {
-            setErrorN(t('CreateProfilePage.error.e3'))
-        }
 
-        else if(sex===""){
-            setErrorN(t('CreateProfilePage.error.e9'))
-        }
 
-        else if(Weight===""){
-            setErrorN(t("CreateProfilePage.error.e4"))
-        }
 
-        else if(Height===""){
-            setErrorN(t("CreateProfilePage.error.e5"))
-        }
 
-        else {
-            const data = {
-                first_name: firstName,
-                preferred_first_name:preferredFirstName,
-                last_name: lastName,
-                dob: dob,
-                sex:sex,
-                weight:Weight,
-                height:Height
-            }
+    const handleSubmit = (datas) => {
+        console.log("1111-datas",datas)
+        const formData=new FormData();
+        formData.append("first_name", datas?.firstname);
+        formData.append("preferred_first_name",datas?.preferredFirstName);
+        formData.append("last_name", datas?.lastname);
+        formData.append("dob", datas?.dob);
+        formData.append("sex", datas?.sex);
+        formData.append("weight",datas?.weight);
+        formData.append("height",datas?.height);
+
+
+
+            // const data = {
+            //     first_name:datas?.firstName,
+            //     preferred_first_name:datas?.preferredFirstName,
+            //     last_name:datas?.lastName,
+            //     dob:datas?.dob,
+            //     sex:datas?.sex,
+            //     weight:datas?.Weight,
+            //     height:datas?.Height
+            // }
 
             setLoading(true)
-            ProfileCreation(data)
+            ProfileCreation(formData)
                 .then((res) => {
-                    if(res?.response?.status===401){
+                    if (res?.response?.status === 401) {
                         setSuccess(true)
                         setLoading(false)
                         setErrorN(t('CreateProfilePage.error.e8'))
                     }
                     // let Fname=(res.data.meta_data[0].meta_value)
-                     const {first_name}= MetaFormeting(res.data)
-                    StoreCookie.setItem('name',first_name)
+                    const { first_name } = MetaFormeting(res.data)
+                    StoreCookie.setItem('name', first_name)
                     let profileCheck = (res.data.profile_created)
                     setSuccess(true)
                     StoreCookie.setItem('profileCheck', profileCheck)
@@ -80,92 +91,100 @@ const CreateProfile = () => {
                 })
                 .catch((error) => {
                     setLoading(false)
-                    if(error.response.status===422){
+                    if (error.response.status === 422) {
                         setErrorN(t('CreateProfilePage.error.e7'))
-                        console.log(error)
-                        SetDOB("")
                     }
-                        
-                    else{
-                        console.log(error)
-                       
+
+                    else {
+                        setErrorN(error)
+
                     }
-                    
+
                 })
-        }
-    }
-    
-    useEffect(() => {
-        if (success === true) {
-            SetFirstName("")
-            SetLastName("")
-            setPreferredFirstName("")
-            SetDOB("")
-            document.getElementById('main_form').reset()
-        }
-    },[success])
-
         
+    }
+
     return (
-        <>
-            <div className="title-block">
-                <h4>{t('CreateProfilePage.register.r1')}</h4>
-            </div>
-            <div className='errorMessage'>{errorN}</div>
-                      
-            <form id='main_form'>
-                <div className='input-block'>
-                    <label htmlFor="exampleInputFirstName" >{t('CreateProfilePage.form.f1')}</label>
-                    <input type="text" placeholder={t('CreateProfilePage.form.f13')} value={firstName} id="exampleInputFirstName" onChange={(e) => SetFirstName(e.target.value)} />
-                </div>
+        <Formik
+            initialValues={createnewUser}
+            enableReinitialize={true}
+            validationSchema={LoginSchema}
+            onSubmit={(values) => { handleSubmit(values) }}
+        >
+            {(props) => (
 
-                <div className='input-block'>
-                    <label htmlFor="exampleInputPrefferedFirstName" >{t('CreateProfilePage.form.f17')}</label>
-                    <input type="text" placeholder={t('CreateProfilePage.form.f18')} value={preferredFirstName} id="exampleInputPrefferedFirstName" onChange={(e) => setPreferredFirstName(e.target.value)} />
-                </div>
-
-                <div className='input-block'>
-                    <label htmlFor="exampleInputLastName" >{t('CreateProfilePage.form.f2')}</label>
-                    <input type="text" placeholder={t('CreateProfilePage.form.f14')} value={lastName} id="exampleInputLastName" onChange={(e) => SetLastName(e.target.value)} />
-                </div>
-
-                <div className='input-block'>
-                    <label htmlFor="exampleInputDOB" >{t('CreateProfilePage.form.f3')}</label>
-                    <input type="date" value={dob} id="exampleInputDOB" onChange={(e) => SetDOB(e.target.value)} />
-                </div>
-
-                <div className='input-block'>
-                    <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
-                    <div className='radio-buttons'>
-                        <div className='radio-button'>
-                            <input checked={sex === "male" ? 'checked' : ''} type="radio" id="male" name="sex" value="male" onChange={(e) => setSex(e.target.value)} />
-                            <label htmlFor="male">{t('CreateProfilePage.form.f10')}</label>
-                        </div>
-                        <div className='radio-button'>
-                            <input checked={sex === "female" ? 'checked' : ''} type="radio" id="female" name="sex" value="female" onChange={(e) => setSex(e.target.value)} />
-                            <label htmlFor="female">{t('CreateProfilePage.form.f11')}</label>
-                        </div>
-                        <div className='radio-button'>
-                            <input checked={sex === "other" ? 'checked' : ''} type="radio" id="other" name="sex" value="other" onChange={(e) => setSex(e.target.value)} />
-                            <label htmlFor="other">{t('CreateProfilePage.form.f12')}</label>
-                        </div>
+                <>
+                    <div className="title-block">
+                        <h4>{t('CreateProfilePage.register.r1')}</h4>
                     </div>
-                </div>
+                    <div className='errorMessage'>{errorN}</div>
 
-                <div className='input-block'>
-                    <label htmlFor="exampleInputWeight" >{t('CreateProfilePage.form.f7')}</label>
-                    <input type="text" placeholder={t('CreateProfilePage.form.f15')} value={Weight} id="exampleInputWeight" onChange={(e) => SetWeight(e.target.value)} />
-                </div>
+                    <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputFirstName" >{t('CreateProfilePage.form.f1')}</label>
+                            <input type="text" name="firstname" placeholder={t('CreateProfilePage.form.f13')} value={props?.values?.firstname} id="exampleInputFirstName" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.firstname ? props?.errors?.firstname : ""}</span>
+                        </div>
 
-                <div className='input-block'>
-                    <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
-                    <input type="text" placeholder={t('CreateProfilePage.form.f16')} value={Height} id="exampleInputHeight" onChange={(e) => SetHeight(e.target.value)} />
-                </div>
-                
-                <button type="submit" onClick={(e) => handleSubmit(e)}>{t('CreateProfilePage.form.f9')}</button>
-                {loading ? <b>{t('CreateProfilePage.loader.l1')}</b> : ""}
-            </form>
-        </>
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputPrefferedFirstName" >{t('CreateProfilePage.form.f17')}</label>
+                            <input type="text" name="preferredFirstName" placeholder={t('CreateProfilePage.form.f18')} value={props?.values?.preferredFirstName} id="exampleInputPrefferedFirstName" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.preferredFirstName ? props?.errors?.preferredFirstName : ""}</span>
+                        </div>
+
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputLastName" >{t('CreateProfilePage.form.f2')}</label>
+                            <input type="text" name="lastname" placeholder={t('CreateProfilePage.form.f14')} value={props?.values?.lastName} id="exampleInputLastName" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.lastname ? props?.errors?.lastname : ""}</span>
+                        </div>
+
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputDOB" >{t('CreateProfilePage.form.f3')}</label>
+                            <input type="date" name="dob" value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.dob ? props?.errors?.dob : ""}</span>
+
+                        </div>
+
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
+                            <div className='radio-buttons'>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="male" name="sex" value="male" />
+                                    <label htmlFor="male">Male</label>
+                                </div>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="female" name="sex" value="female" />
+                                    <label htmlFor="female">Female</label>
+                                </div>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="other" name="sex" value="other" />
+                                    <label htmlFor="other">Other</label>
+                                </div>
+                            </div>
+                            <span className="error"> {props?.errors?.sex ? props?.errors?.dob : ""}</span>
+
+                        </div>
+
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputWeight" >{t('CreateProfilePage.form.f7')}</label>
+                            <input type="text" name="weight" placeholder={t('CreateProfilePage.form.f15')} value={props?.values?.weight} id="exampleInputWeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.weight ? props?.errors?.weight : ""}</span>
+
+                        </div>
+
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputHeight" >{t('CreateProfilePage.form.f8')}</label>
+                            <input type="text" name="height" placeholder={t('CreateProfilePage.form.f16')} value={props?.values?.height} id="exampleInputHeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.height ? props?.errors?.height : ""}</span>
+
+                        </div>
+
+                        <button type="submit">{t('CreateProfilePage.form.f9')}</button>
+                        {loading ? <b>{t('CreateProfilePage.loader.l1')}</b> : ""}
+                    </form>
+                </>
+            )}
+        </Formik>
     )
 }
 

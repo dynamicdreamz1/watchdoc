@@ -49,6 +49,7 @@ export default function AddClinician({ status, setStatus }) {
   
       {location.pathname === "/addclinician" ?
         <>
+        <h3 onClick={()=>navigate('/dashboard')}>Skip</h3>
           <ConnectingClinician show={show} setShow={setShow} defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
           <div>
             {defaultStatus === true ?
