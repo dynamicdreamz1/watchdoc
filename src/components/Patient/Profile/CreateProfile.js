@@ -21,7 +21,6 @@ const CreateProfile = () => {
 
     })
     const [errorN, setErrorN] = useState('')
-    const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
     const navigate = useNavigate();
@@ -43,11 +42,6 @@ const CreateProfile = () => {
         height: Yup.string().required("This field is required*"),
       });
 
-
-
-
-
-
     const handleSubmit = (datas) => {
         console.log("1111-datas",datas)
         const formData=new FormData();
@@ -59,23 +53,10 @@ const CreateProfile = () => {
         formData.append("weight",datas?.weight);
         formData.append("height",datas?.height);
 
-
-
-            // const data = {
-            //     first_name:datas?.firstName,
-            //     preferred_first_name:datas?.preferredFirstName,
-            //     last_name:datas?.lastName,
-            //     dob:datas?.dob,
-            //     sex:datas?.sex,
-            //     weight:datas?.Weight,
-            //     height:datas?.Height
-            // }
-
             setLoading(true)
             ProfileCreation(formData)
                 .then((res) => {
                     if (res?.response?.status === 401) {
-                        setSuccess(true)
                         setLoading(false)
                         setErrorN(t('CreateProfilePage.error.e8'))
                     }
@@ -83,7 +64,6 @@ const CreateProfile = () => {
                     const { first_name } = MetaFormeting(res.data)
                     StoreCookie.setItem('name', first_name)
                     let profileCheck = (res.data.profile_created)
-                    setSuccess(true)
                     StoreCookie.setItem('profileCheck', profileCheck)
                     StoreCookie.setItem("user_details", res?.data);
                     navigate('/contactdetails')
@@ -94,7 +74,6 @@ const CreateProfile = () => {
                     if (error.response.status === 422) {
                         setErrorN(t('CreateProfilePage.error.e7'))
                     }
-
                     else {
                         setErrorN(error)
 
