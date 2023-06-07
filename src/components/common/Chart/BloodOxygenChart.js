@@ -20,9 +20,6 @@ const BloodOxygenChart = ({bloodOxygenData}) => {
 	  });
 	  
 
-	
-	  
-
 	const options = {
 		theme: "light2",
 		animationEnabled: true,
