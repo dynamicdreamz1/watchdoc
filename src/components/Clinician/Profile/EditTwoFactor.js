@@ -9,7 +9,6 @@ import { t } from 'i18next';
 export default function EditTwoFactor() {
 
   const [countryCode, setcountryCode] = useState('+91');
-
   const [editClinicianProfileData, setEditClinicianProfileData] = useState({
     "number":""
 })

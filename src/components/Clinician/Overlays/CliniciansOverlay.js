@@ -3,6 +3,7 @@ import AddClinician from '../../Patient/AddClinician/AddClinician'
 import ClinicianInfoRow from '../../common/Table/ClinicianInfoRow';
 
 export const AdminUserContext = createContext([]);
+
 export default function CliniciansOverlay() {
   const [toggleAddClinicain, setToggleAddClinicain] = useState(false)
   const [addData, setAddData] = useState({ clinicianName: "", practitionerName: "", code: "" })

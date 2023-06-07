@@ -43,7 +43,6 @@ const CreateProfile = () => {
       });
 
     const handleSubmit = (datas) => {
-        console.log("1111-datas",datas)
         const formData=new FormData();
         formData.append("first_name", datas?.firstname);
         formData.append("preferred_first_name",datas?.preferredFirstName);

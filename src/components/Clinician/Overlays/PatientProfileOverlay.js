@@ -38,10 +38,6 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
                 id="exampleInputFirstName"
               />
             </div>
-            {/* <div className='input-block'>
-                    <label htmlFor="exampleInputPreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
-                    <input type="text"  name="preferredFirstName" placeholder={t('EditProfilePage.form.f18')} value={props?.values?.preferredFirstName} id="exampleInputPreferredFirstName" onChange={props?.handleChange} />
-                </div> */}
             <div className="input-block">
               <label htmlFor="exampleInputLastName">Last name</label>
               <input
@@ -95,10 +91,6 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
                 </div>
               </div>
             </div>
-            {/* <div className='input-block'>
-                    <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
-                    <input type="text"  name="weight"  placeholder={t('EditProfilePage.form.f15')} value={props?.values?.weight} id="exampleInputWeight" onChange={props?.handleChange} />
-                </div> */}
             <div className="input-block">
               <label htmlFor="exampleInputHeight">Height (cm)</label>
               <input

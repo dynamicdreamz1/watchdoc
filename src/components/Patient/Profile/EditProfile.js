@@ -125,7 +125,7 @@ export const EditProfile = () => {
 
             <form id='main_form'>
                 <div className='errorMessage'>{errorN}</div>
-                <div className='SuccessMessage'>{message}</div>
+                <div className='SuccessMessage'></div>
                 <div className='input-block'>
                     <label htmlFor="exampleInputFirstName" >{t('EditProfilePage.form.f1')}</label>
                     <input type="text" placeholder={t('EditProfilePage.form.f13')} value={firstName} id="exampleInputFirstName" onChange={(e) => SetFirstName(e.target.value)} />

@@ -41,34 +41,8 @@ export default function MyProfile() {
 
     const handleImages = (files) => {
         setImgSrc(files)
-
-    //     let validImages = [files].filter((file) => 
-    //         ['image/jpeg', 'image/png'].includes(file?.type||{})
-    //     );      
-      
-    //     validImages.forEach(uploadImages);
-      
-      
-    //   };
-    //     const uploadImages =(file)=>{
-
-    //       let reader = new FileReader();
-    //       reader.readAsDataURL(file);
-    //       reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-           
-    //       };
-      
-        }
-
-
-
-
-
-
-
-
-
+    }
+    
     const handleSubmitForm = async(data) => {
         setLoading(true)
         const formData = new FormData();

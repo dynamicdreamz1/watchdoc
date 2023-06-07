@@ -19,10 +19,6 @@ export default function ChangePassword() {
    
     const LoginSchema = Yup.object({
         currentpassword: Yup.string().required("Old password is required*"),
-        // .matches(
-        //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        //     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        // ),
         newpassword: Yup.string().required('New password is required*')
         .matches(
             // eslint-disable-next-line no-useless-escape
