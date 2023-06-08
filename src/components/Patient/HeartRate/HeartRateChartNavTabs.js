@@ -40,17 +40,17 @@ export default function HeartRateChartNavTabs({ action }) {
                 <TabPanel value={value} index={0}>
                     {HeartRateAvg?.data?.details?.length === 0 ? <DefaultChartSkeleton /> :
                         isHeartrateSkeleton ? <ChartSkeleton /> :
-                            <HeartRateChart HeartData={HeartRateAvg} />}
+                            <HeartRateChart HeartData={HeartRateAvg} value={value} />}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     {HeartRateAvg?.data?.details?.length === 0 ? <DefaultChartSkeleton /> :
                         isHeartrateSkeleton ? <ChartSkeleton /> :
-                            <HeartRateChart HeartData={HeartRateAvg} />}
+                            <HeartRateChart HeartData={HeartRateAvg} value={value} />}
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     {HeartRateAvg?.data?.details?.length === 0 ? <DefaultChartSkeleton /> :
                         isHeartrateSkeleton ? <ChartSkeleton /> :
-                            <HeartRateChart HeartData={HeartRateAvg} />}
+                            <HeartRateChart HeartData={HeartRateAvg} value={value} />}
                 </TabPanel>
             </Box>
         </>

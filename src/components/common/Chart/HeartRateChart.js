@@ -2,12 +2,17 @@ import React from 'react'
 import CanvasJSReact from '../../../lib/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default function HeartRateChart({HeartData}) {
-
+export default function HeartRateChart({HeartData,value}) {
+  const valueFormate = value === 0 ? "h tt" :  "MMM DD"
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
-          return { x: new Date(t[0]), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      const dateComponents = t[1].date|| t[1].main_date?.split("T")[0]?.split("-");
+      const year = parseInt(dateComponents[0]);
+		  const month = parseInt(dateComponents[1]) - 1;
+		  const day = parseInt(dateComponents[2]);
+    return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
     })
+
 		const options = {
 			theme: "light2",
 			exportEnabled: false,
@@ -18,9 +23,7 @@ export default function HeartRateChart({HeartData}) {
       dataPointMaxWidth: 6,
      
 			axisX: {
-				valueFormatString: "h tt",
-        interval: 6,
-        intervalType: "hour",
+				valueFormatString: valueFormate,
       //  minimum: new Date(2023, 0, 15, 23, 0),
        // maximum: new Date(2023, 0, 17, 0, 0),
         labelFontFamily: "Source Sans Pro', sans-serif",
@@ -50,7 +53,7 @@ export default function HeartRateChart({HeartData}) {
                 radius: 5,
                 axisYType: "secondary",
                 indexLabel: "",
-                xValueFormatString: "MMM YYYY",
+                xValueFormatString: "",
                 toolTipContent: "<strong>{x}</strong></br> <span><strong>Max:</strong> {y[1]} bpm</span><br/><span><strong> Min:</strong> {y[0]} bpm</span>",
                 dataPoints: dataPoints
               }]
