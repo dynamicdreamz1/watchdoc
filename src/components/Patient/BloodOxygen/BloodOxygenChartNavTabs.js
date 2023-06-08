@@ -66,13 +66,13 @@ export default function BloodOxygenChartNavTabs({titleAction}) {
           <ChartTitle titleAction={chartTitleAction} setData={setBloodOxygenData} />
         </Box>        
         <TabPanel value={value} index={0}>
-          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} value={value} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} value={value}  />}
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} />}
+          {bloodOxygenData?.data?.details?.length===0 ? <DefaultChartSkeleton /> : isBloodOxygenSkeleton ? <ChartSkeleton />:<BloodOxygenChart bloodOxygenData={bloodOxygenData} value={value}  />}
         </TabPanel>
       </Box>
     </>
