@@ -6,12 +6,13 @@ export default function HeartRateChart({HeartData,value}) {
   const valueFormate = value === 0 ? "h tt" :  "MMM DD"
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
-      const dateComponents = t[1].date.split("T")[0].split("-");
+      const dateComponents = t[1].date|| t[1].main_date?.split("T")[0]?.split("-");
       const year = parseInt(dateComponents[0]);
 		  const month = parseInt(dateComponents[1]) - 1;
 		  const day = parseInt(dateComponents[2]);
     return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
     })
+
 		const options = {
 			theme: "light2",
 			exportEnabled: false,
