@@ -3,13 +3,16 @@ import CanvasJSReact from '../../../lib/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function HeartRateChart({HeartData,value}) {
-  const valueFormate = value === 0 ? "h tt" :  "MMM DD"
+  const valueFormate = value === 0 ? "h tt" :  "DD MMM"
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
-      const dateComponents = t[1].date|| t[1].main_date?.split("T")[0]?.split("-");
+      const dateFind = t[1].date?t[1].date : t[1].main_date
+      const dateComponents = dateFind?.split("T")[0]?.split("-");
+      console.log("t",t);
       const year = parseInt(dateComponents[0]);
 		  const month = parseInt(dateComponents[1]) - 1;
 		  const day = parseInt(dateComponents[2]);
+      console.log("year",year,month,day);
     return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
     })
 
