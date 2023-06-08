@@ -11,7 +11,7 @@ export default function ChartTitle({titleAction,setData}) {
   const dataClear =()=>{
     setData()
   }
-  
+
   const finalData =
     dataKey === "bloodOxygen"
       ? HeartData?.avg_saturation_percentage
@@ -42,7 +42,7 @@ export default function ChartTitle({titleAction,setData}) {
         {value===0 ? <DatePickerComponent dataClear={dataClear} setFinalDate={setFinalDate} /> :
          value === 1 ? <WeekPickerComponent dataClear={dataClear} setFinalDate={setFinalDate} />:
          value === 2 ? <MonthPickerComponent dataClear={dataClear} setFinalDate={setFinalDate} /> : 
-         <DatePickerComponent setFinalDate={setFinalDate} />}
+         <DatePickerComponent dataClear={dataClear} setFinalDate={setFinalDate} />}
       </div>
     </>
   )
