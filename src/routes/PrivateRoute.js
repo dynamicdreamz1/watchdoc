@@ -20,23 +20,32 @@
 
 // export default PrivateDashboard;
 
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { StoreCookie } from "../Utility/sessionStore";
+import { useEffect } from "react";
 
+
+
+function PrivateRoute({ Component }) {
 let token = StoreCookie.getItem('token')
-function PrivateDashboard({ Component }) {
+  const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          navigate(`/signin`);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+      }, [token]);
+    
     if (token) {
         return <Component />;
-    }
-
-    else {
-        return <Navigate to="/" />;
-    }
+    }      
 
 }
 
 
-export default PrivateDashboard;
+export default PrivateRoute;
 
 
 
