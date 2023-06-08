@@ -21,12 +21,12 @@ export default function EmergencyContactOverlay({ data }) {
       <div className="dialog-title">
         <h2>Emergency Contacts</h2>
       </div>
-      {emergencyContact.length > 0  ? (
-        emergencyContact?.map((emergency) => (
+      {emergencyContact?.length > 0  ? (
+        emergencyContact?.map((emergency,I) => (
           <>
           {emergency != null ? 
           <> 
-          <Card className={classes.root}>            
+          <Card className={classes.root} key={I}>            
     
             <CardContent>
                <div className="emergency-content">
