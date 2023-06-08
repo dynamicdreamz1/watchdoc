@@ -3,7 +3,7 @@ import CanvasJSReact from '../../../lib/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function HeartRateChart({HeartData,value}) {
-  const valueFormate = value === 0 ? "h tt" :  "DD MMM"
+  const valueFormate = value === 0 ? "h tt" :  "MMM DD"
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
       const dateFind = t[1].date?t[1].date : t[1].main_date
