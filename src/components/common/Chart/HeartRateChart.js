@@ -8,12 +8,19 @@ export default function HeartRateChart({HeartData,value}) {
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
       const dateFind = t[1].date?t[1].date : t[1].main_date
       const dateComponents = dateFind?.split("T")[0]?.split("-");
+      const timeComponents = dateFind.substring(11).split(":");
+
       const year = parseInt(dateComponents[0]);
 		  const month = parseInt(dateComponents[1]) - 1;
 		  const day = parseInt(dateComponents[2]);
-    return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      const hour = parseInt(timeComponents[0]);
+      const minute = parseInt(timeComponents[1]);
+      if ( value === 0) {
+        return { x: new Date(year, month, day,hour,minute), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      }else{
+        return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      }
     })
-
 		const options = {
 			theme: "light2",
 			exportEnabled: false,
