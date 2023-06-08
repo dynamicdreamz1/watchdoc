@@ -7,8 +7,6 @@ const BloodOxygenChart = ({bloodOxygenData ,value}) => {
 	
 	const dataPoints = bloodOxygenData?.data?.details && bloodOxygenData?.data?.details?.map((item ,index) => {
 		const dateComponents = item.date.split("T")[0].split("-");
-		// const timeComponents = item.date.substring(11).split(":");
-	  
 		const year = parseInt(dateComponents[0]);
 		const month = parseInt(dateComponents[1]) - 1;
 		const day = parseInt(dateComponents[2]);
