@@ -129,7 +129,6 @@ export default function PatientEntry() {
         enableReinitialize={true}
         validationSchema={LoginSchema}
         onSubmit={(values) => { 
-            console.log("1111-values",values)
             handleSubmit(values?.email) }}
     >
         {(props) => (
