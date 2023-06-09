@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
 import { getCurrentUserData, ProfileCreation } from '../../../services/UserService'
 import { UserContext } from '../../../Store/Context'
 import { MetaFormeting } from '../../../Utility/functions'
@@ -9,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify'
 
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
-    const userData = getCurrentUserData();
+    const userData =   getCurrentUserData();
     // let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
     const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(userData);
 
