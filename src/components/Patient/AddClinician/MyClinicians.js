@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import React, { useContext, useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper';
 import UserProfile from '../../common/UserProfile';
@@ -56,9 +57,6 @@ export default function MyClinicians({ status }) {
                     id: ID,
                     relation: 'unlink'
                 }
-
-
-
                 addDoctor(apiData)
                     .then((res) => {
                         setDeleteStatus(!deleteStatus)
@@ -105,14 +103,9 @@ export default function MyClinicians({ status }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status, deleteStatus])
 
-
-
     const handleChange = (event, value) => {
-
         setCurrentPage(value)
     };
-
-
 
     return (
         <>
@@ -149,7 +142,7 @@ export default function MyClinicians({ status }) {
                                                 <Phone number={el?.contact_number} />
                                             </TableCell>
                                             <TableCell align="center" className={el.request_status === 1 ? "text color-light-green" : "status"}>{el.request_status === 1 ? "Reviewed" : "Pending"}</TableCell>
-                                            <TableCell align="center" > <button onClick={() => DeleteRequest(el.id)}> Delete<img src="" alt="" /> </button></TableCell>
+                                            <TableCell align="center" > <button onClick={() => DeleteRequest(el.id)}> <DeleteIcon /><img src="" alt="" /> </button></TableCell>
                                         </TableRow>
                                     })}
                                 </TableBody>

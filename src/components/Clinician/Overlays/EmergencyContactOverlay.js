@@ -36,7 +36,6 @@ export default function EmergencyContactOverlay({ data }) {
               </span>
             </div> 
             </div>
-
             <br/>
             </>
             : ''  }</> 

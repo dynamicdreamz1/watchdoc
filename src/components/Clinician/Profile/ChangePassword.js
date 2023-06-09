@@ -93,8 +93,6 @@ export default function ChangePassword() {
                 <h2>Change your password</h2>
                 <span>You are about to change the password for your WatchDoc account, <strong>{email}</strong></span>
             </div>
-          
-
             <form onSubmit={props.handleSubmit}>
                 <div className='input-block'>
                     <label>Current password</label>

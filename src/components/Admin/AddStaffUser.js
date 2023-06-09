@@ -78,7 +78,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     // }
 
     const handleSubmitForm = async(data) => {
-        
         const formData=new FormData();
         formData.append("first_name",data?.firstname)
         formData.append("last_name",data?.lastname)
@@ -87,7 +86,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("address",data?.practiceaddress,)
         formData.append("password",data?.password,)
         formData.append("type","create")
-
         if(typeof imageUrl==="object"){
         formData.append("profile_pic",imageUrl)
         }

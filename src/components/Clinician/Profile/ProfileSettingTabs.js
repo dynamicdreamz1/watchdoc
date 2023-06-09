@@ -54,7 +54,6 @@ export default function ProfileSettingTabs() {
   return (
     <>
       <ToastContainer />
-
       <Box sx={{ width: "100%" }} className="profile-settings">
         <Box
           sx={{ borderBottom: 1, borderColor: "divider" }}
