@@ -1,17 +1,7 @@
 import React from "react";
 import "../../../css/Dialog.css";
-import { makeStyles } from "@material-ui/core/styles";
-import { Card } from "@mui/material";
-import CardContent from "@material-ui/core/CardContent";
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345
-  }
-});
 
 export default function EmergencyContactOverlay({ data }) {
-  const classes = useStyles();
   const emergencyContact = data?.user_data?.meta_data?.map((item) =>
     item.meta_key === "emergency_contact" ? JSON.parse(item?.meta_value) : null
   );
@@ -26,9 +16,7 @@ export default function EmergencyContactOverlay({ data }) {
           <>
           {emergency != null ? 
           <> 
-          <Card className={classes.root} key={I}>            
-    
-            <CardContent>
+            <div class="card">
                <div className="emergency-content">
               <h5>
                 {emergency?.first_name
@@ -47,9 +35,8 @@ export default function EmergencyContactOverlay({ data }) {
                 </a>
               </span>
             </div> 
-            
-            </CardContent>
-            </Card>
+            </div>
+
             <br/>
             </>
             : ''  }</> 
