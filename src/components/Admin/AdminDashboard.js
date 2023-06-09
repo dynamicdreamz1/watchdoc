@@ -5,7 +5,6 @@ import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTa
 
 
 export default function AdminDashboard() {
-
   const recordsPerPage = 5;
   const [pendingPatientsData, setPendingPatientsData] = useState([])
   const [loading, setLoading] = useState(false)
@@ -31,7 +30,6 @@ export default function AdminDashboard() {
   useEffect(() => {
     GetData()
   }, [])
-
 
   return (
     <>

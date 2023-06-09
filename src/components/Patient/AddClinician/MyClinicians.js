@@ -57,9 +57,6 @@ export default function MyClinicians({ status }) {
                     id: ID,
                     relation: 'unlink'
                 }
-
-
-
                 addDoctor(apiData)
                     .then((res) => {
                         setDeleteStatus(!deleteStatus)
@@ -106,14 +103,9 @@ export default function MyClinicians({ status }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status, deleteStatus])
 
-
-
     const handleChange = (event, value) => {
-
         setCurrentPage(value)
     };
-
-
 
     return (
         <>

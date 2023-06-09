@@ -56,19 +56,14 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
-        
+            .max(10, t('SignUpPage.validation.mobile.long')),        
     });
-
-
 
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
 
-
-    const handleImages = (files) => {
-       
+    const handleImages = (files) => {       
         let validImages = [files].filter((file) =>
             ['image/jpeg', 'image/png'].includes(file?.type || {})
         );
@@ -88,13 +83,9 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
 
     // }
 
-
     const handleSubmitForm =async (data) => {
-
         const formData = new FormData();
-
         if(typeof imageUrl == "object" ){
-
             formData.append("profile_pic",imageUrl);
         }
         formData.append("first_name", data.firstname);

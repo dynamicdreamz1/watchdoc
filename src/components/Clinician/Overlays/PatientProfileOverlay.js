@@ -4,9 +4,7 @@ import { Formik } from "formik";
 import { MetaFormeting } from "../../../Utility/functions";
 
 export const PatientProfileOverlay = ({ handleClose, data }) => {
-  const { first_name, last_name, sex, dob, height, weight } = MetaFormeting(
-    data?.user_data
-  );
+  const { first_name, last_name, sex, dob, height, weight } = MetaFormeting(data?.user_data);
   const { t } = useTranslation();
 
   const handleSubmitForm = (data) => {

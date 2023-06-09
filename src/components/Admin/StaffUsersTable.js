@@ -7,8 +7,6 @@ import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
 import { TableSkeleton } from '../../Utility/Skeleton';
 
-
-
 export default function StaffUsersTable({ setOpen, open }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
