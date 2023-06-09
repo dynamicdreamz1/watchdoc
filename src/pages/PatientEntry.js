@@ -20,7 +20,7 @@ export default function PatientEntry() {
     // const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";
   
     let navigate = useNavigate()
-    const [initialData, setInitialData] = useState({email:"",setEmail:""})
+    const [initialData] = useState({email:"",setEmail:""})
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
@@ -35,18 +35,6 @@ export default function PatientEntry() {
 
 
     const handleSubmit = (value) => {
-        const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        if (!emailPattern.test(value)) {
-            
-            setError('Please enter valid email')
-            return
-        }
-        else if (value === "") {
-
-            setError(t('SignInPage.error.e1'))
-            return
-        }
-        else{
         const data = {
             email: value
         }
@@ -78,7 +66,7 @@ export default function PatientEntry() {
                 return error
             })
             
-        }
+        
 
     }
 
@@ -145,7 +133,7 @@ export default function PatientEntry() {
                             <div className='input-block'>
                                 <input type="email" placeholder={t('SignInPage.form.f1')} name="email"
                                    id="exampleInputEmail1" aria-describedby="emailHelp" onChange={props.handleChange} value={props?.values?.email} />
-                                    <div className='LoginError'>{props?.errors?.email ? props?.errors?.email : ""}</div>
+                                    <div className='LoginError'>{error?error:props?.errors?.email ? props?.errors?.email : ""}</div>
                             </div>
                             <span>{loading?loading:""}</span>
                             <div className='submit-block' >
