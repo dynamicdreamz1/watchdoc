@@ -21,6 +21,7 @@ export default function SignupSuccess() {
               </Link>
             </div>
           </div>
+          
         </div>
     </>
   )
