@@ -45,7 +45,6 @@ function App() {
 
 
   useEffect(() => {
-
     const role = getCurrentUserRole();
     const IsActive = getCurrentUserIsActive();
     if (user) {
@@ -53,7 +52,6 @@ function App() {
       const userData = getCurrentUserData();
       setCurrentUserData({ userData, role, IsActive });
     }
-
   }, [user]);
 
 
@@ -67,7 +65,6 @@ function App() {
         {/* <Route exact path="/" element={currentUser ? <Dashboard /> : <SignIn />} />
         <Route exact path="/signin" element={currentUser ? <Dashboard /> : <SignIn />} /> */}
         {/* <Route exact path="/patiententry" element={currentUser ? <Dashboard /> : <PatientEntry />} /> */}
-
         <Route exact path="/signup" element={<SignUp />} />
         <Route path='/verification/:emailId' element={<VerificationEmail />} />
         <Route path='/twofactoreverification/:emailId' element={<TwoFactor />} />
@@ -75,12 +72,10 @@ function App() {
         <Route path='/forgetpassword' element={<ForgotPassword />} />
         <Route path='/verificationforgetpassword' element={<VerificationForPassword />} />
         <Route path='/newpassword' element={<NewPassword />} />
-
         {/* <Route path='/profile-settings' element={<ProfileSettings />} /> */}
         {/* <Route path='/patientdetails' element={currentUser ? <PatientsDetails /> : <SignIn />} />
         <Route path='/cliniciandetails' element={currentUser ? <ClinicianDetails /> : <SignIn />} />
         <Route path='/alluserclinician' element={currentUser ? <AllClinician /> : <SignIn />} /> */}
-
         {/* <Route path='/userConsent' element={currentUser ? <UserConsent /> : <SignIn />} />
         <Route path='/thankyou' element={currentUser ? <Thankyou /> : <SignIn />} />
         <Route path='/contactdetails' element={currentUser ? <ContactDetails /> : <SignIn />} />
@@ -88,9 +83,7 @@ function App() {
         <Route path='/create-profile' element={currentUser ? <CreateProfileOuter /> : <SignIn />} />
         <Route path='/addclinician' element={currentUser ? <AddClinicianOuter /> : <SignIn />} />
         <Route path='/link-device' element={currentUser ? <LinkDeviceOuter /> : <SignIn />} /> */}
-
         {/* After Login Router */}
-
         {/* <Route path='dashboard' element={currentUser ? <Dashboard /> : <SignIn />} /> */}
         {/* <Route path='edit-profile' element={currentUser ? <EditProfileInner /> : <SignIn />} />
         <Route path='editclinician' element={currentUser ? <AddClinicianInner /> : <SignIn />} />
@@ -99,11 +92,6 @@ function App() {
         <Route path='clinicians' element={currentUser ? <Clinicians /> : <SignIn />} />
         <Route path='staffusers' element={currentUser ? <StaffUsers /> : <SignIn />} /> */}
       </Routes>
-
-
-
-
-
       <Routes>
         <Route path="/" element={<RedircetRoute Component={SignIn} redirectComponent='dashboard' />} />
         <Route path="/patiententry" element={<RedircetRoute Component={PatientEntry} redirectComponent='dashboard' />} />
@@ -128,11 +116,8 @@ function App() {
         <Route path='/link-device' element={<PrivateRoute Component={LinkDeviceOuter} />} />
       </Routes>
     </UserContext.Provider>
-
   );
 }
-
-
 export default App;
 
 // here app catches the suspense from page in case translations are not yet loaded
