@@ -1681,3 +1681,7 @@ form .input-block.update-profile:after {
 .color-light-green-data{
   color: lightgreen;
 }
+.skip-button{
+  margin-left: 347px;
+  margin-top: 10px;
+}

@@ -8,6 +8,9 @@ import { AdminUserContext } from '../../Clinician/Overlays/CliniciansOverlay'
 import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard' 
+import { Button } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send';
+
 
 export default function AddClinician({ status, setStatus }) {
   const location=useLocation();
@@ -49,12 +52,12 @@ export default function AddClinician({ status, setStatus }) {
   
       {location.pathname === "/addclinician" ?
         <>
-        <h3 onClick={()=>navigate('/dashboard')}>Skip</h3>
           <ConnectingClinician show={show} setShow={setShow} defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
           <div>
             {defaultStatus === true ?
               <AddClinicianButton show={show} setShow={setShow} /> : ""}
           </div>
+              <h3 onClick={()=>navigate('/dashboard')}> <div className='skip-button' ><Button style={{marginleft: "347px", margintop: "10px"}} variant="outlined" endIcon={<SendIcon/>}>Skip</Button></div></h3>
           {show ?
             <>
 
