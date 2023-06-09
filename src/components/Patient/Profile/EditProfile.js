@@ -10,8 +10,8 @@ import { toast, ToastContainer } from 'react-toastify'
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
-    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(finalUser);
+    // let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
+    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(userData);
 
     const [firstName, SetFirstName] = useState(first_name)
     const [preferredFirstName, setPreferredFirstName] = useState(preferred_first_name)
@@ -172,9 +172,8 @@ export const EditProfile = () => {
                     <label htmlFor="exampleInputBMI" >{t('EditProfilePage.form.f19')}</label>
                     <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" />
                 </div>
-
+                {loading ?  <div className='LoginError'>{t('EditProfilePage.loader.l1')}</div>: ""}
                 <button type="submit" onClick={(e) => handleSubmit(e)}>{t('EditProfilePage.form.f9')}</button>
-                {loading ? <b>{t('EditProfilePage.loader.l1')}</b> : ""}
             </form>
         </>
 
