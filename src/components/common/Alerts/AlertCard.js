@@ -35,8 +35,6 @@ export default function AlertCard({alertData ,fetchData}) {
         theme: "colored",
       });
     }
-    
-
 }
 
   return (

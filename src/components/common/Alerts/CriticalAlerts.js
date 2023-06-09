@@ -23,7 +23,8 @@ export default function CriticalAlerts({latestData,fetchData}) {
 
   const handleChangePageApprovePatient = (event, newPage) => {
     setCurrentPage(newPage);
-};
+  };
+
   React.useEffect(()=>{
     getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
   },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])

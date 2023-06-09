@@ -23,7 +23,7 @@ export default function MainDetailsCard(Props) {
         </span>
       </div>
       <div className='measurment-result'>
-        <span className='digit' style={{color:colorRed}}>{HeartRateAvg === undefined || el === undefined ?"":HeartRateAvg?.heart_data?.[el?.id]?.count}</span>
+        <span className='digit' style={{color:colorRed}}>{HeartRateAvg === undefined || el === undefined ?"":(HeartRateAvg?.heart_data?.[el?.id]?.count)}</span>
         <span className='type'>{el?.label}</span>
       </div>
       <RiskStatus el={el}/>
