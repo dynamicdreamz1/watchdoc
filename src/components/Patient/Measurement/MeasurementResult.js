@@ -14,8 +14,7 @@ export default function MeasurementResult(props) {
     ? latest?.[props?.result]?.count % 1 !== 0
       ? latest?.[props?.result]?.count.toFixed(1)
       : latest?.[props?.result]?.count
-    : 0;
-
+    :  latest?.[props?.result]?.count;
   return (
     <>
     <div className='measurment-result'>
