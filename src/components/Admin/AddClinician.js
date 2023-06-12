@@ -7,9 +7,12 @@ import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { CreateClinician} from '../../services/AdminService';
 import { useLocation } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 
 export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
     const { t } = useTranslation()
+    const [loading,setLoading]=useState(false)
     const location=useLocation();
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
@@ -84,6 +87,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
     // }
 
     const handleSubmitForm =async (data) => {
+        setLoading(true)
         const formData = new FormData();
         if(typeof imageUrl == "object" ){
             formData.append("profile_pic",imageUrl);
@@ -96,10 +100,22 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         formData.append("practice_address", data.practiceaddress);
         formData.append("type", "create");
        
-         await CreateClinician(formData)
+         const res=await CreateClinician(formData)
+         if(res?.status===200){
+            toast.success('Clinician created', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
+         }
          if(location?.pathname!=="/cliniciandetails"){
          getAllClinicianData(dataLimit,currentPage)  
          }      
+         setLoading(false)
         setOpen(false)
          
         setAddNewStaff({
@@ -214,6 +230,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                                     <span className="error"> {props.errors.number ? props.errors.number : ""}</span>
                                 </div>
                             </div>
+                            <div className='LoginError'>{loading?'Loading...':""}</div>
                             <div className='submit-block'>
                                 <button type="submit">Add Clinician</button>
                             </div>

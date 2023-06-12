@@ -97,7 +97,7 @@ export default function MyProfile() {
             <div className='title-block'>
                 <h2>Profile</h2>
             </div>
-            <div>{message}</div>
+            {/* <div>{message}</div> */}
             <form onSubmit={props.handleSubmit}>
             <div className='input-block update-profile'>
                 <div className='image-block'>
