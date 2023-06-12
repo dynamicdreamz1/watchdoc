@@ -15,7 +15,6 @@ export const AddClinicianOuter = () => {
         <div className='container'>
           <div className='page-content-wrapper'>
             <AddClinician status={status} setStatus={setStatus} />
-        
           </div>
         </div>
       </div>

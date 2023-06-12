@@ -24,13 +24,6 @@ const SignIn = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-    // useEffect(()=>{
-    //     navigate("/signin")
-    //      // eslint-disable-next-line react-hooks/exhaustive-deps
-    // },[])
-
-
-
     const LoginSchema = Yup.object({        
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
          // eslint-disable-next-line no-useless-escape
@@ -42,11 +35,7 @@ const SignIn = () => {
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
                 "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
             ),    
-
     });
-
-
-
 
 
     const handleSubmitForm = (data) => {

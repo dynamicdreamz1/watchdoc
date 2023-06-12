@@ -17,8 +17,6 @@ const NewPassword = () => {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-  
-
     const LoginSchema = Yup.object({        
         password: Yup.string().required('New password is required*')
         .matches(

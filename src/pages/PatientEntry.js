@@ -13,8 +13,6 @@ import * as Yup from "yup";
 // import AppleLogin from 'react-apple-login';
 
 
-
-
 export default function PatientEntry() {
     const user = useContext(UserContext);
     // const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";

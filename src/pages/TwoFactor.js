@@ -9,7 +9,6 @@ import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-
     const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
@@ -42,15 +41,12 @@ export default function TwoFactor() {
         return ()=>clearInterval(intervalID)
     }, [time]);
 
-
-
     const handleClickConfirm=(e)=>{
         e.preventDefault()
         
         if (code === "") {
             setError(t('TwoFactorPage.error.e1'))
         }
-
 
         else {
             const data = {
@@ -83,8 +79,7 @@ export default function TwoFactor() {
                         navigate('/signin')
 
                     }
-     
-
+    
                 })
                 .catch((error) => {
                     setError(t('TwoFactorPage.error.e2'))

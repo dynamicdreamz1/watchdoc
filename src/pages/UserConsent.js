@@ -8,17 +8,14 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 
 
-export default function UserConsent() {
-    
+export default function UserConsent() {    
     const {t}=useTranslation();
     const navigate=useNavigate()
-
 
     const validationSchema = Yup.object().shape({
         privacyPolicy: Yup.boolean().oneOf([true], 'Please accept the privacy policy '),
         terms: Yup.boolean().oneOf([true], 'Please accept the terms and conditions'),
       });
-
 
     const handleClick=(data)=>{
         if(data?.privacyPolicy && data?.terms){

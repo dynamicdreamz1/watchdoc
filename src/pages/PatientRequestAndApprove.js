@@ -31,7 +31,6 @@ const {PatientRequestData,PatientApproveData,
       }
     }  
     
-    
   return (
     <React.Fragment>
         <div className=''>
