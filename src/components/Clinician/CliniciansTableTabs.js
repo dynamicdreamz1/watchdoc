@@ -8,6 +8,7 @@ import '../../css/CliniciansTableTabs.css'
 import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
 import { TableSkeleton } from '../../Utility/Skeleton';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify'
 
 
 function TabPanel(props) {
@@ -147,6 +148,8 @@ let [options, setOptions] = useState(specificOption)
 
   return (
     <>
+    <ToastContainer />
+
       <Box sx={{ width: '100%' }}>
         <Box className="table-header-block">
           <div className="left-block">
