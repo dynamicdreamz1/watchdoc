@@ -93,28 +93,40 @@ export const  GetdayHourMin = (data) =>{
 
   }
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
-  const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
+  const momentObj = moment(data, 'YYYY-MM-DD HH:mm:ss');
   const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
-  const day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
-  const minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
-  const hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
-  const months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  
+  let minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
+  if (minutes >= 60) {
+    minutes = undefined
+  }
+  let day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
+  if (day >= 28 || 30 || 31) {
+    day = undefined
+  }
+  let hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
+  if (hours >= 24) {
+    hours =undefined
+  }
+  let months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  if (months >= 12) {
+    months =undefined
+  }
   const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
-
-  if (minutes <= 60) {
+  if (minutes) {
     return {lable : "minutes", data :parseInt(minutes)}
   }
-  else if (hours <= 24) {
+  else if (hours) {
     return {lable : "hours", data : parseInt(hours)} 
   }
-  else if (day <= 30 || 28 || 31) {
+  else if (day) {
     return {lable : "days", data : parseInt(day)}
   }
-  else if (months <= 12) {
+  else if (months) {
     return {lable : "months", data : parseInt(months)}
-  }else{
+  }
+  else {
     return {lable : "years", data : parseInt(years)}
-
   }
   
 }

@@ -13,7 +13,7 @@ export default function MainDetailsCardForWeight({latestData}) {
           <span className='name d-flex'>Weight</span>
         </div>
         <span className='time d-flex align-items-center'>
-        {`${date.data} ${date.lable} ago`}
+        {`${date?.data} ${date?.lable} ago`}
           <img src='/images/angle-right.svg' alt='Angle Right' />
         </span>
       </div>
