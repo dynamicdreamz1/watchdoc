@@ -1685,3 +1685,17 @@ form .input-block.update-profile:after {
   margin-left: 347px;
   margin-top: 10px;
 }
+
+.devices-wrapper .device-block .btn-block .btnData {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 0;
+  color: black;
+  width: 100%;
+  display: block;
+  padding: 6px 5px;
+  font-size: 12px;
+  line-height: 12px;
+  height: auto;
+  margin: 0;
+}

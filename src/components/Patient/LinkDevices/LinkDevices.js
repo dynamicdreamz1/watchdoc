@@ -51,7 +51,6 @@ export default function LinkDevices() {
         <br />
 
         {ConnectDeviceData?.map((el) => {
-          console.log("ConnectDevice",el);
           return (
             <div className="device-block">
               <div className="text-block d-flex align-items-center">
@@ -60,17 +59,26 @@ export default function LinkDevices() {
                 </span>
                 <span className="text">{el?.lable}</span>
               </div>
-              <div className="btn-block">
+              { finalId?.includes(el?.type) === true ?  <div className="btn-block">
+                <button
+                  // onClick={(e) => onConnect(e, el?.type)}
+                  type="button"
+                  className="btnData"
+                >
+                 Connected
+                </button>
+              </div>:  <div className="btn-block">
                 <button
                   onClick={(e) => onConnect(e, el?.type)}
                   type="button"
                   className="btn"
                 >
-                  Connect
+                 Connect
                 </button>
-              </div>
+              </div>}
+             
             </div>
-          );
+          );  
         })}
       </div>
     </>
