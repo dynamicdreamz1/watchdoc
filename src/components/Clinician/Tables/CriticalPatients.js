@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { Dialog,Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
-import { useLocation } from 'react-router-dom';
 import ClinicianRequest from '../../Admin/ClinicianRequest';
 
 
 export default function CriticalPatients(props) {
-    const location = useLocation();
     const { patientData, value,handleClickStatus} = props
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
@@ -17,7 +15,6 @@ export default function CriticalPatients(props) {
         setOpen(false);
         setOpenRequest(false)
     };
-
     const handleClickOpenRequestPopUp = (data) => {
         setProfileBarData(data)
         setOpenRequest(true)

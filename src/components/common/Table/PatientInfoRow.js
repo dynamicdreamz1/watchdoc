@@ -13,10 +13,10 @@ import Sleep from './Sleep'
 import Step from './Step'
 
 export default function PatientInfoRow(props) {
-  const navigate=useNavigate();
-  const location=useLocation();
   const {el,value,handleClickOpenRequestPopUp,handleClickStatus}=props;
 
+  const navigate=useNavigate();
+  const location=useLocation();
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
       navigate("/patientdetails",{state:{
