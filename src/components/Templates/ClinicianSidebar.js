@@ -42,6 +42,23 @@ export default function ClinicianSidebar() {
                 </NavLink>
 
                 <NavLink
+                    to="/edit-profile"
+                    className={({ isActive }) =>
+                        isActive ? "isActive" : ""
+                    }>
+
+                    <ListItem disablePadding>
+                        <ListItemButton className='patient-dashboard'>
+                            <ListItemIcon>
+                                <img src='/images/EditProfileIcon.png' alt='Edit Profile Icon' />
+                            </ListItemIcon>
+                            <ListItemText> {t('DashboardPage.SideBar.PatientSidebar.t3')} </ListItemText>
+                        </ListItemButton>
+                    </ListItem>
+
+                </NavLink>        
+
+                {/* <NavLink
                     to="/clinicians"
                     className={({ isActive }) =>
                         isActive ? "isActive" : ""
@@ -54,7 +71,7 @@ export default function ClinicianSidebar() {
                         <ListItemText> {t('DashboardPage.SideBar.ClinicianSideBar.t3')} </ListItemText>
                     </ListItemButton>
                 </ListItem>
-                </NavLink>
+                </NavLink> */}
             </List>
         </>
     )
