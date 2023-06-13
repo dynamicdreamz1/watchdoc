@@ -1,12 +1,15 @@
 import React from "react";
 import { connectDevice } from "../../../services/PatientsService";
+import { getCurrentUserData } from "../../../services/UserService";
 
 export default function LinkDevices() {
-
-  const onConnect = (e) => {
-    e.preventDefault();
-
-    connectDevice()
+  const onConnect = (e, type) => {
+    const userData = getCurrentUserData();
+    const data = {
+      providers: type,
+      reference_id: userData?.id,
+    };
+    connectDevice(data)
       .then((res) => {
         console.log("res", res);
       })
@@ -27,7 +30,11 @@ export default function LinkDevices() {
             <span className="text">Fitbit</span>
           </div>
           <div className="btn-block">
-            <button onClick={(e) => onConnect(e)} type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "FITBIT")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -44,7 +51,11 @@ export default function LinkDevices() {
             <span className="text">Apple Health</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "APPLE")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -58,7 +69,11 @@ export default function LinkDevices() {
             <span className="text">Garmin</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "GARMIN")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -72,7 +87,11 @@ export default function LinkDevices() {
             <span className="text">Google FIt</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "GOOGLE")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -86,7 +105,11 @@ export default function LinkDevices() {
             <span className="text">Oura</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "OURA")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -100,7 +123,11 @@ export default function LinkDevices() {
             <span className="text">Samsung</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "SAMSUNG")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
@@ -114,7 +141,11 @@ export default function LinkDevices() {
             <span className="text">Withings</span>
           </div>
           <div className="btn-block">
-            <button type="button" className="btn">
+            <button
+              onClick={(e) => onConnect(e, "WITHINGS")}
+              type="button"
+              className="btn"
+            >
               Connect
             </button>
           </div>
