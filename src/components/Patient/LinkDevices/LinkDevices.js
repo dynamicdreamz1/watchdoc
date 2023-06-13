@@ -1,17 +1,29 @@
 import React from "react";
 import { connectDevice } from "../../../services/PatientsService";
 import { getCurrentUserData } from "../../../services/UserService";
+import { getProviderTerraId } from "../../../services/PatientsService";
+import { useTranslation } from "react-i18next";
+import { ConnectDeviceData } from "../../../Utility/DefaultObject";
 
 export default function LinkDevices() {
+  const [loading, setLoading] = React.useState(false);
+  const [terraId, setTerraId] = React.useState([]);
+  const finalId = terraId?.data?.map((item) => item?.provider);
+  const { t } = useTranslation();
+
   const onConnect = (e, type) => {
     const userData = getCurrentUserData();
     const data = {
       providers: type,
       reference_id: userData?.id,
     };
+    setLoading(true);
     connectDevice(data)
       .then((res) => {
-        console.log("res", res);
+        setLoading(false);
+        if (res.data.status == "success") {
+          window.open(res.data.url, "_blank");
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -19,137 +31,47 @@ export default function LinkDevices() {
       });
   };
 
+  React.useEffect(() => {
+    async function fetchData() {
+      const result = await getProviderTerraId();
+      setTerraId(result);
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div className="devices-wrapper">
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Fitbit-icon.svg" alt="Fitbit Icon" />
-            </span>
-            <span className="text">Fitbit</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "FITBIT")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
+        {loading ? (
+          <div className="LoginError">{t("EditProfilePage.loader.l1")}</div>
+        ) : (
+          ""
+        )}
+        <br />
 
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img
-                src="/images/Apple-Health-icon.svg"
-                alt="Apple Health Icon"
-              />
-            </span>
-            <span className="text">Apple Health</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "APPLE")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
-
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Garmin-icon.svg" alt="Garmin Icon" />
-            </span>
-            <span className="text">Garmin</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "GARMIN")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
-
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Google-FIt-icon.svg" alt="Google Fit Icon" />
-            </span>
-            <span className="text">Google FIt</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "GOOGLE")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
-
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Oura-icon.svg" alt="Oura Icon" />
-            </span>
-            <span className="text">Oura</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "OURA")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
-
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Samsung-icon.svg" alt="Samsung Icon" />
-            </span>
-            <span className="text">Samsung</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "SAMSUNG")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
-
-        <div className="device-block">
-          <div className="text-block d-flex align-items-center">
-            <span className="icon d-flex justify-content-center">
-              <img src="/images/Withings-icon.svg" alt="Withings Icon" />
-            </span>
-            <span className="text">Withings</span>
-          </div>
-          <div className="btn-block">
-            <button
-              onClick={(e) => onConnect(e, "WITHINGS")}
-              type="button"
-              className="btn"
-            >
-              Connect
-            </button>
-          </div>
-        </div>
+        {ConnectDeviceData?.map((el) => {
+          console.log("ConnectDevice",el);
+          return (
+            <div className="device-block">
+              <div className="text-block d-flex align-items-center">
+                <span className="icon d-flex justify-content-center">
+                  <img src={el?.img} alt="Fitbit Icon" />
+                </span>
+                <span className="text">{el?.lable}</span>
+              </div>
+              <div className="btn-block">
+                <button
+                  onClick={(e) => onConnect(e, el?.type)}
+                  type="button"
+                  className="btn"
+                >
+                  Connect
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );
