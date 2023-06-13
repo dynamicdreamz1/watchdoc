@@ -6,7 +6,6 @@ import { getCriticalAlertReviewed, getCriticalAlertUnreviewed } from '../service
 
 const Patients = () => {
   const [criticalAlertReviewedData,setCriticalAlertReviewedData]=useState([])
-  const [recordsPerPageCriticalAlertReviewedData] = useState(10);
   const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
   const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
   const [dataLimitCriticalAlertReviewedData] = useState(1)
@@ -15,7 +14,6 @@ const Patients = () => {
 
 
   const [criticalAlertUnreviewedData,setCriticalAlertUnreviewedData]=useState([])
-  const [recordsPerPageCriticalAlertUnreviewedData] = useState(10);
   const [currentPageCriticalAlertUnreviewedData, setCurrentPageCriticalAlertUnreviewedData] = useState(1);
   const [totalPagesCriticalAlertUnreviewedData, setTotalPagesCriticalAlertUnreviewedData] = useState(0);
   const [dataLimitCriticalAlertUnreviewedData] = useState(1)
