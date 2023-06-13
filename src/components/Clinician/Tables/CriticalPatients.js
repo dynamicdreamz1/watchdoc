@@ -12,14 +12,7 @@ export default function CriticalPatients(props) {
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
-    let finalDta = [];
-    if (location.pathname === "/patients") {
-        finalDta = patientData;
-    }
-    else {
-        const viewAllData = props?.viewAll ? patientData.slice(0, patientData.length) : patientData?.slice(0, 8);
-        finalDta = [...viewAllData]
-    }
+   
     const handleClose = () => {
         setOpen(false);
         setOpenRequest(false)
@@ -29,7 +22,6 @@ export default function CriticalPatients(props) {
         setProfileBarData(data)
         setOpenRequest(true)
     }
-   
     return (
         <> 
                 <TableContainer component={Paper} className="red-alert-table">
@@ -59,7 +51,7 @@ export default function CriticalPatients(props) {
                             <ClinicianRequest profileBarData={profileBarData} setOpen={setOpen} open={open}/>
                         </Dialog>
 
-                        {finalDta?.length !== 0 && finalDta?.map((el, I) => {
+                        {patientData?.map((el, I) => {
                             return (
                                 <TableBody key={I}>
                                     <PatientInfoRow el={el} value={value} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp} handleClickStatus={handleClickStatus}  />

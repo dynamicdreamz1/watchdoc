@@ -172,3 +172,39 @@ export const getAllProfileAlert = async (id,limit,currentPage) => {
 }
 
 
+
+
+
+
+export const getCriticalAlertUnreviewed = async (limit,currentPage) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_unreviewed?limit=${limit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
+export const getCriticalAlertReviewed = async (limit,currentPage) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
