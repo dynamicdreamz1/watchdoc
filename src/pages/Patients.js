@@ -9,7 +9,7 @@ const Patients = () => {
   const [recordsPerPageCriticalAlertReviewedData] = useState(10);
   const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
   const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
-  const [dataLimitCriticalAlertReviewedData] = useState(5)
+  const [dataLimitCriticalAlertReviewedData] = useState(1)
   const [loadingCriticalAlertReviewedData, setLoadingCriticalAlertReviewedData] = useState(false)
 
 
@@ -18,13 +18,14 @@ const Patients = () => {
   const [recordsPerPageCriticalAlertUnreviewedData] = useState(10);
   const [currentPageCriticalAlertUnreviewedData, setCurrentPageCriticalAlertUnreviewedData] = useState(1);
   const [totalPagesCriticalAlertUnreviewedData, setTotalPagesCriticalAlertUnreviewedData] = useState(0);
-  const [dataLimitCriticalAlertUnreviewedData] = useState(5)
+  const [dataLimitCriticalAlertUnreviewedData] = useState(1)
   const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
 
   const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)=>{
       setLoadingCriticalAlertUnreviewedData(true)
       const res=await getCriticalAlertUnreviewed(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData);
+      setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertUnreviewedData))
       if(res.status===200){
       setCriticalAlertUnreviewedData(res?.data?.data)
       }
@@ -34,12 +35,20 @@ const Patients = () => {
 
   const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)=>{
       const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData);
+      setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
       if(res?.status===200){
       setCriticalAlertReviewedData(res?.data?.data)
       }
       setLoadingCriticalAlertReviewedData(false)
 
   }
+
+  const handleChangePageReviewedData = (event, newPage) => {
+    setCurrentPageCriticalAlertReviewedData(newPage);
+};
+const handleChangePageUnreviewedData = (event, newPage) => {
+  setCurrentPageCriticalAlertUnreviewedData(newPage);
+};
 
 
   useEffect(()=>{
@@ -53,7 +62,14 @@ const Patients = () => {
 
   const action={
     criticalAlertUnreviewedData,
-    criticalAlertReviewedData
+    criticalAlertReviewedData,
+    handleChangePageReviewedData,
+    handleChangePageUnreviewedData,
+    currentPageCriticalAlertReviewedData,
+    currentPageCriticalAlertUnreviewedData,
+    totalPagesCriticalAlertReviewedData,
+    totalPagesCriticalAlertUnreviewedData
+    
 }
 
 

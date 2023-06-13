@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Pagination, Tab, Tabs } from '@mui/material';
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
@@ -48,7 +48,11 @@ function a11yProps(index) {
 }
 
 export default function CriticalPatientsAlertTableTabs({actionData}) {
-    const {criticalAlertUnreviewedData,criticalAlertReviewedData}=actionData ||[];
+    const {criticalAlertUnreviewedData,criticalAlertReviewedData,
+         handleChangePageReviewedData,handleChangePageUnreviewedData,
+         currentPageCriticalAlertReviewedData,  totalPagesCriticalAlertReviewedData,
+         totalPagesCriticalAlertUnreviewedData,
+         currentPageCriticalAlertUnreviewedData}=actionData ||[];
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
@@ -63,7 +67,6 @@ export default function CriticalPatientsAlertTableTabs({actionData}) {
 
 const reviewedData=reviewedUnReviwedCommon(criticalAlertReviewedData?.data)
 const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
-
 
 
 
@@ -236,7 +239,6 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
 
     }
 
-
     return (
         <>
 
@@ -272,6 +274,17 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
 
                 </>
             </Box>
+            {
+            value===0 && criticalAlertUnreviewedData?.data?.length !==0 ?
+            <Pagination page={currentPageCriticalAlertUnreviewedData} onChange={handleChangePageUnreviewedData} count={totalPagesCriticalAlertUnreviewedData} variant="outlined" shape="rounded" className='table-pagination' />
+            :
+            value===1 && criticalAlertReviewedData?.data?.length !==0 ?
+            <Pagination page={currentPageCriticalAlertReviewedData} onChange={handleChangePageReviewedData} count={totalPagesCriticalAlertReviewedData} variant="outlined" shape="rounded" className='table-pagination' />
+            
+            :""    
+
+
+            }
 
             {/* {location.pathname === "/dashboard" ?
                 <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
