@@ -71,7 +71,6 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
 
 
 
-
     const [recordsPerPagePendingPatient] = useState(10);
     const [currentPagePendingPatient, setCurrentPagePendingPatient] = useState(1);
     const [totalPagesPendingPatient, setTotalPagesPendingPatient] = useState(0);
@@ -118,7 +117,6 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         setLoadingPendingPatient(false)
 
     }
-
     const getApproveRequest = async (dataLimitPendingPatient, currentPage) => {
         setLoadingApprovePatient(true)
         let response = await ClinicianGetApprovePatientsRequest(dataLimitPendingPatient, currentPage)
@@ -136,7 +134,6 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPagePendingPatient, dataLimitPendingPatient])
-
 
 
     const handleChangePagePendingPatient = (event, newPage) => {
@@ -215,8 +212,8 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         //     setViewAll(!viewAll);
         // }
     }
-    const handleClickReview = async (id, status) => {
-
+    const handleClickReviewAndUnReviewed = async (id, status) => {
+        console.log("111111-id",id)
     }
 
     const action = {
@@ -236,17 +233,17 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         handleChangePagePendingPatient,
         loadingApprovePatient,
         loadingPendingPatient
+        
 
     }
-
     return (
         <>
 
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                        <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.data?.length===0?0:criticalAlertUnreviewedData?.data?.length})`}  {...a11yProps(0)} />
-                        <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.data?.length===0?0:criticalAlertReviewedData?.data?.length})`} {...a11yProps(1)} />
+                        <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total?criticalAlertUnreviewedData?.total:0})`}  {...a11yProps(0)} />
+                        <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total?criticalAlertReviewedData?.total:0})`} {...a11yProps(1)} />
                         {location?.pathname === "/patients" ?
                             <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
                             : ""}
@@ -263,13 +260,13 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
 
                 <>
                     <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                        <CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReview} />
+                        <CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />
                     </TabPanel>
                     <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                        <CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReview} />
+                        <CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />
                     </TabPanel>
                     <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                        <PatientRequestAndApprove action={action} />
+                        <PatientRequestAndApprove action={action} value={value}/>
                     </TabPanel>
 
                 </>

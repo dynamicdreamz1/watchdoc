@@ -6,7 +6,7 @@ import { Pagination } from '@mui/material'
 import { TableSkeleton } from '../Utility/Skeleton'
 
 
-const PatientRequestAnd = ({action}) => {
+const PatientRequestAnd = ({action,value}) => {
 const {PatientRequestData,PatientApproveData,
   getPendingPatient,dataLimitApprovePatient,
   currentPageApprovePatient,getApproveRequest,
@@ -37,7 +37,7 @@ const {PatientRequestData,PatientApproveData,
          <div>
          </div>
          {loadingApprovePatient ? <TableSkeleton /> :
-          <CriticalPatients patientData={PatientApprove} handleClickStatus={handleClickReview} viewAll={viewAll} />
+          <CriticalPatients value={value} patientData={PatientApprove} handleClickStatus={handleClickReview} viewAll={viewAll} />
   }
           <Pagination page={action?.currentPageApprovePatient} onChange={action?.handleChangePageApprovePatient} count={action?.totalPagesApprovePatient} variant="outlined" shape="rounded" className='table-pagination' />
 
@@ -46,7 +46,7 @@ const {PatientRequestData,PatientApproveData,
               <h4>Patients Pending</h4>
             </div>
             {loadingPendingPatient ? <TableSkeleton /> :
-            <CriticalPatients patientData={PatientRequest} handleClickStatus={handleClickReview} viewAll={viewAll} />
+            <CriticalPatients value={value} patientData={PatientRequest} handleClickStatus={handleClickReview} viewAll={viewAll}/>
 }
             <Pagination page={action?.currentPagePendingPatient} onChange={action?.handleChangePagePendingPatient} count={action?.totalPagesPendingPatient} variant="outlined" shape="rounded" className='table-pagination' />
 

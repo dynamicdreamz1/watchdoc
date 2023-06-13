@@ -66,9 +66,9 @@ export default function ClinicianDashboard() {
 
 
     const action={
-        criticalAlertUnreviewedData,
-        criticalAlertReviewedData,
-        handleChangePageReviewedData,
+    criticalAlertUnreviewedData,
+    criticalAlertReviewedData,
+    handleChangePageReviewedData,
     handleChangePageUnreviewedData,
     currentPageCriticalAlertReviewedData,
     currentPageCriticalAlertUnreviewedData,
