@@ -12,6 +12,10 @@ import { GetDate, requestAndApprovePatient, reviewedUnReviwedCommon } from '../.
 import { useTranslation } from 'react-i18next';
 import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
+import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
+import { toast } from "react-toastify";
+import { ToastContainer} from 'react-toastify';
+
 
 
 function TabPanel(props) {
@@ -50,9 +54,9 @@ function a11yProps(index) {
 export default function CriticalPatientsAlertTableTabs({actionData}) {
     const {criticalAlertUnreviewedData,criticalAlertReviewedData,
          handleChangePageReviewedData,handleChangePageUnreviewedData,
-         currentPageCriticalAlertReviewedData,  totalPagesCriticalAlertReviewedData,
-         totalPagesCriticalAlertUnreviewedData,
-         currentPageCriticalAlertUnreviewedData}=actionData ||[];
+         currentPageCriticalAlertReviewedData, totalPagesCriticalAlertReviewedData,
+         totalPagesCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,
+         currentPageCriticalAlertUnreviewedData,fetchUnreviewedData}=actionData ||[];
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
@@ -213,7 +217,23 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         // }
     }
     const handleClickReviewAndUnReviewed = async (id, status) => {
-        console.log("111111-id",id)
+        const formData=new FormData();
+        formData.append('critical_alert_id',id)
+        const res=await UnreviewedToReviewedAlerts(formData);
+        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)
+        if(res?.status===200){
+            toast.success('Patient reviewed successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
+         }
+
+        console.log("111111-res--",res)
     }
 
     const action = {
@@ -232,13 +252,12 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         handleChangePageApprovePatient,
         handleChangePagePendingPatient,
         loadingApprovePatient,
-        loadingPendingPatient
-        
+        loadingPendingPatient,        
 
     }
     return (
         <>
-
+            <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">

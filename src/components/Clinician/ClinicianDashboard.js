@@ -72,8 +72,11 @@ export default function ClinicianDashboard() {
     handleChangePageUnreviewedData,
     currentPageCriticalAlertReviewedData,
     currentPageCriticalAlertUnreviewedData,
+    dataLimitCriticalAlertUnreviewedData,
     totalPagesCriticalAlertReviewedData,
-    totalPagesCriticalAlertUnreviewedData
+    totalPagesCriticalAlertUnreviewedData,
+    fetchUnreviewedData
+    
     }
 
 
