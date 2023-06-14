@@ -118,7 +118,7 @@ export default function AdminCriticalPatientsAlertTableTabs({ action }) {
             <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
+                    <Tabs value={value} aria-label="basic tabs example" className="table-nav-tabs">
 
             
                 <Tab label={`All-patients (${adminAllPatientsData?.total?adminAllPatientsData?.total:0})`}  {...a11yProps(2)} />           
