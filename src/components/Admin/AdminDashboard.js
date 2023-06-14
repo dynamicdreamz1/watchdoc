@@ -41,7 +41,6 @@ export default function AdminDashboard() {
   const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)=>{
       setLoadingCriticalAlertReviewedData(true)
       const res=await getAdminCriticalAlertReviewed(currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData,);
-      console.log("res",res);
       setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
       if(res?.status===200){
       setCriticalAlertReviewedData(res?.data?.data)
