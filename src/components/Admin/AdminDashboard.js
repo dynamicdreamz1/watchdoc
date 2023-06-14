@@ -25,8 +25,6 @@ export default function AdminDashboard() {
   const [dataLimitCriticalAlertUnreviewedData] = useState(5)
   const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
-
-  console.log("totalPagesCriticalAlertReviewedData",totalPagesCriticalAlertReviewedData);
   const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)=>{
       setLoadingCriticalAlertUnreviewedData(true)
       const res=await getAdminCriticalAlertunReviewed(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData);
