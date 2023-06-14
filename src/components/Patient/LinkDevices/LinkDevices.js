@@ -22,7 +22,7 @@ export default function LinkDevices() {
     connectDevice(data)
       .then((res) => {
         setLoading(false);
-        if (res.data.status == "success") {
+        if (res.data.status === "success") {
           window.open(res.data.url, "_blank");
         }
       })
