@@ -173,3 +173,34 @@ export const allInOneClinicianList = async () => {
         return error
     }
 }
+
+
+export const getAdminCriticalAlertReviewed = async (currentPage,limit) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersAdmin,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_unreviewed?limit=${limit}&page=${currentPage}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersAdmin,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
