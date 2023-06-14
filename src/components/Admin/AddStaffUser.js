@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { addStaffUser } from '../../services/AdminService';
+import { toast } from 'react-toastify';
 
 export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage}) {
     const { t } = useTranslation()
@@ -90,8 +91,18 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("profile_pic",imageUrl)
         }
         
-       await addStaffUser(formData)
+       const res=await addStaffUser(formData)
+       console.log("1111-ressssss",res)
         StaffUserData(limit,currentPage)
+        toast.success('Staff-User Added Successfully', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+          });
         setOpen(false)
         setAddNewStaff({
         "title": "Dr",
