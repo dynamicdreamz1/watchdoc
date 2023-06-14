@@ -64,7 +64,6 @@ export default function ClinicianDashboard() {
         fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)
     },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData])
 
-
     const action={
     criticalAlertUnreviewedData,
     criticalAlertReviewedData,
@@ -75,9 +74,12 @@ export default function ClinicianDashboard() {
     dataLimitCriticalAlertUnreviewedData,
     totalPagesCriticalAlertReviewedData,
     totalPagesCriticalAlertUnreviewedData,
-    fetchUnreviewedData
-    
+    fetchUnreviewedData,
+    fetchReviewedData,
+    dataLimitCriticalAlertReviewedData,
+    currentPageCriticalAlertReviewedData
     }
+
 
 
     return (

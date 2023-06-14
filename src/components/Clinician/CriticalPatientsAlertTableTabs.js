@@ -53,10 +53,11 @@ function a11yProps(index) {
 
 export default function CriticalPatientsAlertTableTabs({actionData}) {
     const {criticalAlertUnreviewedData,criticalAlertReviewedData,
-         handleChangePageReviewedData,handleChangePageUnreviewedData,
-         currentPageCriticalAlertReviewedData, totalPagesCriticalAlertReviewedData,
+         handleChangePageReviewedData,handleChangePageUnreviewedData,totalPagesCriticalAlertReviewedData,
          totalPagesCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,
-         currentPageCriticalAlertUnreviewedData,fetchUnreviewedData}=actionData ||[];
+         currentPageCriticalAlertUnreviewedData,fetchUnreviewedData,fetchReviewedData,
+         dataLimitCriticalAlertReviewedData,
+         currentPageCriticalAlertReviewedData}=actionData ||[];
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
@@ -71,8 +72,6 @@ export default function CriticalPatientsAlertTableTabs({actionData}) {
 
 const reviewedData=reviewedUnReviwedCommon(criticalAlertReviewedData?.data)
 const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
-
-
 
 
     const [recordsPerPagePendingPatient] = useState(10);
@@ -221,8 +220,9 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         formData.append('critical_alert_id',id)
         const res=await UnreviewedToReviewedAlerts(formData);
         fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)
+        fetchReviewedData(currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData)
         if(res?.status===200){
-            toast.success('Patient reviewed successfully', {
+            toast.success(res?.data?.message, {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: true,
@@ -233,7 +233,6 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
               });
          }
 
-        console.log("111111-res--",res)
     }
 
     const action = {
