@@ -63,7 +63,6 @@ const SignIn = () => {
                         },
                       });
                     // navigate(`/twofactoreverification/${encodedemail}/${response?.data?.verification_code}`)
-                    console.log(response)
 
                 }
                 else {
