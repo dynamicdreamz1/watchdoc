@@ -37,6 +37,7 @@ import NewPassword from './pages/NewPassword';
 import AllClinician from './pages/AllClinician';
 import PrivateRoute from './routes/PrivateRoute';
 import RedircetRoute from './routes/RedircetRoute';
+import AdminPatients from './pages/AdminPatient';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -101,6 +102,8 @@ function App() {
         <Route path='editclinician' element={<PrivateRoute Component={AddClinicianInner} />} />
         <Route path='editlinkdevice' element={<PrivateRoute Component={LinkDeviceInner} />} />
         <Route path='patients' element={<PrivateRoute Component={Patients} />} />
+        <Route path='adminpatient' element={<PrivateRoute Component={AdminPatients} />} />
+
         <Route path='clinicians' element={<PrivateRoute Component={Clinicians} />} />
         <Route path='staffusers' element={<PrivateRoute Component={StaffUsers} />} />
         <Route path='/profile-settings' element={<PrivateRoute Component={ProfileSettings} />} />

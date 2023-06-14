@@ -264,11 +264,11 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
 
-            {userData?.roles[0]?.name === "Admin" && location.pathname === '/patients' ? "" :
+            {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
                 <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total ? criticalAlertUnreviewedData?.total : 0})`}  {...a11yProps(0)} />}
-            {userData?.roles[0]?.name === "Admin" && location.pathname === '/patients' ? "" :
+            {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
                 <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total ? criticalAlertReviewedData?.total : 0})`} {...a11yProps(1)} />}
-            {location?.pathname === "/patients" ?
+            {location?.pathname === "/patients" || location?.pathname==='/adminpatient' ?
                 <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
              : ""}
                     </Tabs>

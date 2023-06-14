@@ -204,3 +204,17 @@ export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
     }
 
 }
+
+
+export const getAllAdminPatient = async (currentPage,limit) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients?limit=${limit}&page=${currentPage}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
