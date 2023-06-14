@@ -65,26 +65,26 @@ export default function AdminDashboard() {
   },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData])
 
  
-  const GetData = async () => {
-    setLoading(true)
-    let res = await getPendingPatients()
-    let data = []
-    const maxKey = Object.keys(res?.data)?.reduce((a, b) => {
-      return a > b ? a : b;
-    });
+  // const GetData = async () => {
+  //   setLoading(true)
+  //   let res = await getPendingPatients()
+  //   let data = []
+  //   const maxKey = Object.keys(res?.data)?.reduce((a, b) => {
+  //     return a > b ? a : b;
+  //   });
 
-    for (let i = 0; i <= maxKey; i++) {
-      if (res?.data[i.toString()]) {
-        data?.push(res?.data[i.toString()])
-      }
-    }
-    setPendingPatientsData(data)
-    setLoading(false)
-  }
+  //   for (let i = 0; i <= maxKey; i++) {
+  //     if (res?.data[i.toString()]) {
+  //       data?.push(res?.data[i.toString()])
+  //     }
+  //   }
+  //   setPendingPatientsData(data)
+  //   setLoading(false)
+  // }
 
-  useEffect(() => {
-    GetData()
-  }, [])
+  // useEffect(() => {
+  //   GetData()
+  // }, [])
 
   const action={
     criticalAlertUnreviewedData,
@@ -108,7 +108,7 @@ export default function AdminDashboard() {
   return (
     <>
       <CriticalPatientsAlertTableTabs actionData={action} />
-      <CliniciansRequestsTable clinicianStaff={pendingPatientsData} loading={loading} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      {/* <CliniciansRequestsTable clinicianStaff={pendingPatientsData} loading={loading} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
     </>
   )
 }
