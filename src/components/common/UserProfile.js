@@ -7,10 +7,9 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
   const navigate=useNavigate();
   const location=useLocation();
   let finalData;
- location.pathname==='/editclinician'?
+ location.pathname==='/editclinician' || location?.pathname==="/clinicians"?
  finalData = MetaFormeting(data):finalData = MetaFormeting(profileBarData);
  const  {first_name,last_name,profile_pic,address} = finalData;
-
 
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staffusers"){
