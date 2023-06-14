@@ -93,7 +93,7 @@ export const  GetdayHourMin = (data) =>{
 
   }
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
-  const momentObj = moment(data, 'YYYY-MM-DD HH:mm:ss');
+  const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
   const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
   
   let minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
@@ -101,18 +101,24 @@ export const  GetdayHourMin = (data) =>{
     minutes = undefined
   }
   let day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
-  if (day >= 28 || 30 || 31) {
+  if (28 <= parseInt(day)) {
     day = undefined
+  }else if (30 <= parseInt(day)) {
+    day = undefined
+  }else if (30 <= parseInt(day)) {
+    day = undefined
+
   }
   let hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
-  if (hours >= 24) {
+  if (parseInt(hours) >= 24) {
     hours =undefined
   }
   let months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
-  if (months >= 12) {
+  if (12 <= parseInt(months)) {
     months =undefined
   }
   const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
+
   if (minutes) {
     return {lable : "minutes", data :parseInt(minutes)}
   }
@@ -193,12 +199,6 @@ export const reviewedUnReviwedCommon = (data) => {
       return arr;
     }
 }
-
-
-
-
-
-
 
 export const getEmergencyContact = () =>{
   const array = []

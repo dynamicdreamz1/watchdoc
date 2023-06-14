@@ -3,10 +3,12 @@ import React from 'react'
 import { GetdayHourMin } from '../../../Utility/functions';
 import { reviewUserProfileAlert } from '../../../services/ClinicianService';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 export default function AlertCard({alertData ,fetchData}) {
-
-  const time = GetdayHourMin(alertData.alert_date)
+  const momentObj = moment(alertData.alert_date, 'YYYY-MM-DD HH:mm:ss');
+  const momentString = momentObj.format('DD-MM-YYYY HH:mm:ss'); 
+  const time =  GetdayHourMin(momentString)
   
   const handleClickDeleteReminder=async(id,user_id)=>{
     const formData=new FormData()
