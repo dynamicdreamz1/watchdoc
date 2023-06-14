@@ -9,6 +9,7 @@ import { getAllClinicians, getPendingClinicians } from '../../services/AdminServ
 import { TableSkeleton } from '../../Utility/Skeleton';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify'
+import { getCurrentUser, getCurrentUserData } from '../../services/UserService';
 
 
 function TabPanel(props) {
@@ -45,6 +46,7 @@ function a11yProps(index) {
 }
 
 export default function CliniciansTableTabs({ open, setOpen }) {
+  const userData=getCurrentUserData();
   const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
@@ -154,8 +156,7 @@ let [options, setOptions] = useState(specificOption)
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-              <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />
-              {/* <Tab label={`Clinicians with Pending Patients  (${clinicianStaff?.length})`} {...a11yProps(1)} /> */}
+             {userData?.roles[0]?.name==="Admin"?"": <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />}
               <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
           </div>

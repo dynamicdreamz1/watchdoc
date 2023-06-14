@@ -14,7 +14,8 @@ import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
 import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
 import { toast } from "react-toastify";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { getCurrentUserData } from '../../services/UserService';
 
 
 
@@ -51,13 +52,14 @@ function a11yProps(index) {
     };
 }
 
-export default function CriticalPatientsAlertTableTabs({actionData}) {
-    const {criticalAlertUnreviewedData,criticalAlertReviewedData,
-         handleChangePageReviewedData,handleChangePageUnreviewedData,totalPagesCriticalAlertReviewedData,
-         totalPagesCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,
-         currentPageCriticalAlertUnreviewedData,fetchUnreviewedData,fetchReviewedData,
-         dataLimitCriticalAlertReviewedData,
-         currentPageCriticalAlertReviewedData}=actionData ||[];
+export default function CriticalPatientsAlertTableTabs({ actionData }) {
+    const userData = getCurrentUserData();
+    const { criticalAlertUnreviewedData, criticalAlertReviewedData,
+        handleChangePageReviewedData, handleChangePageUnreviewedData, totalPagesCriticalAlertReviewedData,
+        totalPagesCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData,
+        currentPageCriticalAlertUnreviewedData, fetchUnreviewedData, fetchReviewedData,
+        dataLimitCriticalAlertReviewedData,
+        currentPageCriticalAlertReviewedData } = actionData || [];
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
@@ -70,8 +72,8 @@ export default function CriticalPatientsAlertTableTabs({actionData}) {
 
 
 
-const reviewedData=reviewedUnReviwedCommon(criticalAlertReviewedData?.data)
-const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
+    const reviewedData = reviewedUnReviwedCommon(criticalAlertReviewedData?.data)
+    const unReviewedData = reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
 
 
     const [recordsPerPagePendingPatient] = useState(10);
@@ -216,12 +218,12 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         // }
     }
     const handleClickReviewAndUnReviewed = async (id, status) => {
-        const formData=new FormData();
-        formData.append('critical_alert_id',id)
-        const res=await UnreviewedToReviewedAlerts(formData);
-        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)
-        fetchReviewedData(currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData)
-        if(res?.status===200){
+        const formData = new FormData();
+        formData.append('critical_alert_id', id)
+        const res = await UnreviewedToReviewedAlerts(formData);
+        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
+        fetchReviewedData(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData)
+        if (res?.status === 200) {
             toast.success(res?.data?.message, {
                 position: 'top-right',
                 autoClose: 3000,
@@ -230,8 +232,8 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
                 pauseOnHover: true,
                 draggable: true,
                 theme: "colored",
-              });
-         }
+            });
+        }
 
     }
 
@@ -251,7 +253,7 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
         handleChangePageApprovePatient,
         handleChangePagePendingPatient,
         loadingApprovePatient,
-        loadingPendingPatient,        
+        loadingPendingPatient,
 
     }
     return (
@@ -260,11 +262,14 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-                        <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total?criticalAlertUnreviewedData?.total:0})`}  {...a11yProps(0)} />
-                        <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total?criticalAlertReviewedData?.total:0})`} {...a11yProps(1)} />
-                        {location?.pathname === "/patients" ?
-                            <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
-                            : ""}
+
+            {userData?.roles[0]?.name === "Admin" && location.pathname === '/patients' ? "" :
+                <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total ? criticalAlertUnreviewedData?.total : 0})`}  {...a11yProps(0)} />}
+            {userData?.roles[0]?.name === "Admin" && location.pathname === '/patients' ? "" :
+                <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total ? criticalAlertReviewedData?.total : 0})`} {...a11yProps(1)} />}
+            {location?.pathname === "/patients" ?
+                <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
+             : ""}
                     </Tabs>
                     {/* {location.pathname === "/dashboard" ?
                         <TableShorting patientData={patientData} setPatientData={setPatientData}
@@ -284,19 +289,19 @@ const unReviewedData=reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
                         <CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />
                     </TabPanel>
                     <TabPanel value={value} index={2} className="table-nav-tabs-content">
-                        <PatientRequestAndApprove action={action} value={value}/>
+                        <PatientRequestAndApprove action={action} value={value} />
                     </TabPanel>
 
                 </>
             </Box>
             {
-            value===0 && criticalAlertUnreviewedData?.data?.length !==0 ?
-            <Pagination page={currentPageCriticalAlertUnreviewedData} onChange={handleChangePageUnreviewedData} count={totalPagesCriticalAlertUnreviewedData} variant="outlined" shape="rounded" className='table-pagination' />
-            :
-            value===1 && criticalAlertReviewedData?.data?.length !==0 ?
-            <Pagination page={currentPageCriticalAlertReviewedData} onChange={handleChangePageReviewedData} count={totalPagesCriticalAlertReviewedData} variant="outlined" shape="rounded" className='table-pagination' />
-            
-            :""    
+                value === 0 && criticalAlertUnreviewedData?.data?.length !== 0 ?
+                    <Pagination page={currentPageCriticalAlertUnreviewedData} onChange={handleChangePageUnreviewedData} count={totalPagesCriticalAlertUnreviewedData} variant="outlined" shape="rounded" className='table-pagination' />
+                    :
+                    value === 1 && criticalAlertReviewedData?.data?.length !== 0 ?
+                        <Pagination page={currentPageCriticalAlertReviewedData} onChange={handleChangePageReviewedData} count={totalPagesCriticalAlertReviewedData} variant="outlined" shape="rounded" className='table-pagination' />
+
+                        : ""
 
 
             }
