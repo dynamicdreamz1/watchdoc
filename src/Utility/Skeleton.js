@@ -71,6 +71,17 @@ export const DefaultChartSkeleton = () => {
         </>
     )
 }
+export const DefaultChartAlertSkeleton = () => {
+    return(
+        <>
+            <Stack spacing={1} className="chart-skeleton">
+                <Skeleton style={{color :"black", fontSize:"30px", display:"flex" ,alignItems:"center" ,justifyContent:"center"}} height={300} width={2000} variant="rectangular" >
+                No Data Found
+                </Skeleton>
+            </Stack>
+        </>
+    )
+}
 
 export const NoDataRecordedSkeleton = () => {
     return(
