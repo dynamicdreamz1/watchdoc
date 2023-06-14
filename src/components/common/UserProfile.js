@@ -3,11 +3,15 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting } from '../../Utility/functions';
 
-export default function UserProfile({ profileBarData,clinicianStaff,handleClickOpenRequestPopUp }) {
+export default function UserProfile({ profileBarData,clinicianStaff,handleClickOpenRequestPopUp,data }) {
   const navigate=useNavigate();
   const location=useLocation();
-  const  {first_name,last_name,profile_pic} = MetaFormeting(profileBarData);
-  // const navigatePath=location?.pathname==="/staffusers"?'':location?.pathname==="/clinicians"?"/location?.pathname==="/clinicians"":""
+  let finalData;
+ location.pathname==='/editclinician'?
+ finalData = MetaFormeting(data):finalData = MetaFormeting(profileBarData);
+ const  {first_name,last_name,profile_pic,address} = finalData;
+
+
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staffusers"){
       navigate("");
@@ -25,6 +29,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
     }
 
   }
+
   return (
     <>
       <div className='user-profile'>
@@ -35,7 +40,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
               </div>
               <div className='user-info' onClick={handleClickNavigate}>
                 <span className="fname">{first_name} {last_name}</span>
-                <span className="position">{`WatchDoc, Suite 4/2 Pittwin Road North,Capalaba , Qld 4157`}</span>
+                <span className="position">{address}</span>
               </div>
             </>
           }
