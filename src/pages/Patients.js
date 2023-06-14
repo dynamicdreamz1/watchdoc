@@ -68,8 +68,9 @@ const handleChangePageUnreviewedData = (event, newPage) => {
     totalPagesCriticalAlertUnreviewedData,
     fetchUnreviewedData,
     currentPageCriticalAlertUnreviewedData,
-    dataLimitCriticalAlertUnreviewedData
-    
+    dataLimitCriticalAlertUnreviewedData,
+    loadingCriticalAlertReviewedData,
+    loadingCriticalAlertUnreviewedData
 }
 
 

@@ -16,6 +16,7 @@ import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
 import { toast } from "react-toastify";
 import { ToastContainer } from 'react-toastify';
 import { getCurrentUserData } from '../../services/UserService';
+import { DefaultChartSkeleton, TableSkeleton } from '../../Utility/Skeleton';
 
 
 
@@ -58,8 +59,8 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
         handleChangePageReviewedData, handleChangePageUnreviewedData, totalPagesCriticalAlertReviewedData,
         totalPagesCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData,
         currentPageCriticalAlertUnreviewedData, fetchUnreviewedData, fetchReviewedData,
-        dataLimitCriticalAlertReviewedData,
-        currentPageCriticalAlertReviewedData } = actionData || [];
+        dataLimitCriticalAlertReviewedData,loadingCriticalAlertReviewedData,
+        loadingCriticalAlertUnreviewedData,currentPageCriticalAlertReviewedData } = actionData || [];
     const { t } = useTranslation()
     const location = useLocation();
     const [date, setDate] = useState(GetDate);
@@ -280,13 +281,13 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                             : ""
                     } */}
                 </Box>
-
+               
                 <>
                     <TabPanel value={value} index={0} className="table-nav-tabs-content">
-                        <CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />
+        { loadingCriticalAlertUnreviewedData?<TableSkeleton />:unReviewedData?.length===0?<DefaultChartSkeleton />:<CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
                     </TabPanel>
                     <TabPanel value={value} index={1} className="table-nav-tabs-content">
-                        <CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />
+         {loadingCriticalAlertReviewedData?<TableSkeleton /> :reviewedData?.length===0?<DefaultChartSkeleton />:<CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
                     </TabPanel>
                     <TabPanel value={value} index={2} className="table-nav-tabs-content">
                         <PatientRequestAndApprove action={action} value={value} />
