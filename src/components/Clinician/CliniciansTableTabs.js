@@ -156,7 +156,7 @@ let [options, setOptions] = useState(specificOption)
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-             {userData?.roles[0]?.name==="Admin"?"": <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />}
+             <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />
               <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
             </Tabs>
           </div>
