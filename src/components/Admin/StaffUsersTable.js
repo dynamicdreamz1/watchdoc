@@ -6,6 +6,8 @@ import { getStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
 import { TableSkeleton } from '../../Utility/Skeleton';
+import {  ToastContainer } from 'react-toastify'
+
 
 export default function StaffUsersTable({ setOpen, open }) {
     const [staffUser, setStaffUser] = useState([])
@@ -22,9 +24,13 @@ export default function StaffUsersTable({ setOpen, open }) {
     const StaffUserData = async (limit, currentPage) => {
         setLoading(true)
         const response = await getStaffUsers(limit, currentPage);
-        setStaffUser(response.data?.data)
+
+        if(response.status===200){
+            setStaffUser(response.data?.data)
+        }
         setLoading(false)
-        let nPages = Math.ceil(response.data.total / limit)
+        let nPages = Math.ceil(response?.data?.total / limit)
+
         setTotalPages(nPages)
     }
 
@@ -40,6 +46,7 @@ export default function StaffUsersTable({ setOpen, open }) {
 
     return (
         <>
+        <ToastContainer />
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -48,7 +55,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
+                <AddStaffUser staffUser={staffUser} setCurrentPage={setCurrentPage} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
             </Dialog>
             {loading ? <TableSkeleton /> :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
