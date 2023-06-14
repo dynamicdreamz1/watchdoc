@@ -16,6 +16,7 @@ export default function LinkDevices() {
     const data = {
       providers: type,
       reference_id: userData?.id,
+      auth_success_redirect_url: "https://watchdoc.netlify.app/editlinkdevice",
     };
     setLoading(true);
     connectDevice(data)
