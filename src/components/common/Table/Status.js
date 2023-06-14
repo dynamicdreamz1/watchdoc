@@ -25,7 +25,13 @@ export default function Status(props) {
 
 :
       <div className='wt table-data'>
-      <span className={props?.el?.status==="Reviewed"?"text color-light-green":"text color-light-blue"} onClick={()=>handleClickStatus(el?.id,el?.status)}>
+      <span className={props?.el?.status==="Reviewed"?"text color-light-green":"text color-light-blue"} onClick={() => {
+    if (value === 1) {
+    } else if (value === 2) {
+    } else {
+      handleClickStatus(el?.id, el?.status);
+    }
+  }}>
         {el?.status}</span>
       </div>
 }

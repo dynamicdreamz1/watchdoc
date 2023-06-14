@@ -208,3 +208,19 @@ export const getCriticalAlertReviewed = async (limit,currentPage) => {
 }
 
 
+
+export const UnreviewedToReviewedAlerts = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/review_critical_alert`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            headers: headersClinician,
+            data:data
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
