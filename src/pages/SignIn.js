@@ -69,6 +69,7 @@ const SignIn = () => {
                 else {
                     setError(response)
                     setLoading(false)
+                    setTimeout(() => {setError("")},2000);
 
                 }
                 //  else {
