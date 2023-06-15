@@ -105,7 +105,7 @@ export const  GetdayHourMin = (data) =>{
     day = undefined
   }else if (30 <= parseInt(day)) {
     day = undefined
-  }else if (30 <= parseInt(day)) {
+  }else if (31 <= parseInt(day)) {
     day = undefined
 
   }
