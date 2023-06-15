@@ -5,12 +5,13 @@ import ClinicianInfoRow from '../common/Table/ClinicianInfoRow';
 import { useTranslation } from 'react-i18next';
 import { TableSkeleton } from '../../Utility/Skeleton';
 import { useLocation } from 'react-router-dom';
+import { getCurrentUserData } from '../../services/UserService';
 
 export default function CliniciansRequestsTable(props) {
-    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages} = props;
+    const userData = getCurrentUserData();
+    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages } = props;
     const { t } = useTranslation();
-    const location=useLocation();
-
+    const location = useLocation();
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">
@@ -49,9 +50,11 @@ export default function CliniciansRequestsTable(props) {
                         </Table>}
                 </>
             </TableContainer>
-                {location?.pathname!=="/dashboard" && <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-}
-
+            {location?.pathname !== "/dashboard" && <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }
+            {location?.pathname === "/dashboard" && userData?.roles[0]?.name === 'Admin' &&
+                <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
+            }
         </>
 
     )

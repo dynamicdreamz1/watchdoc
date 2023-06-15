@@ -92,7 +92,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         }
         
        const res=await addStaffUser(formData)
-       console.log("1111-ressssss",res)
         StaffUserData(limit,currentPage)
         toast.success('Staff-User Added Successfully', {
             position: 'top-right',
