@@ -83,8 +83,20 @@ export default function MyProfile() {
          "practiceaddress": updatedUserData?.practiceaddress,
          })
        }
+       else{
+        toast.error('email already exist', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+          });
+       }
        } catch (error) {
-        toast.success('error.', {
+        console.log("ererroror");
+        toast.error('error.', {
             position: 'top-right',
             autoClose: 3000,
             hideProgressBar: true,
