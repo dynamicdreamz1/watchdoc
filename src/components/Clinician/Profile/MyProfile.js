@@ -60,7 +60,8 @@ export default function MyProfile() {
         }
         
        const updatedUserData=await UpdateUserProfile(formData)
-       setLoading(false)
+       try {
+        setLoading(false)
        if(updatedUserData?.status===200){
         toast.success('Profile updated successfully.', {
             position: 'top-right',
@@ -82,6 +83,17 @@ export default function MyProfile() {
          "practiceaddress": updatedUserData?.practiceaddress,
          })
        }
+       } catch (error) {
+        toast.success('error.', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+          });
+       } 
     }
     
     return (
