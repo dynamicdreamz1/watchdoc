@@ -1,6 +1,6 @@
 import React,{useContext, useState} from 'react'
 import { Formik } from 'formik';
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
 import {getCurrentUserData } from '../../../services/UserService';
 import { StoreCookie } from '../../../Utility/sessionStore';
@@ -9,12 +9,15 @@ import { UpdateUserProfile } from '../../../services/AdminService';
 import { toast } from 'react-toastify';
 
 export default function MyProfile() {
+    
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
     const {first_name,last_name,profile_pic,practice_address,practice_name,}=metaData
     const [ imageUrl, setImgSrc ] = useState((profile_pic===null ||profile_pic===undefined )?"/images/user-picture-placeholder.png":profile_pic);
     const [loading,setLoading]=useState(false)
+
+
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
         "title":"Dr",
         "first_name": first_name,
@@ -24,19 +27,19 @@ export default function MyProfile() {
         "practiceaddress": practice_address || "",
         "profile_pic":imageUrl
     })
-    // const LoginSchema = Yup.object({
-    //     first_name: Yup.string().required("This field is required*")
-    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    //     last_name: Yup.string().required("This field is required*")
-    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    //     email: Yup.string().required("Email Is Required")
-    //     // eslint-disable-next-line no-useless-escape
-    //     .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-    //     practicename: Yup.string().required("This field is required*")
-    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    //     practiceaddress: Yup.string().required("This field is required*")
+    const LoginSchema = Yup.object({
+        first_name: Yup.string().required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+        last_name: Yup.string().required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+        email: Yup.string().required("Email Is Required")
+        // eslint-disable-next-line no-useless-escape
+        .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+        practicename: Yup.string().required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+        practiceaddress: Yup.string().required("This field is required*")
         
-    // });
+    });
 
     const handleImages = (files) => {
         setImgSrc(files)
@@ -85,7 +88,7 @@ export default function MyProfile() {
         <Formik 
         initialValues={editClinicianProfileData}
         enableReinitialize={true}
-        validationSchema=""
+        validationSchema={LoginSchema}
         onSubmit={(values) =>
         { handleSubmitForm(values)}} 
     > 
