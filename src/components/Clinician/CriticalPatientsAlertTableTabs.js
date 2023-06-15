@@ -131,15 +131,20 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     }
     useEffect(() => {
-        if (userData.roles[0].name === "Clinician") {
-        getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
+        if (userData) {
+            if (userData.roles[0].name === "Clinician") {
+                getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps    
     }, [currentPageApprovePatient, dataLimitApprovePatient])
 
     useEffect(() => {
-        if (userData.roles[0].name === "Clinician") {
-            getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
+        if (userData) {
+            
+            if (userData.roles[0].name === "Clinician") {
+                getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPagePendingPatient, dataLimitPendingPatient])

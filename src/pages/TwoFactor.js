@@ -9,7 +9,7 @@ import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-    const { setCurrentUser} = useContext(UserContext)
+    // const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
     const { t } = useTranslation();
@@ -64,7 +64,7 @@ export default function TwoFactor() {
                     }
                     else if(user_details?.roles?.map((el)=>el.name==='Clinician')){
                     StoreCookie.setItem("token", token);
-                    setCurrentUser(token)
+                    // setCurrentUser(token)
                     updateToken();
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);

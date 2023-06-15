@@ -63,16 +63,21 @@ export default function AdminDashboard() {
 
 
   useEffect(() => {
-    if (userData.roles[0].name === "Admin") {
-    fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
+    if (userData) {
+      if (userData.roles[0].name === "Admin") {
+        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
+      }
     }
+    
   }, [currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData])
 
 
   useEffect(() => {
+    if (userData) {
     if (userData.roles[0].name === "Admin") {
     fetchReviewedData(dataLimitCriticalAlertReviewedData, currentPageCriticalAlertReviewedData)
     }
+  }
 
   }, [currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData])
 
@@ -88,8 +93,10 @@ export default function AdminDashboard() {
   }
 
   useEffect(() => {
-    if (userData.roles[0].name === "Admin") {
-    GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage)
+    if (userData) {
+      if (userData.roles[0].name === "Admin") {
+        GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage)
+      }
     }
         // eslint-disable-next-line react-hooks/exhaustive-deps
 
