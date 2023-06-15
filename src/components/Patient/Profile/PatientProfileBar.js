@@ -1,6 +1,6 @@
 import { Button, Dialog} from '@mui/material'
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { MetaFormeting,calculateAge} from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
@@ -11,7 +11,6 @@ import { ChartResultRange } from '../../../Utility/Skeleton';
 
 export default function PatientProfileBar({latestData}) {
 const navigate=useNavigate();
- const location=useLocation()
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
   const age=calculateAge(dob)
   const [openProfile, setOpenProfile] = React.useState(false);
