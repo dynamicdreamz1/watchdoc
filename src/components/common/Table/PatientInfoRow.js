@@ -18,7 +18,7 @@ export default function PatientInfoRow(props) {
   const navigate=useNavigate();
   const location=useLocation();
   const handleClicknavigate=()=>{
-    if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
+    if(location.pathname==="/dashboard" ||location.pathname==="/patients" || location?.pathname==='/adminpatient'){
       navigate("/patientdetails",{state:{
         id:el.id,
       }})
@@ -39,7 +39,7 @@ export default function PatientInfoRow(props) {
         <TableCell><Sleep el={el} /></TableCell>
         <TableCell><Step el={el} /></TableCell>
 
-        <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>
+      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>}
     </TableRow>
     </>
   )

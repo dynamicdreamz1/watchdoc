@@ -3,9 +3,11 @@ import { Dialog,Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import PatientInfoRow from '../../common/Table/PatientInfoRow'
 import Paper from '@mui/material/Paper';
 import ClinicianRequest from '../../Admin/ClinicianRequest';
+import { useLocation } from 'react-router-dom';
 
 
 export default function CriticalPatients(props) {
+    const location=useLocation();
     const { patientData, value,handleClickStatus} = props
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
@@ -34,7 +36,7 @@ export default function CriticalPatients(props) {
                                 <TableCell>Wt</TableCell>
                                 <TableCell>Sleep</TableCell>
                                 <TableCell>Step</TableCell>
-                                <TableCell>Status</TableCell>
+                                {location?.pathname==='/adminpatient'?"":   <TableCell>Status</TableCell>}
                             </TableRow>
                         </TableHead>                        
                         <Dialog
