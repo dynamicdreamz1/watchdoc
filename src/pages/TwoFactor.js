@@ -1,15 +1,14 @@
 import { Base64 } from 'js-base64';
-import React, { useContext, useState } from 'react'
+import React, {useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate} from 'react-router-dom'
 import { RegisterUser, VerifyEmail } from '../services/UserService';
-import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-    const { setCurrentUser} = useContext(UserContext)
+    // const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
     const { t } = useTranslation();

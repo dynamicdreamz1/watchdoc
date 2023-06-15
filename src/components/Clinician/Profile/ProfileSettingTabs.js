@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import EmergencyContacts from "../../common/EmergencyContacts";
 import { ToastContainer } from "react-toastify";
-import { getCurrentUserData } from "../../../services/UserService";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +46,6 @@ function a11yProps(index) {
 
 export default function ProfileSettingTabs() {
   const [value, setValue] = useState(0);
-  const userData = getCurrentUserData()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

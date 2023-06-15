@@ -1,12 +1,11 @@
 import { Base64 } from 'js-base64'
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { StoreCookie } from '../Utility/sessionStore'
 import { useLocation, useNavigate} from 'react-router-dom'
-import { UserContext } from '../Store/Context'
 import { updateToken } from '../Utility/functions'
 
 
