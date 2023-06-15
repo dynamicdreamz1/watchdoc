@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 
-export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
+export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClinicianData}) {
     const { t } = useTranslation()
     const [loading,setLoading]=useState(false)
     const location=useLocation();

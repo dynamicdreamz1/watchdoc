@@ -8,7 +8,7 @@ import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
 
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getAllClinicianData}) { 
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) { 
     const {contact_number,id}=(profileBarData);
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
@@ -95,7 +95,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getA
         }
         setOpen(false)
         await clinicanProfileUpdate(formData)
-       getAllClinicianData()
     }
     
     return (

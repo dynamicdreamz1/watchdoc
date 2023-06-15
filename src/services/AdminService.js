@@ -192,3 +192,20 @@ export const getAllAdminPatient = async (currentPage,limit) => {
         return error
     }
 }
+
+
+
+
+
+export const getParticularClinicianDetails = async (id) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/get_single_clinician?clinician_id=${id}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

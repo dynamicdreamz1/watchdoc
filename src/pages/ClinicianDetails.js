@@ -1,29 +1,39 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import ClinicianProfileBar from '../components/Clinician/ClinicianProfileBar'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
-import { allInOneClinicianList} from '../services/AdminService'
+import {getParticularClinicianDetails} from '../services/AdminService'
 import { Dialog } from '@mui/material'
 import AddClinician from '../components/Admin/AddClinician'
+import { ChartResultRange } from '../Utility/Skeleton'
 
 
 const ClinicianDetails = () => {
-
   const location = useLocation();
-  const { clinicianData ,allClinician} = location?.state;
-  const [data,setData]=useState(allClinician)
-  const [profileBarData,setProfileBarData]=useState(data?.filter((el)=>el?.id===clinicianData?.id))
+  const { id} = location?.state;
+  const [profileBarData,setProfileBarData]=useState([])
   const [open, setOpen] = useState(false);
   const [viewAll] = useState(true)
   const  [openAddClinicianPopUp,setOpenAddClinicianPopUp]=useState(false)
-  
-  const getAllClinicianData=async()=>{    
-   let response= await allInOneClinicianList()
-    setProfileBarData(response?.data?.filter((el)=>el?.id===clinicianData?.id))
-    setData(response?.data)
-  }
+  const [loading,setLoading]=useState(false)
+
+
+const getClinicianDetail=async(id)=>{
+    setLoading(true)
+    const res=await getParticularClinicianDetails(id);
+    if(res?.status===200){
+        setProfileBarData(res?.data?.data)
+    }
+    setLoading(false)
+}
+
+useEffect(()=>{
+    getClinicianDetail(id)
+},[id])
+
+
   const handleClose = () => {
     setOpenAddClinicianPopUp(false);
   };
@@ -447,7 +457,6 @@ const [pendingPatientsData]=useState(
         // setReviewData(filterData)
 
     // }
-    
   return (
     <React.Fragment>
       <div className='content-wrapper'>
@@ -463,10 +472,10 @@ const [pendingPatientsData]=useState(
           className='add-staff-user-dialog'
         >
           <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-          <AddClinician clinicianStaff={data} setOpen={setOpenAddClinicianPopUp} />
+          <AddClinician  setOpen={setOpenAddClinicianPopUp} />
         </Dialog>
          </div>
-          <ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData[0]} getAllClinicianData={getAllClinicianData}/>
+          {loading ? <ChartResultRange /> :<ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData}/>}
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           <div className="pp-table">
             <div className='table-title'>
