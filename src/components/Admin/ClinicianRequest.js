@@ -9,7 +9,6 @@ export default function ClinicianRequest(props) {
     const {practice_address,first_name,last_name}= MetaFormeting(props?.profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [mobileNum,setMobileNum]=useState('')
-    
     useEffect(()=>{
         if (contact_number?.startsWith("+")) {
             const country_code = contact_number?.substring(0, contact_number?.length - 10).trim();

@@ -2,7 +2,7 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material'
 import { Checkbox, FormControlLabel, TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ClinicianInfo from './ClinicianInfo'
 import ConnectedPatients from './ConnectedPatients'
 import Email from './Email'
@@ -12,18 +12,25 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
 export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
-
+  const navigate=useNavigate();
   const { t } = useTranslation();
   const location = useLocation()
+
+const handleClickClinicianDetailPage=()=>{
+  navigate("/cliniciandetails",{state:{
+    id:data?.id,
+  }})
+}
+
   return (
     <>
-      <TableRow>
-        <TableCell><ClinicianInfo data={data} clinicianStaff={clinicianStaff} /></TableCell>
-        {location.pathname === "/patientdetails" ? "" : <TableCell><Email email={data?.email} /></TableCell>}
-        {location.pathname === "/patientdetails" ? "" : <TableCell><Phone data={data} /></TableCell> }
+      <TableRow >
+        <TableCell onClick={handleClickClinicianDetailPage}><ClinicianInfo data={data} clinicianStaff={clinicianStaff} /></TableCell>
+        {location.pathname === "/patientdetails" ? "" : <TableCell><Email email={data?.email || ""} /></TableCell>}
+        {location.pathname === "/patientdetails" ? "" : <TableCell><Phone data={data || ""} /></TableCell> }
         {/* {value === 0 ? "" :
           <>
-            {location.pathname === "/patientdetails" ? "" :
+            {location.pathname === "/patientdetails" ? "" :Fconsole.log
             <> */}
              <TableCell align='center'><ConnectedPatients data={data} /></TableCell>
              <TableCell align='center'><PendingPatients data={data} /></TableCell>
