@@ -3,9 +3,11 @@ import { getPendingClinicians, getPendingPatients } from '../../services/AdminSe
 import CliniciansRequestsTable from '../Clinician/CliniciansRequestsTable'
 import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTableTabs'
 import { getAdminCriticalAlertReviewed, getAdminCriticalAlertunReviewed } from '../../services/AdminService';
+import { getCurrentUserData } from '../../services/UserService';
 
 
 export default function AdminDashboard() {
+  const userData = getCurrentUserData()
   const recordsPerPage = 5;
   const [pendingClinicianData, setPendingClinicianData] = useState([])
   const [pendingClinicianCurrentPage, setPendingClinicianCurrentPage] = useState(1)
@@ -61,12 +63,16 @@ export default function AdminDashboard() {
 
 
   useEffect(() => {
+    if (userData.roles[0].name === "Admin") {
     fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
+    }
   }, [currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData])
 
 
   useEffect(() => {
+    if (userData.roles[0].name === "Admin") {
     fetchReviewedData(dataLimitCriticalAlertReviewedData, currentPageCriticalAlertReviewedData)
+    }
   }, [currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData])
 
 
@@ -81,7 +87,9 @@ export default function AdminDashboard() {
   }
 
   useEffect(() => {
+    if (userData.roles[0].name === "Admin") {
     GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage)
+    }
   }, [recordsPerPage,pendingClinicianCurrentPage])
 
   const action = {

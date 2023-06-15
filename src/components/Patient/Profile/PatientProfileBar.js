@@ -70,7 +70,7 @@ const navigate=useNavigate();
         }
         </div>
         <div className='center-block'>
-            <PhoneNumber Number={data?.contact_number} />
+            <PhoneNumber Number={latestData?.user_data?.contact_number} />
         </div>
         <div className='right-block'>
             {patientQuickNavs.map((data, i) => (
