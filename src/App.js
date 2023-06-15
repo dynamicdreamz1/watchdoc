@@ -56,10 +56,6 @@ function App() {
   }, [user]);
 
 
-
-
-
-
   return (
     <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
       <Routes>
@@ -103,8 +99,7 @@ function App() {
         <Route path='editlinkdevice' element={<PrivateRoute Component={LinkDeviceInner} />} />
         <Route path='patients' element={<PrivateRoute Component={Patients} />} />
         <Route path='adminpatient' element={<PrivateRoute Component={AdminPatients} />} />
-
-        <Route path='clinicians' element={<PrivateRoute Component={Clinicians} />} />
+        <Route path='clinicians' element={<PrivateRoute Component={Clinicians} />} /> 
         <Route path='staffusers' element={<PrivateRoute Component={StaffUsers} />} />
         <Route path='/profile-settings' element={<PrivateRoute Component={ProfileSettings} />} />
         <Route path='/patientdetails' element={<PrivateRoute Component={PatientsDetails} />} />
