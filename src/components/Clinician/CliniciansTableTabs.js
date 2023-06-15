@@ -75,11 +75,11 @@ let [options, setOptions] = useState(specificOption)
   const pendingClincians = async (limit,currentPage) => {
     setFirstLoading(true)
     let res = await getPendingClinicians(limit,currentPage)
-    if (res?.data?.data.length === 0) {
+    if (res?.data?.data.data.length === 0) {
       setFirstLength("No records found.")
     }
-    setPendingClinician(res?.data)
-    let nPages=Math.ceil(res?.data?.total/limit)
+    setPendingClinician(res?.data.data)
+    let nPages=Math.ceil(res?.data.data?.total/limit)
     setPages(nPages)
     setFirstLoading(false)
   }

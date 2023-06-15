@@ -20,7 +20,7 @@ export const getPendingClinicians = async (limit, pages) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=clinicians-pending&limit=${limit}&page=${pages}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients&limit=${limit}&page=${pages}`,
             headers: headersAdmin
         })
         return response
@@ -134,19 +134,6 @@ export const getAllPatients = async (dataLimit, currentPage) => {
 
 }
 
-export const getPendingPatients = async () => {
-    try {
-        const response = await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients`,
-            headers: headersAdmin
-        })
-        return response
-    } catch (error) {
-        return error
-    }
-
-}
 
 export const getAllClinicianList = async () => {
     try {

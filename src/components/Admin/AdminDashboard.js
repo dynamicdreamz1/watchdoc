@@ -3,20 +3,16 @@ import { getPendingPatients } from '../../services/AdminService';
 import CliniciansRequestsTable from '../Clinician/CliniciansRequestsTable'
 import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTableTabs'
 import { getAdminCriticalAlertReviewed,getAdminCriticalAlertunReviewed } from '../../services/AdminService';
+import CliniciansTableTabs from '../Clinician/CliniciansTableTabs';
 
 
 export default function AdminDashboard() {
-  const recordsPerPage = 5;
-  const [pendingPatientsData, setPendingPatientsData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
 
   const [criticalAlertReviewedData,setCriticalAlertReviewedData]=useState([])
   const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
   const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
   const [dataLimitCriticalAlertReviewedData] = useState(5)
   const [loadingCriticalAlertReviewedData, setLoadingCriticalAlertReviewedData] = useState(false)
-
 
 
   const [criticalAlertUnreviewedData,setCriticalAlertUnreviewedData]=useState([])
@@ -65,27 +61,7 @@ export default function AdminDashboard() {
   },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData])
 
  
-  // const GetData = async () => {
-  //   setLoading(true)
-  //   let res = await getPendingPatients()
-  //   let data = []
-  //   const maxKey = Object.keys(res?.data)?.reduce((a, b) => {
-  //     return a > b ? a : b;
-  //   });
-
-  //   for (let i = 0; i <= maxKey; i++) {
-  //     if (res?.data[i.toString()]) {
-  //       data?.push(res?.data[i.toString()])
-  //     }
-  //   }
-  //   setPendingPatientsData(data)
-  //   setLoading(false)
-  // }
-
-  // useEffect(() => {
-  //   GetData()
-  // }, [])
-
+  
   const action={
     criticalAlertUnreviewedData,
     criticalAlertReviewedData,
@@ -108,7 +84,7 @@ export default function AdminDashboard() {
   return (
     <>
       <CriticalPatientsAlertTableTabs actionData={action} />
-      {/* <CliniciansRequestsTable clinicianStaff={pendingPatientsData} loading={loading} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
+      <CliniciansRequestsTable  /> 
     </>
   )
 }

@@ -13,6 +13,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
   
+  console.log(data);
   const { t } = useTranslation();
   const location = useLocation()
   return (
@@ -21,16 +22,16 @@ export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
         <TableCell><ClinicianInfo data={data} clinicianStaff={clinicianStaff} /></TableCell>
         {location.pathname === "/patientdetails" ? "" : <TableCell><Email email={data?.email} /></TableCell>}
         {location.pathname === "/patientdetails" ? "" : <TableCell><Phone data={data} /></TableCell> }
-        {value === 0 ? "" :
+        {/* {value === 0 ? "" :
           <>
             {location.pathname === "/patientdetails" ? "" :
-            <>
+            <> */}
              <TableCell align='center'><ConnectedPatients data={data} /></TableCell>
              <TableCell align='center'><PendingPatients data={data} /></TableCell>
-             </>
+             {/* </>
              }
           </>
-        }
+        } */}
 
       </TableRow>
       {location?.pathname === "/patientdetails" &&

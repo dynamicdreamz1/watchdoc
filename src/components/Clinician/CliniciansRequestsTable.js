@@ -28,12 +28,8 @@ export default function CliniciansRequestsTable(props) {
                                     <TableCell>{t('CliniciansRequestsTable.tableCell1')}</TableCell>
                                     <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
                                     <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
-                                    {value === 0 ? "" :
-                                        <>
                                             <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
                                             <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
-                                        </>
-                                    }
                                 </TableRow>
                             </TableHead>
                             <TableBody>
