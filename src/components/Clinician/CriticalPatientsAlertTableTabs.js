@@ -3,13 +3,12 @@ import { Box, Pagination, Tab, Tabs } from '@mui/material';
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import TableShorting from './TableShorting';
+// import TableShorting from './TableShorting';
 import CriticalPatients from './Tables/CriticalPatients';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import DatePickerInput from '../common/Table/DatePickerInput';
-import { GetDate, requestAndApprovePatient, reviewedUnReviwedCommon } from '../../Utility/functions';
-import { useTranslation } from 'react-i18next';
+// import DatePickerInput from '../common/Table/DatePickerInput';
+import {reviewedUnReviwedCommon } from '../../Utility/functions';
 import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
 import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
@@ -61,15 +60,15 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
         currentPageCriticalAlertUnreviewedData, fetchUnreviewedData, fetchReviewedData,
         dataLimitCriticalAlertReviewedData,loadingCriticalAlertReviewedData,
         loadingCriticalAlertUnreviewedData,currentPageCriticalAlertReviewedData } = actionData || [];
-    const { t } = useTranslation()
+    // const { t } = useTranslation()
     const location = useLocation();
-    const [date, setDate] = useState(GetDate);
+    // const [date, setDate] = useState(GetDate);
     const [value, setValue] = useState(0);
     const [viewAll, setViewAll] = useState(true)
     const [PatientRequestData, setPatientRequestData] = useState([])
     const [PatientApproveData, setPatientApproveData] = useState([])
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(null);
+    // const [anchorEl, setAnchorEl] = useState(null);
+    // const [selectedOption, setSelectedOption] = useState(null);
 
 
 
@@ -89,23 +88,23 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     const [dataLimitApprovePatient] = useState(5)
     const [loadingApprovePatient, setLoadingApprovePatient] = useState(false)
 
-    const defaultOption = [
-        t('DashboardPage.SideButton.d1'),
-        t('DashboardPage.SideButton.d2'),
-        t('DashboardPage.SideButton.d3')
+    // const defaultOption = [
+    //     t('DashboardPage.SideButton.d1'),
+    //     t('DashboardPage.SideButton.d2'),
+    //     t('DashboardPage.SideButton.d3')
 
-    ];
-    const specificOption = [
-        t('DashboardPage.SideButton.d1'),
-        t('DashboardPage.SideButton.d2'),
-        "Alphabetical"
-    ]
-    let [options, setOptions] = useState(location?.pathname === "/clinicians" ? specificOption : defaultOption)
+    // ];
+    // const specificOption = [
+    //     t('DashboardPage.SideButton.d1'),
+    //     t('DashboardPage.SideButton.d2'),
+    //     "Alphabetical"
+    // ]
+    // let [options, setOptions] = useState(location?.pathname === "/clinicians" ? specificOption : defaultOption)
 
 
-    const ChangeDate = (NewDate) => {
-        setDate(GetDate(NewDate));
-    }
+    // const ChangeDate = (NewDate) => {
+    //     setDate(GetDate(NewDate));
+    // }
 
     const handleChange = (event, newValue) => {
         setViewAll(true)
@@ -204,7 +203,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
         // setSelectedOption(option);
     };
 
-    const handleButtonClick = (e) => {
+    // const handleButtonClick = (e) => {
 
         // if (e.target.name === "View All") {
         //     setOptions(prevOptions => [
@@ -221,7 +220,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
         //     ]);
         //     setViewAll(!viewAll);
         // }
-    }
+    // }
     const handleClickReviewAndUnReviewed = async (id, status) => {
         const formData = new FormData();
         formData.append('critical_alert_id', id)

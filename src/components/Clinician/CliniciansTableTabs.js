@@ -9,7 +9,6 @@ import { getAllClinicians, getPendingClinicians } from '../../services/AdminServ
 import { TableSkeleton } from '../../Utility/Skeleton';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify'
-import { getCurrentUser, getCurrentUserData } from '../../services/UserService';
 
 
 function TabPanel(props) {

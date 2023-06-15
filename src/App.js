@@ -40,7 +40,7 @@ import RedircetRoute from './routes/RedircetRoute';
 import AdminPatients from './pages/AdminPatient';
 function App() {
 
-  const [currentUser, setCurrentUser] = useState(undefined);
+  // const [currentUser, setCurrentUser] = useState(undefined);
   const [currentUserData, setCurrentUserData] = useState(undefined);
   const user = getCurrentUser();
 
@@ -49,7 +49,6 @@ function App() {
     const role = getCurrentUserRole();
     const IsActive = getCurrentUserIsActive();
     if (user) {
-      setCurrentUser(user);
       const userData = getCurrentUserData();
       setCurrentUserData({ userData, role, IsActive });
     }
@@ -57,7 +56,7 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{ currentUserData, setCurrentUserData, setCurrentUser }}>
+    <UserContext.Provider value={{ currentUserData, setCurrentUserData}}>
       <Routes>
         {/* <Route exact path="/" element={currentUser ? <Dashboard /> : <SignIn />} />
         <Route exact path="/signin" element={currentUser ? <Dashboard /> : <SignIn />} /> */}

@@ -6,7 +6,7 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getClinicianDetail}) { 
