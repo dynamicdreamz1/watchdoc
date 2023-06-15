@@ -46,11 +46,12 @@ function a11yProps(index) {
 }
 
 export default function CliniciansTableTabs({ open, setOpen }) {
-  const userData=getCurrentUserData();
   const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
   const [recordsPerPage, setRecordsPerPage] = useState(10);
+  const [recordsPerPagePendingClinician, setRecordsPerPagePendingClinician] = useState(10);
+
   const [value, setValue] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pendingClinician, setPendingClinician] = useState([])
@@ -60,7 +61,7 @@ export default function CliniciansTableTabs({ open, setOpen }) {
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimit,setDataLimit]=useState(10)
-  let limit=10;
+  const [limit,setLimit]=useState(10)
   const [pages, setPages] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -137,6 +138,12 @@ let [options, setOptions] = useState(specificOption)
     setCurrentPage(1)
   }
 
+
+  const handleChangePaginationCountPendingClinician=(value)=>{
+    setRecordsPerPagePendingClinician(value)
+    setCurrentPage(1)
+  }
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
     setCurrentPage(1)
@@ -144,7 +151,12 @@ let [options, setOptions] = useState(specificOption)
 
   const handleDataChange =(pageCount) => {
     setDataLimit(pageCount)
+    
   };
+
+  const handleDataChangePendingClinician=(pageCount)=>{
+    setLimit(pageCount)
+  }
 
   const pageOptions=[5,10,20,30,40,50,60,70,80,90,100];
 
@@ -173,6 +185,27 @@ let [options, setOptions] = useState(specificOption)
                   >
               
                     {pageOptions.map((pageNumber,I)=>  <MenuItem key={I} onClick={() => handleDataChange(pageNumber)} value={pageNumber}>{pageNumber} per page</MenuItem> )}
+
+                  </Select>
+                <TableShorting setViewAll={setViewAll} viewAll={viewAll} anchorEl={anchorEl}
+                 setAnchorEl={setAnchorEl} handleClose={handleCloseVieAllPopUP} options={options} selectedOption={selectedOption}/>
+
+              </div>
+            </>
+          }
+          {value === 0 &&
+            <>
+              <div className='right-block'>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={recordsPerPagePendingClinician}
+                    label="PerPage"
+                    onChange={(e) => handleChangePaginationCountPendingClinician(e.target.value)} defaultValue={recordsPerPagePendingClinician}
+                    className="per-page-select"
+                  >
+              
+                    {pageOptions.map((pageNumber,I)=>  <MenuItem key={I} onClick={() => handleDataChangePendingClinician(pageNumber)} value={pageNumber}>{pageNumber} per page</MenuItem> )}
 
                   </Select>
                 <TableShorting setViewAll={setViewAll} viewAll={viewAll} anchorEl={anchorEl}
