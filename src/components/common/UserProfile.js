@@ -2,12 +2,14 @@ import { Avatar } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MetaFormeting } from '../../Utility/functions';
+import { getCurrentUserData } from '../../services/UserService';
 
 export default function UserProfile({ profileBarData,clinicianStaff,handleClickOpenRequestPopUp,data }) {
+  const userData=getCurrentUserData();
   const navigate=useNavigate();
   const location=useLocation();
   let finalData;
- location.pathname==='/editclinician' || location?.pathname==="/clinicians"?
+ location.pathname==='/editclinician' || location?.pathname==="/clinicians" || (location.pathname==='/dashboard' && userData?.roles[0]?.name==='Admin')?
  finalData = MetaFormeting(data):finalData = MetaFormeting(profileBarData);
  const  {first_name,last_name,profile_pic,address} = finalData;
 
