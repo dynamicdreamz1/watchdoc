@@ -20,7 +20,7 @@ const ClinicianDetails = () => {
   const [loading,setLoading]=useState(false)
 
 
-const getClinicianDetail=async(id)=>{
+const getClinicianDetail=async()=>{
     setLoading(true)
     const res=await getParticularClinicianDetails(id);
     if(res?.status===200){
@@ -30,7 +30,7 @@ const getClinicianDetail=async(id)=>{
 }
 
 useEffect(()=>{
-    getClinicianDetail(id)
+    getClinicianDetail()
 },[id])
 
 
@@ -475,7 +475,7 @@ const [pendingPatientsData]=useState(
           <AddClinician  setOpen={setOpenAddClinicianPopUp} />
         </Dialog>
          </div>
-          {loading ? <ChartResultRange /> :<ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData}/>}
+          {loading ? <ChartResultRange /> :<ClinicianProfileBar open={open} setOpen={setOpen} profileBarData={profileBarData} getClinicianDetail={getClinicianDetail}/>}
           <CriticalPatients patientData={patientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
           <div className="pp-table">
             <div className='table-title'>

@@ -6,27 +6,27 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
+import { ToastContainer, toast } from 'react-toastify';
 
 
-export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) { 
+export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getClinicianDetail}) { 
     const {contact_number,id}=(profileBarData);
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
-    
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
-        "firstname": metaData?.first_name,
-        "lastname":metaData?.last_name,
-        "email": profileBarData?.email,
-        "number": contact_number,
-        "practicename":metaData?.practice_name,
-        "practiceaddress": metaData?.practice_address,
+        "firstname": metaData?.first_name || "",
+        "lastname":metaData?.last_name || "",
+        "email": profileBarData?.email || "",
+        "number": contact_number || "",
+        "practicename":metaData?.practice_name || "",
+        "practiceaddress": metaData?.practice_address || "",
         "profile_pic": imageUrl,
         "countrycode":""
         
     })
-    
+
    useEffect(()=>{
     if (profileBarData?.contact_number?.startsWith("+")) {
         const country_code = profileBarData?.contact_number?.substring(0, profileBarData?.contact_number.length - 10).trim();
@@ -89,12 +89,27 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen}) {
         formData.append("email", data.email);
         formData.append("contact_number", `${countryCode}${data.number}`);
         formData.append("password", null);
-        formData.append("practice_address", data.practiceaddress);
+        formData.append("practice_address", data.practicename);
+        formData.append("practice_name", data.practiceaddress);
+
         if(typeof imageUrl == "object" ){
             formData.append("profile_pic",imageUrl);
         }
         setOpen(false)
-        await clinicanProfileUpdate(formData)
+        const res=await clinicanProfileUpdate(formData)
+        if(res?.status===0){        
+        await getClinicianDetail()  
+            toast.success('Clinciian Update Successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
+        }
+
     }
     
     return (

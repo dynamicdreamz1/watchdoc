@@ -15,7 +15,6 @@ export default function MyProfile() {
     const {first_name,last_name,profile_pic,practice_address,practice_name}=metaData
     const [ imageUrl, setImgSrc ] = useState((profile_pic===null ||profile_pic===undefined )?"/images/user-picture-placeholder.png":profile_pic);
     const [loading,setLoading]=useState(false)
-    const [message,setMessage]=useState('')
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
         "title":"Dr",
         "first_name": first_name,
@@ -78,8 +77,6 @@ export default function MyProfile() {
          "practicename": updatedUserData?.practicename,
          "practiceaddress": updatedUserData?.practiceaddress,
          })
-        setMessage('Profile updated successfully.')
-        setTimeout(() => setMessage(""), 2000);
        }
     }
     
