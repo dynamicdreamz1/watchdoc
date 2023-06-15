@@ -9,7 +9,7 @@ import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-    // const { setCurrentUser} = useContext(UserContext)
+    const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
     const { t } = useTranslation();

@@ -1,13 +1,12 @@
-import React, { useContext } from 'react'
+import React  from 'react'
 import AdminSidebar from './AdminSidebar';
 import ClinicianSidebar from './ClinicianSidebar';
 import PatientSidebar from './PatientSidebar';
-import { UserContext } from '../../Store/Context';
+import { getCurrentUserData } from '../../services/UserService';
 
 export default function Sidebar() {
+  const userData = getCurrentUserData()
 
-  const {currentUserData} = useContext(UserContext);
-  
   return (
     <>
     <div className='sidebar'>
@@ -16,7 +15,7 @@ export default function Sidebar() {
         </div>
         <nav aria-label="main mailbox folders">
           {(() => {
-          switch (currentUserData?.role) {
+          switch (userData?.roles[0].name) {
             case "User":
               return <PatientSidebar/>
             case 'Clinician':
