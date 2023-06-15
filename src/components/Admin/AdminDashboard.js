@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getPendingClinicians, getPendingPatients } from '../../services/AdminService';
+import { getPendingClinicians} from '../../services/AdminService';
 import CliniciansRequestsTable from '../Clinician/CliniciansRequestsTable'
 import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTableTabs'
 import { getAdminCriticalAlertReviewed, getAdminCriticalAlertunReviewed } from '../../services/AdminService';
@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     setLoadingCriticalAlertUnreviewedData(false)
   }
 
-  const fetchReviewedData = async (dataLimitCriticalAlertReviewedData, currentPageCriticalAlertReviewedData) => {
+  const fetchReviewedData = async (currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData) => {
     setLoadingCriticalAlertReviewedData(true)
     const res = await getAdminCriticalAlertReviewed(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData,);
     setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
@@ -73,6 +73,7 @@ export default function AdminDashboard() {
     if (userData.roles[0].name === "Admin") {
     fetchReviewedData(dataLimitCriticalAlertReviewedData, currentPageCriticalAlertReviewedData)
     }
+
   }, [currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData])
 
 
@@ -90,6 +91,8 @@ export default function AdminDashboard() {
     if (userData.roles[0].name === "Admin") {
     GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage)
     }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [recordsPerPage,pendingClinicianCurrentPage])
 
   const action = {
@@ -105,7 +108,6 @@ export default function AdminDashboard() {
     fetchUnreviewedData,
     fetchReviewedData,
     dataLimitCriticalAlertReviewedData,
-    currentPageCriticalAlertReviewedData,
     loadingCriticalAlertReviewedData,
     loadingCriticalAlertUnreviewedData
   }

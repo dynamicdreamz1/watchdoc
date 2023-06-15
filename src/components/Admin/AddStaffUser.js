@@ -91,7 +91,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("profile_pic",imageUrl)
         }
         
-       const res=await addStaffUser(formData)
+       await addStaffUser(formData)
         StaffUserData(limit,currentPage)
         toast.success('Staff-User Added Successfully', {
             position: 'top-right',
