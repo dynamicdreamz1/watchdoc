@@ -134,7 +134,7 @@ export default function MyProfile() {
                     <label>Practice name</label>
                     <input type="text" name='practicename' placeholder='Practice name*'  onChange={props?.handleChange} value={props?.values?.practicename}/>
                             <span className="error">{props?.errors?.practicename?props?.errors?.practicename:""}</span>
-                </div>
+                </div>  
                 <div className='input-block'>
                     <label>Practice Address</label>
                     <input type="text" name='practiceaddress' placeholder='Practice Address*'  onChange={props?.handleChange} value={props?.values?.practiceaddress} />
