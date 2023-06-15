@@ -83,7 +83,7 @@ export default function ProfileSettingTabs() {
           <TabPanel value={value} index={2}>
             <EditTwoFactor />
           </TabPanel>
-          <TabPanel value={value} index={3}>
+          <TabPanel value={value ?value : null} index={3}>
             <EmergencyContacts />
           </TabPanel>
           <Link to="/dashboard" className="close-btn">
