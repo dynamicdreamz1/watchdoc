@@ -12,8 +12,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
 export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
-  
-  console.log(data);
+
   const { t } = useTranslation();
   const location = useLocation()
   return (

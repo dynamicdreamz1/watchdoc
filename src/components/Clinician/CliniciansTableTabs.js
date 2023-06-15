@@ -87,11 +87,11 @@ let [options, setOptions] = useState(specificOption)
   const getAllClinicianData=async(dataLimit,currentPage)=>{
     setSecondLoading(true)           
     let res = await getAllClinicians(dataLimit,currentPage);
-    if(res?.data?.data?.length===0){
+    if(res?.data?.data?.data.length===0){
       setSecondLength("No records found.")
     };
-    setAllClinician(res)
-    setTotalPages(Math.ceil(res.data.total / dataLimit));
+    setAllClinician(res.data)
+    setTotalPages(Math.ceil(res.data.data.total / dataLimit));
     setSecondLoading(false)  
   }
 
