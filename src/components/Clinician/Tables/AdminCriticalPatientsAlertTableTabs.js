@@ -77,10 +77,6 @@ export default function AdminCriticalPatientsAlertTableTabs({ action }) {
         // setCurrentPageApprovePatient(newPage);
     };
 
- 
-
-
-   
 
    
     // const handleClickReviewAndUnReviewed = async (id, status) => {

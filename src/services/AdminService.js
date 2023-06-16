@@ -124,7 +124,6 @@ export const getAllPatients = async (dataLimit, currentPage) => {
         const response = await axios({
             method: 'get',
             url: tempUrl,
-            // url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
             headers: headersAdmin
         })
         return response

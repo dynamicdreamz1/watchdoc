@@ -44,7 +44,6 @@ const DeleteRequest = async (id) => {
           }
           deletePatientAndClinician(apiData)
               .then((res) => {
-                console.log(res);
                 if (res) {
                   getClinicianData(recordsPerPage,currentPage)
                 }
