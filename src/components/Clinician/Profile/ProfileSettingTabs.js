@@ -69,7 +69,7 @@ export default function ProfileSettingTabs() {
           >
             <Tab label="Profile" {...a11yProps(0)} />
             <Tab label="Two-factor authentication" {...a11yProps(1)} />
-            { userData.roles[0].name != "User" ? <Tab label="Password" {...a11yProps(2)} /> : <Tab label="Emergency contacts" {...a11yProps(2)} /> }
+            { userData.roles[0].name !== "User" ? <Tab label="Password" {...a11yProps(2)} /> : <Tab label="Emergency contacts" {...a11yProps(2)} /> }
             {/* { userData.roles[0].name === "User"  ? : ''} */}
           </Tabs>
         </Box>
@@ -80,7 +80,7 @@ export default function ProfileSettingTabs() {
           <TabPanel value={value} index={1}>
             <EditTwoFactor />
           </TabPanel>
-          { userData.roles[0].name != "User" ?
+          { userData.roles[0].name !== "User" ?
           <TabPanel value={value} index={2}>
             <ChangePassword />
           </TabPanel>
