@@ -11,11 +11,9 @@ import * as Yup from 'yup';
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    // let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
     const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(userData);
 
-
-    const [updateUser, setUpdateUser] = useState({
+    const [updateUser] = useState({
         "firstname": first_name,
         "lastname": last_name,
         "preferredFirstName": preferred_first_name,
@@ -43,37 +41,37 @@ export const EditProfile = () => {
         formData.append("sex", value?.sex);
         formData.append("weight",value?.weight);
         formData.append("height",value?.height);
-        ProfileCreation(formData)
-            .then((res) => {                
-                StoreCookie.setItem("user_details", res?.data);
-                setCurrentUserData({ ...currentUserData, userData: res?.data })
-                toast.success('Profile updated successfully.', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    theme: "colored",
-                });
-                setMessage(t('EditProfilePage.message.m1'))
-                setLoading(false)
-                setTimeout(() => {
-                    setMessage("")
-                }, 3000);
+        // ProfileCreation(formData)
+        //     .then((res) => {                
+        //         StoreCookie.setItem("user_details", res?.data);
+        //         setCurrentUserData({ ...currentUserData, userData: res?.data })
+        //         toast.success('Profile updated successfully.', {
+        //             position: 'top-right',
+        //             autoClose: 3000,
+        //             hideProgressBar: true,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             theme: "colored",
+        //         });
+        //         setMessage(t('EditProfilePage.message.m1'))
+        //         setLoading(false)
+        //         setTimeout(() => {
+        //             setMessage("")
+        //         }, 3000);
 
 
-            })
-            .catch((error) => {
-                setLoading(false)
-                if (error.response.status === 422) {
-                    setMessage(t('EditProfilePage.error.e7'))
-                }
-                else {
-                    setMessage(error)
-                }
-            })
-
+        //     })
+        //     .catch((error) => {
+        //         setLoading(false)
+        //         if (error.response.status === 422) {
+        //             setMessage(t('EditProfilePage.error.e7'))
+        //         }
+        //         else {
+        //             setMessage(error)
+        //         }
+        //     })
+console.log("1111111-value",value)
     }
 
 
