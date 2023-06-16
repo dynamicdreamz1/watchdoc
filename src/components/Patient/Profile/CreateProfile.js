@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 
 
 const CreateProfile = () => {
-    const [createnewUser, setCreateNewUser] = useState({
+    const [createnewUser] = useState({
         "firstname": "",
         "lastname": "",
         "preferredFirstName": "",

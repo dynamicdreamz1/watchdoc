@@ -11,11 +11,9 @@ import * as Yup from 'yup';
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    // let finalUser = currentUserData?.userData?.meta_data.length === 0 ? userData : currentUserData?.userData;
     const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(userData);
 
-
-    const [updateUser, setUpdateUser] = useState({
+    const [updateUser] = useState({
         "firstname": first_name,
         "lastname": last_name,
         "preferredFirstName": preferred_first_name,
@@ -73,7 +71,6 @@ export const EditProfile = () => {
                     setMessage(error)
                 }
             })
-
     }
 
 

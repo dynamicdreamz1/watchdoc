@@ -9,13 +9,12 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
   const navigate=useNavigate();
   const location=useLocation();
   let finalData;
- location.pathname==='/editclinician' || location?.pathname==="/clinicians"  || (location.pathname==='/dashboard' && userData?.roles[0]?.name==='Admin')?
- finalData = MetaFormeting(data):finalData = MetaFormeting(profileBarData);
+ location.pathname==='/editclinician' || location?.pathname==="/clinicians" || location?.pathname==="/staffusers"  || (location.pathname==='/dashboard' && userData?.roles[0]?.name==='Admin')?
+ finalData = MetaFormeting(data):
+ finalData = MetaFormeting(profileBarData);
 
- const  {first_name,last_name,profile_pic,address,practice_address
- } = finalData;
+ const  {first_name,last_name,profile_pic,address,practice_address} = finalData;
 
- console.log("practice_address",practice_address,address);
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staffusers"){
       navigate("");
@@ -32,6 +31,9 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
     }
 
   }
+
+
+
   return (
     <>
       <div className='user-profile'>
