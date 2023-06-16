@@ -15,7 +15,7 @@ export default function Sidebar() {
         </div>
         <nav aria-label="main mailbox folders">
           {(() => {
-          switch (userData?.roles[0].name) {
+          switch (userData && userData?.roles[0]?.name) {
             case "User":
               return <PatientSidebar/>
             case 'Clinician':

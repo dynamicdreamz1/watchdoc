@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState} from 'react'
 import { ProfileCreation } from '../../../services/UserService';
 import '../../../css/CreateProfile.css'
 import { useTranslation } from 'react-i18next';
@@ -29,13 +29,13 @@ const CreateProfile = () => {
     const LoginSchema = Yup.object({
         firstname: Yup.string()
           .required("This field is required*")
-          .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
         preferredFirstName: Yup.string()
         .required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+      .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
         lastname: Yup.string()
           .required("This field is required*")
-          .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
         dob: Yup.date().required("This field is required*"),
         sex: Yup.string().required("This field is required*"),
         weight: Yup.string().required("This field is required*"),
