@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import EmergencyContacts from "../../common/EmergencyContacts";
 import { ToastContainer } from "react-toastify";
-import { getCurrentUserData } from "../../../services/UserService";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,8 +46,6 @@ function a11yProps(index) {
 
 export default function ProfileSettingTabs() {
   const [value, setValue] = useState(0);
-  const userData =   getCurrentUserData();
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,9 +66,9 @@ export default function ProfileSettingTabs() {
             aria-label="basic tabs example"
           >
             <Tab label="Profile" {...a11yProps(0)} />
-            {userData && userData.roles[0].name === "Admin" || userData && userData.roles[0].name === "Clinician" ?   <Tab label="Password" {...a11yProps(1)} />  : ""}
+            <Tab label="Password" {...a11yProps(1)} />
             <Tab label="Two-factor authentication" {...a11yProps(2)} />
-            {userData && userData.roles[0].name === "User" ? <Tab label="Emergency contacts" {...a11yProps(3)} /> : ''}
+             <Tab label="Emergency contacts" {...a11yProps(3)} />
           </Tabs>
         </Box>
         <div className="tab-content">
