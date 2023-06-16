@@ -182,7 +182,7 @@ export const EditProfile = () => {
                             <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" />
                         </div>
                         {loading ? <div className='LoginError'>{t('EditProfilePage.loader.l1')}</div> : ""}
-                        {message && <div className='LoginError'>{message}</div>}                       
+                                              
                         <button type="submit">{t('EditProfilePage.form.f9')}</button>
                     </form>
                 </>
