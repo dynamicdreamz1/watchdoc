@@ -149,7 +149,7 @@ export const allInOneClinicianList = async () => {
 }
 
 
-export const getAdminCriticalAlertReviewed = async (currentPage,limit) => {
+export const getAdminCriticalAlertReviewed = async (limit,currentPage) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
     try {
         const response = await axios({

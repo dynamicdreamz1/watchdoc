@@ -7,6 +7,7 @@ import { getCurrentUserData } from '../../services/UserService';
 export default function Sidebar() {
   const userData = getCurrentUserData()
 
+  console.log("userData************",userData);
   return (
     <>
     <div className='sidebar'>
