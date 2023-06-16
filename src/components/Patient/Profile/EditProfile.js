@@ -41,37 +41,36 @@ export const EditProfile = () => {
         formData.append("sex", value?.sex);
         formData.append("weight",value?.weight);
         formData.append("height",value?.height);
-        // ProfileCreation(formData)
-        //     .then((res) => {                
-        //         StoreCookie.setItem("user_details", res?.data);
-        //         setCurrentUserData({ ...currentUserData, userData: res?.data })
-        //         toast.success('Profile updated successfully.', {
-        //             position: 'top-right',
-        //             autoClose: 3000,
-        //             hideProgressBar: true,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             theme: "colored",
-        //         });
-        //         setMessage(t('EditProfilePage.message.m1'))
-        //         setLoading(false)
-        //         setTimeout(() => {
-        //             setMessage("")
-        //         }, 3000);
+        ProfileCreation(formData)
+            .then((res) => {                
+                StoreCookie.setItem("user_details", res?.data);
+                setCurrentUserData({ ...currentUserData, userData: res?.data })
+                toast.success('Profile updated successfully.', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+                setMessage(t('EditProfilePage.message.m1'))
+                setLoading(false)
+                setTimeout(() => {
+                    setMessage("")
+                }, 3000);
 
 
-        //     })
-        //     .catch((error) => {
-        //         setLoading(false)
-        //         if (error.response.status === 422) {
-        //             setMessage(t('EditProfilePage.error.e7'))
-        //         }
-        //         else {
-        //             setMessage(error)
-        //         }
-        //     })
-console.log("1111111-value",value)
+            })
+            .catch((error) => {
+                setLoading(false)
+                if (error.response.status === 422) {
+                    setMessage(t('EditProfilePage.error.e7'))
+                }
+                else {
+                    setMessage(error)
+                }
+            })
     }
 
 
