@@ -7,6 +7,7 @@ import { getCurrentUserData } from '../../services/UserService';
 export default function Sidebar() {
   const userData = getCurrentUserData()
 
+  console.log("userData************",userData);
   return (
     <>
     <div className='sidebar'>
@@ -15,7 +16,7 @@ export default function Sidebar() {
         </div>
         <nav aria-label="main mailbox folders">
           {(() => {
-          switch (userData?.roles[0].name) {
+          switch (userData&& userData?.roles[0]?.name) {
             case "User":
               return <PatientSidebar/>
             case 'Clinician':

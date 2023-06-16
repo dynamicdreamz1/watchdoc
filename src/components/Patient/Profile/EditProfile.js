@@ -72,6 +72,7 @@ export const EditProfile = () => {
             setLoading(true)
             ProfileCreation(data)
                 .then((res) => {
+
                     toast.success('Profile updated successfully.', {
                         position: 'top-right',
                         autoClose: 3000,
@@ -82,6 +83,7 @@ export const EditProfile = () => {
                         theme: "colored",
                       });
                     setLoading(false)
+                    console.log("res",res?.data);
                     StoreCookie.setItem("user_details", res?.data);
                     setCurrentUserData({ ...currentUserData, userData: res?.data })
                     setMessage(t('EditProfilePage.message.m1'))
