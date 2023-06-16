@@ -8,7 +8,7 @@ import { getParticularClinicianDetails, getParticulatClinicianApprovePatient, ge
 import { Dialog, Pagination } from '@mui/material'
 import AddClinician from '../components/Admin/AddClinician'
 import { ChartResultRange, TableSkeleton } from '../Utility/Skeleton'
-import { reviewedUnReviwedCommon } from '../Utility/functions'
+import { requestAndApprovePatient, reviewedUnReviwedCommon } from '../Utility/functions'
 
 
 const ClinicianDetails = () => {
@@ -27,17 +27,15 @@ const ClinicianDetails = () => {
     const [totalPagesAllPendingPatientData, setTotalPagesAllPendingPatientData] = useState(0);
     const [dataLimitAllPendingPatientData] = useState(5)
     const [loadingAllPendingPatientData, setLoadingAllPendingPatientData] = useState(false)
-    const finalDataPendingpatientData = reviewedUnReviwedCommon(allPendingPatientData?.data)
-
-
+    const finalDataPendingpatientData = requestAndApprovePatient(allPendingPatientData?.data)
 
 
     const [allApprovePatientData, setAllApprovePatientData] = useState([]);
     const [currentPageAllApprovePatientData, setCurrentPageAllApprovePatientData] = useState(1);
     const [totalPagesAllApprovePatientData, setTotalPagesAllApprovePatientData] = useState(0);
-    const [dataLimitAllApprovePatientData] = useState(1)
+    const [dataLimitAllApprovePatientData] = useState(5)
     const [loadingAllApprovePatientData, setLoadingAllApprovePatientData] = useState(false)
-    const finalDataApprovepatientData = reviewedUnReviwedCommon(allApprovePatientData?.data)
+    const finalDataApprovepatientData = requestAndApprovePatient(allApprovePatientData?.data)
 
 
 
