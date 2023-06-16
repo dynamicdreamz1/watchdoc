@@ -75,7 +75,7 @@ let [options, setOptions] = useState(specificOption)
   const pendingClincians = async (limit,currentPage) => {
     setFirstLoading(true)
     let res = await getPendingClinicians(limit,currentPage)
-    if (res?.data?.data.data.length === 0) {
+    if (res?.data?.data?.data?.length === 0) {
       setFirstLength("No records found.")
     }
     setPendingClinician(res?.data?.data)
@@ -87,11 +87,11 @@ let [options, setOptions] = useState(specificOption)
   const getAllClinicianData=async(dataLimit,currentPage)=>{
     setSecondLoading(true)           
     let res = await getAllClinicians(dataLimit,currentPage);
-    if(res?.data?.data?.data.length===0){
+    if(res?.data?.data?.data?.length===0){
       setSecondLength("No records found.")
     };
-    setAllClinician(res.data)
-    setTotalPages(Math.ceil(res.data.data.total / dataLimit));
+    setAllClinician(res?.data)
+    setTotalPages(Math.ceil(res?.data?.data?.total / dataLimit));
     setSecondLoading(false)  
   }
 
@@ -158,7 +158,6 @@ let [options, setOptions] = useState(specificOption)
   }
 
   const pageOptions=[5,10,20,30,40,50,60,70,80,90,100];
-
   return (
     <>
     <ToastContainer />
