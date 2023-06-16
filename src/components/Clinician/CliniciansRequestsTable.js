@@ -9,7 +9,7 @@ import { getCurrentUserData } from '../../services/UserService';
 
 export default function CliniciansRequestsTable(props) {
     const userData = getCurrentUserData();
-    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages } = props;
+    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage } = props;
     const { t } = useTranslation();
     const location = useLocation();
     return (
@@ -31,16 +31,18 @@ export default function CliniciansRequestsTable(props) {
                                     <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
                                             <TableCell align="center">{t('CliniciansRequestsTable.tableCell4')}</TableCell>
                                             <TableCell align="center">{t('CliniciansRequestsTable.tableCell5')}</TableCell>
-                                </TableRow>
+                                            <TableCell align="center">{t('CliniciansRequestsTable.tableCell6')}</TableCell>
+
+                                </TableRow> 
                             </TableHead>
                             <TableBody>
 
                                 {clinicianStaff?.length > 0 && clinicianStaff?.map((element) => (
-                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} /></React.Fragment>
+                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={clinicianStaff} getClinicianData={getClinicianData}  currentPage={currentPage} recordsPerPage={recordsPerPage} /></React.Fragment>
                                 ))}
 
                                 {allClinician?.length > 0 && allClinician?.map((element) => (
-                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} /></React.Fragment>
+                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} getClinicianData={getClinicianData} currentPage={currentPage} recordsPerPage={recordsPerPage} /></React.Fragment>
                                 ))}
                             </TableBody>
                         </Table>}

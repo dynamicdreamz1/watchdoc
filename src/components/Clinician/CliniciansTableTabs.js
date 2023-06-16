@@ -78,8 +78,8 @@ let [options, setOptions] = useState(specificOption)
     if (res?.data?.data.data.length === 0) {
       setFirstLength("No records found.")
     }
-    setPendingClinician(res?.data.data)
-    let nPages=Math.ceil(res?.data.data?.total/limit)
+    setPendingClinician(res?.data?.data)
+    let nPages=Math.ceil(res?.data?.data?.total/limit)
     setPages(nPages)
     setFirstLoading(false)
   }
@@ -233,7 +233,7 @@ let [options, setOptions] = useState(specificOption)
                 {firstLength ? firstLength : ""}
                 <TabPanel value={value} index={0} className="table-nav-tabs-content">
                   <CliniciansRequestsTable value={value} clinicianStaff={pendingClinician?.data} recordsPerPage={recordsPerPage} totalPages={pages}  handleChangePage={handleChangePage}
-                   currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                   currentPage={currentPage} setCurrentPage={setCurrentPage} getClinicianData={pendingClincians} />
                 </TabPanel>
               </>
             }
@@ -249,7 +249,7 @@ let [options, setOptions] = useState(specificOption)
                   <TabPanel value={value} index={1} className="table-nav-tabs-content">
                     <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data} setAllClinician={setAllClinician} handleChangePage={handleChangePage}
                        currentPage={currentPage} totalPages={totalPages}
-                      recordsPerPage={dataLimit}  />
+                      recordsPerPage={dataLimit}  getClinicianData={getAllClinicianData} />
                   </TabPanel>
                 </>
               } </> : ""}

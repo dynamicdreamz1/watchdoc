@@ -254,6 +254,7 @@
         "tableCell3": "Phone",
         "tableCell4": "Connected Patients",
         "tableCell5": "Pending Patients",
+        "tableCell6": "Delete",
         "notFound": "You have not added any clincian yet."
     },
     "PractitionersCard": {

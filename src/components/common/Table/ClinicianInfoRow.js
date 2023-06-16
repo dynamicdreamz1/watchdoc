@@ -5,14 +5,18 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ClinicianInfo from './ClinicianInfo'
 import ConnectedPatients from './ConnectedPatients'
+import { deletePatientAndClinician } from  "../../../services/AdminService"
 import Email from './Email'
 import PendingPatients from './PendingPatients'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Phone from './Phone'
+import Swal from 'sweetalert2';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-export default function ClinicianInfoRow({ value, data, clinicianStaff }) {
+export default function ClinicianInfoRow({ value, data, clinicianStaff,getClinicianData,currentPage,recordsPerPage }) {
   const navigate=useNavigate();
+
   const { t } = useTranslation();
   const location = useLocation()
 
@@ -21,6 +25,39 @@ const handleClickClinicianDetailPage=()=>{
     id:data?.id,
   }})
 }
+
+const DeleteRequest = async (id) => {
+  Swal.fire({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this clinician!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+  }).then((result) => {
+      if (result.isConfirmed) {
+          // Perform the delete operation
+          const apiData = {
+              id: id,
+              role: 'clinician'
+          }
+          deletePatientAndClinician(apiData)
+              .then((res) => {
+                console.log(res);
+                if (res) {
+                  getClinicianData(recordsPerPage,currentPage)
+                }
+              })
+              .catch((error) => {
+                  console.log(error)
+              })
+          Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
+      }
+  });
+
+}
+
 
   return (
     <>
@@ -34,6 +71,7 @@ const handleClickClinicianDetailPage=()=>{
             <> */}
              <TableCell align='center'><ConnectedPatients data={data} /></TableCell>
              <TableCell align='center'><PendingPatients data={data} /></TableCell>
+             <TableCell onClick={()=>DeleteRequest(data.id)} align='center'><DeleteIcon /></TableCell>
              {/* </>
              }
           </>

@@ -121,7 +121,7 @@ export default function AdminDashboard() {
       <CriticalPatientsAlertTableTabs actionData={action} />
       <CliniciansRequestsTable clinicianStaff={pendingClinicianData?.data?.data} handleChangePage={handleChangePage}
        loading={pendingClinicianLoading} recordsPerPage={recordsPerPage} totalPages={pendingClinicianTotalPages}
-        currentPage={pendingClinicianCurrentPage} setCurrentPage={setPendingClinicianCurrentPage} />
+        currentPage={pendingClinicianCurrentPage}  setCurrentPage={setPendingClinicianCurrentPage} getClinicianData={GetPendingClinician} />
     </>
   )
 }

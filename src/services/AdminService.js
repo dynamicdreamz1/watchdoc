@@ -192,6 +192,18 @@ export const getAllAdminPatient = async (currentPage,limit) => {
         return error
     }
 }
+export const deletePatientAndClinician = async (data) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/delete_account?user_id=${data?.id}&role=${data?.role}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
 
 
 
