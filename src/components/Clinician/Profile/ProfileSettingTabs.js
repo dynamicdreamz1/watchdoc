@@ -69,7 +69,7 @@ export default function ProfileSettingTabs() {
             aria-label="basic tabs example"
           >
             <Tab label="Profile" {...a11yProps(0)} />
-            <Tab label="Password" {...a11yProps(1)} />
+            {userData && userData.roles[0].name === "Admin" || userData && userData.roles[0].name === "Clinician" ?   <Tab label="Password" {...a11yProps(1)} />  : ""}
             <Tab label="Two-factor authentication" {...a11yProps(2)} />
             {userData && userData.roles[0].name === "User" ? <Tab label="Emergency contacts" {...a11yProps(3)} /> : ''}
           </Tabs>
