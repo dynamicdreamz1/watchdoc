@@ -220,3 +220,34 @@ export const getParticularClinicianDetails = async (id) => {
         return error
     }
 }
+
+
+
+export const getParticulatClinicianPatient = async (id,currentPage,limit) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_patient_request?clinician_id=${id}&limit=${limit}&page=${currentPage}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
+export const getParticulatClinicianApprovePatient = async (id,currentPage,limit) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_approve_patient?clinician_id=${id}&limit=${limit}&page=${currentPage}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

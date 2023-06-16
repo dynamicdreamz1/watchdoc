@@ -29,7 +29,6 @@ export default function PatientInfoRow(props) {
   const DeleteAdminPatient =(id) =>{
     DeleteRequest(id)
   }
-
   return (
     <>
     <TableRow >
