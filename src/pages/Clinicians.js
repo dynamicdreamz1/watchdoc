@@ -6,6 +6,8 @@ import Sidebar from '../components/Templates/Sidebar';
 const Clinicians = () => {
   const [open, setOpen] = useState(false);
   const [searchData, setSearchData] = useState();
+  const [value, setValue] = useState(0);
+
 
   return (
     <React.Fragment>
@@ -13,7 +15,7 @@ const Clinicians = () => {
         <Sidebar />
         <div className='aside'>
           <Header setOpen={setOpen} setSearchData={setSearchData} />
-          <CliniciansTableTabs open={open} setOpen={setOpen} searchData={searchData} />
+          <CliniciansTableTabs open={open} setOpen={setOpen} searchData={searchData} setValue={setValue} value={value} />
         </div>
       </div>
     </React.Fragment>
