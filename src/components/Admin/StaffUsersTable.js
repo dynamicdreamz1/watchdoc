@@ -13,24 +13,14 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 
-export default function StaffUsersTable({ setOpen, open,searchData }) {
+export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     let limit = 10;
-    const [addNewStaff, setAddNewStaff] = useState({
-        "id":"",
-        "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practicename":"",
-        "practiceaddress": "",
-        "password": "",
-    })
+   
 
 
 
