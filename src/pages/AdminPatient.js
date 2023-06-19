@@ -10,7 +10,7 @@ const AdminPatients = () => {
   const [adminAllPatientsData,setAdminAllPatientsData]=useState([])
   const [adminPatientCurrentPage, setAdminPatientCurrentPage] = useState(1);
   const [adminPatientTotalPages, setAdminPatientTotalPages] = useState(0);
-  const [AdminPatientdataLimit] = useState(10)
+  const [AdminPatientdataLimit,setAdminPatientdataLimit] = useState(10)
   const [adminPatientloading, setAdminPatientloading] = useState(false)
 
 const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit)=>{
@@ -43,7 +43,9 @@ const action={
   adminPatientTotalPages,
   fetchAllPatient,
   adminPatientloading,
-  handleChangeAdminPagination
+  handleChangeAdminPagination,
+  setAdminPatientCurrentPage,
+  setAdminPatientdataLimit
 }
 
 
