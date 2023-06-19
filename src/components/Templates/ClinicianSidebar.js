@@ -41,8 +41,8 @@ export default function ClinicianSidebar() {
                 </ListItem>
                 </NavLink>
 
-                {/* <NavLink
-                    to="/edit-profile"
+                <NavLink
+                    to="/profile-settings"
                     className={({ isActive }) =>
                         isActive ? "isActive" : ""
                     }>
@@ -52,11 +52,11 @@ export default function ClinicianSidebar() {
                             <ListItemIcon>
                                 <img src='/images/EditProfileIcon.png' alt='Edit Profile Icon' />
                             </ListItemIcon>
-                            <ListItemText> {t('DashboardPage.SideBar.PatientSidebar.t3')} </ListItemText>
+                            <ListItemText>Edit Profile</ListItemText>
                         </ListItemButton>
                     </ListItem>
 
-                </NavLink>         */}
+                </NavLink>        
 
                 {/* <NavLink
                     to="/clinicians"
