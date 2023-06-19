@@ -6,7 +6,9 @@ export default function SearchBar({setSearch}) {
   const { t } = useTranslation();
 
   const searchInpitData = (e) =>{
-    setSearch(e.target.value)
+    if (setSearch) {
+      setSearch(e?.target?.value)
+    }
   }
 
   return (
