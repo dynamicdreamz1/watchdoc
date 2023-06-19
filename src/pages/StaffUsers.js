@@ -39,7 +39,7 @@ useEffect(()=>{
           <Sidebar/>
           <div className='aside'>
             <Header setOpen={setOpen} setAddNewStaff={setAddNewStaff} setSearchData={setSearchData}/>
-            <StaffUsersTable setOpen={setOpen} open={open}  addNewStaff={addNewStaff} setAddNewStaff={setAddNewStaff}/>
+            <StaffUsersTable setOpen={setOpen} open={open}  addNewStaff={addNewStaff} setAddNewStaff={setAddNewStaff} searchData={searchData}/>
           </div>
         </div>
       </React.Fragment>

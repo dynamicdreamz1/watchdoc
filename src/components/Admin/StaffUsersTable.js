@@ -22,9 +22,6 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
     let limit = 10;
    
 
-
-
-
     const handleChangePage = (e, newValue) => {
         setCurrentPage(newValue)
     }
