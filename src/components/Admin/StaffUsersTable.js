@@ -20,6 +20,8 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     let limit = 10;
+    const [countryCode, setcountryCode] = useState('+91');
+
    
 
 
@@ -89,13 +91,16 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             theme: "colored",
     
           });
-        }
-        
+        }       
     
     }
    
     const handleClickEdit=(data)=>{
         setOpen(true)
+        const countryCodeMatch = data?.contact_number?.match(/^\+(\d+)/);
+        const countryCode = countryCodeMatch ? countryCodeMatch[1] : "";
+        const phoneNumber = data?.contact_number?.replace(/^\+\d+\s/, "");
+        setcountryCode(countryCode);
         const editData = MetaFormeting(data)
         setAddNewStaff({
             "id":data?.id,
@@ -103,7 +108,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             "firstname": editData?.first_name || "",
             "lastname": editData?.last_name,
             "email": data?.email,
-            "number": data?.contact_number,
+            "number":phoneNumber,
             "practicename":editData?.practice_name,
             "practiceaddress": editData?.practice_address,
             "password": ""
@@ -122,7 +127,10 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser addNewStaff={addNewStaff} setAddNewStaff={setAddNewStaff} staffUser={staffUser} setCurrentPage={setCurrentPage} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
+                <AddStaffUser addNewStaff={addNewStaff} setAddNewStaff={setAddNewStaff} 
+                staffUser={staffUser} setCurrentPage={setCurrentPage} limit={limit}
+                 currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen}
+                  StaffUserData={StaffUserData} countryCode={countryCode} setcountryCode={setcountryCode}/>
             </Dialog>
             {loading ? <TableSkeleton /> :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">

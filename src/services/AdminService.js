@@ -112,6 +112,25 @@ export const addStaffUser = async (data) => {
     }
 }
 
+
+export const editStaffUser = async (data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/update_staff_users`,
+            data: data,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
+
 let token = StoreCookie.getItem('token')
 
 export const clinicanProfileUpdate = async (data) => {

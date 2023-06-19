@@ -5,12 +5,11 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { addStaffUser } from '../../services/AdminService';
+import { addStaffUser, editStaffUser } from '../../services/AdminService';
 import { toast } from 'react-toastify';
 
-export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff}) {
+export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff,countryCode, setcountryCode}) {
     const { t } = useTranslation()
-    const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");   
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
@@ -68,39 +67,53 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     // }
 
     const handleSubmitForm = async(data) => {
+        console.log("11111-data",data)
         if(data?.id){
-
+            const formData=new FormData();
+            formData.append("id",data?.id)
+            formData.append("first_name",data?.firstname)
+            formData.append("last_name",data?.lastname)
+            formData.append("email",data?.email)
+            formData.append("contact_number",`${countryCode} ${data?.number}`)
+            formData.append("practice_address",data?.practiceaddress,)
+            // formData.append("password",data?.password,)
+            formData.append("practice_name",data?.practicename)
+            if(typeof imageUrl==="object"){
+            formData.append("profile_pic",imageUrl)
+            }
+            const res=await editStaffUser(formData)
+            if(res?.status===200){
+                StaffUserData(limit,currentPage)
+                toast.success('Staff-User update Successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                  });
+            }
+            setOpen(false)
+            setCurrentPage(1)
         }
         else{
-
-        }
-        const formData=new FormData();
-        formData.append("first_name",data?.firstname)
-        formData.append("last_name",data?.lastname)
-        formData.append("email",data?.email)
-        formData.append("contact_number",`${countryCode} ${data?.number}`)
-        formData.append("address",data?.practiceaddress,)
-        formData.append("password",data?.password,)
-        formData.append("type","create")
-        if(typeof imageUrl==="object"){
-        formData.append("profile_pic",imageUrl)
-        }
-        
-      const res= await addStaffUser(formData)
-      if(res?.response?.status===200){
-        StaffUserData(limit,currentPage)
-        toast.success('Staff-User Added Successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-          });
-        }
-        if(res?.response?.status===422){
-            toast.error(res?.response?.data?.message, {
+            const formData=new FormData();
+            formData.append("first_name",data?.firstname)
+            formData.append("last_name",data?.lastname)
+            formData.append("email",data?.email)
+            formData.append("contact_number",`${countryCode} ${data?.number}`)
+            formData.append("address",data?.practiceaddress,)
+            formData.append("password",data?.password,)
+            formData.append("type","create")
+            if(typeof imageUrl==="object"){
+            formData.append("profile_pic",imageUrl)
+            }
+            
+          const res= await addStaffUser(formData)
+          if(res?.response?.status===200){
+            StaffUserData(limit,currentPage)
+            toast.success('Staff-User update Successfully', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: true,
@@ -109,21 +122,35 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                 draggable: true,
                 theme: "colored",
               });
+            }
+            if(res?.response?.status===422){
+                toast.error(res?.response?.data?.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                  });
+    
+            }
+            setOpen(false)
+            setAddNewStaff({
+            "title": "Dr",
+            "firstname": "",
+            "lastname": "",
+            "email": "",
+            "number": "",
+            "practiceaddress": "",
+            "password": "",
+            })
+            setCurrentPage(1)
 
         }
-        setOpen(false)
-        setAddNewStaff({
-        "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practiceaddress": "",
-        "password": "",
-        })
-        setCurrentPage(1)
+       
     }
-
+console.log("111111-countryCode",countryCode)
 
     return (
         <Formik
