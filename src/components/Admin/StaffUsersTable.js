@@ -2,13 +2,15 @@ import { Dialog, Pagination, Paper, Table, TableBody, TableCell, TableContainer,
 import React, { useEffect, useState } from 'react'
 import ClinicianInfo from '../common/Table/ClinicianInfo';
 import AddStaffUser from './AddStaffUser';
-import { getStaffUsers } from '../../services/AdminService';
+import { getStaffUsers , deleteStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
 import { TableSkeleton } from '../../Utility/Skeleton';
 import {  ToastContainer } from 'react-toastify'
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 
 
 export default function StaffUsersTable({ setOpen, open }) {
@@ -58,6 +60,49 @@ export default function StaffUsersTable({ setOpen, open }) {
         setOpen(false);
     };
 
+
+    const handleClickDelete=async(id)=>{
+        try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to delete',
+            limit:1,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+          });
+      
+          if (result.isConfirmed) {
+            const res = await deleteStaffUsers(id);       
+            await StaffUserData(limit, currentPage)
+            toast.success(res?.data?.message, {
+              position: 'top-right',
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored",
+            });
+    
+          }
+        } catch (error) {
+          toast.error(error, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+    
+          });
+        }
+        
+    
+    }
    
     const handleClickEdit=(data)=>{
         setOpen(true)
@@ -98,6 +143,9 @@ export default function StaffUsersTable({ setOpen, open }) {
                                 <TableCell>Email</TableCell>
                                 <TableCell>Phone</TableCell>
                                 <TableCell>Last Login</TableCell>
+                                <TableCell>Delete</TableCell>
+                                <TableCell>Edit</TableCell>
+
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -114,7 +162,9 @@ export default function StaffUsersTable({ setOpen, open }) {
                                         <TableCell>{data.email}</TableCell>
                                         <TableCell>{data.contact_number}</TableCell>
                                         <TableCell>{last_login}</TableCell>
-                    <TableCell align="center" > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
+                                        <TableCell > <button onClick={() => handleClickDelete(data.id)}><DeleteIcon/><img src="" alt="" /> </button></TableCell>
+
+                    <TableCell  > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
 
                                     </TableRow>
                                 )

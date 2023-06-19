@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 
 export default function Header({ toggle, setToggle, setOpen,setSearchData }) {
   const location = useLocation()
-  console.log("");
   const { currentUserData } = useContext(UserContext);
   
   return (

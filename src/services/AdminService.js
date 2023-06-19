@@ -16,6 +16,19 @@ export const getStaffUsers = async (recordPerPage, currentPage) => {
     }
 }
 
+export const deleteStaffUsers = async (id) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/delete_staff_users?user_id=${id}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
 export const getPendingClinicians = async (limit, pages,search) => {
     try {
         const response = await axios({
