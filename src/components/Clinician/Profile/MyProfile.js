@@ -19,7 +19,6 @@ export default function MyProfile() {
     const [loading,setLoading]=useState(false)
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-    console.log("userData",metaData);
     const [editClinicianProfileData, setEditClinicianProfileData] = useState({
         "preferredFirstName":"Dr",
         "first_name": first_name,
@@ -40,15 +39,22 @@ export default function MyProfile() {
         last_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required"),
-        sex: Yup.string().required("sex Is Required"),
-        dob: Yup.string().required("dob Is Required"),
+        sex: Yup.string().required("This field is required*"),
+        dob: Yup.string().required("This field is required*"),
         contact_number: Yup.string().required(t('SignUpPage.validation.common1'))
-            .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
-            .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
+        .matches(phoneRegExp, t("SignUpPage.validation.mobile.v1"))
+        .min(10, t("SignUpPage.validation.mobile.short"))
+        .max(10, t("SignUpPage.validation.mobile.long")),
         practice_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         practice_address: Yup.string().required("This field is required*"),
+        weight: Yup.string()
+        .required("This field is required*")
+        .matches(/^[a-zA-Z0-9\s.]+$/, "Only alphabets, numbers, and periods are allowed for this field"),      
+         height: Yup.string()
+  .required("This field is required*")
+  .matches(/^[a-zA-Z0-9\s.]+$/, "Only alphabets, numbers, and periods are allowed for this field")
+
     });
 
     const handleImages = (files) => {
@@ -56,7 +62,6 @@ export default function MyProfile() {
     }
     
     const handleSubmitForm = async(data) => {
-        console.log("data",data);
         setLoading(true)
         const formData = new FormData();
         formData.append("first_name", data?.first_name);
@@ -78,14 +83,18 @@ export default function MyProfile() {
        try {
         setLoading(false)
        if(updatedUserData?.status===200){
-        toast.success('Profile updated successfully.', {
+          toast.success('Profile updated successfully.', {
             position: 'top-right',
             autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
           });
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
-        console.log("tempMetaFormat",tempMetaFormat);
          setEditClinicianProfileData({
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
@@ -183,12 +192,12 @@ export default function MyProfile() {
                             <div className='input-block'>
                             <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
                             <input type="text" name="weight"  placeholder={t('EditProfilePage.form.f15')} value={props?.values?.weight} id="exampleInputWeight" onChange={props?.handleChange} />
-                            {/* <span className="error"> {props?.errors?.weight ? props?.errors?.weight : ""}</span> */}
+                            <span className="error"> {props?.errors?.weight ? props?.errors?.weight : ""}</span>
                         </div>
                         <div className='input-block'>
                             <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
                             <input type="text" name="height" placeholder={t('EditProfilePage.form.f16')}  value={props?.values?.height} id="exampleInputHeight" onChange={props?.handleChange} />
-                            {/* <span className="error"> {props?.errors?.height ? props?.errors?.height : ""}</span> */}
+                            <span className="error"> {props?.errors?.height ? props?.errors?.height : ""}</span>
                         </div>
                 <div className='input-block'>
                     <label>Email address</label>
@@ -197,7 +206,7 @@ export default function MyProfile() {
                 </div>
                 <div className='input-block'>
                     <label>Contact Number</label>
-                    <input type="text" name='contactnumber' placeholder='Contact Number*'   value={props?.values?.contact_number} onChange={props?.handleChange} />
+                    <input type="text" name='contact_number' placeholder='Contact Number*'   value={props?.values?.contact_number} onChange={props?.handleChange} />
                             <span className="error">{props?.errors?.contact_number?props?.errors?.contact_number:""}</span>
                 </div>
                 <div className='input-block'>
