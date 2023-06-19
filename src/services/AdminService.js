@@ -43,7 +43,6 @@ export const getPendingClinicians = async (limit, pages,search) => {
 }
 
 export const getAllClinicians = async (dataLimit, currentPage,search) => {
-    console.log("&search=${search}",search);
     try {
         const response = await axios({
             method: 'get',
