@@ -149,8 +149,7 @@ let [options, setOptions] = useState(specificOption)
   };
 
   const handleDataChange =(pageCount) => {
-    setDataLimit(pageCount)
-    
+    setDataLimit(pageCount)    
   };
 
   const handleDataChangePendingClinician=(pageCount)=>{

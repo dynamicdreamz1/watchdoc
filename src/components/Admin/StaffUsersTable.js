@@ -7,6 +7,8 @@ import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
 import { TableSkeleton } from '../../Utility/Skeleton';
 import {  ToastContainer } from 'react-toastify'
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 export default function StaffUsersTable({ setOpen, open }) {
@@ -16,6 +18,20 @@ export default function StaffUsersTable({ setOpen, open }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     let limit = 10;
+    const [addNewStaff, setAddNewStaff] = useState({
+        "id":"",
+        "title": "Dr",
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "number": "",
+        "practicename":"",
+        "practiceaddress": "",
+        "password": "",
+    })
+
+
+
 
     const handleChangePage = (e, newValue) => {
         setCurrentPage(newValue)
@@ -24,13 +40,11 @@ export default function StaffUsersTable({ setOpen, open }) {
     const StaffUserData = async (limit, currentPage) => {
         setLoading(true)
         const response = await getStaffUsers(limit, currentPage);
-
         if(response.status===200){
             setStaffUser(response.data?.data)
         }
         setLoading(false)
         let nPages = Math.ceil(response?.data?.total / limit)
-
         setTotalPages(nPages)
     }
 
@@ -44,6 +58,24 @@ export default function StaffUsersTable({ setOpen, open }) {
         setOpen(false);
     };
 
+   
+    const handleClickEdit=(data)=>{
+        setOpen(true)
+        const editData = MetaFormeting(data)
+        setAddNewStaff({
+            "id":data?.id,
+            "title": "Dr",
+            "firstname": editData?.first_name || "",
+            "lastname": editData?.last_name,
+            "email": data?.email,
+            "number": data?.contact_number,
+            "practicename":editData?.practice_name,
+            "practiceaddress": editData?.practice_address,
+            "password": ""
+        })
+        
+    }
+
     return (
         <>
         <ToastContainer />
@@ -55,7 +87,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                 className='add-staff-user-dialog'
             >
                 <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                <AddStaffUser staffUser={staffUser} setCurrentPage={setCurrentPage} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
+                <AddStaffUser addNewStaff={addNewStaff} setAddNewStaff={setAddNewStaff} staffUser={staffUser} setCurrentPage={setCurrentPage} limit={limit} currentPage={currentPage} setStaffUser={setStaffUser} setOpen={setOpen} StaffUserData={StaffUserData} />
             </Dialog>
             {loading ? <TableSkeleton /> :
                 <TableContainer component={Paper} className="red-alert-table table-without-space">
@@ -84,6 +116,8 @@ export default function StaffUsersTable({ setOpen, open }) {
                                         <TableCell>{data.email}</TableCell>
                                         <TableCell>{data.contact_number}</TableCell>
                                         <TableCell>{last_login}</TableCell>
+                    <TableCell align="center" > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
+
                                     </TableRow>
                                 )
                             })}

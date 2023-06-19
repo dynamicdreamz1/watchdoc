@@ -8,20 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { addStaffUser } from '../../services/AdminService';
 import { toast } from 'react-toastify';
 
-export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage}) {
+export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff}) {
     const { t } = useTranslation()
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-    const [addNewStaff, setAddNewStaff] = useState({
-        "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practicename":"",
-        "practiceaddress": "",
-        "password": "",
-    })
+   
    
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
@@ -79,6 +70,12 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     // }
 
     const handleSubmitForm = async(data) => {
+        if(data?.id){
+
+        }
+        else{
+
+        }
         const formData=new FormData();
         formData.append("first_name",data?.firstname)
         formData.append("last_name",data?.lastname)
@@ -111,7 +108,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         "number": "",
         "practiceaddress": "",
         "password": "",
-
         })
         setCurrentPage(1)
     }
