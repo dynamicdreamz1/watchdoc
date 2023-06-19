@@ -11,9 +11,7 @@ import { toast } from 'react-toastify';
 export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff}) {
     const { t } = useTranslation()
     const [countryCode, setcountryCode] = useState('+91');
-    const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-   
-   
+    const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");   
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
@@ -88,7 +86,8 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         formData.append("profile_pic",imageUrl)
         }
         
-       await addStaffUser(formData)
+      const res= await addStaffUser(formData)
+      if(res?.response?.status===200){
         StaffUserData(limit,currentPage)
         toast.success('Staff-User Added Successfully', {
             position: 'top-right',
@@ -99,6 +98,19 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             draggable: true,
             theme: "colored",
           });
+        }
+        if(res?.response?.status===422){
+            toast.error(res?.response?.data?.message, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
+
+        }
         setOpen(false)
         setAddNewStaff({
         "title": "Dr",
