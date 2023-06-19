@@ -41,7 +41,7 @@ export default function ClinicianSidebar() {
                 </ListItem>
                 </NavLink>
 
-                <NavLink
+                {/* <NavLink
                     to="/edit-profile"
                     className={({ isActive }) =>
                         isActive ? "isActive" : ""
@@ -56,7 +56,7 @@ export default function ClinicianSidebar() {
                         </ListItemButton>
                     </ListItem>
 
-                </NavLink>        
+                </NavLink>         */}
 
                 {/* <NavLink
                     to="/clinicians"

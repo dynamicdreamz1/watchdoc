@@ -1,5 +1,5 @@
 import React,{useContext, useState} from 'react'
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import * as Yup from "yup";
 import { MetaFormeting } from '../../../Utility/functions';
 import {getCurrentUserData } from '../../../services/UserService';
@@ -7,9 +7,10 @@ import { StoreCookie } from '../../../Utility/sessionStore';
 import { UserContext } from '../../../Store/Context';
 import { UpdateUserProfile } from '../../../services/AdminService';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export default function MyProfile() {
-    
+    const { t } = useTranslation()    
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
     const metaData=  MetaFormeting(userData);
@@ -25,7 +26,12 @@ export default function MyProfile() {
         "email": userData?.email,
         "practicename": practice_name || "",
         "practiceaddress": practice_address || "",
-        "profile_pic":imageUrl
+        "profile_pic":imageUrl,
+        "preferredFirstName": "",
+        "dob": "",
+        "sex": "",
+        "weight": "",
+        "height": "",
     })
     const LoginSchema = Yup.object({
         first_name: Yup.string().required("This field is required*")
@@ -150,6 +156,44 @@ export default function MyProfile() {
                     </div>
                 </div>
             </div>
+            <div className='input-block'>
+                            <label htmlFor="exampleInputPreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
+                            <input type="text" name="preferredFirstName" placeholder={t('EditProfilePage.form.f18')} value={props?.values?.preferredFirstName} id="exampleInputPreferredFirstName" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.preferredFirstName ? props?.errors?.preferredFirstName : ""}</span>
+                        </div>
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputDOB" >{t('EditProfilePage.form.f3')}</label>
+                            <input type="date" name="dob" value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange}/>
+                            <span className="error"> {props?.errors?.dob ? props?.errors?.dob : ""}</span>
+                        </div>
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
+                            <div className='radio-buttons'>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="male" name="sex" value="male" />
+                                    <label htmlFor="male">Male</label>
+                                </div>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="female" name="sex" value="female" />
+                                    <label htmlFor="female">Female</label>
+                                </div>
+                                <div className='radio-button'>
+                                    <Field type="radio" id="other" name="sex" value="other" />
+                                    <label htmlFor="other">Other</label>
+                                </div>
+                            </div>
+                            <span className="error"> {props?.errors?.sex ? props?.errors?.dob : ""}</span>
+                            </div>
+                            <div className='input-block'>
+                            <label htmlFor="exampleInputWeight" >{t('EditProfilePage.form.f7')}</label>
+                            <input type="text" name="weight"  placeholder={t('EditProfilePage.form.f15')} value={props?.values?.weight} id="exampleInputWeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.weight ? props?.errors?.weight : ""}</span>
+                        </div>
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputHeight" >{t('EditProfilePage.form.f8')}</label>
+                            <input type="text" name="height" placeholder={t('EditProfilePage.form.f16')} value={props?.values?.height} id="exampleInputHeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.height ? props?.errors?.height : ""}</span>
+                        </div>
                 <div className='input-block'>
                     <label>Email address</label>
                     <input type="email" name='email' placeholder='Email*'  onChange={props?.handleChange} value={props?.values?.email}/>

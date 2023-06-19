@@ -11,7 +11,8 @@ import * as Yup from 'yup';
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    const { first_name, preferred_first_name, last_name, dob, sex, weight, height } = MetaFormeting(userData);
+    const { first_name, preferred_first_name, last_name, dob, sex, weight, height,profile_pic } = MetaFormeting(userData);
+    const [ imageUrl, setImgSrc ] = useState((profile_pic===null ||profile_pic===undefined )?"/public/images/user-picture-placeholder.png":profile_pic);
 
     const [updateUser] = useState({
         "firstname": first_name,
@@ -21,15 +22,21 @@ export const EditProfile = () => {
         "sex": sex,
         "weight": weight,
         "height": height,
-
+        "profile_pic":imageUrl
     })
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-
     const BMI = (weight / Math.pow((updateUser?.height), 2))
-
     const roundedBMI = Math.round(BMI * 100) / 100
+
+
+    const handleImages = (files) => {
+        setImgSrc(files)
+    }
+
+
+
 
     const handleSubmit = (value) => {
         setLoading(true)
@@ -107,6 +114,14 @@ export const EditProfile = () => {
             {(props) => (
                 <>
                     <form id='main_form' onSubmit={props.handleSubmit}>
+                    <div className='input-block update-profile'>
+                <div className='image-block'>
+                    <img src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="" />
+                </div>
+                <div>
+                    <input id="file" name="profile_pic" type="file" onChange={(e)=>handleImages(e.target.files[0])}/>
+                </div>
+            </div>
                         <div className='SuccessMessage'></div>
                         <div className='input-block'>
                             <label htmlFor="exampleInputFirstName" >{t('EditProfilePage.form.f1')}</label>
