@@ -55,8 +55,8 @@ export default function UserAvtar() {
     <>
         <div className='account-owner'>
             <div className='info'>
-                <span className='uname'>{ currentUserData?.role==="Clinician" ? `${first_name} ${last_name}` : currentUserData?.role==="Hospital" ? `${full_name}`: currentUserData?.role==="Admin" ? `${first_name} ${last_name}` : `${first_name} ${last_name}`}</span>
-                <span className='uposition'>{currentUserData?.role === "Clinician" ? t('UserAvtar.role.DoctorRole') : currentUserData?.role==="Hospital" ? t('UserAvtar.role.HospitalRole') : currentUserData?.role==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
+                <span className='uname'>{ userData?.roles[0]?.name==="Clinician" ? `${first_name} ${last_name}` : userData?.roles[0]?.name==="Hospital" ? `${full_name}`: userData?.roles[0]?.name==="Admin" ? `${first_name} ${last_name}` : `${first_name} ${last_name}`}</span>
+                <span className='uposition'>{userData?.roles[0]?.name === "Clinician" ? t('UserAvtar.role.DoctorRole') : userData?.roles[0]?.name==="Hospital" ? t('UserAvtar.role.HospitalRole') : userData?.roles[0]?.name==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
             </div>
             <Button 
                 id="basic-button"

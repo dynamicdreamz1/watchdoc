@@ -44,14 +44,13 @@ function a11yProps(index) {
   };
 }
 
-export default function CliniciansTableTabs({ open, setOpen,searchData }) {
+export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,value }) {
   const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
   const [recordsPerPage, setRecordsPerPage] = useState(10);
   const [recordsPerPagePendingClinician, setRecordsPerPagePendingClinician] = useState(10);
 
-  const [value, setValue] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pendingClinician, setPendingClinician] = useState([])
   const [firstLoading, setFirstLoading] = useState(false)
@@ -64,7 +63,6 @@ export default function CliniciansTableTabs({ open, setOpen,searchData }) {
   const [pages, setPages] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
-
   const specificOption = [
     t('DashboardPage.SideButton.d1'),
     t('DashboardPage.SideButton.d2'),
@@ -74,7 +72,7 @@ let [options, setOptions] = useState(specificOption)
 
   const pendingClincians = async (limit,currentPage,searchData) => {
     setFirstLoading(true)
-    let res = await getPendingClinicians(limit,currentPage,searchData ?searchData : '')
+    let res = await getPendingClinicians(limit,currentPage,searchData ? searchData : '')
     if (res?.data?.data?.data?.length === 0) {
       setFirstLength("No records found.")
     }
@@ -96,17 +94,16 @@ let [options, setOptions] = useState(specificOption)
   }
 
   useEffect(() => {
-   
+   if(value===0){
       pendingClincians(limit,currentPage,searchData)
+   }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage,limit,searchData])
 
   useEffect(() => {
-   
       getAllClinicianData(dataLimit,currentPage,searchData)
-    
-  }, [currentPage,dataLimit,searchData]);
+  },[currentPage,dataLimit,searchData]);
 
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
