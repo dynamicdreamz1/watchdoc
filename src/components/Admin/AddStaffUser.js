@@ -46,7 +46,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         setcountryCode(event.target.value);
     };
 
-
     const handleImages = (files) => {
         setImgSrc(files)
         // let validImages = [files].filter((file) =>
@@ -67,7 +66,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     // }
 
     const handleSubmitForm = async(data) => {
-        console.log("11111-data",data)
         if(data?.id){
             const formData=new FormData();
             formData.append("id",data?.id)
@@ -111,7 +109,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             }
             
           const res= await addStaffUser(formData)
-          if(res?.response?.status===200){
+          if(res?.status===200){
             StaffUserData(limit,currentPage)
             toast.success('Staff-User update Successfully', {
                 position: 'top-right',
@@ -150,7 +148,6 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         }
        
     }
-console.log("111111-countryCode",countryCode)
 
     return (
         <Formik
@@ -210,6 +207,7 @@ console.log("111111-countryCode",countryCode)
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
+                            {typeof addNewStaff?.id==='number' ?"":
                             <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password"  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
@@ -221,6 +219,8 @@ console.log("111111-countryCode",countryCode)
                                 </button> */}
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
+                            
+}
                             <div className='input-block country-code'>
                                 <label id="country-code">Enter new phone number</label>
                                 <div className='inputs-wrapper'>
