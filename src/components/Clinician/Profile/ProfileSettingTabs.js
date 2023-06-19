@@ -67,29 +67,29 @@ export default function ProfileSettingTabs() {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Profile" {...a11yProps(0)} />
-            <Tab label="Two-factor authentication" {...a11yProps(1)} />
-            { userData.roles[0].name !== "User" ? <Tab label="Password" {...a11yProps(2)} /> : <Tab label="Emergency contacts" {...a11yProps(2)} /> }
+            <Tab label="Two-factor authentication" {...a11yProps(0)} />
+            <Tab label="Password" {...a11yProps(1)} /> 
+           
+            {userData.roles[0].name === "User" ?  <Tab label="Emergency contacts" {...a11yProps(2)} />  :  <Tab label="Profile" {...a11yProps(2)} />}
             {/* { userData.roles[0].name === "User"  ? : ''} */}
           </Tabs>
         </Box>
         <div className="tab-content">
+         
           <TabPanel value={value} index={0}>
-            <MyProfile />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
             <EditTwoFactor />
           </TabPanel>
-          { userData.roles[0].name !== "User" ?
-          <TabPanel value={value} index={2}>
+          <TabPanel value={value} index={1}>
             <ChangePassword />
           </TabPanel>
-          : ""}
-          { userData.roles[0].name === "User"  ? 
-          <TabPanel value={value} index={2} >
+          {userData.roles[0].name === "User" ?    <TabPanel value={value} index={2} >
             <EmergencyContacts />
-          </TabPanel>
-          : ""}
+          </TabPanel> : 
+          <TabPanel value={value} index={2}>
+            <MyProfile />
+          </TabPanel> } 
+       
+    
           <Link to="/dashboard" className="close-btn">
             <img src="/images/Close-Icon.svg" alt="Close Icon" />
           </Link>
