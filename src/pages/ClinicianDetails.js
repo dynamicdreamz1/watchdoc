@@ -8,7 +8,7 @@ import { getParticularClinicianDetails, getParticulatClinicianApprovePatient, ge
 import { Dialog, Pagination } from '@mui/material'
 import AddClinician from '../components/Admin/AddClinician'
 import { ChartResultRange, TableSkeleton } from '../Utility/Skeleton'
-import { requestAndApprovePatient, reviewedUnReviwedCommon } from '../Utility/functions'
+import { requestAndApprovePatient} from '../Utility/functions'
 
 
 const ClinicianDetails = () => {
