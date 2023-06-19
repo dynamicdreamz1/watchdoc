@@ -16,9 +16,9 @@ const AdminPatients = () => {
 const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit)=>{
   setAdminPatientloading(true);
   const res= await getAllAdminPatient(adminPatientCurrentPage,AdminPatientdataLimit);
-  setAdminPatientTotalPages(Math.ceil(res?.data?.total / AdminPatientdataLimit))
+  setAdminPatientTotalPages(Math.ceil(res?.data?.data.total / AdminPatientdataLimit))
   if(res?.status===200){
-    setAdminAllPatientsData(res?.data)
+    setAdminAllPatientsData(res?.data.data)
   }
   setAdminPatientloading(false)
 }
