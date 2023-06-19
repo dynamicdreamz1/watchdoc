@@ -16,11 +16,11 @@ export const getStaffUsers = async (recordPerPage, currentPage) => {
     }
 }
 
-export const getPendingClinicians = async (limit, pages) => {
+export const getPendingClinicians = async (limit, pages,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients&limit=${limit}&page=${pages}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients&limit=${limit}&page=${pages}&search=${search}`,
             headers: headersAdmin
         })
         return response
@@ -29,11 +29,12 @@ export const getPendingClinicians = async (limit, pages) => {
     }
 }
 
-export const getAllClinicians = async (dataLimit, currentPage) => {
+export const getAllClinicians = async (dataLimit, currentPage,search) => {
+    console.log("&search=${search}",search);
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}&search=${search}`,
             headers: headersAdmin
         })
         return response
@@ -179,11 +180,11 @@ export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
 }
 
 
-export const getAllAdminPatient = async (currentPage,limit) => {
+export const getAllAdminPatient = async (currentPage,limit,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients?limit=${limit}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients?limit=${limit}&page=${currentPage}&search=${search}`,
             headers: headersAdmin
         })
         return response

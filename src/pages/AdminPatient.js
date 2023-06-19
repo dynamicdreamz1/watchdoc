@@ -12,10 +12,12 @@ const AdminPatients = () => {
   const [adminPatientTotalPages, setAdminPatientTotalPages] = useState(0);
   const [AdminPatientdataLimit,setAdminPatientdataLimit] = useState(10)
   const [adminPatientloading, setAdminPatientloading] = useState(false)
+  const [searchData, setSearchData] = useState();
 
-const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit)=>{
+
+const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit,searchData)=>{
   setAdminPatientloading(true);
-  const res= await getAllAdminPatient(adminPatientCurrentPage,AdminPatientdataLimit);
+  const res= await getAllAdminPatient(adminPatientCurrentPage,AdminPatientdataLimit,searchData?searchData:'');
   setAdminPatientTotalPages(Math.ceil(res?.data?.data.total / AdminPatientdataLimit))
   if(res?.status===200){
     setAdminAllPatientsData(res?.data.data)
@@ -23,8 +25,8 @@ const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit)=>{
   setAdminPatientloading(false)
 }
 useEffect(()=>{
-  fetchAllPatient(adminPatientCurrentPage,AdminPatientdataLimit)
-},[adminPatientCurrentPage,AdminPatientdataLimit])
+  fetchAllPatient(adminPatientCurrentPage,AdminPatientdataLimit,searchData)
+},[adminPatientCurrentPage,AdminPatientdataLimit,searchData])
 
 
 
@@ -54,7 +56,7 @@ const action={
         <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header />
+          <Header setSearchData={setSearchData} />
           <AdminCriticalPatientsAlertTableTabs action={action}/>
         </div>
     </div>
