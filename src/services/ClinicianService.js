@@ -224,3 +224,17 @@ export const UnreviewedToReviewedAlerts = async (data) => {
     }
 
 }
+
+export async function UpdateClinicianProfile(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}clinician/clinician_update_profile`,
+            data: data,
+            headers: headersClinician,
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
+}
