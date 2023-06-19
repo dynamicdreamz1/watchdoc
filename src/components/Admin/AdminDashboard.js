@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const GetPendingClinician = async (recordsPerPage,pendingClinicianCurrentPage) => {
     setPendingClinicianLoading(true)
     let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage,'')
-    console.log("res",res);
+
     if (res?.status === 200) {
       setPendingClinicianData(res?.data)
     }

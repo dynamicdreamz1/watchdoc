@@ -158,8 +158,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
                                         <TableCell>{data.contact_number}</TableCell>
                                         <TableCell>{last_login}</TableCell>
                                         <TableCell > <button onClick={() => handleClickDelete(data.id)}><DeleteIcon/><img src="" alt="" /> </button></TableCell>
-
-                    <TableCell  > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
+                                        <TableCell  > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
 
                                     </TableRow>
                                 )
