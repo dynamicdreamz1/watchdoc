@@ -101,9 +101,7 @@ export default function StaffUsersTable({ setOpen, open }) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-
                             {staffUser?.length !== 0 && staffUser?.map((data, i) => {
-
                                 const { last_login } = MetaFormeting(data)
                                 return (
                                     <TableRow

@@ -97,7 +97,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         }
         setOpen(false)
         const res=await clinicanProfileUpdate(formData)
-        if(res?.status===0){        
+        if(res?.status===200){        
         await getClinicianDetail()  
             toast.success('Clinciian Update Successfully', {
                 position: "top-right",
