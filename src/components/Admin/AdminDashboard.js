@@ -81,7 +81,8 @@ export default function AdminDashboard() {
 
   const GetPendingClinician = async (recordsPerPage,pendingClinicianCurrentPage) => {
     setPendingClinicianLoading(true)
-    let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage)
+    let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage,'')
+    console.log("res",res);
     if (res?.status === 200) {
       setPendingClinicianData(res?.data)
     }
@@ -91,7 +92,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
       if (userData && userData.roles[0].name === "Admin") {
-        GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage)
+        GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage,"")
       }
         // eslint-disable-next-line react-hooks/exhaustive-deps
 
