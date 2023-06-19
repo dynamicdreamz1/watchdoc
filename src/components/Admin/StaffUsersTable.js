@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 
-export default function StaffUsersTable({ setOpen, open }) {
+export default function StaffUsersTable({ setOpen, open,searchData }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
@@ -39,9 +39,9 @@ export default function StaffUsersTable({ setOpen, open }) {
         setCurrentPage(newValue)
     }
 
-    const StaffUserData = async (limit, currentPage) => {
+    const StaffUserData = async (limit, currentPage ,searchData) => {
         setLoading(true)
-        const response = await getStaffUsers(limit, currentPage);
+        const response = await getStaffUsers(limit, currentPage,searchData ? searchData :'');
         if(response.status===200){
             setStaffUser(response.data?.data)
         }
@@ -51,9 +51,9 @@ export default function StaffUsersTable({ setOpen, open }) {
     }
 
     useEffect(() => {
-        StaffUserData(limit, currentPage)
+        StaffUserData(limit, currentPage ,searchData)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, currentPage])
+    }, [limit, currentPage,searchData])
 
 
     const handleClose = () => {
