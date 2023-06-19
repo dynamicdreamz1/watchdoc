@@ -3,11 +3,11 @@ import { headersAdmin } from "../Utility/functions"
 import { StoreCookie } from "../Utility/sessionStore"
 
 
-export const getStaffUsers = async (recordPerPage, currentPage) => {
+export const getStaffUsers = async (recordPerPage, currentPage,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers?limit=${recordPerPage}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers?limit=${recordPerPage}&page=${currentPage}&search=${search}`,
             headers: headersAdmin
         })
         return response
