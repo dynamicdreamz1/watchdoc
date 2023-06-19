@@ -109,7 +109,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             }
             
           const res= await addStaffUser(formData)
-          if(res?.response?.status===200){
+          if(res?.status===200){
             StaffUserData(limit,currentPage)
             toast.success('Staff-User update Successfully', {
                 position: 'top-right',
