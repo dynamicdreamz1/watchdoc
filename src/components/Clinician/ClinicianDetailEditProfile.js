@@ -7,9 +7,12 @@ import { Formik } from 'formik';
 import { MetaFormeting } from '../../Utility/functions';
 import { clinicanProfileUpdate } from '../../services/AdminService';
 import { toast } from 'react-toastify';
+import * as Yup from "yup";
+import { useTranslation } from 'react-i18next';
 
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getClinicianDetail}) { 
+    const { t } = useTranslation()
     const {contact_number,id}=(profileBarData);
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
@@ -46,31 +49,30 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
    // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
-    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    // const LoginSchema = Yup.object({
-    //     id: Yup.string(),
-    //     title: Yup.string(),
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    const LoginSchema = Yup.object({
+        id: Yup.string(),
+        title: Yup.string(),
        
-    //     userprofile_picprofile: Yup.string(),
-    //     countrycode: Yup.string(),
-    //     firstname: Yup.string().required("This field is required*")
-    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-    //     lastname: Yup.string().required("This field is required*")
-    //         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-    //     email: Yup.string().required("This field is required*")
-    //         // eslint-disable-next-line no-useless-escape
-    //         .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+        userprofile_picprofile: Yup.string(),
+        countrycode: Yup.string(),
+        firstname: Yup.string().required("This field is required*")
+            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        lastname: Yup.string().required("This field is required*")
+            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        email: Yup.string().required("This field is required*")
+            // eslint-disable-next-line no-useless-escape
+            .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),        
+        practicename :Yup.string()
+        .required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+        practiceaddress: Yup.string().required("This field is required*"),
+        number: Yup.string().required(t('SignUpPage.validation.common1'))
+            .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
+            .min(10, t('SignUpPage.validation.mobile.short'))
+            .max(10, t('SignUpPage.validation.mobile.long')),
         
-    //     practicename :Yup.string()
-    //     .required("This field is required*")
-    //     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-    //     practiceaddress: Yup.string().required("This field is required*"),
-    //     number: Yup.string().required(t('SignUpPage.validation.common1'))
-    //         .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
-    //         .min(10, t('SignUpPage.validation.mobile.short'))
-    //         .max(10, t('SignUpPage.validation.mobile.long')),
-        
-    // });
+    });
 
     const handleChange = (event) => {
         setcountryCode(event.target.value);
@@ -116,7 +118,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
-            validationSchema=""
+            validationSchema={LoginSchema}
             onSubmit={(values) => { handleSubmitForm(values) }}
         >
             {(props) => (
