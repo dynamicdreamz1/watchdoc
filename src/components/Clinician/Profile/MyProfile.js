@@ -61,6 +61,7 @@ export default function MyProfile() {
         setImgSrc(files)
     }
     const handleSubmitForm = async(data) => {
+        console.log("111111-data",data)
         setLoading(true)
         const formData = new FormData();
         formData.append("first_name", data?.first_name);
@@ -97,12 +98,13 @@ export default function MyProfile() {
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
         console.log("1111111-tempMetaFormat",tempMetaFormat)
          setEditClinicianProfileData({
+            "preferredFirstName":"Dr",
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
          "email": updatedUserData?.data?.data?.email,
-         "practice_name": updatedUserData?.practice_name,
-         "practice_address": updatedUserData?.practice_address,
-         "sex": updatedUserData?.sex,
+         "practice_name": tempMetaFormat?.practice_name,
+         "practice_address": tempMetaFormat?.practice_address,
+         "sex": tempMetaFormat?.sex,
          "dob" : tempMetaFormat?.dob,
          "contact_number" : tempMetaFormat.Contact_number,
          "preferredFirstName" : tempMetaFormat?.preferred_first_name,
