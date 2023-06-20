@@ -71,7 +71,6 @@ export default function ClinicianDashboard() {
     fetchUnreviewedData,
     fetchReviewedData,
     dataLimitCriticalAlertReviewedData,
-    currentPageCriticalAlertReviewedData,
     loadingCriticalAlertReviewedData,
     loadingCriticalAlertUnreviewedData
     }
