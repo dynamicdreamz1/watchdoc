@@ -1,4 +1,3 @@
-
 import { MenuItem, Select } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
@@ -37,23 +36,19 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
     }
     if (profileBarData?.contact_number?.startsWith("+")) {
         const mobile_number = profileBarData?.contact_number?.substring(profileBarData?.contact_number.length - 10);
-        setAddNewStaff({...addNewStaff,number:mobile_number})
-        
+        setAddNewStaff({...addNewStaff,number:mobile_number})        
       }
      else {
         const mobile_number = profileBarData?.contact_number;
         setAddNewStaff({...addNewStaff,number:mobile_number})
-
-      }
-      
+      }      
    // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
-        title: Yup.string(),
-       
+        title: Yup.string(),       
         userprofile_picprofile: Yup.string(),
         countrycode: Yup.string(),
         firstname: Yup.string().required("This field is required*")
@@ -70,8 +65,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
-        
+            .max(10, t('SignUpPage.validation.mobile.long')),        
     });
 
     const handleChange = (event) => {
