@@ -31,7 +31,7 @@ export default function CliniciansRequestsTable(props) {
                                     <TableCell>{t('CliniciansRequestsTable.tableCell2')}</TableCell>
                                     <TableCell>{t('CliniciansRequestsTable.tableCell3')}</TableCell>
                                     {location?.pathname==='/dashboard'?
-                                            <TableCell align="center">Status</TableCell>
+                                            <TableCell >Status</TableCell>
 
                                     :
                                     <>
