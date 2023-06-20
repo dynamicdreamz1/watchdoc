@@ -62,37 +62,55 @@ export default function ProfileSettingTabs() {
           className="tab-list-block"
         >
           <h1>Settings</h1>
-          <Tabs
+        {
+          userData.roles[0].name !== "User" ? <Tabs 
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+           <Tab label="Profile" {...a11yProps(0)} />
+          <Tab label="Two-factor authentication" {...a11yProps(1)} />
+          <Tab label="Password" {...a11yProps(2)} /> 
+        </Tabs> : <Tabs 
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
           >
             <Tab label="Two-factor authentication" {...a11yProps(0)} />
-            <Tab label="Password" {...a11yProps(1)} /> 
-           
-            {userData.roles[0].name === "User" ?  <Tab label="Emergency contacts" {...a11yProps(2)} />  :  <Tab label="Profile" {...a11yProps(2)} />}
+             <Tab label="Emergency contacts" {...a11yProps(1)} />  :  
           </Tabs>
+        }
+          
         </Box>
+
+        {
+          userData.roles[0].name !== "User" ? 
         <div className="tab-content">
-         
-          <TabPanel value={value} index={0}>
+        <TabPanel value={value} index={0}>
+            <MyProfile />
+          </TabPanel> 
+          <TabPanel value={value} index={1}>
             <EditTwoFactor />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={value} index={2}>
             <ChangePassword />
           </TabPanel>
-          {userData.roles[0].name === "User" ?    <TabPanel value={value} index={2} >
-            <EmergencyContacts />
-          </TabPanel> : 
-          <TabPanel value={value} index={2}>
-            <MyProfile />
-          </TabPanel> } 
-       
-    
           <Link to="/dashboard" className="close-btn">
             <img src="/images/Close-Icon.svg" alt="Close Icon" />
           </Link>
         </div>
+        : <div className="tab-content">
+        
+          <TabPanel value={value} index={0}>
+            <EditTwoFactor />
+          </TabPanel>
+          <TabPanel value={value} index={1} >
+            <EmergencyContacts />
+          </TabPanel> 
+          <Link to="/dashboard" className="close-btn">
+            <img src="/images/Close-Icon.svg" alt="Close Icon" />
+          </Link>
+        </div> }
       </Box>
     </>
   );
