@@ -7,6 +7,7 @@ import { StoreCookie } from '../../../Utility/sessionStore';
 import { MetaFormeting } from '../../../Utility/functions';
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 
 const CreateProfile = () => {
@@ -27,15 +28,13 @@ const CreateProfile = () => {
 
 
     const LoginSchema = Yup.object({
-        firstname: Yup.string()
-          .required("This field is required*")
-        .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
+         firstname: Yup.string().required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         preferredFirstName: Yup.string()
         .required("This field is required*")
       .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
-        lastname: Yup.string()
-          .required("This field is required*")
-        .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"), 
+        lastname: Yup.string().required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         dob: Yup.date().required("This field is required*"),
         sex: Yup.string().required("This field is required*"),
         weight: Yup.string().required("This field is required*"),
@@ -69,14 +68,22 @@ const CreateProfile = () => {
                     setLoading(false)
                 })
                 .catch((error) => {
-                    setLoading(false)
-                    if (error.response.status === 422) {
-                        setErrorN(t('CreateProfilePage.error.e7'))
-                    }
-                    else {
-                        setErrorN(error)
-
-                    }
+                     const key = Object.keys(error.response.data.error)[0];
+                setLoading(false)
+                if (error.response.status === 422) {
+                    toast.error(error.response.data.error[key][0], {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                    });
+                }
+                else {
+                    setErrorN(error)
+                }
 
                 })
         
