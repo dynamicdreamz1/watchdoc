@@ -63,7 +63,6 @@ export default function MyProfile() {
         setImgSrc(files)
     }
     const handleSubmitForm = async(data) => {
-        console.log("111111-data",data)
         setLoading(true)
         const formData = new FormData();
         formData.append("first_name", data?.first_name);
@@ -125,7 +124,6 @@ export default function MyProfile() {
           });
        } 
     }
-    console.log("1111111-editClinicianProfileData",editClinicianProfileData)
     return (
         <Formik 
         initialValues={editClinicianProfileData}
