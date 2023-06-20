@@ -13,7 +13,7 @@ export default function Header({ toggle, setToggle, setOpen,setSearchData }) {
     <>
       <div className='top-header-block d-flex align-items-center justify-content-between'>
         <PageTitle toggle={toggle} setToggle={setToggle} setOpen={setOpen} />
-        {location?.pathname === "/patientdetails" ||location?.pathname === "/dashboard" ? "" : <SearchBar setSearch={setSearchData ? setSearchData : ''} />}
+        {location?.pathname === "/patientdetails" ||location?.pathname === "/dashboard" || location?.pathname === "/edit-profile" || location?.pathname === "/editlinkdevice"  ?  "" : <SearchBar setSearch={setSearchData ? setSearchData : ''} />}
         <UserAvtar />
       </div>
     </>

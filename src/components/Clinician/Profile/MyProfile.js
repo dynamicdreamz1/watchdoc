@@ -80,11 +80,11 @@ export default function MyProfile() {
             formData.append("profile_pic",imageUrl);
         }
         
-       const updatedUserData=await UpdateClinicianProfile(formData)
-       try {
+       UpdateClinicianProfile(formData)
+       .then((res) => { 
         setLoading(false)
-       if(updatedUserData?.status===200){
-          toast.success(updatedUserData?.data?.message, {
+       if(res?.status===200){
+          toast.success(res?.data?.message, {
             position: 'top-right',
             autoClose: 3000,
             hideProgressBar: true,
@@ -93,13 +93,13 @@ export default function MyProfile() {
             draggable: true,
             theme: "colored",
           });
-        setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
-        StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
-        const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
+        setCurrentUserData({ ...currentUserData, userData: res?.data?.data })
+        StoreCookie.setItem("user_details", JSON.stringify(res?.data?.data));
+        const tempMetaFormat=  MetaFormeting(res?.data?.data);
          setEditClinicianProfileData({
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
-         "email": updatedUserData?.data?.data?.email,
+         "email": res?.data?.data?.email,
          "practice_name": tempMetaFormat?.practice_name,
          "practice_address": tempMetaFormat?.practice_address,
          "sex": tempMetaFormat?.sex,
@@ -112,17 +112,24 @@ export default function MyProfile() {
          })
        }
        else{
-        toast.error('email already exist', {
+        const key = Object.keys(res.response.data.error)[0];
+        toast.error(res.response.data.error[key][0], {
             position: 'top-right',
             autoClose: 3000,
-          });
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+        });
        }
-       } catch (error) {
+       }) 
+       .catch ((error) => {
         toast.error('error.', {
             position: 'top-right',
             autoClose: 3000,
           });
-       } 
+       } )
     }
     return (
         <Formik 

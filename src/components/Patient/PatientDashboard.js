@@ -9,15 +9,21 @@ import BloodGlucose from './BloodGlucose/BloodGlucose'
 import Temperature from './Temperature/Temperature'
 import Weight from './Weight/Weight'
 import { getLatestMeasurement, getProviderTerraId } from '../../services/PatientsService'
+import { ReminderCardSkeleton } from '../../Utility/Skeleton'
 
 export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = terraId?.data?.map(item => item?.terra_id);
+  const [loadingSkeleton,setLoadingSkeleton]=useState(false)
+
   
   async function fetchData() {
+    setLoadingSkeleton(true)
     await getLatestMeasurement().then(response => response?.data).then(response => {
         setlatestData(response);
+        setLoadingSkeleton(false)
+
     })
   }
   useEffect(() => {   
@@ -37,7 +43,7 @@ export default function PatientDashboard() {
         
         <UserBodyContextProvider >
           <Latestmeasurement latestData={latestData}/>        
-          <Reminders latestData={latestData} fetchData={fetchData} />
+          { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={latestData} fetchData={fetchData} />}
           <Heartrates terraId={finalId?.[0]} latestData={latestData} />
           <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
           <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>

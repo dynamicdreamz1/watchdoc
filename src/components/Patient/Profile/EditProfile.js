@@ -100,10 +100,10 @@ export const EditProfile = () => {
     const LoginSchema = Yup.object({
         firstname: Yup.string()
         .required("This field is required*")
-        .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),     
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         lastname: Yup.string()
-          .required("This field is required*")
-         .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),     
+        .required("This field is required*")
+        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),  
         dob: Yup.date().required("This field is required*"),
         sex: Yup.string().required("This field is required*"),
         weight: Yup.string().required("This field is required*"),
