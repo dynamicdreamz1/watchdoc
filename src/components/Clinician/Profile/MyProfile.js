@@ -98,7 +98,6 @@ export default function MyProfile() {
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
         console.log("1111111-tempMetaFormat",tempMetaFormat)
          setEditClinicianProfileData({
-            "preferredFirstName":"Dr",
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
          "email": updatedUserData?.data?.data?.email,
