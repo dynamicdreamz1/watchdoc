@@ -311,11 +311,6 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
             }
 
-            {/* {location.pathname === "/dashboard" ?
-                <button name={viewAll ? 'View Less' : "View All"} className='view-all' onClick={(e) => { handleButtonClick(e) }
-                }>{viewAll ? 'View Less' : "View All"}</button>
-                : ""} */}
-
         </>
 
     )

@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
-import CliniciansRequestsTable from './CliniciansRequestsTable'
 import CriticalPatientsAlertTableTabs from './CriticalPatientsAlertTableTabs'
 import { useEffect } from 'react';
 import { getCriticalAlertReviewed, getCriticalAlertUnreviewed } from '../../services/ClinicianService';
 
 export default function ClinicianDashboard() {
-
- 
-    const [currentPage, setCurrentPage] = useState(1);
-    const recordsPerPage=5
-
     const [criticalAlertReviewedData,setCriticalAlertReviewedData]=useState([])
     const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
     const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
