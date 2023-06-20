@@ -68,7 +68,7 @@ export default function MyProfile() {
         formData.append("last_name", data?.last_name);
         formData.append("email", data.email);
         formData.append("practice_name", data?.practice_name);
-        formData.append("practice_address", data?.practiceaddress);
+        formData.append("practice_address", data?.practice_address);
         formData.append("sex", data?.sex);
         formData.append("dob", data?.dob);
         formData.append("preferredFirstName", "Dr");
