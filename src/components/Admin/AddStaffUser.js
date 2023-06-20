@@ -64,8 +64,9 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     //     };
 
     // }
-
+console.log("111111-daStaffUserDatata",addNewStaff)
     const handleSubmitForm = async(data) => {
+        console.log("1111111-data",data)
         if(data?.id){
             const formData=new FormData();
             formData.append("id",data?.id)
@@ -207,20 +208,14 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
-                            {typeof addNewStaff?.id==='number' ?"":
+                            {/* {typeof addNewStaff?.id==='number' ? "": */}
                             <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password"  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
-                                {/* <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
-                                    {showPassword?
-                                    <RemoveRedEyeOutlinedIcon/>:
-                                    <VisibilityOffOutlinedIcon/>
-}
-                                </button> */}
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
                             
-}
+{/* } */}
                             <div className='input-block country-code'>
                                 <label id="country-code">Enter new phone number</label>
                                 <div className='inputs-wrapper'>
