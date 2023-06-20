@@ -72,7 +72,7 @@ let [options, setOptions] = useState(specificOption)
 
   // const pendingClincians = async (limit,currentPage,searchData) => {
   //   setFirstLoading(true)
-  //   let res = await getPendingClinicians(limit,currentPage,searchData ? searchData : '')
+  //   let res = await getPendingClinicians(searchData?1:limit,currentPage,searchData ? searchData : '')
   //   if (res?.data?.data?.data?.length === 0) {
   //     setFirstLength("No records found.")
   //   }
@@ -84,7 +84,7 @@ let [options, setOptions] = useState(specificOption)
 
   const getAllClinicianData=async(dataLimit,currentPage,searchData)=>{
     setSecondLoading(true)           
-    let res = await getAllClinicians(dataLimit,currentPage,searchData ?searchData : '');
+    let res = await getAllClinicians(dataLimit,searchData?1:currentPage,searchData ?searchData : '');
     if(res?.data?.data?.data?.length===0){
       setSecondLength("No records found.")
     };
