@@ -60,6 +60,19 @@ export async function ProfileCreation(data) {
     }
 }
 
+export async function ProfileUpdate(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/update_profile`,
+            data: data,
+            headers: headersUser,
+        })
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 export async function UserLogin(data) {
     try {
         const response = await axios({
