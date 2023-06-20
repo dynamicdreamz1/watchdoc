@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { getPendingClinicians} from '../../services/AdminService';
+import { changePendingClinicianStatus, getPendingClinicians} from '../../services/AdminService';
 import CliniciansRequestsTable from '../Clinician/CliniciansRequestsTable'
 import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTableTabs'
 import { getAdminCriticalAlertReviewed, getAdminCriticalAlertunReviewed } from '../../services/AdminService';
 import { getCurrentUserData } from '../../services/UserService';
+import { toast, ToastContainer } from 'react-toastify'
 
 
 export default function AdminDashboard() {
@@ -66,8 +67,7 @@ export default function AdminDashboard() {
       if (userData &&  userData.roles[0].name === "Admin") {
         fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
       }
-
-    
+// eslint-disable-next-line react-hooks/exhaustive-deps    
   }, [currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData])
 
 
@@ -75,14 +75,13 @@ export default function AdminDashboard() {
     if (userData &&  userData.roles[0].name === "Admin") {
     fetchReviewedData(dataLimitCriticalAlertReviewedData, currentPageCriticalAlertReviewedData)
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData])
 
 
   const GetPendingClinician = async (recordsPerPage,pendingClinicianCurrentPage) => {
     setPendingClinicianLoading(true)
     let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage,'')
-
     if (res?.status === 200) {
       setPendingClinicianData(res?.data)
     }
@@ -94,9 +93,33 @@ export default function AdminDashboard() {
       if (userData && userData.roles[0].name === "Admin") {
         GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage,"")
       }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recordsPerPage,pendingClinicianCurrentPage])
+
+
+
+const handleClickStatus=async(data)=>{
+const res=await changePendingClinicianStatus(data?.id)
+console.log("11111-id",res)
+if(res?.status===200){
+  toast.success(res?.data?.message, {
+    position: 'top-right',
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "colored",
+  });
+  GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage,"")
+}
+
+}
+
+
+
+
+
 
   const action = {
     criticalAlertUnreviewedData,
@@ -119,10 +142,11 @@ export default function AdminDashboard() {
 
   return (
     <>
+    <ToastContainer />
       <CriticalPatientsAlertTableTabs actionData={action} />
       <CliniciansRequestsTable clinicianStaff={pendingClinicianData?.data?.data} handleChangePage={handleChangePage}
        loading={pendingClinicianLoading} recordsPerPage={recordsPerPage} totalPages={pendingClinicianTotalPages}
-        currentPage={pendingClinicianCurrentPage}  setCurrentPage={setPendingClinicianCurrentPage} getClinicianData={GetPendingClinician} />
+        currentPage={pendingClinicianCurrentPage}  setCurrentPage={setPendingClinicianCurrentPage} getClinicianData={GetPendingClinician} handleClickStatus={handleClickStatus}/>
     </>
   )
 }

@@ -52,15 +52,14 @@ export default function MyProfile() {
         .required("This field is required*")
         .matches(/^[a-zA-Z0-9\s.]+$/, "Only alphabets, numbers, and periods are allowed for this field"),      
          height: Yup.string()
-  .required("This field is required*")
-  .matches(/^[a-zA-Z0-9\s.]+$/, "Only alphabets, numbers, and periods are allowed for this field")
+        .required("This field is required*")
+        .matches(/^[a-zA-Z0-9\s.]+$/, "Only alphabets, numbers, and periods are allowed for this field")
 
     });
 
     const handleImages = (files) => {
         setImgSrc(files)
     }
-    
     const handleSubmitForm = async(data) => {
         setLoading(true)
         const formData = new FormData();
@@ -83,7 +82,7 @@ export default function MyProfile() {
        try {
         setLoading(false)
        if(updatedUserData?.status===200){
-          toast.success('Profile updated successfully.', {
+          toast.success(updatedUserData?.data?.message, {
             position: 'top-right',
             autoClose: 3000,
             hideProgressBar: true,
@@ -94,7 +93,9 @@ export default function MyProfile() {
           });
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
+        console.log("1111111-updatedUserData",updatedUserData)
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
+        console.log("1111111-tempMetaFormat",tempMetaFormat)
          setEditClinicianProfileData({
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,
@@ -104,7 +105,7 @@ export default function MyProfile() {
          "sex": updatedUserData?.sex,
          "dob" : tempMetaFormat?.dob,
          "contact_number" : tempMetaFormat.Contact_number,
-         "preferredFirstName" : tempMetaFormat.preferredFirstName,
+         "preferredFirstName" : tempMetaFormat?.preferred_first_name,
          "height" :tempMetaFormat.height,
          "weight" : tempMetaFormat.weight
 
@@ -123,7 +124,7 @@ export default function MyProfile() {
           });
        } 
     }
-    
+    console.log("1111111-editClinicianProfileData",editClinicianProfileData)
     return (
         <Formik 
         initialValues={editClinicianProfileData}

@@ -37,11 +37,12 @@ export default function Status(props) {
         </div>
       }
 
-      {/* <div className='wt table-data'>
-        <span className={props?.el?.status==="Reviewed"?"text color-light-green":"text color-light-blue"} onClick={()=>handleClickStatus(el?.id,el?.status)}>{el?.status}</span>
-        {el?.status==="Unreviewed" || el?.status==="Pending" ? "" :  <DateTime props={el} value={value} /> }
+      {value==='5' && <div className='wt table-data' onClick={()=>handleClickStatus(props?.el)}>
+        <span className={props?.el?.is_active===1?"text color-light-green":"text color-light-blue"} >
+          {props?.el?.is_active===1?"Active":"UnActive"}</span>
+        {/* {el?.status==="Unreviewed" || el?.status==="Pending" ? "" :  <DateTime props={el} value={value} /> } */}
 
-    </div> */}
+    </div>}
     </>
   )
 }

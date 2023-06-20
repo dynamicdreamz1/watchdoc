@@ -33,7 +33,7 @@ export const getPendingClinicians = async (limit, pages,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients&limit=${limit}&page=${pages}&search=${search}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${limit}&page=${pages}&query=clinicians-pending&search=${search}`,
             headers: headersAdmin
         })
         return response
@@ -276,6 +276,23 @@ export const getParticulatClinicianApprovePatient = async (id,currentPage,limit)
         const response = await axios({
             method: 'get',
             url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_approve_patient?clinician_id=${id}&limit=${limit}&page=${currentPage}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
+
+export const changePendingClinicianStatus = async (id) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/approve_clinician?clinician_id=${id}`,
             headers: headersAdmin
         })
         return response
