@@ -25,7 +25,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
         id:data?.id
       },
     });
-    if(location.pathname==="/cliniciandetails" || location?.pathname==="/dashboard"){
+    if(location.pathname==="/cliniciandetails"){
     handleClickOpenRequestPopUp(profileBarData,profileBarData)
 
     }

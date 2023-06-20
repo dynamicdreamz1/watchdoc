@@ -9,6 +9,7 @@ import { Dialog, Pagination } from '@mui/material'
 import AddClinician from '../components/Admin/AddClinician'
 import { ChartResultRange, TableSkeleton } from '../Utility/Skeleton'
 import { requestAndApprovePatient} from '../Utility/functions'
+import { ToastContainer } from 'react-toastify'
 
 
 const ClinicianDetails = () => {
@@ -128,6 +129,8 @@ const ClinicianDetails = () => {
 
     return (
         <React.Fragment>
+    <ToastContainer />
+
             <div className='content-wrapper'>
                 <Sidebar />
                 <div className='aside'>

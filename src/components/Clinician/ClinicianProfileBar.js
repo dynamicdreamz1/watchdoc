@@ -4,7 +4,6 @@ import PhoneNumber from '../common/PhoneNumber'
 import UserProfile from '../common/UserProfile'
 import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
 import ClinicianRequest from '../Admin/ClinicianRequest'
-import { ToastContainer } from 'react-toastify'
 
 export default function ClinicianProfileBar({profileBarData,getClinicianDetail}) {
   const [open, setOpen] = useState(false);
@@ -25,7 +24,6 @@ export default function ClinicianProfileBar({profileBarData,getClinicianDetail})
 
   return (
     <>
-    <ToastContainer />
         <div className='clinician-profile-tab'>
             <div className='left-block'>
                 <UserProfile profileBarData={profileBarData} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}/>

@@ -100,7 +100,6 @@ export default function AdminDashboard() {
 
 const handleClickStatus=async(data)=>{
 const res=await changePendingClinicianStatus(data?.id)
-console.log("11111-id",res)
 if(res?.status===200){
   toast.success(res?.data?.message, {
     position: 'top-right',
