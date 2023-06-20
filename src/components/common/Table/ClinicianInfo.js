@@ -4,20 +4,15 @@ import { Dialog } from '@mui/material';
 import ClinicianRequest from '../../Admin/ClinicianRequest';
 
 export default function ClinicianInfo({data,clinicianStaff}) {
-  // const [data,setData]=useState(allClinician)
   const [profileBarData,setProfileBarData]=useState([])
   const [open, setOpen] = useState(false);
   const [openRequest, setOpenRequest] = useState(false);
-
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
 
   const handleClose = () => {
     setOpen(false);
     setOpenRequest(false)
   };
+  
   const handleClickOpenRequestPopUp=(data)=>{
     setProfileBarData(data)
     setOpenRequest(true)

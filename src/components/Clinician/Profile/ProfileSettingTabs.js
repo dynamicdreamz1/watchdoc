@@ -71,7 +71,6 @@ export default function ProfileSettingTabs() {
             <Tab label="Password" {...a11yProps(1)} /> 
            
             {userData.roles[0].name === "User" ?  <Tab label="Emergency contacts" {...a11yProps(2)} />  :  <Tab label="Profile" {...a11yProps(2)} />}
-            {/* { userData.roles[0].name === "User"  ? : ''} */}
           </Tabs>
         </Box>
         <div className="tab-content">

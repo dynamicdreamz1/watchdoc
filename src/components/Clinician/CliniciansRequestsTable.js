@@ -12,6 +12,7 @@ export default function CliniciansRequestsTable(props) {
     const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage } = props;
     const { t } = useTranslation();
     const location = useLocation();
+    
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">

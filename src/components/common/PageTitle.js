@@ -8,11 +8,9 @@ const location=useLocation();
 
 
   const { t } = useTranslation();
-  // const {addData,setAddData}=useContext(InnerClinicianContext)
 
   const handleClick = () => {
     setToggle(!toggle)
-    // setAddData({...addData,clinicianName:"",practitionerName:"",code:""});
   }
 
 

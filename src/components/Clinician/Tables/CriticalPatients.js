@@ -12,8 +12,6 @@ import Swal from 'sweetalert2';
 export default function CriticalPatients(props) {
     const location=useLocation();
     const { patientData, value,handleClickStatus , adminGetAllPatient} = props
-    // const {currentPageAllPendingPatientData,dataLimitAllPendingPatientData,totalPagesAllPendingPatientData,
-    //     getAllParticularClinicianPatientData,loadingAllPendingPatientData}=props?.action || {}
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
