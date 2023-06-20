@@ -70,17 +70,17 @@ export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,
 ]
 let [options, setOptions] = useState(specificOption)
 
-  const pendingClincians = async (limit,currentPage,searchData) => {
-    setFirstLoading(true)
-    let res = await getPendingClinicians(limit,currentPage,searchData ? searchData : '')
-    if (res?.data?.data?.data?.length === 0) {
-      setFirstLength("No records found.")
-    }
-    setPendingClinician(res?.data?.data)
-    let nPages=Math.ceil(res?.data?.data?.total/limit)
-    setPages(nPages)
-    setFirstLoading(false)
-  }
+  // const pendingClincians = async (limit,currentPage,searchData) => {
+  //   setFirstLoading(true)
+  //   let res = await getPendingClinicians(limit,currentPage,searchData ? searchData : '')
+  //   if (res?.data?.data?.data?.length === 0) {
+  //     setFirstLength("No records found.")
+  //   }
+  //   setPendingClinician(res?.data?.data)
+  //   let nPages=Math.ceil(res?.data?.data?.total/limit)
+  //   setPages(nPages)
+  //   setFirstLoading(false)
+  // }
 
   const getAllClinicianData=async(dataLimit,currentPage,searchData)=>{
     setSecondLoading(true)           
@@ -93,13 +93,13 @@ let [options, setOptions] = useState(specificOption)
     setSecondLoading(false)  
   }
 
-  useEffect(() => {
-   if(value===0){
-      pendingClincians(limit,currentPage,searchData)
-   }
+  // useEffect(() => {
+  //  if(value===0){
+  //     pendingClincians(limit,currentPage,searchData)
+  //  }
     
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage,limit,searchData])
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [currentPage,limit,searchData])
 
   useEffect(() => {
       getAllClinicianData(dataLimit,currentPage,searchData)
@@ -223,7 +223,7 @@ let [options, setOptions] = useState(specificOption)
           <AddClinician clinicianStaff={allClinician} setOpen={setOpen} dataLimit={dataLimit} getAllClinicianData={getAllClinicianData}
           currentPage={currentPage} />
         </Dialog>
-        {value === 0 ?
+        {/* {value === 0 ?
           <>
             {firstLoading ? <div> <br /><TableSkeleton /></div> :
 
@@ -236,7 +236,7 @@ let [options, setOptions] = useState(specificOption)
               </>
             }
           </>
-          : value === 1 ?
+          : value === 1 ? */}
             <>
               {/* <TabPanel value={value} index={1} className="table-nav-tabs-content">
           <CliniciansRequestsTable value={value} clinicianStaff={clinicianStaff} recordsPerPage={recordsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
@@ -244,13 +244,14 @@ let [options, setOptions] = useState(specificOption)
               {secondLoading ? <div> <br /><TableSkeleton /></div> :
                 <>
                   {secondLength ? secondLength : ""}
-                  <TabPanel value={value} index={1} className="table-nav-tabs-content">
+                  <TabPanel value={value} index={0} className="table-nav-tabs-content">
                     <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data} setAllClinician={setAllClinician} handleChangePage={handleChangePage}
                        currentPage={currentPage} totalPages={totalPages}
                       recordsPerPage={dataLimit}  getClinicianData={getAllClinicianData} />
                   </TabPanel>
                 </>
-              } </> : ""}
+              } </> 
+              {/* : ""} */}
 
       </Box>
     </>
