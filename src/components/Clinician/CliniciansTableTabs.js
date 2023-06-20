@@ -156,7 +156,6 @@ let [options, setOptions] = useState(specificOption)
   const handleDataChangePendingClinician=(pageCount)=>{
     setLimit(pageCount)
   }
-
   const pageOptions=[5,10,20,30,40,50,60,70,80,90,100];
   return (
     <>
@@ -166,11 +165,11 @@ let [options, setOptions] = useState(specificOption)
         <Box className="table-header-block">
           <div className="left-block">
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
-             <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} />
-              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(1)} />
+             {/* <Tab label={`Clinicians Pending (${pendingClinician?.total===undefined?"0":pendingClinician?.total})`} {...a11yProps(0)} /> */}
+              <Tab label={`View All Clinicians   (${allClinician?.data?.total===undefined?"0":allClinician?.data?.total})`} {...a11yProps(0)} />
             </Tabs>
           </div>
-          {value === 1 &&
+          {value === 0 &&
             <>
               <div className='right-block'>
                   <Select
@@ -191,7 +190,7 @@ let [options, setOptions] = useState(specificOption)
               </div>
             </>
           }
-          {value === 0 &&
+          {value === 1 &&
             <>
               <div className='right-block'>
                   <Select
