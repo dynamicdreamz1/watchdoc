@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getCurrentUserData, ProfileCreation } from '../../../services/UserService'
+import { getCurrentUserData, ProfileCreation, ProfileUpdate } from '../../../services/UserService'
 import { UserContext } from '../../../Store/Context'
 import { MetaFormeting } from '../../../Utility/functions'
 import { StoreCookie } from '../../../Utility/sessionStore'
@@ -11,19 +11,23 @@ import * as Yup from 'yup';
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
     const userData = getCurrentUserData();
-    const { first_name, preferred_first_name, last_name, dob, sex, weight, height,profile_pic } = MetaFormeting(userData);
+    const { first_name, last_name, dob, sex, weight, height,profile_pic } = MetaFormeting(userData);
     const [ imageUrl, setImgSrc ] = useState((profile_pic===null ||profile_pic===undefined )?"/public/images/user-picture-placeholder.png":profile_pic);
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const [updateUser] = useState({
         "firstname": first_name,
         "lastname": last_name,
-        "preferredFirstName": preferred_first_name,
+        // "preferredFirstName": preferred_first_name,
         "dob": dob,
+        "email": userData?.email,
         "sex": sex,
         "weight": weight,
         "height": height,
-        "profile_pic":imageUrl
+        "profile_pic":imageUrl,
+        "contact_number" :userData?.contact_number
     })
+
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
@@ -35,44 +39,55 @@ export const EditProfile = () => {
         setImgSrc(files)
     }
 
-
-
-
     const handleSubmit = (value) => {
         setLoading(true)
         const formData=new FormData();
         formData.append("first_name", value?.firstname);
-        formData.append("preferred_first_name",value?.preferredFirstName);
         formData.append("last_name", value?.lastname);
         formData.append("dob", value?.dob);
         formData.append("sex", value?.sex);
         formData.append("weight",value?.weight);
         formData.append("height",value?.height);
-        ProfileCreation(formData)
-            .then((res) => {                
-                StoreCookie.setItem("user_details", res?.data);
-                setCurrentUserData({ ...currentUserData, userData: res?.data })
-                toast.success('Profile updated successfully.', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    theme: "colored",
-                });
-                setMessage(t('EditProfilePage.message.m1'))
-                setLoading(false)
-                setTimeout(() => {
-                    setMessage("")
-                }, 3000);
-
-
+        formData.append("email",value?.email);
+        formData.append("contact_number",value?.contact_number);
+        if(typeof imageUrl == "object" ){
+            formData.append("profile_pic",imageUrl);
+        }
+        ProfileUpdate(formData)
+            .then((res) => { 
+                console.log("res",res);  
+                if (res.status === 200) {
+                    StoreCookie.setItem("user_details", res?.data.data);
+                    setCurrentUserData({ ...currentUserData, userData: res?.data })
+                    toast.success(res.data.message, {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                    });
+                    setMessage(t('EditProfilePage.message.m1'))
+                    setLoading(false)
+                    setTimeout(() => {
+                        setMessage("")
+                    }, 3000);    
+                }    
             })
             .catch((error) => {
+                const key = Object.keys(error.response.data.error)[0];
                 setLoading(false)
                 if (error.response.status === 422) {
-                    setMessage(t('EditProfilePage.error.e7'))
+                    toast.error(error.response.data.error[key][0], {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                    });
                 }
                 else {
                     setMessage(error)
@@ -89,18 +104,18 @@ export const EditProfile = () => {
         lastname: Yup.string()
           .required("This field is required*")
          .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),     
-        preferredFirstName: Yup.string()
-          .required("This field is required*")
-         .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),     
         dob: Yup.date().required("This field is required*"),
         sex: Yup.string().required("This field is required*"),
         weight: Yup.string().required("This field is required*"),
         height: Yup.string().required("This field is required*"),
+        email: Yup.string().required("This field is required*")
+        // eslint-disable-next-line no-useless-escape
+        .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
+        contact_number: Yup.string().required(t('SignUpPage.validation.common1'))
+        .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
+        .min(10, t('SignUpPage.validation.mobile.short'))
+        .max(10, t('SignUpPage.validation.mobile.long')),
       });
-
-
-
-
 
     return (
     <>
@@ -129,11 +144,6 @@ export const EditProfile = () => {
                             <span className="error"> {props?.errors?.firstname ? props?.errors?.firstname : ""}</span>
                         </div>
                         <div className='input-block'>
-                            <label htmlFor="exampleInputPreferredFirstName" >{t('EditProfilePage.form.f17')}</label>
-                            <input type="text" name="preferredFirstName" placeholder={t('EditProfilePage.form.f18')} value={props?.values?.preferredFirstName} id="exampleInputPreferredFirstName" onChange={props?.handleChange} />
-                            <span className="error"> {props?.errors?.preferredFirstName ? props?.errors?.preferredFirstName : ""}</span>
-                        </div>
-                        <div className='input-block'>
                             <label htmlFor="exampleInputLastName" >{t('EditProfilePage.form.f2')}</label>
                             <input type="text" name="lastname" placeholder={t('EditProfilePage.form.f14')} value={props?.values?.lastname} id="exampleInputLastName" onChange={props?.handleChange} />
                             <span className="error"> {props?.errors?.lastname ? props?.errors?.lastname : ""}</span>
@@ -143,23 +153,6 @@ export const EditProfile = () => {
                             <input type="date" name="dob" value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange}/>
                             <span className="error"> {props?.errors?.dob ? props?.errors?.dob : ""}</span>
                         </div>
-                        {/* <div className='input-block'>
-                            <label htmlFor="exampleInputSex" >{t('EditProfilePage.form.f4')}</label>
-                            <div className='radio-buttons'>
-                                <div className='radio-button'>
-                                    <input checked={Sex === "male" ? 'checked' : ''} type="radio" id="male" name="sex" value="male" onChange={(e) => SetSex(e.target.value)} />
-                                    <label htmlFor="male">{t('EditProfilePage.form.f10')}</label>
-                                </div>
-                                <div className='radio-button'>
-                                    <input checked={Sex === "female" ? 'checked' : ''} type="radio" id="female" name="sex" value="female" onChange={(e) => SetSex(e.target.value)} />
-                                    <label htmlFor="female">{t('EditProfilePage.form.f11')}</label>
-                                </div>
-                                <div className='radio-button'>
-                                    <input checked={Sex === "other" ? 'checked' : ''} type="radio" id="other" name="sex" value="other" onChange={(e) => SetSex(e.target.value)} />
-                                    <label htmlFor="other">{t('EditProfilePage.form.f12')}</label>
-                                </div>
-                            </div>
-                        </div> */}
                          <div className='input-block'>
                             <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
                             <div className='radio-buttons'>
@@ -188,10 +181,15 @@ export const EditProfile = () => {
                             <input type="text" name="height" placeholder={t('EditProfilePage.form.f16')} value={props?.values?.height} id="exampleInputHeight" onChange={props?.handleChange} />
                             <span className="error"> {props?.errors?.height ? props?.errors?.height : ""}</span>
                         </div>
-
                         <div className='input-block'>
-                            <label htmlFor="exampleInputBMI" >{t('EditProfilePage.form.f19')}</label>
-                            <input type="number" disabled placeholder={t('EditProfilePage.form.f20')} value={roundedBMI} id="exampleInputBMI" />
+                            <label htmlFor="exampleInputEmail" >{t('EditProfilePage.form.f21')}</label>
+                            <input type="text" name="email" placeholder={t('EditProfilePage.form.f22')} value={props?.values?.email} id="exampleInputHeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.email ? props?.errors?.email : ""}</span>
+                        </div>
+                        <div className='input-block'>
+                            <label htmlFor="exampleInputEmail" >{t('EditProfilePage.form.f23')}</label>
+                            <input type="text" name="contact_number" placeholder={t('EditProfilePage.form.f24')} value={props?.values?.contact_number} id="exampleInputHeight" onChange={props?.handleChange} />
+                            <span className="error"> {props?.errors?.contact_number ? props?.errors?.contact_number : ""}</span>
                         </div>
                         {loading ? <div className='LoginError'>{t('EditProfilePage.loader.l1')}</div> : ""}
                                               

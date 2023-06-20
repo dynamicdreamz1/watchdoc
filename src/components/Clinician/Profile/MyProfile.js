@@ -38,7 +38,9 @@ export default function MyProfile() {
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         last_name: Yup.string().required("This field is required*")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-        email: Yup.string().required("Email Is Required"),
+        email: Yup.string().required("This field is required*")
+        // eslint-disable-next-line no-useless-escape
+        .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
         sex: Yup.string().required("This field is required*"),
         dob: Yup.string().required("This field is required*"),
         contact_number: Yup.string().required(t('SignUpPage.validation.common1'))
@@ -94,9 +96,7 @@ export default function MyProfile() {
           });
         setCurrentUserData({ ...currentUserData, userData: updatedUserData?.data?.data })
         StoreCookie.setItem("user_details", JSON.stringify(updatedUserData?.data?.data));
-        console.log("1111111-updatedUserData",updatedUserData)
         const tempMetaFormat=  MetaFormeting(updatedUserData?.data?.data);
-        console.log("1111111-tempMetaFormat",tempMetaFormat)
          setEditClinicianProfileData({
          "first_name": tempMetaFormat?.first_name,
          "last_name": tempMetaFormat?.last_name,

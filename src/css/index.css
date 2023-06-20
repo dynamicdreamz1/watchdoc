@@ -1595,6 +1595,8 @@ form .input-block.update-profile {
 form .input-block.update-profile .image-block {
   border-radius: 50%;
   overflow: hidden;
+  background-color: #ffffff;
+
 }
 form .input-block.update-profile input[type="file"],
 form .input-block.update-profile:after {
