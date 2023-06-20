@@ -64,9 +64,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     //     };
 
     // }
-console.log("111111-daStaffUserDatata",addNewStaff)
     const handleSubmitForm = async(data) => {
-        console.log("1111111-data",data)
         if(data?.id){
             const formData=new FormData();
             formData.append("id",data?.id)
@@ -112,7 +110,7 @@ console.log("111111-daStaffUserDatata",addNewStaff)
           const res= await addStaffUser(formData)
           if(res?.status===200){
             StaffUserData(limit,currentPage)
-            toast.success('Staff-User update Successfully', {
+            toast.success('Staff-User Added Successfully', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: true,

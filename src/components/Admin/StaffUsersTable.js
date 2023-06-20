@@ -6,7 +6,6 @@ import { getStaffUsers , deleteStaffUsers } from '../../services/AdminService';
 import { MetaFormeting } from '../../Utility/functions';
 import { useLocation } from 'react-router-dom';
 import { TableSkeleton } from '../../Utility/Skeleton';
-import {  ToastContainer } from 'react-toastify'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from 'react-toastify';
@@ -115,7 +114,6 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
 
     return (
         <>
-        <ToastContainer />
             <Dialog
                 open={open}
                 onClose={handleClose}

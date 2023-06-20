@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react'
 import StaffUsersTable from '../components/Admin/StaffUsersTable'
 import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
+import { ToastContainer } from 'react-toastify';
 
 export default function StaffUsers() {
   const [open, setOpen] = useState(false);
@@ -35,6 +36,8 @@ useEffect(()=>{
   return (
     <>
       <React.Fragment>
+      <ToastContainer />
+
         <div className='content-wrapper'>
           <Sidebar/>
           <div className='aside'>
