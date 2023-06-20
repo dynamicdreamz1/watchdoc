@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { getCurrentUserData } from '../../../services/UserService';
+import Button from '@mui/material/Button';
+
 
 export default function Status(props) {
   const userData = getCurrentUserData();
@@ -37,12 +39,12 @@ export default function Status(props) {
         </div>
       }
 
-      {value==='5' && <div className='wt table-data' onClick={()=>handleClickStatus(props?.el)}>
+      {value==='5' &&   <Button variant="outlined" color="secondary"> <div className='wt table-data' onClick={()=>handleClickStatus(props?.el)}>
         <span className={props?.el?.is_active===1?"text color-light-green":"text color-light-blue"} >
           {props?.el?.is_active===1?"Active":"UnActive"}</span>
         {/* {el?.status==="Unreviewed" || el?.status==="Pending" ? "" :  <DateTime props={el} value={value} /> } */}
 
-    </div>}
+    </div></Button>}
     </>
   )
 }
