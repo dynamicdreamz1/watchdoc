@@ -121,8 +121,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
             validationSchema={LoginSchema}
             onSubmit={(values) => { handleSubmitForm(values) }}
         >
-            {(props) => (
-                <>
+            {(props) => (               
                 <>
                     <div className='my-profile-form'>
                         <div className='dialog-title'>
@@ -194,7 +193,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
                             </div>
                         </form>
                     </div>
-                </>
                 </>
             )}
         </Formik>
