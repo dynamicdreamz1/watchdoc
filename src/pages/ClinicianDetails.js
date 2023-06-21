@@ -30,7 +30,6 @@ const ClinicianDetails = () => {
     const [loadingAllPendingPatientData, setLoadingAllPendingPatientData] = useState(false)
     const finalDataPendingpatientData = requestAndApprovePatient(allPendingPatientData?.data)
 
-
     const [allApprovePatientData, setAllApprovePatientData] = useState([]);
     const [currentPageAllApprovePatientData, setCurrentPageAllApprovePatientData] = useState(1);
     const [totalPagesAllApprovePatientData, setTotalPagesAllApprovePatientData] = useState(0);
@@ -151,7 +150,8 @@ const ClinicianDetails = () => {
                     {loadingAllApprovePatientData ? <TableSkeleton /> :
                         <CriticalPatients patientData={finalDataApprovepatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                     }
-                    <Pagination page={currentPageAllApprovePatientData} onChange={handleChangePageApprovePendingpatient} count={totalPagesAllApprovePatientData} variant="outlined" shape="rounded" className='table-pagination' />
+                   {allApprovePatientData?.length !==0 && <Pagination page={currentPageAllApprovePatientData} onChange={handleChangePageApprovePendingpatient} count={totalPagesAllApprovePatientData} variant="outlined" shape="rounded" className='table-pagination' />
+}
 
                     <div className="pp-table">
                         <div className='table-title'>
@@ -160,7 +160,8 @@ const ClinicianDetails = () => {
                         {loadingAllPendingPatientData ? <TableSkeleton /> :
                             <CriticalPatients patientData={finalDataPendingpatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                         }
-                        <Pagination page={currentPageAllPendingPatientData} onChange={handleChangePagePendingpatient} count={totalPagesAllPendingPatientData} variant="outlined" shape="rounded" className='table-pagination' />
+                     {allPendingPatientData?.length!==0 &&   <Pagination page={currentPageAllPendingPatientData} onChange={handleChangePagePendingpatient} count={totalPagesAllPendingPatientData} variant="outlined" shape="rounded" className='table-pagination' />
+}
 
                     </div>
                 </div>
