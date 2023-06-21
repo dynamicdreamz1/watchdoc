@@ -16,6 +16,7 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
     const location=useLocation();
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
+    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const [addNewStaff, setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": "",
@@ -67,25 +68,27 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
     };
 
     const handleImages = (files) => {       
-        let validImages = [files].filter((file) =>
-            ['image/jpeg', 'image/png'].includes(file?.type || {})
-        );
-        setImgSrc(validImages[0])
-        // validImages.forEach(uploadImages);
-
-    };
-
-    // const uploadImages = (file) => {
-
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-
-    //     };
-
-    // }
-
+        const file = files;
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024);
+            if (fileSizeInMB <= 5) {
+                setImgSrc(files);
+                setFileSizeErrorMessage("")
+            } else {
+                setImgSrc("")
+                setFileSizeErrorMessage('Image size should be less than 5 MB')
+                toast.error('Image size should be less than 5 MB', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+        }
+    }
     const handleSubmitForm =async (data) => {
         setLoading(true)
         const formData = new FormData();
@@ -138,7 +141,10 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
-            onSubmit={(values) => { handleSubmitForm(values) }}
+            onSubmit={(values) => {
+                if(fileSizeErrorMessage==="")
+                handleSubmitForm(values)
+            }}
         >
             {(props) => (
                 <>
@@ -147,6 +153,9 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
                             <h2>Add Clinician</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                                <span className="error">{fileSizeErrorMessage && fileSizeErrorMessage}</span>
+                            </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />

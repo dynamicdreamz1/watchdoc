@@ -11,6 +11,8 @@ import { toast } from 'react-toastify';
 export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff,countryCode, setcountryCode}) {
     const { t } = useTranslation()
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");   
+    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
@@ -46,24 +48,28 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         setcountryCode(event.target.value);
     };
 
-    const handleImages = (files) => {
-        setImgSrc(files)
-        // let validImages = [files].filter((file) =>
-        //     ['image/jpeg', 'image/png'].includes(file?.type || {})
-        // );
-
-        // validImages.forEach(uploadImages);
-    };
-    // const uploadImages = (file) => {
-
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-
-    //     };
-
-    // }
+    const handleImages = (files) => {       
+        const file = files;
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024);
+            if (fileSizeInMB <= 5) {
+                setImgSrc(files);
+                setFileSizeErrorMessage("")
+            } else {
+                setImgSrc("")
+                setFileSizeErrorMessage('Image size should be less than 5 MB')
+                toast.error('Image size should be less than 5 MB', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+        }
+    }
     const handleSubmitForm = async(data) => {
         if(data?.id){
             const formData=new FormData();
@@ -153,7 +159,10 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
-            onSubmit={(values) => { handleSubmitForm(values) }}
+            onSubmit={(values) => {
+                if(fileSizeErrorMessage==="")
+                handleSubmitForm(values)
+            }}
         >
             {(props) => (
                 <>
@@ -162,6 +171,9 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                             <h2>Add Staff User</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                                <span className="error">{fileSizeErrorMessage && fileSizeErrorMessage}</span>
+                            </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
