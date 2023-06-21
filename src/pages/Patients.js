@@ -8,7 +8,7 @@ const Patients = () => {
   const [criticalAlertReviewedData,setCriticalAlertReviewedData]=useState([])
   const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
   const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
-  const [dataLimitCriticalAlertReviewedData] = useState(1)
+  const [dataLimitCriticalAlertReviewedData] = useState(5)
   const [loadingCriticalAlertReviewedData, setLoadingCriticalAlertReviewedData] = useState(false)
   const [searchData,setSearchData]=useState("")
 
@@ -16,7 +16,7 @@ const Patients = () => {
   const [criticalAlertUnreviewedData,setCriticalAlertUnreviewedData]=useState([])
   const [currentPageCriticalAlertUnreviewedData, setCurrentPageCriticalAlertUnreviewedData] = useState(1);
   const [totalPagesCriticalAlertUnreviewedData, setTotalPagesCriticalAlertUnreviewedData] = useState(0);
-  const [dataLimitCriticalAlertUnreviewedData] = useState(1)
+  const [dataLimitCriticalAlertUnreviewedData] = useState(5)
   const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
 

@@ -176,8 +176,8 @@ export const getAllProfileAlert = async (id,limit,currentPage) => {
 
 
 
-export const getCriticalAlertUnreviewed = async (currentPage,limit) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_unreviewed?limit=${limit}&page=${currentPage}`
+export const getCriticalAlertUnreviewed = async (currentPage,limit,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_unreviewed?limit=${limit}&page=${currentPage}&search=${search}`
     try {
         const response = await axios({
             method: 'get',

@@ -3,7 +3,7 @@ import CriticalPatientsAlertTableTabs from './CriticalPatientsAlertTableTabs'
 import { useEffect } from 'react';
 import { getCriticalAlertReviewed, getCriticalAlertUnreviewed } from '../../services/ClinicianService';
 
-export default function ClinicianDashboard() {
+export default function ClinicianDashboard({searchData}) {
     const [criticalAlertReviewedData,setCriticalAlertReviewedData]=useState([])
     const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
     const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
@@ -19,9 +19,9 @@ export default function ClinicianDashboard() {
     const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
 
-    const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)=>{
+    const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData)=>{
         setLoadingCriticalAlertUnreviewedData(true)
-        const res=await getCriticalAlertUnreviewed(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData);
+        const res=await getCriticalAlertUnreviewed(searchData?1:currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData);
       setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total  / dataLimitCriticalAlertUnreviewedData))
         if(res.status===200){
         setCriticalAlertUnreviewedData(res?.data?.data)
@@ -30,9 +30,9 @@ export default function ClinicianDashboard() {
     }
 
 
-    const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)=>{
+    const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)=>{
         setLoadingCriticalAlertReviewedData(true)
-        const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData);
+        const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData);
         setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
         if(res?.status===200){
         setCriticalAlertReviewedData(res?.data?.data)
@@ -50,13 +50,13 @@ export default function ClinicianDashboard() {
 
 
     useEffect(()=>{
-        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)
-    },[currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData])
+        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData)
+    },[currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData])
 
 
     useEffect(()=>{
-        fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)
-    },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData])
+        fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)
+    },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData,searchData])
 
     const action={
     criticalAlertUnreviewedData,
