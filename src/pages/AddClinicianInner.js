@@ -13,6 +13,8 @@ export default function AddClinicianInner() {
   const [clinicianData, setClinicianData] = useState([])
   const [nextBtn,setNextBtn]=useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+  const [searchData, setSearchData] = useState("");
+
   
   return (
     <>
@@ -20,12 +22,12 @@ export default function AddClinicianInner() {
         <div className='content-wrapper'>
           <Sidebar />
           <div className='aside'>
-            <Header toggle={toggle} setToggle={setToggle} />
+            <Header toggle={toggle} setToggle={setToggle} setSearchData={setSearchData}/>
             {toggle === true ? 
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 
             
-            <MyClinicians status={status} />
+            <MyClinicians status={status} searchData={searchData}/>
           </div>
         </div>
       </InnerClinicianContext.Provider>

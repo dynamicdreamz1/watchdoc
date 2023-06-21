@@ -34,12 +34,12 @@ export const addDoctor = async (data) => {
 
 }
 
-export const getClinicianData = async () => {
+export const getClinicianData = async (currentPage,dataLimit,search) => {
 
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician`,
+            url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician?limit=${dataLimit}&search=${search}&page=${currentPage}`,
             headers: headersClinician
         })
         return response
