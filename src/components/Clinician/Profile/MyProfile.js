@@ -64,13 +64,13 @@ export default function MyProfile() {
         const file = files;
         if (file) {
             const fileSizeInMB = file.size / (1024 * 1024);
-            if (fileSizeInMB <= 5) {
+            if (fileSizeInMB <= 2) {
                 setImgSrc(files);
                 setFileSizeErrorMessage("")
             } else {
                 setImgSrc("")
-                setFileSizeErrorMessage('Image size should be less than 5 MB')
-                toast.error('Image size should be less than 5 MB', {
+                setFileSizeErrorMessage('Image size should be less than 2 MB')
+                toast.error('Image size should be less than 2 MB', {
                     position: 'top-right',
                     autoClose: 3000,
                     hideProgressBar: true,

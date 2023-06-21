@@ -52,8 +52,13 @@ export default function ChangePassword() {
                 draggable: true,
                 theme: "colored",
               });
+              setPassword({
+                currentpassword:"",
+                newpassword:"",
+                confirmpassword:""
+              })
             setMessage('Password successfully updated.')
-        setTimeout(() => setMessage(""), 2000);
+            setTimeout(() => setMessage(""), 2000);
 
         }
 
