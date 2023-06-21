@@ -16,6 +16,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
     const metaData=MetaFormeting(profileBarData)
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
+    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": metaData?.first_name || "",
@@ -72,10 +73,28 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         setcountryCode(event.target.value);
     };
         
-    const handleImages = (files) => {
-        setImgSrc(files)
-    };
-
+    const handleImages = (files) => {       
+        const file = files;
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024);
+            if (fileSizeInMB <= 2) {
+                setImgSrc(files);
+                setFileSizeErrorMessage("")
+            } else {
+                setImgSrc("")
+                setFileSizeErrorMessage('Image size should be less than 2 MB')
+                toast.error('Image size should be less than 2 MB', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+        }
+    }
      const handleSubmitForm =async(data) => {
         const formData = new FormData();
         formData.append("id", id.toString());
@@ -113,7 +132,10 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
-            onSubmit={(values) => { handleSubmitForm(values) }}
+            onSubmit={(values) => {
+                if(fileSizeErrorMessage==="")
+                handleSubmitForm(values)
+            }}
         >
             {(props) => (               
                 <>
@@ -122,6 +144,9 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
                             <h2>Clinician Profile</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                                <span className="error">{fileSizeErrorMessage && fileSizeErrorMessage}</span>
+                            </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="profile_pic" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />

@@ -73,7 +73,6 @@ export const EditProfile = () => {
         }
         ProfileUpdate(formData)
             .then((res) => {
-                console.log("res", res);
                 if (res.status === 200) {
                     StoreCookie.setItem("user_details", res?.data.data);
                     setCurrentUserData({ ...currentUserData, userData: res?.data })
