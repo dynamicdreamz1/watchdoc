@@ -6,7 +6,8 @@ import { TableSkeleton } from '../Utility/Skeleton'
 
 
 const AdminPatientRequestAnd = ({action,value}) => {
-const {adminAllPatientsData,adminPatientCurrentPage,adminPatientloading,handleChangeAdminPagination,adminPatientTotalPages ,fetchAllPatient}=action;
+const {adminAllPatientsData,adminPatientCurrentPage,adminPatientloading,handleChangeAdminPagination,adminPatientTotalPages ,
+  fetchAllPatient,searchData}=action;
 const [viewAll] = useState(true)
 const AllPatientData = requestAndApprovePatient(adminAllPatientsData?.data)
 
@@ -15,7 +16,7 @@ const AllPatientData = requestAndApprovePatient(adminAllPatientsData?.data)
     }  
     
     const adminGetAllPatientData = () =>{
-      fetchAllPatient(adminPatientCurrentPage,adminPatientTotalPages)
+      fetchAllPatient(adminPatientCurrentPage,adminPatientTotalPages,searchData)
     }
 
   return (

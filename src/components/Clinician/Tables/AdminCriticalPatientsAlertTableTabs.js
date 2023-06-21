@@ -41,7 +41,7 @@ function a11yProps(index) {
 
 export default function AdminCriticalPatientsAlertTableTabs({ action }) {
     const { adminAllPatientsData, adminPatientCurrentPage, AdminPatientdataLimit, fetchAllPatient, adminPatientloading,
-        handleChangeAdminPagination, adminPatientTotalPages, setAdminPatientCurrentPage, setAdminPatientdataLimit } = action;
+        handleChangeAdminPagination, adminPatientTotalPages, setAdminPatientCurrentPage, setAdminPatientdataLimit,searchData } = action;
     const [value] = useState(2)
     const [recordsPerPage, setRecordsPerPage] = useState(10);
 
@@ -92,7 +92,8 @@ export default function AdminCriticalPatientsAlertTableTabs({ action }) {
         fetchAllPatient,
         adminPatientloading,
         handleChangeAdminPagination,
-        adminPatientTotalPages
+        adminPatientTotalPages,
+        searchData,
     }
     const pageOptions = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 

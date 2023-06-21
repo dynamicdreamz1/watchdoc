@@ -47,7 +47,8 @@ const action={
   adminPatientloading,
   handleChangeAdminPagination,
   setAdminPatientCurrentPage,
-  setAdminPatientdataLimit
+  setAdminPatientdataLimit,
+  searchData
 }
 
 
