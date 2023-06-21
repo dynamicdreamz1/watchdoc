@@ -8,7 +8,7 @@ import CriticalPatients from './Tables/CriticalPatients';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 // import DatePickerInput from '../common/Table/DatePickerInput';
-import {reviewedUnReviwedCommon } from '../../Utility/functions';
+import { reviewedUnReviwedCommon } from '../../Utility/functions';
 import PatientRequestAndApprove from "../../pages/PatientRequestAndApprove"
 import { ClinicianGetApprovePatientsRequest, ClinicianGetPatientsRequest } from '../../services/ClinicianService';
 import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
@@ -58,8 +58,8 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
         handleChangePageReviewedData, handleChangePageUnreviewedData, totalPagesCriticalAlertReviewedData,
         totalPagesCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData,
         currentPageCriticalAlertUnreviewedData, fetchUnreviewedData, fetchReviewedData,
-        dataLimitCriticalAlertReviewedData,loadingCriticalAlertReviewedData,
-        loadingCriticalAlertUnreviewedData,currentPageCriticalAlertReviewedData } = actionData || [];
+        dataLimitCriticalAlertReviewedData, loadingCriticalAlertReviewedData,
+        loadingCriticalAlertUnreviewedData, currentPageCriticalAlertReviewedData } = actionData || [];
     // const { t } = useTranslation()
     const location = useLocation();
     // const [date, setDate] = useState(GetDate);
@@ -131,16 +131,16 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     }
     useEffect(() => {
-            if (userData && userData.roles[0].name === "Clinician") {
-                getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
-            }
+        if (userData && userData.roles[0].name === "Clinician") {
+            getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps    
     }, [currentPageApprovePatient, dataLimitApprovePatient])
 
-    useEffect(() => {          
-            if (userData &&  userData.roles[0].name === "Clinician") {
-                getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
-            }
+    useEffect(() => {
+        if (userData && userData.roles[0].name === "Clinician") {
+            getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
+        }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPagePendingPatient, dataLimitPendingPatient])
@@ -206,21 +206,21 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     // const handleButtonClick = (e) => {
 
-        // if (e.target.name === "View All") {
-        //     setOptions(prevOptions => [
-        //         ...prevOptions.slice(0, prevOptions.length - 1),
-        //         "View Less"
-        //     ]);
-        //     setViewAll(!viewAll);
-        // }
+    // if (e.target.name === "View All") {
+    //     setOptions(prevOptions => [
+    //         ...prevOptions.slice(0, prevOptions.length - 1),
+    //         "View Less"
+    //     ]);
+    //     setViewAll(!viewAll);
+    // }
 
-        // if (e.target.name === "View Less") {
-        //     setOptions(prevOptions => [
-        //         ...prevOptions.slice(0, prevOptions.length - 1),
-        //         "View All"
-        //     ]);
-        //     setViewAll(!viewAll);
-        // }
+    // if (e.target.name === "View Less") {
+    //     setOptions(prevOptions => [
+    //         ...prevOptions.slice(0, prevOptions.length - 1),
+    //         "View All"
+    //     ]);
+    //     setViewAll(!viewAll);
+    // }
     // }
     const handleClickReviewAndUnReviewed = async (id, status) => {
         const formData = new FormData();
@@ -268,13 +268,13 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                 <Box className="table-header-block">
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="table-nav-tabs">
 
-            {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
-                <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total ? criticalAlertUnreviewedData?.total : 0})`}  {...a11yProps(0)} />}
-            {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
-                <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total ? criticalAlertReviewedData?.total : 0})`} {...a11yProps(1)} />}
-            {location?.pathname === "/patients" || location?.pathname==='/adminpatient' ?
-                <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
-             : ""}
+                        {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
+                            <Tab label={`Critical Alerts - Unreviewed (${criticalAlertUnreviewedData?.total ? criticalAlertUnreviewedData?.total : 0})`}  {...a11yProps(0)} />}
+                        {userData?.roles[0]?.name === "Admin" && location.pathname === '/adminpatient' ? "" :
+                            <Tab label={`Critical Alerts - Reviewed (${criticalAlertReviewedData?.total ? criticalAlertReviewedData?.total : 0})`} {...a11yProps(1)} />}
+                        {location?.pathname === "/patients" || location?.pathname === '/adminpatient' ?
+                            <Tab label={`View All Patients (${PatientApproveData?.patients?.total ? PatientApproveData?.patients?.total : 0})`} {...a11yProps(2)} />
+                            : ""}
                     </Tabs>
                     {/* {location.pathname === "/dashboard" ?
                         <TableShorting patientData={patientData} setPatientData={setPatientData}
@@ -285,13 +285,13 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                             : ""
                     } */}
                 </Box>
-               
+
                 <>
                     <TabPanel value={value} index={0} className="table-nav-tabs-content">
-        { loadingCriticalAlertUnreviewedData?<TableSkeleton />:unReviewedData?.length===0?<DefaultChartAlertSkeleton />:<CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
+                        {loadingCriticalAlertUnreviewedData ? <TableSkeleton /> : unReviewedData?.length === 0 ? <DefaultChartAlertSkeleton /> : <CriticalPatients value={value} patientData={unReviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
                     </TabPanel>
                     <TabPanel value={value} index={1} className="table-nav-tabs-content">
-         {loadingCriticalAlertReviewedData?<TableSkeleton /> :reviewedData?.length===0?<DefaultChartAlertSkeleton />:<CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
+                        {loadingCriticalAlertReviewedData ? <TableSkeleton /> : reviewedData?.length === 0 ? <DefaultChartAlertSkeleton /> : <CriticalPatients value={value} patientData={reviewedData} viewAll={viewAll} handleClickStatus={handleClickReviewAndUnReviewed} />}
                     </TabPanel>
                     <TabPanel value={value} index={2} className="table-nav-tabs-content">
                         <PatientRequestAndApprove action={action} value={value} />
@@ -305,10 +305,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                     :
                     value === 1 && criticalAlertReviewedData?.data?.length !== 0 ?
                         <Pagination page={currentPageCriticalAlertReviewedData} onChange={handleChangePageReviewedData} count={totalPagesCriticalAlertReviewedData} variant="outlined" shape="rounded" className='table-pagination' />
-
                         : ""
-
-
             }
 
         </>

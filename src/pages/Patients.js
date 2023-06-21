@@ -10,7 +10,7 @@ const Patients = () => {
   const [totalPagesCriticalAlertReviewedData, setTotalPagesCriticalAlertReviewedData] = useState(0);
   const [dataLimitCriticalAlertReviewedData] = useState(1)
   const [loadingCriticalAlertReviewedData, setLoadingCriticalAlertReviewedData] = useState(false)
-
+  const [searchData,setSearchData]=useState("")
 
 
   const [criticalAlertUnreviewedData,setCriticalAlertUnreviewedData]=useState([])
@@ -31,8 +31,8 @@ const Patients = () => {
   }
 
 
-  const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)=>{
-      const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData);
+  const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)=>{
+      const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData);
       setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
       if(res?.status===200){
       setCriticalAlertReviewedData(res?.data?.data)
@@ -55,8 +55,8 @@ const handleChangePageUnreviewedData = (event, newPage) => {
 
 
   useEffect(()=>{
-      fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData)
-  },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData])
+      fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)
+  },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData,searchData])
 
   const action={
     criticalAlertUnreviewedData,
@@ -79,7 +79,7 @@ const handleChangePageUnreviewedData = (event, newPage) => {
         <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header />
+          <Header setSearchData={setSearchData}/>
           <CriticalPatientsAlertTableTabs actionData={action}/>
         </div>
     </div>

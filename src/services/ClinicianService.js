@@ -63,8 +63,8 @@ export const ClinicianGetPatientsRequest = async (dataLimit, currentPage) => {
 
 }
 
-export const ClinicianGetApprovePatientsRequest = async (dataLimit, currentPage) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patients?limit=${dataLimit}&page=${currentPage}`
+export const ClinicianGetApprovePatientsRequest = async (dataLimit, currentPage,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patients?limit=${dataLimit}&search=${search}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
@@ -192,8 +192,8 @@ export const getCriticalAlertUnreviewed = async (currentPage,limit) => {
 }
 
 
-export const getCriticalAlertReviewed = async (limit,currentPage) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
+export const getCriticalAlertReviewed = async (limit,currentPage,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_reviewed?limit=${limit}&page=${currentPage}&search=${search}`
     try {
         const response = await axios({
             method: 'get',
