@@ -143,7 +143,7 @@ if(res?.status===200){
     <>
     <ToastContainer />
       <CriticalPatientsAlertTableTabs actionData={action} />
-      <CliniciansRequestsTable clinicianStaff={pendingClinicianData?.data?.data} handleChangePage={handleChangePage}
+      <CliniciansRequestsTable totalData={pendingClinicianData?.data} clinicianStaff={pendingClinicianData?.data?.data} handleChangePage={handleChangePage}
        loading={pendingClinicianLoading} recordsPerPage={recordsPerPage} totalPages={pendingClinicianTotalPages}
         currentPage={pendingClinicianCurrentPage}  setCurrentPage={setPendingClinicianCurrentPage} getClinicianData={GetPendingClinician} handleClickStatus={handleClickStatus}/>
     </>

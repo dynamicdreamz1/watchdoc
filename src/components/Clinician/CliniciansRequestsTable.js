@@ -9,17 +9,16 @@ import { getCurrentUserData } from '../../services/UserService';
 
 export default function CliniciansRequestsTable(props) {
     const userData = getCurrentUserData();
-    const { value, clinicianStaff, allClinician, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage,handleClickStatus } = props;
+    const { value, clinicianStaff, totalData,allClinician, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage,handleClickStatus } = props;
     const { t } = useTranslation();
     const location = useLocation();
-    
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">
                 {value === 0 || value === 1 ? "" :
                     <div className='table-title'>
                         <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
-                        <h4> {t('CliniciansRequestsTable.heading')}({clinicianStaff?.length})</h4>
+                        <h4> {t('CliniciansRequestsTable.heading')}({totalData?.total||0})</h4>
                     </div>
                 }
                 <>
