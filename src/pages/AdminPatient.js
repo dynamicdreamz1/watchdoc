@@ -29,8 +29,6 @@ useEffect(()=>{
 },[adminPatientCurrentPage,AdminPatientdataLimit,searchData])
 
 
-
-
 const handleChangeAdminPagination = (event, newPage) => {
   setAdminPatientCurrentPage(newPage);
 };
