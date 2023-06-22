@@ -10,9 +10,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
+import { getCurrentUserData } from '../../services/UserService';
 
 
 export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData }) {
+    const userData = getCurrentUserData()
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
@@ -21,8 +23,6 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
     let limit = 10;
     const [countryCode, setcountryCode] = useState('+91');
 
-   
-
     const handleChangePage = (e, newValue) => {
         setCurrentPage(newValue)
     }
@@ -30,7 +30,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
     const StaffUserData = async (limit, currentPage ,searchData) => {
         setLoading(true)
         const response = await getStaffUsers(limit, currentPage,searchData ? searchData :'');
-        if(response.status===200){
+        if(response.status === 200){
             setStaffUser(response.data?.data)
         }
         setLoading(false)
@@ -155,8 +155,8 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
                                         <TableCell>{data.email}</TableCell>
                                         <TableCell>{data.contact_number}</TableCell>
                                         <TableCell>{last_login}</TableCell>
-                                        <TableCell > <button onClick={() => handleClickDelete(data.id)}><DeleteIcon/><img src="" alt="" /> </button></TableCell>
-                                        <TableCell  > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>
+                                       {userData.id === data.id ? "" :<TableCell > <button onClick={() => handleClickDelete(data.id)}><DeleteIcon/><img src="" alt="" /> </button></TableCell> } 
+                                       {userData.id === data.id ? "" : <TableCell  > <button onClick={() => handleClickEdit(data)}><EditIcon/><img src="" alt="" /> </button></TableCell>}
 
                                     </TableRow>
                                 )
