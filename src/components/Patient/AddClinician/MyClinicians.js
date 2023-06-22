@@ -34,7 +34,7 @@ export default function MyClinicians({ status,searchData}) {
 
 const getAllClinicianData=async(currentPageAllClinicianData,dataLimitAllClinicianData,searchData)=>{
     setLoadingAllClinicianData(true);
-    const res=await getClinicianData(searchData?1:currentPageAllClinicianData,dataLimitAllClinicianData,searchData)
+    const res=await getClinicianData(searchData?1:currentPageAllClinicianData,dataLimitAllClinicianData,searchData ? searchData :'')
     setTotalPagesAllClinicianData(Math.ceil(res?.data?.data?.total / dataLimitAllClinicianData))
     if(res?.status===200){
         setAllClinicianData(res?.data?.data)

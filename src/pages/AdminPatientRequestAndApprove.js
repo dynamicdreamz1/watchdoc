@@ -16,7 +16,7 @@ const AllPatientData = requestAndApprovePatient(adminAllPatientsData?.data)
     }  
     
     const adminGetAllPatientData = () =>{
-      fetchAllPatient(adminPatientCurrentPage,adminPatientTotalPages,searchData)
+      fetchAllPatient(adminPatientCurrentPage,adminPatientTotalPages,searchData ? searchData :'')
     }
 
   return (
