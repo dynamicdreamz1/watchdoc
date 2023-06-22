@@ -19,7 +19,7 @@ userData?.roles[0]?.name==='User' || (userData?.roles[0]?.name==='Admin'&& locat
   return (
     <>
       <div  className='search-block'>
-        <input onChange={(e)=>setSearch(e.target.value)} value={searchData} type="search" name="search" placeholder={placeHolderText} />
+        <input onChange={(e)=>setSearch(e.target.value)} value={searchData} type="search" name="search" placeholder={placeHolderText} autoComplete='off'/>
       </div>
     </>
   )
