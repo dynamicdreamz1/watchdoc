@@ -22,7 +22,7 @@ const Patients = () => {
 
   const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)=>{
       setLoadingCriticalAlertUnreviewedData(true)
-      const res=await getCriticalAlertUnreviewed(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData);
+      const res=await getCriticalAlertUnreviewed(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData?searchData:"");
       setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertUnreviewedData))
       if(res.status===200){
       setCriticalAlertUnreviewedData(res?.data?.data)
@@ -32,7 +32,7 @@ const Patients = () => {
 
 
   const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)=>{
-      const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData);
+      const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData?searchData:"");
       setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
       if(res?.status===200){
       setCriticalAlertReviewedData(res?.data?.data)

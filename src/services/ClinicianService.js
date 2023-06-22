@@ -63,8 +63,8 @@ export const ClinicianGetPatientsRequest = async (dataLimit, currentPage) => {
 
 }
 
-export const ClinicianGetApprovePatientsRequest = async (dataLimit, currentPage,search) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patients?limit=${dataLimit}&search=${search}&page=${currentPage}`
+export const ClinicianGetApprovePatientsRequest = async (dataLimit, currentPage) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_patients?limit=${dataLimit}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
