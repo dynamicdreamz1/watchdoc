@@ -10,6 +10,7 @@ import Temperature from './Temperature/Temperature'
 import Weight from './Weight/Weight'
 import { getLatestMeasurement, getProviderTerraId } from '../../services/PatientsService'
 import { ReminderCardSkeleton } from '../../Utility/Skeleton'
+import { toast } from 'react-toastify'
 
 export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
@@ -17,15 +18,28 @@ export default function PatientDashboard() {
   const finalId = terraId?.data?.map(item => item?.terra_id);
   const [loadingSkeleton,setLoadingSkeleton]=useState(false)
 
-  
   async function fetchData() {
-    setLoadingSkeleton(true)
-    await getLatestMeasurement().then(response => response?.data).then(response => {
-        setlatestData(response);
-        setLoadingSkeleton(false)
-
-    })
+    try {
+      setLoadingSkeleton(true);
+      const response = await getLatestMeasurement();
+      const data = response?.data;
+      setlatestData(data);
+      setLoadingSkeleton(false);
+    }
+     catch (error) {
+      setLoadingSkeleton(false);
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+    });
+    }
   }
+  
   useEffect(() => {   
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

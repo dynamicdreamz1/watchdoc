@@ -100,7 +100,6 @@ useEffect(()=>{
 const handleChangeClinicianPagination = (event, newPage) => {
     setCurrentPageAllClinicianData(newPage);
   };
-  
     return (
         <>
             <TableContainer component={Paper} className="clinicians-table">

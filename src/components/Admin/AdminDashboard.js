@@ -31,16 +31,30 @@ export default function AdminDashboard() {
   const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
   const fetchUnreviewedData = async (currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData) => {
-    setLoadingCriticalAlertUnreviewedData(true)
-    const res = await getAdminCriticalAlertunReviewed(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData);
-    setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertUnreviewedData))
-    if (res.status === 200) {
-      setCriticalAlertUnreviewedData(res?.data?.data)
+    try {
+      setLoadingCriticalAlertUnreviewedData(true);
+      const res = await getAdminCriticalAlertunReviewed(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData);
+      setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertUnreviewedData));
+      if (res.status === 200) {
+        setCriticalAlertUnreviewedData(res?.data?.data);
+      }
+      setLoadingCriticalAlertUnreviewedData(false);
+    } catch (error) {     
+      setLoadingCriticalAlertUnreviewedData(false);
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
     }
-    setLoadingCriticalAlertUnreviewedData(false)
-  }
-
+  };
+  
   const fetchReviewedData = async (currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData) => {
+    try {
     setLoadingCriticalAlertReviewedData(true)
     const res = await getAdminCriticalAlertReviewed(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData,);
     setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
@@ -48,6 +62,18 @@ export default function AdminDashboard() {
       setCriticalAlertReviewedData(res?.data?.data)
     }
     setLoadingCriticalAlertReviewedData(false)
+  } catch (error) {
+    setLoadingCriticalAlertReviewedData(false)
+    toast.error(error, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
+  }
 
   }
   const handleChangePageReviewedData = (event, newPage) => {
@@ -80,6 +106,7 @@ export default function AdminDashboard() {
 
 
   const GetPendingClinician = async (recordsPerPage,pendingClinicianCurrentPage) => {
+    try {
     setPendingClinicianLoading(true)
     let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage,'')
     if (res?.status === 200) {
@@ -87,6 +114,19 @@ export default function AdminDashboard() {
     }
     setPendingClinicianTotalPages(Math.ceil(res?.data?.data?.total / recordsPerPage));
     setPendingClinicianLoading(false)
+  }catch(error){
+    toast.error(error, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
+    setPendingClinicianLoading(false)
+  }
+    
   }
 
   useEffect(() => {

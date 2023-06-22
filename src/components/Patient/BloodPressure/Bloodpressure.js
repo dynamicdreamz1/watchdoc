@@ -7,6 +7,7 @@ import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetail
 import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
 import { defaultBloodPressureAlertTrigger } from '../../../Utility/DefaultObject'
 import {  DefaultChartSkeleton } from '../../../Utility/Skeleton'
+import { toast } from 'react-toastify'
 
 
 
@@ -26,11 +27,25 @@ export default function Bloodpressure({terraId,latestData}) {
     setValue(newValue);
   };
   const fetchData = async () => {
-    setIsBloodPressureSkeleton(true)
-    const result = await GetUserBloodPressureData(timeType, terraId, FinalDate)
-    setBloodPressureData(result);
-    setIsBloodPressureSkeleton(false)
-  }
+    try {
+      setIsBloodPressureSkeleton(true);
+      const result = await GetUserBloodPressureData(timeType, terraId, FinalDate);
+      setBloodPressureData(result);
+      setIsBloodPressureSkeleton(false);
+    } catch (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'colored',
+      });
+      setIsBloodPressureSkeleton(false);
+    }
+  };
+  
   useEffect(() => {
     if (terraId) {
       fetchData()

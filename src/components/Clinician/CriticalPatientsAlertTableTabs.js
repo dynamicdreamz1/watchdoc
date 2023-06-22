@@ -115,19 +115,43 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     // const [patientData, setPatientData] = useState(criticalAlertUnreviewedData)
 
     const getPendingPatient = async (dataLimitPendingPatient, currentPagePendingPatient) => {
+        try{
         setLoadingPendingPatient(true)
         let response = await ClinicianGetPatientsRequest(dataLimitPendingPatient, currentPagePendingPatient)
         setTotalPagesPendingPatient(Math.ceil(response?.data?.pending_request?.total / dataLimitPendingPatient));
         setPatientRequestData(response?.data)
         setLoadingPendingPatient(false)
+        }catch (error) {
+            toast.error(error, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
+        }
 
     }
     const getApproveRequest = async (dataLimitPendingPatient, currentPage) => {
+        try{
         setLoadingApprovePatient(true)
         let response = await ClinicianGetApprovePatientsRequest(dataLimitPendingPatient, currentPage)
         setTotalPagesApprovePatient(Math.ceil(response?.data?.patients?.total / dataLimitPendingPatient))
         setPatientApproveData(response.data)
         setLoadingApprovePatient(false)
+    }catch (error) {
+        toast.error(error, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+        });
+    }
 
     }
     useEffect(() => {
@@ -223,6 +247,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     // }
     // }
     const handleClickReviewAndUnReviewed = async (id, status) => {
+        try{
         const formData = new FormData();
         formData.append('critical_alert_id', id)
         const res = await UnreviewedToReviewedAlerts(formData);
@@ -239,6 +264,17 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                 theme: "colored",
             });
         }
+    }catch (error) {
+        toast.error(error, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+        });
+    }
 
     }
 
