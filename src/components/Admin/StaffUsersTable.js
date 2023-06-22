@@ -14,6 +14,7 @@ import { getCurrentUserData } from '../../services/UserService';
 
 
 export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData,setSearchData }) {
+    const userData=getCurrentUserData()
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
