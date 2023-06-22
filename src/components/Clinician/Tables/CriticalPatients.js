@@ -44,12 +44,12 @@ export default function CriticalPatients(props) {
                     .then((res) => {
                       if (res) {
                         adminGetAllPatient()
+                        setSearchData("")
                       }
                     })
                     .catch((error) => {
                         console.log(error)
                     })
-                    setSearchData("")
                 Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
             }
         });

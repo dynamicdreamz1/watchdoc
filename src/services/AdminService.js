@@ -212,6 +212,7 @@ export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
 
 
 export const getAllAdminPatient = async (currentPage,limit,search) => {
+    console.log("currentPage,limit,search",currentPage,limit,search);
     try {
         const response = await axios({
             method: 'get',
