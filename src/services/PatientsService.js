@@ -76,3 +76,17 @@ export const connectDevice = async (data) => {
         return error
     }
   };
+
+  export const disconnectDevice = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}disconnect_device`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            data:data
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+  };
