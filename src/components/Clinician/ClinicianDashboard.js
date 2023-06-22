@@ -21,7 +21,7 @@ export default function ClinicianDashboard({searchData}) {
 
     const fetchUnreviewedData=async(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData)=>{
         setLoadingCriticalAlertUnreviewedData(true)
-        const res=await getCriticalAlertUnreviewed(searchData?1:currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData);
+        const res=await getCriticalAlertUnreviewed(searchData?1:currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData,searchData ? searchData :'');
       setTotalPagesCriticalAlertUnreviewedData(Math.ceil(res?.data?.data?.total  / dataLimitCriticalAlertUnreviewedData))
         if(res.status===200){
         setCriticalAlertUnreviewedData(res?.data?.data)
@@ -32,7 +32,7 @@ export default function ClinicianDashboard({searchData}) {
 
     const fetchReviewedData=async(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)=>{
         setLoadingCriticalAlertReviewedData(true)
-        const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData);
+        const res=await getCriticalAlertReviewed(dataLimitCriticalAlertReviewedData,searchData?1:currentPageCriticalAlertReviewedData,searchData ? searchData :'');
         setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
         if(res?.status===200){
         setCriticalAlertReviewedData(res?.data?.data)
