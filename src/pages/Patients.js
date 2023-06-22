@@ -51,11 +51,13 @@ const handleChangePageUnreviewedData = (event, newPage) => {
 
   useEffect(()=>{
       fetchUnreviewedData(currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[currentPageCriticalAlertUnreviewedData,dataLimitCriticalAlertUnreviewedData])
 
 
   useEffect(()=>{
       fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,searchData)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData,searchData])
 
   const action={
