@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 
 
 
-export default function MyClinicians({ status,searchData,setSearchData={setSearchData}}) {
+export default function MyClinicians({ status,searchData,setSearchData}) {
     const { addData, setClinicianData } = useContext(InnerClinicianContext)
     const { t } = useTranslation();
     const [deleteStatus, setDeleteStatus] = useState(false);
