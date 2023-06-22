@@ -17,6 +17,7 @@ export default function StaffUsers() {
     "practicename":"",
     "practiceaddress": "",
     "password": "",
+    "profile_pic" : ""
 })
 useEffect(()=>{
   if(!open){
@@ -28,6 +29,8 @@ useEffect(()=>{
       "number": "",
       "practiceaddress": "",
       "password": "",
+      "profile_pic":""
+      
       })
   }
 

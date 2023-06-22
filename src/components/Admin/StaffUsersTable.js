@@ -108,7 +108,8 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             "number":phoneNumber,
             "practicename":editData?.practice_name,
             "practiceaddress": editData?.practice_address,
-            "password": ""
+            "password": "",
+            "profile_pic" : editData?.profile_pic,
         })
         
     }
