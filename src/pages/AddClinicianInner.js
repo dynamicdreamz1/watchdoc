@@ -27,7 +27,7 @@ export default function AddClinicianInner() {
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 
             
-            <MyClinicians status={status} searchData={searchData}/>
+            <MyClinicians status={status} searchData={searchData} setSearchData={setSearchData}/>
           </div>
         </div>
       </InnerClinicianContext.Provider>

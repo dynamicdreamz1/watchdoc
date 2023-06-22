@@ -15,7 +15,7 @@ import Status from './Status'
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-export default function ClinicianInfoRow({ value, data, clinicianStaff,getClinicianData,currentPage,recordsPerPage,handleClickStatus }) {
+export default function ClinicianInfoRow({ value, setSearchData,data, clinicianStaff,getClinicianData,currentPage,recordsPerPage,handleClickStatus }) {
   const navigate=useNavigate();
 
   const { t } = useTranslation();
@@ -52,6 +52,7 @@ const DeleteRequest = async (id) => {
               .catch((error) => {
                   console.log(error)
               })
+              setSearchData("")
           Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
       }
   });

@@ -44,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,value }) {
+export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,value,setSearchData}) {
   const { t } = useTranslation()
   const [allClinician, setAllClinician ] = useState([]);
   const [viewAll, setViewAll] = useState(false)
@@ -246,7 +246,7 @@ let [options, setOptions] = useState(specificOption)
                   {secondLength ? secondLength : ""}
                   <TabPanel value={value} index={0} className="table-nav-tabs-content">
                     <CliniciansRequestsTable value={value} allClinician={allClinician?.data?.data} setAllClinician={setAllClinician} handleChangePage={handleChangePage}
-                       currentPage={currentPage} totalPages={totalPages}
+                       currentPage={currentPage} totalPages={totalPages} setSearchData={setSearchData}
                       recordsPerPage={dataLimit}  getClinicianData={getAllClinicianData} />
                   </TabPanel>
                 </>

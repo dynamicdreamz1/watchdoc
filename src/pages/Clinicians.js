@@ -15,7 +15,7 @@ const Clinicians = () => {
         <Sidebar />
         <div className='aside'>
           <Header setOpen={setOpen} setSearchData={setSearchData} searchData={searchData}/>
-          <CliniciansTableTabs open={open} setOpen={setOpen} searchData={searchData} setValue={setValue} value={value} />
+          <CliniciansTableTabs open={open} setOpen={setOpen} searchData={searchData} setValue={setValue} value={value} setSearchData={setSearchData}/>
         </div>
       </div>
     </React.Fragment>

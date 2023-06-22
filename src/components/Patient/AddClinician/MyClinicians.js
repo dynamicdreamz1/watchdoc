@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 
 
 
-export default function MyClinicians({ status,searchData}) {
+export default function MyClinicians({ status,searchData,setSearchData={setSearchData}}) {
     const { addData, setClinicianData } = useContext(InnerClinicianContext)
     const { t } = useTranslation();
     const [deleteStatus, setDeleteStatus] = useState(false);
@@ -70,6 +70,7 @@ useEffect(()=>{
                     .catch((error) => {
                         console.log(error)
                     })
+                    setSearchData("")
                 Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
             }
         });

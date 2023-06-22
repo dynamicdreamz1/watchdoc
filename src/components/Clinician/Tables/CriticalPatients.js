@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 export default function CriticalPatients(props) {
     const location=useLocation();
-    const { patientData, value,handleClickStatus , adminGetAllPatient} = props
+    const { patientData, value,handleClickStatus , adminGetAllPatient,setSearchData} = props
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
@@ -49,6 +49,7 @@ export default function CriticalPatients(props) {
                     .catch((error) => {
                         console.log(error)
                     })
+                    setSearchData("")
                 Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
             }
         });

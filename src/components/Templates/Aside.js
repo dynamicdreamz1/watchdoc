@@ -19,7 +19,7 @@ export default function Aside() {
           case 'User':
             return <PatientDashboard />
           case 'Clinician':
-            return <ClinicianDashboard searchData={searchData}/>
+            return <ClinicianDashboard searchData={searchData} setSearchData={setSearchData}/>
           default:
             return <AdminDashboard />
         }

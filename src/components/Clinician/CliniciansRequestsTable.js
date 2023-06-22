@@ -9,7 +9,7 @@ import { getCurrentUserData } from '../../services/UserService';
 
 export default function CliniciansRequestsTable(props) {
     const userData = getCurrentUserData();
-    const { value, clinicianStaff, totalData,allClinician, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage,handleClickStatus } = props;
+    const { value, clinicianStaff, totalData,allClinician,setSearchData, loading, handleChangePage, currentPage, totalPages,getClinicianData,recordsPerPage,handleClickStatus } = props;
     const { t } = useTranslation();
     const location = useLocation();
     return (
@@ -52,7 +52,7 @@ export default function CliniciansRequestsTable(props) {
                                 ))}
 
                                 {allClinician?.length > 0 && allClinician?.map((element) => (
-                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} data={element} clinicianStaff={allClinician} getClinicianData={getClinicianData} currentPage={currentPage} recordsPerPage={recordsPerPage} /></React.Fragment>
+                                    <React.Fragment key={element.id}><ClinicianInfoRow value={value} setSearchData={setSearchData} data={element} clinicianStaff={allClinician} getClinicianData={getClinicianData} currentPage={currentPage} recordsPerPage={recordsPerPage} /></React.Fragment>
                                 ))}
                             </TableBody>
                         </Table>}
