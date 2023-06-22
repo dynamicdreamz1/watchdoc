@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ConnectDeviceData } from "../../../Utility/DefaultObject";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 export default function LinkDevices() {
   const [loading, setLoading] = React.useState(false);
@@ -37,6 +38,18 @@ export default function LinkDevices() {
 
 
   const onDisconnect = async(e,type) =>{
+
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to disconnect ',
+      limit:1,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, disconnect it!',
+    });
+    if (result.isConfirmed) {
     setOpen(true);
     const newArray = terraId.data.filter(function (el) {return el.provider === type});
     const formData = new FormData();
@@ -47,7 +60,7 @@ export default function LinkDevices() {
       .then(async(res) => {
         if (res.data.status === "success") {
           await fetchData();
-          toast.success(`Device disconnected successfully`, {
+          toast.success(`Device disconnect successfully`, {
             position: 'top-right',
             autoClose: 3000,
             hideProgressBar: true,
@@ -63,6 +76,7 @@ export default function LinkDevices() {
         console.log(error);
         return error;
       })}
+    }
 
     const  fetchData = async() => {
         const result = await getProviderTerraId();
@@ -98,11 +112,8 @@ export default function LinkDevices() {
           
           return (
             <>
-           <div>
-          {/* <Button onClick={handleOpen}>Show backdrop</Button> */}
-   
+           <div>   
     </div>
-   
             <div className="device-block">
               <div className="text-block d-flex align-items-center">
                 <span className="icon d-flex justify-content-center">
