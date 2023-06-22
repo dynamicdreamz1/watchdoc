@@ -13,7 +13,6 @@ export default function LinkDevices() {
   const [open, setOpen] = React.useState(false);
 
   const finalId = terraId?.data?.map((item) => item?.provider);
-  console.log(finalId);
   const { t } = useTranslation();
 
   const onConnect = (e, type) => {
