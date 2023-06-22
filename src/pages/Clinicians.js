@@ -14,7 +14,7 @@ const Clinicians = () => {
       <div className='content-wrapper'>
         <Sidebar />
         <div className='aside'>
-          <Header setOpen={setOpen} setSearchData={setSearchData} />
+          <Header setOpen={setOpen} setSearchData={setSearchData} searchData={searchData}/>
           <CliniciansTableTabs open={open} setOpen={setOpen} searchData={searchData} setValue={setValue} value={value} />
         </div>
       </div>

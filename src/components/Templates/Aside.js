@@ -13,7 +13,7 @@ export default function Aside() {
   return (
     <div className='aside'>
 
-      <Header setSearchData={setSearchData}/>
+      <Header setSearchData={setSearchData} searchData={searchData}/>
       {(() => {
         switch (userData?.roles[0].name) {
           case 'User':

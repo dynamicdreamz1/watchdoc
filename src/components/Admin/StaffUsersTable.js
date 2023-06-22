@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 
-export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData }) {
+export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData,setSearchData }) {
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
@@ -63,7 +63,8 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
           });
       
           if (result.isConfirmed) {
-            const res = await deleteStaffUsers(id);       
+            const res = await deleteStaffUsers(id);  
+            setSearchData("")
             await StaffUserData(limit, currentPage)
             toast.success(res?.data?.message, {
               position: 'top-right',

@@ -22,7 +22,7 @@ export default function AddClinicianInner() {
         <div className='content-wrapper'>
           <Sidebar />
           <div className='aside'>
-            <Header toggle={toggle} setToggle={setToggle} setSearchData={setSearchData}/>
+            <Header toggle={toggle} setToggle={setToggle} setSearchData={setSearchData} searchData={searchData}/>
             {toggle === true ? 
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 

@@ -57,7 +57,7 @@ const action={
         <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header setSearchData={setSearchData} />
+          <Header setSearchData={setSearchData} searchData={searchData}/>
           <AdminCriticalPatientsAlertTableTabs action={action}/>
         </div>
     </div>

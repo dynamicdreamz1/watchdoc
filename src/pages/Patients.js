@@ -82,7 +82,7 @@ const handleChangePageUnreviewedData = (event, newPage) => {
         <div className='content-wrapper'>
         <Sidebar/>
         <div className='aside'>
-          <Header setSearchData={setSearchData}/>
+          <Header setSearchData={setSearchData} searchData={searchData}/>
           <CriticalPatientsAlertTableTabs actionData={action}/>
         </div>
     </div>
