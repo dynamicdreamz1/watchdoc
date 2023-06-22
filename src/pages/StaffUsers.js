@@ -32,7 +32,6 @@ useEffect(()=>{
   }
 
 },[open])
-console.log("11111111-searchData",searchData)
   return (
     <>
       <React.Fragment>
