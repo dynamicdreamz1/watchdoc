@@ -34,9 +34,9 @@ export const calculateTimeDifferenceInMinutes = (dateString) => {
 }
 
 export const MetaFormeting = (metadata) => {
-  let userpforle = [];
-  metadata?.meta_data?.map(item => userpforle[item?.meta_key] = item?.meta_value)
-  return userpforle;
+  let userProfile = [];
+  metadata?.meta_data?.map(item => userProfile[item?.meta_key] = item?.meta_value)
+  return userProfile;
 }
 
 export const watchNumerFormeting = (num) => {

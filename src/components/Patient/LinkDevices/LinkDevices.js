@@ -98,11 +98,8 @@ export default function LinkDevices() {
           
           return (
             <>
-           <div>
-          {/* <Button onClick={handleOpen}>Show backdrop</Button> */}
-   
+           <div>   
     </div>
-   
             <div className="device-block">
               <div className="text-block d-flex align-items-center">
                 <span className="icon d-flex justify-content-center">
