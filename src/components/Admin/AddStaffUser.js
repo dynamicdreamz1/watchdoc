@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 
 export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff,countryCode, setcountryCode}) {
     const { t } = useTranslation()
-    console.log("setAddNewStaff",addNewStaff);
     const [imageUrl, setImgSrc] = useState(addNewStaff?.profile_pic===undefined?"/images/user-picture-placeholder.png":addNewStaff?.profile_pic);    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/

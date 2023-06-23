@@ -23,12 +23,11 @@ export default function PatientEntry() {
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
-
     const LoginSchema = Yup.object({
-        email: Yup.string().required(t('SignUpPage.validation.email.v1'))
-            .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2'))    
-
-    });
+        email: Yup.string()
+          .required(t('SignUpPage.validation.email.v1'))
+          .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2'))
+      });
 
     const handleSubmit = (value) => {
         const data = {

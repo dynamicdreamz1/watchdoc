@@ -5,6 +5,7 @@ import CriticalPatientsAlertTableTabs from '../Clinician/CriticalPatientsAlertTa
 import { getAdminCriticalAlertReviewed, getAdminCriticalAlertunReviewed } from '../../services/AdminService';
 import { getCurrentUserData } from '../../services/UserService';
 import { toast, ToastContainer } from 'react-toastify'
+import SimpleBackdrop from '../../Utility/Skeleton';
 
 
 export default function AdminDashboard() {
@@ -14,7 +15,7 @@ export default function AdminDashboard() {
   const [pendingClinicianCurrentPage, setPendingClinicianCurrentPage] = useState(1)
   const [pendingClinicianTotalPages, setPendingClinicianTotalPages] = useState(0);
   const [pendingClinicianLoading, setPendingClinicianLoading] = useState(false)
-
+  const [spinnerPendingClinician,setSpinnerPendingClinician]=useState(false)
 
   const [criticalAlertReviewedData, setCriticalAlertReviewedData] = useState([])
   const [currentPageCriticalAlertReviewedData, setCurrentPageCriticalAlertReviewedData] = useState(1);
@@ -31,6 +32,7 @@ export default function AdminDashboard() {
   const [loadingCriticalAlertUnreviewedData, setLoadingCriticalAlertUnreviewedData] = useState(false)
 
   const fetchUnreviewedData = async (currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData) => {
+
     try {
       setLoadingCriticalAlertUnreviewedData(true);
       const res = await getAdminCriticalAlertunReviewed(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData);
@@ -50,16 +52,20 @@ export default function AdminDashboard() {
         draggable: true,
         theme: "colored",
       });
+
     }
   };
   
   const fetchReviewedData = async (currentPageCriticalAlertReviewedData,dataLimitCriticalAlertReviewedData) => {
+    setPendingClinicianLoading(true)
     try {
     setLoadingCriticalAlertReviewedData(true)
     const res = await getAdminCriticalAlertReviewed(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData,);
     setTotalPagesCriticalAlertReviewedData(Math.ceil(res?.data?.data?.total / dataLimitCriticalAlertReviewedData));
     if (res?.status === 200) {
       setCriticalAlertReviewedData(res?.data?.data)
+    setPendingClinicianLoading(false)
+
     }
     setLoadingCriticalAlertReviewedData(false)
   } catch (error) {
@@ -74,6 +80,8 @@ export default function AdminDashboard() {
       theme: "colored",
     });
   }
+  setPendingClinicianLoading(false)
+
 
   }
   const handleChangePageReviewedData = (event, newPage) => {
@@ -139,7 +147,7 @@ export default function AdminDashboard() {
 
 
   const handleClickStatus = async (data) => {
-    console.log("11111-data", data);
+    setSpinnerPendingClinician(true)
     try {
       const res = await changePendingClinicianStatus(data?.id);
       if (res?.status === 200) {
@@ -152,6 +160,7 @@ export default function AdminDashboard() {
           draggable: true,
           theme: "colored",
         });
+        setSpinnerPendingClinician(false)
         GetPendingClinician(recordsPerPage, pendingClinicianCurrentPage, "");
       }
     } catch (error) {
@@ -164,6 +173,7 @@ export default function AdminDashboard() {
         draggable: true,
         theme: "colored",
       });
+      setSpinnerPendingClinician(false)
     }  
 
 }
@@ -195,6 +205,7 @@ export default function AdminDashboard() {
   return (
     <>
     <ToastContainer />
+    <SimpleBackdrop open={spinnerPendingClinician} />
       <CriticalPatientsAlertTableTabs actionData={action} />
       <CliniciansRequestsTable totalData={pendingClinicianData?.data} clinicianStaff={pendingClinicianData?.data?.data} handleChangePage={handleChangePage}
        loading={pendingClinicianLoading} recordsPerPage={recordsPerPage} totalPages={pendingClinicianTotalPages}

@@ -3,7 +3,8 @@ import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
 import {  requestAndApprovePatient } from '../Utility/functions'
 import { ClinicianPatientStatus } from '../services/ClinicianService'
 import { Pagination } from '@mui/material'
-import { TableSkeleton } from '../Utility/Skeleton'
+import SimpleBackdrop, { TableSkeleton } from '../Utility/Skeleton'
+import { toast } from 'react-toastify'
 
 
 const PatientRequestAnd = ({action,value}) => {
@@ -14,28 +15,44 @@ const {PatientRequestData,PatientApproveData,
   dataLimitPendingPatient, currentPagePendingPatient}=action
 
   const [viewAll] = useState(true)
+  const [spinner,setSpinner]=useState(false)
   const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients?.data)
   const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request?.data)
 
 
 
-    const handleClickReview = async (id,status) => {
-      const finalData={
-        id:id,
-        approval:status==='Reviewed'?"reject":status==='Approve'?'approve':'reject'
+  const handleClickReview = async (id, status) => {
+    try {
+      setSpinner(true);
+      const finalData = {
+        id: id,
+        approval: status === 'Reviewed' ? "reject" : status === 'Approve' ? 'approve' : 'reject'
+      };
+      const result = await ClinicianPatientStatus(finalData);
+      if (result?.status === 200) {
+        getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient);
+        getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient);
       }
-      const result= await ClinicianPatientStatus(finalData)
-      if(result?.status===200){       
-        getPendingPatient(dataLimitPendingPatient, currentPagePendingPatient)
-        getApproveRequest(dataLimitApprovePatient, currentPageApprovePatient)
-      }
-    }  
+      setSpinner(false);
+    } catch (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+      setSpinner(false);
+    }
+  };
+   
     
   return (
     <React.Fragment>
         <div className=''>
-         <div>
-         </div>
+        <SimpleBackdrop open={spinner} />
          {loadingApprovePatient ? <TableSkeleton /> :
           <CriticalPatients value={value} patientData={PatientApprove} handleClickStatus={handleClickReview} viewAll={viewAll} />
         }

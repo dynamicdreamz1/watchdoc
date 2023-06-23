@@ -48,7 +48,7 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getAllParticularClinicianApprovePatientData(currentPageAllApprovePatientData, dataLimitAllApprovePatientData)
-
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData])
 
 
@@ -68,6 +68,7 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getAllParticularClinicianPatientData(currentPageAllPendingPatientData, dataLimitAllPendingPatientData)
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, currentPageAllPendingPatientData, dataLimitAllPendingPatientData])
 
 
@@ -87,6 +88,7 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getClinicianDetail()
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
     const handleClose = () => {

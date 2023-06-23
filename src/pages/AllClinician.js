@@ -35,6 +35,7 @@ export default function AllClinician() {
 
     useEffect(() => {
         fetchData(dataLimit, currentPage) 
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataLimit, currentPage])
 
 

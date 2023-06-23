@@ -15,7 +15,7 @@ import { UnreviewedToReviewedAlerts } from '../../services/ClinicianService';
 import { toast } from "react-toastify";
 import { ToastContainer } from 'react-toastify';
 import { getCurrentUserData } from '../../services/UserService';
-import { DefaultChartAlertSkeleton, TableSkeleton } from '../../Utility/Skeleton';
+import SimpleBackdrop, { DefaultChartAlertSkeleton, TableSkeleton } from '../../Utility/Skeleton';
 
 
 
@@ -67,6 +67,8 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     const [viewAll, setViewAll] = useState(true)
     const [PatientRequestData, setPatientRequestData] = useState([])
     const [PatientApproveData, setPatientApproveData] = useState([])
+    const [spinner,setSpinner]=useState(false)
+
     // const [anchorEl, setAnchorEl] = useState(null);
     // const [selectedOption, setSelectedOption] = useState(null);
 
@@ -74,7 +76,6 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     const reviewedData = reviewedUnReviwedCommon(criticalAlertReviewedData?.data)
     const unReviewedData = reviewedUnReviwedCommon(criticalAlertUnreviewedData?.data)
-
 
     const [recordsPerPagePendingPatient] = useState(10);
     const [currentPagePendingPatient, setCurrentPagePendingPatient] = useState(1);
@@ -247,6 +248,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     // }
     // }
     const handleClickReviewAndUnReviewed = async (id, status) => {
+        setSpinner(true)
         try{
         const formData = new FormData();
         formData.append('critical_alert_id', id)
@@ -264,6 +266,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
                 theme: "colored",
             });
         }
+        setSpinner(false)
     }catch (error) {
         toast.error(error, {
             position: 'top-right',
@@ -275,7 +278,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
             theme: "colored",
         });
     }
-
+    setSpinner(false)
     }
 
     const action = {
@@ -298,7 +301,8 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     }
     return (
-        <>
+        <>  
+        <SimpleBackdrop open={spinner}/>
             <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
