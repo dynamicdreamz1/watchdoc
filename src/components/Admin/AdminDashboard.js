@@ -139,7 +139,6 @@ export default function AdminDashboard() {
 
 
   const handleClickStatus = async (data) => {
-    console.log("11111-data", data);
     try {
       const res = await changePendingClinicianStatus(data?.id);
       if (res?.status === 200) {
@@ -167,11 +166,6 @@ export default function AdminDashboard() {
     }  
 
 }
-
-
-
-
-
 
   const action = {
     criticalAlertUnreviewedData,
