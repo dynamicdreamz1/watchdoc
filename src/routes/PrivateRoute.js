@@ -35,7 +35,6 @@ let token = StoreCookie.getItem('token')
           navigate(`/signin`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
       }, [token]);
     
     if (token) {
