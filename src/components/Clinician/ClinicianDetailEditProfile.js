@@ -8,6 +8,7 @@ import { clinicanProfileUpdate } from '../../services/AdminService';
 import { toast } from 'react-toastify';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
+import SimpleBackdrop from '../../Utility/Skeleton';
 
 
 export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getClinicianDetail}) { 
@@ -17,6 +18,7 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState(metaData?.profile_pic===undefined?"/images/user-picture-placeholder.png":metaData?.profile_pic);
     const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
+    const [loading,setLoading]=useState(false)
     const [addNewStaff,setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": metaData?.first_name || "",
@@ -53,15 +55,15 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         userprofile_picprofile: Yup.string(),
         countrycode: Yup.string(),
         firstname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+             .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),  
         lastname: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+             .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),  
         email: Yup.string().required("This field is required*")
             // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),        
-        practicename :Yup.string()
-        .required("This field is required*")
-        .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
+            practicename: Yup.string()
+            .required("This field is required*")
+            .matches(/^[a-zA-Z0-9\s]+$/, "Only alphabets and numbers are allowed for this field"),          
         practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
@@ -95,39 +97,54 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
             }
         }
     }
-     const handleSubmitForm =async(data) => {
-        const formData = new FormData();
-        formData.append("id", id.toString());
-        formData.append("type", "update");
-        formData.append("first_name", data.firstname);
-        formData.append("last_name", data.lastname);
-        formData.append("email", data.email);
-        formData.append("contact_number", `${countryCode}${data.number}`);
-        formData.append("password", null);
-        formData.append("practice_address", data.practicename);
-        formData.append("practice_name", data.practiceaddress);
-
-        if(typeof imageUrl == "object" ){
-            formData.append("profile_pic",imageUrl);
-        }
-        setOpen(false)
-        const res=await clinicanProfileUpdate(formData)
-        if(res?.status===200){        
-        await getClinicianDetail()  
+    const handleSubmitForm = async (data) => {
+        setLoading(true);
+        try {
+          const formData = new FormData();
+          formData.append("id", id.toString());
+          formData.append("type", "update");
+          formData.append("first_name", data.firstname);
+          formData.append("last_name", data.lastname);
+          formData.append("email", data.email);
+          formData.append("contact_number", `${countryCode}${data.number}`);
+          formData.append("password", null);
+          formData.append("practice_address", data.practicename);
+          formData.append("practice_name", data.practiceaddress);
+      
+          if (typeof imageUrl == "object") {
+            formData.append("profile_pic", imageUrl);
+          }
+          const res = await clinicanProfileUpdate(formData);
+          if (res?.status === 200) {
+            await getClinicianDetail();
             toast.success('Clinciian Update Successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "colored",
-              });
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored",
+            });
+          }
+          setOpen(false);
+        } catch (error) {
+          toast.success(error, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+          });
         }
-
-    }
-    
+        setLoading(false);
+      };      
     return (
+        <>
+        <SimpleBackdrop open={loading} />
+
         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
@@ -215,5 +232,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
                 </>
             )}
         </Formik>
+        </>
     )
 }
