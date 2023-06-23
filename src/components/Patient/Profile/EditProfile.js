@@ -214,7 +214,7 @@ export const EditProfile = () => {
                                 <input type="text" name="contact_number" placeholder={t('EditProfilePage.form.f24')} value={props?.values?.contact_number} id="exampleInputHeight" onChange={props?.handleChange} />
                                 <span className="error"> {props?.errors?.contact_number ? props?.errors?.contact_number : ""}</span>
                             </div>
-                            {loading ? <div className='LoginError'>{t('EditProfilePage.loader.l1')}</div> : ""}
+                            {/* {loading ? <div className='LoginError'>{t('EditProfilePage.loader.l1')}</div> : ""} */}
 
                             <button type="submit">{t('EditProfilePage.form.f9')}</button>
                         </form>
