@@ -28,7 +28,7 @@ export default function Status(props) {
 
         :
         <div className='wt table-data'>
-          <span className={props?.el?.status === "Reviewed" ? "text color-light-green" : "text color-light-blue"} onClick={() => {
+          <Button variant="outlined" color="secondary" className={props?.el?.status === "Reviewed" ? "text color-light-green" : "text color-light-blue"}> <span className={props?.el?.status === "Reviewed" ? "text color-light-green" : "text color-light-blue"} onClick={() => {
             if (value === 1) {
             } else if (value === 2) {
             } else {
@@ -36,15 +36,16 @@ export default function Status(props) {
             }
           }}>
             {el?.status}</span>
+          </Button>
         </div>
       }
 
-      {value==='5' &&   <Button variant="outlined" color="secondary"> <div className='wt table-data' onClick={()=>handleClickStatus(props?.el)}>
-        <span className={props?.el?.is_active===1?"text color-light-green":"text color-light-blue"} >
-          {props?.el?.is_active===1?"Active":"UnActive"}</span>
-        {/* {el?.status==="Unreviewed" || el?.status==="Pending" ? "" :  <DateTime props={el} value={value} /> } */}
-
-    </div></Button>}
+      {
+        value === '5' && <Button variant="outlined" color="secondary"> <div className='wt table-data' onClick={() => handleClickStatus(props?.el)}>
+          <span className={props?.el?.is_active === 1 ? "text color-light-green" : "text color-light-blue"} >
+            {props?.el?.is_active === 1 ? "Active" : "UnActive"}</span>
+        </div></Button>
+      }
     </>
   )
 }
