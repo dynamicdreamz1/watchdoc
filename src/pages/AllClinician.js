@@ -10,7 +10,6 @@ import { RelatedAllUserClinician } from '../services/ClinicianService';
 import UserProfile from '../components/common/UserProfile';
 import Email from '../components/common/Table/Email';
 import Phone from '../components/common/Table/Phone';
-import { toast } from 'react-toastify';
 
 export default function AllClinician() {
     const location = useLocation()
