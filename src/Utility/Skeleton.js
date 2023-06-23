@@ -151,6 +151,18 @@ export const AlertSkeleton = ()=> {
             <Stack spacing={2} className="alert-card d-flex">
             <Skeleton width="100%" animation="wave" />
             </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
         </>
     )
 }

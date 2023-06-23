@@ -18,19 +18,6 @@ export const getCurrentUserIsActive = () => {
     return StoreCookie.getItem("is_active");
 }
   
-export const fetchCurrentUser = async () => {
-    try {
-        const response = await axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_ENDPOINT}me`,
-            headers: headersUser
-        })
-        return response;
-    } catch (error) {
-        return error;
-    }
-}
-
 export const RegisterMobNumber = async (data) => {
     try {
         const response = await axios({

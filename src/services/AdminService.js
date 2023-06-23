@@ -55,20 +55,6 @@ export const getAllClinicians = async (dataLimit, currentPage,search) => {
     }
 }
 
-export async function UpdateUserProfile(data) {
-    try {
-        const response = await axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/updateprofile`,
-            data: data,
-            headers: headersAdmin,
-        })
-        return response;
-    } catch (error) {
-        return error;
-    }
-}
-
 export const UpdatePassword = async (apiData) => {
     try {
         const response = await axios({
@@ -150,36 +136,6 @@ export const clinicanProfileUpdate = async (data) => {
     }
 }
 
-export const getAllPatients = async (dataLimit, currentPage) => {
-    const tempUrl = `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/allpatients?limit=${dataLimit}&page=${currentPage}`
-    try {
-        const response = await axios({
-            method: 'get',
-            url: tempUrl,
-            headers: headersAdmin
-        })
-        return response
-    } catch (error) {
-        return error
-    }
-
-}
-
-
-export const allInOneClinicianList = async () => {
-    try {
-        const response = await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getclinicianlist?query=clinicians-pending`,
-            headers: headersAdmin
-        })
-        return response
-    } catch (error) {
-        return error
-    }
-}
-
-
 export const getAdminCriticalAlertReviewed = async (limit,currentPage) => {
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
     try {
@@ -212,7 +168,6 @@ export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
 
 
 export const getAllAdminPatient = async (currentPage,limit,search) => {
-    console.log("currentPage,limit,search",currentPage,limit,search);
     try {
         const response = await axios({
             method: 'get',
@@ -237,10 +192,6 @@ export const deletePatientAndClinician = async (data) => {
     }
 }
 
-
-
-
-
 export const getParticularClinicianDetails = async (id) => {
     try {
         const response = await axios({
@@ -253,8 +204,6 @@ export const getParticularClinicianDetails = async (id) => {
         return error
     }
 }
-
-
 
 export const getParticulatClinicianPatient = async (id,currentPage,limit) => {
     try {
@@ -270,8 +219,6 @@ export const getParticulatClinicianPatient = async (id,currentPage,limit) => {
 }
 
 
-
-
 export const getParticulatClinicianApprovePatient = async (id,currentPage,limit) => {
     try {
         const response = await axios({
@@ -284,9 +231,6 @@ export const getParticulatClinicianApprovePatient = async (id,currentPage,limit)
         return error
     }
 }
-
-
-
 
 
 export const changePendingClinicianStatus = async (id) => {
