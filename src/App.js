@@ -94,7 +94,7 @@ function App() {
         <Route path='/profile-settings' element={<PrivateRoute Component={ProfileSettings} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
         <Route path='/patientdetails' element={<PrivateRoute Component={PatientsDetails} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
         <Route path='/cliniciandetails' element={<PrivateRoute Component={ClinicianDetails} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
-        <Route path='/alluserclinician' element={<PrivateRoute Component={AllClinician} allowedRoles={[ROLES.ADMIN]} />} />
+        <Route path='/alluserclinician' element={<PrivateRoute Component={AllClinician} allowedRoles={[ROLES.ADMIN,ROLES.CLINICIAN]} />} />
         <Route path='/userConsent' element={<PrivateRoute Component={UserConsent} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
         <Route path='/thankyou' element={<PrivateRoute Component={Thankyou} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
         <Route path='/contactdetails' element={<PrivateRoute Component={ContactDetails} allowedRoles={[ROLES.ADMIN, ROLES.USER, ROLES.CLINICIAN]} />} />
