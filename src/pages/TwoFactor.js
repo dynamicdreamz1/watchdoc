@@ -98,7 +98,9 @@ export default function TwoFactor() {
                 if (typeof response === "string") {
                     setError(response)                  
 
-                } else 
+                } else {
+                    console.log(response)
+                }
             })
             .catch((error) => {
                 return error
