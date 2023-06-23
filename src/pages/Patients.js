@@ -38,15 +38,15 @@ const Patients = () => {
       setCriticalAlertReviewedData(res?.data?.data)
       }
       setLoadingCriticalAlertReviewedData(false)
-
   }
 
   const handleChangePageReviewedData = (event, newPage) => {
     setCurrentPageCriticalAlertReviewedData(newPage);
-};
-const handleChangePageUnreviewedData = (event, newPage) => {
-  setCurrentPageCriticalAlertUnreviewedData(newPage);
-};
+  };
+
+  const handleChangePageUnreviewedData = (event, newPage) => {
+    setCurrentPageCriticalAlertUnreviewedData(newPage);
+  };
 
 
   useEffect(()=>{

@@ -39,15 +39,11 @@ const SignIn = () => {
 
 
     const handleSubmitForm = (data) => {
-
         if (data?.email === "") {
-
             setError(t('SignInPage.error.e1'))
             return
         }
-        
         setLoading(true)
-      
         UserLogin(data)
             .then((response) => {
                 if(response?.status===200){

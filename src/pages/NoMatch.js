@@ -19,6 +19,7 @@ const NoMatch = () => {
         <button onClick={handleClick}>{t('NoMatchPage.mainPage.a2')}</button>
         </center>
     </React.Fragment>
-);
+    );
     }
+    
 export default NoMatch;

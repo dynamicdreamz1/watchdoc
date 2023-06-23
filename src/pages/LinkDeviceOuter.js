@@ -2,6 +2,7 @@ import React from 'react'
 import LinkDevices from '../components/Patient/LinkDevices/LinkDevices'
 
 export default function LinkDeviceOuter() {
+  
   return (
     <>
         <div className='page-wrapper bg-gray link-device'>

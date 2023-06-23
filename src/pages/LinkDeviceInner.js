@@ -4,6 +4,7 @@ import Header from '../components/Templates/Header'
 import Sidebar from '../components/Templates/Sidebar'
 
 export default function LinkDeviceInner() {
+  
   return (
     <>
     <div className='content-wrapper'>

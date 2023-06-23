@@ -8,7 +8,6 @@ import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-    // const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
     const { t } = useTranslation();
@@ -16,7 +15,6 @@ export default function TwoFactor() {
 
     const [code,setCode]=useState(id)
     const [error, setError] = useState('')
-    // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
     let navigate = useNavigate()
     const [time, setTime] = useState(60)
@@ -63,7 +61,6 @@ export default function TwoFactor() {
                     }
                     else if(user_details?.roles?.map((el)=>el.name==='Clinician')){
                     StoreCookie.setItem("token", token);
-                    // setCurrentUser(token)
                     updateToken();
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);
@@ -144,9 +141,6 @@ export default function TwoFactor() {
                         </div>
                     </form>
                 </div>
-                {/* <div className='cancle-signout text-center'>
-                    <button type='button'>Cancel and sign out</button>
-                </div> */}
             </div>
         </div>
     </>

@@ -16,8 +16,6 @@ const ForgotPassword = () => {
     const [loading] = useState(false)
     const { t } = useTranslation()
 
-
-
     const LoginSchema = Yup.object({
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
             // eslint-disable-next-line no-useless-escape
