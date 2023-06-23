@@ -53,7 +53,6 @@ export default function TwoFactor() {
 
             VerifyEmail(data)
                 .then((res) => {
-                    console.log(res)
                     const { data } = res;
                     let { token, user_details } = data;
                     if(user_details?.roles[0].name==="User"){
@@ -99,9 +98,7 @@ export default function TwoFactor() {
                 if (typeof response === "string") {
                     setError(response)                  
 
-                } else {
-                    console.log(response)
-                }
+                } else 
             })
             .catch((error) => {
                 return error
