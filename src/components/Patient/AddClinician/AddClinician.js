@@ -27,12 +27,12 @@ export default function AddClinician({ status, setStatus }) {
    if(addData.clinicianName!=="" || addData?.code!==""||addData?.practitionerName!==""){       
     setIsSkeleton(true)  
    }
+
     const data = {
       clinician_name: addData?.clinicianName,
       practice_name: addData?.practitionerName,
       zip: addData?.code
     }
-
     
     searchClinician(data)
       .then((response) => {
@@ -44,8 +44,7 @@ export default function AddClinician({ status, setStatus }) {
       .catch((error) => {
         console.log(error)
       })
-    
-    
+  
   }
   return (
     <>
@@ -60,9 +59,6 @@ export default function AddClinician({ status, setStatus }) {
               <h3 onClick={()=>navigate('/dashboard')}> <div className='skip-button' ><Button style={{marginleft: "347px", margintop: "10px"}} variant="outlined" endIcon={<SendIcon/>}>Skip</Button></div></h3>
           {show ?
             <>
-
-
-
               <div className='add-clinician-box'>
                 <div className='title'>
                   <p> {t('AddClinician.p1')}</p>
