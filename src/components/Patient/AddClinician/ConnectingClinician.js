@@ -10,7 +10,6 @@ export default function ConnectingClinician({defaultStatus,setDefaultStatus,setS
         setShow(false)
     }
         
-
   return (
     <>
     <div className='clinician-connection-wrapper'>

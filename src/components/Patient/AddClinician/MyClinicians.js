@@ -20,19 +20,13 @@ export default function MyClinicians({ status,searchData,setSearchData}) {
     const { t } = useTranslation();
     const [deleteStatus, setDeleteStatus] = useState(false);
 
-
-
-
     const [allClinicianData, setAllClinicianData] = useState([])
     const [currentPageAllClinicianData, setCurrentPageAllClinicianData] = useState(1);
     const [totalPagesAllClinicianData, setTotalPagesAllClinicianData] = useState(0);
     const [dataLimitAllClinicianData] = useState(5)
     const [loadingAllClinicianData, setLoadingAllClinicianData] = useState(false)
   
-  
-
-
-const getAllClinicianData=async(currentPageAllClinicianData,dataLimitAllClinicianData,searchData)=>{
+  const getAllClinicianData=async(currentPageAllClinicianData,dataLimitAllClinicianData,searchData)=>{
     setLoadingAllClinicianData(true);
     const res=await getClinicianData(searchData?1:currentPageAllClinicianData,dataLimitAllClinicianData,searchData ? searchData :'')
     setTotalPagesAllClinicianData(Math.ceil(res?.data?.data?.total / dataLimitAllClinicianData))
