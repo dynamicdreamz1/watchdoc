@@ -106,8 +106,8 @@ export default function AdminDashboard() {
 
 
   const GetPendingClinician = async (recordsPerPage,pendingClinicianCurrentPage) => {
-    try {
     setPendingClinicianLoading(true)
+    try {
     let res = await getPendingClinicians(recordsPerPage,pendingClinicianCurrentPage,'')
     if (res?.status === 200) {
       setPendingClinicianData(res?.data)
@@ -138,20 +138,33 @@ export default function AdminDashboard() {
 
 
 
-const handleClickStatus=async(data)=>{
-const res=await changePendingClinicianStatus(data?.id)
-if(res?.status===200){
-  toast.success(res?.data?.message, {
-    position: 'top-right',
-    autoClose: 3000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    theme: "colored",
-  });
-  GetPendingClinician(recordsPerPage,pendingClinicianCurrentPage,"")
-}
+  const handleClickStatus = async (data) => {
+    console.log("11111-data", data);
+    try {
+      const res = await changePendingClinicianStatus(data?.id);
+      if (res?.status === 200) {
+        toast.success(res?.data?.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        GetPendingClinician(recordsPerPage, pendingClinicianCurrentPage, "");
+      }
+    } catch (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+    }  
 
 }
 
