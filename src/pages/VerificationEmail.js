@@ -51,7 +51,6 @@ const VerificationEmail = () => {
             
             VerifyEmail(data)
                 .then((res) => {
-                    console.log(res)
                     const { data } = res;
                     const { token, user_details } = data;
                     StoreCookie.setItem("token", token);

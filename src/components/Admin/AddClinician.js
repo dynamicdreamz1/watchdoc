@@ -89,6 +89,7 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
             }
         }
     }
+    
     const handleSubmitForm =async (data) => {
         setLoading(true)
         const formData = new FormData();

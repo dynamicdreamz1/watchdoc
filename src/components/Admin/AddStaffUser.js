@@ -69,6 +69,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             }
         }
     }
+    
     const handleSubmitForm = async(data) => {
         if(data?.id){
             const formData=new FormData();

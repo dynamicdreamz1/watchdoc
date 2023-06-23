@@ -178,11 +178,6 @@ export default function AdminDashboard() {
 
 }
 
-
-
-
-
-
   const action = {
     criticalAlertUnreviewedData,
     criticalAlertReviewedData,

@@ -59,9 +59,7 @@ export default function ChangePassword() {
               })
             setMessage('Password successfully updated.')
             setTimeout(() => setMessage(""), 2000);
-
         }
-
         if(res?.response?.status===422){
             toast.success("Old password is incorrect.", {
                 position: 'top-right',

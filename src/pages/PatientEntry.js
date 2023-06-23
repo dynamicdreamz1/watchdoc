@@ -53,7 +53,6 @@ export default function PatientEntry() {
                         },
                     });
                     // navigate(`/verification/${encodedemail}`)
-                    console.log(response)
                 }
             })
             .catch((error) => {

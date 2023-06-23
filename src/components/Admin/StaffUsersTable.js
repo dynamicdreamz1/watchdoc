@@ -61,7 +61,6 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!',
           });
-      
           if (result.isConfirmed) {
             const res = await deleteStaffUsers(id);  
             setSearchData("")
@@ -86,10 +85,8 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             pauseOnHover: true,
             draggable: true,
             theme: "colored",
-    
           });
         }       
-    
     }
    
     const handleClickEdit=(data)=>{
@@ -171,7 +168,6 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
             {location.pathname !== "/staffusers" || loading ? ""
                 :
                 <Pagination page={currentPage} onChange={handleChangePage} count={totalPages} variant="outlined" shape="rounded" className='table-pagination' />
-
             }
         </>
     )
