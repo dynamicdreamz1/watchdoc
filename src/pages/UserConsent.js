@@ -23,7 +23,6 @@ export default function UserConsent() {
                 privacy_policy:1,
                 terms_of_use:1
             }
-
             userConsent(data)
             .then((res)=>{
                 navigate('/create-profile')

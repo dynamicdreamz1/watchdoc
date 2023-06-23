@@ -28,7 +28,6 @@ export default function AllClinician() {
     const fetchData = async (dataLimit, currentPage) => {
         setLoading(true)
         const response = await RelatedAllUserClinician(state?.userId,dataLimit, currentPage)
-
         setTotalPageCount(Math.ceil(response?.data?.clinicians?.total / dataLimit));
         setAllClinicianData(response?.data?.clinicians?.data)
         setLoading(false)
@@ -56,11 +55,8 @@ export default function AllClinician() {
                                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
                                     <h4>{t('MyClinicians.heading1')}</h4>
                                 </div>
-
-
                                 {loading === true ? <TableSkeleton /> :
                                     <>
-                                        {/* {currentRecords?.length > 0 ? */}
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
@@ -73,7 +69,6 @@ export default function AllClinician() {
                                             <TableBody>
 
                                                 {allclinicianData?.map(el => {
-
                                                     return <TableRow key={el.id}>
                                                         <TableCell className='user-profile-cell'>
                                                             <UserProfile data={el} />
@@ -89,10 +84,8 @@ export default function AllClinician() {
                                                 })}
                                             </TableBody>
                                         </Table>
-                                        {/* : <>{t('MyClinicians.notAdd')}</>} */}
                                     </>
                                 }
-
                             </TableContainer>
                             <Pagination page={currentPage} onChange={handleChange} count={totalpageCount} variant="outlined" shape="rounded" className='table-pagination' />
                         </>

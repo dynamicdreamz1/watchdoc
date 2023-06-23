@@ -30,8 +30,6 @@ export default function PatientEntry() {
 
     });
 
-
-
     const handleSubmit = (value) => {
         const data = {
             email: value

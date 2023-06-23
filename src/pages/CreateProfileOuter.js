@@ -2,6 +2,7 @@ import React from 'react'
 import CreateProfile from '../components/Patient/Profile/CreateProfile'
 
 export default function CreateProfileOuter() {
+  
   return (
     <>
     <div className='varification-page-wrapper'>

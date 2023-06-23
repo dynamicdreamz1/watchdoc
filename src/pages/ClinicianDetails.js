@@ -22,7 +22,6 @@ const ClinicianDetails = () => {
     const [loading, setLoading] = useState(false)
 
 
-
     const [allPendingPatientData, setAllPendingPatientData] = useState([]);
     const [currentPageAllPendingPatientData, setCurrentPageAllPendingPatientData] = useState(1);
     const [totalPagesAllPendingPatientData, setTotalPagesAllPendingPatientData] = useState(0);
@@ -36,8 +35,6 @@ const ClinicianDetails = () => {
     const [dataLimitAllApprovePatientData] = useState(5)
     const [loadingAllApprovePatientData, setLoadingAllApprovePatientData] = useState(false)
     const finalDataApprovepatientData = requestAndApprovePatient(allApprovePatientData?.data)
-
-
 
     const getAllParticularClinicianApprovePatientData = async (currentPageAllApprovePatientData, dataLimitAllApprovePatientData) => {
         setLoadingAllApprovePatientData(true)
@@ -59,10 +56,6 @@ const ClinicianDetails = () => {
         setCurrentPageAllApprovePatientData(newPage);
     };
 
-
-
-
-
     const getAllParticularClinicianPatientData = async (currentPageAllPendingPatientData, dataLimitAllPendingPatientData) => {
         setLoadingAllPendingPatientData(true)
         const res = await getParticulatClinicianPatient(id, currentPageAllPendingPatientData, dataLimitAllPendingPatientData)
@@ -75,16 +68,12 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getAllParticularClinicianPatientData(currentPageAllPendingPatientData, dataLimitAllPendingPatientData)
-
     }, [id, currentPageAllPendingPatientData, dataLimitAllPendingPatientData])
-
-
 
 
     const handleChangePagePendingpatient = (event, newPage) => {
         setCurrentPageAllPendingPatientData(newPage);
     };
-
 
 
     const getClinicianDetail = async () => {
@@ -100,29 +89,12 @@ const ClinicianDetails = () => {
         getClinicianDetail()
     }, [id])
 
-
     const handleClose = () => {
         setOpenAddClinicianPopUp(false);
     };
 
-
-
-
-
-
-
-
     const handleClickReview = (data) => {
-        // const filterData = patientData?.filter((el) => el?.id === data?.id)
-        // const finalData = patientData?.filter((el) => el?.id !== data?.id)
-        // setPatientData(finalData)
-        // const tempData = filterData.map((el) => {
-        //     el.status = "Reviewed"
-        //     return el;
-        // })
 
-        // const mulitReviewData = [...reviewData, ...tempData]
-        // setReviewData(mulitReviewData)
     }
 
 
@@ -151,7 +123,7 @@ const ClinicianDetails = () => {
                         <CriticalPatients patientData={finalDataApprovepatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                     }
                    {allApprovePatientData?.length !==0 && <Pagination page={currentPageAllApprovePatientData} onChange={handleChangePageApprovePendingpatient} count={totalPagesAllApprovePatientData} variant="outlined" shape="rounded" className='table-pagination' />
-}
+                    }
 
                     <div className="pp-table">
                         <div className='table-title'>
@@ -161,7 +133,7 @@ const ClinicianDetails = () => {
                             <CriticalPatients patientData={finalDataPendingpatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                         }
                      {allPendingPatientData?.length!==0 &&   <Pagination page={currentPageAllPendingPatientData} onChange={handleChangePagePendingpatient} count={totalPagesAllPendingPatientData} variant="outlined" shape="rounded" className='table-pagination' />
-}
+                     }
 
                     </div>
                 </div>

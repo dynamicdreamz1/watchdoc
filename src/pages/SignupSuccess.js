@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function SignupSuccess() {
   const {t}=useTranslation()
+  
   return (
     <>
         <div className='page-wrapper success-page-wrapper'>

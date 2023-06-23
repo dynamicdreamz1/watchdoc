@@ -64,6 +64,7 @@ const VerificationForPassword = () => {
                 return error
             })
     }
+    
     return (
         <React.Fragment>
             <div className='varification-page-wrapper'>

@@ -38,7 +38,6 @@ const NewPassword = () => {
        setError(res?.data?.message)
        setLoginData({"password":""})
       }
-     
     }
 
  
@@ -71,9 +70,7 @@ const NewPassword = () => {
 
                             </div>
                            
-                         
                         <div className='LoginError'>{error && error}</div>
-
                             <div className='submit-block'>
                                 <button type="submit">Submit</button>
                             </div>

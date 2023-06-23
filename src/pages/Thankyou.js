@@ -12,8 +12,8 @@ export default function Thankyou() {
     let role=StoreCookie.getItem('role')
     
     const {t}=useTranslation();
+    
     const handleClick=()=>{
-
         if(role==="User"){
         navigate('/addclinician')
         }

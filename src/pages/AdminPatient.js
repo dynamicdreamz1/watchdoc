@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { getAllAdminPatient } from '../services/AdminService';
 
 const AdminPatients = () => {
-
   const [adminAllPatientsData,setAdminAllPatientsData]=useState([])
   const [adminPatientCurrentPage, setAdminPatientCurrentPage] = useState(1);
   const [adminPatientTotalPages, setAdminPatientTotalPages] = useState(0);
@@ -15,15 +14,16 @@ const AdminPatients = () => {
   const [searchData, setSearchData] = useState();
 
 
-const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit,searchData)=>{
-  setAdminPatientloading(true);
-  const res = await getAllAdminPatient(searchData?1:adminPatientCurrentPage,AdminPatientdataLimit,searchData?searchData:'');
-  setAdminPatientTotalPages(Math.ceil(res?.data?.data.total / AdminPatientdataLimit))
-  if(res?.status===200){
-    setAdminAllPatientsData(res?.data.data)
+  const fetchAllPatient=async(adminPatientCurrentPage,AdminPatientdataLimit,searchData)=>{
+    setAdminPatientloading(true);
+    const res = await getAllAdminPatient(searchData?1:adminPatientCurrentPage,AdminPatientdataLimit,searchData?searchData:'');
+    setAdminPatientTotalPages(Math.ceil(res?.data?.data.total / AdminPatientdataLimit))
+    if(res?.status===200){
+      setAdminAllPatientsData(res?.data.data)
+    }
+    setAdminPatientloading(false)
   }
-  setAdminPatientloading(false)
-}
+
 useEffect(()=>{
   fetchAllPatient(adminPatientCurrentPage,AdminPatientdataLimit,searchData)
 },[adminPatientCurrentPage,AdminPatientdataLimit,searchData])
@@ -32,9 +32,6 @@ useEffect(()=>{
 const handleChangeAdminPagination = (event, newPage) => {
   setAdminPatientCurrentPage(newPage);
 };
-
-
-  
 
 const action={
   adminAllPatientsData,

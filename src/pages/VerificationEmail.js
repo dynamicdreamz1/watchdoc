@@ -14,7 +14,6 @@ const VerificationEmail = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const {emailId,id } = location.state;
-    // const { setCurrentUser } = useContext(UserContext)
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(id)
@@ -56,7 +55,6 @@ const VerificationEmail = () => {
                     const { data } = res;
                     const { token, user_details } = data;
                     StoreCookie.setItem("token", token);
-                    // setCurrentUser(token)
                     updateToken();
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);

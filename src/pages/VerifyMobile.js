@@ -30,7 +30,6 @@ const VerifyMobile = () => {
     }, []);
 
     const handleClick = (e) => {
-
         e.preventDefault();
         if (code === "") {
             setError(t('verifyMobile.e1'))

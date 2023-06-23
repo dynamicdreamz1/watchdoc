@@ -8,7 +8,6 @@ const Clinicians = () => {
   const [searchData, setSearchData] = useState();
   const [value, setValue] = useState(0);
 
-
   return (
     <React.Fragment>
       <div className='content-wrapper'>

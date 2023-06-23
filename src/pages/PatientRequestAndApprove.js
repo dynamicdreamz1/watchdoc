@@ -38,7 +38,7 @@ const {PatientRequestData,PatientApproveData,
          </div>
          {loadingApprovePatient ? <TableSkeleton /> :
           <CriticalPatients value={value} patientData={PatientApprove} handleClickStatus={handleClickReview} viewAll={viewAll} />
-  }
+        }
           <Pagination page={action?.currentPageApprovePatient} onChange={action?.handleChangePageApprovePatient} count={action?.totalPagesApprovePatient} variant="outlined" shape="rounded" className='table-pagination' />
 
           <div className="pp-table">
@@ -47,7 +47,7 @@ const {PatientRequestData,PatientApproveData,
             </div>
             {loadingPendingPatient ? <TableSkeleton /> :
             <CriticalPatients value={value} patientData={PatientRequest} handleClickStatus={handleClickReview} viewAll={viewAll}/>
-}
+            }
             <Pagination page={action?.currentPagePendingPatient} onChange={action?.handleChangePagePendingPatient} count={action?.totalPagesPendingPatient} variant="outlined" shape="rounded" className='table-pagination' />
 
           </div>

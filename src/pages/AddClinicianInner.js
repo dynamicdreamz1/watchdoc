@@ -6,6 +6,7 @@ import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 import { createContext } from "react";
 
 export const InnerClinicianContext = createContext([]);
+
 export default function AddClinicianInner() {
   const [status, setStatus] = useState(false)
   const [toggle, setToggle] = useState(false)
