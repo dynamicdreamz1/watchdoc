@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { AddEmergencyContact } from "../../services/PatientsService";
 import { toast } from "react-toastify";
 import { getEmergencyContact } from "../../Utility/functions";
-import { TableSkeleton } from "../../Utility/Skeleton";
+import SimpleBackdrop, { TableSkeleton } from "../../Utility/Skeleton";
 import Email from "./Table/Email";
 import Phone from "./Table/Phone";
 import { StoreCookie } from "../../Utility/sessionStore";
@@ -37,26 +37,26 @@ const EmergencyContacts = () => {
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  const LoginSchema = Yup.object({
-    first_name: Yup.string()
-      .required("This field is required*")
-      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    last_name: Yup.string()
-      .required("This field is required*")
-      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    emergencyNumber: Yup.string()
-      .required(t("SignUpPage.validation.common1"))
-      .matches(phoneRegExp, t("SignUpPage.validation.mobile.v1"))
-      .min(10, t("SignUpPage.validation.mobile.short"))
-      .max(10, t("SignUpPage.validation.mobile.long")),
-    email: Yup.string()
-      .required("Email Is Required")
-      // eslint-disable-next-line no-useless-escape
-      .matches(
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please Enter Valid Email"
-      ),
-  });
+    const LoginSchema = Yup.object({
+      first_name: Yup.string()
+        .required("This field is required*")
+        .matches(/^[a-zA-Z\s]+$/, "Only alphabets are allowed for this field "),
+      last_name: Yup.string()
+        .required("This field is required*")
+        .matches(/^[a-zA-Z\s]+$/, "Only alphabets are allowed for this field "),
+      emergencyNumber: Yup.string()
+        .required(t("SignUpPage.validation.common1"))
+        .matches(phoneRegExp, t("SignUpPage.validation.mobile.v1"))
+        .min(10, t("SignUpPage.validation.mobile.short"))
+        .max(10, t("SignUpPage.validation.mobile.long")),
+      email: Yup.string()
+        .required("Email Is Required")
+        .matches(
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+          "Please Enter Valid Email"
+        ),
+    });
+    
   const handleClick = () => {
     if(!toggle){
       setInitialData({
@@ -98,12 +98,21 @@ const EmergencyContacts = () => {
       setLoading(false);
       const array = [];
       let object = {};
+      // res?.data?.user_data?.meta_data?.map((item) => {
+      //   if (item.meta_key === 'emergency_contact') {
+      //     object = { id: item.id, meta_key: item.meta_key, metaData: JSON.parse(item.meta_value) }
+      //     array.push(object)
+      //   }
+      // })
       res?.data?.user_data?.meta_data?.map((item) => {
         if (item.meta_key === 'emergency_contact') {
-          object = { id: item.id, meta_key: item.meta_key, metaData: JSON.parse(item.meta_value) }
-          array.push(object)
+          object = { id: item.id, meta_key: item.meta_key, metaData: JSON.parse(item.meta_value) };
+          array.push(object);
+          return null; // Add this line to provide a return value
         }
-      })
+        return null; // Add this line to provide a return value if the condition is not met
+      });
+      
       setFinalData(array);
       toast.success(res?.data?.message, {
         position: "top-right",
@@ -132,6 +141,8 @@ const EmergencyContacts = () => {
 
   return (
     <>
+        <SimpleBackdrop open={loading} />
+
       <div className="page-title">
         <h1>
           Add Emergency Contact
@@ -220,7 +231,7 @@ const EmergencyContacts = () => {
                     </span>
                   </div>
                   <div className="input-block">
-                    <span className="error">{loading ? "Loading..." : ""}</span>
+                    {/* <span className="error">{loading ? "Loading..." : ""}</span> */}
                     <span className="error">{message ? message : ""}</span>
                   </div>
                   <div className="submit-block">

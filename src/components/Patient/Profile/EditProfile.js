@@ -7,6 +7,7 @@ import { StoreCookie } from '../../../Utility/sessionStore'
 import { toast, ToastContainer } from 'react-toastify'
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
+import SimpleBackdrop from '../../../Utility/Skeleton'
 
 export const EditProfile = () => {
     const { currentUserData, setCurrentUserData } = useContext(UserContext);
@@ -132,6 +133,7 @@ export const EditProfile = () => {
 
     return (
         <>
+        <SimpleBackdrop open={loading} />
             <ToastContainer />
             <Formik
                 initialValues={updateUser}

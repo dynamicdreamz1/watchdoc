@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import { StoreReminderData } from "../../../services/ClinicianService";
 import { day } from "../../../Utility/DefaultObject";
 import { toast } from "react-toastify";
+import SimpleBackdrop from "../../../Utility/Skeleton";
 
 export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
   const {
@@ -29,6 +30,7 @@ export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const [titleError, setTitleError] = useState("");
   const [daysError, setDaysError] = useState("");
+  const [spinner,setSpinner]=useState(false)
 
   const handleTimeChange = (date) => {
     setSelectedDate(date);
@@ -82,6 +84,7 @@ export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
   };
 
   const handleClickAddReminder = async () => {
+    setSpinner(true)
     if (reminderTitle.trim() === "") {
       setTitleError("Reminder title is required");
       setTimeout(() => setTitleError(""), 2000);
@@ -128,10 +131,12 @@ export default function WeightYourselfReminderOverlay({ actionReminderDay }) {
         });
       }
     }
+    setSpinner(false)
   };
 
   return (
     <>
+    <SimpleBackdrop open={spinner} />
       <div className="high-heart-rate">
         <div className="dialog-title">
           <h2>{reminderType ? reminderType : ""} Yourself</h2>

@@ -8,6 +8,7 @@ import { UserContext } from '../../../Store/Context';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { UpdateClinicianProfile } from '../../../services/ClinicianService';
+import SimpleBackdrop from '../../../Utility/Skeleton';
 
 export default function MyProfile() {
     const { t } = useTranslation()
@@ -142,6 +143,7 @@ export default function MyProfile() {
                         draggable: true,
                         theme: "colored",
                     });
+                    setLoading(false)
                 }
             })
             .catch((error) => {
@@ -149,9 +151,13 @@ export default function MyProfile() {
                     position: 'top-right',
                     autoClose: 3000,
                 });
+                setLoading(false)
             })
     }
     return (
+        <>
+        <SimpleBackdrop open={loading} />
+
         <Formik
             initialValues={editClinicianProfileData}
             enableReinitialize={true}
@@ -262,5 +268,6 @@ export default function MyProfile() {
                 </>
             )}
         </Formik>
+        </>
     )
 }
