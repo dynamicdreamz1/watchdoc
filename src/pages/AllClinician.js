@@ -10,6 +10,7 @@ import { RelatedAllUserClinician } from '../services/ClinicianService';
 import UserProfile from '../components/common/UserProfile';
 import Email from '../components/common/Table/Email';
 import Phone from '../components/common/Table/Phone';
+import { toast } from 'react-toastify';
 
 export default function AllClinician() {
     const location = useLocation()
@@ -27,17 +28,21 @@ export default function AllClinician() {
 
     const fetchData = async (dataLimit, currentPage) => {
         setLoading(true)
+        try {
         const response = await RelatedAllUserClinician(state?.userId,dataLimit, currentPage)
         setTotalPageCount(Math.ceil(response?.data?.clinicians?.total / dataLimit));
-        setAllClinicianData(response?.data?.clinicians?.data)
-        setLoading(false)
+        setAllClinicianData(response?.data?.clinicians)
+        setLoading(false)            
+        } catch (error) {
+            console.log(error)
+        }
+        setLoading(false)         
     }
 
     useEffect(() => {
         fetchData(dataLimit, currentPage) 
        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataLimit, currentPage])
-
 
 
     return (
@@ -69,7 +74,7 @@ export default function AllClinician() {
                                             </TableHead>
                                             <TableBody>
 
-                                                {allclinicianData?.map(el => {
+                                                {allclinicianData?.data?.map(el => {
                                                     return <TableRow key={el.id}>
                                                         <TableCell className='user-profile-cell'>
                                                             <UserProfile data={el} />
@@ -88,7 +93,8 @@ export default function AllClinician() {
                                     </>
                                 }
                             </TableContainer>
-                            <Pagination page={currentPage} onChange={handleChange} count={totalpageCount} variant="outlined" shape="rounded" className='table-pagination' />
+                            {allclinicianData?.length !==0 && <Pagination page={currentPage} onChange={handleChange} count={totalpageCount} variant="outlined" shape="rounded" className='table-pagination' />
+}
                         </>
                     }
 
