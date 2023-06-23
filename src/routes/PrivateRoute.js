@@ -1,50 +1,74 @@
-// import { Navigate } from "react-router-dom";
 
 
-// function PrivateDashboard({ Component }) {
 
 
-//     let ProfileCheck = sessionStorage.getItem('profile')
-//     let token=sessionStorage.getItem('token');
 
-//     if ( ProfileCheck==='1' && token ) {
-//         return <Component />;
-//     }
-
-//     else {
-//         return <Navigate to="/" />;
-//     }
-
-
-// }
-
-// export default PrivateDashboard;
-
+//------------------------------------------- updated on 23-06-2023------------------------
 import { useNavigate } from "react-router-dom";
 import { StoreCookie } from "../Utility/sessionStore";
 import { useEffect } from "react";
+import { getCurrentUserData } from "../services/UserService";
 
 
 
-function PrivateRoute({ Component }) {
-let token = StoreCookie.getItem('token')
+function PrivateRoute({ Component, allowedRoles }) {
+  let token = StoreCookie.getItem('token')
   const navigate = useNavigate();
-    
-    useEffect(() => {
-        if (!token) {
-          navigate(`/signin`);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [token]);
-    
-    if (token) {
-        return <Component />;
-    }      
+  const userData = getCurrentUserData();
+  useEffect(() => {
+    if (!token) {
+      navigate(`/signin`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
+  if (token) {
+    if (allowedRoles?.includes(userData?.roles[0]?.name)) {
+      return <Component />
+    }
+    else {
+      navigate('/dashboard')
+    }
+  }
 }
-
-
 export default PrivateRoute;
+
+
+
+
+
+
+
+// ----------------------old Code ---------------------------------------------------
+
+// import { useNavigate } from "react-router-dom";
+// import { StoreCookie } from "../Utility/sessionStore";
+// import { useEffect } from "react";
+
+
+
+// function PrivateRoute({ Component }) {
+// let token = StoreCookie.getItem('token')
+//   const navigate = useNavigate();
+    
+//     useEffect(() => {
+//         if (!token) {
+//           navigate(`/signin`);
+//         }
+//         // eslint-disable-next-line react-hooks/exhaustive-deps
+//       }, [token]);
+    
+//     if (token) {
+//         return <Component />;
+//     }      
+
+// }
+
+
+// export default PrivateRoute;
+
+
+
 
 
 
