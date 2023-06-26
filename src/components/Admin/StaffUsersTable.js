@@ -94,7 +94,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
         const countryCodeMatch = data?.contact_number?.match(/^\+(\d+)/);
         const countryCode = countryCodeMatch ? countryCodeMatch[1] : "";
         const phoneNumber = data?.contact_number?.replace(/^\+\d+\s/, "");
-        setcountryCode(countryCode);
+        setcountryCode(`+${countryCode}`);
         const editData = MetaFormeting(data)
         setAddNewStaff({
             "id":data?.id,
