@@ -6,9 +6,7 @@ Bgit sthavik
 
 
 
-// when we access patient some route in admin it access by admin user this same isssue is in all roles this is issue solved
-
-
+// when we access patient some route in admin it access by admin user this same isssue is in all roles this  issue is solved
 // -----------code updated on 23-06-2023-------------------------------------
 
 import React, { useEffect, useState } from 'react'
