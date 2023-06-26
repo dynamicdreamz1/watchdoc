@@ -7,9 +7,11 @@ import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { addStaffUser, editStaffUser } from '../../services/AdminService';
 import { toast } from 'react-toastify';
+import SimpleBackdrop from '../../Utility/Skeleton';
 
 export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff,countryCode, setcountryCode}) {
     const { t } = useTranslation()
+    const [spinner,setSpinner]=useState(false)
     const [imageUrl, setImgSrc] = useState(addNewStaff?.profile_pic===undefined?"/images/user-picture-placeholder.png":addNewStaff?.profile_pic); 
     const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -71,6 +73,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
     }
     
     const handleSubmitForm = async(data) => {
+        setSpinner(true)
         if(data?.id){
             const formData=new FormData();
             formData.append("id",data?.id)
@@ -151,11 +154,14 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             setCurrentPage(1)
 
         }
+        setSpinner(false)
        
     }
 
     return (
-        <Formik
+        <>
+        <SimpleBackdrop open={spinner}/>
+         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
@@ -252,5 +258,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                 </>
             )}
         </Formik>
+        </>
+       
     )
 }
