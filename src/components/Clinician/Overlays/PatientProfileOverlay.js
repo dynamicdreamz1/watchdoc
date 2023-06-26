@@ -7,7 +7,7 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
   const { first_name, last_name, sex, dob, height, weight } = MetaFormeting(data?.user_data);
   const { t } = useTranslation();
 
-  const [patientData,setPatientData]=useState({
+  const [patientData]=useState({
     "first_name": first_name || "",
     "last_name": last_name || "",
     "email": data?.user_data?.email || "",

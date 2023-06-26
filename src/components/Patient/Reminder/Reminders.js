@@ -29,6 +29,7 @@ export default function Reminders({latestData,fetchData}) {
     const titleresult=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)
     setReminderTitle(titleresult!==undefined && (titleresult?.length===0?"":titleresult[0].reminder_title||""))
     setFilterDay(result)
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[openReminder,reminderType])
 
 
