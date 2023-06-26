@@ -37,12 +37,12 @@ export default function LinkDevices() {
   };
 
 
-  const onDisconnect = async(e,type) =>{
+  const onDisconnect = async (e, type) => {
 
     const result = await Swal.fire({
       title: 'Are you sure?',
       text: 'You want to disconnect ',
-      limit:1,
+      limit: 1,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -50,57 +50,56 @@ export default function LinkDevices() {
       confirmButtonText: 'Yes, disconnect it!',
     });
     if (result.isConfirmed) {
-    setOpen(true);
-    const newArray = terraId.data.filter(function (el) {return el.provider === type});
-    const formData = new FormData();
-    formData.append("user_id", newArray[0].terra_id);
-    formData.append("id", newArray[0].id);
+      setOpen(true);
+      const newArray = terraId.data.filter(function (el) { return el.provider === type });
+      const formData = new FormData();
+      formData.append("user_id", newArray[0].terra_id);
+      formData.append("id", newArray[0].id);
 
-    disconnectDevice(formData)
-      .then(async(res) => {
-        if (res.data.status === "success") {
-          await fetchData();
-          toast.success(`Device disconnect successfully`, {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-        });
-          setOpen(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      })}
+      disconnectDevice(formData)
+        .then(async (res) => {
+          if (res.data.status === "success") {
+            await fetchData();
+            toast.success(`Device disconnect successfully`, {
+              position: 'top-right',
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored",
+            });
+            setOpen(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          return error;
+        })
     }
+  }
 
-    const  fetchData = async() => {
-        const result = await getProviderTerraId();
-        setTerraId(result);
-      }
+  const fetchData = async () => {
+    const result = await getProviderTerraId();
+    setTerraId(result);
+  }
 
   React.useEffect(() => {
-   
+
     fetchData();
   }, []);
 
   return (
     <>
-        <ToastContainer />
-
+      <ToastContainer />
       <div className="devices-wrapper">
-      <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
-            // onClick={handleClose}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
-
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        // onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         {loading ? (
           <div className="LoginError">{t("EditProfilePage.loader.l1")}</div>
         ) : (
@@ -109,39 +108,36 @@ export default function LinkDevices() {
         <br />
 
         {ConnectDeviceData?.map((el) => {
-          
+
           return (
             <>
-           <div>   
-    </div>
-            <div className="device-block">
-              <div className="text-block d-flex align-items-center">
-                <span className="icon d-flex justify-content-center">
-                  <img src={el?.img} alt="Fitbit Icon" />
-                </span>
-                <span className="text">{el?.lable}</span>
+              <div className="device-block">
+                <div className="text-block d-flex align-items-center">
+                  <span className="icon d-flex justify-content-center">
+                    <img src={el?.img} alt="Fitbit Icon" />
+                  </span>
+                  <span className="text">{el?.lable}</span>
+                </div>
+                {finalId?.includes(el?.type) === true ? <div className="btn-block">
+                  <button
+                    onClick={(e) => onDisconnect(e, el?.type)}
+                    type="button"
+                    className="btnData"
+                  >
+                    Connected
+                  </button>
+                </div> : <div className="btn-block">
+                  <button
+                    onClick={(e) => onConnect(e, el?.type)}
+                    type="button"
+                    className="btn"
+                  >
+                    Connect
+                  </button>
+                </div>}
               </div>
-              { finalId?.includes(el?.type) === true ?  <div className="btn-block">
-                <button
-                  onClick={(e) => onDisconnect(e, el?.type)}
-                  type="button"
-                  className="btnData"
-                >
-                 Connected
-                </button>
-              </div>:  <div className="btn-block">
-                <button
-                  onClick={(e) => onConnect(e, el?.type)}
-                  type="button"
-                  className="btn"
-                >
-                 Connect
-                </button>
-              </div>}
-             
-            </div>
             </>
-          );  
+          );
         })}
       </div>
     </>
