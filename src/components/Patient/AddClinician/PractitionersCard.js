@@ -58,6 +58,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
         if(state !==undefined){
             setNextBtn(state)
         }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     },[currentTableData])
 
     const addClinician = (ID, ElStatus) => {

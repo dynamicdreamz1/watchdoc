@@ -58,7 +58,6 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
                 name="last_name"
                 placeholder={t("EditProfilePage.form.f14")}
                 value={props?.values?.last_name}
-
                 id="exampleInputLastName"
               />
             </div>
@@ -91,7 +90,7 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
                   />
                   <label htmlFor="female">
                     {t("EditProfilePage.form.f11")}
-                  </label>
+                  </label>        
                 </div>
                 <div className="radio-button">
                   <input
@@ -113,7 +112,6 @@ export const PatientProfileOverlay = ({ handleClose, data }) => {
                 name="height"
                 placeholder={t("EditProfilePage.form.f16")}
                 value={props?.values?.height}
-
                 id="exampleInputHeight"
               />
             </div>
