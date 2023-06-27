@@ -5,11 +5,14 @@ import { MetaFormeting,calculateAge} from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
 import {PatientProfileOverlay} from '../../Clinician/Overlays/PatientProfileOverlay';
+import {PatientProfileOverlayForAdmin} from '../../Clinician/Overlays/PatientProfileOverlayForAdmin'
 import PhoneNumber from '../../common/PhoneNumber'
 import { ChartResultRange } from '../../../Utility/Skeleton';
+import { getCurrentUserData } from '../../../services/UserService';
 
 
 export default function PatientProfileBar({latestData}) {
+  const userData=getCurrentUserData();
 const navigate=useNavigate();
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
   const age=calculateAge(dob)
@@ -34,7 +37,7 @@ const navigate=useNavigate();
     {
       key: 1,
       Name: 'Profile',
-      PopupData: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
+      PopupData:userData?.roles[0]?.name==='Admin' ? <PatientProfileOverlayForAdmin data={latestData} handleClose={handleClose}/>: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
