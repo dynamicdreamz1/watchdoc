@@ -13,7 +13,7 @@ export default function SearchBar({setSearch,searchData}) {
   // }
 const placeHolderText=
 userData?.roles[0]?.name==='User' || (userData?.roles[0]?.name==='Admin'&& location?.pathname==='/clinicians')?"Search For Clinician":userData?.roles[0]?.name==='Clinician' || 
-(userData?.roles[0]?.name==='Admin'&& location?.pathname==='/adminpatient')?"Search For Patients":""
+(userData?.roles[0]?.name==='Admin'&&location?.pathname==='/adminpatient')?"Search For Patients":"Search For Staff"
 
   return (
     <>
