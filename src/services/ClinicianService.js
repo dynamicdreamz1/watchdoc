@@ -90,8 +90,8 @@ export const ClinicianPatientStatus = async (data) => {
 
 }
 
-export const RelatedAllUserClinician = async (id,dataLimit, currentPage) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}`
+export const RelatedAllUserClinician = async (id,dataLimit, currentPage,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}&search=${search}`
     try {
         const response = await axios({
             method: 'get',

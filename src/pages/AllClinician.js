@@ -20,15 +20,17 @@ export default function AllClinician() {
     const [currentPage,setCurrentPage]=useState(1)
     const [totalpageCount,setTotalPageCount]=useState(0)
     const [dataLimit] = useState(5)
+  const [searchData,setSearchData]=useState("")
+
 
     const handleChange = (event, newPage) => {
         setCurrentPage(newPage);
     };
 
-    const fetchData = async (dataLimit, currentPage) => {
+    const fetchData = async (dataLimit,currentPage,searchData) => {
         setLoading(true)
         try {
-        const response = await RelatedAllUserClinician(state?.userId,dataLimit, currentPage)
+        const response = await RelatedAllUserClinician(state?.userId,dataLimit, searchData?1:currentPage,searchData?searchData:"")
         setTotalPageCount(Math.ceil(response?.data?.clinicians?.total / dataLimit));
         setAllClinicianData(response?.data?.clinicians)
         setLoading(false)            
@@ -39,9 +41,9 @@ export default function AllClinician() {
     }
 
     useEffect(() => {
-        fetchData(dataLimit, currentPage) 
+        fetchData(dataLimit, currentPage,searchData) 
        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataLimit, currentPage])
+    }, [dataLimit, currentPage,searchData])
 
 
     return (
@@ -50,7 +52,7 @@ export default function AllClinician() {
             <div className='content-wrapper'>
                 <Sidebar />
                 <div className='aside'>
-                    <Header />
+                    <Header setSearchData={setSearchData} searchData={searchData}/>
 
                     {loading ? <TableSkeleton />
                         :
