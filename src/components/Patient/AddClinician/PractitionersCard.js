@@ -21,18 +21,14 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     const location=useLocation();
     const { t } = useTranslation();
-
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
     const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"");
-
     const recordsPerPage = 3;
     const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
-
     const firstPageIndex = (currentPage - 1) * recordsPerPage;
     const lastPageIndex = firstPageIndex + recordsPerPage;
-
     const currentTableData = clinicianData?.data?.data?.data?.filter((el)=>el?.status !==1).slice(firstPageIndex, lastPageIndex)
     const payload = {
         clinician_name: addData?.clinicianName,
@@ -63,12 +59,10 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
 
     const addClinician = (ID, ElStatus) => {
         if (((lastExecution + delay) < Date.now()) && ElStatus !== 1) {
-
             const data = {
                 id: ID,
                 relation: 'link'
             }
-
             addDoctor(data)
                 .then((res) => {
                     setStatus(!status)
@@ -99,9 +93,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
                                 let data= MetaFormeting(element)
                                 return (
-
-                                    <div key={element.id}>                                   
-                                    
+                                    <div key={element.id}>                            
                                         <div className='card d-flex' key={I}>
                                         <div className='user-image'>                                        
                                             <img src={(data?.image ||data?.profile_pic) ||defaultUserIcon} alt='User' />                                   
@@ -113,20 +105,15 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                                                 <FormControlLabel onClick={() => { addClinician(element.id, element.status) }}
                                                     control={
                                                         <Checkbox {...label} className={element?.status === 1 ? 'd-none' : ''} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
-
                                                     label={element?.status === 1 ? <span className='btn_status'> {t('PractitionersCard.buttonOption2')} </span> : t('PractitionersCard.buttonOption1')} />
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>   
-
+                                </div>  
                                 )
                             })
-
                         }
                     </div>
-
                     {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
                         <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
                     }
