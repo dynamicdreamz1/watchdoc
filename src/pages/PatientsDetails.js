@@ -53,7 +53,7 @@ const PatientsDetails = () => {
             <div className='aside'>
                 <Header />
                 <UserBodyContextProvider >
-                    <PatientProfileBar latestData={finalLatest}/>
+                    <PatientProfileBar latestData={finalLatest} fetchData={fetchData}/>
                    <CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>
                     <Latestmeasurement latestData={finalLatest} />
                    { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}

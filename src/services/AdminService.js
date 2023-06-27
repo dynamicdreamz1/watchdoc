@@ -245,3 +245,18 @@ export const changePendingClinicianStatus = async (id) => {
         return error
     }
 }
+
+
+export const updatepatientDetailinAdmin = async (data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/update_user_profile`,
+            data: data,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}

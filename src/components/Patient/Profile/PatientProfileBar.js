@@ -11,7 +11,7 @@ import { ChartResultRange } from '../../../Utility/Skeleton';
 import { getCurrentUserData } from '../../../services/UserService';
 
 
-export default function PatientProfileBar({latestData}) {
+export default function PatientProfileBar({latestData,fetchData}) {
   const userData=getCurrentUserData();
 const navigate=useNavigate();
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
@@ -37,7 +37,7 @@ const navigate=useNavigate();
     {
       key: 1,
       Name: 'Profile',
-      PopupData:userData?.roles[0]?.name==='Admin' ? <PatientProfileOverlayForAdmin data={latestData} handleClose={handleClose}/>: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
+      PopupData:userData?.roles[0]?.name==='Admin' ? <PatientProfileOverlayForAdmin data={latestData} handleClose={handleClose} id={latestData?.user_data?.id} fetchData={fetchData}/>: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
