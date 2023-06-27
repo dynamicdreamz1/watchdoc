@@ -16,6 +16,7 @@ import { getLatestpatientDetails} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
 import { MetaFormeting } from '../Utility/functions';
 import { ReminderCardSkeleton } from '../Utility/Skeleton';
+import { ToastContainer } from 'react-toastify';
 
 
 const PatientsDetails = () => {
@@ -48,6 +49,8 @@ const PatientsDetails = () => {
     }
 
     return (
+        <>
+        <ToastContainer />
         <div className='content-wrapper'>
             <Sidebar />
             <div className='aside'>
@@ -66,6 +69,7 @@ const PatientsDetails = () => {
                 </UserBodyContextProvider>
             </div>
         </div>
+        </>
     )
 }
 
