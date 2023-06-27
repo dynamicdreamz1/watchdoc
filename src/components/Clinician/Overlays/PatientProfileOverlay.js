@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Field, Formik } from "formik";
+import {Formik } from "formik";
 import { MetaFormeting } from "../../../Utility/functions";
 
 export const PatientProfileOverlay = ({ handleClose, data }) => {
