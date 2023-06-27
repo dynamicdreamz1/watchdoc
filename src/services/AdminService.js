@@ -219,11 +219,11 @@ export const getParticulatClinicianPatient = async (id,currentPage,limit) => {
 }
 
 
-export const getParticulatClinicianApprovePatient = async (id,currentPage,limit) => {
+export const getParticulatClinicianApprovePatient = async (id,currentPage,limit,searchData) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_approve_patient?clinician_id=${id}&limit=${limit}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_approve_patient?clinician_id=${id}&limit=${limit}&page=${currentPage}&search=${searchData}`,
             headers: headersAdmin
         })
         return response

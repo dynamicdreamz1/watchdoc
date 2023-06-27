@@ -20,6 +20,7 @@ const ClinicianDetails = () => {
     const [viewAll] = useState(true)
     const [openAddClinicianPopUp, setOpenAddClinicianPopUp] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [searchData,setSearchData]=useState("")
 
 
     const [allPendingPatientData, setAllPendingPatientData] = useState([]);
@@ -36,9 +37,9 @@ const ClinicianDetails = () => {
     const [loadingAllApprovePatientData, setLoadingAllApprovePatientData] = useState(false)
     const finalDataApprovepatientData = requestAndApprovePatient(allApprovePatientData?.data)
 
-    const getAllParticularClinicianApprovePatientData = async (currentPageAllApprovePatientData, dataLimitAllApprovePatientData) => {
+    const getAllParticularClinicianApprovePatientData = async (currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData) => {
         setLoadingAllApprovePatientData(true)
-        const res = await getParticulatClinicianApprovePatient(id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData)
+        const res = await getParticulatClinicianApprovePatient(id, searchData?1:currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData?searchData:"")
         setTotalPagesAllApprovePatientData(Math.ceil(res?.data?.data?.total / dataLimitAllApprovePatientData))
         if (res?.status === 200) {
             setAllApprovePatientData(res?.data?.data)
@@ -49,7 +50,7 @@ const ClinicianDetails = () => {
     useEffect(() => {
         getAllParticularClinicianApprovePatientData(currentPageAllApprovePatientData, dataLimitAllApprovePatientData)
        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData])
+    }, [id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData])
 
 
     const handleChangePageApprovePendingpatient = (event, newPage) => {
@@ -107,7 +108,7 @@ const ClinicianDetails = () => {
             <div className='content-wrapper'>
                 <Sidebar />
                 <div className='aside'>
-                    <Header setOpen={setOpenAddClinicianPopUp} />
+                    <Header setOpen={setOpenAddClinicianPopUp} setSearchData={setSearchData} searchData={searchData}/>
                     <div>
                         <Dialog
                             open={openAddClinicianPopUp}
