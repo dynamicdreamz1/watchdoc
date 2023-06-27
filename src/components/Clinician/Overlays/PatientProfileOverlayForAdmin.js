@@ -7,7 +7,7 @@ export const PatientProfileOverlayForAdmin = ({ handleClose, data }) => {
   const { first_name, last_name, sex, dob, height, weight } = MetaFormeting(data?.user_data);
   const { t } = useTranslation();
 
-  const [patientData]=useState({
+  const [patientData] = useState({
     "first_name": first_name || "",
     "last_name": last_name || "",
     "email": data?.user_data?.email || "",
@@ -22,7 +22,7 @@ export const PatientProfileOverlayForAdmin = ({ handleClose, data }) => {
 
 
   const handleSubmitForm = (data) => {
-    console.log("11111-data",data)
+    console.log("11111-data", data)
     handleClose();
   };
 
@@ -63,9 +63,14 @@ export const PatientProfileOverlayForAdmin = ({ handleClose, data }) => {
                 id="exampleInputLastName"
               />
             </div>
-            <div className="input-block">
+            {/* <div className="input-block">
               <label htmlFor="exampleInputDOB">Date of birth</label>                
               <input type="text" name="dob" value={props?.values?.dob} onChange={props?.handleChange}  id="exampleInputDOB" />
+            </div> */}
+            <div className='input-block'>
+              <label htmlFor="exampleInputDOB" >{t('EditProfilePage.form.f3')}</label>
+              <input type="date" name="dob" value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange} />
+              <span className="error"> {props?.errors?.dob ? props?.errors?.dob : ""}</span>
             </div>
             {/* <div className="input-block">
               <label htmlFor="exampleInputSex">
@@ -107,22 +112,22 @@ export const PatientProfileOverlayForAdmin = ({ handleClose, data }) => {
               </div>
             </div> */}
             <div className='input-block'>
-                                <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
-                                <div className='radio-buttons'>
-                                    <div className='radio-button'>
-                                        <Field type="radio" id="male" name="sex" value="male" />
-                                        <label htmlFor="male">Male</label>
-                                    </div>
-                                    <div className='radio-button'>
-                                        <Field type="radio" id="female" name="sex" value="female" />
-                                        <label htmlFor="female">Female</label>
-                                    </div>
-                                    <div className='radio-button'>
-                                        <Field type="radio" id="other" name="sex" value="other" />
-                                        <label htmlFor="other">Other</label>
-                                    </div>
-                                </div>
-                            </div>
+              <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
+              <div className='radio-buttons'>
+                <div className='radio-button'>
+                  <Field type="radio" id="male" name="sex" value="male" />
+                  <label htmlFor="male">Male</label>
+                </div>
+                <div className='radio-button'>
+                  <Field type="radio" id="female" name="sex" value="female" />
+                  <label htmlFor="female">Female</label>
+                </div>
+                <div className='radio-button'>
+                  <Field type="radio" id="other" name="sex" value="other" />
+                  <label htmlFor="other">Other</label>
+                </div>
+              </div>
+            </div>
             <div className="input-block">
               <label htmlFor="exampleInputHeight">Height (cm)</label>
               <input
@@ -136,11 +141,11 @@ export const PatientProfileOverlayForAdmin = ({ handleClose, data }) => {
             </div>
             <div className="input-block">
               <label>Email address</label>
-              <input type="email" name="email" value={props?.values?.email} onChange={props?.handleChange}/>
+              <input type="email" name="email" value={props?.values?.email} onChange={props?.handleChange} />
             </div>
             <div className="input-block">
               <label>Weight</label>
-              <input type="text" name="weight" value={props?.values?.weight} onChange={props?.handleChange}/>
+              <input type="text" name="weight" value={props?.values?.weight} onChange={props?.handleChange} />
             </div>
             <div className="input-block country-code">
               <label id="country-code">Contact number</label>
