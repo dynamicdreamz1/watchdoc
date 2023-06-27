@@ -40,7 +40,6 @@ useEffect(()=>{
     getAllClinicianData(currentPageAllClinicianData,dataLimitAllClinicianData,searchData)
 },[currentPageAllClinicianData,dataLimitAllClinicianData,searchData,deleteStatus])
 
-
     const DeleteRequest = async (ID) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -101,8 +100,6 @@ const handleChangeClinicianPagination = (event, newPage) => {
                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
                     <h4>{t('MyClinicians.heading1')}</h4>
                 </div>
-
-
                 {loadingAllClinicianData === true ? <TableSkeleton /> :
                     <>
                         {allClinicianData?.total > 0 ?
@@ -116,7 +113,6 @@ const handleChangeClinicianPagination = (event, newPage) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-
                                     {allClinicianData && allClinicianData?.data?.map(el => {
                                         return <TableRow key={el.id}>
                                             <TableCell className='user-profile-cell'>

@@ -8,7 +8,6 @@ export const searchClinician = async (data) => {
             url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=&page=`,
             headers: headersClinician
         })
-
         return response;
     }
     catch (error) {
@@ -23,11 +22,9 @@ export const addDoctor = async (data) => {
             data: data,
             url: `${process.env.REACT_APP_ENDPOINT}user/desert_clinician`,
             headers: headersClinician
-
         })
         return response;
     }
-
     catch (error) {
         return error;
     }
@@ -35,7 +32,6 @@ export const addDoctor = async (data) => {
 }
 
 export const getClinicianData = async (currentPage,dataLimit,search) => {
-
     try {
         const response = await axios({
             method: 'get',
