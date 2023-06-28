@@ -122,7 +122,6 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
 
          CreateClinician(formData)
          .then((res) => {
-            console.log("11111-res",res)
              if (res?.status === 200) {
                 setLoading(false)
                  toast.success(res?.data?.message, {

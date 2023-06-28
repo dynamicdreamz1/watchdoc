@@ -128,7 +128,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
         //   }
         //   setOpen(false);
         // } catch (error) {
-        //     console.log("11111-error",error)
         //   toast.success(error, {
         //     position: "top-right",
         //     autoClose: 3000,
@@ -143,7 +142,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
 
         clinicanProfileUpdate(formData)
         .then(async(res) => {
-           console.log("11111-res",res)
             if (res?.status === 200) {
                 await getClinicianDetail();
                 setLoading(false)
