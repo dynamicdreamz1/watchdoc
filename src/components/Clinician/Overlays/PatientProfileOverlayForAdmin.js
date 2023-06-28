@@ -47,9 +47,8 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
 
 
   const handleSubmitForm = async (data) => {
-    console.log("11111-data", data)
     setSpinner(true)
-    try {
+  
       const formData = new FormData();
       formData.append("id",id);
       formData.append("first_name", data.first_name);
@@ -61,32 +60,97 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
       formData.append("weight", data?.weight);
       formData.append("height", data?.height);
 
-      const res = await updatepatientDetailinAdmin(formData)
-      if(res?.status===200){
-        await fetchData()
-        toast.success(res?.data?.message, {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,       
-          pauseOnHover: true,
-          draggable: true,
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      toast.error(error, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
-      });
-    }
-    setSpinner(false)
-    handleClose();
+      updatepatientDetailinAdmin(formData)
+            .then((res) => {
+              console.log("11111-res",res)
+                if (res?.status === 200) {
+                    setSpinner(true)
+                    toast.success(res?.data?.message, {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                    });                    
+                    handleClose();
+                }
+                else{
+                setSpinner(false)
+                const key = Object.keys(res.response.data.error)[0];
+                  toast.error(res?.response?.data.error[key][0], {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+
+              }
+            })
+            .catch((error) => {
+              setSpinner(false)
+                const key = Object.keys(error.response.data.error.email)[0];
+                if (error.response.data.status === 422) {
+                    toast.error(error.response.data.error[key][0], {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                    });
+                }
+                else {
+                  console.log("1111-",error)
+                  toast.error(error, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+                    handleClose();
+                }
+              
+            })
+            setSpinner(true)
+    
+
+
+    //   const res = await updatepatientDetailinAdmin(formData)
+    //   if(res?.status===200){
+    //     await fetchData()
+    //     toast.success(res?.data?.message, {
+    //       position: 'top-right',
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //       closeOnClick: true,       
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       theme: "colored",
+    //     });
+    //   }
+      
+    // } catch (error) {
+    //   toast.error(error, {
+    //     position: 'top-right',
+    //     autoClose: 3000,
+    //     hideProgressBar: true,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     theme: "colored",
+    //   });
+    // }
+    // setSpinner(false)
+    // handleClose();
   };
 
   return (
