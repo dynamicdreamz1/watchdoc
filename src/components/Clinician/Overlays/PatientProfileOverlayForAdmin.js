@@ -62,7 +62,6 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
 
       updatepatientDetailinAdmin(formData)
             .then((res) => {
-              console.log("11111-res",res)
                 if (res?.status === 200) {
                     setSpinner(true)
                     toast.success(res?.data?.message, {
@@ -106,7 +105,6 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
                     });
                 }
                 else {
-                  console.log("1111-",error)
                   toast.error(error, {
                     position: 'top-right',
                     autoClose: 3000,
