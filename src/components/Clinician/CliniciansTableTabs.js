@@ -5,7 +5,7 @@ import TableShorting from './TableShorting';
 import CliniciansRequestsTable from './CliniciansRequestsTable';
 import AddClinician from '../Admin/AddClinician';
 import '../../css/CliniciansTableTabs.css'
-import { getAllClinicians, getPendingClinicians } from '../../services/AdminService';
+import { getAllClinicians} from '../../services/AdminService';
 import { TableSkeleton } from '../../Utility/Skeleton';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify'
@@ -52,15 +52,15 @@ export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,
   const [recordsPerPagePendingClinician, setRecordsPerPagePendingClinician] = useState(10);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pendingClinician, setPendingClinician] = useState([])
-  const [firstLoading, setFirstLoading] = useState(false)
+  // const [pendingClinician, setPendingClinician] = useState([])
+  // const [firstLoading, setFirstLoading] = useState(false)
   const [secondLoading, setSecondLoading] = useState(false)
-  const [firstLength, setFirstLength] = useState("")
+  // const [firstLength, setFirstLength] = useState("")
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimit,setDataLimit]=useState(10)
   const [limit,setLimit]=useState(10)
-  const [pages, setPages] = useState(0);
+  // const [pages, setPages] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const specificOption = [
