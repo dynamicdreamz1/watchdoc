@@ -99,7 +99,6 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
     }
     const handleSubmitForm = async (data) => {
         setLoading(true);
-        try {
           const formData = new FormData();
           formData.append("id", id.toString());
           formData.append("type", "update");
@@ -114,32 +113,92 @@ export default function ClinicianDetailEditProfile({ profileBarData,setOpen,getC
           if (typeof imageUrl == "object") {
             formData.append("profile_pic", imageUrl);
           }
-          const res = await clinicanProfileUpdate(formData);
-          if (res?.status === 200) {
-            await getClinicianDetail();
-            toast.success('Clinciian Update Successfully', {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              theme: "colored",
+        //   const res = await clinicanProfileUpdate(formData);
+        //   if (res?.status === 200) {
+        //     await getClinicianDetail();
+        //     toast.success('Clinciian Update Successfully', {
+        //       position: "top-right",
+        //       autoClose: 3000,
+        //       hideProgressBar: true,
+        //       closeOnClick: true,
+        //       pauseOnHover: true,
+        //       draggable: true,
+        //       theme: "colored",
+        //     });
+        //   }
+        //   setOpen(false);
+        // } catch (error) {
+        //     console.log("11111-error",error)
+        //   toast.success(error, {
+        //     position: "top-right",
+        //     autoClose: 3000,
+        //     hideProgressBar: true,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     theme: "colored",
+        //   });
+        // }
+
+
+        clinicanProfileUpdate(formData)
+        .then(async(res) => {
+           console.log("11111-res",res)
+            if (res?.status === 200) {
+                await getClinicianDetail();
+                setLoading(false)
+                toast.success(res?.data?.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });                    
+            }
+            else{
+            setLoading(false)
+            const key = Object.keys(res.response.data.error)[0];
+              toast.error(res?.response?.data.error[key][0], {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
             });
+
           }
-          setOpen(false);
-        } catch (error) {
-          toast.success(error, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-          });
-        }
-        setLoading(false);
+        })
+        .catch((error) => {
+            setLoading(false)
+            const key = Object.keys(error.response.data.error.email)[0];
+            if (error.response.data.status === 422) {
+                toast.error(error.response.data.error[key][0], {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+            else {
+              toast.error(error, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
+            }
+          
+        })
       };      
     return (
         <>
