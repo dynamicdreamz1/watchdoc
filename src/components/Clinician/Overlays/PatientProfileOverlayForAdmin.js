@@ -61,9 +61,10 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
       formData.append("height", data?.height);
 
       updatepatientDetailinAdmin(formData)
-            .then((res) => {
+            .then(async(res) => {
                 if (res?.status === 200) {
                     setSpinner(true)
+                    await fetchData()
                     toast.success(res?.data?.message, {
                         position: 'top-right',
                         autoClose: 3000,
