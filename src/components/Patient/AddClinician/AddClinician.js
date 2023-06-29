@@ -68,7 +68,8 @@ export default function AddClinician({ status, setStatus }) {
     setCurrentPageClinician,
     totalPagesClinician,
     dataLimitClinician,
-    setTotalPagesClinician
+    setTotalPagesClinician,
+    setIsSkeleton
 
 
   }

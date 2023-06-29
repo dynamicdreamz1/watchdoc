@@ -19,7 +19,7 @@ import { AdminUserContext } from '../../Clinician/Overlays/CliniciansOverlay';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function PractitionersCard({ status, setStatus, isSkeleton,action }) {
-    const { currentPageClinician,setCurrentPageClinician,totalPagesClinician,dataLimitClinician,setTotalPagesClinician}=action;
+    const { currentPageClinician,setCurrentPageClinician,totalPagesClinician,dataLimitClinician,setTotalPagesClinician,setIsSkeleton}=action;
     const location=useLocation();
     const { t } = useTranslation();
     const delay = 500;
@@ -38,10 +38,12 @@ export default function PractitionersCard({ status, setStatus, isSkeleton,action
     }
     useEffect(() => {
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
+            setIsSkeleton(true)
             searchClinician(payload,dataLimitClinician,currentPageClinician)
                 .then((res) => {
                     setClinicianData(res)
                     setTotalPagesClinician(Math.ceil(res?.data?.data?.total / dataLimitClinician))
+                    setIsSkeleton(false)
                 })
                 .catch((error) => {
                     console.log(error)
