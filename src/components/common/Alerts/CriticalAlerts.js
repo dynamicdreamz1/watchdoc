@@ -27,6 +27,7 @@ export default function CriticalAlerts({latestData,fetchData}) {
 
   React.useEffect(()=>{
     getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
+          // eslint-disable-next-line react-hooks/exhaustive-deps
   },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])
 
 
