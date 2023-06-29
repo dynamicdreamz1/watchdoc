@@ -10,6 +10,7 @@ import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard' 
 import { Button } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
+import SimpleBackdrop from '../../../Utility/Skeleton'
 
 
 export default function AddClinician({ status, setStatus }) {
@@ -19,43 +20,42 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
   const [isSkeleton,setIsSkeleton]=useState(false)
-  const { addData, setAddData,nextBtn,setClinicianData,setCurrentPage,clinicianData } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
-
+  const { addData, setAddData,nextBtn,setClinicianData} = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
 
 
 
   const [currentPageClinician, setCurrentPageClinician] = useState(1);
   const [totalPagesClinician, setTotalPagesClinician] = useState(0);
   const [dataLimitClinician] = useState(3)
-
-
-
-
+  const [message,setmessage]=useState("")
+  const[spinner,setSpinner]=useState(false)
 
 
   
  
-  console.log("1111-clinicianData",clinicianData,totalPagesClinician)
 
   const handleSubmit = (e) => {
     e.preventDefault()
    if(addData.clinicianName!=="" || addData?.code!==""||addData?.practitionerName!==""){       
     setIsSkeleton(true)  
    }
-
+   setSpinner(true)
     const data = {
       clinician_name: addData?.clinicianName,
       practice_name: addData?.practitionerName,
       zip: addData?.code
     }
-    
     searchClinician(data,dataLimitClinician,currentPageClinician)
       .then((response) => {
+        if(response?.data?.data?.length===0){
+          setmessage('Clinician Not Found')
+        }
         setClinicianData(response)
-        console.log("11111111-res",response)
+        setSpinner(false)
         setTotalPagesClinician(Math.ceil(response?.data?.data?.total / dataLimitClinician))
         setIsSkeleton(false)
-        setCurrentPage(1)
+        setCurrentPageClinician(1)
+        setTimeout(() => setmessage(""),2000);
       })
 
       .catch((error) => {
@@ -109,6 +109,7 @@ export default function AddClinician({ status, setStatus }) {
         :
         location.pathname==="/editclinician" ? 
         <>
+        <SimpleBackdrop open={spinner}/>
           <div className='add-clinician-box'>
             <div className='title'>
               <p> {t('AddClinician.p1')}</p>
@@ -121,6 +122,8 @@ export default function AddClinician({ status, setStatus }) {
                 <input type="submit" value={t('AddClinician.form.b1')} />
               </div>
             </form>
+            <span style={{ color: "red" }}>{message?message:""}</span>
+
           </div>
          
           <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/> 
