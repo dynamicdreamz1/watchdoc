@@ -19,8 +19,23 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
   const [isSkeleton,setIsSkeleton]=useState(false)
-  const { addData, setAddData,nextBtn,setClinicianData,setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
+  const { addData, setAddData,nextBtn,setClinicianData,setCurrentPage,clinicianData } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
+
+
+
+
+  const [currentPageClinician, setCurrentPageClinician] = useState(1);
+  const [totalPagesClinician, setTotalPagesClinician] = useState(0);
+  const [dataLimitClinician] = useState(3)
+
+
+
+
+
+
+  
  
+  console.log("1111-clinicianData",clinicianData,totalPagesClinician)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,9 +49,11 @@ export default function AddClinician({ status, setStatus }) {
       zip: addData?.code
     }
     
-    searchClinician(data)
+    searchClinician(data,dataLimitClinician,currentPageClinician)
       .then((response) => {
         setClinicianData(response)
+        console.log("11111111-res",response)
+        setTotalPagesClinician(Math.ceil(response?.data?.data?.total / dataLimitClinician))
         setIsSkeleton(false)
         setCurrentPage(1)
       })
@@ -45,6 +62,15 @@ export default function AddClinician({ status, setStatus }) {
         console.log(error)
       })
   
+  }
+  const action={
+    currentPageClinician,
+    setCurrentPageClinician,
+    totalPagesClinician,
+    dataLimitClinician,
+    setTotalPagesClinician
+
+
   }
   return (
     <>
@@ -73,7 +99,7 @@ export default function AddClinician({ status, setStatus }) {
                 </form>
               </div>
 
-              <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
+              <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/>
               { nextBtn ?  <div className='btn-block'><button className='btn' onClick={()=>navigate("/dashboard")}> {t('AddClinician.button')} </button></div> : ""  } 
             </>
             : ""
@@ -97,7 +123,7 @@ export default function AddClinician({ status, setStatus }) {
             </form>
           </div>
          
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> 
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/> 
 
         </> 
         : 
@@ -114,7 +140,7 @@ export default function AddClinician({ status, setStatus }) {
               </div>
             </form>
           </div>
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> 
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/> 
           </>
         : ""
       }

@@ -1,11 +1,11 @@
 import axios from "axios"
 import { headersClinician } from "../Utility/functions";
 
-export const searchClinician = async (data) => {
+export const searchClinician = async (data,limit,currentPage) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=&page=`,
+            url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=${limit}&page=${currentPage}`,
             headers: headersClinician
         })
         return response;

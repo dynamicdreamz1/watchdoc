@@ -18,36 +18,37 @@ import { AdminUserContext } from '../../Clinician/Overlays/CliniciansOverlay';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function PractitionersCard({ status, setStatus, isSkeleton }) {
+export default function PractitionersCard({ status, setStatus, isSkeleton,action }) {
+    const { currentPageClinician,setCurrentPageClinician,totalPagesClinician,dataLimitClinician,setTotalPagesClinician}=action;
     const location=useLocation();
     const { t } = useTranslation();
     const delay = 500;
     let lastExecution = 0;
     const [btnStatus, setBtnStatus] = useState(false)
-    const { addData, clinicianData, setClinicianData, setNextBtn,currentPage, setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"");
-    const recordsPerPage = 3;
-    const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
-    const firstPageIndex = (currentPage - 1) * recordsPerPage;
-    const lastPageIndex = firstPageIndex + recordsPerPage;
-    const currentTableData = clinicianData?.data?.data?.data?.filter((el)=>el?.status !==1).slice(firstPageIndex, lastPageIndex)
+    const { addData, clinicianData, setClinicianData, setNextBtn} = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"");
+    // const recordsPerPage = 3;
+    // const nPages = Math.ceil(clinicianData?.data?.data?.data?.length / recordsPerPage);
+    // const firstPageIndex = (currentPage - 1) * recordsPerPage;
+    // const lastPageIndex = firstPageIndex + recordsPerPage;
+    const currentTableData = clinicianData?.data?.data?.data;
     const payload = {
         clinician_name: addData?.clinicianName,
         practice_name: addData?.practitionerName,
         zip: addData?.code
     }
-   
     useEffect(() => {
         if (addData?.clinicianName || addData?.practitionerName || addData?.code) {
-            searchClinician(payload)
+            searchClinician(payload,dataLimitClinician,currentPageClinician)
                 .then((res) => {
                     setClinicianData(res)
+                    setTotalPagesClinician(Math.ceil(res?.data?.data?.total / dataLimitClinician))
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [btnStatus])
+    }, [btnStatus,currentPageClinician,dataLimitClinician])
 
     useEffect(()=>{
         const state=clinicianData?.data?.data?.data?.some((element)=>element.status===1)
@@ -76,7 +77,8 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
     }
 
     const handleChange = (event, value) => {
-        setCurrentPage(value)
+        // setCurrentPage(value)
+        setCurrentPageClinician(value)
     }
 
     return (
@@ -87,7 +89,7 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                 :
                 <>
                     <div className='practitioners-card'>
-                        {clinicianData?.data?.data?.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
+                        {clinicianData?.data?.data?.data?.length === 0 ? <span style={{ color: "red" }}>{t('PractitionersCard.message1')}</span> : ""}
 
                         {
                             currentTableData?.length > 0 && currentTableData.map((element, I) => {
@@ -114,8 +116,10 @@ export default function PractitionersCard({ status, setStatus, isSkeleton }) {
                             })
                         }
                     </div>
-                    {(clinicianData?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
-                        <Pagination count={nPages} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
+                    {(clinicianData?.data?.data?.data?.length === 0) || (currentTableData === undefined) ? "" :
+                        // <Pagination count={totalPagesClinician} variant="outlined" shape="rounded" onChange={(newEvent, value) => handleChange(newEvent, value)} className='table-pagination' />
+                        <Pagination page={currentPageClinician} onChange={(newEvent, value) => handleChange(newEvent, value)} count={totalPagesClinician} variant="outlined" shape="rounded" className='table-pagination' />
+
                     }
                 </>
             }
