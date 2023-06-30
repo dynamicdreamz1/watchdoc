@@ -8,7 +8,7 @@ import { getParticularClinicianDetails, getParticulatClinicianApprovePatient, ge
 import { Dialog, Pagination } from '@mui/material'
 import AddClinician from '../components/Admin/AddClinician'
 import { ChartResultRange, TableSkeleton } from '../Utility/Skeleton'
-import { requestAndApprovePatient} from '../Utility/functions'
+import { requestAndApprovePatient } from '../Utility/functions'
 import { ToastContainer } from 'react-toastify'
 
 
@@ -20,7 +20,7 @@ const ClinicianDetails = () => {
     const [viewAll] = useState(true)
     const [openAddClinicianPopUp, setOpenAddClinicianPopUp] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchData,setSearchData]=useState("")
+    const [searchData, setSearchData] = useState("")
 
 
     const [allPendingPatientData, setAllPendingPatientData] = useState([]);
@@ -37,9 +37,9 @@ const ClinicianDetails = () => {
     const [loadingAllApprovePatientData, setLoadingAllApprovePatientData] = useState(false)
     const finalDataApprovepatientData = requestAndApprovePatient(allApprovePatientData?.data)
 
-    const getAllParticularClinicianApprovePatientData = async (currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData) => {
+    const getAllParticularClinicianApprovePatientData = async (currentPageAllApprovePatientData, dataLimitAllApprovePatientData, searchData) => {
         setLoadingAllApprovePatientData(true)
-        const res = await getParticulatClinicianApprovePatient(id, searchData?1:currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData?searchData:"")
+        const res = await getParticulatClinicianApprovePatient(id, searchData ? 1 : currentPageAllApprovePatientData, dataLimitAllApprovePatientData, searchData ? searchData : "")
         setTotalPagesAllApprovePatientData(Math.ceil(res?.data?.data?.total / dataLimitAllApprovePatientData))
         if (res?.status === 200) {
             setAllApprovePatientData(res?.data?.data)
@@ -49,8 +49,8 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getAllParticularClinicianApprovePatientData(currentPageAllApprovePatientData, dataLimitAllApprovePatientData)
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData,searchData])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id, currentPageAllApprovePatientData, dataLimitAllApprovePatientData, searchData])
 
 
     const handleChangePageApprovePendingpatient = (event, newPage) => {
@@ -69,7 +69,7 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getAllParticularClinicianPatientData(currentPageAllPendingPatientData, dataLimitAllPendingPatientData)
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, currentPageAllPendingPatientData, dataLimitAllPendingPatientData])
 
 
@@ -89,7 +89,7 @@ const ClinicianDetails = () => {
 
     useEffect(() => {
         getClinicianDetail()
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
     const handleClose = () => {
@@ -103,12 +103,11 @@ const ClinicianDetails = () => {
 
     return (
         <React.Fragment>
-    <ToastContainer />
-
+            <ToastContainer />
             <div className='content-wrapper'>
                 <Sidebar />
                 <div className='aside'>
-                    <Header setOpen={setOpenAddClinicianPopUp} setSearchData={setSearchData} searchData={searchData}/>
+                    <Header setOpen={setOpenAddClinicianPopUp} setSearchData={setSearchData} searchData={searchData} />
                     <div>
                         <Dialog
                             open={openAddClinicianPopUp}
@@ -125,9 +124,8 @@ const ClinicianDetails = () => {
                     {loadingAllApprovePatientData ? <TableSkeleton /> :
                         <CriticalPatients patientData={finalDataApprovepatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                     }
-                   {allApprovePatientData?.length !==0 && <Pagination page={currentPageAllApprovePatientData} onChange={handleChangePageApprovePendingpatient} count={totalPagesAllApprovePatientData} variant="outlined" shape="rounded" className='table-pagination' />
+                    {allApprovePatientData?.length !== 0 && <Pagination page={currentPageAllApprovePatientData} onChange={handleChangePageApprovePendingpatient} count={totalPagesAllApprovePatientData} variant="outlined" shape="rounded" className='table-pagination' />
                     }
-
                     <div className="pp-table">
                         <div className='table-title'>
                             <h4>Patients Pending</h4>
@@ -135,9 +133,8 @@ const ClinicianDetails = () => {
                         {loadingAllPendingPatientData ? <TableSkeleton /> :
                             <CriticalPatients patientData={finalDataPendingpatientData} handleClickStatus={handleClickReview} viewAll={viewAll} />
                         }
-                     {allPendingPatientData?.length!==0 &&   <Pagination page={currentPageAllPendingPatientData} onChange={handleChangePagePendingpatient} count={totalPagesAllPendingPatientData} variant="outlined" shape="rounded" className='table-pagination' />
-                     }
-
+                        {allPendingPatientData?.length !== 0 && <Pagination page={currentPageAllPendingPatientData} onChange={handleChangePagePendingpatient} count={totalPagesAllPendingPatientData} variant="outlined" shape="rounded" className='table-pagination' />
+                        }
                     </div>
                 </div>
             </div>
