@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import moment from 'moment';
 
 export default function AlertCard({ alertData, fetchData, action }) {
-  const {getAllAlert,latestData,dataLimitApprovePatient} = action;
+  const {getAllAlert,latestData,dataLimitApprovePatient,setCurrentPage} = action;
   const momentObj = moment(alertData.alert_date, 'YYYY-MM-DD HH:mm:ss');
   const momentString = momentObj.format('DD-MM-YYYY HH:mm:ss');
   const time = GetdayHourMin(momentString)
@@ -18,6 +18,7 @@ export default function AlertCard({ alertData, fetchData, action }) {
     try {
       const res = await reviewUserProfileAlert(formData);
       await getAllAlert(latestData?.user_data?.id,1,dataLimitApprovePatient)
+      setCurrentPage(1)
       await fetchData()
       toast.success(res?.data?.message, {
         position: 'top-right',

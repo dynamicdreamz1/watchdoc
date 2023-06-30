@@ -35,7 +35,8 @@ export default function CriticalAlerts({latestData,fetchData}) {
     latestData,
     dataLimitApprovePatient,
     currentPage,
-    setData 
+    setData ,
+    setCurrentPage
 
   }
 
