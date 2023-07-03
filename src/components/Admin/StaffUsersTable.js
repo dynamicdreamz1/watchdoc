@@ -13,14 +13,12 @@ import Swal from 'sweetalert2'
 import { getCurrentUserData } from '../../services/UserService';
 
 
-export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData,setSearchData }) {
+export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewStaff,searchData,setSearchData,currentPage, setCurrentPage,limit }) {
     const userData=getCurrentUserData()
     const [staffUser, setStaffUser] = useState([])
     const [loading, setLoading] = useState(false)
     let location = useLocation();
-    const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    let limit = 10;
     const [countryCode, setcountryCode] = useState('+91');
 
     const handleChangePage = (e, newValue) => {
