@@ -29,10 +29,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
     handleClickOpenRequestPopUp(profileBarData,profileBarData)
 
     }
-
   }
-
-
 
   return (
     <>
