@@ -42,11 +42,11 @@ export const getPendingClinicians = async (limit, pages,search) => {
     }
 }
 
-export const getAllClinicians = async (dataLimit, currentPage,search) => {
+export const getAllClinicians = async (dataLimit, currentPage,search,sort) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}&search=${search}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}&search=${search}&sort=${sort}`,
             headers: headersAdmin
         })
         return response

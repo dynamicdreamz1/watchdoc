@@ -59,7 +59,7 @@ export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,
   const [secondLength, setSecondLength] = useState("")
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimit,setDataLimit]=useState(10)
-  const [limit,setLimit]=useState(10)
+  const [setLimit]=useState(10)
   // const [pages, setPages] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -70,6 +70,9 @@ export default function CliniciansTableTabs({ open, setOpen,searchData,setValue,
 ]
 let [options, setOptions] = useState(specificOption)
 
+
+
+const sort=selectedOption==='Newest to Oldest'?'newtoold':selectedOption==='Oldest to Newest'?"oldtonew":selectedOption==='Alphabetical'?"alphabet":"";
   // const pendingClincians = async (limit,currentPage,searchData) => {
   //   setFirstLoading(true)
   //   let res = await getPendingClinicians(searchData?1:limit,currentPage,searchData ? searchData : '')
@@ -84,7 +87,7 @@ let [options, setOptions] = useState(specificOption)
 
   const getAllClinicianData=async(dataLimit,currentPage,searchData)=>{
     setSecondLoading(true)           
-    let res = await getAllClinicians(dataLimit,searchData?1:currentPage,searchData ?searchData : '');
+    let res = await getAllClinicians(dataLimit,searchData?1:currentPage,searchData ?searchData : '',sort?sort:"");
     if(res?.data?.data?.data?.length===0){
       setSecondLength("No records found.")
     };
@@ -103,7 +106,8 @@ let [options, setOptions] = useState(specificOption)
 
   useEffect(() => {
       getAllClinicianData(dataLimit,currentPage,searchData)
-  },[currentPage,dataLimit,searchData]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[currentPage,dataLimit,searchData,sort]);
 
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
