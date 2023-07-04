@@ -1701,3 +1701,8 @@ form .input-block.update-profile:after {
   height: auto;
   margin: 0;
 }
+
+ .right-block-data {
+  margin-left: 1380px;
+  padding: 10px 15px;
+}
