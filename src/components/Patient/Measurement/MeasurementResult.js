@@ -5,10 +5,6 @@ export default function MeasurementResult(props) {
   const lableName = [props?.result]
   const colorRed = lableName[0] === "heart_rate" || lableName[0] === "blood_pressure" ?'red' : ""
 
-  // const result=typeof latest?.[props?.result]?.count === 'number' &&
-  //               latest?.[props?.result]?.count % 1 !== 0 ? convertDecimalToPercentage(latest?.[props?.result]?.count,0):
-  //               latest?.[props?.result]?.count ?? null;
-
   const result =
   typeof latest?.[props?.result]?.count === 'number'
     ? latest?.[props?.result]?.count % 1 !== 0
