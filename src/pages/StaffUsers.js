@@ -63,7 +63,7 @@ const handleDataChange =(pageCount) => {
           <Sidebar/>
           <div className='aside'>
             <Header setOpen={setOpen} setAddNewStaff={setAddNewStaff} setSearchData={setSearchData} searchData={searchData}/>
-            <div className='right-block'>
+            <div className='right-block-data'>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
