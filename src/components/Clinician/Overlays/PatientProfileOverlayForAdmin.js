@@ -120,36 +120,6 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
               
             })
             setSpinner(true)
-    
-
-
-    //   const res = await updatepatientDetailinAdmin(formData)
-    //   if(res?.status===200){
-    //     await fetchData()
-    //     toast.success(res?.data?.message, {
-    //       position: 'top-right',
-    //       autoClose: 3000,
-    //       hideProgressBar: true,
-    //       closeOnClick: true,       
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       theme: "colored",
-    //     });
-    //   }
-      
-    // } catch (error) {
-    //   toast.error(error, {
-    //     position: 'top-right',
-    //     autoClose: 3000,
-    //     hideProgressBar: true,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     theme: "colored",
-    //   });
-    // }
-    // setSpinner(false)
-    // handleClose();
   };
 
   return (
@@ -194,54 +164,11 @@ export const PatientProfileOverlayForAdmin = ({id,handleClose, data,fetchData })
                  <span className="error">{props?.errors?.last_name ? props?.errors?.last_name : ""}</span>
 
             </div>
-            {/* <div className="input-block">
-              <label htmlFor="exampleInputDOB">Date of birth</label>                
-              <input type="text" name="dob" value={props?.values?.dob} onChange={props?.handleChange}  id="exampleInputDOB" />
-            </div> */}
             <div className='input-block'>
               <label htmlFor="exampleInputDOB" >{t('EditProfilePage.form.f3')}</label>
               <input type="date" name="dob" value={props?.values?.dob} id="exampleInputDOB" onChange={props?.handleChange} />
               <span className="error"> {props?.errors?.dob ? props?.errors?.dob : ""}</span>
             </div>
-            {/* <div className="input-block">
-              <label htmlFor="exampleInputSex">
-                {t("EditProfilePage.form.f4")}
-              </label>
-              <div className="radio-buttons">
-                <div className="radio-button">
-                  <input
-                    checked={sex === "male"}
-                    type="radio"
-                    id="male"
-                    name="sex"
-                    value="male"
-                  />
-                  <label htmlFor="male">{t("EditProfilePage.form.f10")}</label>
-                </div>
-                <div className="radio-button">
-                  <input
-                    checked={sex === "female"}
-                    type="radio"
-                    id="female"
-                    name="sex"
-                    value="female"
-                  />
-                  <label htmlFor="female">
-                    {t("EditProfilePage.form.f11")}
-                  </label>
-                </div>
-                <div className="radio-button">
-                  <input
-                    checked={sex === "other"}
-                    type="radio"
-                    id="other"
-                    name="sex"
-                    value="other"
-                  />
-                  <label htmlFor="other">{t("EditProfilePage.form.f12")}</label>
-                </div>
-              </div>
-            </div> */}
             <div className='input-block'>
               <label htmlFor="exampleInputSex" >{t('CreateProfilePage.form.f4')}</label>
               <div className='radio-buttons'>
