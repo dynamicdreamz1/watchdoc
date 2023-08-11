@@ -58,9 +58,6 @@ export default function PatientEntry() {
             .catch((error) => {
                 console.log(error);
 
-
-
-
                 
                 return error
             })
