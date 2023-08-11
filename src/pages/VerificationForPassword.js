@@ -56,14 +56,13 @@ const VerificationForPassword = () => {
                 if (typeof response === "string") {
                     setError(response)
 
-                } else {
-                    console.log(response)
-                }
+                } 
             })
             .catch((error) => {
                 return error
             })
     }
+    
     return (
         <React.Fragment>
             <div className='varification-page-wrapper'>

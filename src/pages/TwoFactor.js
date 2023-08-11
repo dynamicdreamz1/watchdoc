@@ -1,16 +1,13 @@
 import { Base64 } from 'js-base64';
-import React, { useContext, useState } from 'react'
+import React, {useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate} from 'react-router-dom'
 import { RegisterUser, VerifyEmail } from '../services/UserService';
-import { UserContext } from '../Store/Context';
 import { updateToken } from '../Utility/functions';
 import { StoreCookie } from '../Utility/sessionStore';
 
 export default function TwoFactor() {
-
-    const { setCurrentUser} = useContext(UserContext)
     const location = useLocation();
     const {emailId,id } = location.state;
     const { t } = useTranslation();
@@ -18,7 +15,6 @@ export default function TwoFactor() {
 
     const [code,setCode]=useState(id)
     const [error, setError] = useState('')
-    // const { emailId,id} = useParams();
     let decodedEmail = (Base64.decode(emailId));
     let navigate = useNavigate()
     const [time, setTime] = useState(60)
@@ -42,15 +38,12 @@ export default function TwoFactor() {
         return ()=>clearInterval(intervalID)
     }, [time]);
 
-
-
     const handleClickConfirm=(e)=>{
         e.preventDefault()
         
         if (code === "") {
             setError(t('TwoFactorPage.error.e1'))
         }
-
 
         else {
             const data = {
@@ -60,7 +53,6 @@ export default function TwoFactor() {
 
             VerifyEmail(data)
                 .then((res) => {
-                    console.log(res)
                     const { data } = res;
                     let { token, user_details } = data;
                     if(user_details?.roles[0].name==="User"){
@@ -68,7 +60,6 @@ export default function TwoFactor() {
                     }
                     else if(user_details?.roles?.map((el)=>el.name==='Clinician')){
                     StoreCookie.setItem("token", token);
-                    setCurrentUser(token)
                     updateToken();
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);
@@ -83,8 +74,7 @@ export default function TwoFactor() {
                         navigate('/signin')
 
                     }
-     
-
+    
                 })
                 .catch((error) => {
                     setError(t('TwoFactorPage.error.e2'))
@@ -150,9 +140,6 @@ export default function TwoFactor() {
                         </div>
                     </form>
                 </div>
-                {/* <div className='cancle-signout text-center'>
-                    <button type='button'>Cancel and sign out</button>
-                </div> */}
             </div>
         </div>
     </>

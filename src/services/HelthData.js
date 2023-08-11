@@ -14,24 +14,7 @@ let headersWithToken ={
     "Accept": "application/json",
     Authorization: `Bearer ${token}`
 }
-export const GetUserDailyBodyData = async () =>{
-    const data = {
-        type:'body',
-        userid:'2dc9fa77-6540-4be5-97b7-40174b43e77c'
-    }
-    try {
-        const response = await axios({
-            method: "POST",
-            url: `${process.env.REACT_APP_ENDPOINT}terra/userdata`,
-            headers: headersWithToken,
-            data: data,
-        })
-        return response;
-    } catch (error) {
-        return error;
-    }   
 
-}
 
 export const GetUserBloodOxyenData=async(rangType,terraId,FinalDate)=>{
     const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodoxygen?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
@@ -48,19 +31,6 @@ export const GetUserBloodOxyenData=async(rangType,terraId,FinalDate)=>{
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const GetUserHeartRateData=async(rangType,terraId,FinalDate)=>{
     const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/heartrate?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
@@ -80,12 +50,6 @@ export const GetUserHeartRateData=async(rangType,terraId,FinalDate)=>{
     }
     
 }
-
-
-
-
-
-
 
 export const GetUserBloodPressureData=async(rangType,terraId,FinalDate)=>{
     const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodpressure?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`

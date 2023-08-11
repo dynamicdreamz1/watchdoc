@@ -1,14 +1,13 @@
 import axios from "axios"
 import { headersClinician } from "../Utility/functions";
 
-export const searchClinician = async (data) => {
+export const searchClinician = async (data,limit,currentPage) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=&page=`,
+            url: `${process.env.REACT_APP_ENDPOINT}user/clinician?clinician_name=${data.clinician_name}&practice_name=${data.practice_name}&zip=${data.zip}&limit=${limit}&page=${currentPage}`,
             headers: headersClinician
         })
-
         return response;
     }
     catch (error) {
@@ -23,23 +22,20 @@ export const addDoctor = async (data) => {
             data: data,
             url: `${process.env.REACT_APP_ENDPOINT}user/desert_clinician`,
             headers: headersClinician
-
         })
         return response;
     }
-
     catch (error) {
         return error;
     }
 
 }
 
-export const getClinicianData = async () => {
-
+export const getClinicianData = async (currentPage,dataLimit,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician`,
+            url: `${process.env.REACT_APP_ENDPOINT}user/get_related_clinician?limit=${dataLimit}&search=${search}&page=${currentPage}`,
             headers: headersClinician
         })
         return response
@@ -94,8 +90,8 @@ export const ClinicianPatientStatus = async (data) => {
 
 }
 
-export const RelatedAllUserClinician = async (id,dataLimit, currentPage) => {
-    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}`
+export const RelatedAllUserClinician = async (id,dataLimit, currentPage,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_users_clinician?user_id=${id}&limit=${dataLimit}&page=${currentPage}&search=${search}`
     try {
         const response = await axios({
             method: 'get',
@@ -157,7 +153,6 @@ export const reviewUserProfileAlert = async (data) => {
 }
 
 export const getAllProfileAlert = async (id,limit,currentPage) => {
-    console.log("id",id);
     const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_all_alert?user_id=${id}&limit=${limit}&page=${currentPage}`
     try {
         const response = await axios({
@@ -173,3 +168,69 @@ export const getAllProfileAlert = async (id,limit,currentPage) => {
 }
 
 
+
+
+
+
+export const getCriticalAlertUnreviewed = async (currentPage,limit,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_unreviewed?limit=${limit}&page=${currentPage}&search=${search}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
+export const getCriticalAlertReviewed = async (limit,currentPage,search) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/get_critical_alert_reviewed?limit=${limit}&page=${currentPage}&search=${search}`
+    try {
+        const response = await axios({
+            method: 'get',
+            url: tempUrl,   
+            headers: headersClinician,
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+
+
+export const UnreviewedToReviewedAlerts = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}clinician/review_critical_alert`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            headers: headersClinician,
+            data:data
+        })      
+        return response
+    } catch (error) {
+        return error
+    }
+
+}
+
+export async function UpdateClinicianProfile(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}clinician/clinician_update_profile`,
+            data: data,
+            headers: headersClinician,
+        })
+        return response;
+    } catch (error) {
+        return error;
+    }
+}

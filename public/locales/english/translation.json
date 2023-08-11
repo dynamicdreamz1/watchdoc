@@ -96,7 +96,7 @@
             "f5": "Male",
             "f6": "Female",
             "f7": "Weight (kg)",
-            "f8": "Height (m)",
+            "f8": "Height (cm)",
             "f9": "Submit",
             "f10": "Male",
             "f11": "Female",
@@ -254,6 +254,7 @@
         "tableCell3": "Phone",
         "tableCell4": "Connected Patients",
         "tableCell5": "Pending Patients",
+        "tableCell6": "Delete",
         "notFound": "You have not added any clincian yet."
     },
     "PractitionersCard": {
@@ -281,7 +282,7 @@
             "f5": "Male",
             "f6": "Female",
             "f7": "Weight (kg)",
-            "f8": "Height (m)",
+            "f8": "Height (cm)",
             "f9": "Submit",
             "f10": "Male",
             "f11": "Female",
@@ -292,7 +293,11 @@
             "f16": "Your Height",
             "f18": "Your Nick Name",
             "f19":"BMI",
-            "f20":"Your BMI"
+            "f20":"Your BMI",
+            "f21":"email",
+            "f22": "Your Email",
+            "f23":"Contact Number",
+            "f24": "Your Contact Number"
         },
         "error": {
             "e1": "The first name field is required.",

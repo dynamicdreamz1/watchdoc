@@ -52,11 +52,14 @@ export default function ChangePassword() {
                 draggable: true,
                 theme: "colored",
               });
+              setPassword({
+                currentpassword:"",
+                newpassword:"",
+                confirmpassword:""
+              })
             setMessage('Password successfully updated.')
-        setTimeout(() => setMessage(""), 2000);
-
+            setTimeout(() => setMessage(""), 2000);
         }
-
         if(res?.response?.status===422){
             toast.success("Old password is incorrect.", {
                 position: 'top-right',
@@ -93,8 +96,6 @@ export default function ChangePassword() {
                 <h2>Change your password</h2>
                 <span>You are about to change the password for your WatchDoc account, <strong>{email}</strong></span>
             </div>
-          
-
             <form onSubmit={props.handleSubmit}>
                 <div className='input-block'>
                     <label>Current password</label>

@@ -2,11 +2,24 @@ import React from 'react'
 import CanvasJSReact from '../../../lib/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default function HeartRateChart({HeartData}) {
-
+export default function HeartRateChart({HeartData,value}) {
+  const valueFormate = value === 0 ? "h tt" :  "MMM DD"
 
     const dataPoints =  HeartData?.data?.details && Object?.entries(HeartData?.data?.details).map((t,k) => {
-          return { x: new Date(t[0]), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      const dateFind = t[1].date?t[1].date : t[1].main_date
+      const dateComponents = dateFind?.split("T")[0]?.split("-");
+      const timeComponents = dateFind.substring(11).split(":");
+
+      const year = parseInt(dateComponents[0]);
+		  const month = parseInt(dateComponents[1]) - 1;
+		  const day = parseInt(dateComponents[2]);
+      const hour = parseInt(timeComponents[0]);
+      const minute = parseInt(timeComponents[1]);
+      if ( value === 0) {
+        return { x: new Date(year, month, day,hour,minute), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      }else{
+        return { x: new Date(year, month, day), y: [t[1]?.min_hr_bpm, t[1]?.max_hr_bpm]}
+      }
     })
 		const options = {
 			theme: "light2",
@@ -18,9 +31,7 @@ export default function HeartRateChart({HeartData}) {
       dataPointMaxWidth: 6,
      
 			axisX: {
-				valueFormatString: "h tt",
-        interval: 6,
-        intervalType: "hour",
+				valueFormatString: valueFormate,
       //  minimum: new Date(2023, 0, 15, 23, 0),
        // maximum: new Date(2023, 0, 17, 0, 0),
         labelFontFamily: "Source Sans Pro', sans-serif",
@@ -50,18 +61,15 @@ export default function HeartRateChart({HeartData}) {
                 radius: 5,
                 axisYType: "secondary",
                 indexLabel: "",
-                xValueFormatString: "MMM YYYY",
+                xValueFormatString: "",
                 toolTipContent: "<strong>{x}</strong></br> <span><strong>Max:</strong> {y[1]} bpm</span><br/><span><strong> Min:</strong> {y[0]} bpm</span>",
                 dataPoints: dataPoints
               }]
         }
 		return (
 		<>
-    
 			<CanvasJSChart options = {options}
-				/* onRef={ref => this.chart = ref} */
 			/>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</>
 		);
 }

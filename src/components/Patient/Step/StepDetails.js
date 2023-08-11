@@ -32,31 +32,14 @@ export default function PatientSleepDetails({ terraId, latestData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, FinalDate]);
 
-  // const titleAction={
-  //   isStepSkeleton,
-  //   StepData,
-  //   setTimeType,
-  //   setFinalDate,
-  //   setStepData
-
-  // }
-
-
   return (
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForStep HeartRateAvg={StepData?.data?.summary} latestData={latestData} />
           <ShowAllDataCard />
-          {/* {defaultSleepAlertTrigger && defaultSleepAlertTrigger?.map((el, I) => {
-            return (
-              // <AlertTriggerCardSleep HeartRateAvg={StepData?.data?.summary} el={el} key={I} />
-            )
-          })
-          } */}
         </div>
         <div className='chart-wrapper'>
-          {/* <SleepChartNavTabs  titleAction={titleAction} /> */}
           <DefaultChartSkeleton />
         </div>
       </div>

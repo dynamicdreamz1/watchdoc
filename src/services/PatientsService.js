@@ -1,5 +1,7 @@
 import axios from "axios";
 import { headersClinician } from "../Utility/functions";
+// import fetch from 'node-fetch';
+
 
 export async function getLatestMeasurement() {
     try {
@@ -60,3 +62,31 @@ export const AddEmergencyContact=async(data)=>{
     }
 
 }
+
+export const connectDevice = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}generateWidgetSession`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            data:data
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+  };
+
+  export const disconnectDevice = async (data) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}disconnect_device`
+    try {
+        const response = await axios({
+            method: 'post',
+            url: tempUrl,   
+            data:data
+        })  
+        return response
+    } catch (error) {
+        return error
+    }
+  };

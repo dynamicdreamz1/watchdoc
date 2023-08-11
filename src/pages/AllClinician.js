@@ -20,26 +20,30 @@ export default function AllClinician() {
     const [currentPage,setCurrentPage]=useState(1)
     const [totalpageCount,setTotalPageCount]=useState(0)
     const [dataLimit] = useState(5)
+  const [searchData,setSearchData]=useState("")
+
 
     const handleChange = (event, newPage) => {
         setCurrentPage(newPage);
     };
 
-    const fetchData = async (dataLimit, currentPage) => {
+    const fetchData = async (dataLimit,currentPage,searchData) => {
         setLoading(true)
-        const response = await RelatedAllUserClinician(state?.userId,dataLimit, currentPage)
-
+        try {
+        const response = await RelatedAllUserClinician(state?.userId,dataLimit, searchData?1:currentPage,searchData?searchData:"")
         setTotalPageCount(Math.ceil(response?.data?.clinicians?.total / dataLimit));
-        setAllClinicianData(response?.data?.clinicians?.data)
-        setLoading(false)
+        setAllClinicianData(response?.data?.clinicians)
+        setLoading(false)            
+        } catch (error) {
+            console.log(error)
+        }
+        setLoading(false)         
     }
 
     useEffect(() => {
-        fetchData(dataLimit, currentPage) 
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-
-    }, [dataLimit, currentPage])
-
+        fetchData(dataLimit, currentPage,searchData) 
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataLimit, currentPage,searchData])
 
 
     return (
@@ -48,7 +52,7 @@ export default function AllClinician() {
             <div className='content-wrapper'>
                 <Sidebar />
                 <div className='aside'>
-                    <Header />
+                    <Header setSearchData={setSearchData} searchData={searchData}/>
 
                     {loading ? <TableSkeleton />
                         :
@@ -58,11 +62,8 @@ export default function AllClinician() {
                                     <img src='/images/Clinicians-icon.svg' alt='Clinicians-icon' />
                                     <h4>{t('MyClinicians.heading1')}</h4>
                                 </div>
-
-
                                 {loading === true ? <TableSkeleton /> :
                                     <>
-                                        {/* {currentRecords?.length > 0 ? */}
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
@@ -74,8 +75,7 @@ export default function AllClinician() {
                                             </TableHead>
                                             <TableBody>
 
-                                                {allclinicianData?.map(el => {
-
+                                                {allclinicianData?.data?.map(el => {
                                                     return <TableRow key={el.id}>
                                                         <TableCell className='user-profile-cell'>
                                                             <UserProfile data={el} />
@@ -91,12 +91,11 @@ export default function AllClinician() {
                                                 })}
                                             </TableBody>
                                         </Table>
-                                        {/* : <>{t('MyClinicians.notAdd')}</>} */}
                                     </>
                                 }
-
                             </TableContainer>
-                            <Pagination page={currentPage} onChange={handleChange} count={totalpageCount} variant="outlined" shape="rounded" className='table-pagination' />
+                            {allclinicianData?.length !==0 && <Pagination page={currentPage} onChange={handleChange} count={totalpageCount} variant="outlined" shape="rounded" className='table-pagination' />
+}
                         </>
                     }
 

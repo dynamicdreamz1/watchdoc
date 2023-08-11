@@ -1,14 +1,21 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { getCurrentUserData } from '../../services/UserService';
+import { useLocation } from 'react-router-dom';
 
 
-export default function SearchBar() {
-  const { t } = useTranslation();
+export default function SearchBar({setSearch,searchData}) {
+  const userData=getCurrentUserData();
+  const location = useLocation()
+
+  const placeHolderText=
+  userData?.roles[0]?.name==='User' || (userData?.roles[0]?.name==='Admin'&& location?.pathname==='/clinicians')?"Search For Clinician":userData?.roles[0]?.name==='Clinician' || 
+  (userData?.roles[0]?.name==='Admin'&&location?.pathname==='/adminpatient')?"Search For Patients":"Search For Staff"
+
   return (
     <>
-      <form method='post' className='search-block'>
-        <input type="search" name="search" placeholder={t('DashboardPage.d4')} />
-      </form>
+      <div  className='search-block'>
+        <input onChange={(e)=>setSearch(e.target.value)} value={searchData} type="search" name="search" placeholder={placeHolderText} autoComplete='off'/>
+      </div>
     </>
   )
 }

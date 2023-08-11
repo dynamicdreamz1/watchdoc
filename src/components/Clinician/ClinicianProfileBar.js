@@ -5,7 +5,7 @@ import UserProfile from '../common/UserProfile'
 import ClinicianDetailEditProfile from './ClinicianDetailEditProfile';
 import ClinicianRequest from '../Admin/ClinicianRequest'
 
-export default function ClinicianProfileBar({profileBarData,getAllClinicianData}) {
+export default function ClinicianProfileBar({profileBarData,getClinicianDetail}) {
   const [open, setOpen] = useState(false);
   const [openRequest, setOpenRequest] = useState(false);
 
@@ -49,7 +49,7 @@ export default function ClinicianProfileBar({profileBarData,getAllClinicianData}
                   className='clinician-profile-dialog'
                 >
                   <button type='button' className='close-btn' onClick={handleClose}><img src='/images/Close-Icon.svg' alt='Close Button' /></button>
-                  <ClinicianDetailEditProfile profileBarData={profileBarData} setOpen={setOpen} getAllClinicianData={getAllClinicianData} />
+                  <ClinicianDetailEditProfile profileBarData={profileBarData} setOpen={setOpen} getClinicianDetail={getClinicianDetail} />
                 </Dialog>
             </div>
         </div>

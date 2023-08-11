@@ -66,9 +66,6 @@ export default function WeightChartNavTabs() {
             <TabPanel value={value} index={2}>
             <WeightChart/>
             </TabPanel>
-            {/* <TabPanel value={value} index={3}>
-
-            </TabPanel> */}
         </Box>
         </>
     )

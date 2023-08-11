@@ -5,23 +5,15 @@ import { allTimeZone } from '../../Utility/countryCode';
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { addStaffUser } from '../../services/AdminService';
+import { addStaffUser, editStaffUser } from '../../services/AdminService';
+import { toast } from 'react-toastify';
+import SimpleBackdrop from '../../Utility/Skeleton';
 
-export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage}) {
+export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,setCurrentPage,setAddNewStaff,addNewStaff,countryCode, setcountryCode}) {
     const { t } = useTranslation()
-    const [countryCode, setcountryCode] = useState('+91');
-    const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
-    const [addNewStaff, setAddNewStaff] = useState({
-        "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practicename":"",
-        "practiceaddress": "",
-        "password": "",
-    })
-   
+    const [spinner,setSpinner]=useState(false)
+    const [imageUrl, setImgSrc] = useState(addNewStaff?.profile_pic===undefined?"/images/user-picture-placeholder.png":addNewStaff?.profile_pic); 
+    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const LoginSchema = Yup.object({
         id: Yup.string(),
@@ -57,64 +49,126 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
         setcountryCode(event.target.value);
     };
 
-
-    const handleImages = (files) => {
-        setImgSrc(files)
-        // let validImages = [files].filter((file) =>
-        //     ['image/jpeg', 'image/png'].includes(file?.type || {})
-        // );
-
-        // validImages.forEach(uploadImages);
-    };
-    // const uploadImages = (file) => {
-
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-
-    //     };
-
-    // }
-
-    const handleSubmitForm = async(data) => {
-        
-        const formData=new FormData();
-        formData.append("first_name",data?.firstname)
-        formData.append("last_name",data?.lastname)
-        formData.append("email",data?.email)
-        formData.append("contact_number",`${countryCode} ${data?.number}`)
-        formData.append("address",data?.practiceaddress,)
-        formData.append("password",data?.password,)
-        formData.append("type","create")
-
-        if(typeof imageUrl==="object"){
-        formData.append("profile_pic",imageUrl)
+    const handleImages = (files) => {       
+        const file = files;
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024);
+            if (fileSizeInMB <= 2) {
+                setImgSrc(files);
+                setFileSizeErrorMessage("")
+            } else {
+                setImgSrc("")
+                setFileSizeErrorMessage('Image size should be less than 2 MB')
+                toast.error('Image size should be less than 2 MB', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
         }
-        
-       await addStaffUser(formData)
-        StaffUserData(limit,currentPage)
-        setOpen(false)
-        setAddNewStaff({
-        "title": "Dr",
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "number": "",
-        "practiceaddress": "",
-        "password": "",
+    }
+    
+    const handleSubmitForm = async(data) => {
+        setSpinner(true)
+        if(data?.id){
+            const formData=new FormData();
+            formData.append("id",data?.id)
+            formData.append("first_name",data?.firstname)
+            formData.append("last_name",data?.lastname)
+            formData.append("email",data?.email)
+            formData.append("contact_number",`${countryCode} ${data?.number}`)
+            formData.append("practice_address",data?.practiceaddress,)
+            // formData.append("password",data?.password,)
+            formData.append("practice_name",data?.practicename)
+            if(typeof imageUrl==="object"){
+            formData.append("profile_pic",imageUrl)
+            }
+            const res=await editStaffUser(formData)
+            if(res?.status===200){
+                StaffUserData(limit,currentPage)
+                toast.success('Staff-User update Successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                  });
+            }
+            setOpen(false)
+            setCurrentPage(1)
+        }
+        else{
+            const formData=new FormData();
+            formData.append("first_name",data?.firstname)
+            formData.append("last_name",data?.lastname)
+            formData.append("email",data?.email)
+            formData.append("contact_number",`${countryCode} ${data?.number}`)
+            formData.append("address",data?.practiceaddress,)
+            formData.append("password",data?.password,)
+            formData.append("type","create")
+            if(typeof imageUrl==="object"){
+            formData.append("profile_pic",imageUrl)
+            }
+            
+          const res= await addStaffUser(formData)
+          if(res?.status===200){
+            StaffUserData(limit,currentPage)
+            toast.success('Staff-User Added Successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+              });
+            }
+            if(res?.response?.status===422){
+                toast.error(res?.response?.data?.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                  });
+    
+            }
+            setOpen(false)
+            setAddNewStaff({
+            "title": "Dr",
+            "firstname": "",
+            "lastname": "",
+            "email": "",
+            "number": "",
+            "practiceaddress": "",
+            "password": "",
+            })
+            setCurrentPage(1)
 
-        })
-        setCurrentPage(1)
+        }
+        setSpinner(false)
+       
     }
 
-
     return (
-        <Formik
+        <>
+        <SimpleBackdrop open={spinner}/>
+         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
-            onSubmit={(values) => { handleSubmitForm(values) }}
+            onSubmit={(values) => {
+                if(fileSizeErrorMessage==="")
+                handleSubmitForm(values)
+            }}
         >
             {(props) => (
                 <>
@@ -123,6 +177,9 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                             <h2>Add Staff User</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                                <span className="error">{fileSizeErrorMessage && fileSizeErrorMessage}</span>
+                            </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
@@ -167,17 +224,14 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
                             </div>
+                            {/* {typeof addNewStaff?.id==='number' ? "": */}
                             <div className='input-block'>
                                 <label>Password</label>
                                 <input type="password"  name='password' value={props?.values?.password} onChange={props?.handleChange} autoComplete="new-password"  />
-                                {/* <button className='show-hide' type="button" onClick={()=>setShowPassword(!showPassword)}>
-                                    {showPassword?
-                                    <RemoveRedEyeOutlinedIcon/>:
-                                    <VisibilityOffOutlinedIcon/>
-}
-                                </button> */}
                                 <span className="error">{props.errors.password ? props.errors.password : ""}</span>
                             </div>
+                            
+{/* } */}
                             <div className='input-block country-code'>
                                 <label id="country-code">Enter new phone number</label>
                                 <div className='inputs-wrapper'>
@@ -204,5 +258,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                 </>
             )}
         </Formik>
+        </>
+       
     )
 }

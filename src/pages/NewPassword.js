@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react'
 import '../css/Register.css'
 import { useTranslation } from 'react-i18next';
@@ -6,6 +5,8 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import { ForgotUserPassword } from '../services/UserService';
 import { useLocation} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import SimpleBackdrop from '../Utility/Skeleton';
 
 const NewPassword = () => {
     const location = useLocation();
@@ -13,11 +14,8 @@ const NewPassword = () => {
     const [loginData,setLoginData]=useState({
         "password":"",       
     })
-    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
-
-  
 
     const LoginSchema = Yup.object({        
         password: Yup.string().required('New password is required*')
@@ -30,17 +28,61 @@ const NewPassword = () => {
     });
 
     const handleSubmitForm =async (data) => {
+        setLoading(true);
       const result={
         email:email,
         new_password:data?.password
       }
-      const res=await ForgotUserPassword(result)
-      setLoading(false)
-      if(res?.status===200){
-       setError(res?.data?.message)
-       setLoginData({"password":""})
-      }
-     
+    //   const res=await ForgotUserPassword(result)
+    //   setLoading(false)
+    //   if(res?.status===200){
+    //    setError(res?.data?.message)
+    //    setLoginData({"password":""})
+      
+
+
+      ForgotUserPassword(result)
+      .then((res) => {
+          if (res?.status === 200) {
+            setLoading(false)
+            setLoginData({"password":""}) 
+              toast.success(res?.data?.message, {
+                  position: 'top-right',
+                  autoClose: 3000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  theme: "colored",
+              });      
+          }
+          else{
+          setLoading(false)
+            toast.error(res?.data?.message, {
+              position: 'top-right',
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored",
+          });
+
+        }
+      })
+      .catch((error) => {
+          setLoading(false)              
+              toast.error(error, {
+                  position: 'top-right',
+                  autoClose: 3000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  theme: "colored",
+              });           
+          })
+
     }
 
  
@@ -53,6 +95,8 @@ const NewPassword = () => {
     >
         {(props) => (
         <React.Fragment>
+            <SimpleBackdrop open={loading}/>
+            <ToastContainer />
             <div className='page-wrapper'>
                 <div className='signin-box'>
                     <div className='logo-block'>
@@ -73,13 +117,11 @@ const NewPassword = () => {
 
                             </div>
                            
-                         
-                        <div className='LoginError'>{error && error}</div>
-
+                        {/* <div className='LoginError'>{error && error}</div> */}
                             <div className='submit-block'>
                                 <button type="submit">Submit</button>
                             </div>
-                            {loading ? <b>{t('SignInPage.loader.l1')}</b> : ""}                   
+                            {/* {loading ? <b>{t('SignInPage.loader.l1')}</b> : ""}                    */}
                         </form>
                     </div>
                 </div>

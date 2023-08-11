@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Bg from './Bg'
 import Bo from './Bo'
 import Bp from './Bp'
@@ -13,18 +14,21 @@ import Sleep from './Sleep'
 import Step from './Step'
 
 export default function PatientInfoRow(props) {
+  const {el,value,handleClickOpenRequestPopUp,handleClickStatus , DeleteRequest}=props;
+
   const navigate=useNavigate();
   const location=useLocation();
-  const {el,value,handleClickOpenRequestPopUp,handleClickStatus}=props;
-
   const handleClicknavigate=()=>{
-    if(location.pathname==="/dashboard" ||location.pathname==="/patients"){
+    if(location.pathname==="/dashboard" ||location.pathname==="/patients" || location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails'){
       navigate("/patientdetails",{state:{
         id:el.id,
       }})
     }
   }
  
+  const DeleteAdminPatient =(id) =>{
+    DeleteRequest(id)
+  }
   return (
     <>
     <TableRow >
@@ -38,8 +42,9 @@ export default function PatientInfoRow(props) {
         <TableCell><Wt el={el} value={value} /></TableCell>
         <TableCell><Sleep el={el} /></TableCell>
         <TableCell><Step el={el} /></TableCell>
+        {location?.pathname==='/adminpatient'?<TableCell onClick={()=>DeleteAdminPatient(el.id)}><DeleteIcon/></TableCell>: ""   }
 
-        <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>
+      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>}
     </TableRow>
     </>
   )

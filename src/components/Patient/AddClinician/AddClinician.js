@@ -8,6 +8,10 @@ import { AdminUserContext } from '../../Clinician/Overlays/CliniciansOverlay'
 import AddClinicianButton from './AddClinicianButton'
 import ConnectingClinician from './ConnectingClinician'
 import PractitionersCard from './PractitionersCard' 
+import { Button } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send';
+import SimpleBackdrop from '../../../Utility/Skeleton'
+
 
 export default function AddClinician({ status, setStatus }) {
   const location=useLocation();
@@ -16,7 +20,18 @@ export default function AddClinician({ status, setStatus }) {
   const [defaultStatus, setDefaultStatus] = useState(false)
   const navigate=useNavigate();
   const [isSkeleton,setIsSkeleton]=useState(false)
-  const { addData, setAddData,nextBtn,setClinicianData,setCurrentPage } = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
+  const { addData, setAddData,nextBtn,setClinicianData} = useContext(location.pathname === "/editclinician" ? InnerClinicianContext : location.pathname==="/addclinician" ? AddClincianOuterContext : location.pathname==="/patientdetails"?AdminUserContext:"" )
+
+
+
+  const [currentPageClinician, setCurrentPageClinician] = useState(1);
+  const [totalPagesClinician, setTotalPagesClinician] = useState(0);
+  const [dataLimitClinician] = useState(3)
+  const [message,setmessage]=useState("")
+  const[spinner,setSpinner]=useState(false)
+
+
+  
  
 
   const handleSubmit = (e) => {
@@ -24,42 +39,53 @@ export default function AddClinician({ status, setStatus }) {
    if(addData.clinicianName!=="" || addData?.code!==""||addData?.practitionerName!==""){       
     setIsSkeleton(true)  
    }
+   setSpinner(true)
     const data = {
       clinician_name: addData?.clinicianName,
       practice_name: addData?.practitionerName,
       zip: addData?.code
     }
-
-    
-    searchClinician(data)
+    searchClinician(data,dataLimitClinician,currentPageClinician)
       .then((response) => {
+        if(response?.data?.data?.length===0){
+          setmessage('Clinician Not Found')
+        }
         setClinicianData(response)
+        setSpinner(false)
+        setTotalPagesClinician(Math.ceil(response?.data?.data?.total / dataLimitClinician))
         setIsSkeleton(false)
-        setCurrentPage(1)
+        setCurrentPageClinician(1)
+        setTimeout(() => setmessage(""),2000);
       })
 
       .catch((error) => {
         console.log(error)
       })
-    
-    
+  
+  }
+  const action={
+    currentPageClinician,
+    setCurrentPageClinician,
+    totalPagesClinician,
+    dataLimitClinician,
+    setTotalPagesClinician,
+    setIsSkeleton
+
+
   }
   return (
     <>
   
       {location.pathname === "/addclinician" ?
         <>
-        <h3 onClick={()=>navigate('/dashboard')}>Skip</h3>
           <ConnectingClinician show={show} setShow={setShow} defaultStatus={defaultStatus} setDefaultStatus={setDefaultStatus} />
           <div>
             {defaultStatus === true ?
               <AddClinicianButton show={show} setShow={setShow} /> : ""}
           </div>
+              <h3 onClick={()=>navigate('/dashboard')}> <div className='skip-button' ><Button style={{marginleft: "347px", margintop: "10px"}} variant="outlined" endIcon={<SendIcon/>}>Skip</Button></div></h3>
           {show ?
             <>
-
-
-
               <div className='add-clinician-box'>
                 <div className='title'>
                   <p> {t('AddClinician.p1')}</p>
@@ -74,7 +100,7 @@ export default function AddClinician({ status, setStatus }) {
                 </form>
               </div>
 
-              <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/>
+              <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/>
               { nextBtn ?  <div className='btn-block'><button className='btn' onClick={()=>navigate("/dashboard")}> {t('AddClinician.button')} </button></div> : ""  } 
             </>
             : ""
@@ -84,6 +110,7 @@ export default function AddClinician({ status, setStatus }) {
         :
         location.pathname==="/editclinician" ? 
         <>
+        <SimpleBackdrop open={spinner}/>
           <div className='add-clinician-box'>
             <div className='title'>
               <p> {t('AddClinician.p1')}</p>
@@ -96,9 +123,11 @@ export default function AddClinician({ status, setStatus }) {
                 <input type="submit" value={t('AddClinician.form.b1')} />
               </div>
             </form>
+            <span style={{ color: "red" }}>{message?message:""}</span>
+
           </div>
          
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> 
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/> 
 
         </> 
         : 
@@ -115,7 +144,7 @@ export default function AddClinician({ status, setStatus }) {
               </div>
             </form>
           </div>
-          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton}/> 
+          <PractitionersCard  status={status} setStatus={setStatus} isSkeleton={isSkeleton} action={action}/> 
           </>
         : ""
       }

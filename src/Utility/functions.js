@@ -34,9 +34,9 @@ export const calculateTimeDifferenceInMinutes = (dateString) => {
 }
 
 export const MetaFormeting = (metadata) => {
-  let userpforle = [];
-  metadata?.meta_data?.map(item => userpforle[item?.meta_key] = item?.meta_value)
-  return userpforle;
+  let userProfile = [];
+  metadata?.meta_data?.map(item => userProfile[item?.meta_key] = item?.meta_value)
+  return userProfile;
 }
 
 export const watchNumerFormeting = (num) => {
@@ -95,26 +95,44 @@ export const  GetdayHourMin = (data) =>{
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
   const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
   const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
-  const day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
-  const minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
-  const hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
-  const months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  
+  let minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
+  if (minutes >= 60) {
+    minutes = undefined
+  }
+  let day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
+  if (28 <= parseInt(day)) {
+    day = undefined
+  }else if (30 <= parseInt(day)) {
+    day = undefined
+  }else if (31 <= parseInt(day)) {
+    day = undefined
+
+  }
+  let hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
+  if (parseInt(hours) >= 24) {
+    hours =undefined
+  }
+  let months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
+  if (12 <= parseInt(months)) {
+    months =undefined
+  }
   const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
 
-  if (minutes <= 60) {
+  if (minutes) {
     return {lable : "minutes", data :parseInt(minutes)}
   }
-  else if (hours <= 24) {
+  else if (hours) {
     return {lable : "hours", data : parseInt(hours)} 
   }
-  else if (day <= 30 || 28 || 31) {
+  else if (day) {
     return {lable : "days", data : parseInt(day)}
   }
-  else if (months <= 12) {
+  else if (months) {
     return {lable : "months", data : parseInt(months)}
-  }else{
+  }
+  else {
     return {lable : "years", data : parseInt(years)}
-
   }
   
 }
@@ -149,12 +167,39 @@ export const requestAndApprovePatient = (data) => {
             status: item.request_status===1?"Reviewed" : "Pending",
             metaData:data,
         }
+
         arr.push(object)
       })
       return arr;
     }
 }
 
+
+export const reviewedUnReviwedCommon = (data) => {
+  const arr = [];
+  if (data) {
+      data?.map(item=>{
+        let metaData = {};
+        item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
+        const  age = calculateAge(moment(metaData?.dob,"YYYY-MM-DD").format("YYYY-MM-DD"))
+        const data = item?.critical_alerts_data?JSON.parse(item?.critical_alerts_data):null
+        const object = {
+            id: item.user_id,
+            name: `${metaData?.first_name} ${metaData?.last_name}`, 
+            first_name: metaData?.first_name,
+            last_name: metaData?.last_name,
+            age: `${age} Years`,
+            gender: metaData?.sex,
+            status: item?.status===1?"Reviewed" : "UnReviewed",
+            metaData:data,
+
+        }
+
+        arr.push(object)
+      })
+      return arr;
+    }
+}
 
 export const getEmergencyContact = () =>{
   const array = []

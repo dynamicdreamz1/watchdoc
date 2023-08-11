@@ -7,12 +7,17 @@ import * as Yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { CreateClinician} from '../../services/AdminService';
 import { useLocation } from 'react-router-dom';
+import { toast } from "react-toastify";
+import SimpleBackdrop from '../../Utility/Skeleton';
 
-export default function AddClinician({ clinicianStaff, setOpen,dataLimit,currentPage ,getAllClinicianData}) {
+
+export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClinicianData}) {
     const { t } = useTranslation()
+    const [loading,setLoading]=useState(false)
     const location=useLocation();
     const [countryCode, setcountryCode] = useState('+91');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
+    const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const [addNewStaff, setAddNewStaff] = useState({
         "title": "Dr",
         "firstname": "",
@@ -56,82 +61,155 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
-            .max(10, t('SignUpPage.validation.mobile.long')),
-        
+            .max(10, t('SignUpPage.validation.mobile.long')),        
     });
-
-
 
     const handleChange = (event) => {
         setcountryCode(event.target.value);
     };
 
-
-    const handleImages = (files) => {
-       
-        let validImages = [files].filter((file) =>
-            ['image/jpeg', 'image/png'].includes(file?.type || {})
-        );
-        setImgSrc(validImages[0])
-        // validImages.forEach(uploadImages);
-
-    };
-
-    // const uploadImages = (file) => {
-
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImgSrc(reader?.result)
-
-    //     };
-
-    // }
-
-
+    const handleImages = (files) => {       
+        const file = files;
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024);
+            if (fileSizeInMB <= 2) {
+                setImgSrc(files);
+                setFileSizeErrorMessage("")
+            } else {
+                setImgSrc("")
+                setFileSizeErrorMessage('Image size should be less than 2 MB')
+                toast.error('Image size should be less than 2 MB', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+        }
+    }
+    
     const handleSubmitForm =async (data) => {
-
+        setLoading(true)
         const formData = new FormData();
-
         if(typeof imageUrl == "object" ){
-
             formData.append("profile_pic",imageUrl);
         }
-        formData.append("first_name", data.firstname);
-        formData.append("last_name", data.lastname);
-        formData.append("email", data.email);
+        formData.append("first_name", data?.firstname);
+        formData.append("last_name", data?.lastname);
+        formData.append("email", data?.email);
         formData.append("contact_number", `${countryCode} ${data.number}`);
-        formData.append("password", data.password);
-        formData.append("practice_address", data.practiceaddress);
+        formData.append("password", data?.password);
+        formData.append("practice_address", data?.practiceaddress);
+        formData.append("practice_name", data?.practicename);
+
         formData.append("type", "create");
        
-         await CreateClinician(formData)
+        //  const res=await CreateClinician(formData)
+        //  if(res?.status===200){
+        //     toast.success('Clinician created', {
+        //         position: 'top-right',
+        //         autoClose: 3000,
+        //         hideProgressBar: true,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         theme: "colored",
+        //       });
+        //  }
+
+         CreateClinician(formData)
+         .then((res) => {
+             if (res?.status === 200) {
+                setLoading(false)
+                 toast.success(res?.data?.message, {
+                     position: 'top-right',
+                     autoClose: 3000,
+                     hideProgressBar: true,
+                     closeOnClick: true,
+                     pauseOnHover: true,
+                     draggable: true,
+                     theme: "colored",
+                 });  
+                 setImgSrc("")
+                 setAddNewStaff({
+                    "id": "",
+                    "firstname": "",
+                    "lastname": "",
+                    "email": "",
+                    "number": "",
+                    "lastlogin": "",
+                    "practicename": "",
+                    "zip": "",
+                    "practiceaddress": "",
+                    "password": "",
+                    "userprofile": ""
+                })
+                setOpen(false)
+
+             }
+             else{
+             setLoading(false)
+             const key = Object.keys(res.response.data.error)[0];
+               toast.error(res?.response?.data.error[key][0], {
+                 position: 'top-right',
+                 autoClose: 3000,
+                 hideProgressBar: true,
+                 closeOnClick: true,
+                 pauseOnHover: true,
+                 draggable: true,
+                 theme: "colored",
+             });
+
+           }
+         })
+         .catch((error) => {
+           setLoading(false)
+             const key = Object.keys(error.response.data.error.email)[0];
+             if (error.response.data.status === 422) {
+                 toast.error(error.response.data.error[key][0], {
+                     position: 'top-right',
+                     autoClose: 3000,
+                     hideProgressBar: true,
+                     closeOnClick: true,
+                     pauseOnHover: true,
+                     draggable: true,
+                     theme: "colored",
+                 });
+             }
+             else {
+               toast.error(error, {
+                 position: 'top-right',
+                 autoClose: 3000,
+                 hideProgressBar: true,
+                 closeOnClick: true,
+                 pauseOnHover: true,
+                 draggable: true,
+                 theme: "colored",
+             });
+             }
+           
+         })
          if(location?.pathname!=="/cliniciandetails"){
          getAllClinicianData(dataLimit,currentPage)  
          }      
-        setOpen(false)
          
-        setAddNewStaff({
-            "id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "number": "",
-            "lastlogin": "",
-            "practicename": "",
-            "zip": "",
-            "practiceaddress": "",
-            "password": "",
-            "userprofile": ""
-        })
+       
     }
 
     return (
+        <>
+        <SimpleBackdrop open={loading}/>
         <Formik
             initialValues={addNewStaff}
             enableReinitialize={true}
             validationSchema={LoginSchema}
-            onSubmit={(values) => { handleSubmitForm(values) }}
+            onSubmit={(values) => {
+                if(fileSizeErrorMessage==="")
+                handleSubmitForm(values)
+            }}
         >
             {(props) => (
                 <>
@@ -140,6 +218,9 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                             <h2>Add Clinician</h2>
                         </div>
                         <form onSubmit={props.handleSubmit} autoComplete="off">
+                        <div className='input-block'>
+                                <span className="error">{fileSizeErrorMessage && fileSizeErrorMessage}</span>
+                            </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
                                     <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
@@ -223,6 +304,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                                     <span className="error"> {props.errors.number ? props.errors.number : ""}</span>
                                 </div>
                             </div>
+                            <div className='LoginError'>{loading?'Loading...':""}</div>
                             <div className='submit-block'>
                                 <button type="submit">Add Clinician</button>
                             </div>
@@ -231,5 +313,7 @@ export default function AddClinician({ clinicianStaff, setOpen,dataLimit,current
                 </>
             )}
         </Formik>
+        </>
+        
     )
 }

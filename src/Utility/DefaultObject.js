@@ -291,3 +291,50 @@ export  const REMINDER_TYPE_ARRAY = [
     reminder_type: "custome"
   },
 ];
+
+
+export const ConnectDeviceData = [
+
+    {
+        id: 1,
+        lable: "Fitbit",
+        type: "FITBIT",
+        img: "/images/Fitbit-icon.svg",
+    },
+    {
+        id: 2,
+        lable: "Apple Health",
+        type: "APPLE",
+        img: "/images/Apple-Health-icon.svg",
+    },
+    {
+        id: 3,
+        lable: "Garmin",
+        type: "GARMIN",
+        img: "/images/Garmin-icon.svg",
+    },
+    {
+        id: 4,
+        lable: "Google FIt",
+        type: "GOOGLE",
+        img: "/images/Google-FIt-icon.svg",
+    },
+    {
+        id: 5,
+        lable: "Oura",
+        type: "OURA",
+        img: "/images/Oura-icon.svg",
+    },
+    {
+        id: 6,
+        lable: "Samsung",
+        type: "SAMSUNG",
+        img: "/images/Samsung-icon.svg",
+    },
+    {
+        id: 7,
+        lable: "Withings",
+        type: "WITHINGS",
+        img: "/images/Withings-icon.svg",
+    },
+]

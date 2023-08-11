@@ -24,7 +24,7 @@ export default function AdminSidebar() {
                 </NavLink>
 
                 <NavLink
-                    to="/patients"
+                    to="/adminpatient"
                     className={({ isActive }) =>
                         isActive || location.pathname==="/patientdetails"? "isActive" : ""
                     }>

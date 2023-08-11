@@ -5,11 +5,12 @@ import { UserContext } from '../Store/Context';
 import '../css/Register.css'
 import { RegisterUser } from '../services/UserService';
 import { Base64 } from 'js-base64';
+import { Formik } from 'formik';
+import * as Yup from "yup";
+
 // import { GoogleLogin } from '@react-oauth/google';
 // import jwt_decode from "jwt-decode";
 // import AppleLogin from 'react-apple-login';
-
-
 
 
 export default function PatientEntry() {
@@ -17,30 +18,20 @@ export default function PatientEntry() {
     // const clientId = "555077241185-r79oaldvmmq001citu431g84i7jcup71.apps.googleusercontent.com";
   
     let navigate = useNavigate()
-    const [email, setEmail] = useState('')
+    const [initialData] = useState({email:"",setEmail:""})
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { t } = useTranslation()
 
+    const LoginSchema = Yup.object({
+        email: Yup.string()
+          .required(t('SignUpPage.validation.email.v1'))
+          .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2'))
+      });
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        if (!emailPattern.test(email)) {
-            
-            setError('Please enter valid email')
-            return
-        }
-        else if (email === "") {
-
-            setError(t('SignInPage.error.e1'))
-            return
-        }
-        else{
+    const handleSubmit = (value) => {
         const data = {
-            email: email
+            email: value
         }
         setLoading(true)
 
@@ -54,7 +45,7 @@ export default function PatientEntry() {
                     let encodedemail = Base64.encode(response?.data?.data?.email)
 
                     setLoading(false)
-                    setEmail("")
+                    
                     navigate(`/verification/${encodedemail}`, {
                         state: {
                             id: response?.data?.data?.verification_code,
@@ -62,7 +53,6 @@ export default function PatientEntry() {
                         },
                     });
                     // navigate(`/verification/${encodedemail}`)
-                    console.log(response)
                 }
             })
             .catch((error) => {
@@ -75,7 +65,7 @@ export default function PatientEntry() {
                 return error
             })
             
-        }
+        
 
     }
 
@@ -121,6 +111,14 @@ export default function PatientEntry() {
 
 
     return (
+        <Formik
+        initialValues={initialData}
+        enableReinitialize={true}
+        validationSchema={LoginSchema}
+        onSubmit={(values) => { 
+            handleSubmit(values?.email) }}
+    >
+        {(props) => (
         <>
             <div className='page-wrapper'>
                 <div className='signin-box'>
@@ -130,15 +128,15 @@ export default function PatientEntry() {
                         </div>
                     </div>
                     <div className='form-block'>
-                        <form>
+                        <form onSubmit={props.handleSubmit}> 
                             <div className='input-block'>
-                                <input type="email" placeholder={t('SignInPage.form.f1')}
-                                    value={email} id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
-                                    <div className='LoginError'>{error && error}</div>
+                                <input type="email" placeholder={t('SignInPage.form.f1')} name="email"
+                                   id="exampleInputEmail1" aria-describedby="emailHelp" onChange={props.handleChange} value={props?.values?.email} />
+                                    <div className='LoginError'>{error?error:props?.errors?.email ? props?.errors?.email : ""}</div>
                             </div>
                             <span>{loading?loading:""}</span>
                             <div className='submit-block' >
-                                <button type="submit" onClick={(e, response) => handleSubmit(e, response)}>Continue</button>
+                                <button type="submit">Continue</button>
                             </div>
                         </form>
                         <div className='or-text'>
@@ -176,5 +174,7 @@ export default function PatientEntry() {
                 </div>
             </div>
         </>
+        )}
+        </Formik>
     )
 }

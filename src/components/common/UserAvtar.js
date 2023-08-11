@@ -28,10 +28,9 @@ export default function UserAvtar() {
     const navigate=useNavigate();
     const {currentUserData} = useContext(UserContext);
     const userData = getCurrentUserData();
-    let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
-    const {first_name,last_name,full_name,profile_pic} =  MetaFormeting(finalUser);
-    // const first_leter=first_name?.charAt(0);
-    // const {full_name}=MetaFormeting(finalUser)
+    // let finalUser=currentUserData?.userData?.meta_data.length ===0?userData:currentUserData?.userData;
+    const {first_name,last_name,full_name,profile_pic} =  MetaFormeting(userData);
+   
     const {t}=useTranslation()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -56,8 +55,8 @@ export default function UserAvtar() {
     <>
         <div className='account-owner'>
             <div className='info'>
-                <span className='uname'>{ currentUserData?.role==="Clinician" ? `${first_name} ${last_name}` : currentUserData?.role==="Hospital" ? `${full_name}`: currentUserData?.role==="Admin" ? `${first_name} ${last_name}` : `${first_name} ${last_name}`}</span>
-                <span className='uposition'>{currentUserData?.role === "Clinician" ? t('UserAvtar.role.DoctorRole') : currentUserData?.role==="Hospital" ? t('UserAvtar.role.HospitalRole') : currentUserData?.role==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
+                <span className='uname'>{ userData?.roles[0]?.name==="Clinician" ? `${first_name} ${last_name}` : userData?.roles[0]?.name==="Hospital" ? `${full_name}`: userData?.roles[0]?.name==="Admin" ? `${first_name} ${last_name}` : `${first_name} ${last_name}`}</span>
+                <span className='uposition'>{userData?.roles[0]?.name === "Clinician" ? t('UserAvtar.role.DoctorRole') : userData?.roles[0]?.name==="Hospital" ? t('UserAvtar.role.HospitalRole') : userData?.roles[0]?.name==="Admin" ? t('UserAvtar.role.AdminRole') : t('UserAvtar.role.userRole')}</span>
             </div>
             <Button 
                 id="basic-button"

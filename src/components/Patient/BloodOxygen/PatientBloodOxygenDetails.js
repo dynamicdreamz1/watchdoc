@@ -6,6 +6,7 @@ import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsC
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
 import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
+import { toast } from 'react-toastify';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const start = moment().format('YYYY-MM-DD');
@@ -15,13 +16,27 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const [bloodOxygenData, setBloodOxygenData] = useState()
 
   const fetchData = async () => {
-    setIsBloodOxygenSkeleton(true)
-    if (timeType && FinalDate) {
-    const result = await GetUserBloodOxyenData(timeType, terraId, FinalDate)
-    setBloodOxygenData(result);
-    setIsBloodOxygenSkeleton(false)
+    try {
+      setIsBloodOxygenSkeleton(true);
+      if (timeType && FinalDate) {
+        const result = await GetUserBloodOxyenData(timeType, terraId, FinalDate);
+        setBloodOxygenData(result);
+        setIsBloodOxygenSkeleton(false);
+      }
+    } catch (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'colored',
+      });
+      setIsBloodOxygenSkeleton(false);
     }
-  }
+  };
+  
 
   useEffect(() => {
     if (terraId) {

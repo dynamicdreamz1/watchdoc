@@ -1,18 +1,19 @@
 import { Button, Dialog} from '@mui/material'
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { MetaFormeting,calculateAge} from '../../../Utility/functions';
 import CliniciansOverlay from '../../Clinician/Overlays/CliniciansOverlay';
 import EmergencyContactOverlay from '../../Clinician/Overlays/EmergencyContactOverlay';
 import {PatientProfileOverlay} from '../../Clinician/Overlays/PatientProfileOverlay';
+import {PatientProfileOverlayForAdmin} from '../../Clinician/Overlays/PatientProfileOverlayForAdmin'
 import PhoneNumber from '../../common/PhoneNumber'
 import { ChartResultRange } from '../../../Utility/Skeleton';
+import { getCurrentUserData } from '../../../services/UserService';
 
 
-export default function PatientProfileBar({latestData}) {
+export default function PatientProfileBar({latestData,fetchData}) {
+  const userData=getCurrentUserData();
 const navigate=useNavigate();
- const location=useLocation()
-  const {data}=location.state || {};
   const {first_name,last_name,sex,dob}=MetaFormeting(latestData?.user_data)
   const age=calculateAge(dob)
   const [openProfile, setOpenProfile] = React.useState(false);
@@ -36,7 +37,7 @@ const navigate=useNavigate();
     {
       key: 1,
       Name: 'Profile',
-      PopupData: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
+      PopupData:userData?.roles[0]?.name==='Admin' ? <PatientProfileOverlayForAdmin data={latestData} handleClose={handleClose} id={latestData?.user_data?.id} fetchData={fetchData}/>: <PatientProfileOverlay data={latestData} handleClose={handleClose}/>,
       handle: setOpenProfile,
       open: openProfile
     },
@@ -70,7 +71,7 @@ const navigate=useNavigate();
         }
         </div>
         <div className='center-block'>
-            <PhoneNumber Number={data?.contact_number} />
+            <PhoneNumber Number={latestData?.user_data?.contact_number} />
         </div>
         <div className='right-block'>
             {patientQuickNavs.map((data, i) => (

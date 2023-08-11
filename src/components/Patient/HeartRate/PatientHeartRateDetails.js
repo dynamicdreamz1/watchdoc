@@ -6,6 +6,7 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { GetUserHeartRateData } from '../../../services/HelthData'
 import moment from 'moment'
 import { defaultHeartRateAlertTrigger, defaultMainCardData } from '../../../Utility/DefaultObject'
+import { toast } from 'react-toastify'
 
 
 export default function PatientHeartRateDetails({terraId,latestData}) {
@@ -15,16 +16,28 @@ export default function PatientHeartRateDetails({terraId,latestData}) {
   const [timeType,setTimeType]=useState('daily')
   const [isHeartrateSkeleton,setIsHeartrateSkeleton]=useState(false)
 
-const fetchData=async()=>{
-  setIsHeartrateSkeleton(true)
-  if (timeType && FinalDate) {
-    const result= await GetUserHeartRateData(timeType,terraId,FinalDate)
-    setHeartRateValue(result);
-   setIsHeartrateSkeleton(false)
-  }
+  const fetchData = async () => {
+    try {
+      setIsHeartrateSkeleton(true);
+      if (timeType && FinalDate) {
+        const result = await GetUserHeartRateData(timeType, terraId, FinalDate);
+        setHeartRateValue(result);
+        setIsHeartrateSkeleton(false);
+      }
+    } catch (error) {
+      setIsHeartrateSkeleton(false);
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+    }
+  };
   
-}
-
 useEffect(() => { 
   if(terraId){
  fetchData()

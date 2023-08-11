@@ -6,6 +6,7 @@ import MyClinicians from '../components/Patient/AddClinician/MyClinicians';
 import { createContext } from "react";
 
 export const InnerClinicianContext = createContext([]);
+
 export default function AddClinicianInner() {
   const [status, setStatus] = useState(false)
   const [toggle, setToggle] = useState(false)
@@ -13,6 +14,8 @@ export default function AddClinicianInner() {
   const [clinicianData, setClinicianData] = useState([])
   const [nextBtn,setNextBtn]=useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+  const [searchData, setSearchData] = useState("");
+
   
   return (
     <>
@@ -20,12 +23,12 @@ export default function AddClinicianInner() {
         <div className='content-wrapper'>
           <Sidebar />
           <div className='aside'>
-            <Header toggle={toggle} setToggle={setToggle} />
+            <Header toggle={toggle} setToggle={setToggle} setSearchData={setSearchData} searchData={searchData}/>
             {toggle === true ? 
             <AddClinician status={status} setStatus={setStatus} />
                : ""} 
             
-            <MyClinicians status={status} />
+            <MyClinicians status={status} searchData={searchData} setSearchData={setSearchData}/>
           </div>
         </div>
       </InnerClinicianContext.Provider>

@@ -1,24 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useState }  from 'react'
 import Header from './Header'
 import PatientDashboard from '../Patient/PatientDashboard'
-import { UserContext } from '../../Store/Context'
 import ClinicianDashboard from '../Clinician/ClinicianDashboard'
 import AdminDashboard from '../Admin/AdminDashboard'
+import { getCurrentUserData } from '../../services/UserService'
 
 export default function Aside() {
-  const { currentUserData } = useContext(UserContext);
+  const userData = getCurrentUserData()
+  const [searchData,setSearchData]=useState("")
 
 
   return (
     <div className='aside'>
 
-      <Header />
+      <Header setSearchData={setSearchData} searchData={searchData}/>
       {(() => {
-        switch (currentUserData?.role) {
+        switch (userData?.roles[0].name) {
           case 'User':
             return <PatientDashboard />
           case 'Clinician':
-            return <ClinicianDashboard />
+            return <ClinicianDashboard searchData={searchData} setSearchData={setSearchData}/>
           default:
             return <AdminDashboard />
         }

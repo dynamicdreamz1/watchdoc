@@ -3,11 +3,11 @@ import { headersAdmin } from "../Utility/functions"
 import { StoreCookie } from "../Utility/sessionStore"
 
 
-export const getStaffUsers = async (recordPerPage, currentPage) => {
+export const getStaffUsers = async (recordPerPage, currentPage,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers?limit=${recordPerPage}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getstaffusers?limit=${recordPerPage}&page=${currentPage}&search=${search}`,
             headers: headersAdmin
         })
         return response
@@ -16,11 +16,11 @@ export const getStaffUsers = async (recordPerPage, currentPage) => {
     }
 }
 
-export const getPendingClinicians = async (limit, pages) => {
+export const deleteStaffUsers = async (id) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=clinicians-pending&limit=${limit}&page=${pages}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/delete_staff_users?user_id=${id}`,
             headers: headersAdmin
         })
         return response
@@ -29,11 +29,11 @@ export const getPendingClinicians = async (limit, pages) => {
     }
 }
 
-export const getAllClinicians = async (dataLimit, currentPage) => {
+export const getPendingClinicians = async (limit, pages,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${limit}&page=${pages}&query=clinicians-pending&search=${search}`,
             headers: headersAdmin
         })
         return response
@@ -42,17 +42,16 @@ export const getAllClinicians = async (dataLimit, currentPage) => {
     }
 }
 
-export async function UpdateUserProfile(data) {
+export const getAllClinicians = async (dataLimit, currentPage,search,sort) => {
     try {
         const response = await axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/updateprofile`,
-            data: data,
-            headers: headersAdmin,
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?limit=${dataLimit}&page=${currentPage}&search=${search}&sort=${sort}`,
+            headers: headersAdmin
         })
-        return response;
+        return response
     } catch (error) {
-        return error;
+        return error
     }
 }
 
@@ -98,6 +97,25 @@ export const addStaffUser = async (data) => {
     }
 }
 
+
+export const editStaffUser = async (data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/update_staff_users`,
+            data: data,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
+
 let token = StoreCookie.getItem('token')
 
 export const clinicanProfileUpdate = async (data) => {
@@ -118,15 +136,14 @@ export const clinicanProfileUpdate = async (data) => {
     }
 }
 
-export const getAllPatients = async (dataLimit, currentPage) => {
-    const tempUrl = `https://raq.dynamicdreamz.com/watchdoc-app/api/admin/allpatients?limit=${dataLimit}&page=${currentPage}`
+export const getAdminCriticalAlertReviewed = async (limit,currentPage) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_reviewed?limit=${limit}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
-            url: tempUrl,
-            // url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients`,
-            headers: headersAdmin
-        })
+            url: tempUrl,   
+            headers: headersAdmin,
+        })      
         return response
     } catch (error) {
         return error
@@ -134,13 +151,14 @@ export const getAllPatients = async (dataLimit, currentPage) => {
 
 }
 
-export const getPendingPatients = async () => {
+export const getAdminCriticalAlertunReviewed = async (currentPage,limit) => {
+    const tempUrl = `${process.env.REACT_APP_ENDPOINT}admin/admin_critical_alert_unreviewed?limit=${limit}&page=${currentPage}`
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician?query=pending-patients`,
-            headers: headersAdmin
-        })
+            url: tempUrl,   
+            headers: headersAdmin,
+        })      
         return response
     } catch (error) {
         return error
@@ -148,11 +166,24 @@ export const getPendingPatients = async () => {
 
 }
 
-export const getAllClinicianList = async () => {
+
+export const getAllAdminPatient = async (currentPage,limit,search) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getallclinician`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/allpatients?limit=${limit}&page=${currentPage}&search=${search}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+export const deletePatientAndClinician = async (data) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/delete_account?user_id=${data?.id}&role=${data?.role}`,
             headers: headersAdmin
         })
         return response
@@ -161,11 +192,67 @@ export const getAllClinicianList = async () => {
     }
 }
 
-export const allInOneClinicianList = async () => {
+export const getParticularClinicianDetails = async (id) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `${process.env.REACT_APP_ENDPOINT}admin/getclinicianlist?query=clinicians-pending`,
+            url: `${process.env.REACT_APP_ENDPOINT}admin/get_single_clinician?clinician_id=${id}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+export const getParticulatClinicianPatient = async (id,currentPage,limit) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_patient_request?clinician_id=${id}&limit=${limit}&page=${currentPage}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const getParticulatClinicianApprovePatient = async (id,currentPage,limit,searchData) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/admin_get_approve_patient?clinician_id=${id}&limit=${limit}&page=${currentPage}&search=${searchData}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const changePendingClinicianStatus = async (id) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/approve_clinician?clinician_id=${id}`,
+            headers: headersAdmin
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const updatepatientDetailinAdmin = async (data) => {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}admin/update_user_profile`,
+            data: data,
             headers: headersAdmin
         })
         return response

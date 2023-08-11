@@ -18,19 +18,6 @@ export const getCurrentUserIsActive = () => {
     return StoreCookie.getItem("is_active");
 }
   
-export const fetchCurrentUser = async () => {
-    try {
-        const response = await axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_ENDPOINT}me`,
-            headers: headersUser
-        })
-        return response;
-    } catch (error) {
-        return error;
-    }
-}
-
 export const RegisterMobNumber = async (data) => {
     try {
         const response = await axios({
@@ -39,7 +26,6 @@ export const RegisterMobNumber = async (data) => {
             data: data,
             headers: headersUser
         })
-        console.log(response)
         return response;
     } catch (error) {
         return error;
@@ -60,6 +46,19 @@ export async function ProfileCreation(data) {
     }
 }
 
+export async function ProfileUpdate(data) {
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${process.env.REACT_APP_ENDPOINT}user/update_profile`,
+            data: data,
+            headers: headersUser,
+        })
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 export async function UserLogin(data) {
     try {
         const response = await axios({

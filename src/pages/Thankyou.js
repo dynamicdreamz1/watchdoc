@@ -6,17 +6,14 @@ import { StoreCookie } from '../Utility/sessionStore'
 
 
 export default function Thankyou() {
-
     const navigate=useNavigate()
 
     let Fname=StoreCookie.getItem('name')
     let role=StoreCookie.getItem('role')
-    // const {currentUserData}=useContext(UserContext)
-    // const Fname=(currentUserData.userData?.meta_data[0].meta_value)
     
     const {t}=useTranslation();
+    
     const handleClick=()=>{
-
         if(role==="User"){
         navigate('/addclinician')
         }

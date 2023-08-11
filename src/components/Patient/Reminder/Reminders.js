@@ -29,6 +29,7 @@ export default function Reminders({latestData,fetchData}) {
     const titleresult=latestData?.reminder?.filter(el=>el?.reminder_type===reminderType)
     setReminderTitle(titleresult!==undefined && (titleresult?.length===0?"":titleresult[0].reminder_title||""))
     setFilterDay(result)
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[openReminder,reminderType])
 
 
@@ -50,9 +51,9 @@ export default function Reminders({latestData,fetchData}) {
   }
  
   return (
-     
-    <div  className='reminder-cards-wrapper mt-22'>
+     <>
     <ToastContainer />
+    <div  className='reminder-cards-wrapper mt-22'>
         <div className='section-title'>
              <h5 className='d-flex align-items-center'>{t('PatientDashboard.Reminders.title')} <button type="button"  onClick={handleClickOpen}><img src="/images/Add-Button-White.svg" alt="button" /></button></h5>
         </div>
@@ -74,5 +75,6 @@ export default function Reminders({latestData,fetchData}) {
         ))}
         </div>
     </div>
+    </>
   )
 }

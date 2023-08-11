@@ -16,6 +16,7 @@ import { getLatestpatientDetails} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
 import { MetaFormeting } from '../Utility/functions';
 import { ReminderCardSkeleton } from '../Utility/Skeleton';
+import { ToastContainer } from 'react-toastify';
 
 
 const PatientsDetails = () => {
@@ -24,6 +25,7 @@ const PatientsDetails = () => {
   const [latestData, setlatestData] = useState({})
   const finalId = latestData?.data?.provider.map(item => item?.terra_id);
   const [loadingSkeleton,setLoadingSkeleton]=useState(false)
+
   const fetchData=async()=>{
     setLoadingSkeleton(true)
     const response= await getLatestpatientDetails(state?.id).then(response => response?.data)
@@ -34,24 +36,27 @@ const PatientsDetails = () => {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+    }, []);
 
-const patientData = MetaFormeting(latestData?.data?.user_data)
+    const patientData = MetaFormeting(latestData?.data?.user_data)
 
-const finalLatest={
-    latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
-    role_name:[],
-    user_data:latestData?.data?.user_data,
-    reminder:latestData?.data?.user_reminder,
-    criteria_alert:latestData?.data?.criteria_alert
-}
+    const finalLatest={
+        latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
+        role_name:[],
+        user_data:latestData?.data?.user_data,
+        reminder:latestData?.data?.user_reminder,
+        criteria_alert:latestData?.data?.criteria_alert
+    }
+
     return (
+        <>
+        <ToastContainer />
         <div className='content-wrapper'>
             <Sidebar />
             <div className='aside'>
                 <Header />
                 <UserBodyContextProvider >
-                    <PatientProfileBar latestData={finalLatest}/>
+                    <PatientProfileBar latestData={finalLatest} fetchData={fetchData}/>
                    <CriticalAlerts latestData={finalLatest} fetchData={fetchData}/>
                     <Latestmeasurement latestData={finalLatest} />
                    { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={finalLatest} fetchData={fetchData} />}
@@ -64,6 +69,7 @@ const finalLatest={
                 </UserBodyContextProvider>
             </div>
         </div>
+        </>
     )
 }
 

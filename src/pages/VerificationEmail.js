@@ -1,12 +1,11 @@
 import { Base64 } from 'js-base64'
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { VerifyEmail } from '../services/UserService'
 import '../css/Verification.css'
 import { RegisterUser } from '../services/UserService'
 import { StoreCookie } from '../Utility/sessionStore'
 import { useLocation, useNavigate} from 'react-router-dom'
-import { UserContext } from '../Store/Context'
 import { updateToken } from '../Utility/functions'
 
 
@@ -15,7 +14,6 @@ const VerificationEmail = () => {
     const navigate = useNavigate()
     const { t } = useTranslation();
     const {emailId,id } = location.state;
-    const { setCurrentUser } = useContext(UserContext)
     const [show, setShow] = useState(true)
     const [error, setError] = useState('')
     const [code, setCode] = useState(id)
@@ -50,14 +48,12 @@ const VerificationEmail = () => {
                 email: emailId,
                 varification_code: code,
             }
-
+            
             VerifyEmail(data)
                 .then((res) => {
-                    console.log(res)
                     const { data } = res;
                     const { token, user_details } = data;
                     StoreCookie.setItem("token", token);
-                    setCurrentUser(token)
                     updateToken();
                     const { profile_created, is_active, roles } = user_details;
                     StoreCookie.setItem("profileCheck", profile_created);

@@ -3,6 +3,8 @@ import React from 'react'
 import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const ClinicianCard = () => {
     const totalUser=[1,2,3];
@@ -65,6 +67,17 @@ export const DefaultChartSkeleton = () => {
         <>
             <Stack spacing={1} className="chart-skeleton">
                 <Skeleton style={{color :"black", fontSize:"30px", display:"flex" ,alignItems:"center" ,justifyContent:"center"}} height={300} width={1000} variant="rectangular" >
+                No Data Found
+                </Skeleton>
+            </Stack>
+        </>
+    )
+}
+export const DefaultChartAlertSkeleton = () => {
+    return(
+        <>
+            <Stack spacing={1} className="chart-skeleton">
+                <Skeleton style={{color :"black", fontSize:"30px", display:"flex" ,alignItems:"center" ,justifyContent:"center"}} height={300} width={2000} variant="rectangular" >
                 No Data Found
                 </Skeleton>
             </Stack>
@@ -137,6 +150,18 @@ export const MeasurmentCardSkeleton = ()=> {
 export const AlertSkeleton = ()=> {
     return (
         <>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
+            <Stack spacing={2} className="alert-card d-flex">
+            <Skeleton width="100%" animation="wave" />
+            </Stack>
             <Stack spacing={2} className="alert-card d-flex">
             <Skeleton width="100%" animation="wave" />
             </Stack>
@@ -234,4 +259,22 @@ export const TableSkeleton = ()=>  {
         </Stack>
     </>
   )
+}
+
+
+
+
+export default function SimpleBackdrop({open}) {
+
+
+  return (
+    <div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </div>
+  );
 }

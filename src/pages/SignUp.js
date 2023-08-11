@@ -48,9 +48,6 @@ const SignUp = () => {
 
     });
 
-
-
-
     const handleSubmitForm = async(data) => {
         setSignUpUserData({ ...data })
         const res=await ClinicianRegister(data)

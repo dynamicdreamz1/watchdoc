@@ -7,23 +7,40 @@ import Heartrates from './HeartRate/Heartrates'
 import BloodOxygen from './BloodOxygen/BloodOxygen'
 import BloodGlucose from './BloodGlucose/BloodGlucose'
 import Temperature from './Temperature/Temperature'
-// import Sleep from "./Sleep/Sleep"
 import Weight from './Weight/Weight'
 import { getLatestMeasurement, getProviderTerraId } from '../../services/PatientsService'
-// import Step  from './Step/Step'
+import { ReminderCardSkeleton } from '../../Utility/Skeleton'
+import { toast } from 'react-toastify'
 
 export default function PatientDashboard() {
   const [latestData, setlatestData] = useState({})
   const [terraId,setTerraId]=useState([])
   const finalId = terraId?.data?.map(item => item?.terra_id);
-  
+  const [loadingSkeleton,setLoadingSkeleton]=useState(false)
+
   async function fetchData() {
-    await getLatestMeasurement().then(response => response?.data).then(response => {
-        setlatestData(response);
-    })
+    try {
+      setLoadingSkeleton(true);
+      const response = await getLatestMeasurement();
+      const data = response?.data;
+      setlatestData(data);
+      setLoadingSkeleton(false);
+    }
+     catch (error) {
+      setLoadingSkeleton(false);
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+    });
+    }
   }
-  useEffect(() => {
-   
+  
+  useEffect(() => {   
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
@@ -32,8 +49,7 @@ export default function PatientDashboard() {
     async function fetchData() {
         const result=await getProviderTerraId()
         setTerraId(result)         
-   }
-  
+   }  
    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
@@ -41,7 +57,7 @@ export default function PatientDashboard() {
         
         <UserBodyContextProvider >
           <Latestmeasurement latestData={latestData}/>        
-          <Reminders latestData={latestData} fetchData={fetchData} />
+          { loadingSkeleton ? <ReminderCardSkeleton className="reminder-card" /> : <Reminders latestData={latestData} fetchData={fetchData} />}
           <Heartrates terraId={finalId?.[0]} latestData={latestData} />
           <Bloodpressure terraId={finalId?.[0]} latestData={latestData}/>
           <BloodOxygen terraId={finalId?.[0]} latestData={latestData}/>

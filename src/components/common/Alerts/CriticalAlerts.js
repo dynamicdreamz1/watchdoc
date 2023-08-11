@@ -23,11 +23,22 @@ export default function CriticalAlerts({latestData,fetchData}) {
 
   const handleChangePageApprovePatient = (event, newPage) => {
     setCurrentPage(newPage);
-};
+  };
+
   React.useEffect(()=>{
     getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
+          // eslint-disable-next-line react-hooks/exhaustive-deps
   },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])
 
+  const action={
+    getAllAlert,
+    latestData,
+    dataLimitApprovePatient,
+    currentPage,
+    setData ,
+    setCurrentPage
+
+  }
 
   return (
     <>
@@ -39,7 +50,7 @@ export default function CriticalAlerts({latestData,fetchData}) {
               loadingApprovePatient ? <AlertSkeleton /> :  <div className='wrapper'>
               {
                data?.map((item, I) => {
-                return <> <AlertCard alertData={item} key={I} fetchData={fetchData}/> <br/></>
+                return <> <AlertCard alertData={item} key={I} fetchData={fetchData} action={action}/> <br/></>
               })
               }
             </div>
