@@ -44,7 +44,7 @@ const PatientsDetails = () => {
 
     const  updatedPatientData = { ...patientDataLatest,
         sleep: {
-          date: new Date().toLocaleString(),
+          date: patientDataLatest?.sleep?.date,
           count: convertMinutesToHoursAndMinutes(patientDataLatest?.sleep?.count)
         }
       };
