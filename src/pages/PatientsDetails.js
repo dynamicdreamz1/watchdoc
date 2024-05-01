@@ -14,7 +14,7 @@ import PatientProfileBar from '../components/Patient/Profile/PatientProfileBar';
 import CriticalAlerts from '../components/common/Alerts/CriticalAlerts';
 import { getLatestpatientDetails} from '../services/PatientsService';
 import { useLocation } from 'react-router-dom';
-import { MetaFormeting } from '../Utility/functions';
+import { MetaFormeting, convertMinutesToHoursAndMinutes } from '../Utility/functions';
 import { ReminderCardSkeleton } from '../Utility/Skeleton';
 import { ToastContainer } from 'react-toastify';
 
@@ -39,9 +39,19 @@ const PatientsDetails = () => {
     }, []);
 
     const patientData = MetaFormeting(latestData?.data?.user_data)
+    const patientDataLatest = patientData?.latest ? JSON.parse(patientData?.latest) : null
+
+
+    const  updatedPatientData = { ...patientDataLatest,
+        sleep: {
+          date: new Date().toLocaleString(),
+          count: convertMinutesToHoursAndMinutes(patientDataLatest?.sleep?.count)
+        }
+      };
+    
 
     const finalLatest={
-        latest:patientData?.latest ? JSON.parse(patientData?.latest) : null,
+        latest:updatedPatientData,
         role_name:[],
         user_data:latestData?.data?.user_data,
         reminder:latestData?.data?.user_reminder,

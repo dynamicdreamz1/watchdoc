@@ -21,15 +21,15 @@ export const ageCalc = (date) => {
 
 // calculate diffrence between time in minutes
 export const calculateTimeDifferenceInMinutes = (dateString) => {
-  if(dateString===""){
+  if (dateString === "") {
     return 0;
   }
   const givenDate = new Date(dateString);
   const currentDate = new Date();
-  
+
   const differenceInMilliseconds = currentDate - givenDate;
   const differenceInMinutes = Math.round(differenceInMilliseconds / 60000);
-  
+
   return differenceInMinutes;
 }
 
@@ -84,18 +84,18 @@ export const updateToken = () => {
   const token = StoreCookie.getItem('token');
   headersClinician.Authorization = `Bearer ${token}`;
   headersUser.Authorization = `Bearer ${token}`;
-  headersAdmin.Authorization= `Bearer ${token}`
+  headersAdmin.Authorization = `Bearer ${token}`
 }
 
-export const  GetdayHourMin = (data) =>{
-  if(data===""){
-    return {lable : "minutes", data : 0}
+export const GetdayHourMin = (data) => {
+  if (data === "") {
+    return { lable: "minutes", data: 0 }
 
   }
   const interestEndDate = moment().format('YYYY-MM-DD HH:mm:ss')
   const momentObj = moment(data, 'DD-MM-YYYY HH:mm:ss');
-  const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss'); 
-  
+  const momentString = momentObj.format('YYYY-MM-DD HH:mm:ss');
+
   let minutes = moment(interestEndDate).diff(moment(momentString), 'minutes', true).toFixed(0)
   if (minutes >= 60) {
     minutes = undefined
@@ -103,38 +103,38 @@ export const  GetdayHourMin = (data) =>{
   let day = moment(interestEndDate).diff(moment(momentString), 'days', true).toFixed(0)
   if (28 <= parseInt(day)) {
     day = undefined
-  }else if (30 <= parseInt(day)) {
+  } else if (30 <= parseInt(day)) {
     day = undefined
-  }else if (31 <= parseInt(day)) {
+  } else if (31 <= parseInt(day)) {
     day = undefined
 
   }
   let hours = moment(interestEndDate).diff(moment(momentString), 'hours', true).toFixed(0)
   if (parseInt(hours) >= 24) {
-    hours =undefined
+    hours = undefined
   }
   let months = moment(interestEndDate).diff(moment(momentString), 'months', true).toFixed(0)
   if (12 <= parseInt(months)) {
-    months =undefined
+    months = undefined
   }
   const years = moment(interestEndDate).diff(moment(momentString), 'year', true).toFixed(0)
 
   if (minutes) {
-    return {lable : "minutes", data :parseInt(minutes)}
+    return { lable: "minutes", data: parseInt(minutes) }
   }
   else if (hours) {
-    return {lable : "hours", data : parseInt(hours)} 
+    return { lable: "hours", data: parseInt(hours) }
   }
   else if (day) {
-    return {lable : "days", data : parseInt(day)}
+    return { lable: "days", data: parseInt(day) }
   }
   else if (months) {
-    return {lable : "months", data : parseInt(months)}
+    return { lable: "months", data: parseInt(months) }
   }
   else {
-    return {lable : "years", data : parseInt(years)}
+    return { lable: "years", data: parseInt(years) }
   }
-  
+
 }
 
 
@@ -152,64 +152,80 @@ export const calculateAge = (birthday) => {
 export const requestAndApprovePatient = (data) => {
   const arr = [];
   if (data) {
-      data?.map(item=>{
-        let metaData = {};
-        item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
-        const  age = calculateAge(moment(metaData?.dob,"YYYY-MM-DD").format("YYYY-MM-DD"))
-        const data = metaData.latest?JSON.parse(metaData.latest):null
-        const object = {
-            id: item.id,
-            name: `${metaData?.first_name} ${metaData?.last_name}`, 
-            first_name: metaData?.first_name,
-            last_name: metaData?.last_name,
-            age: `${age} Years`,
-            gender: metaData?.sex,
-            status: item.request_status===1?"Reviewed" : "Pending",
-            metaData:data,
-        }
+    data?.map(item => {
+      let metaData = {};
+      item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
+      const age = calculateAge(moment(metaData?.dob, "YYYY-MM-DD").format("YYYY-MM-DD"))
+      const data = metaData.latest ? JSON.parse(metaData.latest) : null
+      const object = {
+        id: item.id,
+        name: `${metaData?.first_name} ${metaData?.last_name}`,
+        first_name: metaData?.first_name,
+        last_name: metaData?.last_name,
+        age: `${age} Years`,
+        gender: metaData?.sex,
+        status: item.request_status === 1 ? "Reviewed" : "Pending",
+        metaData: data,
+      }
 
-        arr.push(object)
-      })
-      return arr;
-    }
+      arr.push(object)
+    })
+    return arr;
+  }
 }
 
 
 export const reviewedUnReviwedCommon = (data) => {
   const arr = [];
   if (data) {
-      data?.map(item=>{
-        let metaData = {};
-        item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
-        const  age = calculateAge(moment(metaData?.dob,"YYYY-MM-DD").format("YYYY-MM-DD"))
-        const data = item?.critical_alerts_data?JSON.parse(item?.critical_alerts_data):null
-        const object = {
-            id: item.user_id,
-            name: `${metaData?.first_name} ${metaData?.last_name}`, 
-            first_name: metaData?.first_name,
-            last_name: metaData?.last_name,
-            age: `${age} Years`,
-            gender: metaData?.sex,
-            status: item?.status===1?"Reviewed" : "UnReviewed",
-            metaData:data,
+    data?.map(item => {
+      let metaData = {};
+      item?.meta_data?.map(item => metaData[item?.meta_key] = item?.meta_value)
+      const age = calculateAge(moment(metaData?.dob, "YYYY-MM-DD").format("YYYY-MM-DD"))
+      const data = item?.critical_alerts_data ? JSON.parse(item?.critical_alerts_data) : null
+      const object = {
+        id: item.user_id,
+        name: `${metaData?.first_name} ${metaData?.last_name}`,
+        first_name: metaData?.first_name,
+        last_name: metaData?.last_name,
+        age: `${age} Years`,
+        gender: metaData?.sex,
+        status: item?.status === 1 ? "Reviewed" : "UnReviewed",
+        metaData: data,
 
-        }
+      }
 
-        arr.push(object)
-      })
-      return arr;
-    }
+      arr.push(object)
+    })
+    return arr;
+  }
 }
 
-export const getEmergencyContact = () =>{
+export const getEmergencyContact = () => {
   const array = []
   let object = {}
   const userData = getCurrentUserData()
-  userData?.meta_data?.map((item) =>{
-      if (item?.meta_key === 'emergency_contact') {
-          object =  {id : item.id,meta_key: item.meta_key, metaData : JSON.parse(item.meta_value) }
-          array.push(object)
-      }
+  userData?.meta_data?.map((item) => {
+    if (item?.meta_key === 'emergency_contact') {
+      object = { id: item.id, meta_key: item.meta_key, metaData: JSON.parse(item.meta_value) }
+      array.push(object)
+    }
   })
   return array
+}
+
+
+export const convertMinutesToHoursAndMinutes = (seconds) => {
+  if (seconds) {
+    const sleepHours = Math.floor(seconds / 3600);
+
+    // Convert remaining seconds to seconds
+    const sleepMinutes = Math.floor((seconds % 3600) / 60);
+    if (sleepHours || sleepMinutes) {
+      return sleepHours + "hr:" + sleepMinutes + "min";
+    }
+    return 0 + "hr:" + 0 + "min";
+  } else {
+    return  0 + "hr:" + 0 + "min";
+  }
 }

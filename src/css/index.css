@@ -1676,7 +1676,7 @@ form .input-block.update-profile:after {
       row-gap: 10px;
   }
   .measurment-card, .measurment-skeleton {
-      max-width: 155px;
+      max-width: 180px;
   }
 }
 

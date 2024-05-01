@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react'
 import DateTime from './DateTime';
+import { convertMinutesToHoursAndMinutes } from '../../../Utility/functions';
 
 const Sleep = (props) => {
     const {el}=props;
@@ -9,7 +10,7 @@ const Sleep = (props) => {
     return (
       <>
           <div className='wt table-data'>
-              <span className='digit'>{el?.metaData?.sleep?.count} </span>
+              <span className='digit'>{convertMinutesToHoursAndMinutes(el?.metaData?.sleep?.count)} </span>
               <DateTime date={momentString}/>
           </div>
       </>
