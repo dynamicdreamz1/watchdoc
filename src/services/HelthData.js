@@ -17,7 +17,7 @@ let headersWithToken ={
 
 
 export const GetUserBloodOxyenData=async(rangType,terraId,FinalDate)=>{
-    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodoxygen?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
+    const tempUrl=`${process.env.REACT_APP_ENDPOINT}terra/bloodoxygen?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
     try {     
         const response = await axios({
             method: "GET",
@@ -33,7 +33,7 @@ export const GetUserBloodOxyenData=async(rangType,terraId,FinalDate)=>{
 }
 
 export const GetUserHeartRateData=async(rangType,terraId,FinalDate)=>{
-    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/heartrate?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
+    const tempUrl=`${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
 
     try {
         
@@ -52,7 +52,7 @@ export const GetUserHeartRateData=async(rangType,terraId,FinalDate)=>{
 }
 
 export const GetUserBloodPressureData=async(rangType,terraId,FinalDate)=>{
-    const tempUrl=`https://raq.dynamicdreamz.com/watchdoc-app/api/terra/bloodpressure?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
+    const tempUrl=`${process.env.REACT_APP_ENDPOINT}terra/bloodpressure?userid=${terraId}&type=body&start_date=${FinalDate.start}&end_date=${FinalDate.end}&range=${rangType}`
 
     try {
         
