@@ -2,14 +2,16 @@ import React from 'react'
 
 export default function AlertTriggerCard(props) {
   const {el}=props;
+  var convertedString = el?.criteria_title.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+
   return (
     <>
     <div className='alert-trigger-card d-flex align-items-center justify-content-between'>
         <span className='text'>
-            {el?.title}
+            {convertedString} Rate Alert Trigger
         </span>
         <span className='number'>
-            {el?.result} {el?.lable}
+            {el?.criteria_limit} bpm
             <img src='/images/angle-right.svg' alt='Angle Right'/>
         </span>
     </div>

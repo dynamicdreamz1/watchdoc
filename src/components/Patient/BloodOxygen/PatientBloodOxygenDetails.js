@@ -4,7 +4,6 @@ import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
 import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCardBloodOxygen'
-import { defaultBloodOxygenAlertTrigger } from '../../../Utility/DefaultObject'
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
 import { toast } from 'react-toastify';
 
@@ -60,9 +59,9 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
         <div className='cards-wrapper d-flex flex-wrap'>
           {/* <MainDetailsCardForBloodOxygen titleAction={titleAction} /> */}
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
-          {defaultBloodOxygenAlertTrigger && defaultBloodOxygenAlertTrigger?.map((el, I) => {
+          {bloodOxygenData?.data.blood_oxygen_criteria && bloodOxygenData?.data.blood_oxygen_criteria?.map((el, I) => {
             return (
-              <AlertTriggerCardBloodOxygen HeartRateAvg={bloodOxygenData?.data?.summary} el={el} key={I} />
+              <AlertTriggerCardBloodOxygen el={el} key={I} />
             )
           })
           }
