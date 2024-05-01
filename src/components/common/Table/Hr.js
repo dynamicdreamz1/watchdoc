@@ -5,7 +5,7 @@ import moment from 'moment';
 export default function Hr(props) {
   const {el}=props;
   const hr = el?.metaData?.heart_rate?.count
-  const momentObj = moment(el?.metaData?.heart_rate?.date, 'YY-MM-DD HH-mm-ss');
+  const momentObj = moment(el?.metaData?.heart_rate?.date, 'DD-MM-YY HH-mm-ss');
   const momentString = momentObj.format("DD MMM h:mm A");
   return (
     <>

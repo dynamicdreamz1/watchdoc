@@ -4,7 +4,7 @@ import DateTime from './DateTime';
 
 const Step = (props) => {
    const {el}=props;
-   const momentObj = moment(el?.metaData?.step?.date, 'YY-MM-DD HH-mm-ss');
+   const momentObj = moment(el?.metaData?.step?.date, 'DD-MM-YY HH-mm-ss');
    const momentString = momentObj.format("DD MMM h:mm A");
    
   return (
