@@ -57,15 +57,15 @@ export const Defaultmeasurment = [
         "label": "",
         "time": "1 min ago"
     },
-    // {
-    //     "key": "blood_oxygen",
-    //     "status": "normal",
-    //     "icon": "blood-oxygen-icon.svg",
-    //     "type": "Blood Oxygen",
-    //     "result": "",
-    //     "label": "%",
-    //     "time": "1 min ago"
-    // },
+    {
+        "key": "blood_oxygen",
+        "status": "normal",
+        "icon": "blood-oxygen-icon.svg",
+        "type": "Blood Oxygen",
+        "result": "",
+        "label": "%",
+        "time": "1 min ago"
+    },
 
     // {
     // "key":"",
