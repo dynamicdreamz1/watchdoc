@@ -58,7 +58,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     <>
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
-          <MainDetailsCardForBloodOxygen titleAction={titleAction} />
+          {/* <MainDetailsCardForBloodOxygen titleAction={titleAction} /> */}
           <ShowAllDataCard HeartRateAvg={bloodOxygenData?.data?.summary} />
           {defaultBloodOxygenAlertTrigger && defaultBloodOxygenAlertTrigger?.map((el, I) => {
             return (

@@ -66,7 +66,7 @@ export default function CriticalPatients(props) {
                                 <TableCell>Patient</TableCell>
                                 <TableCell>BP</TableCell>
                                 <TableCell>HR</TableCell>
-                                <TableCell>BO</TableCell>
+                                {/* <TableCell>BO</TableCell> */}
                                 <TableCell>BG</TableCell>
                                 <TableCell>Temp</TableCell>
                                 <TableCell>Wt</TableCell>

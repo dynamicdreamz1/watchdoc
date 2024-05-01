@@ -57,15 +57,15 @@ export const Defaultmeasurment = [
         "label": "",
         "time": "1 min ago"
     },
-    {
-        "key": "blood_oxygen",
-        "status": "normal",
-        "icon": "blood-oxygen-icon.svg",
-        "type": "Blood Oxygen",
-        "result": "",
-        "label": "%",
-        "time": "1 min ago"
-    },
+    // {
+    //     "key": "blood_oxygen",
+    //     "status": "normal",
+    //     "icon": "blood-oxygen-icon.svg",
+    //     "type": "Blood Oxygen",
+    //     "result": "",
+    //     "label": "%",
+    //     "time": "1 min ago"
+    // },
 
     // {
     // "key":"",
@@ -123,7 +123,7 @@ export const defaultMainCardData = [
 
     {
         "id": "latest_heart_rate",
-        "name":"Heart Rate",
+        "name": "Heart Rate",
         "status": "high",
         "icon": "heart-rate-icon.svg",
         "type": "Heart Rate",
@@ -133,7 +133,7 @@ export const defaultMainCardData = [
     },
     {
         "id": "resting_heart_rate",
-        "name":"Resting Heart Rate",
+        "name": "Resting Heart Rate",
         "status": "",
         "icon": "heart-rate-icon.svg",
         "type": "Heart Rate",
@@ -143,7 +143,7 @@ export const defaultMainCardData = [
     },
     {
         "id": "sleep_heart_rate",
-        "name":"Sleep",
+        "name": "Sleep",
         "status": "",
         "icon": "heart-rate-icon.svg",
         "type": "Heart Rate",
@@ -155,141 +155,141 @@ export const defaultMainCardData = [
 
 
 
-export const defaultHeartRateAlertTrigger=[
+export const defaultHeartRateAlertTrigger = [
     {
-        "id":1,
-        "title":"Low Heart Rate Alert Trigger",
-        "result":"40",
-        "lable":"bpm",
-        "type":"min_hr_bpm",
+        "id": 1,
+        "title": "Low Heart Rate Alert Trigger",
+        "result": "40",
+        "lable": "bpm",
+        "type": "min_hr_bpm",
     },
     {
-        "id":2,
-        "title":"High Heart Rate Alert Trigger",
-        "result":"140",
-        "lable":"bpm",
-        "type":"max_hr_bpm"
+        "id": 2,
+        "title": "High Heart Rate Alert Trigger",
+        "result": "140",
+        "lable": "bpm",
+        "type": "max_hr_bpm"
     }
 ]
 
 
-export const defaultBloodPressureAlertTrigger=[
+export const defaultBloodPressureAlertTrigger = [
     {
-        "id":1,
-        "title":"Low Systolic Alert Trigger",
-        "result":"70",
-        "lable":"",
-        "type":"",
+        "id": 1,
+        "title": "Low Systolic Alert Trigger",
+        "result": "70",
+        "lable": "",
+        "type": "",
     },
     {
-        "id":2,
-        "title":"High Systolic Alert Trigger",
-        "result":"140",
-        "lable":"",
-        "type":""
+        "id": 2,
+        "title": "High Systolic Alert Trigger",
+        "result": "140",
+        "lable": "",
+        "type": ""
     },
     {
-        "id":3,
-        "title":"Low Diastolic Alert Trigger",
-        "result":"50",
-        "lable":"",
-        "type":""
+        "id": 3,
+        "title": "Low Diastolic Alert Trigger",
+        "result": "50",
+        "lable": "",
+        "type": ""
     }, {
-        "id":4,
-        "title":"High Diastolic Alert Trigger",
-        "result":"130",
-        "lable":"",
-        "type":""
+        "id": 4,
+        "title": "High Diastolic Alert Trigger",
+        "result": "130",
+        "lable": "",
+        "type": ""
     }
 ]
 
-export const defaultBloodOxygenAlertTrigger=[
+export const defaultBloodOxygenAlertTrigger = [
     {
-        "id":1,
-        "title":"Low Blood Oxygen Alert Trigger",
-        "result":"90",
-        "lable":"%",
-        "type":"",
+        "id": 1,
+        "title": "Low Blood Oxygen Alert Trigger",
+        "result": "90",
+        "lable": "%",
+        "type": "",
     }
-   
+
 ]
 
-export const defaultWeightAlertTrigger=[
+export const defaultWeightAlertTrigger = [
     {
-        "id":1,
-        "title":"Low Weight Alert Trigger",
-        "result":"75",
-        "lable":"",
-        "type":"",
+        "id": 1,
+        "title": "Low Weight Alert Trigger",
+        "result": "75",
+        "lable": "",
+        "type": "",
     },
     {
-        "id":2,
-        "title":"High Weight Alert Trigger",
-        "result":"95",
-        "lable":"",
-        "type":""
+        "id": 2,
+        "title": "High Weight Alert Trigger",
+        "result": "95",
+        "lable": "",
+        "type": ""
     }
 ]
 
 
 export const day = [
     {
-      id :1,
-      day : "Monday"
+        id: 1,
+        day: "Monday"
     },
     {
-      id :2,
-      day : "Tuesday"
+        id: 2,
+        day: "Tuesday"
     },
     {
-      id :3,
-      day : "Wednesday"
+        id: 3,
+        day: "Wednesday"
     },
     {
-      id :4,
-      day : "Thursday"
+        id: 4,
+        day: "Thursday"
     },
     {
-      id :5,
-      day : "Friday"
+        id: 5,
+        day: "Friday"
     },
     {
-      id :6,
-      day : "Saturday"
+        id: 6,
+        day: "Saturday"
     },
     {
-      id :7,
-      day : "Sunday"
+        id: 7,
+        day: "Sunday"
     }
 ]
 
 
-export  const REMINDER_TYPE_ARRAY = [
-  {
-    id: 3,
-    name: "MEDICATION",
-    buttonText: "Add Reminder",
-    reminder_type: "medication"
-  },
-  {
-    id: 1,
-    name: "WEIGHT",
-    buttonText: "Add Reminder",
-    reminder_type: "weight"
-  },
-  {
-    id: 2,
-    name: "BLOOD PRESSURE",
-    buttonText: "Add Reminder",
-    reminder_type: "blood_pressure"
-  },
+export const REMINDER_TYPE_ARRAY = [
+    {
+        id: 3,
+        name: "MEDICATION",
+        buttonText: "Add Reminder",
+        reminder_type: "medication"
+    },
+    {
+        id: 1,
+        name: "WEIGHT",
+        buttonText: "Add Reminder",
+        reminder_type: "weight"
+    },
+    {
+        id: 2,
+        name: "BLOOD PRESSURE",
+        buttonText: "Add Reminder",
+        reminder_type: "blood_pressure"
+    },
 
-  {
-    id: 4,
-    name: "CUSTOME",
-    buttonText: "Add Reminder",
-    reminder_type: "custome"
-  },
+    {
+        id: 4,
+        name: "CUSTOME",
+        buttonText: "Add Reminder",
+        reminder_type: "custome"
+    },
 ];
 
 
