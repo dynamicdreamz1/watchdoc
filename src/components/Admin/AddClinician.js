@@ -15,7 +15,7 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
     const { t } = useTranslation()
     const [loading,setLoading]=useState(false)
     const location=useLocation();
-    const [countryCode, setcountryCode] = useState('+91');
+    const [countryCode, setcountryCode] = useState('+61');
     const [imageUrl, setImgSrc] = useState("/images/user-picture-placeholder.png");
     const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
     const [addNewStaff, setAddNewStaff] = useState({
@@ -294,6 +294,7 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
                                         value={countryCode}
                                         label="Age"
                                         onChange={handleChange}
+                                        disabled={true}
                                     >
                                         {allTimeZone?.map((data, i) => (
                                             <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>

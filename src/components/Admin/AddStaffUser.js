@@ -240,6 +240,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                         value={countryCode}
                                         label="Age"
                                         onChange={handleChange}
+                                        disabled={true}
                                     >
                                         {allTimeZone?.map((data, i) => (
                                             <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>

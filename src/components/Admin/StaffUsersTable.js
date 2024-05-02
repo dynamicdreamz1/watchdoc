@@ -19,7 +19,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
     const [loading, setLoading] = useState(false)
     let location = useLocation();
     const [totalPages, setTotalPages] = useState(0);
-    const [countryCode, setcountryCode] = useState('+91');
+    const [countryCode, setcountryCode] = useState('+61');
 
     const handleChangePage = (e, newValue) => {
         setCurrentPage(newValue)

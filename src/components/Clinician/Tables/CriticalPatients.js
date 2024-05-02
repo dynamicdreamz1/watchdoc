@@ -69,9 +69,9 @@ export default function CriticalPatients(props) {
                                 {/* <TableCell>BO</TableCell> */}
                                 <TableCell>BG</TableCell>
                                 <TableCell>Temp</TableCell>
-                                <TableCell>Wt</TableCell>
+                                <TableCell>Weight</TableCell>
                                 <TableCell>Sleep</TableCell>
-                                <TableCell>Step</TableCell>
+                                <TableCell>Steps</TableCell>
                                 {location?.pathname==='/adminpatient'?"":   <TableCell>Status</TableCell>}
                                 {location?.pathname==='/adminpatient'?<TableCell>Delete</TableCell>: ""   }
                             </TableRow>
