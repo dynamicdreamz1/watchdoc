@@ -286,7 +286,7 @@ export const REMINDER_TYPE_ARRAY = [
 
     {
         id: 4,
-        name: "CUSTOME",
+        name: "CUSTOM",
         buttonText: "Add Reminder",
         reminder_type: "custome"
     },
