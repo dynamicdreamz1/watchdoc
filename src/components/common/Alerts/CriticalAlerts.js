@@ -10,6 +10,8 @@ export default function CriticalAlerts({latestData,fetchData}) {
   const [totalPages, setTotalPages] = useState(0);
   const [dataLimitApprovePatient] = useState(5)
   const [loadingApprovePatient, setLoading] = useState(false)
+  const [manageAlertData, setManageAlertData] = useState(false)
+
 
   const getAllAlert = async(id,pageLimit,currentPage ) =>{
     setLoading(true)
@@ -28,15 +30,12 @@ export default function CriticalAlerts({latestData,fetchData}) {
   React.useEffect(()=>{
     getAllAlert(latestData?.user_data?.id,dataLimitApprovePatient,currentPage)
           // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient])
+  },[latestData?.user_data?.id,currentPage, dataLimitApprovePatient,manageAlertData])
 
   const action={
-    getAllAlert,
-    latestData,
-    dataLimitApprovePatient,
     currentPage,
-    setData ,
-    setCurrentPage
+    setCurrentPage,
+    setManageAlertData,
 
   }
 
