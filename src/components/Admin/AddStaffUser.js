@@ -26,12 +26,12 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         lastname: Yup.string().required("This field is required*")
             .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-            practicename: Yup.string().required("This field is required*")
-            .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
+            // practicename: Yup.string().required("This field is required*")
+            // .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
         email: Yup.string().required("Email Is Required")
             // eslint-disable-next-line no-useless-escape
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please Enter Valid Email"),
-        practiceaddress: Yup.string().required("This field is required*"),
+        // practiceaddress: Yup.string().required("This field is required*"),
         number: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(phoneRegExp, t('SignUpPage.validation.mobile.v1'))
             .min(10, t('SignUpPage.validation.mobile.short'))
@@ -81,9 +81,9 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             formData.append("last_name",data?.lastname)
             formData.append("email",data?.email)
             formData.append("contact_number",`${countryCode} ${data?.number}`)
-            formData.append("practice_address",data?.practiceaddress,)
+            formData.append("practice_address",null)
             // formData.append("password",data?.password,)
-            formData.append("practice_name",data?.practicename)
+            // formData.append("practice_name",data?.practicename)
             if(typeof imageUrl==="object"){
             formData.append("profile_pic",imageUrl)
             }
@@ -109,7 +109,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             formData.append("last_name",data?.lastname)
             formData.append("email",data?.email)
             formData.append("contact_number",`${countryCode} ${data?.number}`)
-            formData.append("address",data?.practiceaddress,)
+            formData.append("address",null)
             formData.append("password",data?.password,)
             formData.append("type","create")
             if(typeof imageUrl==="object"){
@@ -148,7 +148,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
             "lastname": "",
             "email": "",
             "number": "",
-            "practiceaddress": "",
+            // "practiceaddress": "",
             "password": "",
             })
             setCurrentPage(1)
@@ -214,7 +214,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                 <input type="email" name='email' value={props?.values?.email} onChange={props?.handleChange}/>
                                 <span className="error">  {props.errors.email ? props.errors.email : ""}</span>
                             </div>
-                            <div className='input-block'>
+                            {/* <div className='input-block'>
                                 <label>Practice name</label>
                                 <input type="text" name='practicename' value={props?.values?.practicename} onChange={props?.handleChange} />
                                 <span className="error">{props?.errors?.practicename ? props?.errors?.practicename : ""}</span>
@@ -223,7 +223,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                                 <label>Practice Address</label>
                                 <input type="text" name='practiceaddress' value={props?.values?.practiceaddress} onChange={props?.handleChange} />
                                 <span className="error">{props.errors.practiceaddress ? props.errors.practiceaddress : ""}</span>
-                            </div>
+                            </div> */}
                             {/* {typeof addNewStaff?.id==='number' ? "": */}
                             <div className='input-block'>
                                 <label>Password</label>
