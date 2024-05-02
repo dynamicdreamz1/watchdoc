@@ -13,7 +13,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
  finalData = MetaFormeting(data):
  finalData = MetaFormeting(profileBarData);
 
- const  {first_name,last_name,profile_pic,address,practice_address} = finalData;
+ const  {first_name,last_name,profile_pic} = finalData;
 
   const handleClickNavigate=()=>{
     if(location?.pathname==="/staffusers"){
@@ -41,7 +41,7 @@ export default function UserProfile({ profileBarData,clinicianStaff,handleClickO
               </div>
               <div className='user-info' onClick={handleClickNavigate}>
                 <span className="fname">{first_name} {last_name}</span>
-                <span className="position">{address?address:practice_address ? practice_address : ''}</span>
+                {/* <span className="position">{address?address:practice_address ? practice_address : ''}</span> */}
               </div>
             </>
           }
