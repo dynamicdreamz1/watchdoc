@@ -8,7 +8,7 @@ import { t } from 'i18next';
 
 export default function EditTwoFactor() {
 
-  const [countryCode, setcountryCode] = useState('+91');
+  const [countryCode, setcountryCode] = useState('+61');
   const [editClinicianProfileData, setEditClinicianProfileData] = useState({
     "number":""
 })
@@ -54,6 +54,7 @@ export default function EditTwoFactor() {
                     value={countryCode}
                     label="Age"
                     onChange={handleChange}
+                    disabled={true}
                   >
                     {allTimeZone.map((data, i) => (
                       <MenuItem key={i} value={data.MobileCode}><span className={`fi fi-${data.Code.toLowerCase()}`}></span>{data.MobileCode}</MenuItem>

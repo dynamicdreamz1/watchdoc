@@ -10,32 +10,6 @@ export const BodyObject = {
     oxygen_data: {},
 
 }
-export const DefaultHeartmeasurment = {
-    "status": "high",
-    "icon": "heart-rate-icon.svg",
-    "type": "Heart Rate",
-    "result": '',
-    "label": "bpm",
-    "time": ""
-}
-
-export const DefaultBloodPressuerMeasurment = {
-    "status": "high",
-    "icon": "heart-rate-icon.svg",
-    "type": "Heart Rate",
-    "result": '',
-    "label": "bpm",
-    "time": ""
-}
-
-export const DefaultBloodOygenMeasurment = {
-    "status": "normal",
-    "icon": "blood-oxygen-icon.svg",
-    "type": "Blood Oxygen",
-    "result": "97",
-    "label": "%",
-    "time": "1 min ago"
-}
 
 export const Defaultmeasurment = [
 
@@ -153,66 +127,6 @@ export const defaultMainCardData = [
     },
 ]
 
-
-
-export const defaultHeartRateAlertTrigger = [
-    {
-        "id": 1,
-        "title": "Low Heart Rate Alert Trigger",
-        "result": "40",
-        "lable": "bpm",
-        "type": "min_hr_bpm",
-    },
-    {
-        "id": 2,
-        "title": "High Heart Rate Alert Trigger",
-        "result": "140",
-        "lable": "bpm",
-        "type": "max_hr_bpm"
-    }
-]
-
-
-export const defaultBloodPressureAlertTrigger = [
-    {
-        "id": 1,
-        "title": "Low Systolic Alert Trigger",
-        "result": "70",
-        "lable": "",
-        "type": "",
-    },
-    {
-        "id": 2,
-        "title": "High Systolic Alert Trigger",
-        "result": "140",
-        "lable": "",
-        "type": ""
-    },
-    {
-        "id": 3,
-        "title": "Low Diastolic Alert Trigger",
-        "result": "50",
-        "lable": "",
-        "type": ""
-    }, {
-        "id": 4,
-        "title": "High Diastolic Alert Trigger",
-        "result": "130",
-        "lable": "",
-        "type": ""
-    }
-]
-
-export const defaultBloodOxygenAlertTrigger = [
-    {
-        "id": 1,
-        "title": "Low Blood Oxygen Alert Trigger",
-        "result": "90",
-        "lable": "%",
-        "type": "",
-    }
-
-]
 
 export const defaultWeightAlertTrigger = [
     {

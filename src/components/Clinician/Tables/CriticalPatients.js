@@ -15,8 +15,8 @@ export default function CriticalPatients(props) {
     const [profileBarData, setProfileBarData] = useState([])
     const [open, setOpen] = useState(false);
     const [openRequest, setOpenRequest] = useState(false);
-   
-    const handleClose = () => {
+
+        const handleClose = () => {
         setOpen(false);
         setOpenRequest(false)
     };
@@ -56,7 +56,7 @@ export default function CriticalPatients(props) {
       
       }
       
-
+      
     return (
         <> 
                 <TableContainer component={Paper} className="red-alert-table">
@@ -69,9 +69,9 @@ export default function CriticalPatients(props) {
                                 {/* <TableCell>BO</TableCell> */}
                                 <TableCell>BG</TableCell>
                                 <TableCell>Temp</TableCell>
-                                <TableCell>Weight</TableCell>
-                                <TableCell>Sleep</TableCell>
-                                <TableCell>Steps</TableCell>
+                                {location?.pathname ==='/dashboard'?"": <TableCell>Weight</TableCell>}
+                                {location?.pathname ==='/dashboard'?"":<TableCell>Sleep</TableCell>}
+                                {location?.pathname ==='/dashboard'?"":<TableCell>Steps</TableCell>}
                                 {location?.pathname==='/adminpatient'?"":   <TableCell>Status</TableCell>}
                                 {location?.pathname==='/adminpatient'?<TableCell>Delete</TableCell>: ""   }
                             </TableRow>

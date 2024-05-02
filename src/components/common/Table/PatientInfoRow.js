@@ -39,9 +39,9 @@ export default function PatientInfoRow(props) {
         {/* <TableCell><Bo el={el} value={value} /></TableCell> */}
         <TableCell><Bg el={el}/></TableCell>
         <TableCell><Temp el={el}/></TableCell>
-        <TableCell><Wt el={el} value={value} /></TableCell>
-        <TableCell><Sleep el={el} /></TableCell>
-        <TableCell><Step el={el} /></TableCell>
+        {location?.pathname ==='/dashboard'?"":<TableCell><Wt el={el} value={value} /></TableCell>}
+        {location?.pathname ==='/dashboard'?"":<TableCell><Sleep el={el} /></TableCell>}
+        {location?.pathname ==='/dashboard'?"":<TableCell><Step el={el} /></TableCell>}
         {location?.pathname==='/adminpatient'?<TableCell onClick={()=>DeleteAdminPatient(el.id)}><DeleteIcon/></TableCell>: ""   }
 
       {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>}
