@@ -3,10 +3,11 @@ import AlertTriggerCard from '../../common/DetailCards/AlertTriggerCard'
 import HeartRateChartNavTabs from './HeartRateChartNavTabs'
 import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
-import { GetUserHeartRateData } from '../../../services/HelthData'
+import { GetUserHeartRateData, updatedAlertTriggerData } from '../../../services/HelthData'
 import moment from 'moment'
 import { defaultMainCardData } from '../../../Utility/DefaultObject'
 import { toast } from 'react-toastify'
+import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel'
 
 
 export default function PatientHeartRateDetails({ terraId, latestData }) {
@@ -15,6 +16,10 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
   const [FinalDate, setFinalDate] = useState({ start: start, end: start });
   const [timeType, setTimeType] = useState('daily')
   const [isHeartrateSkeleton, setIsHeartrateSkeleton] = useState(false)
+  const [openTriggerModel, setOpenTriggerModel] = useState(false)
+  const [openTriggerType, setOpenTriggerType] = useState("")
+
+
 
   const fetchData = async () => {
     try {
@@ -38,11 +43,44 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
     }
   };
 
+  const updatedAlertTrigger = async (triggerValue) => {
+    try {
+      const formData = new FormData();
+
+
+      formData.append(openTriggerType, triggerValue === "OFF" ? "off" : triggerValue);
+      formData.append("user_id",latestData.user_data.id);
+      const result = await updatedAlertTriggerData(formData);
+      await fetchData()
+      if (result) {
+        setOpenTriggerModel(false)
+      }
+    } catch (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+    }
+  };
+
+  const openTrigger = (type) => {
+    setOpenTriggerType(type)
+    setOpenTriggerModel(true)
+  }
+  const handleClose = () => {
+    setOpenTriggerModel(false)
+  }
+
+
   useEffect(() => {
     if (terraId) {
       fetchData()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, FinalDate]);
 
 
@@ -55,6 +93,8 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
   }
 
 
+
+
   return (
     <>
       <div className='phrd d-flex flex-wrap'>
@@ -65,10 +105,11 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
             )
           })
           }
-          <ShowAllDataCard />
+          {/* <ShowAllDataCard /> */}
+          <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={openTriggerType} handleClose={handleClose} openTriggerModel={openTriggerModel} />
           {heartRateValue?.data?.heart_criteria && heartRateValue?.data?.heart_criteria?.map((el, I) => {
             return (
-              <AlertTriggerCard el={el} key={I} />
+              <AlertTriggerCard openTriggerModel={openTrigger} el={el} key={I} />
             )
           })
           }

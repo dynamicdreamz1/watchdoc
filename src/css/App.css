@@ -36,4 +36,33 @@
     transform: rotate(360deg);
   }
 }
+.dd-alert-card {
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 0 10px 0;
+  padding: 15px 15px;
+}
+
+.dd-alert-card span {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.dd-alert-submit {
+  max-width: 160px;
+  margin: 0 auto;
+  background-color: #00B8E2;
+  color: #fff;
+  width: 90%;
+  text-align: center;
+  border-radius: 5px;
+  height: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  line-height: 18px;
+  margin: 10px auto 0;
+}
 

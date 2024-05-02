@@ -37,7 +37,7 @@ export default function PatientSleepDetails({ terraId, latestData }) {
       <div className='phrd d-flex flex-wrap'>
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForStep HeartRateAvg={StepData?.data?.summary} latestData={latestData} />
-          <ShowAllDataCard />
+          {/* <ShowAllDataCard /> */}
         </div>
         <div className='chart-wrapper'>
           <DefaultChartSkeleton />

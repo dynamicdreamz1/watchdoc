@@ -1,12 +1,12 @@
 import React from 'react'
 
 export default function AlertTriggerCard(props) {
-  const {el}=props;
+  const {el,openTriggerModel}=props;
   var convertedString = el?.criteria_title.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 
   return (
     <>
-    <div className='alert-trigger-card d-flex align-items-center justify-content-between'>
+    <div onClick={()=>openTriggerModel(el?.criteria_title)} className='alert-trigger-card d-flex align-items-center justify-content-between'>
         <span className='text'>
             {convertedString} Rate Alert Trigger
         </span>
