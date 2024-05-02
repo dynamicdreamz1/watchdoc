@@ -252,3 +252,41 @@ export const ConnectDeviceData = [
         img: "/images/Withings-icon.svg",
     },
 ]
+
+
+export const heartTrigger = [
+    {
+        criteria_title: "high_heart",
+        criteria_limit: "off"
+    },
+    {
+        criteria_title: "low_heart",
+        criteria_limit: "off"
+    }
+]
+
+export const bloodPressureDataData = [
+    {
+        criteria_title: "high_bp_systolic",
+        criteria_limit: "off"
+    },
+    {
+        criteria_title: "low_bp_systolic",
+        criteria_limit: "off"
+    },
+    {
+        criteria_title: "high_bp_diastolic",
+        criteria_limit: "off"
+    },
+    {
+        criteria_title: "low_bp_diastolic",
+        criteria_limit: "off"
+    }
+]
+
+export const bloodOxygenDataData =  [
+    {
+        "criteria_title": "low_bo",
+        "criteria_limit": "off"
+    }
+]

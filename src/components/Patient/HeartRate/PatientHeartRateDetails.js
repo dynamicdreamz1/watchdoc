@@ -5,9 +5,10 @@ import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { GetUserHeartRateData, updatedAlertTriggerData } from '../../../services/HelthData'
 import moment from 'moment'
-import { defaultMainCardData } from '../../../Utility/DefaultObject'
+import { defaultMainCardData ,heartTrigger} from '../../../Utility/DefaultObject'
 import { toast } from 'react-toastify'
 import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel'
+import { addMissingObjects } from '../../../Utility/functions'
 
 
 export default function PatientHeartRateDetails({ terraId, latestData }) {
@@ -19,6 +20,7 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
   const [openTriggerModel, setOpenTriggerModel] = useState(false)
   const [openTriggerType, setOpenTriggerType] = useState("")
 
+  const triggerData = addMissingObjects(heartTrigger,heartRateValue?.data?.heart_criteria &&heartRateValue?.data?.heart_criteria)
 
 
   const fetchData = async () => {
@@ -93,8 +95,6 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
   }
 
 
-
-
   return (
     <>
       <div className='phrd d-flex flex-wrap'>
@@ -107,7 +107,7 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
           }
           {/* <ShowAllDataCard /> */}
           <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={openTriggerType} handleClose={handleClose} openTriggerModel={openTriggerModel} />
-          {heartRateValue?.data?.heart_criteria && heartRateValue?.data?.heart_criteria?.map((el, I) => {
+          {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCard openTriggerModel={openTrigger} el={el} key={I} />
             )

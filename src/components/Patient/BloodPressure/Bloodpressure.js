@@ -8,6 +8,8 @@ import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTrig
 import { DefaultChartSkeleton } from '../../../Utility/Skeleton'
 import { toast } from 'react-toastify'
 import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel'
+import { bloodPressureDataData } from '../../../Utility/DefaultObject'
+import { addMissingObjects } from '../../../Utility/functions'
 
 
 
@@ -23,6 +25,8 @@ export default function Bloodpressure({ terraId, latestData }) {
   const [openTriggerType, setOpenTriggerType] = useState("")
 
   const [value, setValue] = useState(0);
+  const triggerData = addMissingObjects(bloodPressureDataData,bloodPressureData?.data?.blood_pressure_criteria && bloodPressureData?.data?.blood_pressure_criteria)
+
 
   const handleChange = (event, newValue) => {
     const valueType = newValue === 0 ? 'daily' : newValue === 1 ? 'weekly' : newValue === 2 ? 'monthly' : "";
@@ -105,6 +109,7 @@ export default function Bloodpressure({ terraId, latestData }) {
     isBloodPressureSkeleton,
   }
 
+
   return (
     <div className='mt-22'>
       <div className='section-title'>
@@ -115,7 +120,7 @@ export default function Bloodpressure({ terraId, latestData }) {
           <MainDetailsCardForBloodPressure action={action} />
           {/* <ShowAllDataCard /> */}
           <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={openTriggerType} handleClose={handleClose} openTriggerModel={openTriggerModel} />
-          {bloodPressureData?.data?.blood_pressure_criteria.length > 0 && bloodPressureData?.data?.blood_pressure_criteria?.map((el, I) => {
+          {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCardForBloodPressure openTriggerModel={openTrigger} el={el} key={I} />
             )

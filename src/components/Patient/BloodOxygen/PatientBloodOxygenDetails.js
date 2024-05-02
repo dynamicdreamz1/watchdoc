@@ -7,6 +7,8 @@ import AlertTriggerCardBloodOxygen from '../../common/DetailCards/AlertTriggerCa
 import BloodOxygenChartNavTabs from './BloodOxygenChartNavTabs';
 import { toast } from 'react-toastify';
 import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel';
+import { bloodOxygenDataData } from '../../../Utility/DefaultObject';
+import { addMissingObjects } from '../../../Utility/functions';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const start = moment().format('YYYY-MM-DD');
@@ -16,6 +18,8 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const [openTriggerModel, setOpenTriggerModel] = useState(false)
   const [openTriggerType, setOpenTriggerType] = useState("")
   const [bloodOxygenData, setBloodOxygenData] = useState()
+  const triggerData = addMissingObjects(bloodOxygenDataData,bloodOxygenData?.data.blood_oxygen_criteria && bloodOxygenData?.data.blood_oxygen_criteria)
+
 
   const fetchData = async () => {
     try {
@@ -90,6 +94,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     setBloodOxygenData,
     latestData
   }
+
   return (
     <>
       <div className='phrd d-flex flex-wrap'>
@@ -99,7 +104,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
           <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={"Blood-oxigen"} handleClose={handleClose} openTriggerModel={openTriggerModel} />
 
 
-          {bloodOxygenData?.data.blood_oxygen_criteria && bloodOxygenData?.data.blood_oxygen_criteria?.map((el, I) => {
+          {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCardBloodOxygen openTriggerModel={openTrigger} el={el} key={I} />
             )

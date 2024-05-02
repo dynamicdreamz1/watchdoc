@@ -229,3 +229,14 @@ export const convertMinutesToHoursAndMinutes = (seconds) => {
     return  0 + "hr:" + 0 + "min";
   }
 }
+
+
+export const addMissingObjects =(arr1, arr2) => {
+  arr1?.forEach(obj1 => {
+      let index = arr2?.findIndex(obj2 => obj2.criteria_title === obj1.criteria_title);
+      if (index === -1) {
+          arr2.push(obj1);
+      }
+  });
+  return arr2;
+}
