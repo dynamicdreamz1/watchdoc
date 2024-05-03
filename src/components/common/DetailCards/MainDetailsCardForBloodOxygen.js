@@ -5,11 +5,12 @@ import { GetdayHourMin, convertDecimalToPercentage } from '../../../Utility/func
 export default function MainDetailsCardForBloodOxygen({ titleAction }) {
   const { bloodOxygenData, latestData } = titleAction
   const date = GetdayHourMin(latestData?.latest?.blood_oxygen?.date)
+  const bloodOxygen = parseInt(bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage)
 
-  const result = typeof bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage === 'number' ?
-    bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage % 1 !== 0 ? convertDecimalToPercentage(bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage, 0) :
-      bloodOxygenData?.data?.blood_oxygen?.avg_saturation_percentage
+  const result = typeof bloodOxygen === 'number' ? bloodOxygen % 1 !== 0 ? convertDecimalToPercentage(bloodOxygen, 0) : bloodOxygen
     : 0;
+
+    
 
   return (
     <>

@@ -36,7 +36,7 @@ export default function PatientInfoRow(props) {
         <TableCell onClick={handleClicknavigate}><PatientInfo el={el} handleClickOpenRequestPopUp={handleClickOpenRequestPopUp}  value={value} /></TableCell>
         <TableCell><Bp el={el} value={value} /></TableCell>
         <TableCell><Hr el={el} value={value} /></TableCell>
-        {/* <TableCell><Bo el={el} value={value} /></TableCell> */}
+        <TableCell><Bo el={el} value={value} /></TableCell>
         <TableCell><Bg el={el}/></TableCell>
         <TableCell><Temp el={el}/></TableCell>
         {location?.pathname ==='/dashboard'?"":<TableCell><Wt el={el} value={value} /></TableCell>}
