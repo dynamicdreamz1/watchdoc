@@ -254,7 +254,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
             formData.append('critical_alert_id', id)
             const res = await UnreviewedToReviewedAlerts(formData);
             fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
-            fetchReviewedData(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData)
+            fetchReviewedData(dataLimitCriticalAlertReviewedData,currentPageCriticalAlertReviewedData,)
             if (res?.status === 200) {
                 toast.success(res?.data?.message, {
                     position: 'top-right',
