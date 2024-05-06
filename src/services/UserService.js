@@ -96,9 +96,9 @@ export async function ClinicianRegister(data) {
             headers: headers
         })
 
-        return response;
+                return response;
     } catch (error) {
-        return error.response.data.message;
+        return error.response.data.error;
     }
 }
 

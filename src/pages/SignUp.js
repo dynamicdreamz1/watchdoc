@@ -16,9 +16,9 @@ const SignUp = () => {
         "contact_number": "",
         "practice_name": "",
         "practice_address": "",
-        "password":""
+        "password": ""
     })
-    const [error,setError]=useState("")
+    const [error, setError] = useState("")
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     /* eslint-disable no-useless-escape */
 
@@ -26,11 +26,11 @@ const SignUp = () => {
     const LoginSchema = Yup.object({
         first_name: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
-            last_name: Yup.string().required(t('SignUpPage.validation.common1'))
+        last_name: Yup.string().required(t('SignUpPage.validation.common1'))
             .matches(/^[aA-zZ\s]+$/, t('SignUpPage.validation.common2')),
         email: Yup.string().required(t('SignUpPage.validation.email.v1'))
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, t('SignUpPage.validation.email.v2')),
-        password:Yup.string()
+        password: Yup.string()
             .required("This field is required*")
             .matches(
                 // eslint-disable-next-line no-useless-escape
@@ -48,14 +48,14 @@ const SignUp = () => {
 
     });
 
-    const handleSubmitForm = async(data) => {
+    const handleSubmitForm = async (data) => {
         setSignUpUserData({ ...data })
-        const res=await ClinicianRegister(data)
-        if(res?.status===200){
-        navigate("/signupsuccess")
+        const res = await ClinicianRegister(data)
+        if (res?.status === 200) {
+            navigate("/signupsuccess")
         }
-        else{
-            setError(res)
+        else {
+            setError(res.email[0])
         }
     }
 
@@ -94,7 +94,7 @@ const SignUp = () => {
                                     <span className="error">  {props?.errors?.email ? props?.errors?.email : ""}</span>
                                 </div>
                                 <div className='input-block'>
-                                    <input type="password" name='password' placeholder="password*" value={props?.values?.password} autoComplete='off' onChange={props.handleChange}/>
+                                    <input type="password" name='password' placeholder="password*" value={props?.values?.password} autoComplete='off' onChange={props.handleChange} />
                                     <span className="error">  {props?.errors?.password ? props?.errors?.password : ""}</span>
                                 </div>
                                 <div className='input-block'>
