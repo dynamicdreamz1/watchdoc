@@ -182,7 +182,7 @@ export default function AddStaffUser({setOpen,StaffUserData,limit,currentPage,se
                             </div>
                             <div className='input-block update-profile'>
                                 <div className='image-block'>
-                                    <img name="userprofile" src={typeof imageUrl==="object" ?URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />
+                                 {imageUrl &&   <img name="userprofile" src={typeof imageUrl==="object" ? URL.createObjectURL(imageUrl):imageUrl} alt="Staf User" />}
                                 </div>
                                 <div>
                                     <input id="file" type="file" onChange={(e) => handleImages(e.target.files[0])} />
