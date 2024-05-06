@@ -23,6 +23,7 @@ export default function Bloodpressure({ terraId, latestData }) {
   const [isBloodPressureSkeleton, setIsBloodPressureSkeleton] = useState(false)
   const [openTriggerModel, setOpenTriggerModel] = useState(false)
   const [openTriggerType, setOpenTriggerType] = useState("")
+  const [openTriggerResponseFlag, setOpenTriggerResponseFlag] = useState(false)
 
   const [value, setValue] = useState(0);
   const triggerData = addMissingObjects(bloodPressureDataData,bloodPressureData?.data?.blood_pressure_criteria && bloodPressureData?.data?.blood_pressure_criteria)
@@ -55,15 +56,15 @@ export default function Bloodpressure({ terraId, latestData }) {
 
   const updatedAlertTrigger = async (triggerValue) => {
     try {
+      setOpenTriggerResponseFlag(true)
       const formData = new FormData();
-
-
       formData.append(openTriggerType, triggerValue === "OFF" ? "off" : triggerValue);
       formData.append("user_id",latestData.user_data.id);
       const result = await updatedAlertTriggerData(formData);
       await fetchData()
       if (result) {
         setOpenTriggerModel(false)
+        setOpenTriggerResponseFlag(false)
       }
     } catch (error) {
       toast.error(error, {
@@ -119,7 +120,14 @@ export default function Bloodpressure({ terraId, latestData }) {
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForBloodPressure action={action} />
           {/* <ShowAllDataCard /> */}
-          <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={openTriggerType} handleClose={handleClose} openTriggerModel={openTriggerModel} />
+          <AlertTriggerCardModel 
+            updatedAlertTrigger={updatedAlertTrigger} 
+            openTriggerType={openTriggerType} 
+            handleClose={handleClose} 
+            openTriggerModel={openTriggerModel} 
+            openTriggerResponseFlag={openTriggerResponseFlag}
+
+            />
           {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCardForBloodPressure openTriggerModel={openTrigger} el={el} key={I} />

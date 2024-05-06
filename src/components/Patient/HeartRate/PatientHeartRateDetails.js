@@ -5,7 +5,7 @@ import MainDetailsCard from '../../common/DetailCards/MainDetailsCard'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import { GetUserHeartRateData, updatedAlertTriggerData } from '../../../services/HelthData'
 import moment from 'moment'
-import { defaultMainCardData ,heartTrigger} from '../../../Utility/DefaultObject'
+import { defaultMainCardData, heartTrigger } from '../../../Utility/DefaultObject'
 import { toast } from 'react-toastify'
 import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel'
 import { addMissingObjects } from '../../../Utility/functions'
@@ -19,8 +19,10 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
   const [isHeartrateSkeleton, setIsHeartrateSkeleton] = useState(false)
   const [openTriggerModel, setOpenTriggerModel] = useState(false)
   const [openTriggerType, setOpenTriggerType] = useState("")
+  const [openTriggerResponseFlag, setOpenTriggerResponseFlag] = useState(false)
 
-  const triggerData = addMissingObjects(heartTrigger,heartRateValue?.data?.heart_criteria &&heartRateValue?.data?.heart_criteria)
+
+  const triggerData = addMissingObjects(heartTrigger, heartRateValue?.data?.heart_criteria && heartRateValue?.data?.heart_criteria)
 
 
   const fetchData = async () => {
@@ -47,15 +49,15 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
 
   const updatedAlertTrigger = async (triggerValue) => {
     try {
+      setOpenTriggerResponseFlag(true)
       const formData = new FormData();
-
-
       formData.append(openTriggerType, triggerValue === "OFF" ? "off" : triggerValue);
-      formData.append("user_id",latestData.user_data.id);
+      formData.append("user_id", latestData.user_data.id);
       const result = await updatedAlertTriggerData(formData);
       await fetchData()
       if (result) {
         setOpenTriggerModel(false)
+        setOpenTriggerResponseFlag(false)
       }
     } catch (error) {
       toast.error(error, {
@@ -106,7 +108,14 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
           })
           }
           {/* <ShowAllDataCard /> */}
-          <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={openTriggerType} handleClose={handleClose} openTriggerModel={openTriggerModel} />
+          <AlertTriggerCardModel
+            updatedAlertTrigger={updatedAlertTrigger}
+            openTriggerType={openTriggerType}
+            handleClose={handleClose}
+            openTriggerModel={openTriggerModel}
+            openTriggerResponseFlag={openTriggerResponseFlag}
+
+          />
           {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCard openTriggerModel={openTrigger} el={el} key={I} />

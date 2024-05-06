@@ -14,11 +14,13 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const start = moment().format('YYYY-MM-DD');
   const [timeType, setTimeType] = useState('daily')
   const [FinalDate, setFinalDate] = useState({ start: start, end: start });
-  const [isBloodOxygenSkeleton,setIsBloodOxygenSkeleton]=useState(false);
+  const [isBloodOxygenSkeleton, setIsBloodOxygenSkeleton] = useState(false);
   const [openTriggerModel, setOpenTriggerModel] = useState(false)
   const [openTriggerType, setOpenTriggerType] = useState("")
   const [bloodOxygenData, setBloodOxygenData] = useState()
-  const triggerData = addMissingObjects(bloodOxygenDataData,bloodOxygenData?.data.blood_oxygen_criteria && bloodOxygenData?.data.blood_oxygen_criteria)
+  const [openTriggerResponseFlag, setOpenTriggerResponseFlag] = useState(false)
+
+  const triggerData = addMissingObjects(bloodOxygenDataData, bloodOxygenData?.data.blood_oxygen_criteria && bloodOxygenData?.data.blood_oxygen_criteria)
 
 
   const fetchData = async () => {
@@ -46,14 +48,14 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const updatedAlertTrigger = async (triggerValue) => {
     try {
       const formData = new FormData();
-      
-
+      setOpenTriggerResponseFlag(true)
       formData.append(openTriggerType, triggerValue === "OFF" ? "off" : triggerValue);
-      formData.append("user_id",latestData.user_data.id);
+      formData.append("user_id", latestData.user_data.id);
       const result = await updatedAlertTriggerData(formData);
       await fetchData()
       if (result) {
         setOpenTriggerModel(false)
+        openTriggerResponseFlag(false)
       }
     } catch (error) {
       toast.error(error, {
@@ -76,7 +78,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     setOpenTriggerModel(false)
   }
 
-  
+
 
   useEffect(() => {
     if (terraId) {
@@ -85,7 +87,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terraId, FinalDate]);
 
-  const titleAction={
+  const titleAction = {
     isBloodOxygenSkeleton,
     bloodOxygenData,
     setTimeType,
@@ -101,7 +103,13 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForBloodOxygen titleAction={titleAction} />
           {/* <ShowAllDataCard  /> */}
-          <AlertTriggerCardModel updatedAlertTrigger={updatedAlertTrigger} openTriggerType={"Blood-oxigen"} handleClose={handleClose} openTriggerModel={openTriggerModel} />
+          <AlertTriggerCardModel
+            openTriggerResponseFlag={openTriggerResponseFlag}
+            updatedAlertTrigger={updatedAlertTrigger}
+            openTriggerType={"Blood-oxigen"}
+            handleClose={handleClose}
+            openTriggerModel={openTriggerModel}
+          />
 
 
           {triggerData && triggerData?.map((el, I) => {
@@ -112,7 +120,7 @@ export default function PatientBloodOxygenDetails({ terraId, latestData }) {
           }
         </div>
         <div className='chart-wrapper'>
-          <BloodOxygenChartNavTabs  titleAction={titleAction} />
+          <BloodOxygenChartNavTabs titleAction={titleAction} />
         </div>
       </div>
     </>

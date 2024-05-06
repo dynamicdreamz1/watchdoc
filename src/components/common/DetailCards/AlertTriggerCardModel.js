@@ -1,7 +1,7 @@
 import { Dialog } from '@mui/material'
 import React, { useState } from 'react'
 
-const AlertTriggerCardModel = ({ openTriggerType, openTriggerModel, handleClose, updatedAlertTrigger }) => {
+const AlertTriggerCardModel = ({openTriggerResponseFlag, openTriggerType, openTriggerModel, handleClose, updatedAlertTrigger }) => {
     const [selectedTrigger, setSelectedTrigger] = useState("OFF");
 
     // Function to map values based on keywords
@@ -39,7 +39,8 @@ const AlertTriggerCardModel = ({ openTriggerType, openTriggerModel, handleClose,
                     </div>
                 </div>
             ))}
-            <div onClick={() => updatedAlertTrigger(selectedTrigger)} className='dd-alert-submit'>Submit</div>
+            <button disabled={openTriggerResponseFlag} onClick={() => updatedAlertTrigger(selectedTrigger)} className='dd-alert-submit'>Submit</button>
+            <div className='eError'>{openTriggerResponseFlag? "Loading..." : ""}</div>
         </Dialog>
     )
 }
