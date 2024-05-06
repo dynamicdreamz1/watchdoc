@@ -54,7 +54,9 @@ export default function ClinicianInfoRow({ value, setSearchData, data, clinician
           .catch((error) => {
             console.log(error)
           })
-        setSearchData("")
+          if (setSearchData) {
+            setSearchData("")
+          }
         Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
       }
     });
