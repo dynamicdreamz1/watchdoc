@@ -67,7 +67,7 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     const [viewAll, setViewAll] = useState(true)
     const [PatientRequestData, setPatientRequestData] = useState([])
     const [PatientApproveData, setPatientApproveData] = useState([])
-    const [spinner,setSpinner]=useState(false)
+    const [spinner, setSpinner] = useState(false)
 
     // const [anchorEl, setAnchorEl] = useState(null);
     // const [selectedOption, setSelectedOption] = useState(null);
@@ -116,13 +116,13 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     // const [patientData, setPatientData] = useState(criticalAlertUnreviewedData)
 
     const getPendingPatient = async (dataLimitPendingPatient, currentPagePendingPatient) => {
-        try{
-        setLoadingPendingPatient(true)
-        let response = await ClinicianGetPatientsRequest(dataLimitPendingPatient, currentPagePendingPatient)
-        setTotalPagesPendingPatient(Math.ceil(response?.data?.pending_request?.total / dataLimitPendingPatient));
-        setPatientRequestData(response?.data)
-        setLoadingPendingPatient(false)
-        }catch (error) {
+        try {
+            setLoadingPendingPatient(true)
+            let response = await ClinicianGetPatientsRequest(dataLimitPendingPatient, currentPagePendingPatient)
+            setTotalPagesPendingPatient(Math.ceil(response?.data?.pending_request?.total / dataLimitPendingPatient));
+            setPatientRequestData(response?.data)
+            setLoadingPendingPatient(false)
+        } catch (error) {
             toast.error(error, {
                 position: 'top-right',
                 autoClose: 3000,
@@ -136,23 +136,23 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     }
     const getApproveRequest = async (dataLimitPendingPatient, currentPage) => {
-        try{
-        setLoadingApprovePatient(true)
-        let response = await ClinicianGetApprovePatientsRequest(dataLimitPendingPatient, currentPage)
-        setTotalPagesApprovePatient(Math.ceil(response?.data?.patients?.total / dataLimitPendingPatient))
-        setPatientApproveData(response.data)
-        setLoadingApprovePatient(false)
-    }catch (error) {
-        toast.error(error, {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-        });
-    }
+        try {
+            setLoadingApprovePatient(true)
+            let response = await ClinicianGetApprovePatientsRequest(dataLimitPendingPatient, currentPage)
+            setTotalPagesApprovePatient(Math.ceil(response?.data?.patients?.total / dataLimitPendingPatient))
+            setPatientApproveData(response.data)
+            setLoadingApprovePatient(false)
+        } catch (error) {
+            toast.error(error, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
+        }
 
     }
     useEffect(() => {
@@ -249,14 +249,26 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
     // }
     const handleClickReviewAndUnReviewed = async (id, status) => {
         setSpinner(true)
-        try{
-        const formData = new FormData();
-        formData.append('critical_alert_id', id)
-        const res = await UnreviewedToReviewedAlerts(formData);
-        fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
-        fetchReviewedData(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData)
-        if (res?.status === 200) {
-            toast.success(res?.data?.message, {
+        try {
+            const formData = new FormData();
+            formData.append('critical_alert_id', id)
+            const res = await UnreviewedToReviewedAlerts(formData);
+            fetchUnreviewedData(currentPageCriticalAlertUnreviewedData, dataLimitCriticalAlertUnreviewedData)
+            fetchReviewedData(currentPageCriticalAlertReviewedData, dataLimitCriticalAlertReviewedData)
+            if (res?.status === 200) {
+                toast.success(res?.data?.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+            setSpinner(false)
+        } catch (error) {
+            toast.error(error, {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: true,
@@ -267,18 +279,6 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
             });
         }
         setSpinner(false)
-    }catch (error) {
-        toast.error(error, {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-        });
-    }
-    setSpinner(false)
     }
 
     const action = {
@@ -301,8 +301,8 @@ export default function CriticalPatientsAlertTableTabs({ actionData }) {
 
     }
     return (
-        <>  
-        <SimpleBackdrop open={spinner}/>
+        <>
+            <SimpleBackdrop open={spinner} />
             <ToastContainer />
             <Box sx={{ width: '100%' }}>
                 <Box className="table-header-block">
