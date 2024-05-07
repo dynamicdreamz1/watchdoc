@@ -18,7 +18,7 @@ export default function PatientInfoRow(props) {
 
   const navigate=useNavigate();
   const location=useLocation();
-  const id = location?.pathname==='/adminpatient' ? el.id : el.userId
+  const id = location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails' ? el.id : el.userId
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients" || location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails'){
       navigate("/patientdetails",{state:{
@@ -30,6 +30,7 @@ export default function PatientInfoRow(props) {
   const DeleteAdminPatient =(id) =>{
     DeleteRequest(id)
   }
+
   return (
     <>
     <TableRow >
