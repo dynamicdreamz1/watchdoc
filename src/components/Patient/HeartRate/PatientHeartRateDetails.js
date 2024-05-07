@@ -56,9 +56,18 @@ export default function PatientHeartRateDetails({ terraId, latestData }) {
       formData.append("user_id", latestData.user_data.id);
       const result = await updatedAlertTriggerData(formData);
       await fetchData()
-      if (result) {
-        setOpenTriggerModel(false)
-        setOpenTriggerResponseFlag(false)
+      setOpenTriggerModel(false)
+      setOpenTriggerResponseFlag(false)
+      if (result.status === 400) {
+        toast.error(result.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
       }
     } catch (error) {
       toast.error(error, {

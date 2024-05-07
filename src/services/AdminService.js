@@ -1,6 +1,7 @@
 import axios from "axios"
 import { headersAdmin } from "../Utility/functions"
 import { StoreCookie } from "../Utility/sessionStore"
+import { getCurrentUserRole } from "./UserService"
 
 
 export const getStaffUsers = async (recordPerPage, currentPage,search) => {
@@ -263,7 +264,8 @@ export const updatepatientDetailinAdmin = async (data) => {
 
 
 export const updatedAlertTriggerData=async(data)=>{
-    const tempUrl=`${process.env.REACT_APP_ENDPOINT}admin/admin_user_criteria`
+    const url =  getCurrentUserRole() === "User" ? "user/set_user_criteria" : "admin/admin_user_criteria"
+    const tempUrl=`${process.env.REACT_APP_ENDPOINT}${url}`
 
     try {
         const response = await axios({
@@ -275,8 +277,7 @@ export const updatedAlertTriggerData=async(data)=>{
         })
         return response;
     } catch (error) {
-
-        return error;
+        return error.response.data;
     }
     
 }

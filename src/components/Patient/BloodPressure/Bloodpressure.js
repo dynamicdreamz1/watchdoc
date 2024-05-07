@@ -27,7 +27,7 @@ export default function Bloodpressure({ terraId, latestData }) {
   const [openTriggerResponseFlag, setOpenTriggerResponseFlag] = useState(false)
 
   const [value, setValue] = useState(0);
-  const triggerData = addMissingObjects(bloodPressureDataData,bloodPressureData?.data?.blood_pressure_criteria && bloodPressureData?.data?.blood_pressure_criteria)
+  const triggerData = addMissingObjects(bloodPressureDataData, bloodPressureData?.data?.blood_pressure_criteria && bloodPressureData?.data?.blood_pressure_criteria)
 
 
   const handleChange = (event, newValue) => {
@@ -60,12 +60,22 @@ export default function Bloodpressure({ terraId, latestData }) {
       setOpenTriggerResponseFlag(true)
       const formData = new FormData();
       formData.append(openTriggerType, triggerValue === "OFF" ? "off" : triggerValue);
-      formData.append("user_id",latestData.user_data.id);
+      formData.append("user_id", latestData.user_data.id);
       const result = await updatedAlertTriggerData(formData);
       await fetchData()
-      if (result) {
-        setOpenTriggerModel(false)
-        setOpenTriggerResponseFlag(false)
+      setOpenTriggerModel(false)
+      setOpenTriggerResponseFlag(false)
+
+      if (result.status === 400) {
+        toast.error(result.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
       }
     } catch (error) {
       toast.error(error, {
@@ -121,14 +131,14 @@ export default function Bloodpressure({ terraId, latestData }) {
         <div className='cards-wrapper d-flex flex-wrap'>
           <MainDetailsCardForBloodPressure action={action} />
           {/* <ShowAllDataCard /> */}
-          <AlertTriggerCardModel 
-            updatedAlertTrigger={updatedAlertTrigger} 
-            openTriggerType={openTriggerType} 
-            handleClose={handleClose} 
-            openTriggerModel={openTriggerModel} 
+          <AlertTriggerCardModel
+            updatedAlertTrigger={updatedAlertTrigger}
+            openTriggerType={openTriggerType}
+            handleClose={handleClose}
+            openTriggerModel={openTriggerModel}
             openTriggerResponseFlag={openTriggerResponseFlag}
 
-            />
+          />
           {triggerData && triggerData?.map((el, I) => {
             return (
               <AlertTriggerCardForBloodPressure openTriggerModel={openTrigger} el={el} key={I} />
