@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import CriticalPatients from '../components/Clinician/Tables/CriticalPatients'
-import {  requestAndApprovePatient } from '../Utility/functions'
+import { requestAndApprovePatient } from '../Utility/functions'
 import { ClinicianPatientStatus } from '../services/ClinicianService'
 import { Pagination } from '@mui/material'
 import SimpleBackdrop, { TableSkeleton } from '../Utility/Skeleton'
 import { toast } from 'react-toastify'
 
 
-const PatientRequestAnd = ({action,value}) => {
-const {PatientRequestData,PatientApproveData,
-  getPendingPatient,dataLimitApprovePatient,
-  currentPageApprovePatient,getApproveRequest,
-  loadingApprovePatient,loadingPendingPatient,
-  dataLimitPendingPatient, currentPagePendingPatient}=action
+const PatientRequestAnd = ({ action, value }) => {
+  const { PatientRequestData, PatientApproveData,
+    getPendingPatient, dataLimitApprovePatient,
+    currentPageApprovePatient, getApproveRequest,
+    loadingApprovePatient, loadingPendingPatient,
+    dataLimitPendingPatient, currentPagePendingPatient } = action
 
   const [viewAll] = useState(true)
-  const [spinner,setSpinner]=useState(false)
+  const [spinner, setSpinner] = useState(false)
   const PatientApprove = requestAndApprovePatient(PatientApproveData?.patients?.data)
   const PatientRequest = requestAndApprovePatient(PatientRequestData?.pending_request?.data)
 
@@ -47,28 +47,28 @@ const {PatientRequestData,PatientApproveData,
       setSpinner(false);
     }
   };
-   
-    
+
+
   return (
     <React.Fragment>
-        <div className=''>
+      <div className=''>
         <SimpleBackdrop open={spinner} />
-         {loadingApprovePatient ? <TableSkeleton /> :
+        {loadingApprovePatient ? <TableSkeleton /> :
           <CriticalPatients value={value} patientData={PatientApprove} handleClickStatus={handleClickReview} viewAll={viewAll} />
         }
-          <Pagination page={action?.currentPageApprovePatient} onChange={action?.handleChangePageApprovePatient} count={action?.totalPagesApprovePatient} variant="outlined" shape="rounded" className='table-pagination' />
+        <Pagination page={action?.currentPageApprovePatient} onChange={action?.handleChangePageApprovePatient} count={action?.totalPagesApprovePatient} variant="outlined" shape="rounded" className='table-pagination' />
 
-          <div className="pp-table">
-            <div className='table-title'>
-              <h4>Patients Pending</h4>
-            </div>
-            {loadingPendingPatient ? <TableSkeleton /> :
-            <CriticalPatients value={value} patientData={PatientRequest} handleClickStatus={handleClickReview} viewAll={viewAll}/>
-            }
-            <Pagination page={action?.currentPagePendingPatient} onChange={action?.handleChangePagePendingPatient} count={action?.totalPagesPendingPatient} variant="outlined" shape="rounded" className='table-pagination' />
-
+        <div className="pp-table">
+          <div className='table-title'>
+            <h4>Patients Pending</h4>
           </div>
+          {loadingPendingPatient ? <TableSkeleton /> :
+            <CriticalPatients value={value} patientData={PatientRequest} handleClickStatus={handleClickReview} viewAll={viewAll} />
+          }
+          <Pagination page={action?.currentPagePendingPatient} onChange={action?.handleChangePagePendingPatient} count={action?.totalPagesPendingPatient} variant="outlined" shape="rounded" className='table-pagination' />
+
         </div>
+      </div>
     </React.Fragment>
   )
 }

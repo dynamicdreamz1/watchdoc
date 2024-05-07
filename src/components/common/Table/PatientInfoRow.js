@@ -45,7 +45,7 @@ export default function PatientInfoRow(props) {
         {location?.pathname ==='/dashboard'?"":<TableCell><Step el={el} /></TableCell>}
         {location?.pathname==='/adminpatient'?<TableCell onClick={()=>DeleteAdminPatient(el.id)}><DeleteIcon/></TableCell>: ""   }
 
-      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={()=>handleClickStatus(el.alertId)}/></TableCell>}
+      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>}
     </TableRow>
     </>
   )
