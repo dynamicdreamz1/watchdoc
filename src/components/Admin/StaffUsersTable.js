@@ -62,7 +62,7 @@ export default function StaffUsersTable({ setOpen, open, addNewStaff,setAddNewSt
           if (result.isConfirmed) {
             const res = await deleteStaffUsers(id);  
             setSearchData("")
-            await StaffUserData(limit, currentPage)
+            await StaffUserData(limit, 1)
             toast.success(res?.data?.message, {
               position: 'top-right',
               autoClose: 3000,
