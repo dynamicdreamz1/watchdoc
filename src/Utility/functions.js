@@ -2,37 +2,6 @@ import { getCurrentUserData } from "../services/UserService";
 import { StoreCookie } from "./sessionStore";
 import moment from "moment";
 
-
-export const ageCalc = (date) => {
-  var dob = new Date(date);
-  //calculate month difference from current date in time  
-  var month_diff = Date.now() - dob.getTime();
-
-  //convert the calculated difference in date format  
-  var age_dt = new Date(month_diff);
-
-  //extract year from date      
-  var year = age_dt.getUTCFullYear();
-
-  //now calculate the age of the user  
-  // eslint-disable-next-line no-undef
-  return Math.abs(year - 1970);
-}
-
-// calculate diffrence between time in minutes
-export const calculateTimeDifferenceInMinutes = (dateString) => {
-  if (dateString === "") {
-    return 0;
-  }
-  const givenDate = new Date(dateString);
-  const currentDate = new Date();
-
-  const differenceInMilliseconds = currentDate - givenDate;
-  const differenceInMinutes = Math.round(differenceInMilliseconds / 60000);
-
-  return differenceInMinutes;
-}
-
 export const MetaFormeting = (metadata) => {
   let userProfile = [];
   metadata?.meta_data?.map(item => userProfile[item?.meta_key] = item?.meta_value)
