@@ -91,11 +91,11 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
         }
     }
     
-    const handleSubmitForm =async (data) => {
-        setLoading(true)
+    const handleSubmitForm = async (data) => {
+        setLoading(true);
         const formData = new FormData();
-        if(typeof imageUrl == "object" ){
-            formData.append("profile_pic",imageUrl);
+        if (typeof imageUrl === "object") {
+            formData.append("profile_pic", imageUrl);
         }
         formData.append("first_name", data?.firstname);
         formData.append("last_name", data?.lastname);
@@ -104,37 +104,23 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
         formData.append("password", data?.password);
         formData.append("practice_address", data?.practiceaddress);
         formData.append("practice_name", data?.practicename);
-
         formData.append("type", "create");
-       
-        //  const res=await CreateClinician(formData)
-        //  if(res?.status===200){
-        //     toast.success('Clinician created', {
-        //         position: 'top-right',
-        //         autoClose: 3000,
-        //         hideProgressBar: true,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         theme: "colored",
-        //       });
-        //  }
-
-         CreateClinician(formData)
-         .then((res) => {
-             if (res?.status === 200) {
-                setLoading(false)
-                 toast.success(res?.data?.message, {
-                     position: 'top-right',
-                     autoClose: 3000,
-                     hideProgressBar: true,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                     theme: "colored",
-                 });  
-                 setImgSrc("")
-                 setAddNewStaff({
+    
+        try {
+            const res = await CreateClinician(formData);
+            setLoading(false);
+            if (res.status === 200) {
+                toast.success(res.data.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+                setImgSrc("");
+                setAddNewStaff({
                     "id": "",
                     "firstname": "",
                     "lastname": "",
@@ -146,58 +132,45 @@ export default function AddClinician({setOpen,dataLimit,currentPage ,getAllClini
                     "practiceaddress": "",
                     "password": "",
                     "userprofile": ""
-                })
-                setOpen(false)
-
-             }
-             else{
-             setLoading(false)
-             const key = Object.keys(res.response.data.error)[0];
-               toast.error(res?.response?.data.error[key][0], {
-                 position: 'top-right',
-                 autoClose: 3000,
-                 hideProgressBar: true,
-                 closeOnClick: true,
-                 pauseOnHover: true,
-                 draggable: true,
-                 theme: "colored",
-             });
-
-           }
-         })
-         .catch((error) => {
-           setLoading(false)
-             const key = Object.keys(error.response.data.error.email)[0];
-             if (error.response.data.status === 422) {
-                 toast.error(error.response.data.error[key][0], {
-                     position: 'top-right',
-                     autoClose: 3000,
-                     hideProgressBar: true,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                     theme: "colored",
-                 });
-             }
-             else {
-               toast.error(error, {
-                 position: 'top-right',
-                 autoClose: 3000,
-                 hideProgressBar: true,
-                 closeOnClick: true,
-                 pauseOnHover: true,
-                 draggable: true,
-                 theme: "colored",
-             });
-             }
-           
-         })
-         if(location?.pathname!=="/cliniciandetails"){
-         getAllClinicianData(dataLimit,currentPage)  
-         }      
-         
-       
-    }
+                });
+                setOpen(false);
+                if (location.pathname !== "/cliniciandetails") {
+                    getAllClinicianData(dataLimit, currentPage);
+                }
+            } else {
+                const key = Object.keys(res.response.data.error)[0];
+                toast.error(res.response.data.error[key][0], {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
+        } catch (error) {
+            setLoading(false);
+            let errorMessage = "An error occurred";
+            if (error.response) {
+                const key = Object.keys(error.response.data.error)[0];
+                if (error.response.data.status === 422) {
+                    errorMessage = error.response.data.error[key][0];
+                } else {
+                    errorMessage = error.response.data.message;
+                }
+            }
+            toast.error(errorMessage, {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
+        }
+    };
 
     return (
         <>
