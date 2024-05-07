@@ -192,7 +192,7 @@ export const reviewedUnReviwedCommon = (data) => {
         gender: metaData?.sex,
         status: item?.status === 1 ? "Reviewed" : "UnReviewed",
         metaData: data,
-
+        userId : item.user_id
       }
 
       arr.push(object)

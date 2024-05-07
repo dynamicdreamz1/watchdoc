@@ -16,12 +16,14 @@ import Step from './Step'
 export default function PatientInfoRow(props) {
   const {el,value,handleClickOpenRequestPopUp,handleClickStatus , DeleteRequest}=props;
 
+  console.log('shubham',el);
+
   const navigate=useNavigate();
   const location=useLocation();
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients" || location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails'){
       navigate("/patientdetails",{state:{
-        id:el.id,
+        id:el.userId,
       }})
     }
   }
