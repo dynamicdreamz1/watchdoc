@@ -153,7 +153,7 @@ export const reviewedUnReviwedCommon = (data) => {
       const age = calculateAge(moment(metaData?.dob, "YYYY-MM-DD").format("YYYY-MM-DD"))
       const data = item?.critical_alerts_data ? JSON.parse(item?.critical_alerts_data) : null
       const object = {
-        id: item.id,
+        id: item.user_id,
         name: `${metaData?.first_name} ${metaData?.last_name}`,
         first_name: metaData?.first_name,
         last_name: metaData?.last_name,
@@ -161,7 +161,7 @@ export const reviewedUnReviwedCommon = (data) => {
         gender: metaData?.sex,
         status: item?.status === 1 ? "Reviewed" : "UnReviewed",
         metaData: data,
-        userId : item.user_id
+        alertId : item.id
       }
 
       arr.push(object)

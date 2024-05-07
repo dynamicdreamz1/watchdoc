@@ -73,6 +73,7 @@ const Patients = () => {
     dataLimitCriticalAlertUnreviewedData,
     loadingCriticalAlertReviewedData,
     loadingCriticalAlertUnreviewedData,
+    dataLimitCriticalAlertReviewedData,
     fetchReviewedData
 }
 

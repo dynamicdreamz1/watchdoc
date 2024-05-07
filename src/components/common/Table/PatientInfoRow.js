@@ -18,11 +18,10 @@ export default function PatientInfoRow(props) {
 
   const navigate=useNavigate();
   const location=useLocation();
-  const id = location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails' ? el.id : el.userId
   const handleClicknavigate=()=>{
     if(location.pathname==="/dashboard" ||location.pathname==="/patients" || location?.pathname==='/adminpatient' || location?.pathname==='/cliniciandetails'){
       navigate("/patientdetails",{state:{
-        id:id,
+        id:el.id,
       }})
     }
   }
@@ -46,7 +45,7 @@ export default function PatientInfoRow(props) {
         {location?.pathname ==='/dashboard'?"":<TableCell><Step el={el} /></TableCell>}
         {location?.pathname==='/adminpatient'?<TableCell onClick={()=>DeleteAdminPatient(el.id)}><DeleteIcon/></TableCell>: ""   }
 
-      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={handleClickStatus}/></TableCell>}
+      {location?.pathname==='/adminpatient'?"": <TableCell ><Status el={el} value={value} handleClickStatus={()=>handleClickStatus(el.alertId)}/></TableCell>}
     </TableRow>
     </>
   )
