@@ -260,3 +260,23 @@ export const updatepatientDetailinAdmin = async (data) => {
         return error
     }
 }
+
+
+export const updatedAlertTriggerData=async(data)=>{
+    const tempUrl=`${process.env.REACT_APP_ENDPOINT}admin/admin_user_criteria`
+
+    try {
+        const response = await axios({
+            method: "POST",
+            url:tempUrl,
+            data:data,
+            // url: `${process.env.REACT_APP_ENDPOINT}terra/heartrate?userid="2dc9fa77-6540-4be5-97b7-40174b43e77c"&start_date=${Date}&type=body&range=${rang}`,
+            headers: headersAdmin,
+        })
+        return response;
+    } catch (error) {
+
+        return error;
+    }
+    
+}

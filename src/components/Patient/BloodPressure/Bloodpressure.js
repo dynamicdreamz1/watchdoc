@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import moment from 'moment'
-import { GetUserBloodPressureData, updatedAlertTriggerData } from '../../../services/HelthData'
+import { GetUserBloodPressureData } from '../../../services/HelthData'
+import { updatedAlertTriggerData } from '../../../services/AdminService';
 import MainDetailsCardForBloodPressure from '../../common/DetailCards/MainDetailsCardForBloodPressure'
 import AlertTriggerCardForBloodPressure from '../../common/DetailCards/AlertTriggerCardForBloodPressure';
 import { DefaultChartSkeleton } from '../../../Utility/Skeleton'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetUserBloodOxyenData, updatedAlertTriggerData } from '../../../services/HelthData'
+import { GetUserBloodOxyenData } from '../../../services/HelthData'
 import ShowAllDataCard from '../../common/DetailCards/ShowAllDataCard'
 import moment from 'moment'
 import MainDetailsCardForBloodOxygen from '../../common/DetailCards/MainDetailsCardForBloodOxygen';
@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import AlertTriggerCardModel from '../../common/DetailCards/AlertTriggerCardModel';
 import { bloodOxygenDataData } from '../../../Utility/DefaultObject';
 import { addMissingObjects } from '../../../Utility/functions';
+import { updatedAlertTriggerData } from '../../../services/AdminService';
 
 export default function PatientBloodOxygenDetails({ terraId, latestData }) {
   const start = moment().format('YYYY-MM-DD');
